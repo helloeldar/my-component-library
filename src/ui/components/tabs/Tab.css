@@ -1,0 +1,114 @@
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 4px;
+    margin: 4px;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+    min-width: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tab:hover:not(.tab-active) {
+    background: var(--tab-hover-bg);
+    cursor: pointer;
+}
+
+.tab-active {
+    background: var(--tab-active-bg);
+    border: 1px solid var(--tab-active-border);
+    color: var(--tab-active-text);
+}
+
+.tab-active:hover {
+    background: var(--tab-active-bg);
+}
+
+.tab-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+.tab-label {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0.8;
+    min-width: 0;
+    max-width: 320px;
+}
+
+.tab-active .tab-icon,
+.tab-active .tab-label {
+    opacity: 1;
+}
+
+.tab:hover .tab-icon,
+.tab:hover .tab-label {
+    opacity: 1;
+}
+
+.tab-close {
+    font-size: 16px;
+    color: var(--icon-secondary);
+    border-radius: 100%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0; /* Don't shrink the close button */
+    opacity: 0; /* Hidden by default */
+}
+
+/* Show close button on active tabs */
+.tab-active .tab-close {
+    opacity: 1;
+}
+
+/* Show close button on hover for non-active tabs */
+.tab:hover .tab-close {
+    opacity: 1;
+}
+
+.tab-close:hover {
+    background: var(--control-bg-hover);
+    color: var(--icon-stroke);
+}
+
+/* Vertical tab bar specific styles */
+.tab-bar-vertical .tab {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: -3px;
+}
+
+.tab-bar-vertical .tab .tab-label {
+    flex: 1;
+    max-width: 256px;
+    text-align: left;
+}
+
+/* Small tab size variant */
+.tab-bar-small .tab {
+    padding: 4px 6px;
+    margin: 2px;
+    min-width: 32px;
+}
+
+.tab-bar-small .tab-label {
+    font-size: 12px;
+    font-weight: 500;
+}

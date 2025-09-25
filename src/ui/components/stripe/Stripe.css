@@ -1,0 +1,107 @@
+/* Stripe Button Component */
+.stripe {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.stripe:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 1px;
+}
+
+.stripe-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.stripe-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.stripe-badge {
+    position: absolute;
+    top: 10px;
+    right: 7px;
+    width: 7px;
+    height: 7px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Default State */
+.stripe-default .stripe-icon {
+    color: var(--text-secondary);
+}
+
+.stripe-default:hover {
+    background: var(--bg-tertiary);
+}
+
+.stripe-default.stripe-hovered .stripe-icon {
+    color: var(--text-primary);
+}
+
+/* Selected State */
+.stripe-selected {
+    background: var(--accent-primary);
+}
+
+.stripe-selected .stripe-icon {
+    color: var(--text-white);
+}
+
+.stripe-selected:hover {
+    background: var(--accent-hover);
+}
+
+.stripe-selected .stripe-badge {
+    background: var(--text-white);
+}
+
+/* Inactive State */
+.stripe-inactive {
+    cursor: not-allowed;
+    background: var(--bg-quaternary);
+}
+
+.stripe-inactive .stripe-icon {
+    color: var(--text-tertiary);
+}
+
+.stripe-inactive:hover {
+    background: var(--bg-quinary);
+}
+
+.stripe-inactive .stripe-badge {
+    background: var(--text-tertiary);
+}
+
+/* Badge variations for different states */
+.stripe-default .stripe-badge {
+    background: var(--accent-primary);
+}
+
+.stripe-selected .stripe-badge {
+    background: var(--text-white);
+}
+
+.stripe-inactive .stripe-badge {
+    background: var(--text-tertiary);
+}
