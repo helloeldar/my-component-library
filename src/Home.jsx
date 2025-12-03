@@ -20,6 +20,13 @@ function Home(props) {
             name: 'Widgets',
             description: 'Complex widgets and panels',
             pages: getSortedWidgets()
+        },
+        {
+            name: 'Features',
+            description: 'Complete feature implementations',
+            pages: [
+                { name: 'Non-modal Welcome Screen', key: 'nonmodalwelcomescreen', description: 'WebStorm non-modal welcome screen implementation' }
+            ]
         }
     ];
 

@@ -1,0 +1,31 @@
+.left-sidebar {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 849px;
+    align-items: start;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.left-sidebar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.left-sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    flex-shrink: 0;
+}
+

@@ -1,0 +1,38 @@
+.non-modal-welcome-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.main-window {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    height: 919px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.12) 100%),
+                linear-gradient(90deg, rgb(43, 45, 48) 0%, rgb(43, 45, 48) 100%);
+}
+
+.main-content-area {
+    flex: 1;
+    display: flex;
+    gap: 1px;
+    min-height: 0;
+    min-width: 0;
+}
+
+.editor-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+

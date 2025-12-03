@@ -1,0 +1,23 @@
+.right-sidebar {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 638px;
+    height: 100%;
+    align-items: start;
+    padding-bottom: 6px;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.right-sidebar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    flex-shrink: 0;
+}
+

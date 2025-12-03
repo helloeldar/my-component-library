@@ -1,0 +1,73 @@
+.settings-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    justify-content: center;
+    padding: 2px;
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.settings-button-content {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 3px 4px 3px 6px;
+    position: relative;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.settings-button-content:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.settings-button-left {
+    box-sizing: border-box;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0 2px 0 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.settings-button-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-stroke);
+}
+
+.settings-button-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    line-height: 16px;
+    position: relative;
+    flex-shrink: 0;
+    color: #b4b8bf;
+    font-size: 13px;
+    white-space: pre;
+    margin: 0;
+}
+
+.settings-button-dropdown {
+    position: relative;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-stroke);
+}
+

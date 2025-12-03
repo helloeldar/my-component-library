@@ -1,0 +1,40 @@
+.welcome-header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+    justify-content: center;
+    position: absolute;
+    left: 244px;
+    top: 138px;
+    padding-left: 16px;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    white-space: pre;
+}
+
+.welcome-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #dfe1e5;
+    margin: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.welcome-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #6f737a;
+    margin: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+

@@ -12,8 +12,9 @@ import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
+import NonModalWelcomeScreen from './Features/WebStorm/Non-modal-welcome-screen';
 import { ThemeProvider, useTheme } from './ThemeContext';
-import { ReactComponent as Logo } from './icons/IntelliJPlatformLogo.svg';
+import { ReactComponent as Logo } from './icons/common/IntelliJPlatformLogo.svg';
 import Icon from './ui/components/icon/Icon';
 import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
 import './ui/styles/Themes.css';
@@ -824,6 +825,12 @@ users.forEach(user => {
                 return <Typography />;
             case 'colors':
                 return <Colors />;
+            case 'nonmodalwelcomescreen':
+                return (
+                    <div style={{ width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', boxSizing: 'border-box' }}>
+                        <NonModalWelcomeScreen />
+                    </div>
+                );
             default:
                 return <Home onNavigate={setActiveComponent} />;
         }
@@ -898,6 +905,16 @@ users.forEach(user => {
                             {widget.name}
                         </button>
                     ))}
+                </div>
+                
+                <div className="nav-category">
+                    <div className="nav-category-title">Features</div>
+                    <button
+                        className={`nav-item ${activeComponent === 'nonmodalwelcomescreen' ? 'active' : ''}`}
+                        onClick={() => setActiveComponent('nonmodalwelcomescreen')}
+                    >
+                        Non-modal Welcome Screen
+                    </button>
                 </div>
             </div>
 
