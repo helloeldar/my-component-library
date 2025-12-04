@@ -37,8 +37,10 @@ function Stripe({
             aria-disabled={disabled}
             {...props}
         >
-            <div className="stripe-icon">
-                {icon}
+            <div className="stripe-hover-bg">
+                <div className="stripe-icon">
+                    {icon}
+                </div>
             </div>
             {badge && <div className="stripe-badge"></div>}
         </div>

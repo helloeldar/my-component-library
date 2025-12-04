@@ -13,7 +13,7 @@ import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import { ThemeProvider, useTheme } from './ThemeContext';
-import { ReactComponent as Logo } from './icons/IntelliJPlatformLogo.svg';
+import { ReactComponent as Logo } from './icons/common/IntelliJPlatformLogo.svg';
 import Icon from './ui/components/icon/Icon';
 import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
 import './ui/styles/Themes.css';

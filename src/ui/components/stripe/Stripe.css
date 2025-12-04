@@ -3,15 +3,12 @@
     position: relative;
     width: 40px;
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
+    padding: 5px;
+    box-sizing: border-box;
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
     border: none;
-    padding: 0;
 }
 
 .stripe:focus {
@@ -19,13 +16,29 @@
     outline-offset: 1px;
 }
 
-.stripe-icon {
-    width: 20px;
-    height: 20px;
+.stripe-hover-bg {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
+    gap: 10px;
+    padding: 5px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.stripe-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--stripe-icon-color);
     transition: color 0.2s ease;
 }
 
@@ -37,71 +50,69 @@
 .stripe-badge {
     position: absolute;
     top: 10px;
-    right: 7px;
+    left: 23px;
     width: 7px;
     height: 7px;
-    background: var(--accent-primary);
     border-radius: 50%;
     pointer-events: none;
+    z-index: 1;
 }
 
 /* Default State */
 .stripe-default .stripe-icon {
-    color: var(--text-secondary);
+    color: var(--stripe-icon-color);
 }
 
-.stripe-default:hover {
-    background: var(--bg-tertiary);
+.stripe-default:hover .stripe-hover-bg,
+.stripe-default.stripe-hovered .stripe-hover-bg {
+    background: var(--stripe-default-hover-bg);
+    opacity: 1;
 }
 
 .stripe-default.stripe-hovered .stripe-icon {
-    color: var(--text-primary);
+    color: var(--stripe-icon-color);
+}
+
+.stripe-default .stripe-badge {
+    background: var(--stripe-badge-default);
 }
 
 /* Selected State */
-.stripe-selected {
-    background: var(--accent-primary);
+.stripe-selected .stripe-hover-bg {
+    background: var(--stripe-selected-bg);
+    opacity: 1;
 }
 
 .stripe-selected .stripe-icon {
     color: var(--text-white);
 }
 
-.stripe-selected:hover {
-    background: var(--accent-hover);
+.stripe-selected:hover .stripe-hover-bg,
+.stripe-selected.stripe-hovered .stripe-hover-bg {
+    background: var(--stripe-selected-hover-bg);
+    opacity: 1;
 }
 
 .stripe-selected .stripe-badge {
-    background: var(--text-white);
+    background: var(--stripe-badge-selected);
 }
 
 /* Inactive State */
-.stripe-inactive {
-    cursor: not-allowed;
-    background: var(--bg-quaternary);
+.stripe-inactive .stripe-hover-bg {
+    background: var(--stripe-inactive-bg);
+    opacity: 1;
 }
 
 .stripe-inactive .stripe-icon {
-    color: var(--text-tertiary);
+    color: var(--stripe-icon-color);
 }
 
-.stripe-inactive:hover {
-    background: var(--bg-quinary);
-}
-
-.stripe-inactive .stripe-badge {
-    background: var(--text-tertiary);
-}
-
-/* Badge variations for different states */
-.stripe-default .stripe-badge {
-    background: var(--accent-primary);
-}
-
-.stripe-selected .stripe-badge {
-    background: var(--text-white);
+.stripe-inactive:hover .stripe-hover-bg,
+.stripe-inactive.stripe-hovered .stripe-hover-bg {
+    background: var(--stripe-inactive-hover-bg);
+    opacity: 1;
 }
 
 .stripe-inactive .stripe-badge {
-    background: var(--text-tertiary);
+    background: var(--stripe-badge-inactive);
 }

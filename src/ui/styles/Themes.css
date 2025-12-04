@@ -221,6 +221,7 @@
     --icon-stroke: var(--gray-80); /* L: icon stroke */
     --icon-secondary: var(--gray-70); /* L: icon sec */
     --icon-stroke-muted: var(--gray-50); /* L: icon stroke muted */
+    --stripe-icon-color: #6C707E; /* L: stripe icon color (Light/Gray/Gray 6) */
 
     /* Success/Green Colors */
     --success-bg: var(--green-30); /* L: VCS diff, success bg, banner stroke */
@@ -362,6 +363,18 @@
     --editor-type-parameter: var(--editor-light-type-parameter);
     --editor-implicit-param: var(--editor-light-implicit-param);
     --editor-html-tag: var(--editor-light-html-tag);
+
+    /* Stripe Button Colors - Light Theme */
+    --stripe-default-hover-bg: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
+    --stripe-selected-bg: #3574F0; /* Light/Blue/Blue 4 (Primary) */
+    --stripe-selected-hover-bg: #3369D6; /* Light/Blue/Blue 3 */
+    --stripe-inactive-bg: #DFE1E5; /* Light/Gray/Gray 11 */
+    --stripe-inactive-hover-bg: #C9CCD6; /* Light/Gray/Gray 9 */
+    --stripe-badge-default: #55A76A; /* Light/Green/Green 6 */
+    --stripe-badge-selected: #FFFFFF; /* Light/Gray/Gray 14 (White) */
+    --stripe-badge-inactive: #55A76A; /* Light/Green/Green 6 */
+    --text-white: #FFFFFF;
+    --text-tertiary: var(--gray-80);
 }
 
 /* Dark Theme Semantic Colors */
@@ -417,6 +430,7 @@
     --icon-stroke: var(--gray-40); /* D: icon stroke */
     --icon-secondary: var(--gray-80); /* D: icon sec */
     --icon-stroke-muted: var(--gray-50); /* D: icon stroke muted */
+    --stripe-icon-color: #CED0D6; /* D: stripe icon color (Dark/Gray/Gray 11) */
 
     /* Success/Green Colors */
     --success-bg: var(--green-120); /* D: file color green, icon fill, success bg */
@@ -553,4 +567,16 @@
     --editor-type-parameter: var(--editor-dark-type-parameter);
     --editor-implicit-param: var(--editor-dark-implicit-param);
     --editor-html-tag: var(--editor-dark-html-tag);
+
+    /* Stripe Button Colors - Dark Theme */
+    --stripe-default-hover-bg: #393B40; /* Dark/Gray/Gray 3 */
+    --stripe-selected-bg: #3574F0; /* Dark/Blue/Blue 6 (Primary) */
+    --stripe-selected-hover-bg: #467FF2; /* Dark/Blue/Blue 7 */
+    --stripe-inactive-bg: #4E5157; /* Dark/Gray/Gray 5 */
+    --stripe-inactive-hover-bg: #5A5D63; /* Dark/Gray/Gray 6 */
+    --stripe-badge-default: #5FAD65; /* Dark/Green/Green 7 (Primary) */
+    --stripe-badge-selected: #FFFFFF; /* Dark/Gray/Gray 14 (White) */
+    --stripe-badge-inactive: #5FAD65; /* Dark/Green/Green 7 (Primary) */
+    --text-white: #FFFFFF;
+    --text-tertiary: var(--gray-80);
 }
