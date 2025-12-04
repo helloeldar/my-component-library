@@ -2,9 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    left: 244px;
-    top: 410px;
+    position: relative;
     width: 274px;
 }
 
@@ -117,7 +115,7 @@
 }
 
 .recent-project-icon-container .project-icon-grass .project-icon-background {
-    background: linear-gradient(to bottom, #5fad65, #3d968b);
+    background: linear-gradient(to bottom, #a1a359, #87aa59);
 }
 
 .recent-project-icon-container .project-icon-ocean .project-icon-background {

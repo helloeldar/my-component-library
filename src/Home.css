@@ -59,6 +59,8 @@
 }
 
 .home-page-card {
+    text-decoration: none;
+    color: inherit;
     padding: 20px;
     background: var(--bg-elevated);
     border: 1px solid var(--border-primary);

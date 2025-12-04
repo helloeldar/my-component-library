@@ -105,6 +105,7 @@
     font-family: 'Inter', sans-serif;
     color: var(--text-secondary);
     transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .nav-item:hover {
@@ -190,6 +191,7 @@
     gap: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .logo:hover {

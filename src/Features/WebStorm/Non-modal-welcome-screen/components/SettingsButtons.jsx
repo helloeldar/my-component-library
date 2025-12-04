@@ -1,4 +1,6 @@
 import SettingsButton from './SettingsButton';
+import { HelpIcon as HelpIconSVG, KeyboardIcon, PluginUpdateIcon } from '../../../../icons';
+import Icon from '../../../../ui/components/icon/Icon';
 import './SettingsButtons.css';
 
 // Simple icon components
@@ -8,31 +10,10 @@ const ThemeIcon = () => (
         <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
     </svg>
 );
-const ScaleIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="8" cy="8" r="5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <path d="M8 3V8L11 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-);
-const KeymapIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="4" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <path d="M5 7H11M7 5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-);
-const PluginsIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <path d="M6 6H10M6 10H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-);
-const HelpIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <path d="M8 5V6M8 10V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="8" cy="8" r="0.5" fill="currentColor"/>
-    </svg>
-);
+const ScaleIcon = () => <Icon name="FontLight" size={16} />;
+const KeymapIcon = () => <KeyboardIcon style={{ width: '16px', height: '16px', color: 'currentColor' }} />;
+const PluginsIcon = () => <PluginUpdateIcon style={{ width: '16px', height: '16px', color: 'currentColor' }} />;
+const HelpIcon = () => <HelpIconSVG style={{ width: '16px', height: '16px', color: 'currentColor' }} />;
 
 function SettingsButtons() {
     const settings = [

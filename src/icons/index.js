@@ -64,6 +64,20 @@ export { ReactComponent as LightThemeIcon } from './theme-toggle/light-theme-ico
 // Common icons (theme-agnostic)
 export { ReactComponent as IntelliJPlatformLogo } from './common/IntelliJPlatformLogo.svg';
 
+// Additional icons (theme-agnostic or single theme)
+export { ReactComponent as SearchIcon } from './search.svg';
+export { ReactComponent as SettingsIcon } from './settings.svg';
+export { ReactComponent as HelpIcon } from './help.svg';
+export { ReactComponent as KeyboardIcon } from './keyboard.svg';
+export { ReactComponent as VcsIcon } from './vcs.svg';
+export { ReactComponent as ExternalLinkIcon } from './externalLink.svg';
+export { ReactComponent as OpenIcon } from './open.svg';
+export { ReactComponent as HistoryIcon } from './history.svg';
+export { ReactComponent as MoreHorizontalIcon } from './moreHorizontal.svg';
+export { ReactComponent as MoreVerticalIcon } from './moreVertical.svg';
+export { ReactComponent as PluginUpdateIcon } from './pluginUpdate.svg';
+export { ReactComponent as ChevronDownIcon } from './chevronDown.svg';
+
 // Icon collections for programmatic access
 export const lightIcons = {
     add: 'AddLight',

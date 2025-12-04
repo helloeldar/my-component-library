@@ -1,40 +1,41 @@
+import { Link } from 'react-router-dom';
 import './Home.css';
 import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
 
-function Home(props) {
+function Home() {
     const categories = [
         {
             name: 'Styles',
             description: 'Design tokens and foundational styles',
             pages: [
-                { name: 'Typography', key: 'typography', description: 'Text styles for UI and editor' },
-                { name: 'Colors', key: 'colors', description: 'Color scales and palettes' }
+                { name: 'Typography', key: 'typography', path: '/styles/typography', description: 'Text styles for UI and editor' },
+                { name: 'Colors', key: 'colors', path: '/styles/colors', description: 'Color scales and palettes' }
             ]
         },
         {
             name: 'Components',
             description: 'Interactive UI components',
-            pages: getSortedComponentsOnly()
+            pages: getSortedComponentsOnly().map(page => ({
+                ...page,
+                path: `/components/${page.key}`
+            }))
         },
         {
             name: 'Widgets',
             description: 'Complex widgets and panels',
-            pages: getSortedWidgets()
+            pages: getSortedWidgets().map(page => ({
+                ...page,
+                path: `/widgets/${page.key}`
+            }))
         },
         {
             name: 'Features',
             description: 'Complete feature implementations',
             pages: [
-                { name: 'Non-modal Welcome Screen', key: 'nonmodalwelcomescreen', description: 'WebStorm non-modal welcome screen implementation' }
+                { name: 'Non-modal Welcome Screen', key: 'nonmodalwelcomescreen', path: '/features/non-modal-welcome-screen', description: 'WebStorm non-modal welcome screen implementation' }
             ]
         }
     ];
-
-    const handlePageClick = (pageKey) => {
-        if (props.onNavigate) {
-            props.onNavigate(pageKey);
-        }
-    };
 
     return (
         <div className="component-showcase">
@@ -54,14 +55,14 @@ function Home(props) {
                         
                         <div className="home-pages">
                             {category.pages.map((page, pageIndex) => (
-                                <div 
-                                    key={pageIndex} 
+                                <Link
+                                    key={pageIndex}
+                                    to={page.path}
                                     className="home-page-card"
-                                    onClick={() => handlePageClick(page.key)}
                                 >
                                     <h3 className="home-page-title">{page.name}</h3>
                                     <p className="home-page-description">{page.description}</p>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 import ProjectSelector from '../../../../ui/components/projectselector/ProjectSelector';
+import { SearchIcon as SearchIconSVG, SettingsIcon as SettingsIconSVG } from '../../../../icons';
 import './MainToolbar.css';
 
 // Simple icon components for toolbar
@@ -8,19 +9,9 @@ const AIAIcon = () => (
     </svg>
 );
 
-const SearchIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <path d="M14 14L17 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-);
+const SearchIcon = () => <SearchIconSVG style={{ width: '20px', height: '20px', color: 'currentColor' }} />;
 
-const SettingsIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="10" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-        <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-);
+const SettingsIcon = () => <SettingsIconSVG style={{ width: '20px', height: '20px', color: 'currentColor' }} />;
 
 function MainToolbar() {
     const projects = [

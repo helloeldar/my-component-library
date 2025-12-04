@@ -1,4 +1,5 @@
 import Icon from '../../../../ui/components/icon/Icon';
+import { ChevronDownIcon } from '../../../../icons';
 import './SettingsButton.css';
 
 function SettingsButton({ label, icon, hasDropdown = false, onClick }) {
@@ -21,7 +22,7 @@ function SettingsButton({ label, icon, hasDropdown = false, onClick }) {
                 </div>
                 {hasDropdown && (
                     <div className="settings-button-dropdown" data-name="Dropdown">
-                        <Icon name="ChevronDownLight" size={16} />
+                        <ChevronDownIcon style={{ width: '16px', height: '16px', color: 'currentColor' }} />
                     </div>
                 )}
             </div>
