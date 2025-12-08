@@ -6,6 +6,7 @@ import Tree from './ui/components/tree/Tree';
 import ToolWindow from './ui/components/toolwindow/ToolWindow';
 import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
+import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
 import Home from './Home';
 import Stripe from './ui/components/stripe/Stripe';
 import StripeContainer from './ui/components/stripe/StripeContainer';
@@ -13,7 +14,7 @@ import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import { ThemeProvider, useTheme } from './ThemeContext';
-import { ReactComponent as Logo } from './icons/common/IntelliJPlatformLogo.svg';
+import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import Icon from './ui/components/icon/Icon';
 import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
 import './ui/styles/Themes.css';
@@ -66,8 +67,8 @@ function AppContent() {
     const tabExamples = () => {
         const tabData = [
             { label: "Home" },
-            { label: "Profile", icon: "👤" },
-            { label: "Settings", icon: "⚙️", closable: true },
+            { label: "Profile", icon: "general/user" },
+            { label: "Settings", icon: "general/settings", closable: true },
             { label: "Documents", closable: true }
         ];
 
@@ -144,36 +145,36 @@ function AppContent() {
             {
                 id: '1',
                 label: 'src',
-                icon: '📁',
+                icon: 'nodes/folder',
                 isExpanded: true,
                 children: [
                     {
                         id: '1-1',
                         label: 'components',
-                        icon: '📁',
+                        icon: 'nodes/folder',
                         isExpanded: false,
                         children: [
-                            { id: '1-1-1', label: 'Button.jsx', icon: '📄' },
-                            { id: '1-1-2', label: 'Input.jsx', icon: '📄' },
-                            { id: '1-1-3', label: 'Tree.jsx', icon: '📄' }
+                            { id: '1-1-1', label: 'Button.jsx', icon: 'fileTypes/javaScript' },
+                            { id: '1-1-2', label: 'Input.jsx', icon: 'fileTypes/javaScript' },
+                            { id: '1-1-3', label: 'Tree.jsx', icon: 'fileTypes/javaScript' }
                         ]
                     },
-                    { id: '1-2', label: 'App.js', icon: '📄' },
-                    { id: '1-3', label: 'index.js', icon: '📄' }
+                    { id: '1-2', label: 'App.js', icon: 'fileTypes/javaScript' },
+                    { id: '1-3', label: 'index.js', icon: 'fileTypes/javaScript' }
                 ]
             },
             {
                 id: '2',
                 label: 'public',
-                icon: '📁',
+                icon: 'nodes/folder',
                 isExpanded: false,
                 children: [
-                    { id: '2-1', label: 'index.html', icon: '📄' },
-                    { id: '2-2', label: 'favicon.ico', icon: '🖼️' }
+                    { id: '2-1', label: 'index.html', icon: 'fileTypes/html' },
+                    { id: '2-2', label: 'favicon.ico', icon: 'fileTypes/image' }
                 ]
             },
-            { id: '3', label: 'package.json', icon: '📄' },
-            { id: '4', label: 'README.md', icon: '📄' }
+            { id: '3', label: 'package.json', icon: 'fileTypes/json' },
+            { id: '4', label: 'README.md', icon: 'fileTypes/text' }
         ];
 
         return (
@@ -194,33 +195,9 @@ function AppContent() {
         );
     };
 
+    const [selectedStripe, setSelectedStripe] = useState('project');
+
     const stripeExamples = () => {
-        // Create some example icons using simple SVGs
-        const FolderIcon = () => (
-            <svg viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-            </svg>
-        );
-
-        const SearchIcon = () => (
-            <svg viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-            </svg>
-        );
-
-        const TerminalIcon = () => (
-            <svg viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm1 1v10h12V5H4z" clipRule="evenodd" />
-                <path d="M6.5 9.5l2.5-2v1.5h3v1h-3v1.5l-2.5-2z" />
-            </svg>
-        );
-
-        const SettingsIcon = () => (
-            <svg viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-            </svg>
-        );
-
         return (
             <div className="component-showcase">
                 <h1>Stripe</h1>
@@ -230,11 +207,31 @@ function AppContent() {
                     <div className="component-examples">
                         <div style={{ height: '400px', display: 'flex', justifyContent: 'center' }}>
                             <StripeContainer>
-                                <Stripe icon={<FolderIcon />} state="selected" title="Project" />
-                                <Stripe icon={<SearchIcon />} badge title="Search" />
-                                <Stripe icon={<TerminalIcon />} title="Terminal" />
+                                <Stripe 
+                                    icon="toolwindows/project@20x20" 
+                                    state={selectedStripe === 'project' ? 'selected' : 'default'} 
+                                    title="Project"
+                                    onClick={() => setSelectedStripe('project')}
+                                />
+                                <Stripe 
+                                    icon="toolwindows/find@20x20" 
+                                    state={selectedStripe === 'search' ? 'selected' : 'default'}
+                                    title="Search"
+                                    onClick={() => setSelectedStripe('search')}
+                                />
+                                <Stripe 
+                                    icon="toolwindows/run@20x20" 
+                                    state={selectedStripe === 'terminal' ? 'selected' : 'default'}
+                                    title="Terminal"
+                                    onClick={() => setSelectedStripe('terminal')}
+                                />
                                 <StripeContainer.Separator />
-                                <Stripe icon={<SettingsIcon />} title="Settings" />
+                                <Stripe 
+                                    icon="general/settings@20x20" 
+                                    state={selectedStripe === 'settings' ? 'selected' : 'default'}
+                                    title="Settings"
+                                    onClick={() => setSelectedStripe('settings')}
+                                />
                             </StripeContainer>
                         </div>
                     </div>
@@ -259,9 +256,9 @@ function AppContent() {
                                     width: '250px'
                                 }}
                             >
-                                <Popup.Cell type="line" icon="📄">New File</Popup.Cell>
-                                <Popup.Cell type="line" icon="📁">New Folder</Popup.Cell>
-                                <Popup.Cell type="line" icon="🔍">Find in Files</Popup.Cell>
+                                <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                                <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
+                                <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
                             </Popup>
                         </div>
                     </div>
@@ -279,11 +276,11 @@ function AppContent() {
                                     width: '250px'
                                 }}
                             >
-                                <Popup.Cell type="line" icon="📄">New File</Popup.Cell>
-                                <Popup.Cell type="line" icon="📁">New Directory</Popup.Cell>
+                                <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                                <Popup.Cell type="line" icon="nodes/folder">New Directory</Popup.Cell>
                                 <Popup.Cell type="separator" />
-                                <Popup.Cell type="line" icon="🔄">Refresh</Popup.Cell>
-                                <Popup.Cell type="line" icon="⚙️">Settings</Popup.Cell>
+                                <Popup.Cell type="line" icon="general/refresh">Refresh</Popup.Cell>
+                                <Popup.Cell type="line" icon="general/settings">Settings</Popup.Cell>
                             </Popup>
                         </div>
                     </div>
@@ -302,13 +299,13 @@ function AppContent() {
                                     width: '280px'
                                 }}
                             >
-                                <Popup.Cell type="line" icon="📄">New File</Popup.Cell>
-                                <Popup.Cell type="line" icon="📁">New Folder</Popup.Cell>
+                                <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                                <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
                                 <Popup.Cell type="separator" />
-                                <Popup.Cell type="multiline" icon="⚙️" hint="Configure settings">
+                                <Popup.Cell type="multiline" icon="general/settings" hint="Configure settings">
                                     Preferences
                                 </Popup.Cell>
-                                <Popup.Cell type="line" icon="🔍">Find in Files</Popup.Cell>
+                                <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
                                 <Popup.Cell type="separator" />
                                 <Popup.Cell type="search" placeholder="Search actions..." />
                             </Popup>
@@ -555,47 +552,47 @@ users.forEach(user => {
             {
                 id: '1',
                 label: 'intellij',
-                icon: '📁',
+                icon: 'nodes/folder',
                 isExpanded: true,
                 children: [
-                    { id: '1-1', label: '.idea', icon: '📁' },
+                    { id: '1-1', label: '.idea', icon: 'nodes/folder' },
                     {
                         id: '1-2',
                         label: 'src',
-                        icon: '📁',
+                        icon: 'nodes/folder',
                         isExpanded: true,
                         children: [
                             {
                                 id: '1-2-1',
                                 label: 'java',
-                                icon: '📁',
+                                icon: 'nodes/folder',
                                 isExpanded: true,
                                 children: [
-                                    { id: '1-2-1-1', label: 'analysis', icon: '📄' },
-                                    { id: '1-2-1-2', label: 'BivariateFunction', icon: '📄' },
-                                    { id: '1-2-1-3', label: 'FunctionUtils', icon: '📄' },
-                                    { id: '1-2-1-4', label: 'MultivariateFunction', icon: '📄' },
-                                    { id: '1-2-1-5', label: 'TrivariateFunction', icon: '📄' }
+                                    { id: '1-2-1-1', label: 'analysis', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-2', label: 'BivariateFunction', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-3', label: 'FunctionUtils', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-4', label: 'MultivariateFunction', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-5', label: 'TrivariateFunction', icon: 'fileTypes/java' }
                                 ]
                             },
-                            { id: '1-2-2', label: 'polynomials', icon: '📁' },
-                            { id: '1-2-3', label: 'solver', icon: '📁' }
+                            { id: '1-2-2', label: 'polynomials', icon: 'nodes/folder' },
+                            { id: '1-2-3', label: 'solver', icon: 'nodes/folder' }
                         ]
                     },
                     {
                         id: '1-3',
                         label: 'test',
-                        icon: '📁',
+                        icon: 'nodes/folder',
                         isExpanded: false,
                         children: [
                             {
                                 id: '1-3-1',
                                 label: 'java',
-                                icon: '📁',
+                                icon: 'nodes/folder',
                                 children: [
-                                    { id: '1-3-1-1', label: 'FunctionUtilsTest', icon: '📄' },
-                                    { id: '1-3-1-2', label: 'MonitoredFunction', icon: '📄' },
-                                    { id: '1-3-1-3', label: 'SumSyncFunction', icon: '📄' }
+                                    { id: '1-3-1-1', label: 'FunctionUtilsTest', icon: 'fileTypes/java' },
+                                    { id: '1-3-1-2', label: 'MonitoredFunction', icon: 'fileTypes/java' },
+                                    { id: '1-3-1-3', label: 'SumSyncFunction', icon: 'fileTypes/java' }
                                 ]
                             }
                         ]
@@ -603,14 +600,14 @@ users.forEach(user => {
                     {
                         id: '1-4',
                         label: 'target',
-                        icon: '📁',
+                        icon: 'nodes/folder',
                         children: [
-                            { id: '1-4-1', label: 'classes', icon: '📁' },
-                            { id: '1-4-2', label: 'generated-sources', icon: '📁' },
-                            { id: '1-4-3', label: '.gitignore', icon: '📄' }
+                            { id: '1-4-1', label: 'classes', icon: 'nodes/folder' },
+                            { id: '1-4-2', label: 'generated-sources', icon: 'nodes/folder' },
+                            { id: '1-4-3', label: '.gitignore', icon: 'fileTypes/text' }
                         ]
                     },
-                    { id: '1-5', label: 'External Libraries', icon: '📁' }
+                    { id: '1-5', label: 'External Libraries', icon: 'nodes/libraryFolder' }
                 ]
             }
         ];
@@ -824,6 +821,8 @@ users.forEach(user => {
                 return <Typography />;
             case 'colors':
                 return <Colors />;
+            case 'toolbar':
+                return <ToolbarDemo />;
             default:
                 return <Home onNavigate={setActiveComponent} />;
         }
@@ -842,7 +841,7 @@ users.forEach(user => {
                             <span className="theme-toggle-auto">A</span>
                         ) : (
                             <Icon
-                                name={theme === 'light' ? 'LightDarkTheme' : 'DarkLightTheme'}
+                                name={theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme'}
                                 size={16}
                             />
                         )}

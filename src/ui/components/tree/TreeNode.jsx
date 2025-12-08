@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Icon from '../icon/Icon';
 import './TreeNode.css';
 
 function TreeNode({ 
@@ -28,6 +29,16 @@ function TreeNode({
         }
     };
 
+    const renderIcon = () => {
+        if (!icon) return null;
+        // If icon is a string, treat it as an icon name from the registry
+        if (typeof icon === 'string') {
+            return <Icon name={icon} size={16} className="tree-node-icon" />;
+        }
+        // Otherwise render it directly (React element)
+        return <span className="tree-node-icon">{icon}</span>;
+    };
+
     const indentWidth = level === 1 ? 16 : level === 2 ? 32 : 50 + (level - 3) * 18;
 
     return (
@@ -45,20 +56,15 @@ function TreeNode({
                             handleToggle();
                         }}
                     >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path 
-                                d="M6 4L10 8L6 12" 
-                                stroke="currentColor" 
-                                strokeWidth="2" 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round"
-                            />
-                        </svg>
+                        <Icon 
+                            name={expanded ? 'general/chevronDown' : 'general/chevronRight'} 
+                            size={16} 
+                        />
                     </button>
                 )}
                 {!hasChildren && <div className="tree-node-spacer" />}
                 
-                {icon && <span className="tree-node-icon">{icon}</span>}
+                {renderIcon()}
                 <span className="tree-node-label">{label}</span>
             </div>
             

@@ -1,3 +1,4 @@
+import Icon from '../icon/Icon';
 import './PopupCell.css';
 import '../../styles/Typography.css';
 
@@ -21,6 +22,20 @@ function PopupCell(props) {
     if (props.selected) {
         classes.push('popup-cell-selected');
     }
+
+    const renderIcon = () => {
+        if (!props.icon) return null;
+        // If icon is a string, treat it as an icon name from the registry
+        if (typeof props.icon === 'string') {
+            return (
+                <div className="popup-cell-icon">
+                    <Icon name={props.icon} size={16} />
+                </div>
+            );
+        }
+        // Otherwise render it directly (React element)
+        return <div className="popup-cell-icon">{props.icon}</div>;
+    };
 
     const renderContent = () => {
         if (props.type === 'header') {
@@ -54,11 +69,7 @@ function PopupCell(props) {
         if (props.type === 'multiline') {
             return (
                 <div className="popup-cell-content">
-                    {props.icon && (
-                        <div className="popup-cell-icon">
-                            {props.icon}
-                        </div>
-                    )}
+                    {renderIcon()}
                     <div className="popup-cell-text-content">
                         <div className="popup-cell-primary-text text-ui-default">
                             {props.children}
@@ -76,11 +87,7 @@ function PopupCell(props) {
         // Default line type
         return (
             <div className="popup-cell-content">
-                {props.icon && (
-                    <div className="popup-cell-icon">
-                        {props.icon}
-                    </div>
-                )}
+                {renderIcon()}
                 <div className="popup-cell-text text-ui-default">
                     {props.children}
                 </div>

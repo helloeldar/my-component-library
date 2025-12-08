@@ -26,8 +26,8 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 0.2s ease, background-color 0.2s ease;
+    background: transparent;
+    transition: background-color 0.2s ease;
 }
 
 .stripe-icon {
@@ -66,7 +66,6 @@
 .stripe-default:hover .stripe-hover-bg,
 .stripe-default.stripe-hovered .stripe-hover-bg {
     background: var(--stripe-default-hover-bg);
-    opacity: 1;
 }
 
 .stripe-default.stripe-hovered .stripe-icon {
@@ -80,17 +79,19 @@
 /* Selected State */
 .stripe-selected .stripe-hover-bg {
     background: var(--stripe-selected-bg);
-    opacity: 1;
 }
 
 .stripe-selected .stripe-icon {
     color: var(--text-white);
 }
 
+.stripe-selected .stripe-icon svg {
+    filter: brightness(0) invert(1);
+}
+
 .stripe-selected:hover .stripe-hover-bg,
 .stripe-selected.stripe-hovered .stripe-hover-bg {
     background: var(--stripe-selected-hover-bg);
-    opacity: 1;
 }
 
 .stripe-selected .stripe-badge {
@@ -100,7 +101,6 @@
 /* Inactive State */
 .stripe-inactive .stripe-hover-bg {
     background: var(--stripe-inactive-bg);
-    opacity: 1;
 }
 
 .stripe-inactive .stripe-icon {
@@ -110,7 +110,6 @@
 .stripe-inactive:hover .stripe-hover-bg,
 .stripe-inactive.stripe-hovered .stripe-hover-bg {
     background: var(--stripe-inactive-hover-bg);
-    opacity: 1;
 }
 
 .stripe-inactive .stripe-badge {

@@ -5,6 +5,7 @@ export const componentsConfig = [
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },
+    { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components' },
     { name: 'Tabs', key: 'tabs', description: 'Horizontal and vertical tab navigation', category: 'components' },
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'widgets' },
     { name: 'Tool Window', key: 'toolwindow', description: 'Resizable panels with optional tabs', category: 'components' },

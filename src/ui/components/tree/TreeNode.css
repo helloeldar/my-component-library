@@ -52,10 +52,6 @@
     color: var(--tree-node-toggle-hover);
 }
 
-.tree-node-toggle.expanded {
-    transform: rotate(90deg);
-}
-
 /* Spacer for nodes without children */
 .tree-node-spacer {
     width: 16px;

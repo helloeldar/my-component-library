@@ -1,6 +1,7 @@
 # Component Library
 
-A comprehensive React component library featuring IntelliJ Platform-inspired UI components with a sophisticated theming system.
+This library is used by UX designers to quickly prototype designs for IDEs.
+Components are imitating Int UI Kit.
 
 ## 🎯 Overview
 

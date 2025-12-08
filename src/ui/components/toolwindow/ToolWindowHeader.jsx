@@ -1,4 +1,5 @@
 import TabBar from '../tabs/TabBar';
+import Icon from '../icon/Icon';
 import './ToolWindowHeader.css';
 
 function ToolWindowHeader({ 
@@ -11,41 +12,38 @@ function ToolWindowHeader({
     actions = ['more', 'minimize'],
     onActionClick
 }) {
+    const getActionIcon = (action) => {
+        switch (action) {
+            case 'more':
+                return 'general/moreVertical';
+            case 'minimize':
+                return 'general/remove';
+            case 'close':
+                return 'general/closeSmall';
+            case 'add':
+                return 'general/add';
+            default:
+                return null;
+        }
+    };
+
     const renderActions = () => {
         if (!actions || actions.length === 0) return null;
 
         return (
             <div className="tool-window-header-actions">
-                {actions.map((action, index) => (
-                    <button
-                        key={index}
-                        className="tool-window-action-button"
-                        onClick={() => onActionClick && onActionClick(action)}
-                    >
-                        {action === 'more' && (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
-                                <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
-                                <circle cx="8" cy="14" r="1.5" fill="currentColor"/>
-                            </svg>
-                        )}
-                        {action === 'minimize' && (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M4 8H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                            </svg>
-                        )}
-                        {action === 'close' && (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                            </svg>
-                        )}
-                        {action === 'add' && (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M8 4V12M4 8H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                            </svg>
-                        )}
-                    </button>
-                ))}
+                {actions.map((action, index) => {
+                    const iconName = getActionIcon(action);
+                    return (
+                        <button
+                            key={index}
+                            className="tool-window-action-button"
+                            onClick={() => onActionClick && onActionClick(action)}
+                        >
+                            {iconName && <Icon name={iconName} size={16} />}
+                        </button>
+                    );
+                })}
             </div>
         );
     };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Icon from '../icon/Icon';
 import './Stripe.css';
 
 function Stripe({ 
@@ -24,6 +25,16 @@ function Stripe({
         return 'stripe-default';
     };
 
+    const renderIcon = () => {
+        if (!icon) return null;
+        // If icon is a string, treat it as an icon name from the registry (use 20x20 for stripes)
+        if (typeof icon === 'string') {
+            return <Icon name={icon} size={20} />;
+        }
+        // Otherwise render it directly (React element)
+        return icon;
+    };
+
     return (
         <div 
             className={`stripe ${getStateClass()} ${isHovered ? 'stripe-hovered' : ''}`}
@@ -39,7 +50,7 @@ function Stripe({
         >
             <div className="stripe-hover-bg">
                 <div className="stripe-icon">
-                    {icon}
+                    {renderIcon()}
                 </div>
             </div>
             {badge && <div className="stripe-badge"></div>}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from '../icon/Icon';
 import './MainToolbar.css';
 
 function MainToolbar({ 
@@ -40,15 +41,15 @@ function MainToolbar({
                         <span className="config-name">{runConfig}</span>
                         <span className="dropdown-arrow">▼</span>
                     </div>
-                    <button className="run-button">▶</button>
-                    <button className="debug-button">🐛</button>
-                    <button className="stop-button">⏹</button>
+                    <button className="run-button"><Icon name="run/run" size={16} /></button>
+                    <button className="debug-button"><Icon name="run/debug" size={16} /></button>
+                    <button className="stop-button"><Icon name="run/stop" size={16} /></button>
                 </div>
                 
                 <div className="toolbar-actions">
-                    <button className="action-button">🤖</button>
-                    <button className="action-button">🔍</button>
-                    <button className="action-button">⚙️</button>
+                    <button className="action-button"><Icon name="codeWithMe/cwmAccess" size={16} /></button>
+                    <button className="action-button"><Icon name="general/search" size={16} /></button>
+                    <button className="action-button"><Icon name="general/settings" size={16} /></button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Popup from '../popup/Popup';
+import Icon from '../icon/Icon';
 import './ProjectSelector.css';
 
 function ProjectSelector(props) {
@@ -43,9 +44,7 @@ function ProjectSelector(props) {
                             {props.projectName || 'Project Name'}
                         </span>
                         <div className="chevron-down">
-                            <svg viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M4.427 6.427a.6.6 0 0 1 .849 0L8 9.151l2.724-2.724a.6.6 0 1 1 .849.849L8.424 10.424a.6.6 0 0 1-.849 0L4.427 7.276a.6.6 0 0 1 0-.849Z"/>
-                            </svg>
+                            <Icon name="general/chevronDown" size={16} />
                         </div>
                     </div>
                 </div>

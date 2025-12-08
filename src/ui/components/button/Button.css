@@ -18,7 +18,6 @@
 .button-primary {
     background: var(--button-primary-bg);
     color: var(--button-primary-text);
-    border: 1px solid var(--button-primary-bg);
 }
 
 /* Hover state for primary */
