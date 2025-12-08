@@ -838,7 +838,7 @@ users.forEach(user => {
                     </div>
                     <button className="theme-toggle" onClick={toggleTheme}>
                         {themeMode === 'auto' ? (
-                            <span className="theme-toggle-auto">A</span>
+                            <Icon name="theme/systemTheme" size={16} />
                         ) : (
                             <Icon
                                 name={theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme'}

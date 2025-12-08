@@ -1,4 +1,5 @@
 import iconRegistry from '../../../icons';
+import { useTheme } from '../../../ThemeContext';
 
 const normalizeName = (name) =>
     name
@@ -7,8 +8,31 @@ const normalizeName = (name) =>
         .replace(/\\/g, '/');
 
 function Icon({ name, size = 16, className, ...props }) {
+    const { theme } = useTheme();
     const normalizedName = normalizeName(name);
-    const iconEntry = normalizedName ? iconRegistry[normalizedName] : null;
+    
+    // For dark theme, try to find the _dark variant first
+    let iconEntry = null;
+    let resolvedName = normalizedName;
+    
+    if (normalizedName) {
+        if (theme === 'dark') {
+            // Try dark variant first (append _dark before @size if present)
+            const darkName = normalizedName.includes('@') 
+                ? normalizedName.replace('@', '_dark@')
+                : `${normalizedName}_dark`;
+            
+            if (iconRegistry[darkName]) {
+                iconEntry = iconRegistry[darkName];
+                resolvedName = darkName;
+            } else {
+                // Fall back to original name
+                iconEntry = iconRegistry[normalizedName];
+            }
+        } else {
+            iconEntry = iconRegistry[normalizedName];
+        }
+    }
 
     if (!iconEntry) {
         // eslint-disable-next-line no-console
@@ -23,7 +47,7 @@ function Icon({ name, size = 16, className, ...props }) {
                 width={size}
                 height={size}
                 className={`icon ${className || ''}`}
-                alt={normalizedName}
+                alt={resolvedName}
                 {...props}
             />
         );
