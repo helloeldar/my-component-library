@@ -17,10 +17,9 @@ function Icon({ name, size = 16, className, ...props }) {
     
     if (normalizedName) {
         if (theme === 'dark') {
-            // Try dark variant first (append _dark before @size if present)
-            const darkName = normalizedName.includes('@') 
-                ? normalizedName.replace('@', '_dark@')
-                : `${normalizedName}_dark`;
+            // Try dark variant first (append _dark suffix)
+            // File pattern: name_dark.svg or name@size_dark.svg
+            const darkName = `${normalizedName}_dark`;
             
             if (iconRegistry[darkName]) {
                 iconEntry = iconRegistry[darkName];
