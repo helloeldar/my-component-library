@@ -1,0 +1,74 @@
+---
+alwaysApply: true
+---
+
+Check IntelliJ UI Guidelines to understand our design principles and best practices:
+https://plugins.jetbrains.com/docs/intellij/ui-guidelines-welcome.html
+Warn if you see a violation of the guidelines.
+
+## UI Guidelines Subpages (Updated: 2025-12-08)
+
+### Overview
+- [UI Guidelines Welcome](https://plugins.jetbrains.com/docs/intellij/ui-guidelines-welcome.html)
+- [User Interface Overview](https://plugins.jetbrains.com/docs/intellij/ui-overview.html)
+
+### Components
+- [Components](https://plugins.jetbrains.com/docs/intellij/components.html)
+- [Button](https://plugins.jetbrains.com/docs/intellij/button.html)
+- [Built-In Button](https://plugins.jetbrains.com/docs/intellij/built-in-button.html)
+- [Checkbox](https://plugins.jetbrains.com/docs/intellij/checkbox.html)
+- [Combo Box](https://plugins.jetbrains.com/docs/intellij/combo-box.html)
+- [Context Help](https://plugins.jetbrains.com/docs/intellij/context-help.html)
+  - [Empty State](https://plugins.jetbrains.com/docs/intellij/empty-state.html)
+  - [Inline Help Text](https://plugins.jetbrains.com/docs/intellij/inline-help-text.html)
+  - [Tooltip](https://plugins.jetbrains.com/docs/intellij/tooltip.html)
+- [Description Text](https://plugins.jetbrains.com/docs/intellij/description-text.html)
+- [Drop-Down List](https://plugins.jetbrains.com/docs/intellij/drop-down.html)
+- [Got It Tooltip](https://plugins.jetbrains.com/docs/intellij/got-it-tooltip.html)
+- [Group Header](https://plugins.jetbrains.com/docs/intellij/group-header.html)
+- [Icon Button](https://plugins.jetbrains.com/docs/intellij/icon-button.html)
+- [Input Field](https://plugins.jetbrains.com/docs/intellij/input-field.html)
+- [Link](https://plugins.jetbrains.com/docs/intellij/link.html)
+- [Notifications](https://plugins.jetbrains.com/docs/intellij/notification-types.html)
+  - [Notification Balloon](https://plugins.jetbrains.com/docs/intellij/balloon.html)
+  - [Banner](https://plugins.jetbrains.com/docs/intellij/banner.html)
+- [Progress Indicators](https://plugins.jetbrains.com/docs/intellij/progress-indicators.html)
+  - [Loader](https://plugins.jetbrains.com/docs/intellij/loader.html)
+  - [Progress Bar](https://plugins.jetbrains.com/docs/intellij/progress-bar.html)
+  - [Progress Text](https://plugins.jetbrains.com/docs/intellij/progress-text.html)
+- [Radio Button](https://plugins.jetbrains.com/docs/intellij/radio-button.html)
+- [Scrollbar](https://plugins.jetbrains.com/docs/intellij/scrollbar.html)
+- [Search Field](https://plugins.jetbrains.com/docs/intellij/search-field.html)
+- [Split Button](https://plugins.jetbrains.com/docs/intellij/split-button.html)
+- [Split Icon Button](https://plugins.jetbrains.com/docs/intellij/split-icon-button.html)
+- [Table](https://plugins.jetbrains.com/docs/intellij/table.html)
+- [Tabs](https://plugins.jetbrains.com/docs/intellij/tabs.html)
+- [Text Area](https://plugins.jetbrains.com/docs/intellij/text-area.html)
+- [Toggle Button](https://plugins.jetbrains.com/docs/intellij/toggle-button.html)
+- [Toolbar](https://plugins.jetbrains.com/docs/intellij/toolbar.html)
+- [Toolbar Drop-Down List](https://plugins.jetbrains.com/docs/intellij/toolbar-drop-down.html)
+- [Tool Window](https://plugins.jetbrains.com/docs/intellij/tool-window.html)
+
+### Principles
+- [Principles](https://plugins.jetbrains.com/docs/intellij/principles.html)
+- [Data Formats](https://plugins.jetbrains.com/docs/intellij/data-formats.html)
+- [Icons Style](https://plugins.jetbrains.com/docs/intellij/icons-style.html)
+- [Layout](https://plugins.jetbrains.com/docs/intellij/layout.html)
+  - [Groups of Controls](https://plugins.jetbrains.com/docs/intellij/groups-of-controls.html)
+- [Mnemonics](https://plugins.jetbrains.com/docs/intellij/mnemonics.html)
+- [Platform Theme Colors](https://plugins.jetbrains.com/docs/intellij/platform-theme-colors.html)
+- [Typography](https://plugins.jetbrains.com/docs/intellij/typography.html)
+- [Validation Errors](https://plugins.jetbrains.com/docs/intellij/validation-errors.html)
+- [Window Sizes](https://plugins.jetbrains.com/docs/intellij/window-sizes.html)
+
+### Writing UI Texts
+- [Capitalization](https://plugins.jetbrains.com/docs/intellij/capitalization.html)
+- [Inspections](https://plugins.jetbrains.com/docs/intellij/inspections.html)
+- [Punctuation](https://plugins.jetbrains.com/docs/intellij/punctuation.html)
+- [Writing Short and Clear](https://plugins.jetbrains.com/docs/intellij/writing-short.html)
+
+### External Resources
+- [Icons List (Full IntelliJ icons set)](https://intellij-icons.jetbrains.design)
+- [UI Kit in Figma](https://www.figma.com/community/file/1227732692272811382/int-ui-kit)
+
+> **📅 Reminder:** Recheck this list monthly for new or updated pages.

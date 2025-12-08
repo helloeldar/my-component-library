@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+Always try to use components and icons from Int UI Kit. If they don't exist, don't create them without explicitly asking for it.
