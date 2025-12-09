@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from './ui/components/button/Button';
+import ToolbarIconButton from './ui/components/iconbutton/IconButton';
 import TabBar from './ui/components/tabs/TabBar';
 import Input from './ui/components/input/Input';
 import Tree from './ui/components/tree/Tree';
@@ -15,7 +16,6 @@ import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import Icon from './ui/components/icon/Icon';
 import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
@@ -59,6 +59,106 @@ function AppContent() {
                 <div className="component-examples">
                     <Button type="primary" disabled>Primary Disabled</Button>
                     <Button type="secondary" disabled>Secondary Disabled</Button>
+                </div>
+            </div>
+        </div>
+    );
+
+    const [toggleStates, setToggleStates] = useState({
+        bold: false,
+        italic: true,
+        underline: false
+    });
+
+    const toolbarIconButtonExamples = () => (
+        <div className="component-showcase">
+            <h1>Toolbar Icon Button</h1>
+
+            <div className="component-section">
+                <h2>Types</h2>
+                <p className="component-description">
+                    Toolbar icon buttons are used in toolbars. They contain only an icon and come in two types:
+                    action (triggers immediately) and toggle (on/off states).
+                </p>
+                <div className="component-group">
+                    <h3>Action</h3>
+                    <div className="component-examples">
+                        <ToolbarIconButton icon="general/settings" tooltip="Settings" />
+                        <ToolbarIconButton icon="general/search" tooltip="Search" shortcut="⌘K" />
+                        <ToolbarIconButton icon="general/refresh" tooltip="Refresh" />
+                        <ToolbarIconButton icon="general/add" tooltip="Add" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Toggle</h3>
+                    <div className="component-examples">
+                        <ToolbarIconButton 
+                            icon="actions/checked" 
+                            type="toggle" 
+                            toggled={toggleStates.bold}
+                            tooltip="Show checkmarks"
+                            onClick={() => setToggleStates(s => ({ ...s, bold: !s.bold }))}
+                        />
+                        <ToolbarIconButton 
+                            icon="actions/preview" 
+                            type="toggle" 
+                            toggled={toggleStates.italic}
+                            tooltip="Preview mode"
+                            onClick={() => setToggleStates(s => ({ ...s, italic: !s.italic }))}
+                        />
+                        <ToolbarIconButton 
+                            icon="actions/highlighting" 
+                            type="toggle" 
+                            toggled={toggleStates.underline}
+                            tooltip="Highlighting"
+                            onClick={() => setToggleStates(s => ({ ...s, underline: !s.underline }))}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Size</h2>
+                <p className="component-description">
+                    Toolbar icon buttons are 26×26px with a 16px icon inside (5px padding).
+                </p>
+                <div className="component-examples">
+                    <ToolbarIconButton icon="run/run" tooltip="Run" />
+                    <ToolbarIconButton icon="run/debug" tooltip="Debug" />
+                    <ToolbarIconButton icon="run/stop" tooltip="Stop" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples">
+                    <ToolbarIconButton icon="general/settings" tooltip="Default" />
+                    <ToolbarIconButton icon="general/settings" tooltip="Disabled" disabled />
+                    <ToolbarIconButton icon="general/filter" tooltip="With badge" showBadge />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Toolbar Example</h2>
+                <p className="component-description">
+                    Toolbar icon buttons are typically grouped in toolbars.
+                </p>
+                <div className="component-examples" style={{ 
+                    background: 'var(--bg-elevated)', 
+                    padding: '8px 12px', 
+                    borderRadius: '6px',
+                    border: '1px solid var(--border-secondary)',
+                    gap: '4px'
+                }}>
+                    <ToolbarIconButton icon="vcs/commit" tooltip="Commit" shortcut="⌘K" />
+                    <ToolbarIconButton icon="vcs/update" tooltip="Update Project" shortcut="⌘T" />
+                    <ToolbarIconButton icon="vcs/push" tooltip="Push" shortcut="⌘⇧K" />
+                    <div style={{ width: '1px', height: '20px', background: 'var(--border-secondary)', margin: '0 4px' }} />
+                    <ToolbarIconButton icon="run/run" tooltip="Run" shortcut="⌃R" />
+                    <ToolbarIconButton icon="run/debug" tooltip="Debug" shortcut="⌃D" />
+                    <ToolbarIconButton icon="run/stop" tooltip="Stop" disabled />
+                    <div style={{ width: '1px', height: '20px', background: 'var(--border-secondary)', margin: '0 4px' }} />
+                    <ToolbarIconButton icon="general/settings" tooltip="Settings" />
                 </div>
             </div>
         </div>
@@ -801,6 +901,8 @@ users.forEach(user => {
                 return <Home onNavigate={setActiveComponent} />;
             case 'buttons':
                 return buttonExamples();
+            case 'toolbariconbutton':
+                return toolbarIconButtonExamples();
             case 'tabs':
                 return tabExamples();
             case 'inputs':
@@ -836,16 +938,15 @@ users.forEach(user => {
                         <Logo className="logo-icon" />
                         <span className="logo-text">Library</span>
                     </div>
-                    <button className="theme-toggle" onClick={toggleTheme}>
-                        {themeMode === 'auto' ? (
-                            <Icon name="theme/systemTheme" size={16} />
-                        ) : (
-                            <Icon
-                                name={theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme'}
-                                size={16}
-                            />
-                        )}
-                    </button>
+                    <ToolbarIconButton
+                        icon={themeMode === 'auto' 
+                            ? 'theme/systemTheme' 
+                            : (theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme')}
+                        tooltip={themeMode === 'auto' 
+                            ? 'Using system theme' 
+                            : `Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                        onClick={toggleTheme}
+                    />
                 </div>
                 
                 <div className="nav-category">

@@ -364,6 +364,10 @@
     --editor-implicit-param: var(--editor-light-implicit-param);
     --editor-html-tag: var(--editor-light-html-tag);
 
+    /* Icon Button States - Light Theme (from Figma Int UI Kit) */
+    --icon-button-hover-bg: #EBECF0; /* Light/Gray/Gray 12 */
+    --icon-button-pressed-bg: #DFE1E5; /* Light/Gray/Gray 11 */
+
     /* Stripe Button Colors - Light Theme */
     --stripe-default-hover-bg: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
     --stripe-selected-bg: #3574F0; /* Light/Blue/Blue 4 (Primary) */
@@ -567,6 +571,10 @@
     --editor-type-parameter: var(--editor-dark-type-parameter);
     --editor-implicit-param: var(--editor-dark-implicit-param);
     --editor-html-tag: var(--editor-dark-html-tag);
+
+    /* Icon Button States - Dark Theme (from Figma Int UI Kit) */
+    --icon-button-hover-bg: #393B40; /* Dark/Gray/Gray 3 */
+    --icon-button-pressed-bg: #4E5157; /* Dark/Gray/Gray 5 */
 
     /* Stripe Button Colors - Dark Theme */
     --stripe-default-hover-bg: #393B40; /* Dark/Gray/Gray 3 */

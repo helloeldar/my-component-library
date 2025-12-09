@@ -2,6 +2,7 @@
 export const componentsConfig = [
     { name: 'Buttons', key: 'buttons', description: 'Primary and secondary button variants', category: 'components' },
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components' },
+    { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components' },
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },

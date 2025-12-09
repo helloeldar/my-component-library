@@ -6,7 +6,9 @@ Check IntelliJ UI Guidelines to understand our design principles and best practi
 https://plugins.jetbrains.com/docs/intellij/ui-guidelines-welcome.html
 Warn if you see a violation of the guidelines.
 
-## UI Guidelines Subpages (Updated: 2025-12-08)
+Recheck this list monthly for new or updated pages. Update the last checked date, so we don't check it again.
+
+## UI Guidelines Subpages (Updated: December 2025)
 
 ### Overview
 - [UI Guidelines Welcome](https://plugins.jetbrains.com/docs/intellij/ui-guidelines-welcome.html)
@@ -70,5 +72,3 @@ Warn if you see a violation of the guidelines.
 ### External Resources
 - [Icons List (Full IntelliJ icons set)](https://intellij-icons.jetbrains.design)
 - [UI Kit in Figma](https://www.figma.com/community/file/1227732692272811382/int-ui-kit)
-
-> **📅 Reminder:** Recheck this list monthly for new or updated pages.

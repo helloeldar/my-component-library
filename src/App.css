@@ -35,44 +35,10 @@
     color: var(--text-secondary);
 }
 
-.theme-toggle {
-    background: var(--bg-elevated);
-    border: 0px solid var(--border-primary);
-    border-radius: 6px;
-    padding: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-}
-
-.theme-toggle:hover {
-    background: var(--bg-secondary);
-}
-
-.theme-toggle .icon {
-    color: var(--text-secondary);
-    transition: transform 0.3s ease;
-}
-
-.theme-toggle:hover .icon {
-    color: var(--text-primary);
+/* Theme toggle icon button in sidebar */
+.sidebar-header .icon-button:hover .icon {
     transform: rotate(180deg);
-}
-
-.theme-toggle-auto {
-    color: var(--text-secondary);
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.theme-toggle:hover .theme-toggle-auto {
-    color: var(--text-primary);
+    transition: transform 0.3s ease;
 }
 
 .nav-category {

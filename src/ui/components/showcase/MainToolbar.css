@@ -11,22 +11,8 @@
     position: relative;
 }
 
-/* Left Side */
-.main-toolbar-left {
-    display: flex;
-    align-items: center;
-    gap: 0;
-}
-
-/* Right Side */
-.main-toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
 /* macOS Window Controls */
-.macos-window-controls {
+.window-controls {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -34,39 +20,37 @@
 }
 
 .window-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 12px;
-    height: 12px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    background: transparent;
-    outline: none;
-}
-
-.window-control .control-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background: var(--gray-60);
 }
 
-.window-control.close .control-dot {
+.window-control.close {
     background: #ff5f57;
 }
 
-.window-control.minimize .control-dot {
+.window-control.minimize {
     background: #ffbd2e;
 }
 
-.window-control.maximize .control-dot {
+.window-control.maximize {
     background: #28ca42;
 }
 
-.window-control:hover .control-dot {
-    opacity: 0.8;
+/* Left Side */
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+/* Right Side */
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 12px;
 }
 
 /* Project Widget */
@@ -75,21 +59,15 @@
     align-items: center;
     gap: 6px;
     height: 40px;
-    padding: 12px 10px;
+    padding: 0 10px;
     cursor: pointer;
 }
 
 .project-widget:hover {
-    background: var(--bg-tertiary);
+    background: var(--icon-button-hover-bg);
 }
 
 .project-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.project-icon-background {
     width: 20px;
     height: 20px;
     border-radius: 4px;
@@ -97,20 +75,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.project-icon-text {
     font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 10px;
+    font-weight: 600;
     color: white;
-    line-height: 1;
-}
-
-.project-info {
-    display: flex;
-    align-items: center;
-    gap: 2px;
 }
 
 .project-name {
@@ -118,7 +86,12 @@
     font-size: 13px;
     font-weight: 500;
     color: var(--text-primary);
-    line-height: 16px;
+}
+
+.dropdown-arrow {
+    font-size: 8px;
+    color: var(--text-secondary);
+    margin-left: 2px;
 }
 
 /* VCS Widget */
@@ -127,18 +100,13 @@
     align-items: center;
     gap: 6px;
     height: 40px;
-    padding: 12px 14px 12px 10px;
+    padding: 0 10px;
     cursor: pointer;
+    color: var(--icon-secondary);
 }
 
 .vcs-widget:hover {
-    background: var(--bg-tertiary);
-}
-
-.vcs-info {
-    display: flex;
-    align-items: center;
-    gap: 2px;
+    background: var(--icon-button-hover-bg);
 }
 
 .branch-name {
@@ -146,33 +114,27 @@
     font-size: 13px;
     font-weight: 500;
     color: var(--text-primary);
-    line-height: 16px;
 }
 
 /* Run Widget */
 .run-widget {
     display: flex;
     align-items: center;
-    padding-right: 34px;
+    gap: 0;
 }
 
-.run-widget-config {
+.run-config {
     display: flex;
     align-items: center;
     gap: 6px;
     height: 40px;
-    padding: 6.5px 10px 6.5px 6px;
+    padding: 0 10px;
     cursor: pointer;
+    color: var(--icon-secondary);
 }
 
-.run-widget-config:hover {
-    background: var(--bg-tertiary);
-}
-
-.config-info {
-    display: flex;
-    align-items: center;
-    gap: 2px;
+.run-config:hover {
+    background: var(--icon-button-hover-bg);
 }
 
 .config-name {
@@ -180,85 +142,15 @@
     font-size: 13px;
     font-weight: 500;
     color: var(--text-primary);
-    line-height: 16px;
     white-space: nowrap;
 }
 
-/* Run Widget Buttons */
-.run-widget-button {
+/* Toolbar Actions */
+.toolbar-actions {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 40px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    outline: none;
-    padding: 7px;
-}
-
-.run-widget-button:hover {
-    background: var(--bg-tertiary);
-}
-
-.run-widget-button.run {
-    color: var(--green-70);
-}
-
-.run-widget-button.debug {
-    color: var(--green-70);
-}
-
-.run-widget-button.stop {
-    color: var(--text-muted);
-}
-
-/* Main Toolbar Actions */
-.main-toolbar-actions {
-    display: flex;
-    align-items: center;
-}
-
-.toolbar-action {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    outline: none;
-    color: var(--text-primary);
-}
-
-.toolbar-action:hover {
-    background: var(--bg-tertiary);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .main-toolbar {
-        height: 36px;
-    }
-    
-    .project-widget,
-    .vcs-widget,
-    .run-widget-config {
-        height: 36px;
-        padding: 10px 8px;
-    }
-    
-    .run-widget-button,
-    .toolbar-action {
-        width: 36px;
-        height: 36px;
-    }
-    
-    .config-name,
-    .project-name,
-    .branch-name {
-        font-size: 12px;
-    }
+    gap: 0;
+    border-left: 1px solid var(--border-secondary);
+    padding-left: 8px;
+    margin-left: 8px;
 }

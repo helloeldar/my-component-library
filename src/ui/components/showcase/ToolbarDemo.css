@@ -62,20 +62,10 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 12px;
+    padding: 8px 12px;
     border: 1px solid var(--border-primary);
     border-radius: 6px;
     background: var(--bg-primary);
-}
-
-.toolbar-action-icon {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    background: var(--bg-tertiary);
 }
 
 .toolbar-action-details {
@@ -104,4 +94,7 @@
         gap: 4px;
     }
 }
+
+
+
 

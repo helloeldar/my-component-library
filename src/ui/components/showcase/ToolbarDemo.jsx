@@ -1,5 +1,5 @@
 import MainToolbar from './MainToolbar';
-import Icon from '../icon/Icon';
+import ToolbarIconButton from '../iconbutton/IconButton';
 import './ToolbarDemo.css';
 
 const actionGroups = [
@@ -18,7 +18,7 @@ const actionGroups = [
         actions: [
             { label: 'Commit', icon: 'vcs/commit', shortcut: '⌘K' },
             { label: 'Update Project', icon: 'vcs/update', shortcut: '⌘T' },
-            { label: 'Changelists', icon: 'vcs/changelist', shortcut: '' }
+            { label: 'Push', icon: 'vcs/push', shortcut: '⌘⇧K' }
         ]
     },
     {
@@ -37,7 +37,7 @@ function ToolbarDemo() {
         <div className="component-showcase toolbar-demo-page">
             <h1>Toolbar</h1>
             <p className="toolbar-demo-description">
-                A simplified IntelliJ-style main toolbar built from layout primitives and powered by the shared icon registry.
+                A simplified IntelliJ-style main toolbar built from layout primitives and the Toolbar Icon Button component.
                 Use it to preview icons, spacing, and widget composition in a realistic header scenario.
             </p>
 
@@ -53,8 +53,8 @@ function ToolbarDemo() {
                 <div>
                     <h3>Structure</h3>
                     <p>
-                        The preview stitches together window controls, project/VCS widgets, and run actions.
-                        Swap icons by passing a different name to the shared <code>{'<Icon />'}</code> component.
+                        The preview stitches together window controls, project/VCS widgets, and run actions using
+                        the <code>{'<ToolbarIconButton />'}</code> component.
                     </p>
                 </div>
                 <div>
@@ -75,9 +75,11 @@ function ToolbarDemo() {
                         <div className="toolbar-action-list">
                             {group.actions.map((action) => (
                                 <div key={action.label} className="toolbar-action-card">
-                                    <div className="toolbar-action-icon">
-                                        <Icon name={action.icon} size={18} />
-                                    </div>
+                                    <ToolbarIconButton 
+                                        icon={action.icon} 
+                                        tooltip={action.label}
+                                        shortcut={action.shortcut}
+                                    />
                                     <div className="toolbar-action-details">
                                         <span className="toolbar-action-label">{action.label}</span>
                                         {action.shortcut && (
@@ -95,4 +97,3 @@ function ToolbarDemo() {
 }
 
 export default ToolbarDemo;
-
