@@ -1,5 +1,5 @@
 import './Home.css';
-import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
+import { getSortedComponentsOnly } from './componentsConfig';
 
 function Home(props) {
     const categories = [
@@ -15,11 +15,6 @@ function Home(props) {
             name: 'Components',
             description: 'Interactive UI components',
             pages: getSortedComponentsOnly()
-        },
-        {
-            name: 'Widgets',
-            description: 'Complex widgets and panels',
-            pages: getSortedWidgets()
         }
     ];
 

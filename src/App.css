@@ -84,17 +84,58 @@
 
 .main-content {
     flex: 1;
+    width: 100%;
     padding: 40px;
     overflow-y: auto;
     background: var(--bg-primary);
-    display: flex;
-    justify-content: center;
     min-width: 0;
+}
+
+/* IDE Window page layout */
+.ide-window-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.ide-window-header {
+    padding: 40px 40px 24px 40px;
+    flex-shrink: 0;
+}
+
+.ide-window-header h1 {
+    margin: 0 0 12px 0;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.ide-window-header .component-description {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.ide-window-container {
+    flex: 1;
+    padding: 20px;
+    min-height: 0;
+}
+
+.ide-window-container .ide-window-fullscreen {
+    height: 100%;
+}
+
+/* Remove padding when IDE Window page is displayed */
+.main-content:has(.ide-window-page) {
+    padding: 0;
+    overflow: hidden;
 }
 
 .component-showcase {
     width: 100%;
-    max-width: 800px;
     min-width: 0;
 }
 

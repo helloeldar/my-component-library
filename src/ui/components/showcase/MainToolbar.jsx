@@ -1,10 +1,13 @@
 import React from 'react';
 import ToolbarIconButton from '../iconbutton/IconButton';
+import ProjectSelector from '../projectselector/ProjectSelector';
 import Icon from '../icon/Icon';
 import './MainToolbar.css';
 
 function MainToolbar({ 
     projectName = "intellij",
+    projectIcon = "IJ",
+    projectColor = "cobalt",
     branchName = "main",
     runConfig = "IDEA Community",
     className = "",
@@ -21,11 +24,11 @@ function MainToolbar({
 
             {/* Left Side - Project and VCS */}
             <div className="toolbar-left">
-                <div className="project-widget">
-                    <div className="project-icon">IJ</div>
-                    <span className="project-name">{projectName}</span>
-                    <span className="dropdown-arrow">▼</span>
-                </div>
+                <ProjectSelector 
+                    projectName={projectName}
+                    projectIcon={projectIcon}
+                    projectColor={projectColor}
+                />
                 
                 <div className="vcs-widget">
                     <Icon name="vcs/branch" size={16} />

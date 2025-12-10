@@ -14,9 +14,10 @@ import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
+import IDEWindow from './ui/components/idewindow/IDEWindow';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
+import { getSortedComponentsOnly } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -786,6 +787,30 @@ users.forEach(user => {
         );
     };
 
+    const ideWindowExamples = () => {
+        return (
+            <div className="ide-window-page">
+                <div className="ide-window-header">
+                    <h1>IDE Window</h1>
+                    <p className="component-description">
+                        A full IDE window layout combining MainToolbar, Stripe panels, Tool Windows, 
+                        Editor tabs, Code Editor, and Status Bar. Click on stripe buttons to toggle panels.
+                    </p>
+                </div>
+                <div className="ide-window-container">
+                    <IDEWindow 
+                        projectName="petclinic"
+                        projectIcon="PC"
+                        projectColor="grass"
+                        branchName="main"
+                        runConfig="PetClinicApplication"
+                        className="ide-window-fullscreen"
+                    />
+                </div>
+            </div>
+        );
+    };
+
     const projectSelectorExamples = () => {
         const projects = [
             { 
@@ -917,6 +942,8 @@ users.forEach(user => {
                 return popupExamples();
             case 'projectselector':
                 return projectSelectorExamples();
+            case 'idewindow':
+                return ideWindowExamples();
             case 'codeexample':
                 return codeExamples();
             case 'typography':
@@ -987,18 +1014,6 @@ users.forEach(user => {
                     ))}
                 </div>
                 
-                <div className="nav-category">
-                    <div className="nav-category-title">Widgets</div>
-                    {getSortedWidgets().map((widget) => (
-                        <button
-                            key={widget.key}
-                            className={`nav-item ${activeComponent === widget.key ? 'active' : ''}`}
-                            onClick={() => setActiveComponent(widget.key)}
-                        >
-                            {widget.name}
-                        </button>
-                    ))}
-                </div>
             </div>
 
             <div className="main-content">
