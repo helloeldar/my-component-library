@@ -4,13 +4,15 @@ export const componentsConfig = [
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components' },
     { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components' },
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
-    { name: 'Main Window', key: 'mainwindow', description: 'Full IDE layout with toolbar, stripes, tool windows, editor, and status bar', category: 'widgets' },
+    { name: 'IDE Window', key: 'idewindow', description: 'Complete IDE layout with toolbar, panels, and editor', category: 'components' },
+    { name: 'Main Window', key: 'mainwindow', description: 'Full IDE layout with toolbar, stripes, tool windows, editor, and status bar', category: 'components' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
+    { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components' },
+    { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },
     { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components' },
+    { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components' },
     { name: 'Tabs', key: 'tabs', description: 'Horizontal and vertical tab navigation', category: 'components' },
-    { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'widgets' },
-    { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components' },
     { name: 'Tool Window', key: 'toolwindow', description: 'Resizable panels with optional tabs', category: 'components' },
     { name: 'Tree', key: 'tree', description: 'Hierarchical file tree component', category: 'components' }
 ];
@@ -24,13 +26,6 @@ export const getSortedComponents = () => {
 export const getSortedComponentsOnly = () => {
     return [...componentsConfig]
         .filter(item => item.category === 'components')
-        .sort((a, b) => a.name.localeCompare(b.name));
-};
-
-// Function to get only widgets (category: 'widgets')
-export const getSortedWidgets = () => {
-    return [...componentsConfig]
-        .filter(item => item.category === 'widgets')
         .sort((a, b) => a.name.localeCompare(b.name));
 };
 
@@ -48,10 +43,5 @@ export const categoriesConfig = [
         name: 'Components',
         description: 'Interactive UI components',
         pages: getSortedComponentsOnly()
-    },
-    {
-        name: 'Widgets',
-        description: 'Complex widgets and panels',
-        pages: getSortedWidgets()
     }
 ];
