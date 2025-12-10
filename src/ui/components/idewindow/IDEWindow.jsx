@@ -82,36 +82,6 @@ function IDEWindow({
         { label: "OwnerService.java", icon: "fileTypes/java", closable: true }
     ];
 
-    // Sample Java code for the editor
-    const javaCode = `package org.springframework.samples.petclinic.vet;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
-/**
- * @author Juergen Hoeller
- * @author Mark Fisher
- * @author Ken Krebs
- * @author Arjen Poutsma
- */
-@Controller
-class VetController {
-
-    private final VetRepository vetRepository;
-
-    public VetController(VetRepository clinicService) {
-        this.vetRepository = clinicService;
-    }
-
-    @GetMapping("/vets.html")
-    public String showVetList(Model model) {
-        Vets vets = new Vets();
-        vets.getVetList().addAll(this.vetRepository.findAll());
-        model.addAttribute("vets", vets);
-        return "vets/vetList";
-    }
-}`;
-
     const handleLeftStripeClick = (id) => {
         if (leftStripeSelected === id) {
             setShowLeftPanel(!showLeftPanel);
@@ -202,12 +172,11 @@ class VetController {
                     
                     {/* Editor Content */}
                     <div className="ide-editor-content">
-                        <CodeExample 
-                            code={javaCode}
-                            language="java"
-                            showLineNumbers={true}
-                            className="ide-code-editor"
-                        />
+                        <div className="component-examples-vertical">
+                            <CodeExample 
+                                showLineNumbers={true}
+                            />
+                        </div>
                     </div>
                 </div>
 

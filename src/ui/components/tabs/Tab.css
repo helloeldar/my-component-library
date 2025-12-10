@@ -1,98 +1,113 @@
+/* Editor Tab Component - Based on Figma Int UI Kit */
 .tab {
     display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 8px;
-    border: 1px solid transparent;
+    flex-direction: column;
+    align-items: flex-start;
     background: transparent;
-    border-radius: 4px;
-    margin: 4px;
-    transition: all 0.2s ease;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
     color: var(--text-primary);
     min-width: 40px;
     box-sizing: border-box;
     overflow: hidden;
+    position: relative;
 }
 
-.tab:hover:not(.tab-active) {
-    background: var(--tab-hover-bg);
-    cursor: pointer;
+/* Tab Content */
+.tab-content {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 13px 8px 9px 12px;
 }
 
-.tab-active {
-    background: var(--tab-active-bg);
-    border: 1px solid var(--tab-active-border);
-    color: var(--tab-active-text);
+/* Default state - slightly transparent */
+.tab-default .tab-content {
+    opacity: 0.67;
 }
 
-.tab-active:hover {
-    background: var(--tab-active-bg);
+.tab-default.tab-hovered .tab-content {
+    opacity: 1;
 }
 
+/* Selected and Inactive states */
+.tab-selected .tab-content,
+.tab-inactive .tab-content {
+    opacity: 1;
+}
+
+/* Tab Icon */
 .tab-icon {
-    font-size: 16px;
     width: 16px;
     height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.8;
     flex-shrink: 0;
+    color: var(--icon-stroke);
 }
 
+/* Tab Label */
 .tab-label {
-    font-size: 14px;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
     font-weight: 500;
+    line-height: 16px;
     white-space: nowrap;
-    opacity: 0.8;
     min-width: 0;
     max-width: 320px;
+    padding-right: 6px;
 }
 
-.tab-active .tab-icon,
-.tab-active .tab-label {
-    opacity: 1;
-}
-
-.tab:hover .tab-icon,
-.tab:hover .tab-label {
-    opacity: 1;
-}
-
+/* Tab Close Button */
 .tab-close {
-    font-size: 16px;
-    color: var(--icon-secondary);
-    border-radius: 100%;
     width: 16px;
     height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
-    flex-shrink: 0; /* Don't shrink the close button */
-    opacity: 0; /* Hidden by default */
-}
-
-/* Show close button on active tabs */
-.tab-active .tab-close {
-    opacity: 1;
-}
-
-/* Show close button on hover for non-active tabs */
-.tab:hover .tab-close {
-    opacity: 1;
+    flex-shrink: 0;
+    color: var(--icon-secondary);
+    border-radius: 4px;
+    transition: background-color 0.1s ease;
 }
 
 .tab-close:hover {
-    background: var(--control-bg-hover);
+    background: var(--icon-button-hover-bg);
     color: var(--icon-stroke);
+}
+
+/* Tab Underline Indicator */
+.tab-underline {
+    height: 3px;
+    width: 100%;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.tab-underline-selected {
+    background: #3574F0; /* Blue/Blue 4 (Primary) */
+}
+
+.tab-underline-inactive {
+    background: var(--gray-60); /* Gray for inactive */
+}
+
+/* Light theme inactive underline */
+.theme-light .tab-underline-inactive {
+    background: #A8ADBD; /* Light/Gray/Gray 8 */
+}
+
+/* Dark theme inactive underline */
+.theme-dark .tab-underline-inactive {
+    background: #5A5D63; /* Dark/Gray/Gray 6 */
 }
 
 /* Vertical tab bar specific styles */
 .tab-bar-vertical .tab {
     width: 100%;
-    justify-content: flex-start;
-    margin-bottom: -3px;
 }
 
 .tab-bar-vertical .tab .tab-label {
@@ -102,13 +117,45 @@
 }
 
 /* Small tab size variant */
-.tab-bar-small .tab {
-    padding: 4px 6px;
-    margin: 2px;
-    min-width: 32px;
+.tab-small .tab-content {
+    padding: 10px 6px 6px 10px;
+    gap: 4px;
 }
 
-.tab-bar-small .tab-label {
+/* Small tab - default, hover, disabled states have 8px padding-bottom */
+.tab-small.tab-default .tab-content,
+.tab-small.tab-default.tab-hovered .tab-content,
+.tab-small.tab-disabled .tab-content {
+    padding-bottom: 8px;
+}
+
+.tab-small .tab-label {
     font-size: 12px;
-    font-weight: 500;
+}
+
+.tab-small .tab-underline {
+    height: 2px;
+}
+
+/* Hover state for entire tab */
+.tab:hover {
+    /* No background change, just opacity change handled by tab-hovered class */
+}
+
+/* Horizontal tab - default, hover, disabled states have 8px padding-bottom */
+.tab-bar-horizontal .tab-default .tab-content,
+.tab-bar-horizontal .tab-default.tab-hovered .tab-content,
+.tab-bar-horizontal .tab-disabled .tab-content {
+    padding-bottom: 8px;
+}
+
+/* Horizontal tabs content alignment */
+.tab-bar-horizontal .tab-content {
+    align-items: center;
+}
+
+.tab-bar-horizontal .tab-icon,
+.tab-bar-horizontal .tab-label {
+    display: flex;
+    align-items: center;
 }

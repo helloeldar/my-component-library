@@ -112,7 +112,8 @@
 /* Editor Tabs */
 .ide-editor-tabs {
     flex-shrink: 0;
-    background: var(--bg-secondary);
+    height: 40px;
+    background: var(--gray-140);
     border-bottom: 1px solid var(--border-primary);
     padding: 0 8px;
 }
@@ -125,24 +126,24 @@
 .ide-editor-content {
     flex: 1;
     overflow: auto;
-    background: var(--bg-elevated);
+    background: var(--gray-140);
 }
 
-.ide-editor-content .ide-code-editor {
+.ide-editor-content .component-examples-vertical {
     height: 100%;
-    border: none;
-    border-radius: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .ide-editor-content .code-example {
     height: 100%;
     border: none;
     border-radius: 0;
-    background: var(--bg-elevated);
+    background: var(--gray-140);
 }
 
 .ide-editor-content .code-example textarea {
-    background: var(--bg-elevated);
+    background: var(--gray-140);
 }
 
 /* Status Bar */
