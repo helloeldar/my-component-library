@@ -105,6 +105,14 @@
     flex-shrink: 0;
 }
 
+.ide-layout-editor-tabs .tab-bar {
+    background: transparent;
+}
+
+.ide-layout .tab-bar {
+    background: transparent;
+}
+
 .ide-layout-editor-tabs::-webkit-scrollbar {
     display: none;
 }
@@ -113,6 +121,24 @@
     flex: 1;
     min-height: 0;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.ide-layout-editor-content .code-example {
+    flex: 1;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+}
+
+.ide-layout-editor-content .code-example .code-input-container {
+    flex: 1;
+    height: 100%;
+}
+
+.ide-layout-editor-content .code-example .code-input {
+    height: 100%;
 }
 
 /* ============================================

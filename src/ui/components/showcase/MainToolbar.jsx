@@ -18,15 +18,15 @@ function MainToolbar({
         <div className={`main-toolbar ${className}`} {...props}>
             {/* Left Group - Window Controls, Project, and VCS */}
             <div className="toolbar-left-group">
-                {/* macOS Window Controls */}
-                <div className="window-controls">
-                    <div className="window-control close"></div>
-                    <div className="window-control minimize"></div>
-                    <div className="window-control maximize"></div>
-                </div>
+            {/* macOS Window Controls */}
+            <div className="window-controls">
+                <div className="window-control close"></div>
+                <div className="window-control minimize"></div>
+                <div className="window-control maximize"></div>
+            </div>
 
-                {/* Left Side - Project and VCS */}
-                <div className="toolbar-left">
+            {/* Left Side - Project and VCS */}
+            <div className="toolbar-left">
                     <ProjectSelector 
                         projectName={projectName}
                         projectIcon={projectIcon}

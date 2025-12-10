@@ -3,7 +3,7 @@
  */
 
 .tab-bar {
-    background: var(--bg-secondary);
+    background: transparent;
     padding: 0;
     position: relative;
 }
