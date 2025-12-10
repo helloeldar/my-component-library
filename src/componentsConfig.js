@@ -4,6 +4,7 @@ export const componentsConfig = [
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components' },
     { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components' },
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
+    { name: 'Main Window', key: 'mainwindow', description: 'Full IDE layout with toolbar, stripes, tool windows, editor, and status bar', category: 'widgets' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },
     { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components' },

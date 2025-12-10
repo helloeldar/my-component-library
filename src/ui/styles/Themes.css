@@ -495,7 +495,7 @@
     --tool-window-tab-close-bg-hover: var(--gray-110); /* D: tool window tab close bg hover */
 
     /* Tool Window Colors */
-    --tool-window-bg: var(--bg-elevated); /* D: tool window background */
+    --tool-window-bg: #191A1C; /* D: tool window background */
     --tool-window-border: var(--gray-120); /* D: tool window border */
     --tool-window-content-bg: var(--bg-secondary); /* D: tool window content background */
     --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* D: tool window shadow */

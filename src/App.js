@@ -15,6 +15,7 @@ import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import StatusBar from './ui/components/statusbar/StatusBar';
+import MainWindow from './ui/components/mainwindow/MainWindow';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
@@ -991,6 +992,42 @@ users.forEach(user => {
         );
     };
 
+    const mainWindowExamples = () => {
+        return (
+            <div className="component-showcase" style={{ maxWidth: 'none', overflow: 'visible' }}>
+                <h1>Main Window</h1>
+                <p className="component-description">
+                    The Main Window component represents the complete IDE layout, including the main toolbar,
+                    vertical stripes (tool window buttons), tool windows, editor area with tabs, and status bar.
+                </p>
+
+                <div className="component-section">
+                    <h2>IDE Layout Preview</h2>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        width: 'calc(100% + 200px)',
+                        marginLeft: '-100px',
+                        marginRight: '-100px',
+                    }}>
+                        <div style={{
+                            width: '1100px',
+                            height: '700px',
+                        }}>
+                            <MainWindow
+                                projectName="commons-math"
+                                projectIcon="CM"
+                                projectColor="teal"
+                                branchName="main"
+                                runConfig="IDEA Community"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     const renderContent = () => {
         switch (activeComponent) {
             case 'home':
@@ -1017,6 +1054,8 @@ users.forEach(user => {
                 return statusBarExamples();
             case 'codeexample':
                 return codeExamples();
+            case 'mainwindow':
+                return mainWindowExamples();
             case 'typography':
                 return <Typography />;
             case 'colors':
