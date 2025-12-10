@@ -14,6 +14,7 @@ import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
+import StatusBar from './ui/components/statusbar/StatusBar';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
@@ -786,6 +787,101 @@ users.forEach(user => {
         );
     };
 
+    const statusBarExamples = () => {
+        const customBreadcrumbs = [
+            { label: 'intellij', module: true },
+            { label: 'accurate-math-core', module: true },
+            { label: 'src' },
+            { label: 'main' },
+            { label: 'java' },
+            { label: 'org' },
+            { label: 'math' },
+            { label: 'core' },
+            { label: 'AccurateMath', icon: true, iconName: 'nodes/class' }
+        ];
+
+        const customWidgets = [
+            { type: 'text', text: '39:34' },
+            { type: 'text', text: 'LF' },
+            { type: 'text', text: 'UTF-8' },
+            { type: 'icon', iconName: 'general/unlocked' }
+        ];
+
+        return (
+            <div className="component-showcase">
+                <h1>Status Bar</h1>
+
+                <div className="component-section">
+                    <h2>Default (Progress Off)</h2>
+                    <p className="component-description">
+                        Standard status bar showing breadcrumb navigation and widgets.
+                    </p>
+                    <div className="component-examples-vertical" style={{ padding: 0 }}>
+                        <StatusBar 
+                            progress={false}
+                            breadcrumbs={customBreadcrumbs}
+                            widgets={customWidgets}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>With Progress (Indeterminate)</h2>
+                    <p className="component-description">
+                        Status bar with an indeterminate progress indicator for background tasks.
+                    </p>
+                    <div className="component-examples-vertical" style={{ padding: 0 }}>
+                        <StatusBar 
+                            progress={true}
+                            progressLabel="Indexing..."
+                            breadcrumbs={customBreadcrumbs}
+                            widgets={customWidgets}
+                            onProgressStop={() => console.log('Stop clicked')}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>With Progress (Determinate)</h2>
+                    <p className="component-description">
+                        Status bar with a determinate progress indicator showing completion percentage.
+                    </p>
+                    <div className="component-examples-vertical" style={{ padding: 0 }}>
+                        <StatusBar 
+                            progress={true}
+                            progressLabel="Building..."
+                            progressValue={65}
+                            breadcrumbs={customBreadcrumbs}
+                            widgets={customWidgets}
+                            onProgressStop={() => console.log('Stop clicked')}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Minimal Breadcrumbs</h2>
+                    <p className="component-description">
+                        Status bar with fewer breadcrumb items.
+                    </p>
+                    <div className="component-examples-vertical" style={{ padding: 0 }}>
+                        <StatusBar 
+                            progress={false}
+                            breadcrumbs={[
+                                { label: 'src', module: true },
+                                { label: 'components' },
+                                { label: 'Button.jsx', icon: true, iconName: 'fileTypes/javaScript' }
+                            ]}
+                            widgets={[
+                                { type: 'text', text: '12:45' },
+                                { type: 'text', text: 'UTF-8' }
+                            ]}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     const projectSelectorExamples = () => {
         const projects = [
             { 
@@ -917,6 +1013,8 @@ users.forEach(user => {
                 return popupExamples();
             case 'projectselector':
                 return projectSelectorExamples();
+            case 'statusbar':
+                return statusBarExamples();
             case 'codeexample':
                 return codeExamples();
             case 'typography':
