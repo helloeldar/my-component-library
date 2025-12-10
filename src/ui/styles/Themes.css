@@ -169,184 +169,136 @@
 
 }
 
-/* Light Theme Semantic Colors */
+/* Light Theme Semantic Colors - COMMENTED OUT */
+/*
 .theme-light {
-    /* Background Colors */
-    --bg-primary: var(--gray-10); /* L: bg L0 (main window) */
-    --bg-secondary: var(--gray-20); /* L: bg L1 (dialog), bg info */
-    --bg-tertiary: var(--gray-30); /* L: bg control small */
+    --bg-primary: var(--gray-10);
+    --bg-secondary: var(--gray-20);
+    --bg-tertiary: var(--gray-30);
     --bg-elevated: var(--gray-white);
-
-    /* Text Colors */
-    --text-primary: var(--gray-black); /* L: text default */
-    --text-secondary: var(--gray-70); /* L: text sec */
-    --text-muted: var(--gray-80); /* L: text muted */
-    --text-disabled: var(--gray-50); /* L: text disabled */
+    --text-primary: var(--gray-black);
+    --text-secondary: var(--gray-70);
+    --text-muted: var(--gray-80);
+    --text-disabled: var(--gray-50);
     --text-inverse: var(--gray-white);
-
-    /* Border Colors */
-    --border-primary: var(--gray-30); /* L: border L1 */
-    --border-secondary: var(--gray-20); /* L: border L2 */
-    --border-control: var(--gray-40); /* L: border control */
-    --border-control-disabled: var(--gray-30); /* L: border control disabled */
-    --border-raised: var(--gray-50); /* L: border raised */
-    --border-focus: var(--blue-80); /* L,D: accent */
-
-    /* Interactive Colors */
-    --accent-primary: var(--blue-80); /* L,D: accent */
-    --accent-primary-hover: var(--blue-70); /* L: icon stroke, solid */
-    --accent-primary-active: var(--blue-90); /* L: link */
-
-    /* Button */
-    --button-primary-bg: var(--blue-80); /* L,D: accent */
-    --button-primary-bg-hover: var(--blue-70); /* L: accent hover */
-    --button-primary-bg-active: var(--blue-60); /* L: accent active */
+    --border-primary: var(--gray-30);
+    --border-secondary: var(--gray-20);
+    --border-control: var(--gray-40);
+    --border-control-disabled: var(--gray-30);
+    --border-raised: var(--gray-50);
+    --border-focus: var(--blue-80);
+    --accent-primary: var(--blue-80);
+    --accent-primary-hover: var(--blue-70);
+    --accent-primary-active: var(--blue-90);
+    --button-primary-bg: var(--blue-80);
+    --button-primary-bg-hover: var(--blue-70);
+    --button-primary-bg-active: var(--blue-60);
     --button-primary-text: var(--gray-white);
     --button-secondary-bg: var(--gray-white);
-    --button-secondary-bg-hover: var(--gray-50); /* L: border hover */
-    --button-secondary-bg-active: var(--gray-30); /* L: bg tertiary */
-    --button-secondary-border: var(--gray-40); /* L: border control */
-    --button-secondary-border-hover: var(--gray-50); /* L: border hover */
-    --button-secondary-border-active: var(--gray-80); /* L: icon stroke */
+    --button-secondary-bg-hover: var(--gray-50);
+    --button-secondary-bg-active: var(--gray-30);
+    --button-secondary-border: var(--gray-40);
+    --button-secondary-border-hover: var(--gray-50);
+    --button-secondary-border-active: var(--gray-80);
     --button-secondary-text: var(--text-primary);
-
-    /* Tab */
     --tab-bg: transparent;
     --tab-hover-bg: var(--bg-tertiary);
-    --tab-active-bg: var(--blue-30); /* L: selection */
+    --tab-active-bg: var(--blue-30);
     --tab-active-border: var(--blue-40);
     --tab-active-text: var(--text-primary);
-
-    /* Icon Colors */
-    --icon-stroke: var(--gray-80); /* L: icon stroke */
-    --icon-secondary: var(--gray-70); /* L: icon sec */
-    --icon-stroke-muted: var(--gray-50); /* L: icon stroke muted */
-    --stripe-icon-color: #6C707E; /* L: stripe icon color (Light/Gray/Gray 6) */
-
-    /* Success/Green Colors */
-    --success-bg: var(--green-30); /* L: VCS diff, success bg, banner stroke */
-    --success-icon-fill: var(--green-10); /* L: icon fill, banner fill */
-    --success-icon-outline: var(--green-70); /* L: icon outline */
-    --success-stripe: var(--green-50); /* L: VCS stripe mark */
-    --file-color-green: var(--green-20); /* L: file color green */
-
-    /* Error/Red Colors */
-    --error-bg: var(--red-30); /* L: banner stroke, VCS diff, error bg */
-    --error-icon-fill: var(--red-10); /* L: icon fill, banner fill */
-    --error-icon-outline: var(--red-70); /* L: icon outline */
-    --error-stripe: var(--red-50); /* L: VCS stripe mark */
-    --file-color-rose: var(--red-20); /* L: VCS diff, file color rose */
-
-    /* Warning/Yellow Colors */
-    --warning-bg: var(--yellow-30); /* L: warning background */
-    --warning-icon-fill: var(--yellow-10); /* L: icon fill, banner fill */
-    --warning-icon-stroke: var(--yellow-70); /* L: icon stroke */
-    --warning-banner-stroke: var(--yellow-40); /* L: banner stroke */
-    --warning-text: var(--yellow-80); /* L: text */
-    --file-color-yellow: var(--yellow-20); /* L: file color yellow */
-
-    /* Info/Orange Colors */
-    --info-icon-fill: var(--orange-10); /* L: icon fill */
-    --info-icon-stroke: var(--orange-70); /* L: icon stroke solid */
-    --info-stripe: var(--orange-50); /* L: VCS stripe mark */
-    --info-text: var(--orange-90); /* L: text */
-    --file-color-orange: var(--orange-20); /* L: file color orange */
-
-    /* Highlight/Purple Colors */
-    --highlight-icon-fill: var(--purple-10); /* L: icon fill */
-    --highlight-icon-stroke: var(--purple-90); /* L: icon stroke solid */
-    --highlight-stripe: var(--purple-50); /* L: VCS stripe mark */
-    --file-color-violet: var(--purple-20); /* L: file color violet */
-
-    /* Info/Teal Colors */
-    --teal-icon-fill: var(--teal-10); /* L: icon fill */
-    --teal-icon-stroke: var(--teal-70); /* L: icon stroke solid */
-    --teal-stripe: var(--teal-50); /* L: VCS stripe mark */
-    --teal-text: var(--teal-90); /* L: icon stroke solid */
-    --file-color-blue: var(--teal-20); /* L: file color blue */
-
-    /* Control Colors */
-    --control-bg: var(--gray-white); /* L: bg control */
-    --control-bg-hover: var(--gray-10); /* L: bg control hover */
-    --control-bg-pressed: var(--gray-30); /* L: bg control pressed */
-    --control-bg-disabled: var(--gray-20); /* L: bg control disabled */
-
-    /* Selection Colors */
-    --selection-bg: var(--blue-30); /* L: selection */
-    --selection-bg-inactive: var(--gray-30); /* L: selection inactive */
-
-    /* Separator Colors */
-    --separator: var(--gray-30); /* L: separator */
-    --separator-opaque: var(--gray-20); /* L: separator opaque */
-
-    /* Menu Colors */
-    --menu-bg: var(--gray-white); /* L: menu bg */
-    --menu-item-selected-bg: var(--blue-30); /* L: menu item selected */
-
-    /* Popup Colors */
-    --popup-cell-bg-hover: var(--blue-30); /* L: popup cell hover */
-    --popup-bg: var(--gray-white); /* L: popup background */
-    --popup-border: var(--border-primary); /* L: popup border */
-    --popup-separator: var(--separator); /* L: popup separator */
-
-    /* Tooltip Colors */
-    --tooltip-bg: var(--gray-130); /* L: tooltip bg */
-    --tooltip-text: var(--gray-white); /* L: tooltip text */
-
-    /* Link Colors */
-    --link-text: var(--blue-80); /* L: link */
-    --link-text-hover: var(--blue-70); /* L: link hover */
-    --link-text-pressed: var(--blue-90); /* L: link pressed */
-    --link-text-visited: var(--purple-90); /* L: link visited */
-
-    /* Input Colors */
-    --input-bg: var(--gray-white); /* L: input background */
-    --input-bg-disabled: var(--gray-10); /* L: input background disabled */
-    --input-border: var(--gray-40); /* L: input border */
-    --input-border-hover: var(--gray-50); /* L: input border hover */
-    --input-border-focus: var(--blue-80); /* L: input border focus */
-    --input-border-error: var(--red-80); /* L: input border error */
-    --input-border-error-focus: var(--red-80); /* L: input border error focus */
-    --input-border-disabled: var(--gray-30); /* L: input border disabled */
-    --input-text: var(--text-primary); /* L: input text */
-    --input-text-disabled: var(--text-disabled); /* L: input text disabled */
-    --input-text-placeholder: var(--text-muted); /* L: input placeholder */
-
-    /* Tree Colors */
-    --tree-node-text: var(--text-primary); /* L: tree node text */
-    --tree-node-text-selected: var(--text-primary); /* L: tree node text selected */
-    --tree-node-bg-hover: var(--gray-10); /* L: tree node background hover */
-    --tree-node-bg-selected: var(--blue-30); /* L: tree node background selected */
-    --tree-node-toggle: var(--text-secondary); /* L: tree node toggle */
-    --tree-node-toggle-hover: var(--text-primary); /* L: tree node toggle hover */
-
-    /* Tool Window Header Colors */
-    --tool-window-header-bg: var(--bg-elevated); /* L: tool window header background */
-    --tool-window-header-border: var(--border-secondary); /* L: tool window header border */
-    --tool-window-header-separator: var(--border-primary); /* L: tool window header separator */
-    --tool-window-header-text: var(--text-primary); /* L: tool window header text */
-    --tool-window-action-icon: var(--icon-secondary); /* L: tool window action icon */
-    --tool-window-action-icon-hover: var(--text-primary); /* L: tool window action icon hover */
-    --tool-window-action-bg-hover: var(--bg-tertiary); /* L: tool window action bg hover */
-    --tool-window-action-bg-active: var(--gray-30); /* L: tool window action bg active */
-    --tool-window-tab-text: var(--text-primary); /* L: tool window tab text */
-    --tool-window-tab-bg-hover: var(--bg-tertiary); /* L: tool window tab bg hover */
-    --tool-window-tab-active-text: var(--text-primary); /* L: tool window tab active text */
-    --tool-window-tab-active-border: var(--blue-80); /* L: tool window tab active border */
-    --tool-window-tab-close: var(--icon-secondary); /* L: tool window tab close */
-    --tool-window-tab-close-hover: var(--text-primary); /* L: tool window tab close hover */
-    --tool-window-tab-close-bg-hover: var(--gray-30); /* L: tool window tab close bg hover */
-
-    /* Tool Window Colors */
-    --tool-window-bg: var(--bg-elevated); /* L: tool window background */
-    --tool-window-border: var(--border-secondary); /* L: tool window border */
-    --tool-window-content-bg: var(--bg-elevated); /* L: tool window content background */
-    --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* L: tool window shadow */
-    --tool-window-scrollbar-track: var(--gray-10); /* L: tool window scrollbar track */
-    --tool-window-scrollbar-thumb: var(--gray-50); /* L: tool window scrollbar thumb */
-    --tool-window-scrollbar-thumb-hover: var(--gray-60); /* L: tool window scrollbar thumb hover */
-
-    /* Editor Semantic Colors - Light Theme */
+    --icon-stroke: var(--gray-80);
+    --icon-secondary: var(--gray-70);
+    --icon-stroke-muted: var(--gray-50);
+    --stripe-icon-color: #6C707E;
+    --success-bg: var(--green-30);
+    --success-icon-fill: var(--green-10);
+    --success-icon-outline: var(--green-70);
+    --success-stripe: var(--green-50);
+    --file-color-green: var(--green-20);
+    --error-bg: var(--red-30);
+    --error-icon-fill: var(--red-10);
+    --error-icon-outline: var(--red-70);
+    --error-stripe: var(--red-50);
+    --file-color-rose: var(--red-20);
+    --warning-bg: var(--yellow-30);
+    --warning-icon-fill: var(--yellow-10);
+    --warning-icon-stroke: var(--yellow-70);
+    --warning-banner-stroke: var(--yellow-40);
+    --warning-text: var(--yellow-80);
+    --file-color-yellow: var(--yellow-20);
+    --info-icon-fill: var(--orange-10);
+    --info-icon-stroke: var(--orange-70);
+    --info-stripe: var(--orange-50);
+    --info-text: var(--orange-90);
+    --file-color-orange: var(--orange-20);
+    --highlight-icon-fill: var(--purple-10);
+    --highlight-icon-stroke: var(--purple-90);
+    --highlight-stripe: var(--purple-50);
+    --file-color-violet: var(--purple-20);
+    --teal-icon-fill: var(--teal-10);
+    --teal-icon-stroke: var(--teal-70);
+    --teal-stripe: var(--teal-50);
+    --teal-text: var(--teal-90);
+    --file-color-blue: var(--teal-20);
+    --control-bg: var(--gray-white);
+    --control-bg-hover: var(--gray-10);
+    --control-bg-pressed: var(--gray-30);
+    --control-bg-disabled: var(--gray-20);
+    --selection-bg: var(--blue-30);
+    --selection-bg-inactive: var(--gray-30);
+    --separator: var(--gray-30);
+    --separator-opaque: var(--gray-20);
+    --menu-bg: var(--gray-white);
+    --menu-item-selected-bg: var(--blue-30);
+    --popup-cell-bg-hover: var(--blue-30);
+    --popup-bg: var(--gray-white);
+    --popup-border: var(--border-primary);
+    --popup-separator: var(--separator);
+    --tooltip-bg: var(--gray-130);
+    --tooltip-text: var(--gray-white);
+    --link-text: var(--blue-80);
+    --link-text-hover: var(--blue-70);
+    --link-text-pressed: var(--blue-90);
+    --link-text-visited: var(--purple-90);
+    --input-bg: var(--gray-white);
+    --input-bg-disabled: var(--gray-10);
+    --input-border: var(--gray-40);
+    --input-border-hover: var(--gray-50);
+    --input-border-focus: var(--blue-80);
+    --input-border-error: var(--red-80);
+    --input-border-error-focus: var(--red-80);
+    --input-border-disabled: var(--gray-30);
+    --input-text: var(--text-primary);
+    --input-text-disabled: var(--text-disabled);
+    --input-text-placeholder: var(--text-muted);
+    --tree-node-text: var(--text-primary);
+    --tree-node-text-selected: var(--text-primary);
+    --tree-node-bg-hover: var(--gray-10);
+    --tree-node-bg-selected: var(--blue-30);
+    --tree-node-toggle: var(--text-secondary);
+    --tree-node-toggle-hover: var(--text-primary);
+    --tool-window-header-bg: var(--bg-elevated);
+    --tool-window-header-border: var(--border-secondary);
+    --tool-window-header-separator: var(--border-primary);
+    --tool-window-header-text: var(--text-primary);
+    --tool-window-action-icon: var(--icon-secondary);
+    --tool-window-action-icon-hover: var(--text-primary);
+    --tool-window-action-bg-hover: var(--bg-tertiary);
+    --tool-window-action-bg-active: var(--gray-30);
+    --tool-window-tab-text: var(--text-primary);
+    --tool-window-tab-bg-hover: var(--bg-tertiary);
+    --tool-window-tab-active-text: var(--text-primary);
+    --tool-window-tab-active-border: var(--blue-80);
+    --tool-window-tab-close: var(--icon-secondary);
+    --tool-window-tab-close-hover: var(--text-primary);
+    --tool-window-tab-close-bg-hover: var(--gray-30);
+    --tool-window-bg: var(--bg-elevated);
+    --tool-window-border: var(--border-secondary);
+    --tool-window-content-bg: var(--bg-elevated);
+    --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --tool-window-scrollbar-track: var(--gray-10);
+    --tool-window-scrollbar-thumb: var(--gray-50);
+    --tool-window-scrollbar-thumb-hover: var(--gray-60);
     --editor-default-text: var(--editor-light-default-text);
     --editor-error: var(--editor-light-error);
     --editor-warning: var(--editor-light-warning);
@@ -363,23 +315,20 @@
     --editor-type-parameter: var(--editor-light-type-parameter);
     --editor-implicit-param: var(--editor-light-implicit-param);
     --editor-html-tag: var(--editor-light-html-tag);
-
-    /* Icon Button States - Light Theme (from Figma Int UI Kit) */
-    --icon-button-hover-bg: #EBECF0; /* Light/Gray/Gray 12 */
-    --icon-button-pressed-bg: #DFE1E5; /* Light/Gray/Gray 11 */
-
-    /* Stripe Button Colors - Light Theme */
-    --stripe-default-hover-bg: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
-    --stripe-selected-bg: #3574F0; /* Light/Blue/Blue 4 (Primary) */
-    --stripe-selected-hover-bg: #3369D6; /* Light/Blue/Blue 3 */
-    --stripe-inactive-bg: #DFE1E5; /* Light/Gray/Gray 11 */
-    --stripe-inactive-hover-bg: #C9CCD6; /* Light/Gray/Gray 9 */
-    --stripe-badge-default: #55A76A; /* Light/Green/Green 6 */
-    --stripe-badge-selected: #FFFFFF; /* Light/Gray/Gray 14 (White) */
-    --stripe-badge-inactive: #55A76A; /* Light/Green/Green 6 */
+    --icon-button-hover-bg: #EBECF0;
+    --icon-button-pressed-bg: #DFE1E5;
+    --stripe-default-hover-bg: #EBECF0;
+    --stripe-selected-bg: #3574F0;
+    --stripe-selected-hover-bg: #3369D6;
+    --stripe-inactive-bg: #DFE1E5;
+    --stripe-inactive-hover-bg: #C9CCD6;
+    --stripe-badge-default: #55A76A;
+    --stripe-badge-selected: #FFFFFF;
+    --stripe-badge-inactive: #55A76A;
     --text-white: #FFFFFF;
     --text-tertiary: var(--gray-80);
 }
+*/
 
 /* Dark Theme Semantic Colors */
 .theme-dark {

@@ -3,43 +3,49 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-    const [themeMode, setThemeMode] = useState('auto'); // 'light', 'dark', 'auto'
-    const [actualTheme, setActualTheme] = useState('light');
+    // Light theme commented out - only dark theme is active
+    const [themeMode, setThemeMode] = useState('dark'); // 'dark' only (light theme commented out)
+    const [actualTheme, setActualTheme] = useState('dark');
 
-    // Function to get system theme
-    const getSystemTheme = () => {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
+    // Function to get system theme (commented out - light theme disabled)
+    // const getSystemTheme = () => {
+    //     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // };
 
     // Update actual theme based on mode
     useEffect(() => {
-        if (themeMode === 'auto') {
-            setActualTheme(getSystemTheme());
-            
-            // Listen for system theme changes
-            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            const handleChange = (e) => {
-                if (themeMode === 'auto') {
-                    setActualTheme(e.matches ? 'dark' : 'light');
-                }
-            };
-            
-            mediaQuery.addEventListener('change', handleChange);
-            return () => mediaQuery.removeEventListener('change', handleChange);
-        } else {
-            setActualTheme(themeMode);
-        }
+        // Light theme commented out - always use dark
+        setActualTheme('dark');
+        
+        // Original theme switching logic (commented out):
+        // if (themeMode === 'auto') {
+        //     setActualTheme(getSystemTheme());
+        //     
+        //     // Listen for system theme changes
+        //     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        //     const handleChange = (e) => {
+        //         if (themeMode === 'auto') {
+        //             setActualTheme(e.matches ? 'dark' : 'light');
+        //         }
+        //     };
+        //     
+        //     mediaQuery.addEventListener('change', handleChange);
+        //     return () => mediaQuery.removeEventListener('change', handleChange);
+        // } else {
+        //     setActualTheme(themeMode);
+        // }
     }, [themeMode]);
 
     const cycleTheme = () => {
-        setThemeMode(current => {
-            switch (current) {
-                case 'light': return 'dark';
-                case 'dark': return 'auto';
-                case 'auto': return 'light';
-                default: return 'light';
-            }
-        });
+        // Light theme commented out - theme switching disabled
+        // setThemeMode(current => {
+        //     switch (current) {
+        //         case 'light': return 'dark';
+        //         case 'dark': return 'auto';
+        //         case 'auto': return 'light';
+        //         default: return 'light';
+        //     }
+        // });
     };
 
     return (
