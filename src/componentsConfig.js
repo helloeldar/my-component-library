@@ -7,6 +7,7 @@ export const componentsConfig = [
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },
     { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components' },
+    { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components' },
     { name: 'Tabs', key: 'tabs', description: 'Horizontal and vertical tab navigation', category: 'components' },
     { name: 'IDE Window', key: 'idewindow', description: 'Complete IDE layout with toolbar, panels, and editor', category: 'components' },
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components' },

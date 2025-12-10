@@ -11,12 +11,19 @@
     position: relative;
 }
 
+/* Left Group - contains window controls and toolbar-left */
+.toolbar-left-group {
+    display: flex;
+    align-items: center;
+}
+
 /* macOS Window Controls */
 .window-controls {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 0 16px;
+    flex-shrink: 0;
 }
 
 .window-control {
@@ -43,6 +50,7 @@
     display: flex;
     align-items: center;
     gap: 0;
+    margin-left: 0;
 }
 
 /* Right Side */

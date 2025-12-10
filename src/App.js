@@ -15,6 +15,7 @@ import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import IDEWindow from './ui/components/idewindow/IDEWindow';
+import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly } from './componentsConfig';
@@ -787,6 +788,80 @@ users.forEach(user => {
         );
     };
 
+    const toolbarDropdownExamples = () => {
+        return (
+            <div className="component-showcase">
+                <h1>Toolbar Dropdown</h1>
+
+                <div className="component-section">
+                    <h2>Themes</h2>
+                    <p className="component-description">
+                        Toolbar dropdown buttons adapt to different toolbar backgrounds with appropriate text and hover colors.
+                    </p>
+                    
+                    <div className="component-group">
+                        <h3>Dark Theme (Default)</h3>
+                        <div className="component-examples" style={{ 
+                            background: 'var(--gray-140)', 
+                            padding: '8px 12px', 
+                            borderRadius: '6px',
+                            gap: '4px'
+                        }}>
+                            <ToolbarDropdown text="File" theme="dark" />
+                            <ToolbarDropdown text="Edit" theme="dark" />
+                            <ToolbarDropdown icon="general/settings" text="Settings" theme="dark" />
+                        </div>
+                    </div>
+
+                    <div className="component-group">
+                        <h3>Light Header Theme</h3>
+                        <div className="component-examples" style={{ 
+                            background: 'var(--gray-white)', 
+                            padding: '8px 12px', 
+                            borderRadius: '6px',
+                            border: '1px solid var(--border-primary)',
+                            gap: '4px'
+                        }}>
+                            <ToolbarDropdown text="File" theme="light-header" />
+                            <ToolbarDropdown text="Edit" theme="light-header" />
+                            <ToolbarDropdown icon="general/settings" text="Settings" theme="light-header" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>With Icons</h2>
+                    <div className="component-examples" style={{ 
+                        background: 'var(--gray-140)', 
+                        padding: '8px 12px', 
+                        borderRadius: '6px',
+                        gap: '4px'
+                    }}>
+                        <ToolbarDropdown icon="vcs/branch" text="main" theme="dark" />
+                        <ToolbarDropdown icon="runConfigurations/application" text="IDEA Community" theme="dark" />
+                        <ToolbarDropdown icon="general/settings" text="Options" theme="dark" />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>States</h2>
+                    <p className="component-description">
+                        Hover over the dropdowns to see the hover state with background highlight.
+                    </p>
+                    <div className="component-examples" style={{ 
+                        background: 'var(--gray-140)', 
+                        padding: '8px 12px', 
+                        borderRadius: '6px',
+                        gap: '4px'
+                    }}>
+                        <ToolbarDropdown text="Default" theme="dark" />
+                        <ToolbarDropdown text="Disabled" theme="dark" disabled />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     const ideWindowExamples = () => {
         return (
             <div className="ide-window-page">
@@ -952,6 +1027,8 @@ users.forEach(user => {
                 return <Colors />;
             case 'toolbar':
                 return <ToolbarDemo />;
+            case 'toolbardropdown':
+                return toolbarDropdownExamples();
             default:
                 return <Home onNavigate={setActiveComponent} />;
         }

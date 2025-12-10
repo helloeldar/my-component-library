@@ -1,6 +1,7 @@
 import React from 'react';
 import ToolbarIconButton from '../iconbutton/IconButton';
 import ProjectSelector from '../projectselector/ProjectSelector';
+import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import Icon from '../icon/Icon';
 import './MainToolbar.css';
 
@@ -15,25 +16,28 @@ function MainToolbar({
 }) {
     return (
         <div className={`main-toolbar ${className}`} {...props}>
-            {/* macOS Window Controls */}
-            <div className="window-controls">
-                <div className="window-control close"></div>
-                <div className="window-control minimize"></div>
-                <div className="window-control maximize"></div>
-            </div>
+            {/* Left Group - Window Controls, Project, and VCS */}
+            <div className="toolbar-left-group">
+                {/* macOS Window Controls */}
+                <div className="window-controls">
+                    <div className="window-control close"></div>
+                    <div className="window-control minimize"></div>
+                    <div className="window-control maximize"></div>
+                </div>
 
-            {/* Left Side - Project and VCS */}
-            <div className="toolbar-left">
-                <ProjectSelector 
-                    projectName={projectName}
-                    projectIcon={projectIcon}
-                    projectColor={projectColor}
-                />
-                
-                <div className="vcs-widget">
-                    <Icon name="vcs/branch" size={16} />
-                    <span className="branch-name">{branchName}</span>
-                    <span className="dropdown-arrow">▼</span>
+                {/* Left Side - Project and VCS */}
+                <div className="toolbar-left">
+                    <ProjectSelector 
+                        projectName={projectName}
+                        projectIcon={projectIcon}
+                        projectColor={projectColor}
+                    />
+                    
+                    <ToolbarDropdown 
+                        icon="vcs/branch" 
+                        text={branchName} 
+                        theme="dark" 
+                    />
                 </div>
             </div>
 
