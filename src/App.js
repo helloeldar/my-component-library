@@ -14,7 +14,7 @@ import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
-import IDEWindow from './ui/components/idewindow/IDEWindow';
+import IDELayout from './ui/components/idelayout/IDELayout';
 import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
@@ -862,25 +862,48 @@ users.forEach(user => {
         );
     };
 
-    const ideWindowExamples = () => {
+    const ideLayoutExamples = () => {
         return (
-            <div className="ide-window-page">
-                <div className="ide-window-header">
-                    <h1>IDE Window</h1>
-                    <p className="component-description">
-                        A full IDE window layout combining MainToolbar, Stripe panels, Tool Windows, 
-                        Editor tabs, Code Editor, and Status Bar. Click on stripe buttons to toggle panels.
+            <div className="component-showcase">
+                <h1>IDE Layout</h1>
+                <p className="component-description">
+                    A full IDE window layout combining MainToolbar, Stripe panels, Tool Windows, 
+                    Editor tabs, Code Editor, and Status Bar. Click on stripe buttons to toggle panels.
+                    Supports two themes: <strong>default</strong> (traditional flat layout) and <strong>island</strong> (modern design with rounded panels).
+                </p>
+
+                <div className="component-section">
+                    <h2>Default Theme</h2>
+                    <p className="section-description">
+                        Traditional flat layout with solid borders - classic IDE appearance.
                     </p>
+                    <div className="ide-layout-demo">
+                        <IDELayout 
+                            theme="default"
+                            projectName="petclinic"
+                            projectIcon="PC"
+                            projectColor="grass"
+                            branchName="main"
+                            runConfig="PetClinicApplication"
+                        />
+                    </div>
                 </div>
-                <div className="ide-window-container">
-                    <IDEWindow 
-                        projectName="petclinic"
-                        projectIcon="PC"
-                        projectColor="grass"
-                        branchName="main"
-                        runConfig="PetClinicApplication"
-                        className="ide-window-fullscreen"
-                    />
+
+                <div className="component-section">
+                    <h2>Island Theme</h2>
+                    <p className="section-description">
+                        Modern design with rounded panels, gaps between elements, and gradient backgrounds.
+                    </p>
+                    <div className="ide-layout-demo">
+                        <IDELayout 
+                            theme="island"
+                            projectName="commons-math"
+                            projectIcon="CM"
+                            projectColor="teal"
+                            branchName="feature/new-ui"
+                            runConfig="IDEA Community"
+                        />
+                    </div>
                 </div>
             </div>
         );
@@ -1017,8 +1040,8 @@ users.forEach(user => {
                 return popupExamples();
             case 'projectselector':
                 return projectSelectorExamples();
-            case 'idewindow':
-                return ideWindowExamples();
+            case 'idelayout':
+                return ideLayoutExamples();
             case 'codeexample':
                 return codeExamples();
             case 'typography':

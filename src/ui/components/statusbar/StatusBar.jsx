@@ -1,7 +1,6 @@
 import StatusBarBreadcrumb from './StatusBarBreadcrumb';
 import StatusBarWidget from './StatusBarWidget';
 import StatusBarProgress from './StatusBarProgress';
-import Icon from '../icon/Icon';
 import './StatusBar.css';
 
 /**
