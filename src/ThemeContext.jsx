@@ -4,7 +4,7 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
     // Light theme commented out - only dark theme is active
-    const [themeMode, setThemeMode] = useState('dark'); // 'dark' only (light theme commented out)
+    const [themeMode] = useState('dark'); // 'dark' only (light theme commented out)
     const [actualTheme, setActualTheme] = useState('dark');
 
     // Function to get system theme (commented out - light theme disabled)
