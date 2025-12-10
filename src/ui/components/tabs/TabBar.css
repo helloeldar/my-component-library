@@ -1,11 +1,11 @@
 .tab-bar {
     background: var(--tab-bg);
-    padding: 2px;
+    padding: 0;
 }
 
 .tab-bar-horizontal {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-start;
 }
 

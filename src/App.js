@@ -14,11 +14,11 @@ import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
-import StatusBar from './ui/components/statusbar/StatusBar';
-import MainWindow from './ui/components/mainwindow/MainWindow';
+import IDEWindow from './ui/components/idewindow/IDEWindow';
+import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly, getSortedWidgets } from './componentsConfig';
+import { getSortedComponentsOnly } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -788,96 +788,99 @@ users.forEach(user => {
         );
     };
 
-    const statusBarExamples = () => {
-        const customBreadcrumbs = [
-            { label: 'intellij', module: true },
-            { label: 'accurate-math-core', module: true },
-            { label: 'src' },
-            { label: 'main' },
-            { label: 'java' },
-            { label: 'org' },
-            { label: 'math' },
-            { label: 'core' },
-            { label: 'AccurateMath', icon: true, iconName: 'nodes/class' }
-        ];
-
-        const customWidgets = [
-            { type: 'text', text: '39:34' },
-            { type: 'text', text: 'LF' },
-            { type: 'text', text: 'UTF-8' },
-            { type: 'icon', iconName: 'general/unlocked' }
-        ];
-
+    const toolbarDropdownExamples = () => {
         return (
             <div className="component-showcase">
-                <h1>Status Bar</h1>
+                <h1>Toolbar Dropdown</h1>
 
                 <div className="component-section">
-                    <h2>Default (Progress Off)</h2>
+                    <h2>Themes</h2>
                     <p className="component-description">
-                        Standard status bar showing breadcrumb navigation and widgets.
+                        Toolbar dropdown buttons adapt to different toolbar backgrounds with appropriate text and hover colors.
                     </p>
-                    <div className="component-examples-vertical" style={{ padding: 0 }}>
-                        <StatusBar 
-                            progress={false}
-                            breadcrumbs={customBreadcrumbs}
-                            widgets={customWidgets}
-                        />
+                    
+                    <div className="component-group">
+                        <h3>Dark Theme (Default)</h3>
+                        <div className="component-examples" style={{ 
+                            background: 'var(--gray-140)', 
+                            padding: '8px 12px', 
+                            borderRadius: '6px',
+                            gap: '4px'
+                        }}>
+                            <ToolbarDropdown text="File" theme="dark" />
+                            <ToolbarDropdown text="Edit" theme="dark" />
+                            <ToolbarDropdown icon="general/settings" text="Settings" theme="dark" />
+                        </div>
+                    </div>
+
+                    <div className="component-group">
+                        <h3>Light Header Theme</h3>
+                        <div className="component-examples" style={{ 
+                            background: 'var(--gray-white)', 
+                            padding: '8px 12px', 
+                            borderRadius: '6px',
+                            border: '1px solid var(--border-primary)',
+                            gap: '4px'
+                        }}>
+                            <ToolbarDropdown text="File" theme="light-header" />
+                            <ToolbarDropdown text="Edit" theme="light-header" />
+                            <ToolbarDropdown icon="general/settings" text="Settings" theme="light-header" />
+                        </div>
                     </div>
                 </div>
 
                 <div className="component-section">
-                    <h2>With Progress (Indeterminate)</h2>
-                    <p className="component-description">
-                        Status bar with an indeterminate progress indicator for background tasks.
-                    </p>
-                    <div className="component-examples-vertical" style={{ padding: 0 }}>
-                        <StatusBar 
-                            progress={true}
-                            progressLabel="Indexing..."
-                            breadcrumbs={customBreadcrumbs}
-                            widgets={customWidgets}
-                            onProgressStop={() => console.log('Stop clicked')}
-                        />
+                    <h2>With Icons</h2>
+                    <div className="component-examples" style={{ 
+                        background: 'var(--gray-140)', 
+                        padding: '8px 12px', 
+                        borderRadius: '6px',
+                        gap: '4px'
+                    }}>
+                        <ToolbarDropdown icon="vcs/branch" text="main" theme="dark" />
+                        <ToolbarDropdown icon="runConfigurations/application" text="IDEA Community" theme="dark" />
+                        <ToolbarDropdown icon="general/settings" text="Options" theme="dark" />
                     </div>
                 </div>
 
                 <div className="component-section">
-                    <h2>With Progress (Determinate)</h2>
+                    <h2>States</h2>
                     <p className="component-description">
-                        Status bar with a determinate progress indicator showing completion percentage.
+                        Hover over the dropdowns to see the hover state with background highlight.
                     </p>
-                    <div className="component-examples-vertical" style={{ padding: 0 }}>
-                        <StatusBar 
-                            progress={true}
-                            progressLabel="Building..."
-                            progressValue={65}
-                            breadcrumbs={customBreadcrumbs}
-                            widgets={customWidgets}
-                            onProgressStop={() => console.log('Stop clicked')}
-                        />
+                    <div className="component-examples" style={{ 
+                        background: 'var(--gray-140)', 
+                        padding: '8px 12px', 
+                        borderRadius: '6px',
+                        gap: '4px'
+                    }}>
+                        <ToolbarDropdown text="Default" theme="dark" />
+                        <ToolbarDropdown text="Disabled" theme="dark" disabled />
                     </div>
                 </div>
+            </div>
+        );
+    };
 
-                <div className="component-section">
-                    <h2>Minimal Breadcrumbs</h2>
+    const ideWindowExamples = () => {
+        return (
+            <div className="ide-window-page">
+                <div className="ide-window-header">
+                    <h1>IDE Window</h1>
                     <p className="component-description">
-                        Status bar with fewer breadcrumb items.
+                        A full IDE window layout combining MainToolbar, Stripe panels, Tool Windows, 
+                        Editor tabs, Code Editor, and Status Bar. Click on stripe buttons to toggle panels.
                     </p>
-                    <div className="component-examples-vertical" style={{ padding: 0 }}>
-                        <StatusBar 
-                            progress={false}
-                            breadcrumbs={[
-                                { label: 'src', module: true },
-                                { label: 'components' },
-                                { label: 'Button.jsx', icon: true, iconName: 'fileTypes/javaScript' }
-                            ]}
-                            widgets={[
-                                { type: 'text', text: '12:45' },
-                                { type: 'text', text: 'UTF-8' }
-                            ]}
-                        />
-                    </div>
+                </div>
+                <div className="ide-window-container">
+                    <IDEWindow 
+                        projectName="petclinic"
+                        projectIcon="PC"
+                        projectColor="grass"
+                        branchName="main"
+                        runConfig="PetClinicApplication"
+                        className="ide-window-fullscreen"
+                    />
                 </div>
             </div>
         );
@@ -992,42 +995,6 @@ users.forEach(user => {
         );
     };
 
-    const mainWindowExamples = () => {
-        return (
-            <div className="component-showcase" style={{ maxWidth: 'none', overflow: 'visible' }}>
-                <h1>Main Window</h1>
-                <p className="component-description">
-                    The Main Window component represents the complete IDE layout, including the main toolbar,
-                    vertical stripes (tool window buttons), tool windows, editor area with tabs, and status bar.
-                </p>
-
-                <div className="component-section">
-                    <h2>IDE Layout Preview</h2>
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        width: 'calc(100% + 200px)',
-                        marginLeft: '-100px',
-                        marginRight: '-100px',
-                    }}>
-                        <div style={{
-                            width: '1100px',
-                            height: '700px',
-                        }}>
-                            <MainWindow
-                                projectName="commons-math"
-                                projectIcon="CM"
-                                projectColor="teal"
-                                branchName="main"
-                                runConfig="IDEA Community"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    };
-
     const renderContent = () => {
         switch (activeComponent) {
             case 'home':
@@ -1050,18 +1017,18 @@ users.forEach(user => {
                 return popupExamples();
             case 'projectselector':
                 return projectSelectorExamples();
-            case 'statusbar':
-                return statusBarExamples();
+            case 'idewindow':
+                return ideWindowExamples();
             case 'codeexample':
                 return codeExamples();
-            case 'mainwindow':
-                return mainWindowExamples();
             case 'typography':
                 return <Typography />;
             case 'colors':
                 return <Colors />;
             case 'toolbar':
                 return <ToolbarDemo />;
+            case 'toolbardropdown':
+                return toolbarDropdownExamples();
             default:
                 return <Home onNavigate={setActiveComponent} />;
         }
@@ -1124,18 +1091,6 @@ users.forEach(user => {
                     ))}
                 </div>
                 
-                <div className="nav-category">
-                    <div className="nav-category-title">Widgets</div>
-                    {getSortedWidgets().map((widget) => (
-                        <button
-                            key={widget.key}
-                            className={`nav-item ${activeComponent === widget.key ? 'active' : ''}`}
-                            onClick={() => setActiveComponent(widget.key)}
-                        >
-                            {widget.name}
-                        </button>
-                    ))}
-                </div>
             </div>
 
             <div className="main-content">
