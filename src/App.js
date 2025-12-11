@@ -962,7 +962,6 @@ function StatusBarPage() {
     );
 }
 
->>>>>>> 86e10e7aa5793c6b0258f89adddd4e042450d6f3
 function StatusBarBreadcrumbPage() {
     return (
         <div className="component-showcase">
