@@ -19,6 +19,7 @@ import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
 import Checkbox from './ui/components/checkbox/Checkbox';
 import Radio, { RadioGroup } from './ui/components/radio/Radio';
 import Toggle from './ui/components/toggle/Toggle';
+import ProgressBar from './ui/components/progressbar/ProgressBar';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import { ThemeProvider, useTheme } from './ThemeContext';
@@ -275,6 +276,79 @@ function AppContent() {
                 <div className="component-examples">
                     <Toggle checked={true} showLabel={false} />
                     <Toggle checked={false} showLabel={false} />
+                </div>
+            </div>
+        </div>
+    );
+
+    const progressBarExamples = () => (
+        <div className="component-showcase">
+            <h1>Progress Bar</h1>
+
+            <div className="component-section">
+                <h2>Single Progress Bar</h2>
+                <p className="component-description">Basic progress bar without any additional elements.</p>
+                <div className="component-examples-vertical" style={{width: '300px'}}>
+                    <ProgressBar value={60} />
+                    <ProgressBar value={30} />
+                    <ProgressBar value={100} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Stop Button</h2>
+                <p className="component-description">Progress bar with a stop/cancel button.</p>
+                <div className="component-examples-vertical" style={{width: '300px'}}>
+                    <ProgressBar value={45} showStopButton onStop={() => alert('Stop clicked!')} />
+                    <ProgressBar value={75} showStopButton />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Label on the Left</h2>
+                <p className="component-description">Horizontal layout with label on the left side.</p>
+                <div className="component-examples-vertical" style={{width: '400px'}}>
+                    <ProgressBar value={50} label="Indexing..." labelPosition="left" showStopButton />
+                    <ProgressBar value={80} label="Building..." labelPosition="left" showStopButton />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Label on Top</h2>
+                <p className="component-description">Vertical layout with label above the progress bar.</p>
+                <div className="component-examples-vertical" style={{width: '300px'}}>
+                    <ProgressBar value={65} label="Indexing..." labelPosition="top" showStopButton />
+                    <ProgressBar value={40} label="Downloading..." labelPosition="top" showStopButton />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Hint</h2>
+                <p className="component-description">Vertical layout with label and hint text below.</p>
+                <div className="component-examples-vertical" style={{width: '300px'}}>
+                    <ProgressBar 
+                        value={55} 
+                        label="Indexing..." 
+                        labelPosition="top" 
+                        hint="Processing files in /src folder"
+                        showStopButton 
+                    />
+                    <ProgressBar 
+                        value={25} 
+                        label="Downloading..." 
+                        labelPosition="top" 
+                        hint="25% complete - 2.5 MB of 10 MB"
+                        showStopButton 
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Indeterminate</h2>
+                <p className="component-description">When progress cannot be determined, use indeterminate mode.</p>
+                <div className="component-examples-vertical" style={{width: '300px'}}>
+                    <ProgressBar indeterminate label="Loading..." labelPosition="left" />
+                    <ProgressBar indeterminate label="Please wait..." labelPosition="top" showStopButton />
                 </div>
             </div>
         </div>
@@ -1446,6 +1520,8 @@ users.forEach(user => {
                 return radioExamples();
             case 'toggle':
                 return toggleExamples();
+            case 'progressbar':
+                return progressBarExamples();
             case 'dropdown':
                 return dropdownExamples();
             case 'combobox':

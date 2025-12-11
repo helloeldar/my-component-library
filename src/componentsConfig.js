@@ -17,6 +17,7 @@ export const componentsConfig = [
     { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components' },
     { name: 'Tabs', key: 'tabs', description: 'Horizontal and vertical tab navigation', category: 'components' },
     { name: 'Toggle', key: 'toggle', description: 'Toggle switch with ON/OFF states', category: 'components' },
+    { name: 'Progress Bar', key: 'progressbar', description: 'Progress indicator with optional label and stop button', category: 'components' },
     { name: 'Tool Window', key: 'toolwindow', description: 'Resizable panels with optional tabs', category: 'components' },
     { name: 'Tree', key: 'tree', description: 'Hierarchical file tree component', category: 'components' }
 ];
