@@ -4,21 +4,19 @@ import StripeContainer from '../../../../ui/components/stripe/StripeContainer';
 import StatusBar from '../../../../ui/components/statusbar/StatusBar';
 import Icon from '../../../../ui/components/icon/Icon';
 import IdeIcon from '../../IdeIcon';
-import './OnboardingStep1.css';
+import './OnboardingStep1C.css';
 
 /**
- * OnboardingStep1 - Multistep Wizard
+ * OnboardingStep1C - Import or Customize Welcome Screen
  * 
- * Internal steps:
- * 1. Welcome screen - WebStorm icon, title, Get Started button
- * 2. Quick start with import - Import from JetBrains/VSCode/Cursor
- * 3. Everything works out of the box - Features overview
- * 4. Customize your experience - Accordion settings
+ * Screens:
+ * 1. Welcome - Two panels: Import settings OR Customize from scratch
+ * 2. Customize - Accordion-based customization (Theme, Scale, Editor, Keymap, Plugins)
  */
-function OnboardingStep1({ onComplete }) {
-    // Current wizard step (1 = welcome, 2 = import, 3 = out of box, 4 = customize)
-    const [wizardStep, setWizardStep] = useState(1);
-    
+function OnboardingStep1C({ onComplete }) {
+    // Current screen: 'welcome' or 'customize'
+    const [currentScreen, setCurrentScreen] = useState('welcome');
+
     // Left stripe state
     const [leftStripeSelection, setLeftStripeSelection] = useState(null);
     
@@ -28,7 +26,7 @@ function OnboardingStep1({ onComplete }) {
     // Bottom stripe items state
     const [bottomStripeSelection, setBottomStripeSelection] = useState(null);
 
-    // Accordion state for step 4
+    // Accordion state for customize screen
     const [expandedSection, setExpandedSection] = useState('theme');
     const [customizeSelections, setCustomizeSelections] = useState({
         theme: null,
@@ -43,26 +41,23 @@ function OnboardingStep1({ onComplete }) {
         { label: 'Welcome to WebStorm' }
     ];
 
-    const handleGetStarted = () => {
-        setWizardStep(2);
+    const handleImportJetBrains = () => {
+        console.log('Import from JetBrains IDEs');
+        // Could expand to show more options or proceed to import
     };
 
-    const handleSkip = () => {
+    const handleImportVSCode = () => {
+        console.log('Import from VS Code');
         if (onComplete) onComplete();
     };
 
-    const handleImportOption = (option) => {
-        console.log('Import from:', option);
-        // After import, go to step 3
-        setWizardStep(3);
+    const handleImportCursor = () => {
+        console.log('Import from Cursor');
+        if (onComplete) onComplete();
     };
 
-    const handleStartFromScratch = () => {
-        setWizardStep(3);
-    };
-
-    const handleContinue = () => {
-        setWizardStep(4);
+    const handleCustomize = () => {
+        setCurrentScreen('customize');
     };
 
     const handleFinalGetStarted = () => {
@@ -80,6 +75,15 @@ function OnboardingStep1({ onComplete }) {
         setCustomizeSelections(prev => ({
             ...prev,
             [section]: value
+        }));
+    };
+
+    // Clear selection for a section
+    const clearSelection = (section, e) => {
+        e.stopPropagation(); // Prevent accordion toggle
+        setCustomizeSelections(prev => ({
+            ...prev,
+            [section]: null
         }));
     };
 
@@ -118,176 +122,6 @@ function OnboardingStep1({ onComplete }) {
         return shortcuts[keymap] || shortcuts['WebStorm'];
     };
 
-    // Render welcome content (step 1)
-    const renderWelcomeContent = () => (
-        <div className="wizard-welcome-content">
-            {/* WebStorm Icon */}
-            <div className="wizard-icon">
-                <IdeIcon product="WebStorm" size="48" os="Windows" />
-            </div>
-
-            {/* Welcome Title */}
-            <h1 className="wizard-title">Welcome to WebStorm</h1>
-
-            {/* Subtitle */}
-            <p className="wizard-subtitle">
-                Powerful IDE for TypeScript and JavaScript
-            </p>
-
-            {/* Get Started Button */}
-            <button 
-                className="wizard-get-started-btn"
-                onClick={handleGetStarted}
-            >
-                Get Started
-            </button>
-
-            {/* Skip Link */}
-            <button 
-                className="wizard-skip-link"
-                onClick={handleSkip}
-            >
-                Skip onboarding
-            </button>
-        </div>
-    );
-
-    // Render import content (step 2)
-    const renderImportContent = () => (
-        <div className="wizard-import-content">
-            {/* Title */}
-            <h1 className="wizard-title">Quick start with import</h1>
-
-            {/* Subtitle */}
-            <p className="wizard-import-subtitle">
-                Import theme, keymap, and recent<br />
-                projects from an IDE or a code editor
-            </p>
-
-            {/* Import Buttons */}
-            <div className="wizard-import-buttons">
-                {/* JetBrains IDEs */}
-                <button 
-                    className="wizard-import-btn"
-                    onClick={() => handleImportOption('jetbrains')}
-                >
-                    <div className="import-btn-icons import-btn-icons-scaled">
-                        <IdeIcon product="IDEA Ultimate" size="24" os="Windows" />
-                        <IdeIcon product="PyCharm Pro" size="24" os="Windows" />
-                        <IdeIcon product="PhpStorm" size="24" os="Windows" />
-                    </div>
-                    <span className="import-btn-text">JetBrains IDEs</span>
-                    <Icon name="general/chevronDown" size={16} className="import-btn-chevron" />
-                </button>
-
-                {/* Visual Studio Code */}
-                <button 
-                    className="wizard-import-btn"
-                    onClick={() => handleImportOption('vscode')}
-                >
-                    <div className="import-btn-icon vscode-icon">
-                        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.8 1L4.8 6.4L2.4 4.8L1 5.6V10.4L2.4 11.2L4.8 9.6L10.8 15L15 13.2V2.8L10.8 1ZM2.4 8.8V7.2L3.4 8L2.4 8.8ZM10.4 11.2L6 8L10.4 4.8V11.2Z" fill="#007ACC"/>
-                        </svg>
-                    </div>
-                    <span className="import-btn-text">Visual Studio Code</span>
-                </button>
-
-                {/* Cursor */}
-                <button 
-                    className="wizard-import-btn"
-                    onClick={() => handleImportOption('cursor')}
-                >
-                    <div className="import-btn-icon cursor-icon">
-                        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="16" height="16" rx="3" fill="#000"/>
-                            <path d="M4 12L12 4M12 4H6M12 4V10" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                    </div>
-                    <span className="import-btn-text">Cursor</span>
-                </button>
-            </div>
-
-            {/* Start from scratch Link */}
-            <button 
-                className="wizard-skip-link"
-                onClick={handleStartFromScratch}
-            >
-                Start from scratch
-            </button>
-        </div>
-    );
-
-    // Render "Everything works out of the box" content (step 3)
-    const renderOutOfBoxContent = () => (
-        <div className="wizard-outofbox-content">
-            {/* Feature Icons */}
-            <div className="wizard-feature-icons">
-                {/* ESLint */}
-                <div className="wizard-feature-icon">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 6L7 8.5V11.5L10 14L13 11.5V8.5L10 6Z" fill="#9DA0A8"/>
-                        <path d="M10 2L3 6V14L10 18L17 14V6L10 2ZM15 13L10 16L5 13V7L10 4L15 7V13Z" fill="#FFFFFF"/>
-                    </svg>
-                </div>
-                {/* Prettier */}
-                <div className="wizard-feature-icon">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3.75" y="2.5" width="10" height="1.25" rx="0.625" fill="#548AF7"/>
-                        <rect x="3.75" y="5" width="6.25" height="1.25" rx="0.625" fill="#548AF7"/>
-                        <rect x="3.75" y="7.5" width="3.75" height="1.25" rx="0.625" fill="#A571E6"/>
-                        <rect x="11.25" y="5" width="5" height="1.25" rx="0.625" fill="#A571E6"/>
-                        <rect x="12.5" y="7.5" width="5" height="1.25" rx="0.625" fill="#D6AE58"/>
-                        <rect x="11.25" y="10" width="5" height="1.25" rx="0.625" fill="#548AF7"/>
-                        <rect x="3.75" y="10" width="3.75" height="1.25" rx="0.625" fill="#DB5C5C"/>
-                        <rect x="8.75" y="10" width="1.25" height="1.25" rx="0.625" fill="#D6AE58"/>
-                        <rect x="3.75" y="15" width="2.5" height="1.25" rx="0.625" fill="#548AF7"/>
-                        <rect x="7.5" y="15" width="1.25" height="1.25" rx="0.625" fill="#A571E6"/>
-                        <rect x="3.75" y="17.5" width="5" height="1.25" rx="0.625" fill="#DB5C5C"/>
-                        <rect x="6.25" y="12.5" width="7.5" height="1.25" rx="0.625" fill="#D6AE58"/>
-                        <rect x="3.75" y="12.5" width="1.25" height="1.25" rx="0.625" fill="#A571E6"/>
-                    </svg>
-                </div>
-                {/* GitHub */}
-                <div className="wizard-feature-icon">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M10 1.25C5.16 1.25 1.25 5.16 1.25 10C1.25 13.87 3.77 17.15 7.27 18.31C7.72 18.39 7.88 18.11 7.88 17.87C7.88 17.66 7.87 16.98 7.87 16.27C5.5 16.77 4.97 15.16 4.97 15.16C4.56 14.15 3.97 13.87 3.97 13.87C3.15 13.32 4.03 13.33 4.03 13.33C4.94 13.39 5.42 14.26 5.42 14.26C6.23 15.65 7.56 15.28 7.91 15.05C7.99 14.49 8.22 14.12 8.47 13.87C6.55 13.62 4.53 12.89 4.53 9.53C4.53 8.57 4.88 7.79 5.44 7.17C5.35 6.92 5.03 6.03 5.52 4.82C5.52 4.82 6.28 4.55 7.87 5.68C8.58 5.46 9.29 5.35 10 5.35C10.71 5.35 11.42 5.46 12.13 5.68C13.72 4.55 14.48 4.82 14.48 4.82C14.97 6.03 14.65 6.92 14.56 7.17C15.12 7.79 15.47 8.57 15.47 9.53C15.47 12.9 13.44 13.62 11.51 13.86C11.83 14.17 12.12 14.78 12.12 15.72C12.12 17.05 12.11 17.62 12.11 17.87C12.11 18.11 12.27 18.4 12.73 18.31C16.23 17.15 18.75 13.87 18.75 10C18.75 5.16 14.84 1.25 10 1.25Z" fill="#FFFFFE"/>
-                    </svg>
-                </div>
-                {/* ABC/Spell Checker */}
-                <div className="wizard-feature-icon">
-                    <span className="feature-icon-text">ABC</span>
-                </div>
-            </div>
-
-            {/* Title */}
-            <h1 className="wizard-title">Everything works out of the box</h1>
-
-            {/* Subtitle */}
-            <p className="wizard-outofbox-subtitle">
-                Prettier, ESLint, Spell Checker, Git support and many<br />
-                more features are already built-in and ready to use
-            </p>
-
-            {/* Continue Button */}
-            <button 
-                className="wizard-get-started-btn"
-                onClick={handleContinue}
-            >
-                Continue
-            </button>
-        </div>
-    );
-
-    // Clear selection for a section
-    const clearSelection = (section, e) => {
-        e.stopPropagation(); // Prevent accordion toggle
-        setCustomizeSelections(prev => ({
-            ...prev,
-            [section]: null
-        }));
-    };
-
     // Render accordion item
     const renderAccordionItem = (id, label, isExpanded, hasSelection, content) => (
         <div className={`accordion-item ${isExpanded ? 'accordion-item-expanded' : ''}`}>
@@ -320,7 +154,93 @@ function OnboardingStep1({ onComplete }) {
         </div>
     );
 
-    // Render "Customize your experience" content (step 4)
+    // Render welcome content
+    const renderWelcomeContent = () => (
+        <div className="onboarding-c-welcome">
+            {/* WebStorm Icon */}
+            <div className="onboarding-c-icon">
+                <IdeIcon product="WebStorm" size="48" os="Windows" />
+            </div>
+
+            {/* Welcome Title */}
+            <h1 className="onboarding-c-title">Welcome to WebStorm</h1>
+
+            {/* Subtitle */}
+            <p className="onboarding-c-subtitle">
+                Powerful IDE for JavaScript and TypeScript
+            </p>
+
+            {/* Two Panels */}
+            <div className="onboarding-c-panels">
+                {/* Left Panel - Import */}
+                <div className="onboarding-c-panel">
+                    <p className="onboarding-c-panel-title">
+                        Import settings from an IDE
+                    </p>
+
+                    <div className="onboarding-c-panel-buttons">
+                        {/* JetBrains IDEs */}
+                        <button 
+                            className="onboarding-c-import-btn"
+                            onClick={handleImportJetBrains}
+                        >
+                            <div className="import-btn-icons import-btn-icons-scaled">
+                                <IdeIcon product="IDEA Ultimate" size="24" os="Windows" />
+                                <IdeIcon product="PyCharm Pro" size="24" os="Windows" />
+                                <IdeIcon product="PhpStorm" size="24" os="Windows" />
+                            </div>
+                            <span className="import-btn-text">JetBrains IDEs</span>
+                            <Icon name="general/chevronDown" size={16} className="import-btn-chevron" />
+                        </button>
+
+                        {/* Visual Studio Code */}
+                        <button 
+                            className="onboarding-c-import-btn"
+                            onClick={handleImportVSCode}
+                        >
+                            <div className="import-btn-icon vscode-icon">
+                                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.8 1L4.8 6.4L2.4 4.8L1 5.6V10.4L2.4 11.2L4.8 9.6L10.8 15L15 13.2V2.8L10.8 1ZM2.4 8.8V7.2L3.4 8L2.4 8.8ZM10.4 11.2L6 8L10.4 4.8V11.2Z" fill="#007ACC"/>
+                                </svg>
+                            </div>
+                            <span className="import-btn-text">Visual Studio Code</span>
+                        </button>
+
+                        {/* Cursor */}
+                        <button 
+                            className="onboarding-c-import-btn"
+                            onClick={handleImportCursor}
+                        >
+                            <div className="import-btn-icon cursor-icon">
+                                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="16" height="16" rx="3" fill="#000"/>
+                                    <path d="M4 12L12 4M12 4H6M12 4V10" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                            <span className="import-btn-text">Cursor</span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Right Panel - Customize */}
+                <div className="onboarding-c-panel">
+                    <p className="onboarding-c-panel-description">
+                        Customize interface, plugins,<br />
+                        and keymap from scratch
+                    </p>
+
+                    <button 
+                        className="onboarding-c-customize-btn"
+                        onClick={handleCustomize}
+                    >
+                        Customize
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+
+    // Render "Customize your experience" content
     const renderCustomizeContent = () => (
         <div className="wizard-customize-content">
             {/* Title */}
@@ -533,26 +453,10 @@ function OnboardingStep1({ onComplete }) {
         </div>
     );
 
-    // Render current step content
-    const renderContent = () => {
-        switch (wizardStep) {
-            case 1:
-                return renderWelcomeContent();
-            case 2:
-                return renderImportContent();
-            case 3:
-                return renderOutOfBoxContent();
-            case 4:
-                return renderCustomizeContent();
-            default:
-                return renderWelcomeContent();
-        }
-    };
-
     return (
-        <div className="multistep-wizard">
+        <div className="onboarding-c">
             {/* Main Toolbar */}
-            <div className="wizard-toolbar">
+            <div className="onboarding-c-toolbar">
                 {/* Left side - macOS Window Controls */}
                 <div className="toolbar-left-side">
                     <div className="window-controls">
@@ -577,9 +481,9 @@ function OnboardingStep1({ onComplete }) {
             </div>
             
             {/* Main Content Area */}
-            <div className="wizard-content">
+            <div className="onboarding-c-content">
                 {/* Left Stripe */}
-                <div className="wizard-stripe wizard-stripe-left">
+                <div className="onboarding-c-stripe onboarding-c-stripe-left">
                     <StripeContainer className="stripe-section-top">
                         <Stripe 
                             icon="toolwindows/project@20x20"
@@ -642,23 +546,23 @@ function OnboardingStep1({ onComplete }) {
                 </div>
 
                 {/* Center Content */}
-                <div className="wizard-center">
+                <div className="onboarding-c-center">
                     <div className="editor">
-                        {/* Background gradient effects (only on welcome step) */}
-                        {wizardStep === 1 && (
-                            <div className="wizard-bg-effects">
-                                <div className="wizard-bg-ellipse wizard-bg-ellipse-1"></div>
-                                <div className="wizard-bg-ellipse wizard-bg-ellipse-2"></div>
-                                <div className="wizard-bg-ellipse wizard-bg-ellipse-3"></div>
+                        {/* Background gradient effects (only on welcome screen) */}
+                        {currentScreen === 'welcome' && (
+                            <div className="onboarding-c-bg-effects">
+                                <div className="onboarding-c-bg-ellipse onboarding-c-bg-ellipse-1"></div>
+                                <div className="onboarding-c-bg-ellipse onboarding-c-bg-ellipse-2"></div>
+                                <div className="onboarding-c-bg-ellipse onboarding-c-bg-ellipse-3"></div>
                             </div>
                         )}
 
-                        {renderContent()}
+                        {currentScreen === 'welcome' ? renderWelcomeContent() : renderCustomizeContent()}
                     </div>
                 </div>
 
                 {/* Right Stripe */}
-                <div className="wizard-stripe wizard-stripe-right">
+                <div className="onboarding-c-stripe onboarding-c-stripe-right">
                     <StripeContainer className="stripe-section-top">
                         <Stripe 
                             icon="toolwindows/toolWindowChat@20x20"
@@ -698,4 +602,4 @@ function OnboardingStep1({ onComplete }) {
     );
 }
 
-export default OnboardingStep1;
+export default OnboardingStep1C;

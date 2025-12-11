@@ -192,7 +192,8 @@ function WelcomeScreenA() {
 
                 {/* Center Content */}
                 <div className="welcome-center">
-                    <div className="welcome-screen-content">
+                    <div className="editor">
+                        <div className="welcome-screen-content">
                         {/* Welcome Header */}
                         <div className="welcome-header">
                             <h1 className="welcome-title">Welcome to WebStorm</h1>
@@ -266,6 +267,7 @@ function WelcomeScreenA() {
                                 <Icon name="general/help" size={16} />
                                 <span className="welcome-footer-btn-text">Help</span>
                             </button>
+                        </div>
                         </div>
                     </div>
                 </div>

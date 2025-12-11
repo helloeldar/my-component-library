@@ -5,6 +5,7 @@ import './OnboardingShowcase.css';
 import OnboardingStep1 from './variants/OnboardingStep1';
 import OnboardingStep2 from './variants/OnboardingStep2';
 import OnboardingStep3 from './variants/OnboardingStep3';
+import OnboardingStep1C from './variants/OnboardingStep1C';
 import WelcomeScreenA from './variants/WelcomeScreenA';
 import WelcomeScreenB from './variants/WelcomeScreenB';
 
@@ -12,7 +13,8 @@ import WelcomeScreenB from './variants/WelcomeScreenB';
 const ONBOARDING_OPTIONS = {
     1: 'Multistep Wizard',
     2: 'Single Page',
-    3: 'Minimal'
+    3: 'Minimal',
+    4: 'Import or Customize'
 };
 
 // Welcome screen option names
@@ -52,6 +54,8 @@ function OnboardingShowcase() {
                 return <OnboardingStep2 onComplete={handleOnboardingComplete} />;
             case 3:
                 return <OnboardingStep3 onComplete={handleOnboardingComplete} />;
+            case 4:
+                return <OnboardingStep1C onComplete={handleOnboardingComplete} />;
             default:
                 return <OnboardingStep1 onComplete={handleOnboardingComplete} />;
         }
@@ -85,7 +89,7 @@ function OnboardingShowcase() {
                     <div className="toggle-group">
                         <label className="toggle-label">Onboarding</label>
                         <div className="toggle-buttons">
-                            {[1, 2, 3].map((option) => (
+                            {[1, 2, 3, 4].map((option) => (
                                 <button
                                     key={option}
                                     className={`toggle-button ${onboardingOption === option ? 'toggle-button-active' : ''}`}

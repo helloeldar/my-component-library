@@ -1,5 +1,5 @@
-/* Multistep Wizard - Welcome Screen */
-.multistep-wizard {
+/* OnboardingStep1C - Import or Customize Welcome Screen */
+.onboarding-c {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -15,7 +15,7 @@
 }
 
 /* Main Toolbar */
-.wizard-toolbar {
+.onboarding-c-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,43 +24,43 @@
     flex-shrink: 0;
 }
 
-.wizard-toolbar .toolbar-left-side {
+.onboarding-c-toolbar .toolbar-left-side {
     display: flex;
     align-items: center;
 }
 
-.wizard-toolbar .toolbar-right-side {
+.onboarding-c-toolbar .toolbar-right-side {
     display: flex;
     align-items: center;
     gap: 0;
 }
 
 /* macOS Window Controls */
-.wizard-toolbar .window-controls {
+.onboarding-c-toolbar .window-controls {
     display: flex;
     gap: 8px;
 }
 
-.wizard-toolbar .window-control {
+.onboarding-c-toolbar .window-control {
     width: 12px;
     height: 12px;
     border-radius: 50%;
 }
 
-.wizard-toolbar .window-control.close {
+.onboarding-c-toolbar .window-control.close {
     background: #FF5F56;
 }
 
-.wizard-toolbar .window-control.minimize {
+.onboarding-c-toolbar .window-control.minimize {
     background: #FFBD2E;
 }
 
-.wizard-toolbar .window-control.maximize {
+.onboarding-c-toolbar .window-control.maximize {
     background: #27C93F;
 }
 
 /* Toolbar Icon Buttons */
-.wizard-toolbar .toolbar-icon-button {
+.onboarding-c-toolbar .toolbar-icon-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,16 +73,16 @@
     transition: background-color 0.15s ease;
 }
 
-.wizard-toolbar .toolbar-icon-button:hover {
+.onboarding-c-toolbar .toolbar-icon-button:hover {
     background: rgba(255, 255, 255, 0.08);
 }
 
-.wizard-toolbar .toolbar-icon-button .icon {
+.onboarding-c-toolbar .toolbar-icon-button .icon {
     opacity: 0.8;
 }
 
 /* Main Content Area */
-.wizard-content {
+.onboarding-c-content {
     display: flex;
     flex: 1;
     min-height: 0;
@@ -90,7 +90,7 @@
 }
 
 /* Vertical Stripes */
-.wizard-stripe {
+.onboarding-c-stripe {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -98,29 +98,29 @@
     background: transparent;
 }
 
-.wizard-stripe-left {
+.onboarding-c-stripe-left {
     width: 40px;
     flex-shrink: 0;
 }
 
-.wizard-stripe-right {
+.onboarding-c-stripe-right {
     width: 40px;
     flex-shrink: 0;
     padding-bottom: 6px;
 }
 
 /* Stripe Sections */
-.wizard-stripe .stripe-section-top {
+.onboarding-c-stripe .stripe-section-top {
     flex: 0 0 auto;
 }
 
-.wizard-stripe .stripe-section-bottom {
+.onboarding-c-stripe .stripe-section-bottom {
     flex: 0 0 auto;
     margin-top: auto;
 }
 
 /* Center Content Area */
-.wizard-center {
+.onboarding-c-center {
     flex: 1;
     min-width: 0;
     min-height: 0;
@@ -130,7 +130,7 @@
 }
 
 /* Editor - fixed height, scrollable content area */
-.wizard-center .editor {
+.onboarding-c-center .editor {
     position: absolute;
     inset: 0;
     display: flex;
@@ -143,14 +143,14 @@
 }
 
 /* Background Gradient Effects */
-.wizard-bg-effects {
+.onboarding-c-bg-effects {
     position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
 }
 
-.wizard-bg-ellipse {
+.onboarding-c-bg-ellipse {
     position: absolute;
     width: 780px;
     height: 780px;
@@ -159,26 +159,26 @@
     opacity: 0.5;
 }
 
-.wizard-bg-ellipse-1 {
+.onboarding-c-bg-ellipse-1 {
     left: -288px;
     top: -32px;
     background: radial-gradient(circle, rgba(1, 125, 254, 0.4) 0%, transparent 70%); /* #017DFE */
 }
 
-.wizard-bg-ellipse-2 {
+.onboarding-c-bg-ellipse-2 {
     left: 550px;
     top: -347px;
     background: radial-gradient(circle, rgba(240, 235, 24, 0.3) 0%, transparent 70%); /* #F0EB18 */
 }
 
-.wizard-bg-ellipse-3 {
+.onboarding-c-bg-ellipse-3 {
     left: 765px;
     top: 548px;
     background: radial-gradient(circle, rgba(1, 196, 244, 0.3) 0%, transparent 70%); /* #01C4F4 */
 }
 
 /* Welcome Content */
-.wizard-welcome-content {
+.onboarding-c-welcome {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,107 +188,65 @@
 }
 
 /* WebStorm Icon */
-.wizard-icon {
-    margin-bottom: 16px;
+.onboarding-c-icon {
+    margin-bottom: 4px;
 }
 
 /* Welcome Title */
-.wizard-title {
+.onboarding-c-title {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
     color: #DFE1E5;
     margin: 0;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     text-align: center;
 }
 
 /* Subtitle */
-.wizard-subtitle {
+.onboarding-c-subtitle {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    color: #DFE1E5;
+    color: #818594;
     margin: 0;
     margin-bottom: 24px;
     text-align: center;
 }
 
-/* Get Started Button */
-.wizard-get-started-btn {
+/* Two Panels Container */
+.onboarding-c-panels {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 24px;
-    min-width: 96px;
-    background: #3574F0;
-    border: none;
-    border-radius: 4px;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    color: #FFFFFF;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-    margin-bottom: 16px;
+    gap: 24px;
 }
 
-.wizard-get-started-btn:hover {
-    background: #4A8AF4;
-}
-
-.wizard-get-started-btn:active {
-    background: #2E68D9;
-}
-
-/* Skip Link */
-.wizard-skip-link {
-    background: transparent;
-    border: none;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    color: #6B9BFA;
-    cursor: pointer;
-    transition: color 0.15s ease;
-    padding: 4px 8px;
-}
-
-.wizard-skip-link:hover {
-    color: #8BB4FB;
-    text-decoration: underline;
-}
-
-/* Override StripeContainer for Wizard */
-.multistep-wizard .stripe-container {
-    background: transparent;
-}
-
-/* Override StatusBar for Wizard */
-.multistep-wizard .status-bar {
-    flex-shrink: 0;
-    border-top: none;
-    background: transparent;
-}
-
-/* ==================== */
-/* Import Step (Step 2) */
-/* ==================== */
-
-.wizard-import-content {
+/* Individual Panel */
+.onboarding-c-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1;
-    padding: 40px;
-    margin: auto 0;
+    width: 352px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
 }
 
-.wizard-import-subtitle {
+/* Panel Title */
+.onboarding-c-panel-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #DFE1E5;
+    margin: 0;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Panel Description (for right panel) */
+.onboarding-c-panel-description {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 13px;
@@ -296,20 +254,20 @@
     color: #DFE1E5;
     margin: 0;
     margin-bottom: 24px;
+    margin-top: 24px;
     text-align: center;
 }
 
-/* Import Buttons Container */
-.wizard-import-buttons {
+/* Panel Buttons Container */
+.onboarding-c-panel-buttons {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 265px;
-    margin-bottom: 24px;
+    width: 227px;
 }
 
 /* Import Button */
-.wizard-import-btn {
+.onboarding-c-import-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -323,34 +281,34 @@
     transition: all 0.15s ease;
 }
 
-.wizard-import-btn:hover {
+.onboarding-c-import-btn:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: #6E7177;
 }
 
-.wizard-import-btn:active {
+.onboarding-c-import-btn:active {
     background: rgba(255, 255, 255, 0.08);
 }
 
 /* Import Button Icons Container */
-.import-btn-icons {
+.onboarding-c-panel .import-btn-icons {
     display: flex;
     gap: 4px;
 }
 
 /* Scaled icons (24px → 16px) for better quality */
-.import-btn-icons-scaled .ide-icon {
+.onboarding-c-panel .import-btn-icons-scaled .ide-icon {
     width: 16px !important;
     height: 16px !important;
 }
 
-.import-btn-icons-scaled .ide-icon img {
+.onboarding-c-panel .import-btn-icons-scaled .ide-icon img {
     width: 16px !important;
     height: 16px !important;
 }
 
 /* Import Button Text */
-.import-btn-text {
+.onboarding-c-panel .import-btn-text {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 13px;
@@ -360,12 +318,12 @@
 }
 
 /* Import Button Chevron */
-.import-btn-chevron {
+.onboarding-c-panel .import-btn-chevron {
     opacity: 0.6;
 }
 
 /* Import Button Icon */
-.import-btn-icon {
+.onboarding-c-panel .import-btn-icon {
     width: 16px;
     height: 16px;
     display: flex;
@@ -373,84 +331,69 @@
     justify-content: center;
 }
 
-.import-btn-icon svg {
+.onboarding-c-panel .import-btn-icon svg {
     width: 16px;
     height: 16px;
 }
 
 /* VS Code Icon specific */
-.import-btn-icon.vscode-icon svg {
+.onboarding-c-panel .import-btn-icon.vscode-icon svg {
     width: 14px;
     height: 14px;
 }
 
 /* Cursor Icon specific */
-.import-btn-icon.cursor-icon svg {
+.onboarding-c-panel .import-btn-icon.cursor-icon svg {
     width: 14px;
     height: 14px;
     border-radius: 2px;
 }
 
-/* ============================= */
-/* Out of Box Step (Step 3)      */
-/* ============================= */
-
-.wizard-outofbox-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1;
-    padding: 40px;
-    margin: auto 0;
-}
-
-/* Feature Icons Row */
-.wizard-feature-icons {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-}
-
-.wizard-feature-icon {
+/* Customize Button */
+.onboarding-c-customize-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-}
-
-.wizard-feature-icon svg {
-    width: 20px;
-    height: 20px;
-}
-
-.feature-icon-text {
-    font-family: 'JetBrains Mono', 'SF Mono', monospace;
-    font-weight: 700;
-    font-size: 10.25px;
-    color: #DFE1E5;
-    text-transform: uppercase;
-}
-
-.wizard-outofbox-subtitle {
+    width: 227px;
+    padding: 10px 24px;
+    background: transparent;
+    border: 1px solid #4E5157;
+    border-radius: 4px;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
     color: #DFE1E5;
-    margin: 0;
-    margin-bottom: 24px;
-    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.onboarding-c-customize-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #6E7177;
+}
+
+.onboarding-c-customize-btn:active {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Override StripeContainer for Onboarding C */
+.onboarding-c .stripe-container {
+    background: transparent;
+}
+
+/* Override StatusBar for Onboarding C */
+.onboarding-c .status-bar {
+    flex-shrink: 0;
+    border-top: none;
+    background: transparent;
 }
 
 /* ============================= */
-/* Customize Step (Step 4)       */
+/* Customize Screen Styles       */
 /* ============================= */
 
-.wizard-customize-content {
+.onboarding-c .wizard-customize-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -461,12 +404,19 @@
     max-width: 500px;
 }
 
-.wizard-customize-content .wizard-title {
+.onboarding-c .wizard-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #DFE1E5;
+    margin: 0;
     margin-bottom: 24px;
+    text-align: center;
 }
 
 /* Accordion */
-.wizard-accordion {
+.onboarding-c .wizard-accordion {
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -475,14 +425,14 @@
     margin-bottom: 24px;
 }
 
-.accordion-item {
+.onboarding-c .accordion-item {
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.05);
     overflow: hidden;
 }
 
 /* Accordion Header */
-.accordion-header {
+.onboarding-c .accordion-header {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -495,12 +445,12 @@
     transition: background-color 0.15s ease;
 }
 
-.accordion-header:hover {
+.onboarding-c .accordion-header:hover {
     background: rgba(255, 255, 255, 0.03);
 }
 
 /* Accordion Checkbox */
-.accordion-checkbox {
+.onboarding-c .accordion-checkbox {
     width: 16px;
     height: 16px;
     border: 1px solid #5A5D63;
@@ -512,19 +462,19 @@
     flex-shrink: 0;
 }
 
-.accordion-checkbox-checked {
+.onboarding-c .accordion-checkbox-checked {
     background: #3574F0;
     border-color: #3574F0;
     cursor: pointer;
 }
 
-.accordion-checkbox-checked:hover {
+.onboarding-c .accordion-checkbox-checked:hover {
     background: #4A8AF4;
     border-color: #4A8AF4;
 }
 
 /* Accordion Label */
-.accordion-label {
+.onboarding-c .accordion-label {
     flex: 1;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
@@ -535,7 +485,7 @@
 }
 
 /* Accordion Chevron */
-.accordion-chevron {
+.onboarding-c .accordion-chevron {
     width: 16px;
     height: 16px;
     display: flex;
@@ -545,16 +495,16 @@
     opacity: 0.6;
 }
 
-.accordion-chevron-down {
+.onboarding-c .accordion-chevron-down {
     transform: rotate(90deg);
 }
 
 /* Accordion Content */
-.accordion-content {
+.onboarding-c .accordion-content {
     padding: 0 12px 12px 36px;
 }
 
-.accordion-description {
+.onboarding-c .accordion-description {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -564,19 +514,19 @@
 }
 
 /* Theme Options */
-.theme-options {
+.onboarding-c .theme-options {
     display: flex;
     gap: 16px;
 }
 
-.editor-scheme-options {
+.onboarding-c .editor-scheme-options {
     display: grid;
     grid-template-columns: repeat(3, auto);
     gap: 16px;
     justify-content: start;
 }
 
-.theme-option {
+.onboarding-c .theme-option {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -587,7 +537,7 @@
     cursor: pointer;
 }
 
-.theme-preview {
+.onboarding-c .theme-preview {
     width: 88px;
     height: 48px;
     border-radius: 4px;
@@ -596,22 +546,22 @@
     transition: border-color 0.15s ease, border-width 0.15s ease;
 }
 
-.theme-preview img {
+.onboarding-c .theme-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.theme-option-selected .theme-preview {
+.onboarding-c .theme-option-selected .theme-preview {
     border: 2px solid #3574F0;
 }
 
-.theme-option:hover:not(.theme-option-selected) .theme-preview {
+.onboarding-c .theme-option:hover:not(.theme-option-selected) .theme-preview {
     border-color: #6F737A;
 }
 
-.theme-label {
+.onboarding-c .theme-label {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -619,20 +569,20 @@
     color: #9DA0A8;
 }
 
-.theme-option-selected .theme-label {
+.onboarding-c .theme-option-selected .theme-label {
     color: #DFE1E5;
 }
 
 /* Scale Options */
-.scale-options,
-.scheme-options {
+.onboarding-c .scale-options,
+.onboarding-c .scheme-options {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.scale-option,
-.scheme-option {
+.onboarding-c .scale-option,
+.onboarding-c .scheme-option {
     padding: 6px 12px;
     background: transparent;
     border: 1px solid #4E5157;
@@ -645,39 +595,39 @@
     transition: all 0.15s ease;
 }
 
-.scale-option:hover,
-.scheme-option:hover {
+.onboarding-c .scale-option:hover,
+.onboarding-c .scheme-option:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: #6F737A;
 }
 
-.scale-option-selected,
-.scheme-option-selected {
+.onboarding-c .scale-option-selected,
+.onboarding-c .scheme-option-selected {
     background: #3574F0;
     border-color: #3574F0;
     color: #FFFFFF;
 }
 
-.scale-option-selected:hover,
-.scheme-option-selected:hover {
+.onboarding-c .scale-option-selected:hover,
+.onboarding-c .scheme-option-selected:hover {
     background: #4A8AF4;
     border-color: #4A8AF4;
 }
 
 /* Keymap Section */
-.accordion-keymap-content {
+.onboarding-c .accordion-keymap-content {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.keymap-buttons {
+.onboarding-c .keymap-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
 }
 
-.keymap-btn {
+.onboarding-c .keymap-btn {
     padding: 6px 12px;
     background: transparent;
     border: 1px solid #4E5157;
@@ -691,40 +641,40 @@
     transition: all 0.15s ease;
 }
 
-.keymap-btn:hover {
+.onboarding-c .keymap-btn:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: #6F737A;
 }
 
-.keymap-btn-selected {
+.onboarding-c .keymap-btn-selected {
     background: #3574F0;
     border-color: #3574F0;
     color: #FFFFFF;
 }
 
-.keymap-btn-selected:hover {
+.onboarding-c .keymap-btn-selected:hover {
     background: #4A8AF4;
     border-color: #4A8AF4;
 }
 
 /* Shortcuts List */
-.keymap-shortcuts {
+.onboarding-c .keymap-shortcuts {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.shortcut-item {
+.onboarding-c .shortcut-item {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.shortcut-item .icon {
+.onboarding-c .shortcut-item .icon {
     opacity: 0.6;
 }
 
-.shortcut-action {
+.onboarding-c .shortcut-action {
     flex: 1;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
@@ -733,13 +683,13 @@
     color: #DFE1E5;
 }
 
-.shortcut-keys {
+.onboarding-c .shortcut-keys {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-.shortcut-prefix {
+.onboarding-c .shortcut-prefix {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 600;
     font-size: 12px;
@@ -747,7 +697,7 @@
     color: #DFE1E5;
 }
 
-.shortcut-key {
+.onboarding-c .shortcut-key {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -765,45 +715,13 @@
 }
 
 /* Plugins */
-.accordion-plugins-content {
+.onboarding-c .accordion-plugins-content {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.plugins-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.plugins-checkbox {
-    width: 16px;
-    height: 16px;
-    border: 1px solid #5A5D63;
-    border-radius: 3px;
-    background: #2B2D30;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.plugins-checkbox-checked {
-    background: #3574F0;
-    border-color: #3574F0;
-}
-
-.plugins-header-label {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    color: #DFE1E5;
-}
-
-.plugins-hint {
+.onboarding-c .plugins-hint {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -812,20 +730,20 @@
     margin: 0 0 8px 0;
 }
 
-.plugins-list {
+.onboarding-c .plugins-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding-left: 0;
 }
 
-.plugin-item {
+.onboarding-c .plugin-item {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-.plugin-icon {
+.onboarding-c .plugin-icon {
     width: 16px;
     height: 16px;
     display: flex;
@@ -834,17 +752,17 @@
     flex-shrink: 0;
 }
 
-.plugin-icon-rainbow {
+.onboarding-c .plugin-icon-rainbow {
     background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1, #96E6A1);
     border-radius: 100px;
 }
 
-.plugin-icon-vim {
+.onboarding-c .plugin-icon-vim {
     background: linear-gradient(135deg, #019833, #000000);
     border-radius: 2px;
 }
 
-.plugin-name {
+.onboarding-c .plugin-name {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 13px;
@@ -852,7 +770,7 @@
     color: #DFE1E5;
 }
 
-.plugin-bundled {
+.onboarding-c .plugin-bundled {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 13px;
@@ -861,13 +779,13 @@
     margin-left: 4px;
 }
 
-.plugin-check {
+.onboarding-c .plugin-check {
     font-size: 14px;
     color: #57965C;
     margin-left: 2px;
 }
 
-.plugin-install-link {
+.onboarding-c .plugin-install-link {
     background: none;
     border: none;
     padding: 0;
@@ -880,12 +798,12 @@
     margin-left: 4px;
 }
 
-.plugin-install-link:hover {
+.onboarding-c .plugin-install-link:hover {
     text-decoration: underline;
 }
 
-/* Secondary Button (Get Started on step 4) */
-.wizard-secondary-btn {
+/* Secondary Button (Get Started) */
+.onboarding-c .wizard-secondary-btn {
     padding: 10px 24px;
     background: transparent;
     border: 1px solid #4E5157;
@@ -899,7 +817,7 @@
     transition: all 0.15s ease;
 }
 
-.wizard-secondary-btn:hover {
+.onboarding-c .wizard-secondary-btn:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: #6F737A;
 }

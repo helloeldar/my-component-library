@@ -164,15 +164,24 @@
 /* Center Content Area */
 .welcome-screen-b .welcome-center {
     flex: 1;
+    min-width: 0;
+    min-height: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Editor - fixed height, scrollable content area */
+.welcome-screen-b .welcome-center .editor {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 0;
-    overflow: hidden;
-    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: #17181A;
-    position: relative;
 }
 
 /* Welcome Screen Content */
@@ -180,11 +189,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
-    height: 100%;
     padding: 40px;
-    position: relative;
+    margin: auto 0;
 }
 
 /* Welcome Title */
@@ -351,14 +358,14 @@
     text-decoration: underline;
 }
 
-/* Footer Buttons */
+/* Footer Buttons - same as WelcomeScreenA */
 .welcome-screen-b .welcome-footer {
     display: flex;
     gap: 8px;
     margin-top: 32px;
 }
 
-.welcome-screen-b .footer-btn {
+.welcome-screen-b .welcome-footer-btn {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -370,15 +377,15 @@
     transition: background-color 0.15s ease;
 }
 
-.welcome-screen-b .footer-btn:hover {
+.welcome-screen-b .welcome-footer-btn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.welcome-screen-b .footer-btn .icon {
+.welcome-screen-b .welcome-footer-btn .icon {
     opacity: 0.7;
 }
 
-.welcome-screen-b .footer-btn-text {
+.welcome-screen-b .welcome-footer-btn-text {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     font-size: 13px;
@@ -386,7 +393,7 @@
     color: #B4B8BF;
 }
 
-.welcome-screen-b .footer-btn .dropdown-chevron {
+.welcome-screen-b .welcome-footer-btn .dropdown-chevron {
     opacity: 0.6;
 }
 

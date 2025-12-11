@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import './Home.css';
 import { getSortedComponentsOnly } from './componentsConfig';
 
-function Home(props) {
+function Home() {
     const categories = [
         {
             name: 'Styles',
@@ -17,12 +18,6 @@ function Home(props) {
             pages: getSortedComponentsOnly()
         }
     ];
-
-    const handlePageClick = (pageKey) => {
-        if (props.onNavigate) {
-            props.onNavigate(pageKey);
-        }
-    };
 
     return (
         <div className="component-showcase">
@@ -42,14 +37,14 @@ function Home(props) {
                         
                         <div className="home-pages">
                             {category.pages.map((page, pageIndex) => (
-                                <div 
+                                <Link 
                                     key={pageIndex} 
+                                    to={`/${page.key}`}
                                     className="home-page-card"
-                                    onClick={() => handlePageClick(page.key)}
                                 >
                                     <h3 className="home-page-title">{page.name}</h3>
                                     <p className="home-page-description">{page.description}</p>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>

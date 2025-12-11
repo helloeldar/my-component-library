@@ -189,7 +189,8 @@ function WelcomeScreenB() {
 
                 {/* Center Content */}
                 <div className="welcome-center">
-                    <div className="welcome-screen-content">
+                    <div className="editor">
+                        <div className="welcome-screen-content">
                         {/* Welcome Title */}
                         <h1 className="welcome-title">Welcome to WebStorm</h1>
 
@@ -266,19 +267,19 @@ function WelcomeScreenB() {
 
                         {/* Footer Buttons */}
                         <div className="welcome-footer">
-                            <button className="footer-btn" onClick={handleCustomization}>
+                            <button className="welcome-footer-btn" onClick={handleCustomization}>
                                 <Icon name="theme/darkTheme" size={16} />
-                                <span className="footer-btn-text">Customization</span>
-                                <Icon name="general/chevronDown" size={16} className="dropdown-chevron" />
+                                <span className="welcome-footer-btn-text">Customization</span>
                             </button>
-                            <button className="footer-btn" onClick={handleExplorePlugins}>
+                            <button className="welcome-footer-btn" onClick={handleExplorePlugins}>
                                 <Icon name="nodes/plugin" size={16} />
-                                <span className="footer-btn-text">Explore plugins</span>
+                                <span className="welcome-footer-btn-text">Explore plugins</span>
                             </button>
-                            <button className="footer-btn" onClick={handleHelp}>
+                            <button className="welcome-footer-btn" onClick={handleHelp}>
                                 <Icon name="general/help" size={16} />
-                                <span className="footer-btn-text">Help</span>
+                                <span className="welcome-footer-btn-text">Help</span>
                             </button>
+                        </div>
                         </div>
                     </div>
                 </div>
