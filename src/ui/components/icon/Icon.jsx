@@ -7,8 +7,9 @@ const normalizeName = (name) =>
         .replace(/\.svg$/, '')
         .replace(/\\/g, '/');
 
-function Icon({ name, size = 16, className, ...props }) {
-    const { theme } = useTheme();
+function Icon({ name, size = 16, className, forceTheme, ...props }) {
+    const { theme: contextTheme } = useTheme();
+    const theme = forceTheme || contextTheme;
     const normalizedName = normalizeName(name);
     
     // For dark theme, try to find the _dark variant first

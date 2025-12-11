@@ -51,21 +51,21 @@ function StatusBarBreadcrumb({
     const renderIcon = () => {
         if (!icon) return null;
         
-        // If iconName is provided, use the Icon component
+        // If iconName is provided, use the Icon component with light theme
         if (iconName) {
             return (
                 <div className="status-bar-breadcrumb-icon">
-                    <Icon name={iconName} size={16} />
+                    <Icon name={iconName} size={16} forceTheme="light" />
                 </div>
             );
         }
         
-        // Default placeholder icon (stub)
+        // Default placeholder icon (stub) - using light gray color
         return (
             <div className="status-bar-breadcrumb-icon">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.5" />
-                    <path d="M4 12L12 4M4 4L12 12" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+                    <rect x="2" y="2" width="12" height="12" rx="2" stroke="#6C707E" strokeWidth="1.2" fill="none" opacity="0.6" />
+                    <path d="M4 12L12 4M4 4L12 12" stroke="#6C707E" strokeWidth="1.2" opacity="0.6" />
                 </svg>
             </div>
         );

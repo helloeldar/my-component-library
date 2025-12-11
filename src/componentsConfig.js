@@ -12,6 +12,7 @@ export const componentsConfig = [
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components' },
     { name: 'Radio Button', key: 'radio', description: 'Radio button for single selection from options', category: 'components' },
     { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components' },
+    { name: 'Status Bar Breadcrumb', key: 'statusbarbreadcrumb', description: 'Breadcrumb navigation item for status bar', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },
     { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components' },
     { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components' },

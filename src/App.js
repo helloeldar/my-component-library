@@ -22,6 +22,7 @@ import Toggle from './ui/components/toggle/Toggle';
 import ProgressBar from './ui/components/progressbar/ProgressBar';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
+import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly } from './componentsConfig';
@@ -1371,6 +1372,88 @@ users.forEach(user => {
         );
     };
 
+    const statusBarBreadcrumbExamples = () => {
+        return (
+            <div className="component-showcase">
+                <h1>Status Bar Breadcrumb</h1>
+                <p className="component-description">
+                    Breadcrumb items used in the status bar for navigation. Supports different states and optional module indicators.
+                </p>
+
+                <div className="component-section">
+                    <h2>States</h2>
+                    <p className="section-description">
+                        Different visual states for the breadcrumb component.
+                    </p>
+                    <div className="component-examples">
+                        <StatusBarBreadcrumb label="Default" state="default" />
+                        <StatusBarBreadcrumb label="Hovered" state="hovered" />
+                        <StatusBarBreadcrumb label="Selected" state="selected" />
+                        <StatusBarBreadcrumb label="Selected Inactive" state="selectedInactive" />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>With Icon</h2>
+                    <p className="section-description">
+                        Breadcrumbs can display an icon before the label.
+                    </p>
+                    <div className="component-examples">
+                        <StatusBarBreadcrumb label="Default" icon={true} state="default" />
+                        <StatusBarBreadcrumb label="Hovered" icon={true} state="hovered" />
+                        <StatusBarBreadcrumb label="Selected" icon={true} state="selected" />
+                        <StatusBarBreadcrumb label="Selected Inactive" icon={true} state="selectedInactive" />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>With Module Indicator</h2>
+                    <p className="section-description">
+                        Module indicator shows a colored square to indicate module membership.
+                    </p>
+                    <div className="component-examples">
+                        <StatusBarBreadcrumb label="Module A" icon={true} module={true} state="default" />
+                        <StatusBarBreadcrumb label="Module B" icon={true} module={true} state="hovered" />
+                        <StatusBarBreadcrumb label="Module C" icon={true} module={true} state="selected" />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Without Icon</h2>
+                    <p className="section-description">
+                        Text-only breadcrumbs for simpler navigation paths.
+                    </p>
+                    <div className="component-examples">
+                        <StatusBarBreadcrumb label="src" icon={false} state="default" />
+                        <StatusBarBreadcrumb label="components" icon={false} state="default" />
+                        <StatusBarBreadcrumb label="Button.jsx" icon={false} state="selected" />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Interactive Example</h2>
+                    <p className="section-description">
+                        Hover over breadcrumbs to see the hover effect.
+                    </p>
+                    <div className="component-examples" style={{
+                        background: 'var(--bg-primary)',
+                        padding: '8px 12px',
+                        borderRadius: '4px',
+                        border: '1px solid var(--border-secondary)'
+                    }}>
+                        <StatusBarBreadcrumb label="org" icon={false} />
+                        <span style={{ color: 'var(--text-muted)' }}>/</span>
+                        <StatusBarBreadcrumb label="springframework" icon={false} />
+                        <span style={{ color: 'var(--text-muted)' }}>/</span>
+                        <StatusBarBreadcrumb label="samples" icon={false} />
+                        <span style={{ color: 'var(--text-muted)' }}>/</span>
+                        <StatusBarBreadcrumb label="VetController" icon={true} iconName="fileTypes/java" state="selected" />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     const projectSelectorExamples = () => {
         const projects = [
             { 
@@ -1526,6 +1609,8 @@ users.forEach(user => {
                 return dropdownExamples();
             case 'combobox':
                 return comboboxExamples();
+            case 'statusbarbreadcrumb':
+                return statusBarBreadcrumbExamples();
             default:
                 return <Home onNavigate={setActiveComponent} />;
         }
