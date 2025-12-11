@@ -37,36 +37,6 @@
     flex-shrink: 0;
 }
 
-/* ===== Light Theme ===== */
-
-/* Default state - Light */
-.theme-light .status-bar-widget-default {
-    background: transparent;
-}
-
-.theme-light .status-bar-widget-default .status-bar-widget-text {
-    color: #6C707E; /* Light/Gray/Gray 6 (Stroke) */
-}
-
-/* Hovered state - Light */
-.theme-light .status-bar-widget-hovered {
-    background: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
-    cursor: pointer;
-}
-
-.theme-light .status-bar-widget-hovered .status-bar-widget-text {
-    color: #5A5D6B; /* Light/Gray/Gray 5 */
-}
-
-/* Pressed state - Light */
-.theme-light .status-bar-widget-pressed {
-    background: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
-}
-
-.theme-light .status-bar-widget-pressed .status-bar-widget-text {
-    color: #5A5D6B; /* Light/Gray/Gray 5 */
-}
-
 /* ===== Dark Theme ===== */
 
 /* Default state - Dark */
@@ -102,27 +72,11 @@
     cursor: pointer;
 }
 
-.theme-light .status-bar-widget-default:hover {
-    background: #EBECF0;
-}
-
-.theme-light .status-bar-widget-default:hover .status-bar-widget-text {
-    color: #5A5D6B;
-}
-
 .theme-dark .status-bar-widget-default:hover {
     background: #393B40;
 }
 
 /* Active/pressed behavior */
-.theme-light .status-bar-widget:active {
-    background: #EBECF0;
-}
-
-.theme-light .status-bar-widget:active .status-bar-widget-text {
-    color: #5A5D6B;
-}
-
 .theme-dark .status-bar-widget:active {
     background: #393B40;
 }

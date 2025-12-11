@@ -17,12 +17,12 @@
 }
 
 .status-bar-progress-track {
-    flex: 1;
-    min-width: 100px;
+    width: 150px;
     height: 4px;
     border-radius: 2px;
     overflow: hidden;
     position: relative;
+    flex-shrink: 0;
 }
 
 .status-bar-progress-fill {
@@ -74,31 +74,6 @@
     width: 8px;
     height: 8px;
     border-radius: 1px;
-}
-
-/* ===== Light Theme ===== */
-.theme-light .status-bar-progress-label {
-    color: #6C707E; /* Light/Gray/Gray 6 (Stroke) */
-}
-
-.theme-light .status-bar-progress-track {
-    background: #DFE1E5; /* Light/Gray/Gray 11 */
-}
-
-.theme-light .status-bar-progress-fill {
-    background: #3574F0; /* Light/Blue/Blue 4 (Primary) */
-}
-
-.theme-light .status-bar-progress-stop {
-    background: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
-}
-
-.theme-light .status-bar-progress-stop:hover {
-    background: #DFE1E5; /* Light/Gray/Gray 11 */
-}
-
-.theme-light .status-bar-progress-stop-icon {
-    background: #818594; /* Light/Gray/Gray 7 */
 }
 
 /* ===== Dark Theme ===== */

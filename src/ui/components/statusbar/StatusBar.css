@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     padding-left: 12px;
-    flex-shrink: 1;
+    flex: 1;
     min-width: 0;
     overflow: hidden;
 }
@@ -41,34 +41,34 @@
     height: 7px;
 }
 
-.status-bar-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.status-bar-right {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 305px;
+    gap: 24px;
+    flex-shrink: 0;
+    padding-right: 8px;
+}
+
+.status-bar-progress-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Compact progress bar for status bar */
+.status-bar-progress-container .progress-bar-container {
+    gap: 8px;
+}
+
+.status-bar-progress-container .progress-bar-track {
+    width: 150px;
+    min-width: 150px;
 }
 
 .status-bar-widgets {
     display: flex;
     align-items: center;
-    padding-right: 8px;
     flex-shrink: 0;
-}
-
-/* ===== Light Theme ===== */
-.theme-light .status-bar {
-    background: #F7F8FA; /* Light/Gray/Gray 13 */
-}
-
-.theme-light .status-bar-border {
-    background: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
-}
-
-.theme-light .status-bar-chevron svg {
-    fill: #6C707E; /* Light/Gray/Gray 6 (Stroke) */
 }
 
 /* ===== Dark Theme ===== */

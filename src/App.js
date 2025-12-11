@@ -24,6 +24,7 @@ import ProgressBar from './ui/components/progressbar/ProgressBar';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
+import StatusBar from './ui/components/statusbar/StatusBar';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly, getSortedFeaturesOnly } from './componentsConfig';
@@ -890,6 +891,78 @@ users.forEach(user => {
         );
     };
 
+function StatusBarPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Status Bar</h1>
+            <p className="component-description">
+                The status bar displays at the bottom of the IDE window. It shows breadcrumb navigation, 
+                progress indicators, and various widgets for file information.
+            </p>
+
+            <div className="component-section">
+                <h2>Default Status Bar</h2>
+                <p className="section-description">
+                    Shows breadcrumb navigation path and widgets on the right.
+                </p>
+                <div className="status-bar-demo">
+                    <StatusBar />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Progress Bar</h2>
+                <p className="section-description">
+                    Shows an indexing/loading progress indicator in the center.
+                </p>
+                <div className="status-bar-demo">
+                    <StatusBar 
+                        progress={true}
+                        progressLabel="Indexing..."
+                        progressValue={65}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Indeterminate Progress</h2>
+                <p className="section-description">
+                    When the progress value is unknown, an animated indeterminate progress is shown.
+                </p>
+                <div className="status-bar-demo">
+                    <StatusBar 
+                        progress={true}
+                        progressLabel="Loading..."
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Custom Breadcrumbs</h2>
+                <p className="section-description">
+                    Custom breadcrumb path with module indicators and icons.
+                </p>
+                <div className="status-bar-demo">
+                    <StatusBar 
+                        breadcrumbs={[
+                            { label: 'my-project', module: true },
+                            { label: 'src' },
+                            { label: 'components' },
+                            { label: 'Button.tsx', icon: true, iconName: 'fileTypes/typeScript' }
+                        ]}
+                        widgets={[
+                            { type: 'text', text: '12:45' },
+                            { type: 'text', text: 'LF' },
+                            { type: 'text', text: 'UTF-8' }
+                        ]}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+>>>>>>> 86e10e7aa5793c6b0258f89adddd4e042450d6f3
 function StatusBarBreadcrumbPage() {
     return (
         <div className="component-showcase">
@@ -1350,6 +1423,7 @@ function AppContent() {
                     <Route path="/idelayout" element={<IDELayoutPage />} />
                     <Route path="/projectselector" element={<ProjectSelectorPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
+                    <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
                     <Route path="/webstorm-onboarding" element={<OnboardingShowcase />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
