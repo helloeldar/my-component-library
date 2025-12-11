@@ -59,12 +59,14 @@
 }
 
 .home-page-card {
+    display: block;
     padding: 20px;
     background: var(--bg-elevated);
     border: 1px solid var(--border-primary);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .home-page-card:hover {
