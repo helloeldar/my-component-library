@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import Button from './ui/components/button/Button';
 import ToolbarIconButton from './ui/components/iconbutton/IconButton';
 import TabBar from './ui/components/tabs/TabBar';
@@ -25,15 +26,14 @@ import Combobox from './ui/components/combobox/Combobox';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly } from './componentsConfig';
+import { getSortedComponentsOnly, getSortedFeaturesOnly } from './componentsConfig';
+import OnboardingShowcase from './features/webstorm/onboarding/OnboardingShowcase';
 import './ui/styles/Themes.css';
 import './App.css';
 
-function AppContent() {
-    const [activeComponent, setActiveComponent] = useState('home');
-    const { theme, themeMode, toggleTheme } = useTheme();
-
-    const buttonExamples = () => (
+// Page Components
+function ButtonsPage() {
+    return (
         <div className="component-showcase">
             <h1>Buttons</h1>
 
@@ -72,68 +72,27 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const [toggleStates, setToggleStates] = useState({
-        bold: false,
-        italic: true,
-        underline: false
-    });
-
-    // Form controls state
+function CheckboxPage() {
     const [checkboxStates, setCheckboxStates] = useState({
         checked: false,
         indeterminate: true,
         disabled: false
     });
-    const [radioValue, setRadioValue] = useState('option1');
-    const [toggleOn, setToggleOn] = useState(true);
-    const [dropdownValue, setDropdownValue] = useState('');
-    const [comboboxValue, setComboboxValue] = useState('');
 
-    const dropdownOptions = [
-        { value: 'option1', label: 'Option 1' },
-        { value: 'option2', label: 'Option 2' },
-        { value: 'option3', label: 'Option 3' },
-        { value: 'option4', label: 'Option 4 (Disabled)', disabled: true },
-    ];
-
-    const comboboxOptions = [
-        { value: 'java', label: 'Java' },
-        { value: 'kotlin', label: 'Kotlin' },
-        { value: 'python', label: 'Python' },
-        { value: 'javascript', label: 'JavaScript' },
-        { value: 'typescript', label: 'TypeScript' },
-    ];
-
-    const checkboxExamples = () => (
+    return (
         <div className="component-showcase">
             <h1>Checkbox</h1>
 
             <div className="component-section">
                 <h2>States</h2>
                 <div className="component-examples-vertical">
-                    <Checkbox 
-                        label="Unchecked" 
-                        checked={false}
-                    />
-                    <Checkbox 
-                        label="Checked" 
-                        checked={true}
-                    />
-                    <Checkbox 
-                        label="Indeterminate" 
-                        checked={true}
-                        indeterminate={true}
-                    />
-                    <Checkbox 
-                        label="Disabled unchecked" 
-                        disabled={true}
-                    />
-                    <Checkbox 
-                        label="Disabled checked" 
-                        checked={true}
-                        disabled={true}
-                    />
+                    <Checkbox label="Unchecked" checked={false} />
+                    <Checkbox label="Checked" checked={true} />
+                    <Checkbox label="Indeterminate" checked={true} indeterminate={true} />
+                    <Checkbox label="Disabled unchecked" disabled={true} />
+                    <Checkbox label="Disabled checked" checked={true} disabled={true} />
                 </div>
             </div>
 
@@ -161,35 +120,22 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const radioExamples = () => (
+function RadioPage() {
+    const [radioValue, setRadioValue] = useState('option1');
+
+    return (
         <div className="component-showcase">
             <h1>Radio Button</h1>
 
             <div className="component-section">
                 <h2>States</h2>
                 <div className="component-examples-vertical">
-                    <Radio 
-                        label="Unselected" 
-                        checked={false}
-                        name="demo1"
-                    />
-                    <Radio 
-                        label="Selected" 
-                        checked={true}
-                        name="demo2"
-                    />
-                    <Radio 
-                        label="Disabled unselected" 
-                        disabled={true}
-                        name="demo3"
-                    />
-                    <Radio 
-                        label="Disabled selected" 
-                        checked={true}
-                        disabled={true}
-                        name="demo4"
-                    />
+                    <Radio label="Unselected" checked={false} name="demo1" />
+                    <Radio label="Selected" checked={true} name="demo2" />
+                    <Radio label="Disabled unselected" disabled={true} name="demo3" />
+                    <Radio label="Disabled selected" checked={true} disabled={true} name="demo4" />
                 </div>
             </div>
 
@@ -226,8 +172,12 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const toggleExamples = () => (
+function TogglePage() {
+    const [toggleOn, setToggleOn] = useState(true);
+
+    return (
         <div className="component-showcase">
             <h1>Toggle</h1>
 
@@ -264,10 +214,7 @@ function AppContent() {
                 <div className="component-examples">
                     <div className="component-example-item">
                         <span className="component-example-label">Click to toggle</span>
-                        <Toggle 
-                            checked={toggleOn} 
-                            onChange={setToggleOn}
-                        />
+                        <Toggle checked={toggleOn} onChange={setToggleOn} />
                     </div>
                 </div>
             </div>
@@ -281,8 +228,10 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const progressBarExamples = () => (
+function ProgressBarPage() {
+    return (
         <div className="component-showcase">
             <h1>Progress Bar</h1>
 
@@ -354,32 +303,28 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const dropdownExamples = () => (
+function DropdownPage() {
+    const [dropdownValue, setDropdownValue] = useState('');
+    const dropdownOptions = [
+        { value: 'option1', label: 'Option 1' },
+        { value: 'option2', label: 'Option 2' },
+        { value: 'option3', label: 'Option 3' },
+        { value: 'option4', label: 'Option 4 (Disabled)', disabled: true },
+    ];
+
+    return (
         <div className="component-showcase">
             <h1>Dropdown</h1>
 
             <div className="component-section">
                 <h2>States</h2>
                 <div className="component-examples-vertical">
-                    <Dropdown 
-                        placeholder="Select an option..."
-                        options={dropdownOptions}
-                    />
-                    <Dropdown 
-                        value="option1"
-                        options={dropdownOptions}
-                    />
-                    <Dropdown 
-                        placeholder="Disabled"
-                        options={dropdownOptions}
-                        disabled={true}
-                    />
-                    <Dropdown 
-                        placeholder="Error state"
-                        options={dropdownOptions}
-                        error={true}
-                    />
+                    <Dropdown placeholder="Select an option..." options={dropdownOptions} />
+                    <Dropdown value="option1" options={dropdownOptions} />
+                    <Dropdown placeholder="Disabled" options={dropdownOptions} disabled={true} />
+                    <Dropdown placeholder="Error state" options={dropdownOptions} error={true} />
                 </div>
             </div>
 
@@ -403,28 +348,9 @@ function AppContent() {
                     Label on the left, dropdown on the right. Use labelWidth prop to control label width.
                 </p>
                 <div className="component-examples-vertical" style={{width: '400px'}}>
-                    <Dropdown 
-                        label="Language"
-                        placeholder="Select..."
-                        options={dropdownOptions}
-                        layout="horizontal"
-                        labelWidth="100px"
-                    />
-                    <Dropdown 
-                        label="Framework"
-                        placeholder="Select..."
-                        options={dropdownOptions}
-                        layout="horizontal"
-                        labelWidth="100px"
-                    />
-                    <Dropdown 
-                        label="Version"
-                        placeholder="Select..."
-                        options={dropdownOptions}
-                        layout="horizontal"
-                        labelWidth="100px"
-                        disabled={true}
-                    />
+                    <Dropdown label="Language" placeholder="Select..." options={dropdownOptions} layout="horizontal" labelWidth="100px" />
+                    <Dropdown label="Framework" placeholder="Select..." options={dropdownOptions} layout="horizontal" labelWidth="100px" />
+                    <Dropdown label="Version" placeholder="Select..." options={dropdownOptions} layout="horizontal" labelWidth="100px" disabled={true} />
                 </div>
             </div>
 
@@ -444,32 +370,29 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const comboboxExamples = () => (
+function ComboboxPage() {
+    const [comboboxValue, setComboboxValue] = useState('');
+    const comboboxOptions = [
+        { value: 'java', label: 'Java' },
+        { value: 'kotlin', label: 'Kotlin' },
+        { value: 'python', label: 'Python' },
+        { value: 'javascript', label: 'JavaScript' },
+        { value: 'typescript', label: 'TypeScript' },
+    ];
+
+    return (
         <div className="component-showcase">
             <h1>Combobox</h1>
 
             <div className="component-section">
                 <h2>States</h2>
                 <div className="component-examples-vertical">
-                    <Combobox 
-                        placeholder="Type or select..."
-                        options={comboboxOptions}
-                    />
-                    <Combobox 
-                        value="Java"
-                        options={comboboxOptions}
-                    />
-                    <Combobox 
-                        placeholder="Disabled"
-                        options={comboboxOptions}
-                        disabled={true}
-                    />
-                    <Combobox 
-                        placeholder="Error state"
-                        options={comboboxOptions}
-                        error={true}
-                    />
+                    <Combobox placeholder="Type or select..." options={comboboxOptions} />
+                    <Combobox value="Java" options={comboboxOptions} />
+                    <Combobox placeholder="Disabled" options={comboboxOptions} disabled={true} />
+                    <Combobox placeholder="Error state" options={comboboxOptions} error={true} />
                 </div>
             </div>
 
@@ -493,28 +416,9 @@ function AppContent() {
                     Label on the left, combobox on the right. Use labelWidth prop to control label width.
                 </p>
                 <div className="component-examples-vertical" style={{width: '400px'}}>
-                    <Combobox 
-                        label="Language"
-                        placeholder="Type to search..."
-                        options={comboboxOptions}
-                        layout="horizontal"
-                        labelWidth="100px"
-                    />
-                    <Combobox 
-                        label="Framework"
-                        placeholder="Type to search..."
-                        options={comboboxOptions}
-                        layout="horizontal"
-                        labelWidth="100px"
-                    />
-                    <Combobox 
-                        label="Version"
-                        placeholder="Type to search..."
-                        options={comboboxOptions}
-                        layout="horizontal"
-                        labelWidth="100px"
-                        disabled={true}
-                    />
+                    <Combobox label="Language" placeholder="Type to search..." options={comboboxOptions} layout="horizontal" labelWidth="100px" />
+                    <Combobox label="Framework" placeholder="Type to search..." options={comboboxOptions} layout="horizontal" labelWidth="100px" />
+                    <Combobox label="Version" placeholder="Type to search..." options={comboboxOptions} layout="horizontal" labelWidth="100px" disabled={true} />
                 </div>
             </div>
 
@@ -534,8 +438,16 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const toolbarIconButtonExamples = () => (
+function ToolbarIconButtonPage() {
+    const [toggleStates, setToggleStates] = useState({
+        bold: false,
+        italic: true,
+        underline: false
+    });
+
+    return (
         <div className="component-showcase">
             <h1>Toolbar Icon Button</h1>
 
@@ -628,40 +540,42 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const tabExamples = () => {
-        const tabData = [
-            { label: "Home" },
-            { label: "Profile", icon: "general/user" },
-            { label: "Settings", icon: "general/settings", closable: true },
-            { label: "Documents", closable: true }
-        ];
+function TabsPage() {
+    const tabData = [
+        { label: "Home" },
+        { label: "Profile", icon: "general/user" },
+        { label: "Settings", icon: "general/settings", closable: true },
+        { label: "Documents", closable: true }
+    ];
 
-        return (
-            <div className="component-showcase">
-                <h1>Tabs</h1>
+    return (
+        <div className="component-showcase">
+            <h1>Tabs</h1>
 
-                <div className="component-section">
-                    <h2>Horizontal Tabs</h2>
-                    <TabBar tabs={tabData} direction="horizontal" />
-                </div>
+            <div className="component-section">
+                <h2>Horizontal Tabs</h2>
+                <TabBar tabs={tabData} direction="horizontal" />
+            </div>
 
-                <div className="component-section">
-                    <h2>Vertical Tabs</h2>
-                    <div className="vertical-tab-demo">
-                        <TabBar tabs={tabData} direction="vertical" />
-                    </div>
-                </div>
-
-                <div className="component-section">
-                    <h2>Small Tabs</h2>
-                    <TabBar tabs={tabData} direction="horizontal" size="small" />
+            <div className="component-section">
+                <h2>Vertical Tabs</h2>
+                <div className="vertical-tab-demo">
+                    <TabBar tabs={tabData} direction="vertical" />
                 </div>
             </div>
-        );
-    };
 
-    const inputExamples = () => (
+            <div className="component-section">
+                <h2>Small Tabs</h2>
+                <TabBar tabs={tabData} direction="horizontal" size="small" />
+            </div>
+        </div>
+    );
+}
+
+function InputsPage() {
+    return (
         <div className="component-showcase">
             <h1>Inputs</h1>
 
@@ -704,330 +618,196 @@ function AppContent() {
             </div>
         </div>
     );
+}
 
-    const treeExamples = () => {
-        const treeData = [
-            {
-                id: '1',
-                label: 'src',
-                icon: 'nodes/folder',
-                isExpanded: true,
-                children: [
-                    {
-                        id: '1-1',
-                        label: 'components',
-                        icon: 'nodes/folder',
-                        isExpanded: false,
-                        children: [
-                            { id: '1-1-1', label: 'Button.jsx', icon: 'fileTypes/javaScript' },
-                            { id: '1-1-2', label: 'Input.jsx', icon: 'fileTypes/javaScript' },
-                            { id: '1-1-3', label: 'Tree.jsx', icon: 'fileTypes/javaScript' }
-                        ]
-                    },
-                    { id: '1-2', label: 'App.js', icon: 'fileTypes/javaScript' },
-                    { id: '1-3', label: 'index.js', icon: 'fileTypes/javaScript' }
-                ]
-            },
-            {
-                id: '2',
-                label: 'public',
-                icon: 'nodes/folder',
-                isExpanded: false,
-                children: [
-                    { id: '2-1', label: 'index.html', icon: 'fileTypes/html' },
-                    { id: '2-2', label: 'favicon.ico', icon: 'fileTypes/image' }
-                ]
-            },
-            { id: '3', label: 'package.json', icon: 'fileTypes/json' },
-            { id: '4', label: 'README.md', icon: 'fileTypes/text' }
-        ];
+function TreePage() {
+    const treeData = [
+        {
+            id: '1',
+            label: 'src',
+            icon: 'nodes/folder',
+            isExpanded: true,
+            children: [
+                {
+                    id: '1-1',
+                    label: 'components',
+                    icon: 'nodes/folder',
+                    isExpanded: false,
+                    children: [
+                        { id: '1-1-1', label: 'Button.jsx', icon: 'fileTypes/javaScript' },
+                        { id: '1-1-2', label: 'Input.jsx', icon: 'fileTypes/javaScript' },
+                        { id: '1-1-3', label: 'Tree.jsx', icon: 'fileTypes/javaScript' }
+                    ]
+                },
+                { id: '1-2', label: 'App.js', icon: 'fileTypes/javaScript' },
+                { id: '1-3', label: 'index.js', icon: 'fileTypes/javaScript' }
+            ]
+        },
+        {
+            id: '2',
+            label: 'public',
+            icon: 'nodes/folder',
+            isExpanded: false,
+            children: [
+                { id: '2-1', label: 'index.html', icon: 'fileTypes/html' },
+                { id: '2-2', label: 'favicon.ico', icon: 'fileTypes/image' }
+            ]
+        },
+        { id: '3', label: 'package.json', icon: 'fileTypes/json' },
+        { id: '4', label: 'README.md', icon: 'fileTypes/text' }
+    ];
 
-        return (
-            <div className="component-showcase">
-                <h1>Tree</h1>
+    return (
+        <div className="component-showcase">
+            <h1>Tree</h1>
 
-                <div className="component-section">
-                    <h2>File Tree</h2>
-                    <div className="component-examples-vertical" style={{ maxWidth: '400px' }}>
-                        <Tree 
-                            data={treeData}
-                            onNodeSelect={(id, selected) => console.log('Node selected:', id, selected)}
-                            onNodeToggle={(id, expanded) => console.log('Node toggled:', id, expanded)}
-                        />
-                    </div>
+            <div className="component-section">
+                <h2>File Tree</h2>
+                <div className="component-examples-vertical" style={{ maxWidth: '400px' }}>
+                    <Tree 
+                        data={treeData}
+                        onNodeSelect={(id, selected) => console.log('Node selected:', id, selected)}
+                        onNodeToggle={(id, expanded) => console.log('Node toggled:', id, expanded)}
+                    />
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
+}
 
+function StripePage() {
     const [selectedStripe, setSelectedStripe] = useState('project');
 
-    const stripeExamples = () => {
-        return (
-            <div className="component-showcase">
-                <h1>Stripe</h1>
+    return (
+        <div className="component-showcase">
+            <h1>Stripe</h1>
 
-                <div className="component-section">
-                    <h2>Stripe Container</h2>
-                    <div className="component-examples">
-                        <div style={{ height: '400px', display: 'flex', justifyContent: 'center' }}>
-                            <StripeContainer>
-                                <Stripe 
-                                    icon="toolwindows/project@20x20" 
-                                    state={selectedStripe === 'project' ? 'selected' : 'default'} 
-                                    title="Project"
-                                    onClick={() => setSelectedStripe('project')}
-                                />
-                                <Stripe 
-                                    icon="toolwindows/find@20x20" 
-                                    state={selectedStripe === 'search' ? 'selected' : 'default'}
-                                    title="Search"
-                                    onClick={() => setSelectedStripe('search')}
-                                />
-                                <Stripe 
-                                    icon="toolwindows/run@20x20" 
-                                    state={selectedStripe === 'terminal' ? 'selected' : 'default'}
-                                    title="Terminal"
-                                    onClick={() => setSelectedStripe('terminal')}
-                                />
-                                <StripeContainer.Separator />
-                                <Stripe 
-                                    icon="general/settings@20x20" 
-                                    state={selectedStripe === 'settings' ? 'selected' : 'default'}
-                                    title="Settings"
-                                    onClick={() => setSelectedStripe('settings')}
-                                />
-                            </StripeContainer>
-                        </div>
+            <div className="component-section">
+                <h2>Stripe Container</h2>
+                <div className="component-examples">
+                    <div style={{ height: '400px', display: 'flex', justifyContent: 'center' }}>
+                        <StripeContainer>
+                            <Stripe 
+                                icon="toolwindows/project@20x20" 
+                                state={selectedStripe === 'project' ? 'selected' : 'default'} 
+                                title="Project"
+                                onClick={() => setSelectedStripe('project')}
+                            />
+                            <Stripe 
+                                icon="toolwindows/find@20x20" 
+                                state={selectedStripe === 'search' ? 'selected' : 'default'}
+                                title="Search"
+                                onClick={() => setSelectedStripe('search')}
+                            />
+                            <Stripe 
+                                icon="toolwindows/run@20x20" 
+                                state={selectedStripe === 'terminal' ? 'selected' : 'default'}
+                                title="Terminal"
+                                onClick={() => setSelectedStripe('terminal')}
+                            />
+                            <StripeContainer.Separator />
+                            <Stripe 
+                                icon="general/settings@20x20" 
+                                state={selectedStripe === 'settings' ? 'selected' : 'default'}
+                                title="Settings"
+                                onClick={() => setSelectedStripe('settings')}
+                            />
+                        </StripeContainer>
                     </div>
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
+}
 
-    const popupExamples = () => {
-        return (
-            <div className="component-showcase">
-                <h1>Popup</h1>
+function PopupPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Popup</h1>
 
-                <div className="component-section">
-                    <h2>Basic Popup</h2>
-                    <div className="component-examples">
-                        <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
-                            <Popup 
-                                visible={true} 
-                                style={{ 
-                                    position: 'static',
-                                    width: '250px'
-                                }}
-                            >
-                                <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
-                                <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
-                                <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
-                            </Popup>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="component-section">
-                    <h2>Popup with Header</h2>
-                    <div className="component-examples">
-                        <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
-                            <Popup 
-                                visible={true} 
-                                header="File Actions"
-                                style={{ 
-                                    position: 'static',
-                                    width: '250px'
-                                }}
-                            >
-                                <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
-                                <Popup.Cell type="line" icon="nodes/folder">New Directory</Popup.Cell>
-                                <Popup.Cell type="separator" />
-                                <Popup.Cell type="line" icon="general/refresh">Refresh</Popup.Cell>
-                                <Popup.Cell type="line" icon="general/settings">Settings</Popup.Cell>
-                            </Popup>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="component-section">
-                    <h2>Complete Popup</h2>
-                    <div className="component-examples">
-                        <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
-                            <Popup 
-                                visible={true} 
-                                header="Options"
-                                footer="Press Esc to close"
-                                style={{ 
-                                    position: 'static',
-                                    width: '280px'
-                                }}
-                            >
-                                <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
-                                <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
-                                <Popup.Cell type="separator" />
-                                <Popup.Cell type="multiline" icon="general/settings" hint="Configure settings">
-                                    Preferences
-                                </Popup.Cell>
-                                <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
-                                <Popup.Cell type="separator" />
-                                <Popup.Cell type="search" placeholder="Search actions..." />
-                            </Popup>
-                        </div>
+            <div className="component-section">
+                <h2>Basic Popup</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '250px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
+                        </Popup>
                     </div>
                 </div>
             </div>
-        );
-    };
 
-    const codeExamples = () => {
-        // Sample Java code with syntax highlighting
-        const javaCodeLines = [
-            {
-                content: "// ...",
-                tokens: [
-                    { text: "// ...", type: "comment" }
-                ]
-            },
-            {
-                content: "package org.springframework.samples.petclinic.vet;",
-                tokens: [
-                    { text: "package", type: "keyword" },
-                    { text: " org.springframework.samples.petclinic.vet;", type: null }
-                ]
-            },
-            { content: "" },
-            {
-                content: "import ...",
-                tokens: [
-                    { text: "import", type: "keyword" },
-                    { text: " ...", type: null }
-                ]
-            },
-            { content: "" },
-            {
-                content: "/**",
-                tokens: [
-                    { text: "/**", type: "doc-comment" }
-                ]
-            },
-            {
-                content: " * @author Juergen Hoeller",
-                tokens: [
-                    { text: " * @author Juergen Hoeller", type: "doc-comment" }
-                ]
-            },
-            {
-                content: " * @author Mark Fisher",
-                tokens: [
-                    { text: " * @author Mark Fisher", type: "doc-comment" }
-                ]
-            },
-            {
-                content: " * @author Ken Krebs",
-                tokens: [
-                    { text: " * @author Ken Krebs", type: "doc-comment" }
-                ]
-            },
-            {
-                content: " * @author Arjen Poutsma",
-                tokens: [
-                    { text: " * @author Arjen Poutsma", type: "doc-comment" }
-                ]
-            },
-            {
-                content: " */",
-                tokens: [
-                    { text: " */", type: "doc-comment" }
-                ]
-            },
-            {
-                content: "@Controller",
-                tokens: [
-                    { text: "@Controller", type: "annotation" }
-                ],
-                annotation: "📝 Evgenia Popova + 6"
-            },
-            {
-                content: "class VetController {",
-                tokens: [
-                    { text: "class", type: "keyword" },
-                    { text: " VetController {", type: null }
-                ]
-            },
-            { content: "" },
-            {
-                content: "    private final VetRepository vetRepository;",
-                tokens: [
-                    { text: "    ", type: null },
-                    { text: "private", type: "keyword" },
-                    { text: " ", type: null },
-                    { text: "final", type: "keyword" },
-                    { text: " VetRepository vetRepository;", type: null }
-                ],
-                annotation: "3 usages"
-            },
-            { content: "" },
-            {
-                content: "    public VetController(VetRepository clinicService) {",
-                tokens: [
-                    { text: "    ", type: null },
-                    { text: "public", type: "keyword" },
-                    { text: " VetController(VetRepository clinicService) {", type: null }
-                ],
-                annotation: "📝 Evgenia Popova + 1"
-            },
-            {
-                content: "        this.vetRepository = clinicService;",
-                tokens: [
-                    { text: "        ", type: null },
-                    { text: "this", type: "keyword" },
-                    { text: ".vetRepository = clinicService;", type: null }
-                ]
-            },
-            {
-                content: "    }",
-                tokens: [
-                    { text: "    }", type: null }
-                ]
-            }
-        ];
-
-        return (
-            <div className="component-showcase">
-                <h1>Code Example</h1>
-
-                <div className="component-section">
-                    <h2>Basic Code Example</h2>
-                    <div className="component-examples-vertical">
-                        <CodeExample 
-                            lines={javaCodeLines}
-                            startLineNumber={1}
-                            showLineNumbers={true}
-                        />
+            <div className="component-section">
+                <h2>Popup with Header</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} header="File Actions" style={{ position: 'static', width: '250px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder">New Directory</Popup.Cell>
+                            <Popup.Cell type="separator" />
+                            <Popup.Cell type="line" icon="general/refresh">Refresh</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/settings">Settings</Popup.Cell>
+                        </Popup>
                     </div>
                 </div>
+            </div>
 
-                <div className="component-section">
-                    <h2>Basic Code Editor</h2>
-                    <div className="component-examples-vertical">
-                        <CodeExample 
-                            placeholder="Enter your code here..." 
-                            code={`function hello() {
-    console.log("Hello, World!");
-}`}
-                        />
+            <div className="component-section">
+                <h2>Complete Popup</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} header="Options" footer="Press Esc to close" style={{ position: 'static', width: '280px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
+                            <Popup.Cell type="separator" />
+                            <Popup.Cell type="multiline" icon="general/settings" hint="Configure settings">Preferences</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
+                            <Popup.Cell type="separator" />
+                            <Popup.Cell type="search" placeholder="Search actions..." />
+                        </Popup>
                     </div>
                 </div>
+            </div>
+        </div>
+    );
+}
 
-                <div className="component-section">
-                    <h2>JavaScript Code Editor</h2>
-                    <div className="component-examples-vertical">
-                        <CodeExample 
-                            placeholder="Enter JavaScript code..." 
-                            language="javascript"
-                            code={`const calculateTotal = (items) => {
+function CodeExamplePage() {
+    const javaCodeLines = [
+        { content: "// ...", tokens: [{ text: "// ...", type: "comment" }] },
+        { content: "package org.springframework.samples.petclinic.vet;", tokens: [{ text: "package", type: "keyword" }, { text: " org.springframework.samples.petclinic.vet;", type: null }] },
+        { content: "" },
+        { content: "import ...", tokens: [{ text: "import", type: "keyword" }, { text: " ...", type: null }] },
+        { content: "" },
+        { content: "/**", tokens: [{ text: "/**", type: "doc-comment" }] },
+        { content: " * @author Juergen Hoeller", tokens: [{ text: " * @author Juergen Hoeller", type: "doc-comment" }] },
+        { content: " */", tokens: [{ text: " */", type: "doc-comment" }] },
+        { content: "@Controller", tokens: [{ text: "@Controller", type: "annotation" }], annotation: "📝 Evgenia Popova + 6" },
+        { content: "class VetController {", tokens: [{ text: "class", type: "keyword" }, { text: " VetController {", type: null }] },
+        { content: "" },
+        { content: "    private final VetRepository vetRepository;", tokens: [{ text: "    ", type: null }, { text: "private", type: "keyword" }, { text: " ", type: null }, { text: "final", type: "keyword" }, { text: " VetRepository vetRepository;", type: null }], annotation: "3 usages" },
+        { content: "}" }
+    ];
+
+    return (
+        <div className="component-showcase">
+            <h1>Code Example</h1>
+
+            <div className="component-section">
+                <h2>Basic Code Example</h2>
+                <div className="component-examples-vertical">
+                    <CodeExample lines={javaCodeLines} startLineNumber={1} showLineNumbers={true} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>JavaScript Code Editor</h2>
+                <div className="component-examples-vertical">
+                    <CodeExample 
+                        placeholder="Enter JavaScript code..." 
+                        language="javascript"
+                        code={`const calculateTotal = (items) => {
     return items.reduce((sum, item) => {
         return sum + item.price * item.quantity;
     }, 0);
@@ -1372,89 +1152,89 @@ users.forEach(user => {
         );
     };
 
-    const statusBarBreadcrumbExamples = () => {
-        return (
-            <div className="component-showcase">
-                <h1>Status Bar Breadcrumb</h1>
-                <p className="component-description">
-                    Breadcrumb items used in the status bar for navigation. Supports different states and optional module indicators.
+function StatusBarBreadcrumbPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Status Bar Breadcrumb</h1>
+            <p className="component-description">
+                Breadcrumb items used in the status bar for navigation. Supports different states and optional module indicators.
+            </p>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <p className="section-description">
+                    Different visual states for the breadcrumb component.
                 </p>
-
-                <div className="component-section">
-                    <h2>States</h2>
-                    <p className="section-description">
-                        Different visual states for the breadcrumb component.
-                    </p>
-                    <div className="component-examples">
-                        <StatusBarBreadcrumb label="Default" state="default" />
-                        <StatusBarBreadcrumb label="Hovered" state="hovered" />
-                        <StatusBarBreadcrumb label="Selected" state="selected" />
-                        <StatusBarBreadcrumb label="Selected Inactive" state="selectedInactive" />
-                    </div>
-                </div>
-
-                <div className="component-section">
-                    <h2>With Icon</h2>
-                    <p className="section-description">
-                        Breadcrumbs can display an icon before the label.
-                    </p>
-                    <div className="component-examples">
-                        <StatusBarBreadcrumb label="Default" icon={true} state="default" />
-                        <StatusBarBreadcrumb label="Hovered" icon={true} state="hovered" />
-                        <StatusBarBreadcrumb label="Selected" icon={true} state="selected" />
-                        <StatusBarBreadcrumb label="Selected Inactive" icon={true} state="selectedInactive" />
-                    </div>
-                </div>
-
-                <div className="component-section">
-                    <h2>With Module Indicator</h2>
-                    <p className="section-description">
-                        Module indicator shows a colored square to indicate module membership.
-                    </p>
-                    <div className="component-examples">
-                        <StatusBarBreadcrumb label="Module A" icon={true} module={true} state="default" />
-                        <StatusBarBreadcrumb label="Module B" icon={true} module={true} state="hovered" />
-                        <StatusBarBreadcrumb label="Module C" icon={true} module={true} state="selected" />
-                    </div>
-                </div>
-
-                <div className="component-section">
-                    <h2>Without Icon</h2>
-                    <p className="section-description">
-                        Text-only breadcrumbs for simpler navigation paths.
-                    </p>
-                    <div className="component-examples">
-                        <StatusBarBreadcrumb label="src" icon={false} state="default" />
-                        <StatusBarBreadcrumb label="components" icon={false} state="default" />
-                        <StatusBarBreadcrumb label="Button.jsx" icon={false} state="selected" />
-                    </div>
-                </div>
-
-                <div className="component-section">
-                    <h2>Interactive Example</h2>
-                    <p className="section-description">
-                        Hover over breadcrumbs to see the hover effect.
-                    </p>
-                    <div className="component-examples" style={{
-                        background: 'var(--bg-primary)',
-                        padding: '8px 12px',
-                        borderRadius: '4px',
-                        border: '1px solid var(--border-secondary)'
-                    }}>
-                        <StatusBarBreadcrumb label="org" icon={false} />
-                        <span style={{ color: 'var(--text-muted)' }}>/</span>
-                        <StatusBarBreadcrumb label="springframework" icon={false} />
-                        <span style={{ color: 'var(--text-muted)' }}>/</span>
-                        <StatusBarBreadcrumb label="samples" icon={false} />
-                        <span style={{ color: 'var(--text-muted)' }}>/</span>
-                        <StatusBarBreadcrumb label="VetController" icon={true} iconName="fileTypes/java" state="selected" />
-                    </div>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="Default" state="default" />
+                    <StatusBarBreadcrumb label="Hovered" state="hovered" />
+                    <StatusBarBreadcrumb label="Selected" state="selected" />
+                    <StatusBarBreadcrumb label="Selected Inactive" state="selectedInactive" />
                 </div>
             </div>
-        );
-    };
 
-    const projectSelectorExamples = () => {
+            <div className="component-section">
+                <h2>With Icon</h2>
+                <p className="section-description">
+                    Breadcrumbs can display an icon before the label.
+                </p>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="Default" icon={true} state="default" />
+                    <StatusBarBreadcrumb label="Hovered" icon={true} state="hovered" />
+                    <StatusBarBreadcrumb label="Selected" icon={true} state="selected" />
+                    <StatusBarBreadcrumb label="Selected Inactive" icon={true} state="selectedInactive" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Module Indicator</h2>
+                <p className="section-description">
+                    Module indicator shows a colored square to indicate module membership.
+                </p>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="Module A" icon={true} module={true} state="default" />
+                    <StatusBarBreadcrumb label="Module B" icon={true} module={true} state="hovered" />
+                    <StatusBarBreadcrumb label="Module C" icon={true} module={true} state="selected" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Icon</h2>
+                <p className="section-description">
+                    Text-only breadcrumbs for simpler navigation paths.
+                </p>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="src" icon={false} state="default" />
+                    <StatusBarBreadcrumb label="components" icon={false} state="default" />
+                    <StatusBarBreadcrumb label="Button.jsx" icon={false} state="selected" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive Example</h2>
+                <p className="section-description">
+                    Hover over breadcrumbs to see the hover effect.
+                </p>
+                <div className="component-examples" style={{
+                    background: 'var(--bg-primary)',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid var(--border-secondary)'
+                }}>
+                    <StatusBarBreadcrumb label="org" icon={false} />
+                    <span style={{ color: 'var(--text-muted)' }}>/</span>
+                    <StatusBarBreadcrumb label="springframework" icon={false} />
+                    <span style={{ color: 'var(--text-muted)' }}>/</span>
+                    <StatusBarBreadcrumb label="samples" icon={false} />
+                    <span style={{ color: 'var(--text-muted)' }}>/</span>
+                    <StatusBarBreadcrumb label="VetController" icon={true} iconName="fileTypes/java" state="selected" />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ProjectSelectorPage() {
         const projects = [
             { 
                 name: 'my-component-library', 
@@ -1563,120 +1343,314 @@ users.forEach(user => {
         );
     };
 
-    const renderContent = () => {
-        switch (activeComponent) {
-            case 'home':
-                return <Home onNavigate={setActiveComponent} />;
-            case 'buttons':
-                return buttonExamples();
-            case 'toolbariconbutton':
-                return toolbarIconButtonExamples();
-            case 'tabs':
-                return tabExamples();
-            case 'inputs':
-                return inputExamples();
-            case 'tree':
-                return treeExamples();
-            case 'toolwindow':
-                return toolWindowExamples();
-            case 'stripe':
-                return stripeExamples();
-            case 'popup':
-                return popupExamples();
-            case 'projectselector':
-                return projectSelectorExamples();
-            case 'idelayout':
-                return ideLayoutExamples();
-            case 'codeexample':
-                return codeExamples();
-            case 'typography':
-                return <Typography />;
-            case 'colors':
-                return <Colors />;
-            case 'toolbar':
-                return <ToolbarDemo />;
-            case 'toolbardropdown':
-                return toolbarDropdownExamples();
-            case 'checkbox':
-                return checkboxExamples();
-            case 'radio':
-                return radioExamples();
-            case 'toggle':
-                return toggleExamples();
-            case 'progressbar':
-                return progressBarExamples();
-            case 'dropdown':
-                return dropdownExamples();
-            case 'combobox':
-                return comboboxExamples();
-            case 'statusbarbreadcrumb':
-                return statusBarBreadcrumbExamples();
-            default:
-                return <Home onNavigate={setActiveComponent} />;
+
+function ToolWindowPage() {
+    const largeTreeData = [
+        {
+            id: '1',
+            label: 'intellij',
+            icon: 'nodes/folder',
+            isExpanded: true,
+            children: [
+                { id: '1-1', label: '.idea', icon: 'nodes/folder' },
+                {
+                    id: '1-2',
+                    label: 'src',
+                    icon: 'nodes/folder',
+                    isExpanded: true,
+                    children: [
+                        {
+                            id: '1-2-1',
+                            label: 'java',
+                            icon: 'nodes/folder',
+                            isExpanded: true,
+                            children: [
+                                { id: '1-2-1-1', label: 'analysis', icon: 'fileTypes/java' },
+                                { id: '1-2-1-2', label: 'BivariateFunction', icon: 'fileTypes/java' },
+                            ]
+                        },
+                    ]
+                },
+                { id: '1-5', label: 'External Libraries', icon: 'nodes/libraryFolder' }
+            ]
         }
-    };
+    ];
 
     return (
-        <div className="app">
-            <div className="sidebar">
-                <div className="sidebar-header">
-                    <div className="logo" onClick={() => setActiveComponent('home')}>
-                        <Logo className="logo-icon" />
-                        <span className="logo-text">Library</span>
-                    </div>
-                    <ToolbarIconButton
-                        icon={themeMode === 'auto' 
-                            ? 'theme/systemTheme' 
-                            : (theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme')}
-                        tooltip={themeMode === 'auto' 
-                            ? 'Using system theme' 
-                            : `Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                        onClick={toggleTheme}
-                    />
-                </div>
-                
-                <div className="nav-category">
-                    <button
-                        className={`nav-item ${activeComponent === 'home' ? 'active' : ''}`}
-                        onClick={() => setActiveComponent('home')}
+        <div className="component-showcase">
+            <h1>Tool Window</h1>
+
+            <div className="component-section">
+                <h2>Tool Window</h2>
+                <div style={{ justifyContent: 'flex-start', gap: '20px' }}>
+                    <ToolWindow
+                        title="Project"
+                        width={320}
+                        height={400}
+                        actions={['more', 'minimize']}
+                        onActionClick={(action) => console.log('Action clicked:', action)}
                     >
-                        Home
-                    </button>
+                        <Tree data={largeTreeData} />
+                    </ToolWindow>
                 </div>
-                
-                <div className="nav-category">
-                    <div className="nav-category-title">Styles</div>
-                    <button
-                        className={`nav-item ${activeComponent === 'typography' ? 'active' : ''}`}
-                        onClick={() => setActiveComponent('typography')}
-                    >
-                        Typography
-                    </button>
-                    <button
-                        className={`nav-item ${activeComponent === 'colors' ? 'active' : ''}`}
-                        onClick={() => setActiveComponent('colors')}
-                    >
-                        Colors
-                    </button>
-                </div>
-                
-                <div className="nav-category">
-                    <div className="nav-category-title">Components</div>
-                    {getSortedComponentsOnly().map((component) => (
-                        <button
-                            key={component.key}
-                            className={`nav-item ${activeComponent === component.key ? 'active' : ''}`}
-                            onClick={() => setActiveComponent(component.key)}
-                        >
-                            {component.name}
-                        </button>
-                    ))}
-                </div>
-                
             </div>
 
+            <div className="component-section">
+                <h2>Tabbed Tool Window</h2>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <ToolWindow
+                        title="Debug"
+                        headerType="tabs"
+                        width={350}
+                        height={250}
+                        tabs={[
+                            { label: "Debugger" },
+                            { label: "Console", closable: true },
+                            { label: "Variables" }
+                        ]}
+                        activeTab={0}
+                        actions={['add', 'more', 'minimize']}
+                    >
+                        <div style={{ padding: '16px', fontSize: '13px', color: 'var(--text-primary)' }}>
+                            <div style={{ marginBottom: '8px', color: 'var(--text-secondary)' }}>Debug Console:</div>
+                            <div>→ Application started</div>
+                            <div>→ Breakpoint set at line 42</div>
+                        </div>
+                    </ToolWindow>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ToolbarDropdownPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Toolbar Dropdown</h1>
+
+            <div className="component-section">
+                <h2>Themes</h2>
+                <p className="component-description">
+                    Toolbar dropdown buttons adapt to different toolbar backgrounds with appropriate text and hover colors.
+                </p>
+                
+                <div className="component-group">
+                    <h3>Dark Theme (Default)</h3>
+                    <div className="component-examples" style={{ background: 'var(--gray-140)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
+                        <ToolbarDropdown text="File" theme="dark" />
+                        <ToolbarDropdown text="Edit" theme="dark" />
+                        <ToolbarDropdown icon="general/settings" text="Settings" theme="dark" />
+                    </div>
+                </div>
+
+                <div className="component-group">
+                    <h3>Light Header Theme</h3>
+                    <div className="component-examples" style={{ background: 'var(--gray-white)', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-primary)', gap: '4px' }}>
+                        <ToolbarDropdown text="File" theme="light-header" />
+                        <ToolbarDropdown text="Edit" theme="light-header" />
+                        <ToolbarDropdown icon="general/settings" text="Settings" theme="light-header" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples" style={{ background: 'var(--gray-140)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
+                    <ToolbarDropdown text="Default" theme="dark" />
+                    <ToolbarDropdown text="Disabled" theme="dark" disabled />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function IDELayoutPage() {
+    return (
+        <div className="component-showcase">
+            <h1>IDE Layout</h1>
+            <p className="component-description">
+                A full IDE window layout combining MainToolbar, Stripe panels, Tool Windows, 
+                Editor tabs, Code Editor, and Status Bar. Click on stripe buttons to toggle panels.
+            </p>
+
+            <div className="component-section">
+                <h2>Default Theme</h2>
+                <p className="section-description">
+                    Traditional flat layout with solid borders - classic IDE appearance.
+                </p>
+                <div className="ide-layout-demo">
+                    <IDELayout 
+                        theme="default"
+                        projectName="petclinic"
+                        projectIcon="PC"
+                        projectColor="grass"
+                        branchName="main"
+                        runConfig="PetClinicApplication"
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Island Theme</h2>
+                <p className="section-description">
+                    Modern design with rounded panels, gaps between elements, and gradient backgrounds.
+                </p>
+                <div className="ide-layout-demo">
+                    <IDELayout 
+                        theme="island"
+                        projectName="commons-math"
+                        projectIcon="CM"
+                        projectColor="teal"
+                        branchName="feature/new-ui"
+                        runConfig="IDEA Community"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ProjectSelectorPage() {
+    const projects = [
+        { name: 'my-component-library', displayName: 'my-component-library', icon: 'MC', color: 'cobalt', path: '~/Desktop/my-component-library' },
+        { name: 'intellij-platform-ui', displayName: 'intellij-platform-ui', icon: 'IP', color: 'amber', path: '~/Projects/intellij-platform-ui' },
+        { name: 'jetbrains-webstorm', displayName: 'jetbrains-webstorm', icon: 'JW', color: 'ocean', path: '~/Development/jetbrains-webstorm' },
+    ];
+
+    return (
+        <div className="component-showcase">
+            <h1>Project Selector</h1>
+
+            <div className="component-section">
+                <h2>Basic Project Selector</h2>
+                <div className="component-examples">
+                    <ProjectSelector 
+                        projectName="my-component-library"
+                        projectIcon="MC"
+                        projectColor="cobalt"
+                        projects={projects}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Different Project Names</h2>
+                <div className="component-examples">
+                    <ProjectSelector projectName="intellij-platform-ui" projectIcon="IP" projectColor="amber" projects={projects} />
+                    <ProjectSelector projectName="jetbrains-webstorm" projectIcon="JW" projectColor="ocean" projects={projects} />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// Sidebar Navigation Component
+function Sidebar() {
+    const location = useLocation();
+    const { theme, themeMode, toggleTheme } = useTheme();
+    
+    const isActive = (path) => location.pathname === path;
+
+    return (
+        <div className="sidebar">
+            <div className="sidebar-header">
+                <Link to="/" className="logo">
+                    <Logo className="logo-icon" />
+                    <span className="logo-text">Library</span>
+                </Link>
+                <ToolbarIconButton
+                    icon={themeMode === 'auto' 
+                        ? 'theme/systemTheme' 
+                        : (theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme')}
+                    tooltip={themeMode === 'auto' 
+                        ? 'Using system theme' 
+                        : `Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                    onClick={toggleTheme}
+                />
+            </div>
+            
+            <div className="nav-category">
+                <Link to="/" className={`nav-item ${isActive('/') ? 'active' : ''}`}>
+                    Home
+                </Link>
+            </div>
+            
+            <div className="nav-category">
+                <div className="nav-category-title">Styles</div>
+                <Link to="/typography" className={`nav-item ${isActive('/typography') ? 'active' : ''}`}>
+                    Typography
+                </Link>
+                <Link to="/colors" className={`nav-item ${isActive('/colors') ? 'active' : ''}`}>
+                    Colors
+                </Link>
+            </div>
+            
+            <div className="nav-category">
+                <div className="nav-category-title">Components</div>
+                {getSortedComponentsOnly().map((component) => (
+                    <Link
+                        key={component.key}
+                        to={`/${component.key}`}
+                        className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
+                    >
+                        {component.name}
+                    </Link>
+                ))}
+            </div>
+
+            <div className="nav-category">
+                <div className="nav-category-title">Features</div>
+                {getSortedFeaturesOnly().map((feature) => (
+                    <Link
+                        key={feature.key}
+                        to={`/${feature.key}`}
+                        className={`nav-item ${isActive(`/${feature.key}`) ? 'active' : ''}`}
+                    >
+                        {feature.name}
+                    </Link>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+// Home page wrapper to handle navigation
+function HomePage() {
+    return <Home />;
+}
+
+function AppContent() {
+    return (
+        <div className="app">
+            <Sidebar />
             <div className="main-content">
-                {renderContent()}
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/typography" element={<Typography />} />
+                    <Route path="/colors" element={<Colors />} />
+                    <Route path="/buttons" element={<ButtonsPage />} />
+                    <Route path="/checkbox" element={<CheckboxPage />} />
+                    <Route path="/radio" element={<RadioPage />} />
+                    <Route path="/toggle" element={<TogglePage />} />
+                    <Route path="/progressbar" element={<ProgressBarPage />} />
+                    <Route path="/dropdown" element={<DropdownPage />} />
+                    <Route path="/combobox" element={<ComboboxPage />} />
+                    <Route path="/toolbariconbutton" element={<ToolbarIconButtonPage />} />
+                    <Route path="/tabs" element={<TabsPage />} />
+                    <Route path="/inputs" element={<InputsPage />} />
+                    <Route path="/tree" element={<TreePage />} />
+                    <Route path="/stripe" element={<StripePage />} />
+                    <Route path="/popup" element={<PopupPage />} />
+                    <Route path="/codeexample" element={<CodeExamplePage />} />
+                    <Route path="/toolwindow" element={<ToolWindowPage />} />
+                    <Route path="/toolbardropdown" element={<ToolbarDropdownPage />} />
+                    <Route path="/idelayout" element={<IDELayoutPage />} />
+                    <Route path="/projectselector" element={<ProjectSelectorPage />} />
+                    <Route path="/toolbar" element={<ToolbarDemo />} />
+                    <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
+                    <Route path="/webstorm-onboarding" element={<OnboardingShowcase />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
             </div>
         </div>
     );
@@ -1685,7 +1659,9 @@ users.forEach(user => {
 function App() {
     return (
         <ThemeProvider>
-            <AppContent />
+            <BrowserRouter>
+                <AppContent />
+            </BrowserRouter>
         </ThemeProvider>
     );
 }
