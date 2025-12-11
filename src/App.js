@@ -24,7 +24,8 @@ import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly } from './componentsConfig';
+import { getSortedComponentsOnly, getSortedFeaturesOnly } from './componentsConfig';
+import OnboardingShowcase from './features/webstorm/onboarding/OnboardingShowcase';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -1526,6 +1527,8 @@ users.forEach(user => {
                 return dropdownExamples();
             case 'combobox':
                 return comboboxExamples();
+            case 'webstorm-onboarding':
+                return <OnboardingShowcase />;
             default:
                 return <Home onNavigate={setActiveComponent} />;
         }
@@ -1584,6 +1587,19 @@ users.forEach(user => {
                             onClick={() => setActiveComponent(component.key)}
                         >
                             {component.name}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="nav-category">
+                    <div className="nav-category-title">Features</div>
+                    {getSortedFeaturesOnly().map((feature) => (
+                        <button
+                            key={feature.key}
+                            className={`nav-item ${activeComponent === feature.key ? 'active' : ''}`}
+                            onClick={() => setActiveComponent(feature.key)}
+                        >
+                            {feature.name}
                         </button>
                     ))}
                 </div>
