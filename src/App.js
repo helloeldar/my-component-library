@@ -23,6 +23,7 @@ import Toggle from './ui/components/toggle/Toggle';
 import ProgressBar from './ui/components/progressbar/ProgressBar';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
+import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly, getSortedFeaturesOnly } from './componentsConfig';
@@ -810,13 +811,538 @@ function CodeExamplePage() {
     return items.reduce((sum, item) => {
         return sum + item.price * item.quantity;
     }, 0);
-};`}
-                    />
+};
+
+// Example usage
+const cartItems = [
+    { name: "Laptop", price: 999, quantity: 1 },
+    { name: "Mouse", price: 25, quantity: 2 }
+];
+
+const total = calculateTotal(cartItems);
+console.log(\`Total: $\${total}\`);`}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Java Code Editor</h2>
+                    <div className="component-examples-vertical">
+                        <CodeExample 
+                            placeholder="Enter Java code..." 
+                            language="java"
+                            code={`public class Calculator {
+    private double result;
+    
+    public Calculator() {
+        this.result = 0.0;
+    }
+    
+    public double add(double number) {
+        result += number;
+        return result;
+    }
+    
+    public double subtract(double number) {
+        result -= number;
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println("Result: " + calc.add(10).subtract(3));
+    }
+}`}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Code Editor Without Line Numbers</h2>
+                    <div className="component-examples-vertical">
+                        <CodeExample 
+                            placeholder="Enter code..." 
+                            showLineNumbers={false}
+                            code={`npm install react
+npm start
+npm run build`}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Resizable Code Editor</h2>
+                    <div className="component-examples-vertical">
+                        <CodeExample 
+                            placeholder="Enter code..." 
+                            resizable={true}
+                            code={`// This editor can be resized vertically
+const data = await fetch('/api/users');
+const users = await data.json();
+
+users.forEach(user => {
+    console.log(\`User: \${user.name}\`);
+});`}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+
+    const toolWindowExamples = () => {
+        // Create extended tree data for scrollable content
+        const largeTreeData = [
+            {
+                id: '1',
+                label: 'intellij',
+                icon: 'nodes/folder',
+                isExpanded: true,
+                children: [
+                    { id: '1-1', label: '.idea', icon: 'nodes/folder' },
+                    {
+                        id: '1-2',
+                        label: 'src',
+                        icon: 'nodes/folder',
+                        isExpanded: true,
+                        children: [
+                            {
+                                id: '1-2-1',
+                                label: 'java',
+                                icon: 'nodes/folder',
+                                isExpanded: true,
+                                children: [
+                                    { id: '1-2-1-1', label: 'analysis', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-2', label: 'BivariateFunction', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-3', label: 'FunctionUtils', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-4', label: 'MultivariateFunction', icon: 'fileTypes/java' },
+                                    { id: '1-2-1-5', label: 'TrivariateFunction', icon: 'fileTypes/java' }
+                                ]
+                            },
+                            { id: '1-2-2', label: 'polynomials', icon: 'nodes/folder' },
+                            { id: '1-2-3', label: 'solver', icon: 'nodes/folder' }
+                        ]
+                    },
+                    {
+                        id: '1-3',
+                        label: 'test',
+                        icon: 'nodes/folder',
+                        isExpanded: false,
+                        children: [
+                            {
+                                id: '1-3-1',
+                                label: 'java',
+                                icon: 'nodes/folder',
+                                children: [
+                                    { id: '1-3-1-1', label: 'FunctionUtilsTest', icon: 'fileTypes/java' },
+                                    { id: '1-3-1-2', label: 'MonitoredFunction', icon: 'fileTypes/java' },
+                                    { id: '1-3-1-3', label: 'SumSyncFunction', icon: 'fileTypes/java' }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: '1-4',
+                        label: 'target',
+                        icon: 'nodes/folder',
+                        children: [
+                            { id: '1-4-1', label: 'classes', icon: 'nodes/folder' },
+                            { id: '1-4-2', label: 'generated-sources', icon: 'nodes/folder' },
+                            { id: '1-4-3', label: '.gitignore', icon: 'fileTypes/text' }
+                        ]
+                    },
+                    { id: '1-5', label: 'External Libraries', icon: 'nodes/libraryFolder' }
+                ]
+            }
+        ];
+
+        return (
+            <div className="component-showcase">
+                <h1>Tool Window</h1>
+
+                <div className="component-section">
+                    <h2>Tool Window</h2>
+                    <div style={{ justifyContent: 'flex-start', gap: '20px' }}>
+                        <ToolWindow
+                            title="Project"
+                            width={320}
+                            height={400}
+                            actions={['more', 'minimize']}
+                            onActionClick={(action) => console.log('Action clicked:', action)}
+                        >
+                            <Tree 
+                                data={largeTreeData}
+                                onNodeSelect={(id, selected) => console.log('Node selected:', id, selected)}
+                                onNodeToggle={(id, expanded) => console.log('Node toggled:', id, expanded)}
+                            />
+                        </ToolWindow>
+
+                        <ToolWindow
+                            title="Structure"
+                            width={280}
+                            height={300}
+                            actions={['more', 'minimize']}
+                            onActionClick={(action) => console.log('Action clicked:', action)}
+                        >
+                            <div style={{ padding: '12px' }}>
+                                <p style={{ margin: '0 0 8px 0', color: 'var(--text-secondary)', fontSize: '12px' }}>
+                                    File structure view would go here
+                                </p>
+                                <div style={{ fontSize: '13px', color: 'var(--text-primary)' }}>
+                                    <div>├── App.js</div>
+                                    <div>├── Button.jsx</div>
+                                    <div>├── Input.jsx</div>
+                                    <div>└── Tree.jsx</div>
+                                </div>
+                            </div>
+                        </ToolWindow>
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Tabbed Tool Window</h2>
+                    <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                        <ToolWindow
+                            title="Debug"
+                            headerType="tabs"
+                            width={350}
+                            height={250}
+                            tabs={[
+                                { label: "Debugger" },
+                                { label: "Console", closable: true },
+                                { label: "Variables" }
+                            ]}
+                            activeTab={0}
+                            onTabChange={(index) => console.log('Tab changed:', index)}
+                            actions={['add', 'more', 'minimize']}
+                            onActionClick={(action) => console.log('Action clicked:', action)}
+                        >
+                            <div style={{ padding: '16px', fontSize: '13px', color: 'var(--text-primary)' }}>
+                                <div style={{ marginBottom: '8px', color: 'var(--text-secondary)' }}>Debug Console:</div>
+                                <div>→ Application started</div>
+                                <div>→ Breakpoint set at line 42</div>
+                                <div>→ Waiting for connection...</div>
+                            </div>
+                        </ToolWindow>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const toolbarDropdownExamples = () => {
+        return (
+            <div className="component-showcase">
+                <h1>Toolbar Dropdown</h1>
+
+                <div className="component-section">
+                    <h2>Themes</h2>
+                    <p className="component-description">
+                        Toolbar dropdown buttons adapt to different toolbar backgrounds with appropriate text and hover colors.
+                    </p>
+                    
+                    <div className="component-group">
+                        <h3>Dark Theme (Default)</h3>
+                        <div className="component-examples" style={{ 
+                            background: 'var(--gray-140)', 
+                            padding: '8px 12px', 
+                            borderRadius: '6px',
+                            gap: '4px'
+                        }}>
+                            <ToolbarDropdown text="File" theme="dark" />
+                            <ToolbarDropdown text="Edit" theme="dark" />
+                            <ToolbarDropdown icon="general/settings" text="Settings" theme="dark" />
+                        </div>
+                    </div>
+
+                    <div className="component-group">
+                        <h3>Light Header Theme</h3>
+                        <div className="component-examples" style={{ 
+                            background: 'var(--gray-white)', 
+                            padding: '8px 12px', 
+                            borderRadius: '6px',
+                            border: '1px solid var(--border-primary)',
+                            gap: '4px'
+                        }}>
+                            <ToolbarDropdown text="File" theme="light-header" />
+                            <ToolbarDropdown text="Edit" theme="light-header" />
+                            <ToolbarDropdown icon="general/settings" text="Settings" theme="light-header" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>With Icons</h2>
+                    <div className="component-examples" style={{ 
+                        background: 'var(--gray-140)', 
+                        padding: '8px 12px', 
+                        borderRadius: '6px',
+                        gap: '4px'
+                    }}>
+                        <ToolbarDropdown icon="vcs/branch" text="main" theme="dark" />
+                        <ToolbarDropdown icon="runConfigurations/application" text="IDEA Community" theme="dark" />
+                        <ToolbarDropdown icon="general/settings" text="Options" theme="dark" />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>States</h2>
+                    <p className="component-description">
+                        Hover over the dropdowns to see the hover state with background highlight.
+                    </p>
+                    <div className="component-examples" style={{ 
+                        background: 'var(--gray-140)', 
+                        padding: '8px 12px', 
+                        borderRadius: '6px',
+                        gap: '4px'
+                    }}>
+                        <ToolbarDropdown text="Default" theme="dark" />
+                        <ToolbarDropdown text="Disabled" theme="dark" disabled />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const ideLayoutExamples = () => {
+        return (
+            <div className="component-showcase">
+                <h1>IDE Layout</h1>
+                <p className="component-description">
+                    A full IDE window layout combining MainToolbar, Stripe panels, Tool Windows, 
+                    Editor tabs, Code Editor, and Status Bar. Click on stripe buttons to toggle panels.
+                    Supports two themes: <strong>default</strong> (traditional flat layout) and <strong>island</strong> (modern design with rounded panels).
+                </p>
+
+                <div className="component-section">
+                    <h2>Default Theme</h2>
+                    <p className="section-description">
+                        Traditional flat layout with solid borders - classic IDE appearance.
+                    </p>
+                    <div className="ide-layout-demo">
+                        <IDELayout 
+                            theme="default"
+                            projectName="petclinic"
+                            projectIcon="PC"
+                            projectColor="grass"
+                            branchName="main"
+                            runConfig="PetClinicApplication"
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Island Theme</h2>
+                    <p className="section-description">
+                        Modern design with rounded panels, gaps between elements, and gradient backgrounds.
+                    </p>
+                    <div className="ide-layout-demo">
+                        <IDELayout 
+                            theme="island"
+                            projectName="commons-math"
+                            projectIcon="CM"
+                            projectColor="teal"
+                            branchName="feature/new-ui"
+                            runConfig="IDEA Community"
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+function StatusBarBreadcrumbPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Status Bar Breadcrumb</h1>
+            <p className="component-description">
+                Breadcrumb items used in the status bar for navigation. Supports different states and optional module indicators.
+            </p>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <p className="section-description">
+                    Different visual states for the breadcrumb component.
+                </p>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="Default" state="default" />
+                    <StatusBarBreadcrumb label="Hovered" state="hovered" />
+                    <StatusBarBreadcrumb label="Selected" state="selected" />
+                    <StatusBarBreadcrumb label="Selected Inactive" state="selectedInactive" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Icon</h2>
+                <p className="section-description">
+                    Breadcrumbs can display an icon before the label.
+                </p>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="Default" icon={true} state="default" />
+                    <StatusBarBreadcrumb label="Hovered" icon={true} state="hovered" />
+                    <StatusBarBreadcrumb label="Selected" icon={true} state="selected" />
+                    <StatusBarBreadcrumb label="Selected Inactive" icon={true} state="selectedInactive" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Module Indicator</h2>
+                <p className="section-description">
+                    Module indicator shows a colored square to indicate module membership.
+                </p>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="Module A" icon={true} module={true} state="default" />
+                    <StatusBarBreadcrumb label="Module B" icon={true} module={true} state="hovered" />
+                    <StatusBarBreadcrumb label="Module C" icon={true} module={true} state="selected" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Icon</h2>
+                <p className="section-description">
+                    Text-only breadcrumbs for simpler navigation paths.
+                </p>
+                <div className="component-examples">
+                    <StatusBarBreadcrumb label="src" icon={false} state="default" />
+                    <StatusBarBreadcrumb label="components" icon={false} state="default" />
+                    <StatusBarBreadcrumb label="Button.jsx" icon={false} state="selected" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive Example</h2>
+                <p className="section-description">
+                    Hover over breadcrumbs to see the hover effect.
+                </p>
+                <div className="component-examples" style={{
+                    background: 'var(--bg-primary)',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid var(--border-secondary)'
+                }}>
+                    <StatusBarBreadcrumb label="org" icon={false} />
+                    <span style={{ color: 'var(--text-muted)' }}>/</span>
+                    <StatusBarBreadcrumb label="springframework" icon={false} />
+                    <span style={{ color: 'var(--text-muted)' }}>/</span>
+                    <StatusBarBreadcrumb label="samples" icon={false} />
+                    <span style={{ color: 'var(--text-muted)' }}>/</span>
+                    <StatusBarBreadcrumb label="VetController" icon={true} iconName="fileTypes/java" state="selected" />
                 </div>
             </div>
         </div>
     );
 }
+
+function ProjectSelectorPage() {
+        const projects = [
+            { 
+                name: 'my-component-library', 
+                displayName: 'my-component-library',
+                icon: 'MC', 
+                color: 'cobalt',
+                path: '~/Desktop/my-component-library' 
+            },
+            { 
+                name: 'intellij-platform-ui', 
+                displayName: 'intellij-platform-ui',
+                icon: 'IP', 
+                color: 'amber',
+                path: '~/Projects/intellij-platform-ui' 
+            },
+            { 
+                name: 'jetbrains-webstorm', 
+                displayName: 'jetbrains-webstorm',
+                icon: 'JW', 
+                color: 'ocean',
+                path: '~/Development/jetbrains-webstorm' 
+            },
+            { 
+                name: 'kotlin-multiplatform-mobile', 
+                displayName: 'kotlin-multiplatform-mobile',
+                icon: 'KM', 
+                color: 'violet',
+                path: '~/Code/kotlin-multiplatform-mobile' 
+            },
+            { 
+                name: 'spring-boot-samples', 
+                displayName: 'spring-boot-samples',
+                icon: 'SB', 
+                color: 'grass',
+                path: '~/Workspace/spring-boot-samples' 
+            },
+            { 
+                name: 'react-native-app', 
+                displayName: 'react-native-app',
+                icon: 'RN', 
+                color: 'plum',
+                path: '~/Mobile/react-native-app' 
+            }
+        ];
+
+        return (
+            <div className="component-showcase">
+                <h1>Project Selector</h1>
+
+                <div className="component-section">
+                    <h2>Basic Project Selector</h2>
+                    <div className="component-examples">
+                        <ProjectSelector 
+                            projectName="my-component-library"
+                            projectIcon="MC"
+                            projectColor="cobalt"
+                            projects={projects}
+                            onProjectSelect={(project) => console.log('Selected project:', project)}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Different Project Names</h2>
+                    <div className="component-examples">
+                        <ProjectSelector 
+                            projectName="intellij-platform-ui"
+                            projectIcon="IP"
+                            projectColor="amber"
+                            projects={projects}
+                        />
+                        <ProjectSelector 
+                            projectName="kotlin-multiplatform-mobile"
+                            projectIcon="KM"
+                            projectColor="violet"
+                            projects={projects}
+                        />
+                        <ProjectSelector 
+                            projectName="spring-boot-samples"
+                            projectIcon="SB"
+                            projectColor="grass"
+                            projects={projects}
+                        />
+                    </div>
+                </div>
+
+                <div className="component-section">
+                    <h2>Interactive States</h2>
+                    <div className="component-examples">
+                        <ProjectSelector 
+                            projectName="react-native-app"
+                            projectIcon="RN"
+                            projectColor="plum"
+                            projects={projects}
+                        />
+                        <ProjectSelector 
+                            projectName="jetbrains-webstorm"
+                            projectIcon="JW"
+                            projectColor="ocean"
+                            state="hovered"
+                            projects={projects}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
 
 function ToolWindowPage() {
     const largeTreeData = [
@@ -1121,6 +1647,7 @@ function AppContent() {
                     <Route path="/idelayout" element={<IDELayoutPage />} />
                     <Route path="/projectselector" element={<ProjectSelectorPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
+                    <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
                     <Route path="/webstorm-onboarding" element={<OnboardingShowcase />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
