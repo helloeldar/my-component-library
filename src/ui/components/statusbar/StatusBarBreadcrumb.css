@@ -57,66 +57,6 @@
     flex-shrink: 0;
 }
 
-/* ===== Light Theme ===== */
-
-/* Default state - Light */
-.theme-light .status-bar-breadcrumb-default {
-    background: transparent;
-}
-
-.theme-light .status-bar-breadcrumb-default .status-bar-breadcrumb-label {
-    color: #6C707E; /* Light/Gray/Gray 6 (Stroke) */
-}
-
-.theme-light .status-bar-breadcrumb-default .status-bar-breadcrumb-module-inner {
-    background: #EDF3FF;
-    border-color: #3574F0;
-}
-
-/* Hovered state - Light */
-.theme-light .status-bar-breadcrumb-hovered {
-    background: #EBECF0; /* Light/Gray/Gray 12 (Fill) */
-    cursor: pointer;
-}
-
-.theme-light .status-bar-breadcrumb-hovered .status-bar-breadcrumb-label {
-    color: #000000; /* Light/Gray/Gray 1 (Primary) */
-}
-
-.theme-light .status-bar-breadcrumb-hovered .status-bar-breadcrumb-module-inner {
-    background: #EDF3FF;
-    border-color: #3574F0;
-}
-
-/* Selected state - Light */
-.theme-light .status-bar-breadcrumb-selected {
-    background: #D4E2FF; /* Light/Blue/Blue 11 */
-    cursor: pointer;
-}
-
-.theme-light .status-bar-breadcrumb-selected .status-bar-breadcrumb-label {
-    color: #000000; /* Light/Gray/Gray 1 (Primary) */
-}
-
-.theme-light .status-bar-breadcrumb-selected .status-bar-breadcrumb-module-inner {
-    background: #EDF3FF;
-    border-color: #3574F0;
-}
-
-/* Selected Inactive state - Light */
-.theme-light .status-bar-breadcrumb-selected-inactive {
-    background: #DFE1E5; /* Light/Gray/Gray 11 */
-}
-
-.theme-light .status-bar-breadcrumb-selected-inactive .status-bar-breadcrumb-label {
-    color: #000000; /* Light/Gray/Gray 1 (Primary) */
-}
-
-.theme-light .status-bar-breadcrumb-selected-inactive .status-bar-breadcrumb-module-inner {
-    background: #EDF3FF;
-    border-color: #3574F0;
-}
-
 /* ===== Dark Theme ===== */
 
 /* Default state - Dark */
@@ -178,15 +118,6 @@
 }
 
 /* Interactive states - apply hover styles on actual hover for interactive states */
-.theme-light .status-bar-breadcrumb-default:hover {
-    background: #EBECF0;
-    cursor: pointer;
-}
-
-.theme-light .status-bar-breadcrumb-default:hover .status-bar-breadcrumb-label {
-    color: #000000;
-}
-
 .theme-dark .status-bar-breadcrumb-default:hover {
     background: #393B40;
     cursor: pointer;
