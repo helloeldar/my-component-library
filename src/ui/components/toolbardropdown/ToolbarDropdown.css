@@ -44,64 +44,22 @@
     flex-shrink: 0;
 }
 
-/* Dark Theme (default - for dark toolbar background) */
-.toolbar-dropdown-theme-dark .toolbar-dropdown-text {
+/* Dark Theme (default) */
+.toolbar-dropdown .toolbar-dropdown-text {
     color: #EBECF0; /* Light/Gray/Gray 12 */
 }
 
-.toolbar-dropdown-theme-dark .toolbar-dropdown-icon {
+.toolbar-dropdown .toolbar-dropdown-icon {
     color: #6C707E; /* Light/Gray/Gray 6 */
 }
 
-.toolbar-dropdown-theme-dark .toolbar-dropdown-chevron {
+.toolbar-dropdown .toolbar-dropdown-chevron {
     color: #818594; /* Light/Gray/Gray 7 */
 }
 
-.toolbar-dropdown-theme-dark.toolbar-dropdown-hovered .toolbar-dropdown-content,
-.toolbar-dropdown-theme-dark.toolbar-dropdown-pressed .toolbar-dropdown-content {
+.toolbar-dropdown.toolbar-dropdown-hovered .toolbar-dropdown-content,
+.toolbar-dropdown.toolbar-dropdown-pressed .toolbar-dropdown-content {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 7px 6px 7px 10px;
-    margin: -7px -6px -7px -10px;
-}
-
-/* Light Theme (for light toolbar with dark text) */
-.toolbar-dropdown-theme-light .toolbar-dropdown-text {
-    color: #EBECF0; /* Light/Gray/Gray 12 */
-}
-
-.toolbar-dropdown-theme-light .toolbar-dropdown-icon {
-    color: #6C707E; /* Light/Gray/Gray 6 */
-}
-
-.toolbar-dropdown-theme-light .toolbar-dropdown-chevron {
-    color: #818594; /* Light/Gray/Gray 7 */
-}
-
-.toolbar-dropdown-theme-light.toolbar-dropdown-hovered .toolbar-dropdown-content,
-.toolbar-dropdown-theme-light.toolbar-dropdown-pressed .toolbar-dropdown-content {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 7px 6px 7px 10px;
-    margin: -7px -6px -7px -10px;
-}
-
-/* Light Header Theme (for light header with dark text) */
-.toolbar-dropdown-theme-light-header .toolbar-dropdown-text {
-    color: #000000; /* Light/Gray/Gray 1 */
-}
-
-.toolbar-dropdown-theme-light-header .toolbar-dropdown-icon {
-    color: #6C707E; /* Light/Gray/Gray 6 */
-}
-
-.toolbar-dropdown-theme-light-header .toolbar-dropdown-chevron {
-    color: #818594; /* Light/Gray/Gray 7 */
-}
-
-.toolbar-dropdown-theme-light-header.toolbar-dropdown-hovered .toolbar-dropdown-content,
-.toolbar-dropdown-theme-light-header.toolbar-dropdown-pressed .toolbar-dropdown-content {
-    background: rgba(0, 0, 0, 0.05);
     border-radius: 6px;
     padding: 7px 6px 7px 10px;
     margin: -7px -6px -7px -10px;
