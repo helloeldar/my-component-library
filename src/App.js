@@ -20,6 +20,7 @@ import Checkbox from './ui/components/checkbox/Checkbox';
 import Radio, { RadioGroup } from './ui/components/radio/Radio';
 import Toggle from './ui/components/toggle/Toggle';
 import ProgressBar from './ui/components/progressbar/ProgressBar';
+import StatusBarBreadcrumb from './ui/components/statusbarbreadcrumb/StatusBarBreadcrumb';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import { ThemeProvider, useTheme } from './ThemeContext';
@@ -276,6 +277,107 @@ function AppContent() {
                 <div className="component-examples">
                     <Toggle checked={true} showLabel={false} />
                     <Toggle checked={false} showLabel={false} />
+                </div>
+            </div>
+        </div>
+    );
+
+    const statusBarBreadcrumbExamples = () => (
+        <div className="component-showcase">
+            <h1>Status Bar Breadcrumb</h1>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <p className="component-description">
+                    Breadcrumb items for navigating file paths in the status bar. Supports default, hovered, selected, and selected-inactive states.
+                </p>
+                <div className="component-examples" style={{ 
+                    background: 'var(--gray-140)', 
+                    padding: '8px 12px', 
+                    borderRadius: '6px',
+                    gap: '4px'
+                }}>
+                    <StatusBarBreadcrumb text="Default" state="default" />
+                    <StatusBarBreadcrumb text="Selected" state="selected" />
+                    <StatusBarBreadcrumb text="Selected Inactive" state="selected-inactive" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Icon</h2>
+                <p className="component-description">
+                    Breadcrumbs can display an icon before the text.
+                </p>
+                <div className="component-examples" style={{ 
+                    background: 'var(--gray-140)', 
+                    padding: '8px 12px', 
+                    borderRadius: '6px',
+                    gap: '4px'
+                }}>
+                    <StatusBarBreadcrumb text="src" icon="nodes/folder" state="default" />
+                    <StatusBarBreadcrumb text="components" icon="nodes/folder" state="selected" />
+                    <StatusBarBreadcrumb text="Button.tsx" icon="fileTypes/typeScript" state="default" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Module Indicator</h2>
+                <p className="component-description">
+                    Shows a module indicator dot.
+                </p>
+                <div className="component-examples" style={{ 
+                    background: 'var(--gray-140)', 
+                    padding: '8px 12px', 
+                    borderRadius: '6px',
+                    gap: '4px'
+                }}>
+                    <StatusBarBreadcrumb text="app" module={true} state="default" />
+                    <StatusBarBreadcrumb text="core" module={true} state="selected" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>File Path Example</h2>
+                <p className="component-description">
+                    Complete file path navigation with multiple breadcrumbs and separators.
+                </p>
+                <div className="component-examples" style={{ 
+                    background: 'var(--gray-140)', 
+                    padding: '8px 12px', 
+                    borderRadius: '6px',
+                    gap: '2px',
+                    alignItems: 'center'
+                }}>
+                    <StatusBarBreadcrumb text="my-project" icon="nodes/folder" state="default" />
+                    <span style={{ color: 'var(--gray-80)', fontSize: '12px' }}>/</span>
+                    <StatusBarBreadcrumb text="src" icon="nodes/folder" state="default" />
+                    <span style={{ color: 'var(--gray-80)', fontSize: '12px' }}>/</span>
+                    <StatusBarBreadcrumb text="components" icon="nodes/folder" state="default" />
+                    <span style={{ color: 'var(--gray-80)', fontSize: '12px' }}>/</span>
+                    <StatusBarBreadcrumb text="Button.tsx" icon="fileTypes/typeScript" state="selected" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive</h2>
+                <p className="component-description">
+                    Hover over the breadcrumbs to see the hover effect.
+                </p>
+                <div className="component-examples" style={{ 
+                    background: 'var(--gray-140)', 
+                    padding: '8px 12px', 
+                    borderRadius: '6px',
+                    gap: '4px'
+                }}>
+                    <StatusBarBreadcrumb 
+                        text="Click me" 
+                        icon="nodes/folder" 
+                        onClick={() => alert('Breadcrumb clicked!')} 
+                    />
+                    <StatusBarBreadcrumb 
+                        text="Disabled" 
+                        disabled={true}
+                    />
                 </div>
             </div>
         </div>
@@ -1522,6 +1624,8 @@ users.forEach(user => {
                 return toggleExamples();
             case 'progressbar':
                 return progressBarExamples();
+            case 'statusbarbreadcrumb':
+                return statusBarBreadcrumbExamples();
             case 'dropdown':
                 return dropdownExamples();
             case 'combobox':
