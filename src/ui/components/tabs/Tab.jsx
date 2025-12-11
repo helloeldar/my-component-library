@@ -75,13 +75,13 @@ function Tab({
         >
             <div className="tab-content">
                 <div className="tab-content-inner">
-                    {renderIcon()}
+            {renderIcon()}
                     <span className="tab-label">{label}</span>
                 </div>
                 {closable && (
                     <span className="tab-close" onClick={handleClose}>
                         <Icon name="general/closeSmall" size={16} />
-                    </span>
+        </span>
                 )}
             </div>
             {hasUnderline && (

@@ -309,7 +309,7 @@ function AppContent() {
             </div>
 
             <div className="component-section">
-                <h2>With Label and Hint</h2>
+                <h2>With Label and Hint (Vertical)</h2>
                 <div className="component-examples-vertical">
                     <Dropdown 
                         label="Select language"
@@ -318,6 +318,37 @@ function AppContent() {
                         options={dropdownOptions}
                         value={dropdownValue}
                         onChange={setDropdownValue}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Horizontal Layout</h2>
+                <p className="component-description">
+                    Label on the left, dropdown on the right. Use labelWidth prop to control label width.
+                </p>
+                <div className="component-examples-vertical" style={{width: '400px'}}>
+                    <Dropdown 
+                        label="Language"
+                        placeholder="Select..."
+                        options={dropdownOptions}
+                        layout="horizontal"
+                        labelWidth="100px"
+                    />
+                    <Dropdown 
+                        label="Framework"
+                        placeholder="Select..."
+                        options={dropdownOptions}
+                        layout="horizontal"
+                        labelWidth="100px"
+                    />
+                    <Dropdown 
+                        label="Version"
+                        placeholder="Select..."
+                        options={dropdownOptions}
+                        layout="horizontal"
+                        labelWidth="100px"
+                        disabled={true}
                     />
                 </div>
             </div>
@@ -368,7 +399,7 @@ function AppContent() {
             </div>
 
             <div className="component-section">
-                <h2>With Label and Hint</h2>
+                <h2>With Label and Hint (Vertical)</h2>
                 <div className="component-examples-vertical">
                     <Combobox 
                         label="Programming Language"
@@ -377,6 +408,37 @@ function AppContent() {
                         options={comboboxOptions}
                         value={comboboxValue}
                         onChange={setComboboxValue}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Horizontal Layout</h2>
+                <p className="component-description">
+                    Label on the left, combobox on the right. Use labelWidth prop to control label width.
+                </p>
+                <div className="component-examples-vertical" style={{width: '400px'}}>
+                    <Combobox 
+                        label="Language"
+                        placeholder="Type to search..."
+                        options={comboboxOptions}
+                        layout="horizontal"
+                        labelWidth="100px"
+                    />
+                    <Combobox 
+                        label="Framework"
+                        placeholder="Type to search..."
+                        options={comboboxOptions}
+                        layout="horizontal"
+                        labelWidth="100px"
+                    />
+                    <Combobox 
+                        label="Version"
+                        placeholder="Type to search..."
+                        options={comboboxOptions}
+                        layout="horizontal"
+                        labelWidth="100px"
+                        disabled={true}
                     />
                 </div>
             </div>

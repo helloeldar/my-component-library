@@ -1,10 +1,39 @@
 /* Combobox Container */
 .combobox-container {
     display: flex;
+    position: relative;
+}
+
+/* Vertical layout (default) */
+.combobox-container-vertical {
     flex-direction: column;
     gap: 6px;
-    position: relative;
     width: 224px;
+}
+
+/* Horizontal layout */
+.combobox-container-horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.combobox-container-horizontal .combobox-label {
+    flex-shrink: 0;
+    padding: 6px 0;
+}
+
+.combobox-container-horizontal .combobox-field-wrapper {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+/* Combobox field wrapper */
+.combobox-field-wrapper {
+    position: relative;
+    width: 100%;
 }
 
 /* Combobox Label */
@@ -14,6 +43,7 @@
     font-size: 13px;
     line-height: 16px;
     color: var(--text-primary);
+    white-space: nowrap;
 }
 
 /* Combobox base */
@@ -121,10 +151,9 @@
 /* Combobox menu */
 .combobox-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 4px);
     left: 0;
     right: 0;
-    margin-top: 4px;
     background: var(--popup-bg);
     border: 1px solid var(--popup-border);
     border-radius: 8px;

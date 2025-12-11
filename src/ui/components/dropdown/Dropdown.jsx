@@ -10,6 +10,8 @@ function Dropdown({
     error = false,
     hint,
     label,
+    layout = 'vertical', // 'vertical' or 'horizontal'
+    labelWidth,
     onChange,
     className = '',
     ...props
@@ -72,9 +74,13 @@ function Dropdown({
         return classes.join(' ');
     };
 
+    const isHorizontal = layout === 'horizontal';
+    const labelStyle = labelWidth ? { width: labelWidth } : {};
+
     return (
-        <div className={`dropdown-container ${className}`} ref={dropdownRef} {...props}>
-            {label && <label className="dropdown-label">{label}</label>}
+        <div className={`dropdown-container ${isHorizontal ? 'dropdown-container-horizontal' : 'dropdown-container-vertical'} ${className}`} ref={dropdownRef} {...props}>
+            {label && <label className="dropdown-label" style={labelStyle}>{label}:</label>}
+            <div className="dropdown-field-wrapper">
             <div
                 className={getDropdownClasses()}
                 onClick={handleToggle}
@@ -111,6 +117,7 @@ function Dropdown({
             )}
             
             {hint && <span className="dropdown-hint">{hint}</span>}
+            </div>
         </div>
     );
 }

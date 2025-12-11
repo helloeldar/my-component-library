@@ -10,6 +10,8 @@ function Combobox({
     error = false,
     hint,
     label,
+    layout = 'vertical', // 'vertical' or 'horizontal'
+    labelWidth,
     onChange,
     onInputChange,
     className = '',
@@ -95,9 +97,13 @@ function Combobox({
         return classes.join(' ');
     };
 
+    const isHorizontal = layout === 'horizontal';
+    const labelStyle = labelWidth ? { width: labelWidth } : {};
+
     return (
-        <div className={`combobox-container ${className}`} ref={comboboxRef} {...props}>
-            {label && <label className="combobox-label">{label}</label>}
+        <div className={`combobox-container ${isHorizontal ? 'combobox-container-horizontal' : 'combobox-container-vertical'} ${className}`} ref={comboboxRef} {...props}>
+            {label && <label className="combobox-label" style={labelStyle}>{label}:</label>}
+            <div className="combobox-field-wrapper">
             <div className={getComboboxClasses()}>
                 <input
                     ref={inputRef}
@@ -135,6 +141,7 @@ function Combobox({
             )}
             
             {hint && <span className="combobox-hint">{hint}</span>}
+            </div>
         </div>
     );
 }

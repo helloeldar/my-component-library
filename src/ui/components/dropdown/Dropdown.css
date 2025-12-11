@@ -1,10 +1,39 @@
 /* Dropdown Container */
 .dropdown-container {
     display: flex;
+    position: relative;
+}
+
+/* Vertical layout (default) */
+.dropdown-container-vertical {
     flex-direction: column;
     gap: 6px;
-    position: relative;
     width: 224px;
+}
+
+/* Horizontal layout */
+.dropdown-container-horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.dropdown-container-horizontal .dropdown-label {
+    flex-shrink: 0;
+    padding: 6px 0;
+}
+
+.dropdown-container-horizontal .dropdown-field-wrapper {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+/* Dropdown field wrapper */
+.dropdown-field-wrapper {
+    position: relative;
+    width: 100%;
 }
 
 /* Dropdown Label */
@@ -14,6 +43,7 @@
     font-size: 13px;
     line-height: 16px;
     color: var(--text-primary);
+    white-space: nowrap;
 }
 
 /* Dropdown base */
@@ -109,10 +139,9 @@
 /* Dropdown menu */
 .dropdown-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 4px);
     left: 0;
     right: 0;
-    margin-top: 4px;
     background: var(--popup-bg);
     border: 1px solid var(--popup-border);
     border-radius: 8px;
