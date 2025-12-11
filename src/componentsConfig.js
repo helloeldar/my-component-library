@@ -1,17 +1,22 @@
 // Shared configuration for all components
 export const componentsConfig = [
     { name: 'Buttons', key: 'buttons', description: 'Primary and secondary button variants', category: 'components' },
+    { name: 'Checkbox', key: 'checkbox', description: 'Checkbox with checked, indeterminate, and disabled states', category: 'components' },
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components' },
+    { name: 'Combobox', key: 'combobox', description: 'Editable dropdown with filtering and selection', category: 'components' },
+    { name: 'Dropdown', key: 'dropdown', description: 'Select dropdown with options list', category: 'components' },
     { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components' },
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
     { name: 'IDE Layout', key: 'idelayout', description: 'Complete IDE layout with default and island themes', category: 'components' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components' },
+    { name: 'Radio Button', key: 'radio', description: 'Radio button for single selection from options', category: 'components' },
     { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },
     { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components' },
     { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components' },
     { name: 'Tabs', key: 'tabs', description: 'Horizontal and vertical tab navigation', category: 'components' },
+    { name: 'Toggle', key: 'toggle', description: 'Toggle switch with ON/OFF states', category: 'components' },
     { name: 'Tool Window', key: 'toolwindow', description: 'Resizable panels with optional tabs', category: 'components' },
     { name: 'Tree', key: 'tree', description: 'Hierarchical file tree component', category: 'components' }
 ];

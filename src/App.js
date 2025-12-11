@@ -16,6 +16,11 @@ import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import IDELayout from './ui/components/idelayout/IDELayout';
 import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
+import Checkbox from './ui/components/checkbox/Checkbox';
+import Radio, { RadioGroup } from './ui/components/radio/Radio';
+import Toggle from './ui/components/toggle/Toggle';
+import Dropdown from './ui/components/dropdown/Dropdown';
+import Combobox from './ui/components/combobox/Combobox';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly } from './componentsConfig';
@@ -71,6 +76,327 @@ function AppContent() {
         italic: true,
         underline: false
     });
+
+    // Form controls state
+    const [checkboxStates, setCheckboxStates] = useState({
+        checked: false,
+        indeterminate: true,
+        disabled: false
+    });
+    const [radioValue, setRadioValue] = useState('option1');
+    const [toggleOn, setToggleOn] = useState(true);
+    const [dropdownValue, setDropdownValue] = useState('');
+    const [comboboxValue, setComboboxValue] = useState('');
+
+    const dropdownOptions = [
+        { value: 'option1', label: 'Option 1' },
+        { value: 'option2', label: 'Option 2' },
+        { value: 'option3', label: 'Option 3' },
+        { value: 'option4', label: 'Option 4 (Disabled)', disabled: true },
+    ];
+
+    const comboboxOptions = [
+        { value: 'java', label: 'Java' },
+        { value: 'kotlin', label: 'Kotlin' },
+        { value: 'python', label: 'Python' },
+        { value: 'javascript', label: 'JavaScript' },
+        { value: 'typescript', label: 'TypeScript' },
+    ];
+
+    const checkboxExamples = () => (
+        <div className="component-showcase">
+            <h1>Checkbox</h1>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples-vertical">
+                    <Checkbox 
+                        label="Unchecked" 
+                        checked={false}
+                    />
+                    <Checkbox 
+                        label="Checked" 
+                        checked={true}
+                    />
+                    <Checkbox 
+                        label="Indeterminate" 
+                        checked={true}
+                        indeterminate={true}
+                    />
+                    <Checkbox 
+                        label="Disabled unchecked" 
+                        disabled={true}
+                    />
+                    <Checkbox 
+                        label="Disabled checked" 
+                        checked={true}
+                        disabled={true}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Hint</h2>
+                <div className="component-examples-vertical">
+                    <Checkbox 
+                        label="Enable notifications" 
+                        hint="You will receive email notifications"
+                        checked={checkboxStates.checked}
+                        onChange={(checked) => setCheckboxStates(s => ({...s, checked}))}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive</h2>
+                <div className="component-examples-vertical">
+                    <Checkbox 
+                        label="Click to toggle" 
+                        checked={checkboxStates.checked}
+                        onChange={(checked) => setCheckboxStates(s => ({...s, checked}))}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+
+    const radioExamples = () => (
+        <div className="component-showcase">
+            <h1>Radio Button</h1>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples-vertical">
+                    <Radio 
+                        label="Unselected" 
+                        checked={false}
+                        name="demo1"
+                    />
+                    <Radio 
+                        label="Selected" 
+                        checked={true}
+                        name="demo2"
+                    />
+                    <Radio 
+                        label="Disabled unselected" 
+                        disabled={true}
+                        name="demo3"
+                    />
+                    <Radio 
+                        label="Disabled selected" 
+                        checked={true}
+                        disabled={true}
+                        name="demo4"
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Radio Group</h2>
+                <div className="component-examples-vertical">
+                    <RadioGroup
+                        name="language"
+                        value={radioValue}
+                        onChange={setRadioValue}
+                        options={[
+                            { value: 'option1', label: 'Option 1' },
+                            { value: 'option2', label: 'Option 2' },
+                            { value: 'option3', label: 'Option 3' },
+                        ]}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Hints</h2>
+                <div className="component-examples-vertical">
+                    <RadioGroup
+                        name="theme-choice"
+                        value={radioValue}
+                        onChange={setRadioValue}
+                        options={[
+                            { value: 'option1', label: 'Light Theme', hint: 'Best for daytime use' },
+                            { value: 'option2', label: 'Dark Theme', hint: 'Easier on the eyes at night' },
+                            { value: 'option3', label: 'System', hint: 'Follow OS setting' },
+                        ]}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+
+    const toggleExamples = () => (
+        <div className="component-showcase">
+            <h1>Toggle</h1>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples">
+                    <div className="component-example-item">
+                        <span className="component-example-label">ON</span>
+                        <Toggle checked={true} />
+                    </div>
+                    <div className="component-example-item">
+                        <span className="component-example-label">OFF</span>
+                        <Toggle checked={false} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Disabled</h2>
+                <div className="component-examples">
+                    <div className="component-example-item">
+                        <span className="component-example-label">Disabled ON</span>
+                        <Toggle checked={true} disabled={true} />
+                    </div>
+                    <div className="component-example-item">
+                        <span className="component-example-label">Disabled OFF</span>
+                        <Toggle checked={false} disabled={true} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive</h2>
+                <div className="component-examples">
+                    <div className="component-example-item">
+                        <span className="component-example-label">Click to toggle</span>
+                        <Toggle 
+                            checked={toggleOn} 
+                            onChange={setToggleOn}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Label</h2>
+                <div className="component-examples">
+                    <Toggle checked={true} showLabel={false} />
+                    <Toggle checked={false} showLabel={false} />
+                </div>
+            </div>
+        </div>
+    );
+
+    const dropdownExamples = () => (
+        <div className="component-showcase">
+            <h1>Dropdown</h1>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples-vertical">
+                    <Dropdown 
+                        placeholder="Select an option..."
+                        options={dropdownOptions}
+                    />
+                    <Dropdown 
+                        value="option1"
+                        options={dropdownOptions}
+                    />
+                    <Dropdown 
+                        placeholder="Disabled"
+                        options={dropdownOptions}
+                        disabled={true}
+                    />
+                    <Dropdown 
+                        placeholder="Error state"
+                        options={dropdownOptions}
+                        error={true}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Label and Hint</h2>
+                <div className="component-examples-vertical">
+                    <Dropdown 
+                        label="Select language"
+                        hint="Choose your preferred programming language"
+                        placeholder="Select..."
+                        options={dropdownOptions}
+                        value={dropdownValue}
+                        onChange={setDropdownValue}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive</h2>
+                <div className="component-examples-vertical">
+                    <Dropdown 
+                        placeholder="Click to open"
+                        options={dropdownOptions}
+                        value={dropdownValue}
+                        onChange={setDropdownValue}
+                    />
+                    <p style={{color: 'var(--text-secondary)', fontSize: '12px'}}>
+                        Selected: {dropdownValue || 'None'}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+
+    const comboboxExamples = () => (
+        <div className="component-showcase">
+            <h1>Combobox</h1>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples-vertical">
+                    <Combobox 
+                        placeholder="Type or select..."
+                        options={comboboxOptions}
+                    />
+                    <Combobox 
+                        value="Java"
+                        options={comboboxOptions}
+                    />
+                    <Combobox 
+                        placeholder="Disabled"
+                        options={comboboxOptions}
+                        disabled={true}
+                    />
+                    <Combobox 
+                        placeholder="Error state"
+                        options={comboboxOptions}
+                        error={true}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Label and Hint</h2>
+                <div className="component-examples-vertical">
+                    <Combobox 
+                        label="Programming Language"
+                        hint="Type to filter or select from list"
+                        placeholder="Type to search..."
+                        options={comboboxOptions}
+                        value={comboboxValue}
+                        onChange={setComboboxValue}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive (Filterable)</h2>
+                <div className="component-examples-vertical">
+                    <Combobox 
+                        placeholder="Type to filter options..."
+                        options={comboboxOptions}
+                        value={comboboxValue}
+                        onChange={setComboboxValue}
+                    />
+                    <p style={{color: 'var(--text-secondary)', fontSize: '12px'}}>
+                        Selected: {comboboxValue || 'None'}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
 
     const toolbarIconButtonExamples = () => (
         <div className="component-showcase">
@@ -1052,6 +1378,16 @@ users.forEach(user => {
                 return <ToolbarDemo />;
             case 'toolbardropdown':
                 return toolbarDropdownExamples();
+            case 'checkbox':
+                return checkboxExamples();
+            case 'radio':
+                return radioExamples();
+            case 'toggle':
+                return toggleExamples();
+            case 'dropdown':
+                return dropdownExamples();
+            case 'combobox':
+                return comboboxExamples();
             default:
                 return <Home onNavigate={setActiveComponent} />;
         }
