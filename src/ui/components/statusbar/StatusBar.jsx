@@ -1,6 +1,6 @@
 import StatusBarBreadcrumb from './StatusBarBreadcrumb';
 import StatusBarWidget from './StatusBarWidget';
-import StatusBarProgress from './StatusBarProgress';
+import ProgressBar from '../progressbar/ProgressBar';
 import './StatusBar.css';
 
 /**
@@ -84,29 +84,34 @@ function StatusBar({
                 ))}
             </div>
 
-            {/* Progress bar (center, optional) */}
-            {progress && (
-                <div className="status-bar-center">
-                    <StatusBarProgress
-                        label={progressLabel}
-                        value={progressValue}
-                        onStop={onProgressStop}
-                    />
-                </div>
-            )}
+            {/* Right section: Progress + Widgets */}
+            <div className="status-bar-right">
+                {/* Progress bar (optional) */}
+                {progress && (
+                    <div className="status-bar-progress-container">
+                        <ProgressBar
+                            label={progressLabel}
+                            value={progressValue}
+                            showStopButton={true}
+                            onStop={onProgressStop}
+                            indeterminate={progressValue === undefined || progressValue === null}
+                        />
+                    </div>
+                )}
 
-            {/* Widgets section (right) */}
-            <div className="status-bar-widgets">
-                {widgetItems.map((item, index) => (
-                    <StatusBarWidget
-                        key={index}
-                        type={item.type || 'text'}
-                        text={item.text}
-                        iconName={item.iconName}
-                        state={item.state || 'default'}
-                        onClick={item.onClick}
-                    />
-                ))}
+                {/* Widgets section */}
+                <div className="status-bar-widgets">
+                    {widgetItems.map((item, index) => (
+                        <StatusBarWidget
+                            key={index}
+                            type={item.type || 'text'}
+                            text={item.text}
+                            iconName={item.iconName}
+                            state={item.state || 'default'}
+                            onClick={item.onClick}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );
