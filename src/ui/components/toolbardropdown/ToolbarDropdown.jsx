@@ -5,6 +5,7 @@ import './ToolbarDropdown.css';
 function ToolbarDropdown({
     icon,
     text = "Text",
+    theme = "dark", // 'dark', 'light', 'light-header'
     disabled = false,
     onClick,
     children,
@@ -27,6 +28,18 @@ function ToolbarDropdown({
         return '';
     };
 
+    const getThemeClass = () => {
+        switch (theme) {
+            case 'light':
+                return 'toolbar-dropdown-theme-light';
+            case 'light-header':
+                return 'toolbar-dropdown-theme-light-header';
+            case 'dark':
+            default:
+                return 'toolbar-dropdown-theme-dark';
+        }
+    };
+
     const renderIcon = () => {
         if (!icon) return null;
         if (typeof icon === 'string') {
@@ -37,7 +50,7 @@ function ToolbarDropdown({
 
     return (
         <button
-            className={`toolbar-dropdown ${getStateClass()} ${className}`}
+            className={`toolbar-dropdown ${getThemeClass()} ${getStateClass()} ${className}`}
             onClick={handleClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => { setIsHovered(false); setIsPressed(false); }}
