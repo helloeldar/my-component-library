@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProgressBar.css';
-import { Icon } from '../icon/Icon';
+import Icon from '../icon/Icon';
 
 /**
  * Progress Bar component based on IntelliJ UI Guidelines
@@ -63,7 +63,7 @@ function ProgressBar({
                         type="button"
                         aria-label="Stop"
                     >
-                        <Icon name="general/close" size={16} />
+                        <Icon name="progress/stop" size={16} />
                     </button>
                 )}
             </div>
