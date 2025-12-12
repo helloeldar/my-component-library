@@ -11,10 +11,11 @@
 .table-toolbar {
     display: flex;
     align-items: center;
-    height: 34px;
-    padding: 4px 7px;
+    height: 26px;
+    padding: 4px 7px 4px 4px;
     border-bottom: 1px solid var(--table-border);
     gap: 0;
+    box-sizing: content-box;
 }
 
 .table-toolbar-button {
@@ -32,8 +33,14 @@
     transition: background 0.15s ease;
 }
 
-.table-toolbar-button:hover {
+.table-toolbar-button:hover:not(:disabled) {
     background: var(--table-toolbar-hover-bg);
+}
+
+.table-toolbar-button:disabled,
+.table-toolbar-button.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 /* Table structure */
@@ -41,6 +48,7 @@
     display: table;
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .table-header {
@@ -130,6 +138,26 @@
 .table-empty {
     padding: 24px;
     text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Editable cell input */
+.table-cell-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--table-cell-text);
+    padding: 0;
+    margin: 0;
+}
+
+.table-cell-input::placeholder {
     color: var(--text-secondary);
 }
 

@@ -8,6 +8,11 @@ function Table({
     data,
     showToolbar = false,
     toolbarActions = [],
+    onAdd,
+    onRemove,
+    disableRemove = false,
+    editable = false,
+    onCellChange,
     striped = false,
     selectedRowIndex = null,
     onRowClick,
@@ -24,16 +29,39 @@ function Table({
         striped ? 'table-striped' : ''
     ].filter(Boolean).join(' ');
 
+    // Build default toolbar actions with plus/minus icons
+    const defaultToolbarActions = [];
+    if (onAdd) {
+        defaultToolbarActions.push({
+            icon: 'general/add',
+            title: 'Add',
+            onClick: onAdd,
+            disabled: false,
+        });
+    }
+    if (onRemove) {
+        defaultToolbarActions.push({
+            icon: 'general/remove',
+            title: 'Remove',
+            onClick: onRemove,
+            disabled: disableRemove,
+        });
+    }
+
+    // Combine default actions with custom actions
+    const allToolbarActions = [...defaultToolbarActions, ...toolbarActions];
+
     return (
         <div className={containerClasses} {...props}>
-            {showToolbar && (
+            {showToolbar && allToolbarActions.length > 0 && (
                 <div className="table-toolbar">
-                    {toolbarActions.map((action, index) => (
+                    {allToolbarActions.map((action, index) => (
                         <button
                             key={index}
-                            className="table-toolbar-button"
-                            onClick={action.onClick}
+                            className={`table-toolbar-button ${action.disabled ? 'disabled' : ''}`}
+                            onClick={action.disabled ? undefined : action.onClick}
                             title={action.title}
+                            disabled={action.disabled}
                         >
                             {action.icon ? (
                                 <Icon name={action.icon} size={16} />
@@ -71,7 +99,15 @@ function Table({
                                         key={column.key || colIndex}
                                         className="table-cell"
                                     >
-                                        {column.icon && row[column.key] ? (
+                                        {editable && !column.render ? (
+                                            <input
+                                                type="text"
+                                                className="table-cell-input"
+                                                value={row[column.key] || ''}
+                                                onChange={(e) => onCellChange && onCellChange(rowIndex, column.key, e.target.value)}
+                                                onClick={(e) => e.stopPropagation()}
+                                            />
+                                        ) : column.icon && row[column.key] ? (
                                             <div className="table-cell-content">
                                                 <Icon
                                                     name={typeof column.icon === 'function' ? column.icon(row) : column.icon}
@@ -120,6 +156,11 @@ Table.propTypes = {
             onClick: PropTypes.func,
         })
     ),
+    onAdd: PropTypes.func,
+    onRemove: PropTypes.func,
+    disableRemove: PropTypes.bool,
+    editable: PropTypes.bool,
+    onCellChange: PropTypes.func,
     striped: PropTypes.bool,
     selectedRowIndex: PropTypes.number,
     onRowClick: PropTypes.func,

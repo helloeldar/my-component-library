@@ -1,0 +1,24 @@
+# Source files
+src/
+public/
+build/
+
+# Development files
+*.log
+.git/
+.gitignore
+.vscode/
+.idea/
+node_modules/
+
+# Test files
+*.test.js
+*.test.jsx
+coverage/
+
+# Config files
+rollup.config.mjs
+babel.config.json
+tsconfig.json
+setupTests.js
+reportWebVitals.js

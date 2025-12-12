@@ -310,6 +310,11 @@ function SearchPage() {
 
 function TablePage() {
     const [selectedRow, setSelectedRow] = useState(null);
+    const [tableData, setTableData] = useState([
+        { id: 1, name: 'Project Alpha', type: 'Development', status: 'Active' },
+        { id: 2, name: 'Project Beta', type: 'Research', status: 'Pending' },
+        { id: 3, name: 'Project Gamma', type: 'Testing', status: 'Completed' },
+    ]);
 
     const columns = [
         { key: 'name', title: 'Name' },
@@ -317,16 +322,47 @@ function TablePage() {
         { key: 'status', title: 'Status' },
     ];
 
-    const data = [
+    const handleAddRow = () => {
+        const newId = tableData.length > 0 ? Math.max(...tableData.map(r => r.id)) + 1 : 1;
+        const newRow = {
+            id: newId,
+            name: '',
+            type: '',
+            status: '',
+        };
+        setTableData([...tableData, newRow]);
+    };
+
+    const handleRemoveRow = () => {
+        if (tableData.length <= 1) return; // Keep at least one row
+        
+        if (selectedRow !== null && tableData[selectedRow]) {
+            // Delete selected row
+            const newData = tableData.filter((_, index) => index !== selectedRow);
+            setTableData(newData);
+            setSelectedRow(null);
+        } else {
+            // Delete last row if nothing selected
+            const newData = tableData.slice(0, -1);
+            setTableData(newData);
+        }
+    };
+
+    const handleCellChange = (rowIndex, columnKey, value) => {
+        const newData = [...tableData];
+        newData[rowIndex] = { ...newData[rowIndex], [columnKey]: value };
+        setTableData(newData);
+    };
+
+    // Static data for non-interactive examples
+    const staticData = [
         { id: 1, name: 'Project Alpha', type: 'Development', status: 'Active' },
         { id: 2, name: 'Project Beta', type: 'Research', status: 'Pending' },
         { id: 3, name: 'Project Gamma', type: 'Testing', status: 'Completed' },
     ];
 
     const toolbarActions = [
-        { icon: 'actions/add', title: 'Add', onClick: () => alert('Add clicked') },
         { icon: 'actions/copy', title: 'Copy', onClick: () => alert('Copy clicked') },
-        { icon: 'actions/delete', title: 'Delete', onClick: () => alert('Delete clicked') },
     ];
 
     return (
@@ -338,18 +374,41 @@ function TablePage() {
                 <div className="component-examples">
                     <Table
                         columns={columns}
-                        data={data}
+                        data={staticData}
                     />
                 </div>
             </div>
 
             <div className="component-section">
-                <h2>With Toolbar</h2>
+                <h2>Editable Table with Toolbar</h2>
                 <div className="component-examples">
                     <Table
                         columns={columns}
-                        data={data}
+                        data={tableData}
                         showToolbar
+                        onAdd={handleAddRow}
+                        onRemove={handleRemoveRow}
+                        disableRemove={tableData.length <= 1}
+                        editable
+                        onCellChange={handleCellChange}
+                        selectedRowIndex={selectedRow}
+                        onRowClick={(row, index) => setSelectedRow(index)}
+                    />
+                </div>
+                <p style={{ marginTop: '8px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                    Click cells to edit. Click + to add a row. Click − to remove selected row (or last row if none selected).
+                </p>
+            </div>
+
+            <div className="component-section">
+                <h2>With Custom Toolbar Actions</h2>
+                <div className="component-examples">
+                    <Table
+                        columns={columns}
+                        data={staticData}
+                        showToolbar
+                        onAdd={() => alert('Add clicked')}
+                        onRemove={() => alert('Remove clicked')}
                         toolbarActions={toolbarActions}
                     />
                 </div>
@@ -360,7 +419,7 @@ function TablePage() {
                 <div className="component-examples">
                     <Table
                         columns={columns}
-                        data={data}
+                        data={staticData}
                         selectedRowIndex={selectedRow}
                         onRowClick={(row, index) => setSelectedRow(index)}
                     />
@@ -372,7 +431,7 @@ function TablePage() {
                 <div className="component-examples">
                     <Table
                         columns={columns}
-                        data={data}
+                        data={staticData}
                         striped
                     />
                 </div>
