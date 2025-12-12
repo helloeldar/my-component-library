@@ -26,6 +26,7 @@ import Combobox from './ui/components/combobox/Combobox';
 import UILink from './ui/components/link/Link';
 import SegmentedControl from './ui/components/segmentedcontrol/SegmentedControl';
 import Search from './ui/components/search/Search';
+import Table from './ui/components/table/Table';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import { ThemeProvider, useTheme } from './ThemeContext';
@@ -300,6 +301,79 @@ function SearchPage() {
                         value="No close button"
                         onChange={() => {}}
                         showClose={false}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function TablePage() {
+    const [selectedRow, setSelectedRow] = useState(null);
+
+    const columns = [
+        { key: 'name', title: 'Name' },
+        { key: 'type', title: 'Type' },
+        { key: 'status', title: 'Status' },
+    ];
+
+    const data = [
+        { id: 1, name: 'Project Alpha', type: 'Development', status: 'Active' },
+        { id: 2, name: 'Project Beta', type: 'Research', status: 'Pending' },
+        { id: 3, name: 'Project Gamma', type: 'Testing', status: 'Completed' },
+    ];
+
+    const toolbarActions = [
+        { icon: 'actions/add', title: 'Add', onClick: () => alert('Add clicked') },
+        { icon: 'actions/copy', title: 'Copy', onClick: () => alert('Copy clicked') },
+        { icon: 'actions/delete', title: 'Delete', onClick: () => alert('Delete clicked') },
+    ];
+
+    return (
+        <div className="component-showcase">
+            <h1>Table</h1>
+
+            <div className="component-section">
+                <h2>Basic Table</h2>
+                <div className="component-examples">
+                    <Table
+                        columns={columns}
+                        data={data}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Toolbar</h2>
+                <div className="component-examples">
+                    <Table
+                        columns={columns}
+                        data={data}
+                        showToolbar
+                        toolbarActions={toolbarActions}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Row Selection</h2>
+                <div className="component-examples">
+                    <Table
+                        columns={columns}
+                        data={data}
+                        selectedRowIndex={selectedRow}
+                        onRowClick={(row, index) => setSelectedRow(index)}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Striped Rows</h2>
+                <div className="component-examples">
+                    <Table
+                        columns={columns}
+                        data={data}
+                        striped
                     />
                 </div>
             </div>
@@ -1582,6 +1656,7 @@ function AppContent() {
                     <Route path="/radio" element={<RadioPage />} />
                     <Route path="/segmentedcontrol" element={<SegmentedControlPage />} />
                     <Route path="/search" element={<SearchPage />} />
+                    <Route path="/table" element={<TablePage />} />
                     <Route path="/toggle" element={<TogglePage />} />
                     <Route path="/progressbar" element={<ProgressBarPage />} />
                     <Route path="/dropdown" element={<DropdownPage />} />

@@ -15,6 +15,7 @@ export const componentsConfig = [
     { name: 'Radio Button', key: 'radio', description: 'Radio button for single selection from options', category: 'components' },
     { name: 'Search', key: 'search', description: 'Search input field with icon and clear button', category: 'components' },
     { name: 'Segmented Control', key: 'segmentedcontrol', description: 'Button group for toggling between mutually exclusive options', category: 'components' },
+    { name: 'Table', key: 'table', description: 'Data table with columns, rows, and optional toolbar', category: 'components' },
     { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components' },
     { name: 'Status Bar Breadcrumb', key: 'statusbarbreadcrumb', description: 'Breadcrumb navigation item for status bar', category: 'components' },
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components' },

@@ -549,6 +549,16 @@
     --search-close-hover-bg: rgba(240, 241, 242, 0.1); /* Subtle hover */
     --search-close-hover-color: #868A91; /* Dark/Gray/Gray 8 */
 
+    /* Table - Dark Theme */
+    --table-bg: #2B2D30; /* Dark/Gray/Gray 2 */
+    --table-border: #393B40; /* Dark/Gray/Gray 3 */
+    --table-header-text: #DFE1E5; /* Dark/Gray/Gray 12 */
+    --table-cell-text: #DFE1E5; /* Dark/Gray/Gray 12 */
+    --table-row-hover-bg: #393B40; /* Dark/Gray/Gray 3 */
+    --table-row-selected-bg: #2E436E; /* Dark/Blue/Blue 3 */
+    --table-stripe-bg: #313335; /* Slightly lighter */
+    --table-toolbar-hover-bg: rgba(240, 241, 242, 0.1); /* Subtle hover */
+
     /* Segmented Control - Dark Theme */
     --segmented-control-border: #4E5157; /* Dark/Gray/Gray 5 */
     --segmented-control-text: #DFE1E5; /* Dark/Gray/Gray 12 */
