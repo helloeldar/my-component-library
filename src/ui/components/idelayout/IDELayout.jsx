@@ -252,7 +252,7 @@ function IDELayout({
                         {/* Editor Area */}
                         <div className="ide-layout-editor-area">
                             <div className="ide-layout-editor-tabs">
-                                {theme === 'island' ? (
+                                {theme === 'default' ? (
                                     editorTabs.map((tab) => (
                                         <Tab
                                             key={tab.id}
