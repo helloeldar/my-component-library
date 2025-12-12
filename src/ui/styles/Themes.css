@@ -537,6 +537,18 @@
     --text-white: #FFFFFF;
     --text-tertiary: var(--gray-80);
 
+    /* Search - Dark Theme */
+    --search-bg: #2B2D30; /* Dark/Gray/Gray 2 */
+    --search-border: #4E5157; /* Dark/Gray/Gray 5 */
+    --search-border-focus: #3574F0; /* Dark/Blue/Blue 6 (Primary) */
+    --search-border-invalid: #5E3838; /* Dark/Red/Red 3 */
+    --search-border-invalid-focus: #DB5C5C; /* Dark/Red/Red 7 (Primary) */
+    --search-icon-color: #6F737A; /* Dark/Gray/Gray 7 */
+    --search-placeholder: #6F737A; /* Dark/Gray/Gray 7 */
+    --search-close-color: #6F737A; /* Dark/Gray/Gray 7 */
+    --search-close-hover-bg: rgba(240, 241, 242, 0.1); /* Subtle hover */
+    --search-close-hover-color: #868A91; /* Dark/Gray/Gray 8 */
+
     /* Segmented Control - Dark Theme */
     --segmented-control-border: #4E5157; /* Dark/Gray/Gray 5 */
     --segmented-control-text: #DFE1E5; /* Dark/Gray/Gray 12 */

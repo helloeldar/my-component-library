@@ -25,6 +25,7 @@ import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import UILink from './ui/components/link/Link';
 import SegmentedControl from './ui/components/segmentedcontrol/SegmentedControl';
+import Search from './ui/components/search/Search';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import { ThemeProvider, useTheme } from './ThemeContext';
@@ -244,6 +245,62 @@ function SegmentedControlPage() {
                             focused
                         />
                     </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function SearchPage() {
+    const [searchValue, setSearchValue] = useState('');
+    const [searchWithText, setSearchWithText] = useState('Sample search text');
+
+    return (
+        <div className="component-showcase">
+            <h1>Search</h1>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-group">
+                    <h3>Default (Empty)</h3>
+                    <div className="component-examples">
+                        <Search
+                            value={searchValue}
+                            onChange={setSearchValue}
+                            placeholder="Search..."
+                        />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>With Text</h3>
+                    <div className="component-examples">
+                        <Search
+                            value={searchWithText}
+                            onChange={setSearchWithText}
+                            placeholder="Search..."
+                        />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Invalid</h3>
+                    <div className="component-examples">
+                        <Search
+                            value="Invalid search"
+                            onChange={() => {}}
+                            invalid
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Close Button</h2>
+                <div className="component-examples">
+                    <Search
+                        value="No close button"
+                        onChange={() => {}}
+                        showClose={false}
+                    />
                 </div>
             </div>
         </div>
@@ -1524,6 +1581,7 @@ function AppContent() {
                     <Route path="/checkbox" element={<CheckboxPage />} />
                     <Route path="/radio" element={<RadioPage />} />
                     <Route path="/segmentedcontrol" element={<SegmentedControlPage />} />
+                    <Route path="/search" element={<SearchPage />} />
                     <Route path="/toggle" element={<TogglePage />} />
                     <Route path="/progressbar" element={<ProgressBarPage />} />
                     <Route path="/dropdown" element={<DropdownPage />} />
