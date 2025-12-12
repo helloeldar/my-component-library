@@ -8,6 +8,7 @@ export const componentsConfig = [
     { name: 'Dropdown', key: 'dropdown', description: 'Select dropdown with options list', category: 'components' },
     { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components' },
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
+    { name: 'Link', key: 'link', description: 'Text links with default, dropdown, and external variants', category: 'components' },
     { name: 'IDE Layout', key: 'idelayout', description: 'Complete IDE layout with default and island themes', category: 'components' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components' },
