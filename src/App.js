@@ -23,6 +23,7 @@ import Toggle from './ui/components/toggle/Toggle';
 import ProgressBar from './ui/components/progressbar/ProgressBar';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
+import UILink from './ui/components/link/Link';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import { ThemeProvider, useTheme } from './ThemeContext';
@@ -615,6 +616,48 @@ function InputsPage() {
                 <div className="component-examples-vertical">
                     <Input label="Default Size" placeholder="Default input..." />
                     <Input label="Small Size" placeholder="Small input..." size="small" />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function LinkPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Link</h1>
+
+            <div className="component-section">
+                <h2>Types</h2>
+                <div className="component-group">
+                    <h3>Default</h3>
+                    <div className="component-examples">
+                        <UILink>Default Link</UILink>
+                        <UILink href="https://www.jetbrains.com">With href</UILink>
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Dropdown</h3>
+                    <div className="component-examples">
+                        <UILink type="dropdown">Dropdown</UILink>
+                        <UILink type="dropdown" onClick={() => console.log('clicked')}>With onClick</UILink>
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>External</h3>
+                    <div className="component-examples">
+                        <UILink type="external" href="https://www.jetbrains.com">External</UILink>
+                        <UILink type="external">Without href</UILink>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Disabled States</h2>
+                <div className="component-examples">
+                    <UILink disabled>Default Disabled</UILink>
+                    <UILink type="dropdown" disabled>Dropdown Disabled</UILink>
+                    <UILink type="external" disabled>External Disabled</UILink>
                 </div>
             </div>
         </div>
@@ -1413,6 +1456,7 @@ function AppContent() {
                     <Route path="/toolbariconbutton" element={<ToolbarIconButtonPage />} />
                     <Route path="/tabs" element={<TabsPage />} />
                     <Route path="/inputs" element={<InputsPage />} />
+                    <Route path="/link" element={<LinkPage />} />
                     <Route path="/tree" element={<TreePage />} />
                     <Route path="/stripe" element={<StripePage />} />
                     <Route path="/popup" element={<PopupPage />} />
