@@ -3,6 +3,7 @@
     align-items: center;
     position: relative;
     border-radius: 4px;
+    height: 40px;
 }
 
 /* Background container */
@@ -25,12 +26,14 @@
     justify-content: center;
     padding: 6px 12px;
     min-width: 48px;
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
     background: transparent;
     cursor: pointer;
     position: relative;
     z-index: 1;
     transition: all 0.15s ease;
+    box-sizing: border-box;
 }
 
 .segmented-button-content {
@@ -45,8 +48,7 @@
 /* Selected state */
 .segmented-button.selected {
     background: var(--segmented-control-selected-bg);
-    border: 1px solid var(--segmented-control-selected-border);
-    border-radius: 4px;
+    border-color: var(--segmented-control-selected-border);
 }
 
 .segmented-button.selected .segmented-button-content {
@@ -56,7 +58,6 @@
 /* Hover state for unselected */
 .segmented-button:not(.selected):not(:disabled):hover {
     background: var(--segmented-control-hover-bg);
-    border-radius: 4px;
 }
 
 /* Disabled state */
@@ -83,6 +84,7 @@
 }
 
 .segmented-control.focused .segmented-button.selected {
-    border: 2px solid var(--segmented-control-focus-border);
+    border-color: var(--segmented-control-focus-border);
+    box-shadow: 0 0 0 1px var(--segmented-control-focus-border);
 }
 
