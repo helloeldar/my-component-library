@@ -24,6 +24,7 @@ import ProgressBar from './ui/components/progressbar/ProgressBar';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import UILink from './ui/components/link/Link';
+import SegmentedControl from './ui/components/segmentedcontrol/SegmentedControl';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import { ThemeProvider, useTheme } from './ThemeContext';
@@ -170,6 +171,79 @@ function RadioPage() {
                             { value: 'option3', label: 'System', hint: 'Follow OS setting' },
                         ]}
                     />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function SegmentedControlPage() {
+    const [selectedLanguage, setSelectedLanguage] = useState('java');
+    const [selectedView, setSelectedView] = useState('code');
+
+    const languageOptions = [
+        { value: 'java', label: 'Java' },
+        { value: 'kotlin', label: 'Kotlin' },
+        { value: 'groovy', label: 'Groovy' },
+        { value: 'javascript', label: 'JavaScript' },
+        { value: 'python', label: 'Python' },
+    ];
+
+    const viewOptions = [
+        { value: 'code', label: 'Code' },
+        { value: 'design', label: 'Design' },
+        { value: 'split', label: 'Split' },
+    ];
+
+    return (
+        <div className="component-showcase">
+            <h1>Segmented Control</h1>
+
+            <div className="component-section">
+                <h2>Basic Usage</h2>
+                <div className="component-group">
+                    <h3>Language Selector</h3>
+                    <div className="component-examples">
+                        <SegmentedControl
+                            options={languageOptions}
+                            value={selectedLanguage}
+                            onChange={setSelectedLanguage}
+                        />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>View Mode</h3>
+                    <div className="component-examples">
+                        <SegmentedControl
+                            options={viewOptions}
+                            value={selectedView}
+                            onChange={setSelectedView}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-group">
+                    <h3>Disabled</h3>
+                    <div className="component-examples">
+                        <SegmentedControl
+                            options={viewOptions}
+                            value="code"
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Focused</h3>
+                    <div className="component-examples">
+                        <SegmentedControl
+                            options={viewOptions}
+                            value="code"
+                            focused
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -1712,6 +1786,7 @@ function AppContent() {
                     <Route path="/buttons" element={<ButtonsPage />} />
                     <Route path="/checkbox" element={<CheckboxPage />} />
                     <Route path="/radio" element={<RadioPage />} />
+                    <Route path="/segmentedcontrol" element={<SegmentedControlPage />} />
                     <Route path="/toggle" element={<TogglePage />} />
                     <Route path="/progressbar" element={<ProgressBarPage />} />
                     <Route path="/dropdown" element={<DropdownPage />} />

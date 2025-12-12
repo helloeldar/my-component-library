@@ -536,4 +536,17 @@
     --stripe-badge-inactive: #5FAD65; /* Dark/Green/Green 7 (Primary) */
     --text-white: #FFFFFF;
     --text-tertiary: var(--gray-80);
+
+    /* Segmented Control - Dark Theme */
+    --segmented-control-border: #4E5157; /* Dark/Gray/Gray 5 */
+    --segmented-control-text: #DFE1E5; /* Dark/Gray/Gray 12 */
+    --segmented-control-selected-bg: #393B40; /* Dark/Gray/Gray 3 */
+    --segmented-control-selected-border: #6F737A; /* Dark/Gray/Gray 7 */
+    --segmented-control-selected-text: #DFE1E5; /* Dark/Gray/Gray 12 */
+    --segmented-control-hover-bg: rgba(57, 59, 64, 0.5); /* Subtle hover */
+    --segmented-control-disabled-border: #4E5157; /* Dark/Gray/Gray 5 */
+    --segmented-control-disabled-text: #868A91; /* Dark/Gray/Gray 8 */
+    --segmented-control-disabled-selected-bg: #4E5157; /* Dark/Gray/Gray 5 */
+    --segmented-control-disabled-selected-border: #4E5157; /* Dark/Gray/Gray 5 */
+    --segmented-control-focus-border: #3574F0; /* Dark/Blue/Blue 6 (Primary) */
 }
