@@ -1034,10 +1034,10 @@ function PopupPage() {
             <h1>Popup</h1>
 
             <div className="component-section">
-                <h2>Basic Popup</h2>
+                <h2>Basic Popup (Line Cells)</h2>
                 <div className="component-examples">
                     <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
-                        <Popup visible={true} style={{ position: 'static', width: '250px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
                             <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
                             <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
                             <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
@@ -1047,10 +1047,64 @@ function PopupPage() {
             </div>
 
             <div className="component-section">
-                <h2>Popup with Header</h2>
+                <h2>Popup with Shortcuts</h2>
                 <div className="component-examples">
                     <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
-                        <Popup visible={true} header="File Actions" style={{ position: 'static', width: '250px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text" shortcut="⌘N">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder" shortcut="⌘⇧N">New Folder</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/search" shortcut="⌘⇧F">Find in Files</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/settings" shortcut="⌘,">Settings</Popup.Cell>
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Popup with Mnemonics</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text" mnemonicGap mnemonic="1">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder" mnemonicGap mnemonic="2">New Folder</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/search" mnemonicGap mnemonic="3">Find in Files</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/settings" mnemonicGap>Settings</Popup.Cell>
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Popup with Inline Hints</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text" hint="⌘N">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder" hint="⌘⇧N">New Folder</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/search" hint="Search">Find in Files</Popup.Cell>
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Popup with Submenu Indicators</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text" submenu>New</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/externalTools" submenu>External Tools</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/settings" submenu>Preferences</Popup.Cell>
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Popup with Header and Separator</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} header="Actions" style={{ position: 'static', width: '292px' }}>
                             <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
                             <Popup.Cell type="line" icon="nodes/folder">New Directory</Popup.Cell>
                             <Popup.Cell type="separator" />
@@ -1062,17 +1116,76 @@ function PopupPage() {
             </div>
 
             <div className="component-section">
-                <h2>Complete Popup</h2>
+                <h2>Popup with Separator Text</h2>
                 <div className="component-examples">
                     <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
-                        <Popup visible={true} header="Options" footer="Press Esc to close" style={{ position: 'static', width: '280px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
                             <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
                             <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
-                            <Popup.Cell type="separator" />
-                            <Popup.Cell type="multiline" icon="general/settings" hint="Configure settings">Preferences</Popup.Cell>
-                            <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
-                            <Popup.Cell type="separator" />
+                            <Popup.Cell type="separator" text="Recent Files" />
+                            <Popup.Cell type="line" iconGap>index.html</Popup.Cell>
+                            <Popup.Cell type="line" iconGap>styles.css</Popup.Cell>
+                            <Popup.Cell type="line" iconGap>script.js</Popup.Cell>
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Multiline Cells</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
+                            <Popup.Cell type="multiline" icon="general/settings" hint="Configure IDE settings">Preferences</Popup.Cell>
+                            <Popup.Cell type="multiline" icon="general/externalTools" hint="Manage external tools">External Tools</Popup.Cell>
+                            <Popup.Cell type="multiline" icon="general/projectStructure" hint="View project structure">Project Structure</Popup.Cell>
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Search Cell</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
                             <Popup.Cell type="search" placeholder="Search actions..." />
+                            <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder">New Folder</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Complete Popup Example</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} header="File" footer="⌘O to open recent files" style={{ position: 'static', width: '320px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text" shortcut="⌘N">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder" shortcut="⌘⇧N">New Folder</Popup.Cell>
+                            <Popup.Cell type="line" icon="fileTypes/any_type" submenu>Open Recent</Popup.Cell>
+                            <Popup.Cell type="separator" />
+                            <Popup.Cell type="line" icon="actions/menu-saveall" shortcut="⌘S">Save All</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/print">Print</Popup.Cell>
+                            <Popup.Cell type="separator" text="Settings" />
+                            <Popup.Cell type="multiline" icon="general/settings" hint="Configure settings">Preferences</Popup.Cell>
+                            <Popup.Cell type="separator" />
+                            <Popup.Cell type="search" placeholder="Search..." />
+                        </Popup>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Selected State</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <Popup visible={true} style={{ position: 'static', width: '292px' }}>
+                            <Popup.Cell type="line" icon="fileTypes/text">New File</Popup.Cell>
+                            <Popup.Cell type="line" icon="nodes/folder" selected>New Folder</Popup.Cell>
+                            <Popup.Cell type="line" icon="general/search">Find in Files</Popup.Cell>
                         </Popup>
                     </div>
                 </div>
