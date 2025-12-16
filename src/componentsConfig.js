@@ -2,7 +2,6 @@
 export const componentsConfig = [
     { name: 'Buttons', key: 'buttons', description: 'Primary and secondary button variants', category: 'components' },
     { name: 'Checkbox', key: 'checkbox', description: 'Checkbox with checked, indeterminate, and disabled states', category: 'components' },
-    { name: 'WebStorm Onboarding', key: 'webstorm-onboarding', description: 'WebStorm onboarding flow variants showcase', category: 'features' },
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components' },
     { name: 'Combobox', key: 'combobox', description: 'Editable dropdown with filtering and selection', category: 'components' },
     { name: 'Dropdown', key: 'dropdown', description: 'Select dropdown with options list', category: 'components' },

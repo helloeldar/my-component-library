@@ -31,8 +31,7 @@ import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly, getSortedFeaturesOnly } from './componentsConfig';
-import OnboardingShowcase from './features/webstorm/onboarding/OnboardingShowcase';
+import { getSortedComponentsOnly } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -1793,18 +1792,6 @@ function Sidebar() {
                 ))}
             </div>
 
-            <div className="nav-category">
-                <div className="nav-category-title">Features</div>
-                {getSortedFeaturesOnly().map((feature) => (
-                    <Link
-                        key={feature.key}
-                        to={`/${feature.key}`}
-                        className={`nav-item ${isActive(`/${feature.key}`) ? 'active' : ''}`}
-                    >
-                        {feature.name}
-                    </Link>
-                ))}
-            </div>
         </div>
     );
 }
@@ -1848,7 +1835,6 @@ function AppContent() {
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
-                    <Route path="/webstorm-onboarding" element={<OnboardingShowcase />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>
