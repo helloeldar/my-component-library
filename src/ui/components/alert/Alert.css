@@ -1,0 +1,87 @@
+/* Alert Component - Dark Theme Only */
+.alert {
+    position: relative;
+    background: var(--gray-120); /* Dark/Gray/Gray 2: #2B2D30 */
+    border: 1px solid var(--gray-100); /* Dark/Gray/Gray 5: #4E5157 */
+    border-radius: 8px;
+    box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.3);
+    padding: 20px 20px 13px 60px; /* top: 20px, right: 20px, bottom: 13px, left: 60px */
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+    max-width: 420px;
+    min-width: 420px;
+    box-sizing: border-box;
+}
+
+.alert-icon {
+    position: absolute;
+    left: 19px;
+    top: 19px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    padding-bottom: 40px; /* Space for buttons (40px height) */
+}
+
+.alert-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Add spacing when checkbox is not present - space between body and buttons */
+.alert-text-no-checkbox {
+    margin-bottom: 8px;
+}
+
+/* Override global h2 styles with higher specificity */
+.component-section .alert h2.alert-title,
+.alert h2.alert-title,
+.alert .alert-title {
+    margin: 0;
+    color: var(--gray-30); /* Dark/Gray/Gray 12: #DFE1E5 */
+    font-family: Inter, sans-serif;
+    font-size: 16px !important; /* Force override of .component-section h2 */
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+
+.alert-body {
+    margin: 0;
+    color: var(--gray-30); /* Dark/Gray/Gray 12: #DFE1E5 */
+}
+
+.alert-checkbox {
+    margin: 0;
+    padding: 8px 0;
+}
+
+/* Remove Checkbox component's own padding in Alert context since we handle it on the wrapper */
+.alert-checkbox .checkbox-container {
+    padding: 0;
+}
+
+.alert-buttons {
+    position: absolute;
+    bottom: 13px;
+    left: 19px;
+    right: 19px;
+    height: 40px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+}
+

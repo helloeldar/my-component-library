@@ -2,15 +2,17 @@ import './Button.css';
 import '../../styles/Typography.css';
 
 function Button(props) {
+    const { type, size, disabled, children, className, ...restProps } = props;
+    
     let classes = ['button'];
 
-    if (props.type === 'primary') {
+    if (type === 'primary') {
         classes.push('button-primary');
-    } else if (props.type === 'secondary') {
+    } else if (type === 'secondary') {
         classes.push('button-secondary');
     }
 
-    if (props.size === 'slim') {
+    if (size === 'slim') {
         classes.push('button-slim');
         classes.push('text-ui-small');
     } else {
@@ -18,13 +20,21 @@ function Button(props) {
         classes.push('text-ui-default');
     }
 
-    if (props.disabled) {
+    if (disabled) {
         classes.push('button-disabled');
     }
-
+    
+    if (className) {
+        classes.push(className);
+    }
+    
     return (
-        <button className={classes.join(' ')} disabled={props.disabled}>
-            {props.children}
+        <button 
+            className={classes.join(' ')} 
+            disabled={disabled}
+            {...restProps}
+        >
+            {children}
         </button>
     );
 }
