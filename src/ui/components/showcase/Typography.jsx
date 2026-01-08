@@ -4,6 +4,24 @@ function Typography() {
     const textStyles = [
         // UI Text styles
         {
+            name: 'UI H2',
+            className: 'text-ui-h2',
+            font: 'Inter',
+            size: '16px',
+            weight: 600,
+            lineHeight: '20px',
+            example: 'Heading style for titles and section headers'
+        },
+        {
+            name: 'UI Paragraph',
+            className: 'text-ui-paragraph',
+            font: 'Inter',
+            size: '13px',
+            weight: 500,
+            lineHeight: '18px',
+            example: 'Paragraph text for body content and descriptions'
+        },
+        {
             name: 'UI Default',
             className: 'text-ui-default',
             font: 'Inter',

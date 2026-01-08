@@ -29,6 +29,7 @@ import Search from './ui/components/search/Search';
 import Table from './ui/components/table/Table';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
+import Alert from './ui/components/alert/Alert';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly } from './componentsConfig';
@@ -1692,6 +1693,115 @@ function ToolbarDropdownPage() {
     );
 }
 
+function AlertPage() {
+    const [checkboxState, setCheckboxState] = useState(false);
+
+    return (
+        <div className="component-showcase">
+            <h1>Alert</h1>
+            <p className="component-description">
+                Alert dialogs display important messages and require user interaction. 
+                They can include a title, body text, icon, optional checkbox, and 1-4 action buttons.
+            </p>
+
+            <div className="component-section">
+                <h2>Types</h2>
+                <p className="section-description">
+                    Different alert types with appropriate icons: Question, Error, and Warning.
+                </p>
+                <div className="component-examples-vertical" style={{ alignItems: 'flex-start', gap: '20px' }}>
+                    <Alert
+                        title="Title"
+                        body="Body text"
+                        type="question"
+                        buttons={['Cancel', 'OK']}
+                    />
+                    <Alert
+                        title="Error"
+                        body="An error has occurred. Please try again."
+                        type="error"
+                        buttons={['OK']}
+                    />
+                    <Alert
+                        title="Warning"
+                        body="This action cannot be undone."
+                        type="warning"
+                        buttons={['Cancel', 'Continue']}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Checkbox</h2>
+                <p className="section-description">
+                    Alert with optional "Don't ask again" checkbox.
+                </p>
+                <div className="component-examples-vertical" style={{ alignItems: 'flex-start', gap: '20px' }}>
+                    <Alert
+                        title="Confirm Exit"
+                        body="Are you sure you want to exit?"
+                        type="question"
+                        showCheckbox={true}
+                        checkboxLabel="Don't ask again"
+                        checkboxChecked={checkboxState}
+                        onCheckboxChange={setCheckboxState}
+                        buttons={['Cancel', 'OK']}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Button Variations</h2>
+                <p className="section-description">
+                    Alerts can have 1 to 4 buttons. The last button is typically the primary action.
+                </p>
+                <div className="component-examples-vertical" style={{ alignItems: 'flex-start', gap: '20px' }}>
+                    <Alert
+                        title="Information"
+                        body="Operation completed successfully."
+                        type="question"
+                        buttons={['OK']}
+                    />
+                    <Alert
+                        title="Save Changes?"
+                        body="You have unsaved changes. Do you want to save them before closing?"
+                        type="question"
+                        buttons={['Don\'t Save', 'Cancel', 'Save']}
+                    />
+                    <Alert
+                        title="Multiple Actions"
+                        body="Choose an action to proceed."
+                        type="question"
+                        buttons={['Action 1', 'Action 2', 'Action 3', 'Action 4']}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive Example</h2>
+                <p className="section-description">
+                    Click buttons to see interactions. Checkbox state is managed.
+                </p>
+                <div className="component-examples-vertical" style={{ alignItems: 'flex-start', gap: '20px' }}>
+                    <Alert
+                        title="Interactive Alert"
+                        body="This alert demonstrates interactive features. Try clicking the buttons or checkbox."
+                        type="question"
+                        showCheckbox={true}
+                        checkboxLabel="Don't show this again"
+                        checkboxChecked={checkboxState}
+                        onCheckboxChange={setCheckboxState}
+                        buttons={[
+                            { children: 'Cancel', onClick: () => alert('Cancel clicked') },
+                            { children: 'OK', onClick: () => alert('OK clicked') }
+                        ]}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function IDELayoutPage() {
     return (
         <div className="component-showcase">
@@ -1835,6 +1945,7 @@ function AppContent() {
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
+                    <Route path="/alert" element={<AlertPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>
