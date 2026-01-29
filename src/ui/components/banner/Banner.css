@@ -1,0 +1,175 @@
+/* Banner Component
+ * Following IntelliJ UI Guidelines & Int UI Kit Figma specs
+ * https://plugins.jetbrains.com/docs/intellij/banner.html
+ */
+
+.banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+/* Banner Content - contains icon, text, and actions */
+.banner-content {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    align-items: flex-start;
+    min-width: 0;
+    padding-top: 5px;
+}
+
+/* Status Icon */
+.banner-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+}
+
+/* Banner Body - text and actions */
+.banner-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+    padding-right: 5px;
+}
+
+/* Banner Text */
+.banner-text {
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--text-primary);
+}
+
+/* Actions Container */
+.banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 5px;
+}
+
+/* Action Link Override */
+.banner-action.link {
+    padding: 0;
+}
+
+.banner-action .link-text {
+    color: var(--banner-action-color);
+}
+
+.banner-action:hover:not(.link-disabled) .link-text {
+    text-decoration: underline;
+}
+
+/* Close Button Wrapper */
+.banner-close-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+/* Close Button */
+.banner-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--icon-secondary);
+    position: relative;
+    border-radius: 3px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.banner-close:hover {
+    background: var(--icon-button-hover-bg);
+    color: var(--text-primary);
+}
+
+.banner-close:active {
+    background: var(--icon-button-pressed-bg);
+}
+
+.banner-close:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 1px;
+}
+
+/* ================================
+   Type Variants - Dark Theme
+   ================================ */
+
+/* Info Banner - Blue */
+.banner-info {
+    background-color: var(--blue-130); /* #1A263C */
+    border-color: var(--blue-110); /* #263C69 */
+    --banner-action-color: var(--blue-60); /* #739EF2 */
+}
+
+/* Error Banner - Red */
+.banner-error {
+    background-color: var(--red-130); /* #3D1C1D */
+    border-color: var(--red-110); /* #67292E */
+    --banner-action-color: var(--blue-60); /* Actions still use blue links */
+}
+
+/* Warning Banner - Yellow */
+.banner-warning {
+    background-color: var(--yellow-130); /* #302414 */
+    border-color: var(--yellow-110); /* #4F391B */
+    --banner-action-color: var(--blue-60);
+}
+
+/* Success Banner - Green */
+.banner-success {
+    background-color: var(--green-130); /* #19291E */
+    border-color: var(--green-110); /* #24432E */
+    --banner-action-color: var(--blue-60);
+}
+
+/* ================================
+   Light Theme Overrides
+   ================================ */
+.theme-light .banner-info {
+    background-color: var(--blue-20);
+    border-color: var(--blue-40);
+    --banner-action-color: var(--blue-90); /* #2E5BB5 */
+}
+
+.theme-light .banner-error {
+    background-color: var(--red-20);
+    border-color: var(--red-40);
+    --banner-action-color: var(--blue-90);
+}
+
+.theme-light .banner-warning {
+    background-color: var(--yellow-20);
+    border-color: var(--yellow-40);
+    --banner-action-color: var(--blue-90);
+}
+
+.theme-light .banner-success {
+    background-color: var(--green-20);
+    border-color: var(--green-40);
+    --banner-action-color: var(--blue-90);
+}
+
+.theme-light .banner-text {
+    color: var(--gray-black);
+}
