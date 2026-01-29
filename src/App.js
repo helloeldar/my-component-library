@@ -24,6 +24,7 @@ import ProgressBar from './ui/components/progressbar/ProgressBar';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import UILink from './ui/components/link/Link';
+import Banner from './ui/components/banner/Banner';
 import SegmentedControl from './ui/components/segmentedcontrol/SegmentedControl';
 import Search from './ui/components/search/Search';
 import Table from './ui/components/table/Table';
@@ -37,6 +38,108 @@ import './ui/styles/Themes.css';
 import './App.css';
 
 // Page Components
+function BannerPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Banner</h1>
+            <p className="component-description">
+                A banner is a notification bar displayed at the top of dialogs or tool windows
+                to inform users about important information, warnings, errors, or success messages.
+            </p>
+
+            <div className="component-section">
+                <h2>Types</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px' }}>
+                    <Banner type="info">
+                        This is an informational message.
+                    </Banner>
+                    <Banner type="success">
+                        Operation completed successfully!
+                    </Banner>
+                    <Banner type="warning">
+                        Please review before proceeding.
+                    </Banner>
+                    <Banner type="error">
+                        An error occurred. Please try again.
+                    </Banner>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Actions</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px' }}>
+                    <Banner 
+                        type="info"
+                        actions={[
+                            { label: 'Action A', onClick: () => console.log('Action A clicked') },
+                            { label: 'Action B', onClick: () => console.log('Action B clicked') }
+                        ]}
+                    >
+                        Update available. Would you like to install now?
+                    </Banner>
+                    <Banner 
+                        type="warning"
+                        actions={[
+                            { label: 'Learn More', onClick: () => console.log('Learn more clicked') },
+                            { label: 'Dismiss', onClick: () => console.log('Dismiss clicked') }
+                        ]}
+                    >
+                        Your session will expire in 5 minutes.
+                    </Banner>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Icon</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px' }}>
+                    <Banner type="info" showIcon={false}>
+                        A banner without the status icon.
+                    </Banner>
+                    <Banner 
+                        type="success" 
+                        showIcon={false}
+                        actions={[{ label: 'Undo', onClick: () => console.log('Undo clicked') }]}
+                    >
+                        Changes saved successfully.
+                    </Banner>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Close Button</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px' }}>
+                    <Banner type="info" showCloseButton={false}>
+                        This banner cannot be dismissed.
+                    </Banner>
+                    <Banner 
+                        type="error" 
+                        showCloseButton={false}
+                        actions={[{ label: 'Retry', onClick: () => console.log('Retry clicked') }]}
+                    >
+                        Connection failed. Please check your network.
+                    </Banner>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Interactive</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px' }}>
+                    <Banner 
+                        type="info"
+                        actions={[
+                            { label: 'Configure', onClick: () => alert('Configure clicked!') },
+                            { label: 'Remind Later', onClick: () => alert('Remind later clicked!') }
+                        ]}
+                        onClose={() => alert('Banner closed!')}
+                    >
+                        New features are available. Click to configure.
+                    </Banner>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function ButtonsPage() {
     return (
         <div className="component-showcase">
@@ -1920,6 +2023,7 @@ function AppContent() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/typography" element={<Typography />} />
                     <Route path="/colors" element={<Colors />} />
+                    <Route path="/banner" element={<BannerPage />} />
                     <Route path="/buttons" element={<ButtonsPage />} />
                     <Route path="/checkbox" element={<CheckboxPage />} />
                     <Route path="/radio" element={<RadioPage />} />

@@ -1,6 +1,7 @@
 // Shared configuration for all components
 export const componentsConfig = [
     { name: 'Alert', key: 'alert', description: 'Dialog alert with title, body, icon, and action buttons', category: 'components' },
+    { name: 'Banner', key: 'banner', description: 'Notification bar for important information, warnings, errors, or success messages', category: 'components' },
     { name: 'Buttons', key: 'buttons', description: 'Primary and secondary button variants', category: 'components' },
     { name: 'Checkbox', key: 'checkbox', description: 'Checkbox with checked, indeterminate, and disabled states', category: 'components' },
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components' },

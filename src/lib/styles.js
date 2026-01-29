@@ -47,3 +47,6 @@ import '../ui/components/toolwindow/ToolWindowHeader.css';
 // Tree Styles
 import '../ui/components/tree/Tree.css';
 import '../ui/components/tree/TreeNode.css';
+
+// Notification Styles
+import '../ui/components/banner/Banner.css';
