@@ -10,7 +10,10 @@ export const componentsConfig = [
     { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components' },
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
     { name: 'Link', key: 'link', description: 'Text links with default, dropdown, and external variants', category: 'components' },
-    { name: 'IDE Layout', key: 'idelayout', description: 'Complete IDE layout with default and island themes', category: 'components' },
+    { name: 'AI Assistant', key: 'aiassistant', description: 'AI Assistant tool window with chat-like interface', category: 'windows' },
+    { name: 'Main Window', key: 'idelayout', description: 'Complete IDE window layout with default and island themes', category: 'windows' },
+    { name: 'Project', key: 'projectwindow', description: 'Project tool window with file tree navigation', category: 'windows' },
+    { name: 'Terminal', key: 'terminal', description: 'Terminal tool window with tabbed sessions', category: 'windows' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components' },
     { name: 'Radio Button', key: 'radio', description: 'Radio button for single selection from options', category: 'components' },
@@ -48,6 +51,13 @@ export const getSortedFeaturesOnly = () => {
         .sort((a, b) => a.name.localeCompare(b.name));
 };
 
+// Function to get only windows (category: 'windows')
+export const getSortedWindowsOnly = () => {
+    return [...componentsConfig]
+        .filter(item => item.category === 'windows')
+        .sort((a, b) => a.name.localeCompare(b.name));
+};
+
 // Categories configuration
 export const categoriesConfig = [
     {
@@ -62,5 +72,10 @@ export const categoriesConfig = [
         name: 'Components',
         description: 'Interactive UI components',
         pages: getSortedComponentsOnly()
+    },
+    {
+        name: 'Windows',
+        description: 'Complete window layouts',
+        pages: getSortedWindowsOnly()
     }
 ];

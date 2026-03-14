@@ -6,6 +6,9 @@ import TabBar from './ui/components/tabs/TabBar';
 import Input from './ui/components/input/Input';
 import Tree from './ui/components/tree/Tree';
 import ToolWindow from './ui/components/toolwindow/ToolWindow';
+import TerminalWindow from './ui/components/toolwindow/TerminalWindow';
+import ProjectWindow from './ui/components/toolwindow/ProjectWindow';
+import AIAssistantWindow from './ui/components/toolwindow/AIAssistantWindow';
 import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
@@ -33,7 +36,7 @@ import StatusBar from './ui/components/statusbar/StatusBar';
 import Alert from './ui/components/alert/Alert';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly } from './componentsConfig';
+import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -1905,10 +1908,150 @@ function AlertPage() {
     );
 }
 
+function TerminalWindowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Terminal</h1>
+            <p className="component-description">
+                Terminal tool window with tabbed sessions. Supports multiple local terminal tabs 
+                with add, close, and session management actions.
+            </p>
+
+            <div className="component-section">
+                <h2>Single Session</h2>
+                <p className="section-description">
+                    A terminal window with a single active session.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <TerminalWindow />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Multiple Sessions</h2>
+                <p className="section-description">
+                    Terminal with multiple tabs for parallel sessions.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <TerminalWindow
+                        tabs={[
+                            { label: 'Local', closable: true },
+                            { label: 'Local (1)', closable: true },
+                            { label: 'Local (2)', closable: true }
+                        ]}
+                        lines={[
+                            { text: 'user@machine:~/projects/intellij$ npm run build', type: 'command' },
+                            { text: 'Building project...', type: 'output' },
+                            { text: '✓ Build completed successfully', type: 'success' },
+                            { text: 'user@machine:~/projects/intellij$ _', type: 'prompt' }
+                        ]}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ProjectWindowPage() {
+    const compactTreeData = [
+        {
+            id: '1',
+            label: 'my-app',
+            icon: 'nodes/folder',
+            isExpanded: true,
+            children: [
+                { id: '1-1', label: 'node_modules', icon: 'nodes/folder' },
+                {
+                    id: '1-2',
+                    label: 'src',
+                    icon: 'nodes/folder',
+                    isExpanded: true,
+                    children: [
+                        { id: '1-2-1', label: 'App.js', icon: 'fileTypes/javaScript' },
+                        { id: '1-2-2', label: 'index.js', icon: 'fileTypes/javaScript' },
+                        { id: '1-2-3', label: 'styles.css', icon: 'fileTypes/css' }
+                    ]
+                },
+                { id: '1-3', label: 'package.json', icon: 'fileTypes/json' },
+                { id: '1-4', label: 'README.md', icon: 'fileTypes/text' }
+            ]
+        }
+    ];
+
+    return (
+        <div className="component-showcase">
+            <h1>Project</h1>
+            <p className="component-description">
+                Project tool window displaying a hierarchical file tree for navigating the project structure.
+                Supports expand/collapse of directories and file type icons.
+            </p>
+
+            <div className="component-section">
+                <h2>Standard Project Tree</h2>
+                <p className="section-description">
+                    Full project tree with nested directories and various file types.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <ProjectWindow />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Compact Project</h2>
+                <p className="section-description">
+                    A smaller project with fewer files, typical for simple applications.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <ProjectWindow
+                        width={280}
+                        height={300}
+                        treeData={compactTreeData}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function AIAssistantWindowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>AI Assistant</h1>
+            <p className="component-description">
+                AI Assistant tool window providing a chat-like interface for code assistance, 
+                explanations, and suggestions.
+            </p>
+
+            <div className="component-section">
+                <h2>Chat Interface</h2>
+                <p className="section-description">
+                    AI Assistant with a conversation thread showing user prompts and AI responses.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <AIAssistantWindow />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Empty State</h2>
+                <p className="section-description">
+                    AI Assistant when no conversation has been started.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <AIAssistantWindow
+                        height={300}
+                        empty={true}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function IDELayoutPage() {
     return (
         <div className="component-showcase">
-            <h1>IDE Layout</h1>
+            <h1>Main Window</h1>
             <p className="component-description">
                 A full IDE window layout combining MainToolbar, Stripe panels, Tool Windows, 
                 Editor tabs, Code Editor, and Status Bar. Click on stripe buttons to toggle panels.
@@ -1954,7 +2097,7 @@ function IDELayoutPage() {
 // Sidebar Navigation Component
 function Sidebar() {
     const location = useLocation();
-    const { theme, themeMode, toggleTheme } = useTheme();
+    const { theme, toggleTheme } = useTheme();
     
     const isActive = (path) => location.pathname === path;
 
@@ -1966,12 +2109,8 @@ function Sidebar() {
                     <span className="logo-text">Library</span>
                 </Link>
                 <ToolbarIconButton
-                    icon={themeMode === 'auto' 
-                        ? 'theme/systemTheme' 
-                        : (theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme')}
-                    tooltip={themeMode === 'auto' 
-                        ? 'Using system theme' 
-                        : `Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                    icon={theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme'}
+                    tooltip={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
                     onClick={toggleTheme}
                 />
             </div>
@@ -1995,6 +2134,19 @@ function Sidebar() {
             <div className="nav-category">
                 <div className="nav-category-title">Components</div>
                 {getSortedComponentsOnly().map((component) => (
+                    <Link
+                        key={component.key}
+                        to={`/${component.key}`}
+                        className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
+                    >
+                        {component.name}
+                    </Link>
+                ))}
+            </div>
+
+            <div className="nav-category">
+                <div className="nav-category-title">Windows</div>
+                {getSortedWindowsOnly().map((component) => (
                     <Link
                         key={component.key}
                         to={`/${component.key}`}
@@ -2045,6 +2197,9 @@ function AppContent() {
                     <Route path="/toolwindow" element={<ToolWindowPage />} />
                     <Route path="/toolbardropdown" element={<ToolbarDropdownPage />} />
                     <Route path="/idelayout" element={<IDELayoutPage />} />
+                    <Route path="/terminal" element={<TerminalWindowPage />} />
+                    <Route path="/projectwindow" element={<ProjectWindowPage />} />
+                    <Route path="/aiassistant" element={<AIAssistantWindowPage />} />
                     <Route path="/projectselector" element={<ProjectSelectorPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />
