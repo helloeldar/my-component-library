@@ -13,6 +13,7 @@ import './IconButton.css';
 function ToolbarIconButton({
     icon,
     type = 'action',
+    variant = 'default',
     toggled = false,
     disabled = false,
     tooltip,
@@ -25,13 +26,14 @@ function ToolbarIconButton({
     const classes = [
         'toolbar-icon-button',
         `toolbar-icon-button-${type}`,
+        variant === 'mainToolbar' ? 'toolbar-icon-button-main-toolbar' : '',
         toggled && type === 'toggle' ? 'toolbar-icon-button-toggled' : '',
         disabled ? 'toolbar-icon-button-disabled' : '',
         showBadge ? 'toolbar-icon-button-badge' : '',
         className
     ].filter(Boolean).join(' ');
 
-    const iconSize = 16;
+    const iconSize = variant === 'mainToolbar' ? 20 : 16;
 
     const tooltipText = tooltip 
         ? (shortcut ? `${tooltip} (${shortcut})` : tooltip)

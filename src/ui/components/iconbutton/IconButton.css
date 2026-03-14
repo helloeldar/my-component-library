@@ -17,6 +17,13 @@
     position: relative;
 }
 
+/* Main Toolbar variant - bigger button with 20px icons */
+.toolbar-icon-button-main-toolbar {
+    width: 30px;
+    height: 30px;
+    padding: 5px; /* (30 - 20) / 2 = 5px around 20px icon */
+}
+
 /* State background layer - positioned with 2px inset per Figma specs */
 .toolbar-icon-button::before {
     content: '';
@@ -26,6 +33,12 @@
     background: transparent;
     transition: background-color 0.15s ease;
     z-index: 0;
+}
+
+/* Main Toolbar variant background layer - 2px inset creates 26x26px bg inside 30x30px button */
+.toolbar-icon-button-main-toolbar::before {
+    inset: 2px;
+    border-radius: 5px;
 }
 
 /* Icon layer above background */
@@ -40,7 +53,7 @@
  * Dark: #393B40 (Gray 3)
  */
 .toolbar-icon-button:hover:not(:disabled)::before {
-    background: var(--icon-button-hover-bg, #EBECF0);
+    background: var(--icon-button-hover-bg);
 }
 
 .toolbar-icon-button:hover:not(:disabled) {
@@ -49,7 +62,7 @@
 
 /* Active/Pressed State */
 .toolbar-icon-button:active:not(:disabled)::before {
-    background: var(--icon-button-pressed-bg, #DFE1E5);
+    background: var(--icon-button-pressed-bg);
 }
 
 /* Focus State */
