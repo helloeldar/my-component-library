@@ -2,7 +2,6 @@ import React from 'react';
 import ToolbarIconButton from '../iconbutton/IconButton';
 import ProjectSelector from '../projectselector/ProjectSelector';
 import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
-import Icon from '../icon/Icon';
 import './MainToolbar.css';
 
 function MainToolbar({ 
@@ -44,20 +43,19 @@ function MainToolbar({
             {/* Right Side - Run Widget and Actions */}
             <div className="toolbar-right">
                 <div className="run-widget">
-                    <div className="run-config">
-                        <Icon name="runConfigurations/application" size={16} />
-                        <span className="config-name">{runConfig}</span>
-                        <span className="dropdown-arrow">▼</span>
-                    </div>
-                    <ToolbarIconButton icon="run/run" tooltip="Run" shortcut="⌃R" />
-                    <ToolbarIconButton icon="run/debug" tooltip="Debug" shortcut="⌃D" />
-                    <ToolbarIconButton icon="run/stop" tooltip="Stop" disabled />
+                    <ToolbarDropdown
+                        icon="runConfigurations/application"
+                        text={runConfig}
+                    />
+                    <ToolbarIconButton icon="run/run" variant="mainToolbar" tooltip="Run" shortcut="⌃R" />
+                    <ToolbarIconButton icon="run/debug" variant="mainToolbar" tooltip="Debug" shortcut="⌃D" />
+                    <ToolbarIconButton icon="run/stop" variant="mainToolbar" tooltip="Stop" disabled />
                 </div>
                 
                 <div className="toolbar-actions">
-                    <ToolbarIconButton icon="codeWithMe/cwmAccess" tooltip="Code With Me" />
-                    <ToolbarIconButton icon="general/search" tooltip="Search Everywhere" shortcut="Double ⇧" />
-                    <ToolbarIconButton icon="general/settings" tooltip="Settings" />
+                    <ToolbarIconButton icon="codeWithMe/cwmAccess@20x20" variant="mainToolbar" tooltip="Code With Me" />
+                    <ToolbarIconButton icon="general/search@20x20" variant="mainToolbar" tooltip="Search Everywhere" shortcut="Double ⇧" />
+                    <ToolbarIconButton icon="general/settings@20x20" variant="mainToolbar" tooltip="Settings" />
                 </div>
             </div>
         </div>

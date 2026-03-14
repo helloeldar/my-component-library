@@ -1,0 +1,1 @@
+Read and follow the rules in ai/General rules.md
