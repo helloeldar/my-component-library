@@ -3,7 +3,6 @@ import { FC, ReactNode, HTMLAttributes, InputHTMLAttributes, ButtonHTMLAttribute
 // Theme Provider
 export interface ThemeContextValue {
   theme: 'light' | 'dark';
-  themeMode: 'light' | 'dark' | 'auto';
   toggleTheme: () => void;
 }
 
@@ -75,6 +74,7 @@ export interface IconButtonProps {
   icon: string;
   size?: number;
   type?: 'action' | 'toggle';
+  variant?: 'default' | 'mainToolbar';
   isActive?: boolean;
   disabled?: boolean;
   tooltip?: string;
@@ -198,6 +198,9 @@ export const StatusBarWidget: FC<{ icon?: string; label?: string; onClick?: () =
 // Tool Window Components
 export const ToolWindow: FC<{ title?: string; icon?: string; children?: ReactNode; tabs?: any[]; activeTab?: string; onTabChange?: (id: string) => void; onClose?: () => void }>;
 export const ToolWindowHeader: FC<{ title?: string; icon?: string; actions?: ReactNode; onClose?: () => void }>;
+export const TerminalWindow: FC<{ title?: string; width?: number | string; height?: number | string; tabs?: any[]; activeTab?: number; onTabChange?: (index: number) => void; actions?: string[]; lines?: any[]; className?: string }>;
+export const ProjectWindow: FC<{ title?: string; width?: number | string; height?: number | string; treeData?: any[]; actions?: string[]; onNodeSelect?: (id: string) => void; onNodeToggle?: (id: string) => void; className?: string }>;
+export const AIAssistantWindow: FC<{ title?: string; width?: number | string; height?: number | string; messages?: any[]; placeholder?: string; empty?: boolean; actions?: string[]; className?: string }>;
 
 // Tree Components
 export const Tree: FC<{ data?: any[]; selectedId?: string; onSelect?: (id: string) => void; onExpand?: (id: string, expanded: boolean) => void }>;

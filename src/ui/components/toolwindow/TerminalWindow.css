@@ -1,0 +1,20 @@
+/* Terminal Window Content */
+.terminal-content {
+    padding: 12px;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.terminal-content .terminal-user {
+    color: var(--text-primary);
+}
+
+.terminal-content .terminal-path {
+    color: var(--accent-primary);
+}
+
+.terminal-content .terminal-success {
+    color: var(--success-icon);
+}

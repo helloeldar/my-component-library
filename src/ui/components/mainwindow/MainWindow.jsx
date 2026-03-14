@@ -213,7 +213,7 @@ function MainWindow({
                 <div className="main-window-stripe main-window-stripe-right">
                     <StripeContainer className="stripe-section-top">
                         <Stripe 
-                            icon="toolwindows/toolWindowAskAI@20x20"
+                            icon="toolwindows/aiAssistantToolWindow@20x20"
                             state={rightStripeSelection === 'ai' ? 'selected' : 'default'}
                             title="AI Assistant"
                             onClick={() => setRightStripeSelection('ai')}

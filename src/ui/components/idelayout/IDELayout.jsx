@@ -4,7 +4,9 @@ import StripeContainer from '../stripe/StripeContainer';
 import Stripe from '../stripe/Stripe';
 import StatusBar from '../statusbar/StatusBar';
 import ToolWindow from '../toolwindow/ToolWindow';
-import Tree from '../tree/Tree';
+import TerminalWindow from '../toolwindow/TerminalWindow';
+import ProjectWindow from '../toolwindow/ProjectWindow';
+import AIAssistantWindow from '../toolwindow/AIAssistantWindow';
 import TabBar from '../tabs/TabBar';
 import Tab from '../tabs/Tab';
 import CodeExample from '../showcase/CodeExample';
@@ -232,21 +234,27 @@ function IDELayout({
                     <div className="ide-layout-top-row">
                         {/* Left Tool Window (Project) */}
                         {showLeftPanel && (
-                            <ToolWindow
-                                title={leftStripeSelection === 'project' ? 'Project' : 
-                                       leftStripeSelection === 'commit' ? 'Commit' :
-                                       leftStripeSelection === 'pullRequests' ? 'Pull Requests' : 'Structure'}
-                                width={280}
-                                height="auto"
-                                actions={['more', 'minimize']}
-                                className="ide-layout-tool-window ide-layout-tool-window-left"
-                            >
-                                <Tree 
-                                    data={projectTreeData}
-                                    onNodeSelect={(id) => console.log('Selected:', id)}
-                                    onNodeToggle={(id) => console.log('Toggled:', id)}
+                            leftStripeSelection === 'project' ? (
+                                <ProjectWindow
+                                    width={280}
+                                    height="auto"
+                                    treeData={projectTreeData}
+                                    className="ide-layout-tool-window ide-layout-tool-window-left"
                                 />
-                            </ToolWindow>
+                            ) : (
+                                <ToolWindow
+                                    title={leftStripeSelection === 'commit' ? 'Commit' :
+                                           leftStripeSelection === 'pullRequests' ? 'Pull Requests' : 'Structure'}
+                                    width={280}
+                                    height="auto"
+                                    actions={['more', 'minimize']}
+                                    className="ide-layout-tool-window ide-layout-tool-window-left"
+                                >
+                                    <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                                        No content available
+                                    </div>
+                                </ToolWindow>
+                            )
                         )}
 
                         {/* Editor Area */}
@@ -278,39 +286,57 @@ function IDELayout({
 
                         {/* Right Tool Window (AI Assistant) */}
                         {showRightPanel && (
-                            <ToolWindow
-                                title={rightStripeSelection === 'ai' ? 'AI Assistant' : 
-                                       rightStripeSelection === 'database' ? 'Database' :
-                                       rightStripeSelection === 'maven' ? 'Maven' : 'Notifications'}
-                                width={320}
-                                height="auto"
-                                actions={['add', 'more', 'minimize']}
-                                className="ide-layout-tool-window ide-layout-tool-window-right"
-                            >
-                                <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
-                                    {rightStripeSelection === 'ai' ? 'AI Assistant ready to help...' : 'No content available'}
-                                </div>
-                            </ToolWindow>
+                            rightStripeSelection === 'ai' ? (
+                                <AIAssistantWindow
+                                    width={320}
+                                    height="auto"
+                                    empty={true}
+                                    className="ide-layout-tool-window ide-layout-tool-window-right"
+                                />
+                            ) : (
+                                <ToolWindow
+                                    title={rightStripeSelection === 'database' ? 'Database' :
+                                           rightStripeSelection === 'maven' ? 'Maven' : 'Notifications'}
+                                    width={320}
+                                    height="auto"
+                                    actions={['more', 'minimize']}
+                                    className="ide-layout-tool-window ide-layout-tool-window-right"
+                                >
+                                    <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                                        No content available
+                                    </div>
+                                </ToolWindow>
+                            )
                         )}
                     </div>
 
                     {/* Bottom Tool Window (Terminal) */}
                     {showBottomPanel && (
-                        <ToolWindow
-                            title="Terminal"
-                            width="auto"
-                            height={180}
-                            headerType="tabs"
-                            tabs={terminalTabs}
-                            activeTab={activeTerminalTab === 'local' ? 0 : 1}
-                            onTabChange={(index) => setActiveTerminalTab(index === 0 ? 'local' : 'local1')}
-                            actions={['add', 'more', 'minimize']}
-                            className="ide-layout-tool-window ide-layout-tool-window-bottom"
-                        >
-                            <div style={{ padding: '12px', color: 'var(--text-secondary)', fontFamily: 'monospace', fontSize: '13px' }}>
-                                $ _
-                            </div>
-                        </ToolWindow>
+                        bottomStripeSelection === 'terminal' ? (
+                            <TerminalWindow
+                                width="auto"
+                                height={180}
+                                tabs={terminalTabs}
+                                activeTab={activeTerminalTab === 'local' ? 0 : 1}
+                                onTabChange={(index) => setActiveTerminalTab(index === 0 ? 'local' : 'local1')}
+                                lines={[
+                                    { text: 'user@machine:~/projects/' + projectName + '$ _', type: 'prompt' }
+                                ]}
+                                className="ide-layout-tool-window ide-layout-tool-window-bottom"
+                            />
+                        ) : (
+                            <ToolWindow
+                                title={bottomStripeSelection === 'run' ? 'Run' : 'Debug'}
+                                width="auto"
+                                height={180}
+                                actions={['more', 'minimize']}
+                                className="ide-layout-tool-window ide-layout-tool-window-bottom"
+                            >
+                                <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                                    No content available
+                                </div>
+                            </ToolWindow>
+                        )
                     )}
                 </div>
 
@@ -318,7 +344,7 @@ function IDELayout({
                 <div className="ide-layout-stripe ide-layout-stripe-right">
                     <StripeContainer className="stripe-section-top">
                         <Stripe 
-                            icon="toolwindows/toolWindowAskAI@20x20"
+                            icon="toolwindows/aiAssistantToolWindow@20x20"
                             state={rightStripeSelection === 'ai' && showRightPanel ? 'selected' : 'default'}
                             title="AI Assistant"
                             onClick={() => handleRightStripeClick('ai')}

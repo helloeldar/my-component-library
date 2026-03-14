@@ -1,0 +1,65 @@
+/* AI Assistant Chat */
+.ai-assistant-chat {
+    padding: 12px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ai-assistant-message-user {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    align-self: flex-end;
+    max-width: 85%;
+}
+
+.ai-assistant-message-assistant {
+    padding: 10px 12px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.ai-assistant-message-assistant ul {
+    margin: 8px 0;
+    padding-left: 20px;
+    color: var(--text-secondary);
+}
+
+.ai-assistant-message-assistant code {
+    color: var(--accent-primary);
+}
+
+.ai-assistant-message-loading {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* AI Assistant Empty State */
+.ai-assistant-empty {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 100%;
+}
+
+.ai-assistant-empty-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.ai-assistant-input-placeholder {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-primary);
+    color: var(--text-tertiary);
+    font-size: 13px;
+    width: 80%;
+    text-align: left;
+}

@@ -46,6 +46,9 @@ export { default as StatusBarWidget } from '../ui/components/statusbar/StatusBar
 // Tool Window Components
 export { default as ToolWindow } from '../ui/components/toolwindow/ToolWindow';
 export { default as ToolWindowHeader } from '../ui/components/toolwindow/ToolWindowHeader';
+export { default as TerminalWindow } from '../ui/components/toolwindow/TerminalWindow';
+export { default as ProjectWindow } from '../ui/components/toolwindow/ProjectWindow';
+export { default as AIAssistantWindow } from '../ui/components/toolwindow/AIAssistantWindow';
 
 // Tree Components
 export { default as Tree } from '../ui/components/tree/Tree';
