@@ -71,15 +71,15 @@
     flex-shrink: 0;
 }
 
-/* ===== Dark Theme ===== */
-.theme-dark .status-bar {
-    background: #2B2D30; /* Dark/Gray/Gray 2 */
+/* Status bar theming */
+.status-bar {
+    background: var(--bg-elevated);
 }
 
-.theme-dark .status-bar-border {
-    background: #1E1F22; /* Dark/Gray/Gray 1 (Primary) */
+.status-bar-border {
+    background: var(--bg-primary);
 }
 
-.theme-dark .status-bar-chevron svg {
-    fill: #9DA0A8; /* Dark/Gray/Gray 9 */
+.status-bar-chevron svg {
+    fill: var(--text-secondary);
 }

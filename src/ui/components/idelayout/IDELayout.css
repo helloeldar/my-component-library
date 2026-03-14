@@ -171,15 +171,15 @@
 
 /* Default theme stripes */
 .ide-layout-default .ide-layout-stripe {
-    background: var(--gray-130);
+    background: var(--bg-elevated);
 }
 
 .ide-layout-default .ide-layout-stripe-left {
-    border-right: 1px solid var(--gray-140);
+    border-right: 1px solid var(--bg-primary);
 }
 
 .ide-layout-default .ide-layout-stripe-right {
-    border-left: 1px solid var(--gray-140);
+    border-left: 1px solid var(--bg-primary);
 }
 
 .ide-layout-default .stripe-container {
@@ -211,12 +211,12 @@
 }
 
 .ide-layout-default .ide-layout-editor-tabs {
-    background: var(--gray-140);
+    background: var(--bg-primary);
     border-bottom: 1px solid var(--border-primary);
 }
 
 .ide-layout-default .ide-layout-editor-content {
-    background: var(--gray-140);
+    background: var(--bg-primary);
 }
 
 /* Default theme status bar */
@@ -229,11 +229,11 @@
    ============================================ */
 
 .ide-layout-island {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.12) 100%), 
-                linear-gradient(90deg, #2B2D30 0%, #2B2D30 100%);
+    background: linear-gradient(90deg, var(--island-bg-overlay) 0%, var(--island-bg-overlay) 100%), 
+                linear-gradient(90deg, var(--island-bg) 0%, var(--island-bg) 100%);
     border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--island-shadow);
+    border: 1px solid var(--island-border);
 }
 
 .ide-layout-island .main-toolbar {
@@ -276,7 +276,7 @@
 
 /* Island theme editor */
 .ide-layout-island .ide-layout-editor-area {
-    background: #17181A;
+    background: var(--island-editor-bg);
     border-radius: 10px;
 }
 

@@ -9,7 +9,7 @@
 }
 
 .toggle:focus-visible {
-    box-shadow: 0 0 0 2px var(--blue-80);
+    box-shadow: 0 0 0 2px var(--border-focus);
     border-radius: 3px;
 }
 
@@ -29,8 +29,8 @@
 
 /* Toggle ON state */
 .toggle-on .toggle-track {
-    background: var(--gray-100);
-    border: 1px solid var(--gray-80);
+    background: var(--control-bg-pressed);
+    border: 1px solid var(--border-raised);
 }
 
 .toggle-on .toggle-fill {
@@ -39,7 +39,7 @@
     left: 1px;
     width: 34px;
     height: 18px;
-    background: var(--green-70);
+    background: var(--success-icon-stroke);
     border-radius: 2px 0 0 2px;
 }
 
@@ -51,12 +51,12 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    color: var(--gray-white);
+    color: var(--text-inverse);
 }
 
 /* Toggle OFF state */
 .toggle-off .toggle-track {
-    background: var(--gray-80);
+    background: var(--text-secondary);
 }
 
 .toggle-off .toggle-fill {
@@ -66,7 +66,7 @@
     left: 18px;
     width: 34px;
     height: 18px;
-    background: var(--gray-100);
+    background: var(--control-bg-pressed);
     border-radius: 0 2px 2px 0;
 }
 
@@ -78,16 +78,16 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    color: var(--gray-60);
+    color: var(--text-muted);
 }
 
 /* Hover states */
 .toggle-on.toggle-hovered .toggle-fill {
-    background: var(--green-60);
+    background: var(--success-icon);
 }
 
 .toggle-off.toggle-hovered .toggle-track {
-    background: var(--gray-70);
+    background: var(--text-muted);
 }
 
 

@@ -102,16 +102,11 @@
 }
 
 .tab-underline-selected {
-    background: var(--blue-primary, #3574F0);
+    background: var(--tab-active-border);
 }
 
 .tab-underline-inactive {
-    background: var(--gray-8, #A8ADBD);
-}
-
-/* Dark theme inactive underline */
-.theme-dark .tab-underline-inactive {
-    background: var(--gray-6, #5A5D63);
+    background: var(--tab-inactive-border);
 }
 
 /* ========================

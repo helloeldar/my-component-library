@@ -13,7 +13,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    border-bottom: 1px solid var(--border-primary, #393B40);
+    border-bottom: 1px solid var(--border-primary);
 }
 
 .tab-bar-horizontal.tab-bar-wrap {
@@ -30,7 +30,7 @@
     justify-content: flex-start;
     width: 100%;
     padding: 4px;
-    border-right: 1px solid var(--border-primary, #393B40);
+    border-right: 1px solid var(--border-primary);
 }
 
 /* Small tab bar */

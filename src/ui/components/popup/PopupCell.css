@@ -62,7 +62,7 @@
 .popup-cell-separator-line {
     width: 100%;
     height: 1px;
-    background-color: #393B40; /* Dark/Gray/Gray 3 from Figma */
+    background-color: var(--border-secondary);
 }
 
 /* Footer cell */

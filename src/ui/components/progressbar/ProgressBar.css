@@ -35,7 +35,7 @@
 .progress-bar-track {
     flex: 1;
     height: 4px;
-    background: var(--gray-110);
+    background: var(--bg-secondary);
     border-radius: 2px;
     overflow: hidden;
     position: relative;

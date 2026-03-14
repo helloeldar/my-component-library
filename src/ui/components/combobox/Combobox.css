@@ -50,8 +50,8 @@
 .combobox {
     display: flex;
     align-items: center;
-    background: var(--gray-120);
-    border: 1px solid var(--gray-100);
+    background: var(--control-bg);
+    border: 1px solid var(--border-control);
     border-radius: 4px;
     min-height: 28px;
     transition: all 0.15s ease;
@@ -105,17 +105,17 @@
     top: 4px;
     bottom: 4px;
     width: 1px;
-    background: var(--gray-100);
+    background: var(--border-control);
 }
 
 /* Hover state */
 .combobox:hover:not(.combobox-disabled):not(.combobox-focused) {
-    border-color: var(--gray-90);
+    border-color: var(--border-raised);
 }
 
 /* Focus state */
 .combobox-focused:not(.combobox-disabled) {
-    border: 2px solid var(--blue-80);
+    border: 2px solid var(--border-focus);
     margin: -1px;
 }
 
@@ -125,7 +125,7 @@
 
 /* Error state */
 .combobox-error {
-    border: 2px solid var(--red-70);
+    border: 2px solid var(--input-border-error);
     margin: -1px;
 }
 
@@ -134,12 +134,12 @@
 }
 
 .combobox-error.combobox-focused {
-    border: 2px solid var(--red-70);
+    border: 2px solid var(--input-border-error);
 }
 
 /* Disabled state */
 .combobox-disabled {
-    background: var(--gray-110);
+    background: var(--control-bg-disabled);
     cursor: not-allowed;
 }
 

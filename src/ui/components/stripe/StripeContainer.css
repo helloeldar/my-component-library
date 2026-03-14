@@ -1,8 +1,8 @@
 /* Stripe Container Component */
 .stripe-container {
     width: 40px;
-    background: var(--gray-130);
-    border-right: 1px solid var(--gray-140);
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--bg-primary);
     display: flex;
     flex-direction: column;
     min-height: 0;

@@ -113,7 +113,7 @@
 .ide-editor-tabs {
     flex-shrink: 0;
     height: 40px;
-    background: var(--gray-140);
+    background: var(--bg-primary);
     border-bottom: 1px solid var(--border-primary);
     padding: 0 8px;
 }
@@ -126,7 +126,7 @@
 .ide-editor-content {
     flex: 1;
     overflow: auto;
-    background: var(--gray-140);
+    background: var(--bg-primary);
 }
 
 .ide-editor-content .component-examples-vertical {
@@ -139,11 +139,11 @@
     height: 100%;
     border: none;
     border-radius: 0;
-    background: var(--gray-140);
+    background: var(--bg-primary);
 }
 
 .ide-editor-content .code-example textarea {
-    background: var(--gray-140);
+    background: var(--bg-primary);
 }
 
 /* Status Bar */

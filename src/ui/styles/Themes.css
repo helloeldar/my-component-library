@@ -169,8 +169,7 @@
 
 }
 
-/* Light Theme Semantic Colors - COMMENTED OUT */
-/*
+/* Light Theme Semantic Colors */
 .theme-light {
     --bg-primary: var(--gray-10);
     --bg-secondary: var(--gray-20);
@@ -205,6 +204,7 @@
     --tab-hover-bg: var(--bg-tertiary);
     --tab-active-bg: var(--blue-30);
     --tab-active-border: var(--blue-40);
+    --tab-inactive-border: #A8ADBD;
     --tab-active-text: var(--text-primary);
     --icon-stroke: var(--gray-80);
     --icon-secondary: var(--gray-70);
@@ -213,6 +213,8 @@
     --success-bg: var(--green-30);
     --success-icon-fill: var(--green-10);
     --success-icon-outline: var(--green-70);
+    --success-icon: var(--green-60);
+    --success-icon-stroke: var(--green-70);
     --success-stripe: var(--green-50);
     --file-color-green: var(--green-20);
     --error-bg: var(--red-30);
@@ -327,8 +329,49 @@
     --stripe-badge-inactive: #55A76A;
     --text-white: #FFFFFF;
     --text-tertiary: var(--gray-80);
+
+    /* Search - Light Theme */
+    --search-bg: var(--gray-white);
+    --search-border: var(--gray-40);
+    --search-border-focus: var(--blue-80);
+    --search-border-invalid: var(--red-30);
+    --search-border-invalid-focus: var(--red-80);
+    --search-icon-color: var(--gray-70);
+    --search-placeholder: var(--gray-70);
+    --search-close-color: var(--gray-70);
+    --search-close-hover-bg: rgba(0, 0, 0, 0.06);
+    --search-close-hover-color: var(--gray-80);
+
+    /* Table - Light Theme */
+    --table-bg: var(--gray-white);
+    --table-border: var(--gray-30);
+    --table-header-text: var(--gray-black);
+    --table-cell-text: var(--gray-black);
+    --table-row-hover-bg: var(--gray-10);
+    --table-row-selected-bg: var(--blue-30);
+    --table-stripe-bg: var(--gray-10);
+    --table-toolbar-hover-bg: rgba(0, 0, 0, 0.06);
+
+    /* Segmented Control - Light Theme */
+    --segmented-control-border: var(--gray-40);
+    --segmented-control-text: var(--gray-black);
+    --segmented-control-selected-bg: var(--gray-white);
+    --segmented-control-selected-border: var(--gray-50);
+    --segmented-control-selected-text: var(--gray-black);
+    --segmented-control-hover-bg: rgba(0, 0, 0, 0.04);
+    --segmented-control-disabled-border: var(--gray-30);
+    --segmented-control-disabled-text: var(--gray-50);
+    --segmented-control-disabled-selected-bg: var(--gray-20);
+    --segmented-control-disabled-selected-border: var(--gray-30);
+    --segmented-control-focus-border: var(--blue-80);
+
+    /* Island Layout - Light Theme */
+    --island-bg: var(--gray-20);
+    --island-bg-overlay: rgba(0, 0, 0, 0.04);
+    --island-border: rgba(0, 0, 0, 0.1);
+    --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --island-editor-bg: var(--gray-white);
 }
-*/
 
 /* Dark Theme Semantic Colors */
 .theme-dark {
@@ -377,6 +420,7 @@
     --tab-hover-bg: var(--bg-tertiary);
     --tab-active-bg: var(--blue-110); /* D: selection */
     --tab-active-border: var(--blue-100); /* D: icon fill, info bg */
+    --tab-inactive-border: #5A5D63;
     --tab-active-text: var(--text-primary);
 
     /* Icon Colors */
@@ -571,4 +615,11 @@
     --segmented-control-disabled-selected-bg: #4E5157; /* Dark/Gray/Gray 5 */
     --segmented-control-disabled-selected-border: #4E5157; /* Dark/Gray/Gray 5 */
     --segmented-control-focus-border: #3574F0; /* Dark/Blue/Blue 6 (Primary) */
+
+    /* Island Layout - Dark Theme */
+    --island-bg: #2B2D30;
+    --island-bg-overlay: rgba(0, 0, 0, 0.12);
+    --island-border: rgba(255, 255, 255, 0.08);
+    --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+    --island-editor-bg: #17181A;
 }

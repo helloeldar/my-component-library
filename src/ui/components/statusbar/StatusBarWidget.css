@@ -37,34 +37,34 @@
     flex-shrink: 0;
 }
 
-/* ===== Dark Theme ===== */
+/* ===== State Styles ===== */
 
-/* Default state - Dark */
-.theme-dark .status-bar-widget-default {
+/* Default state */
+.status-bar-widget-default {
     background: transparent;
 }
 
-.theme-dark .status-bar-widget-default .status-bar-widget-text {
-    color: #9DA0A8; /* Dark/Gray/Gray 9 */
+.status-bar-widget-default .status-bar-widget-text {
+    color: var(--text-secondary);
 }
 
-/* Hovered state - Dark */
-.theme-dark .status-bar-widget-hovered {
-    background: #393B40; /* Dark/Gray/Gray 3 */
+/* Hovered state */
+.status-bar-widget-hovered {
+    background: var(--control-bg-hover);
     cursor: pointer;
 }
 
-.theme-dark .status-bar-widget-hovered .status-bar-widget-text {
-    color: #9DA0A8; /* Dark/Gray/Gray 9 */
+.status-bar-widget-hovered .status-bar-widget-text {
+    color: var(--text-secondary);
 }
 
-/* Pressed state - Dark */
-.theme-dark .status-bar-widget-pressed {
-    background: #393B40; /* Dark/Gray/Gray 3 */
+/* Pressed state */
+.status-bar-widget-pressed {
+    background: var(--control-bg-hover);
 }
 
-.theme-dark .status-bar-widget-pressed .status-bar-widget-text {
-    color: #9DA0A8; /* Dark/Gray/Gray 9 */
+.status-bar-widget-pressed .status-bar-widget-text {
+    color: var(--text-secondary);
 }
 
 /* Interactive hover behavior */
@@ -72,11 +72,11 @@
     cursor: pointer;
 }
 
-.theme-dark .status-bar-widget-default:hover {
-    background: #393B40;
+.status-bar-widget-default:hover {
+    background: var(--control-bg-hover);
 }
 
 /* Active/pressed behavior */
-.theme-dark .status-bar-widget:active {
-    background: #393B40;
+.status-bar-widget:active {
+    background: var(--control-bg-hover);
 }

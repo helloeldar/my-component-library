@@ -46,15 +46,15 @@
 
 /* Dark Theme (default - for dark toolbar background) */
 .toolbar-dropdown-theme-dark .toolbar-dropdown-text {
-    color: #EBECF0; /* Light/Gray/Gray 12 */
+    color: var(--text-primary);
 }
 
 .toolbar-dropdown-theme-dark .toolbar-dropdown-icon {
-    color: #6C707E; /* Light/Gray/Gray 6 */
+    color: var(--icon-secondary);
 }
 
 .toolbar-dropdown-theme-dark .toolbar-dropdown-chevron {
-    color: #818594; /* Light/Gray/Gray 7 */
+    color: var(--text-muted);
 }
 
 .toolbar-dropdown-theme-dark.toolbar-dropdown-hovered .toolbar-dropdown-content,
@@ -67,15 +67,15 @@
 
 /* Light Theme (for light toolbar with dark text) */
 .toolbar-dropdown-theme-light .toolbar-dropdown-text {
-    color: #EBECF0; /* Light/Gray/Gray 12 */
+    color: var(--text-primary);
 }
 
 .toolbar-dropdown-theme-light .toolbar-dropdown-icon {
-    color: #6C707E; /* Light/Gray/Gray 6 */
+    color: var(--icon-secondary);
 }
 
 .toolbar-dropdown-theme-light .toolbar-dropdown-chevron {
-    color: #818594; /* Light/Gray/Gray 7 */
+    color: var(--text-muted);
 }
 
 .toolbar-dropdown-theme-light.toolbar-dropdown-hovered .toolbar-dropdown-content,
@@ -88,15 +88,15 @@
 
 /* Light Header Theme (for light header with dark text) */
 .toolbar-dropdown-theme-light-header .toolbar-dropdown-text {
-    color: #000000; /* Light/Gray/Gray 1 */
+    color: var(--text-primary);
 }
 
 .toolbar-dropdown-theme-light-header .toolbar-dropdown-icon {
-    color: #6C707E; /* Light/Gray/Gray 6 */
+    color: var(--icon-secondary);
 }
 
 .toolbar-dropdown-theme-light-header .toolbar-dropdown-chevron {
-    color: #818594; /* Light/Gray/Gray 7 */
+    color: var(--text-muted);
 }
 
 .toolbar-dropdown-theme-light-header.toolbar-dropdown-hovered .toolbar-dropdown-content,
