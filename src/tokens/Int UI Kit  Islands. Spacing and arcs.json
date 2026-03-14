@@ -1,0 +1,57 @@
+{
+    "collections": [
+        {
+            "name": "Spacing and arcs",
+            "modes": [
+                "Default",
+                "Compact"
+            ],
+            "variables": {
+                "comment-gap-horizontal": {
+                    "id": "VariableID:22858:22796",
+                    "type": "number",
+                    "values": {
+                        "Default": 12,
+                        "Compact": 12
+                    },
+                    "scopes": [
+                        "ALL_SCOPES"
+                    ]
+                },
+                "component-gap-vertical": {
+                    "id": "VariableID:22858:28316",
+                    "type": "number",
+                    "values": {
+                        "Default": 6,
+                        "Compact": 6
+                    },
+                    "scopes": [
+                        "ALL_SCOPES"
+                    ]
+                },
+                "island-arc": {
+                    "id": "VariableID:26982:51623",
+                    "type": "number",
+                    "values": {
+                        "Default": 10,
+                        "Compact": 8
+                    },
+                    "scopes": [
+                        "ALL_SCOPES"
+                    ]
+                },
+                "island-inset": {
+                    "id": "VariableID:26982:51624",
+                    "type": "number",
+                    "values": {
+                        "Default": 4,
+                        "Compact": 3
+                    },
+                    "scopes": [
+                        "ALL_SCOPES"
+                    ]
+                }
+            }
+        }
+    ]
+}
