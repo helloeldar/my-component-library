@@ -195,11 +195,17 @@ npm start
 ```
 Opens [http://localhost:3000](http://localhost:3000) with the component showcase.
 
-### Building
+### Building the Library
+```bash
+npm run build:lib
+```
+Produces distributable bundles in `dist/` (CJS + ESM + CSS).
+
+### Building the Showcase App
 ```bash
 npm run build
 ```
-Creates optimized production build in the `build` folder.
+Creates optimized production build of the showcase in the `build` folder.
 
 ### Testing
 ```bash
@@ -207,7 +213,60 @@ npm test
 ```
 Launches the test runner in interactive watch mode.
 
-## 🔧 Usage
+## 📦 Using as an npm Dependency
+
+This library can be installed as an npm dependency in any React project to build JetBrains IDE-like prototypes.
+
+### Install
+
+```bash
+# From npm (after publishing)
+npm install @jetbrains/int-ui-kit
+
+# From local path (for development)
+npm install ../path/to/int-ui-kit-library
+
+# From Git repo
+npm install git+https://github.com/user/int-ui-kit-library.git
+```
+
+> **Note**: When installing from a local path or Git, run `npm run build:lib` in this repo first.
+
+### Import Styles
+
+Import the stylesheet once at your app's entry point:
+
+```jsx
+import '@jetbrains/int-ui-kit/styles.css';
+```
+
+### Use Components
+
+```jsx
+import { ThemeProvider, Button, Input, ToolWindow, Icon } from '@jetbrains/int-ui-kit';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <Button type="primary">Click me</Button>
+      <Input label="Name" placeholder="Enter name..." />
+    </ThemeProvider>
+  );
+}
+```
+
+### Theme Management
+
+```jsx
+import { useTheme } from '@jetbrains/int-ui-kit';
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  return <button onClick={toggleTheme}>Current: {theme}</button>;
+}
+```
+
+## 🔧 Local Usage (within this repo)
 
 ### Basic Setup
 ```jsx
@@ -308,3 +367,4 @@ All colors are defined as CSS custom properties, enabling easy theming:
 - [React Documentation](https://reactjs.org/)
 - [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
 - [IntelliJ Platform UI Guidelines](https://plugins.jetbrains.com/docs/intellij/user-interface-components.html)
+  https://github.com/JetBrains/IntelliJIcons Icons repository
