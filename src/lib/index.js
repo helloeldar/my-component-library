@@ -54,5 +54,5 @@ export { default as AIAssistantWindow } from '../ui/components/toolwindow/AIAssi
 export { default as Tree } from '../ui/components/tree/Tree';
 export { default as TreeNode } from '../ui/components/tree/TreeNode';
 
-// Icon Registry
-export { default as iconRegistry, iconNames, getIcon } from '../icons';
+// Icon Registry (static — no require.context)
+export { default as iconRegistry, iconNames, getIcon } from './iconRegistry';
