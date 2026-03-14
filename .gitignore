@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# OpenMemory - IDE/Assistant specific rules
+.cursor/rules/openmemory.mdc

@@ -1,8 +1,5 @@
 # Component Library
 
-This library is used by UX designers to quickly prototype designs for IDEs.
-Components are imitating Int UI Kit.
-
 ## 🎯 Overview
 
 This library provides a collection of reusable UI components designed with modern design principles, featuring:

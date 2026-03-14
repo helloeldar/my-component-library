@@ -6,6 +6,8 @@ Check IntelliJ UI Guidelines to understand our design principles and best practi
 https://plugins.jetbrains.com/docs/intellij/ui-guidelines-welcome.html
 Warn if you see a violation of the guidelines.
 
+The guidelines are also available locally in the `ui-guidelines/` folder. Use this for offline access or detailed reference.
+
 Recheck this list monthly for new or updated pages. Update the last checked date, so we don't check it again.
 
 ## UI Guidelines Subpages (Updated: December 2025)
