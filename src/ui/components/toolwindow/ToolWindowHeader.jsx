@@ -9,19 +9,21 @@ function ToolWindowHeader({
     activeTab = 0,
     onTabChange,
     showSeparator = false,
+    border = true,
+    dropdown = false,
     actions = ['more', 'minimize'],
     onActionClick
 }) {
     const getActionIcon = (action) => {
-        switch (action) {
-            case 'more':
-                return 'general/moreVertical';
-            case 'minimize':
-                return 'general/remove';
-            case 'close':
-                return 'general/closeSmall';
-            case 'add':
-                return 'general/add';
+            switch (action) {
+                case 'more':
+                    return 'general/moreVertical';
+                case 'minimize':
+                    return 'general/hide';
+                case 'close':
+                    return 'general/closeSmall';
+                case 'add':
+                    return 'general/add';
             default:
                 return null;
         }
@@ -68,25 +70,40 @@ function ToolWindowHeader({
         );
     };
 
+    const renderTitle = () => (
+        <div className="tool-window-header-title-group">
+            <h3 className="tool-window-header-title">{title}</h3>
+            {dropdown && (
+                <button
+                    type="button"
+                    className="tool-window-header-dropdown"
+                    onClick={() => onActionClick && onActionClick('dropdown')}
+                >
+                    <Icon name="general/chevronDown" size={16} />
+                </button>
+            )}
+        </div>
+    );
+
     return (
         <div className="tool-window-header">
             <div className="tool-window-header-content">
                 {type === 'tabs' ? (
                     <>
                         <div className="tool-window-header-left">
-                            <h3 className="tool-window-header-title">{title}</h3>
+                            {renderTitle()}
                             {renderTabs()}
                         </div>
                         {renderActions()}
                     </>
                 ) : (
                     <>
-                        <h3 className="tool-window-header-title">{title}</h3>
+                        {renderTitle()}
                         {renderActions()}
                     </>
                 )}
             </div>
-            {(showSeparator || type === 'separator') && (
+            {(border || showSeparator || type === 'separator') && (
                 <div className="tool-window-header-separator"></div>
             )}
         </div>
