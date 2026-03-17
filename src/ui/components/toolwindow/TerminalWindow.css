@@ -1,20 +1,235 @@
 /* Terminal Window Content */
-.terminal-content {
-    padding: 12px;
-    color: var(--text-secondary);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    line-height: 1.6;
+.terminal-window .tool-window-content {
+    background: var(--terminal-bg);
+    display: flex;
+    flex-direction: column;
 }
 
-.terminal-content .terminal-user {
+/* Terminal content wrapper for positioning */
+.terminal-content-wrapper {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Output area (scrollable command blocks) */
+.terminal-output-area {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+/* Command Block */
+.terminal-command-block {
+    position: relative;
+    padding: 0 6px;
+}
+
+.terminal-command-block-inner {
+    padding: 6px 8px 6px 10px;
+}
+
+.terminal-path-and-command {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+/* Prompt path line */
+.terminal-prompt-path {
+    color: var(--terminal-prompt-path);
+    line-height: 18px;
+    height: 18px;
+}
+
+/* Command text */
+.terminal-command {
+    color: var(--terminal-command);
+    line-height: 22px;
+}
+
+/* Output text */
+.terminal-output {
+    color: var(--terminal-output);
+    line-height: 22px;
+}
+
+/* Error output */
+.terminal-error {
+    color: var(--editor-error, #F75464);
+    line-height: 22px;
+}
+
+/* Success output */
+.terminal-success {
+    color: var(--success-icon, #69AD7F);
+    line-height: 22px;
+}
+
+/* Hyperlink styling */
+.terminal-link {
+    color: var(--link-text);
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 22px;
+}
+
+.terminal-link:hover {
+    text-decoration: underline;
+}
+
+/* Gradient separator between command blocks */
+.terminal-block-separator {
+    padding: 0 14px;
+}
+
+.terminal-block-separator-line {
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        var(--tool-window-border, #26282C),
+        var(--tool-window-border, #26282C) 50%,
+        transparent
+    );
+}
+
+/* Cursor */
+.terminal-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    background: var(--terminal-cursor);
+    vertical-align: text-bottom;
+    animation: terminal-blink 1s step-end infinite;
+}
+
+@keyframes terminal-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Ghost text (AI inline completion) */
+.terminal-ghost {
+    color: var(--terminal-output);
+    opacity: 0.4;
+}
+
+/* Input area at bottom */
+.terminal-input-area {
+    border-top: 1px solid var(--tool-window-border, #26282C);
+    padding: 12px 16px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.terminal-input-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.terminal-input-path {
+    color: var(--terminal-command);
+    line-height: 22px;
+}
+
+.terminal-input-branch {
+    color: var(--terminal-prompt-branch);
+    font-size: 12px;
+    line-height: 22px;
+}
+
+.terminal-input-cursor-line {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+}
+
+/* Selection highlight */
+.terminal-output-area ::selection,
+.terminal-input-area ::selection {
+    background: var(--selection-bg);
+}
+
+/* Search overlay */
+.terminal-search-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: var(--search-bg);
+    border: 1px solid var(--search-border);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.terminal-search-input {
+    width: 180px;
+    height: 24px;
+    padding: 0 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--input-text);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    outline: none;
+}
+
+.terminal-search-input:focus {
+    border-color: var(--input-border-focus);
+}
+
+.terminal-search-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.terminal-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    color: var(--icon-secondary);
+    padding: 0;
+}
+
+.terminal-search-btn:hover {
+    background: var(--control-bg-hover);
     color: var(--text-primary);
 }
 
-.terminal-content .terminal-path {
-    color: var(--accent-primary);
+.terminal-search-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    padding: 0 4px;
 }
 
-.terminal-content .terminal-success {
-    color: var(--success-icon);
+/* Context menu */
+.terminal-context-menu {
+    position: absolute;
+    z-index: 20;
 }

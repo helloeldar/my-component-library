@@ -27,6 +27,7 @@ function Tab({
     ...props
 }) {
     const [isHovered, setIsHovered] = useState(false);
+    const [isCloseHovered, setIsCloseHovered] = useState(false);
 
     // Determine state
     const getState = () => {
@@ -79,9 +80,14 @@ function Tab({
                     <span className="tab-label">{label}</span>
                 </div>
                 {closable && (
-                    <span className="tab-close" onClick={handleClose}>
-                        <Icon name="general/closeSmall" size={16} />
-        </span>
+                    <span
+                        className="tab-close"
+                        onClick={handleClose}
+                        onMouseEnter={() => setIsCloseHovered(true)}
+                        onMouseLeave={() => setIsCloseHovered(false)}
+                    >
+                        <Icon name={isCloseHovered ? "general/closeSmallHovered" : "general/closeSmall"} size={16} />
+                    </span>
                 )}
             </div>
             {hasUnderline && (

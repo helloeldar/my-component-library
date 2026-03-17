@@ -1,9 +1,24 @@
-import TabBar from '../tabs/TabBar';
+import { useState } from 'react';
 import Icon from '../icon/Icon';
 import './ToolWindowHeader.css';
 
-function ToolWindowHeader({ 
+function TabCloseButton({ onClick }) {
+    const [hovered, setHovered] = useState(false);
+    return (
+        <span
+            className="tw-tab-close"
+            onClick={onClick}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <Icon name={hovered ? "general/closeSmallHovered" : "general/closeSmall"} size={16} />
+        </span>
+    );
+}
+
+function ToolWindowHeader({
     title = "Header", 
+    icon,
     type = "label", 
     tabs = [], 
     activeTab = 0,
@@ -54,24 +69,50 @@ function ToolWindowHeader({
         if (!tabs || tabs.length === 0) return null;
 
         return (
-            <div className="tool-window-tabs">
-                <TabBar 
-                    tabs={tabs}
-                    direction="horizontal"
-                    size="small"
-                    activeTab={activeTab}
-                    onTabClick={onTabChange}
-                    onTabClose={(index) => {
-                        // Handle tab close if needed
-                        console.log('Tab close:', index);
-                    }}
-                />
+            <div className="tw-tab-bar">
+                <div className="tw-tab-bar-tabs">
+                    {tabs.map((tab, index) => {
+                        const isActive = index === activeTab;
+                        return (
+                            <div
+                                key={index}
+                                className={`tw-tab ${isActive ? 'tw-tab-selected' : ''}`}
+                                onClick={() => onTabChange && onTabChange(index)}
+                            >
+                                <span className="tw-tab-label">{tab.label}</span>
+                                {tab.closable && (
+                                    <TabCloseButton
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onActionClick && onActionClick('tabClose', index);
+                                        }}
+                                    />
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+                <div className="tw-tab-bar-icons">
+                    <button
+                        className="tool-window-action-button"
+                        onClick={() => onActionClick && onActionClick('add')}
+                    >
+                        <Icon name="general/add" size={16} />
+                    </button>
+                    <button
+                        className="tool-window-action-button"
+                        onClick={() => onActionClick && onActionClick('dropdown')}
+                    >
+                        <Icon name="general/chevronDown" size={16} />
+                    </button>
+                </div>
             </div>
         );
     };
 
     const renderTitle = () => (
         <div className="tool-window-header-title-group">
+            {icon && <Icon name={icon} size={20} />}
             <h3 className="tool-window-header-title">{title}</h3>
             {dropdown && (
                 <button

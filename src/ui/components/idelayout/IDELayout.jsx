@@ -319,9 +319,8 @@ function IDELayout({
                                 tabs={terminalTabs}
                                 activeTab={activeTerminalTab === 'local' ? 0 : 1}
                                 onTabChange={(index) => setActiveTerminalTab(index === 0 ? 'local' : 'local1')}
-                                lines={[
-                                    { text: 'user@machine:~/projects/' + projectName + '$ _', type: 'prompt' }
-                                ]}
+                                blocks={[]}
+                                input={{ path: '~/projects/' + projectName, branch: 'main' }}
                                 className="ide-layout-tool-window ide-layout-tool-window-bottom"
                             />
                         ) : (

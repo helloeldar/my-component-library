@@ -1968,14 +1968,14 @@ function TerminalWindowPage() {
         <div className="component-showcase">
             <h1>Terminal</h1>
             <p className="component-description">
-                Terminal tool window with tabbed sessions. Supports multiple local terminal tabs 
-                with add, close, and session management actions.
+                Terminal tool window with tabbed sessions. Supports right-click context menu,
+                search overlay (⌘F), AI ghost text, colored output, and hyperlinks.
             </p>
 
             <div className="component-section">
                 <h2>Single Session</h2>
                 <p className="section-description">
-                    A terminal window with a single active session.
+                    Default terminal with command history. Right-click for context menu, ⌘F to search.
                 </p>
                 <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
                     <TerminalWindow />
@@ -1983,9 +1983,9 @@ function TerminalWindowPage() {
             </div>
 
             <div className="component-section">
-                <h2>Multiple Sessions</h2>
+                <h2>Multiple Sessions with Output</h2>
                 <p className="section-description">
-                    Terminal with multiple tabs for parallel sessions.
+                    Terminal with multiple tabs, colored output, and error messages.
                 </p>
                 <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
                     <TerminalWindow
@@ -1994,12 +1994,77 @@ function TerminalWindowPage() {
                             { label: 'Local (1)', closable: true },
                             { label: 'Local (2)', closable: true }
                         ]}
-                        lines={[
-                            { text: 'user@machine:~/projects/intellij$ npm run build', type: 'command' },
-                            { text: 'Building project...', type: 'output' },
-                            { text: '✓ Build completed successfully', type: 'success' },
-                            { text: 'user@machine:~/projects/intellij$ _', type: 'prompt' }
+                        blocks={[
+                            {
+                                path: '~/projects/intellij',
+                                lines: [
+                                    { type: 'command', text: 'npm run build' },
+                                    { type: 'output', text: 'Building project...' },
+                                    { type: 'success', text: '✓ Build completed successfully' },
+                                ],
+                            },
+                            {
+                                path: '~/projects/intellij',
+                                lines: [
+                                    { type: 'command', text: 'npm test' },
+                                    { type: 'output', text: 'Running 42 tests...' },
+                                    { type: 'error', text: 'FAIL src/utils/math.test.js' },
+                                    { type: 'error', text: '  ✕ should calculate sum correctly (3ms)' },
+                                    { type: 'output', text: 'Tests: 1 failed, 41 passed, 42 total' },
+                                ],
+                            },
                         ]}
+                        input={{ path: '~/projects/intellij', branch: 'main' }}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>AI Inline Completion</h2>
+                <p className="section-description">
+                    Ghost text shows AI-suggested command completion (press → to accept).
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <TerminalWindow
+                        width={600}
+                        height={180}
+                        blocks={[
+                            {
+                                path: '~/projects/intellij',
+                                lines: [
+                                    { type: 'command', text: 'git commit -m "Add new feature"' },
+                                    { type: 'output', text: '[feature-x 3a1b2c3] Add new feature' },
+                                    { type: 'output', text: ' 3 files changed, 42 insertions(+), 7 deletions(-)' },
+                                ],
+                            },
+                        ]}
+                        input={{ path: '~/projects/intellij', branch: 'feature-x', ghost: 'git push origin feature-x' }}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Search Overlay</h2>
+                <p className="section-description">
+                    Search bar visible (triggered by ⌘F). Shows match count and navigation.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <TerminalWindow
+                        width={600}
+                        height={200}
+                        showSearch={true}
+                        blocks={[
+                            {
+                                path: '~/projects/intellij',
+                                lines: [
+                                    { type: 'command', text: 'grep -r "error" src/' },
+                                    { type: 'output', text: 'src/utils/logger.js:12: handleError(err)' },
+                                    { type: 'output', text: 'src/api/client.js:45: throw new Error("timeout")' },
+                                    { type: 'output', text: 'src/tests/app.test.js:8: expect(error).toBeDefined()' },
+                                ],
+                            },
+                        ]}
+                        input={{ path: '~/projects/intellij', branch: 'main' }}
                     />
                 </div>
             </div>

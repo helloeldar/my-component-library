@@ -71,9 +71,8 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: var(--icon-secondary);
-    border-radius: 4px;
-    transition: background 0.15s ease, opacity 0.15s ease;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
     opacity: 0;
 }
 
@@ -86,11 +85,6 @@
 /* Show close button on hover for default tabs */
 .tab-default.tab-hovered .tab-close {
     opacity: 1;
-}
-
-.tab-close:hover {
-    background: var(--control-bg-hover);
-    color: var(--icon-primary);
 }
 
 /* Underline indicator */
