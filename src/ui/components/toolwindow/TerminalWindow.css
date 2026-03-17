@@ -1,6 +1,6 @@
 /* Terminal Window Content */
 .terminal-window .tool-window-content {
-    background: var(--terminal-bg);
+    background: var(--tool-window-bg);
     display: flex;
     flex-direction: column;
 }
