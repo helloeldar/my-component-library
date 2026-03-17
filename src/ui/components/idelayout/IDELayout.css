@@ -123,6 +123,9 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 18px;
 }
 
 .ide-layout-editor-content .code-example {

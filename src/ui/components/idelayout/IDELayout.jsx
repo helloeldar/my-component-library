@@ -208,7 +208,7 @@ function IDELayout({
                     </StripeContainer>
                     <StripeContainer className="stripe-section-bottom">
                         <Stripe 
-                            icon="toolwindows/services@20x20"
+                            icon="toolwindows/terminal@20x20"
                             state={bottomStripeSelection === 'terminal' && showBottomPanel ? 'selected' : 'default'}
                             title="Terminal"
                             onClick={() => handleBottomStripeClick('terminal')}
