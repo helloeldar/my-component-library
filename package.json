@@ -70,6 +70,7 @@
     "@svgr/rollup": "^8.1.0",
     "rollup": "^2.80.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^5.9.3"
   }
 }
