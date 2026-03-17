@@ -2178,27 +2178,6 @@ function IDELayoutPage() {
             </p>
 
             <div className="component-section">
-                <h2>Default Theme</h2>
-                <p className="section-description">
-                    Traditional flat layout with solid borders - classic IDE appearance.
-                </p>
-                <div className="ide-layout-demo">
-                    <IDELayout 
-                        theme="default"
-                        projectName="petclinic"
-                        projectIcon="PC"
-                        projectColor="grass"
-                        branchName="main"
-                        runConfig="PetClinicApplication"
-                    />
-                </div>
-            </div>
-
-            <div className="component-section">
-                <h2>Island Theme</h2>
-                <p className="section-description">
-                    Modern design with rounded panels, gaps between elements, and gradient backgrounds.
-                </p>
                 <div className="ide-layout-demo">
                     <IDELayout 
                         theme="island"

@@ -12,7 +12,7 @@ export const componentsConfig = [
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },
     { name: 'Link', key: 'link', description: 'Text links with default, dropdown, and external variants', category: 'components' },
     { name: 'AI Assistant', key: 'aiassistant', description: 'AI Assistant tool window with chat-like interface', category: 'windows' },
-    { name: 'Main Window', key: 'idelayout', description: 'Complete IDE window layout with default and island themes', category: 'windows' },
+    { name: 'Main Window', key: 'idelayout', description: 'Complete IDE window layout with island theme', category: 'windows' },
     { name: 'Project', key: 'projectwindow', description: 'Project tool window with file tree navigation', category: 'windows' },
     { name: 'Terminal', key: 'terminal', description: 'Terminal tool window with tabbed sessions', category: 'windows' },
     { name: 'Popup', key: 'popup', description: 'Contextual menus and dropdowns with various cell types', category: 'components' },
