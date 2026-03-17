@@ -14,3 +14,5 @@ Be systematic.
 Try always to keep consistency with design system, reuse existing components, and do not invent new components unless asked explicitly.
 Reuse existing icons only. If the icon that you need doesn't exist, tell about it, let user decide what to do with it.
 Use the same name components, as in Figma UI Kit.
+
+Do not commit without explicit approval.

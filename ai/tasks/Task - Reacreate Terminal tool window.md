@@ -5,6 +5,22 @@ ai/specs/Terminal Tool Window — How It Works (Developer Scenarios).md
 Use it to create realistic Terminal prototype.
 But no need to recreate all the features, it just should look and behave like Terminal, very basic one. It should be enough to do some design prototypes with it.
 
+Important visual parts should be done:
+
+Tab component
+https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=6353-72297&t=V8DOXcjhgUO6bzb3-4
+
+Overall what terminal looks like
+https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-137935&t=V8DOXcjhgUO6bzb3-4
+
+Font: JetBrains Mono
+Size: 13.0
+Line height: 1.2
+Main weight: Regular
+Bold weight: Bold
+
+Stripe icons: src/icons/toolwindows/terminal@20x20.svg
+
 ---
 
 ## Progress (2026-03-17)
@@ -25,14 +41,7 @@ But no need to recreate all the features, it just should look and behave like Te
 - [x] Monospace editor area with colored text output
 - [x] Blinking cursor at prompt line
 - [x] Right-click context menu
-- [x] Floating search bar (Cmd+F)
+~~- [x] Floating search bar (Cmd+F) - no need~~
 - [ ] Gear menu with engine/settings options (low priority for prototype)
-- [ ] Alternate buffer swap (vim mode) (low priority for prototype)
-- [x] Inline completion ghost text
-
-### Remaining (low priority)
-
-- Gear menu popup with engine switcher / settings link
-- Alternate buffer swap simulation (e.g., vim mode)
-- Actual text selection + copy behavior
-- Actual search highlighting of matches
+- [ ] ~~Alternate buffer swap (vim mode) (low priority for prototype)~~ - no need
+- [x] ~~Inline completion ghost text~~  - no need
