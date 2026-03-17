@@ -37,7 +37,7 @@ import Alert from './ui/components/alert/Alert';
 import Dialog from './ui/components/dialog/Dialog';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
+import { getSortedComponentsOnly, getSortedWindowsOnly, getHomeSections } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -2218,42 +2218,25 @@ function Sidebar() {
                     Home
                 </Link>
             </div>
-            
-            <div className="nav-category">
-                <div className="nav-category-title">Styles</div>
-                <Link to="/typography" className={`nav-item ${isActive('/typography') ? 'active' : ''}`}>
-                    Typography
-                </Link>
-                <Link to="/colors" className={`nav-item ${isActive('/colors') ? 'active' : ''}`}>
-                    Colors
-                </Link>
-            </div>
-            
-            <div className="nav-category">
-                <div className="nav-category-title">Components</div>
-                {getSortedComponentsOnly().map((component) => (
-                    <Link
-                        key={component.key}
-                        to={`/${component.key}`}
-                        className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
-                    >
-                        {component.name}
-                    </Link>
-                ))}
-            </div>
 
-            <div className="nav-category">
-                <div className="nav-category-title">Windows</div>
-                {getSortedWindowsOnly().map((component) => (
-                    <Link
-                        key={component.key}
-                        to={`/${component.key}`}
-                        className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
-                    >
-                        {component.name}
-                    </Link>
-                ))}
-            </div>
+            {getHomeSections().map((section) => {
+                const visiblePages = section.pages.filter(page => page.status !== 'coming-soon');
+                if (visiblePages.length === 0) return null;
+                return (
+                    <div key={section.key} className="nav-category">
+                        <div className="nav-category-title">{section.name}</div>
+                        {visiblePages.map((page) => (
+                            <Link
+                                key={page.key}
+                                to={`/${page.key}`}
+                                className={`nav-item ${isActive(`/${page.key}`) ? 'active' : ''}`}
+                            >
+                                {page.name}
+                            </Link>
+                        ))}
+                    </div>
+                );
+            })}
 
         </div>
     );

@@ -58,20 +58,58 @@
     gap: 16px;
 }
 
+/* Card base */
 .home-page-card {
-    display: block;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-elevated);
     border: 1px solid var(--border-primary);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
+    overflow: hidden;
 }
 
 .home-page-card:hover {
     background: var(--bg-secondary);
     border-color: var(--border-secondary);
+}
+
+/* Card preview area */
+.home-card-preview {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+}
+
+.home-card-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.home-card-preview-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-secondary);
+}
+
+/* Card body */
+.home-card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.home-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .home-page-title {
@@ -80,7 +118,7 @@
     font-weight: 600;
     line-height: 20px;
     color: var(--text-primary);
-    margin: 0 0 8px 0;
+    margin: 0;
 }
 
 .home-page-description {
@@ -90,4 +128,43 @@
     line-height: 18px;
     color: var(--text-secondary);
     margin: 0;
+}
+
+/* Status badges */
+.home-card-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.home-card-badge--coming-soon {
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+}
+
+.home-card-badge--obsolete {
+    color: var(--text-secondary);
+    background: rgba(255, 150, 50, 0.15);
+    border: 1px solid rgba(255, 150, 50, 0.3);
+}
+
+/* Coming soon card modifier */
+.home-page-card--coming-soon {
+    cursor: default;
+    opacity: 0.6;
+}
+
+.home-page-card--coming-soon:hover {
+    background: var(--bg-elevated);
+    border-color: var(--border-primary);
+}
+
+/* Obsolete card modifier */
+.home-page-card--obsolete {
+    opacity: 0.75;
 }
