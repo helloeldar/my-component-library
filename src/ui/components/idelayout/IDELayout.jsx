@@ -8,7 +8,6 @@ import TerminalWindow from '../toolwindow/TerminalWindow';
 import ProjectWindow from '../toolwindow/ProjectWindow';
 import AIAssistantWindow from '../toolwindow/AIAssistantWindow';
 import TabBar from '../tabs/TabBar';
-import Tab from '../tabs/Tab';
 import CodeExample from '../showcase/CodeExample';
 import './IDELayout.css';
 
@@ -49,13 +48,12 @@ function IDELayout({
     const [showBottomPanel, setShowBottomPanel] = useState(theme === 'island');
 
     // Editor tabs state
-    const [activeEditorTab, setActiveEditorTab] = useState('4');
     const editorTabs = [
-        { id: '1', label: 'FunctionUtils.java', icon: 'fileTypes/java' },
-        { id: '2', label: 'add-hover.svg', icon: 'fileTypes/svg' },
-        { id: '3', label: 'add.svg', icon: 'fileTypes/svg' },
+        { id: '1', label: 'FunctionUtils.java', icon: 'fileTypes/java', closable: true },
+        { id: '2', label: 'add-hover.svg', icon: 'fileTypes/svg', closable: true },
+        { id: '3', label: 'add.svg', icon: 'fileTypes/svg', closable: true },
         { id: '4', label: 'AdapterScript.java', icon: 'fileTypes/java', closable: true },
-        { id: '5', label: 'AdapterScriptInterface.java', icon: 'fileTypes/java' },
+        { id: '5', label: 'AdapterScriptInterface.java', icon: 'fileTypes/java', closable: true },
     ];
 
     // Terminal tabs state
@@ -260,24 +258,11 @@ function IDELayout({
                         {/* Editor Area */}
                         <div className="ide-layout-editor-area">
                             <div className="ide-layout-editor-tabs">
-                                {theme === 'default' ? (
-                                    editorTabs.map((tab) => (
-                                        <Tab
-                                            key={tab.id}
-                                            label={tab.label}
-                                            icon={tab.icon}
-                                            active={tab.id === activeEditorTab}
-                                            closable={tab.id === activeEditorTab || tab.closable}
-                                            onClick={() => setActiveEditorTab(tab.id)}
-                                        />
-                                    ))
-                                ) : (
-                                    <TabBar 
-                                        tabs={editorTabs.map(t => ({ label: t.label, icon: t.icon, closable: t.closable }))} 
-                                        direction="horizontal" 
-                                        size="small" 
-                                    />
-                                )}
+                                <TabBar 
+                                    tabs={editorTabs.map(t => ({ label: t.label, icon: t.icon, closable: t.closable }))} 
+                                    direction="horizontal" 
+                                    size="small" 
+                                />
                             </div>
                             <div className="ide-layout-editor-content">
                                 <CodeExample showLineNumbers={true} />

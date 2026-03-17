@@ -3,22 +3,21 @@ import Icon from '../icon/Icon';
 import './Tab.css';
 
 /**
- * Tab component aligned with IntelliJ UI Kit design
+ * Tab component — Islands pill-style design
  * 
  * States:
- * - default: Not selected, opacity 0.67, no underline, no close button
- * - selected: Active tab, full opacity, blue underline, close button visible
- * - inactive: Previously opened, full opacity, gray underline, close button visible
+ * - default: Transparent background, no border
+ * - selected: Filled background with border (pill shape)
+ * - disabled: Reduced opacity, no interaction
  * 
  * Hover behavior:
- * - Default tabs: opacity becomes 1, close button appears (if closable)
- * - Selected/Inactive tabs: close button always visible
+ * - Background fill appears on hover
+ * - Close button appears on hover (always visible when selected)
  */
 function Tab({
     label,
     icon,
     active = false,
-    inactive = false,
     disabled = false,
     closable = false,
     size,
@@ -26,25 +25,12 @@ function Tab({
     onClose,
     ...props
 }) {
-    const [isHovered, setIsHovered] = useState(false);
     const [isCloseHovered, setIsCloseHovered] = useState(false);
 
-    // Determine state
-    const getState = () => {
-        if (disabled) return 'disabled';
-        if (active) return 'selected';
-        if (inactive) return 'inactive';
-        return 'default';
-    };
-
-    const state = getState();
-
-    // Build class names
     const classes = [
         'tab',
-        `tab-${state}`,
-        size === 'small' ? 'tab-small' : 'tab-size-default',
-        isHovered && !disabled ? 'tab-hovered' : ''
+        active ? 'tab-selected' : '',
+        size === 'small' ? 'tab-small' : ''
     ].filter(Boolean).join(' ');
 
     const renderIcon = () => {
@@ -62,23 +48,16 @@ function Tab({
         }
     };
 
-    // Has underline for selected and inactive states
-    const hasUnderline = state === 'selected' || state === 'inactive';
-
     return (
-        <button 
-            className={classes}
-            onClick={onClick}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            disabled={disabled}
-            {...props}
-        >
-            <div className="tab-content">
-                <div className="tab-content-inner">
-            {renderIcon()}
-                    <span className="tab-label">{label}</span>
-                </div>
+        <div className={`tab-wrapper ${size === 'small' ? 'tab-wrapper-small' : ''}`}>
+            <button 
+                className={classes}
+                onClick={onClick}
+                disabled={disabled}
+                {...props}
+            >
+                {renderIcon()}
+                <span className="tab-label">{label}</span>
                 {closable && (
                     <span
                         className="tab-close"
@@ -89,11 +68,8 @@ function Tab({
                         <Icon name={isCloseHovered ? "general/closeSmallHovered" : "general/closeSmall"} size={16} />
                     </span>
                 )}
-            </div>
-            {hasUnderline && (
-                <div className={`tab-underline ${state === 'selected' ? 'tab-underline-selected' : 'tab-underline-inactive'}`} />
-            )}
-        </button>
+            </button>
+        </div>
     );
 }
 

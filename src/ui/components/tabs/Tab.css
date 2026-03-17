@@ -1,47 +1,56 @@
 /* 
- * Tab Component - IntelliJ UI Kit Design
+ * Tab Component - IntelliJ UI Kit (Islands) Pill-style Design
+ * 
+ * Structure: Wrapper (36px) > Pill (28px) with 4px margin around
  * 
  * States:
- * - default: opacity 0.67, no underline, no close button
- * - default + hovered: opacity 1, close button appears
- * - selected: opacity 1, blue underline, close button visible
- * - inactive: opacity 1, gray underline, close button visible
- * - disabled: opacity 0.67, no underline, no interaction
+ * - default: No background, transparent border
+ * - default + hovered: Subtle background fill
+ * - selected: Filled background with border (pill shape)
+ * - disabled: Reduced opacity, no interaction
  */
 
-.tab {
+/* Wrapper — 36px tall, 4px padding around the pill */
+.tab-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
+    align-items: stretch;
+    padding: 4px;
+}
+
+/* Pill — 28px tall (6px top/bottom padding + 16px line-height) */
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 40px;
+    padding: 6px 8px;
+    border-radius: 6px;
     cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: background 0.15s ease;
     flex-shrink: 0;
-    position: relative;
-    height: 40px;
+}
+
+.tab:hover:not(:disabled) {
+    background: var(--tool-window-tab-bg-hover);
 }
 
 .tab:disabled {
     cursor: default;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
-/* Tab content container */
-.tab-content {
-    display: flex;
-    align-items: center;
-    padding: 12px 8px 12px 12px;
-    gap: 0;
-    flex: 1;
+/* Selected state — pill fill + border */
+.tab-selected {
+    background: var(--tool-window-tab-selected-bg);
+    border-color: var(--tool-window-tab-selected-border);
 }
 
-/* Inner content (icon + label) */
-.tab-content-inner {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding-right: 6px;
+.tab-selected:hover {
+    background: var(--tool-window-tab-selected-bg);
 }
 
 /* Icon styling */
@@ -56,103 +65,49 @@
 
 /* Label styling */
 .tab-label {
-    font-size: 13px;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
+    font-size: 13px;
     line-height: 16px;
     white-space: nowrap;
     color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 256px;
 }
 
 /* Close button */
 .tab-close {
-    width: 16px;
-    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     cursor: pointer;
     transition: opacity 0.15s ease;
     opacity: 0;
 }
 
-/* Show close button on selected and inactive tabs */
-.tab-selected .tab-close,
-.tab-inactive .tab-close {
+/* Show close button on selected tabs always */
+.tab-selected .tab-close {
     opacity: 1;
 }
 
-/* Show close button on hover for default tabs */
-.tab-default.tab-hovered .tab-close {
+/* Show close button on hover */
+.tab:hover .tab-close {
     opacity: 1;
-}
-
-/* Underline indicator */
-.tab-underline {
-    width: 100%;
-    height: 3px;
-    border-radius: 2px;
-    flex-shrink: 0;
-}
-
-.tab-underline-selected {
-    background: var(--tab-active-border);
-}
-
-.tab-underline-inactive {
-    background: var(--tab-inactive-border);
-}
-
-/* ========================
-   STATE: Default
-   ======================== */
-.tab-default .tab-content {
-    opacity: 0.67;
-    padding: 12px 8px 12px 12px;
-}
-
-.tab-default.tab-hovered .tab-content {
-    opacity: 1;
-}
-
-/* ========================
-   STATE: Selected
-   ======================== */
-.tab-selected .tab-content {
-    opacity: 1;
-    padding: 12px 8px 8px 12px;
-}
-
-/* ========================
-   STATE: Inactive
-   ======================== */
-.tab-inactive .tab-content {
-    opacity: 1;
-    padding: 12px 8px 9px 12px;
-}
-
-/* ========================
-   STATE: Disabled
-   ======================== */
-.tab-disabled .tab-content {
-    opacity: 0.67;
-    padding: 12px 8px 12px 12px;
-}
-
-.tab-disabled {
-    pointer-events: none;
 }
 
 /* ========================
    SIZE: Small
    ======================== */
-.tab-small .tab-content {
-    padding: 8px 4px 8px 8px;
+.tab-wrapper-small {
+    padding: 2px;
 }
 
-.tab-small.tab-selected .tab-content,
-.tab-small.tab-inactive .tab-content {
-    padding: 8px 4px 5px 8px;
+.tab-small {
+    padding: 4px 6px;
 }
 
 .tab-small .tab-label {
@@ -160,62 +115,18 @@
     line-height: 16px;
 }
 
-.tab-small .tab-content-inner {
-    gap: 3px;
-    padding-right: 4px;
-}
-
 /* ========================
    VERTICAL TAB BAR
    ======================== */
+.tab-bar-vertical .tab-wrapper {
+    width: 100%;
+}
+
 .tab-bar-vertical .tab {
     width: 100%;
-    flex-direction: row;
-    align-items: center;
-}
-
-.tab-bar-vertical .tab-content {
-    flex: 1;
-    padding: 8px 12px;
-}
-
-.tab-bar-vertical .tab-underline {
-    width: 3px;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-radius: 0 2px 2px 0;
 }
 
 .tab-bar-vertical .tab-label {
     flex: 1;
     text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 256px;
-}
-
-/* ========================
-   HORIZONTAL TAB BAR
-   ======================== */
-.tab-bar-horizontal .tab-content {
-    padding: 12px 8px 12px 12px;
-}
-
-.tab-bar-horizontal .tab-selected .tab-content,
-.tab-bar-horizontal .tab-inactive .tab-content {
-    padding: 12px 8px 9px 12px;
-}
-
-/* ========================
-   SMALL HORIZONTAL TAB BAR
-   ======================== */
-.tab-bar-small .tab-content {
-    padding: 8px 4px 8px 8px;
-}
-
-.tab-bar-small .tab-selected .tab-content,
-.tab-bar-small .tab-inactive .tab-content {
-    padding: 8px 4px 5px 8px;
 }

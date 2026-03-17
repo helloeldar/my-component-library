@@ -11,9 +11,9 @@
 /* Horizontal tab bar */
 .tab-bar-horizontal {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-start;
-    border-bottom: 1px solid var(--border-primary);
+    gap: 0;
 }
 
 .tab-bar-horizontal.tab-bar-wrap {
@@ -30,7 +30,7 @@
     justify-content: flex-start;
     width: 100%;
     padding: 4px;
-    border-right: 1px solid var(--border-primary);
+    gap: 0;
 }
 
 /* Small tab bar */

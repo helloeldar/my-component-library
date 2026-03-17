@@ -917,8 +917,8 @@ function ToolbarIconButtonPage() {
 
 function TabsPage() {
     const tabData = [
-        { label: "Home" },
-        { label: "Profile", icon: "general/user" },
+        { label: "Home", closable: true },
+        { label: "Profile", icon: "general/user", closable: true },
         { label: "Settings", icon: "general/settings", closable: true },
         { label: "Documents", closable: true }
     ];
