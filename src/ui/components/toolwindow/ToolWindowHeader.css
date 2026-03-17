@@ -82,7 +82,7 @@
     background: var(--tool-window-action-bg-active);
 }
 
-/* Pill-style Tab Bar (Tool Window) */
+/* Tab Bar Container (Tool Window) */
 .tw-tab-bar {
     display: flex;
     align-items: center;
@@ -90,65 +90,7 @@
 
 .tw-tab-bar-tabs {
     display: flex;
-    padding: 4px;
-}
-
-.tw-tab {
-    display: flex;
     align-items: center;
-    gap: 6px;
-    min-width: 40px;
-    padding: 6px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid transparent;
-    transition: background 0.15s ease;
-}
-
-.tw-tab:hover {
-    background: var(--tool-window-tab-bg-hover);
-}
-
-.tw-tab-selected {
-    background: var(--tool-window-tab-selected-bg);
-    border-color: var(--tool-window-tab-selected-border);
-}
-
-.tw-tab-selected:hover {
-    background: var(--tool-window-tab-selected-bg);
-}
-
-/* Active (focused) tool window tab */
-.tool-window-focused .tw-tab-selected {
-    background: var(--tool-window-tab-selected-bg-active);
-    border-color: var(--tool-window-tab-selected-border-active);
-}
-
-.tool-window-focused .tw-tab-selected:hover {
-    background: var(--tool-window-tab-selected-bg-active);
-}
-
-.tw-tab-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    color: var(--tool-window-tab-text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 256px;
-}
-
-.tw-tab-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    cursor: pointer;
 }
 
 .tw-tab-bar-icons {

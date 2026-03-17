@@ -1,20 +1,6 @@
-import { useState } from 'react';
 import Icon from '../icon/Icon';
+import Tab from '../tabs/Tab';
 import './ToolWindowHeader.css';
-
-function TabCloseButton({ onClick }) {
-    const [hovered, setHovered] = useState(false);
-    return (
-        <span
-            className="tw-tab-close"
-            onClick={onClick}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-        >
-            <Icon name={hovered ? "general/closeSmallHovered" : "general/closeSmall"} size={16} />
-        </span>
-    );
-}
 
 function ToolWindowHeader({
     title = "Header", 
@@ -27,7 +13,8 @@ function ToolWindowHeader({
     border = true,
     dropdown = false,
     actions = ['more', 'minimize'],
-    onActionClick
+    onActionClick,
+    focused = false
 }) {
     const getActionIcon = (action) => {
             switch (action) {
@@ -71,26 +58,18 @@ function ToolWindowHeader({
         return (
             <div className="tw-tab-bar">
                 <div className="tw-tab-bar-tabs">
-                    {tabs.map((tab, index) => {
-                        const isActive = index === activeTab;
-                        return (
-                            <div
-                                key={index}
-                                className={`tw-tab ${isActive ? 'tw-tab-selected' : ''}`}
-                                onClick={() => onTabChange && onTabChange(index)}
-                            >
-                                <span className="tw-tab-label">{tab.label}</span>
-                                {tab.closable && (
-                                    <TabCloseButton
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            onActionClick && onActionClick('tabClose', index);
-                                        }}
-                                    />
-                                )}
-                            </div>
-                        );
-                    })}
+                    {tabs.map((tab, index) => (
+                        <Tab
+                            key={index}
+                            label={tab.label}
+                            icon={tab.icon}
+                            active={index === activeTab}
+                            focused={focused}
+                            closable={tab.closable}
+                            onClick={() => onTabChange && onTabChange(index)}
+                            onClose={() => onActionClick && onActionClick('tabClose', index)}
+                        />
+                    ))}
                 </div>
                 <div className="tw-tab-bar-icons">
                     <button

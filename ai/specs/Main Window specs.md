@@ -28,7 +28,8 @@ When the editor receives focus (clicked):
 ### Implementation
 
 - `ToolWindow` accepts `focused` and `onFocus` props
-- `focused=true` adds `tool-window-focused` CSS class → overrides tab selected colors to active tokens
+- `focused` is passed through ToolWindow → ToolWindowHeader → Tab component
+- The shared `Tab` component handles active/focused styling via its `focused` prop (`tab-selected-active` class)
 - Layout components (MainWindow, IDEWindow) track `focusedPanel` state (`'left'` | `'right'` | `'bottom'` | `'editor'` |
   `null`)
 - Clicking a tool window or its stripe sets `focusedPanel`; clicking the editor area sets it to `'editor'`
@@ -42,9 +43,17 @@ When the editor receives focus (clicked):
 - CSS: `src/ui/components/mainwindow/MainWindow.css` (CSS classes still use `ide-layout-*` prefix)
 - Route: `/mainwindow`
 
+## Tab Component Reuse
+
+Both editor tabs (via `TabBar`) and tool window header tabs (via `ToolWindowHeader`) use the **same shared `Tab` component** (`src/ui/components/tabs/Tab.jsx`). This ensures consistent height, gap, and styling across the entire IDE layout.
+
+- `ToolWindowHeader` renders `Tab` components inside `.tw-tab-bar-tabs` container
+- `TabBar` renders `Tab` components inside `.tab-bar` container
+- Both pass `focused` prop to `Tab` for active state styling
+
 ## Features
 
-- Supports `default` and `island` themes
+- Island theme only (no "default" flat theme)
 - Panel toggling (left, right, bottom) via stripe buttons
 - Specialized tool windows: ProjectWindow, TerminalWindow, AIAssistantWindow
 - Editor area with CodeExample and line numbers

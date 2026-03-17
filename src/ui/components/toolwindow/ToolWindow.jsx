@@ -38,6 +38,7 @@ function ToolWindow({
                 showSeparator={showSeparator}
                 actions={actions}
                 onActionClick={onActionClick}
+                focused={focused}
             />
             <div className="tool-window-content">
                 {children}
