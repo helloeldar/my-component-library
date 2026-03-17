@@ -37,7 +37,7 @@ import Alert from './ui/components/alert/Alert';
 import Dialog from './ui/components/dialog/Dialog';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly, getSortedWindowsOnly, getHomeSections } from './componentsConfig';
+import { getHomeSections } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
