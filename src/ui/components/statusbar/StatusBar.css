@@ -10,14 +10,6 @@
     box-sizing: border-box;
 }
 
-.status-bar-border {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-}
-
 .status-bar-breadcrumbs {
     display: flex;
     align-items: center;
@@ -74,10 +66,6 @@
 /* Status bar theming */
 .status-bar {
     background: var(--bg-elevated);
-}
-
-.status-bar-border {
-    background: var(--bg-primary);
 }
 
 .status-bar-chevron svg {

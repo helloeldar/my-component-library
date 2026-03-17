@@ -47,9 +47,9 @@ function MainToolbar({
                         icon="runConfigurations/application"
                         text={runConfig}
                     />
-                    <ToolbarIconButton icon="run/run" variant="mainToolbar" tooltip="Run" shortcut="⌃R" />
-                    <ToolbarIconButton icon="run/debug" variant="mainToolbar" tooltip="Debug" shortcut="⌃D" />
-                    <ToolbarIconButton icon="run/stop" variant="mainToolbar" tooltip="Stop" disabled />
+                    <ToolbarIconButton icon="run/run_stroke" variant="mainToolbar" tooltip="Run" shortcut="⌃R" />
+                    <ToolbarIconButton icon="run/debug_stroke" variant="mainToolbar" tooltip="Debug" shortcut="⌃D" />
+                    <ToolbarIconButton icon="run/stop_stroke" variant="mainToolbar" tooltip="Stop" disabled />
                 </div>
                 
                 <div className="toolbar-actions">

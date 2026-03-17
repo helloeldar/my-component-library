@@ -1593,7 +1593,7 @@ import icon_toolwindows__structure from '../icons/toolwindows/ structure.svg';
 import icon_toolwindows__structure_20x20 from '../icons/toolwindows/ structure@20x20.svg';
 import icon_toolwindows__task_20x20 from '../icons/toolwindows/ task@20x20.svg';
 import icon_toolwindows__terminal from '../icons/toolwindows/ terminal.svg';
-import icon_toolwindows__terminal_20x20 from '../icons/toolwindows/ terminal@20x20.svg';
+import icon_toolwindows__terminal_20x20 from '../icons/toolwindows/terminal@20x20.svg';
 import icon_toolwindows__todo from '../icons/toolwindows/ todo.svg';
 import icon_toolwindows__todo_20x20 from '../icons/toolwindows/ todo@20x20.svg';
 import icon_toolwindows__toolWindowBeanValidator from '../icons/toolwindows/ toolWindowBeanValidator.svg';

@@ -151,6 +151,6 @@
 /* Separator */
 .tool-window-header-separator {
     height: 1px;
-    background: var(--tool-window-header-separator);
+    background: var(--tool-window-border);
     margin: 0 -1px;
 }

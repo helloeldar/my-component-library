@@ -2,7 +2,6 @@
 .stripe-container {
     width: 40px;
     background: var(--bg-elevated);
-    border-right: 1px solid var(--bg-primary);
     display: flex;
     flex-direction: column;
     min-height: 0;
