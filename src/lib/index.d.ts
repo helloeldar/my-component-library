@@ -175,7 +175,6 @@ export interface ToggleProps {
 export const Toggle: FC<ToggleProps>;
 
 // Layout Components
-export const IDELayout: FC<{ theme?: string; children?: ReactNode; className?: string }>;
 export const IDEWindow: FC<{ children?: ReactNode; className?: string }>;
 export const MainWindow: FC<{ children?: ReactNode; className?: string }>;
 

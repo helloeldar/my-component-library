@@ -43,6 +43,7 @@ function TabBar(props) {
                     label={tab.label}
                     icon={tab.icon}
                     active={index === activeTab}
+                    focused={props.focused}
                     closable={tab.closable}
                     size={props.size}
                     onClick={() => handleTabClick(index)}

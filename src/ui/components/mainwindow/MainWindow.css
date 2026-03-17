@@ -1,44 +1,38 @@
-/* Main Window Component - IDE Layout */
-.main-window {
+/* 
+ * MainWindow Component - IDE Window Layout (Island theme)
+ */
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+.ide-layout {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 900px;
     height: 100%;
     min-height: 600px;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.12) 100%), 
-                linear-gradient(90deg, #2B2D30 0%, #2B2D30 100%);
-    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Main Content Area (stripes + center) */
-.main-window-content {
+.ide-layout-content {
     display: flex;
     flex: 1;
     min-height: 0;
-    gap: 1px;
 }
 
 /* Vertical Stripes */
-.main-window-stripe {
+.ide-layout-stripe {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 0 0 8px 0;
-    background: transparent;
-}
-
-.main-window-stripe-left {
     width: 40px;
     flex-shrink: 0;
 }
 
-.main-window-stripe-right {
-    width: 40px;
-    flex-shrink: 0;
+.ide-layout-stripe-right {
     padding-bottom: 6px;
 }
 
@@ -53,90 +47,201 @@
 }
 
 /* Center Content Area */
-.main-window-center {
+.ide-layout-center {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
     min-width: 0;
     overflow: hidden;
-    border-radius: 10px;
 }
 
 /* Top Row (Tool Windows + Editor) */
-.main-window-top-row {
+.ide-layout-top-row {
     display: flex;
     flex: 1;
-    gap: 4px;
     min-height: 0;
 }
 
-/* Tool Window overrides for Main Window context */
-.main-window-tool-window {
+/* Tool Window overrides */
+.ide-layout-tool-window {
     flex-shrink: 0;
 }
 
-.main-window-tool-window-left {
+.ide-layout-tool-window-left {
     width: 280px !important;
     height: auto !important;
 }
 
-.main-window-tool-window-right {
+.ide-layout-tool-window-right {
     width: 320px !important;
     height: auto !important;
 }
 
-.main-window-tool-window-bottom {
+.ide-layout-tool-window-bottom {
     width: 100% !important;
-    height: 220px !important;
+    flex-shrink: 0;
 }
 
 /* Editor Area */
-.editor-area {
+.ide-layout-editor-area {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: #17181A;
-    border-radius: 10px;
     min-width: 0;
     overflow: hidden;
 }
 
-.editor-tabs {
+.ide-layout-editor-tabs {
     display: flex;
     align-items: center;
-    padding: 2px 4px;
-    border-bottom: 1px solid var(--border-primary);
+    height: 40px;
+    padding: 0 4px;
     overflow-x: auto;
     scrollbar-width: none;
+    flex-shrink: 0;
 }
 
-.editor-tabs::-webkit-scrollbar {
+.ide-layout-editor-tabs .tab-bar {
+    background: transparent;
+}
+
+.ide-layout .tab-bar {
+    background: transparent;
+}
+
+.ide-layout-editor-tabs::-webkit-scrollbar {
     display: none;
 }
 
-.editor-content {
+.ide-layout-editor-content {
     flex: 1;
     min-height: 0;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 18px;
 }
 
-/* Override MainToolbar styles for Main Window context */
-.main-window .main-toolbar {
+.ide-layout-editor-content .code-example {
+    flex: 1;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+}
+
+.ide-layout-editor-content .code-example .code-input-container {
+    flex: 1;
+    height: 100%;
+}
+
+.ide-layout-editor-content .code-example .code-input {
+    height: 100%;
+}
+
+/* ============================================
+   ISLAND THEME - Modern design with rounded panels
+   ============================================ */
+
+.ide-layout-island {
+    background: linear-gradient(90deg, var(--island-bg-overlay) 0%, var(--island-bg-overlay) 100%), 
+                linear-gradient(90deg, var(--island-bg) 0%, var(--island-bg) 100%);
+    border-radius: 10px;
+    box-shadow: var(--island-shadow);
+    border: 1px solid var(--island-border);
+}
+
+.ide-layout-island .main-toolbar {
     flex-shrink: 0;
     border-bottom: none;
     background: transparent;
 }
 
-/* Override StripeContainer for Main Window */
-.main-window .stripe-container {
+.ide-layout-island .ide-layout-content {
+    gap: 1px;
+}
+
+.ide-layout-island .ide-layout-center {
+    gap: 4px;
+    border-radius: 10px;
+}
+
+.ide-layout-island .ide-layout-top-row {
+    gap: 4px;
+}
+
+/* Island theme stripes */
+.ide-layout-island .ide-layout-stripe {
     background: transparent;
 }
 
-/* Override StatusBar for Main Window */
-.main-window .status-bar {
-    flex-shrink: 0;
+.ide-layout-island .stripe-container {
+    background: transparent;
+}
+
+/* Island theme tool windows */
+.ide-layout-island .ide-layout-tool-window {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ide-layout-island .ide-layout-tool-window-bottom {
+    height: 180px !important;
+}
+
+/* Island theme editor */
+.ide-layout-island .ide-layout-editor-area {
+    background: var(--island-editor-bg);
+    border-radius: 10px;
+}
+
+.ide-layout-island .ide-layout-editor-tabs {
+    background: transparent;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.ide-layout-island .ide-layout-editor-content {
+    background: transparent;
+}
+
+/* Island theme status bar */
+.ide-layout-island .status-bar {
     border-top: none;
     background: transparent;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .ide-layout-tool-window-right {
+        width: 260px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .ide-layout-tool-window-left {
+        width: 220px !important;
+    }
+    
+    .ide-layout-tool-window-right {
+        display: none;
+    }
+    
+    .ide-layout-stripe-right {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .ide-layout-tool-window-left {
+        display: none;
+    }
+    
+    .ide-layout-stripe-left {
+        display: none;
+    }
 }
 

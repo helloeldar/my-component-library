@@ -121,32 +121,15 @@
     opacity: 0.4;
 }
 
-/* Input area at bottom */
-.terminal-input-area {
-    border-top: 1px solid var(--tool-window-border, #26282C);
-    padding: 12px 16px 14px;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    font-size: 13px;
-    flex-shrink: 0;
-}
-
-.terminal-input-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    white-space: nowrap;
-}
-
-.terminal-input-path {
-    color: var(--terminal-command);
-    line-height: 22px;
+/* Input block (inside scrollable area, same as command blocks) */
+.terminal-input-block {
+    /* No special fixed positioning — just a regular block in the scroll flow */
 }
 
 .terminal-input-branch {
     color: var(--terminal-prompt-branch);
-    font-size: 12px;
-    line-height: 22px;
+    font-size: 13px;
+    line-height: 18px;
 }
 
 .terminal-input-cursor-line {
@@ -155,9 +138,29 @@
     margin-top: 2px;
 }
 
+/* Typed text before cursor */
+.terminal-typed-text {
+    color: var(--terminal-command);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 22px;
+    white-space: pre;
+}
+
+/* Hidden input — captures keystrokes, visually invisible */
+.terminal-hidden-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    pointer-events: none;
+}
+
 /* Selection highlight */
-.terminal-output-area ::selection,
-.terminal-input-area ::selection {
+.terminal-output-area ::selection {
     background: var(--selection-bg);
 }
 

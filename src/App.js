@@ -18,7 +18,7 @@ import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
-import IDELayout from './ui/components/idelayout/IDELayout';
+import MainWindow from './ui/components/mainwindow/MainWindow';
 import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
 import Checkbox from './ui/components/checkbox/Checkbox';
 import Radio, { RadioGroup } from './ui/components/radio/Radio';
@@ -2168,7 +2168,7 @@ function AIAssistantWindowPage() {
     );
 }
 
-function IDELayoutPage() {
+function MainWindowPage() {
     return (
         <div className="component-showcase">
             <h1>Main Window</h1>
@@ -2179,8 +2179,7 @@ function IDELayoutPage() {
 
             <div className="component-section">
                 <div className="ide-layout-demo">
-                    <IDELayout 
-                        theme="island"
+                    <MainWindow 
                         projectName="commons-math"
                         projectIcon="CM"
                         projectColor="teal"
@@ -2295,7 +2294,7 @@ function AppContent() {
                     <Route path="/codeexample" element={<CodeExamplePage />} />
                     <Route path="/toolwindow" element={<ToolWindowPage />} />
                     <Route path="/toolbardropdown" element={<ToolbarDropdownPage />} />
-                    <Route path="/idelayout" element={<IDELayoutPage />} />
+                    <Route path="/mainwindow" element={<MainWindowPage />} />
                     <Route path="/terminal" element={<TerminalWindowPage />} />
                     <Route path="/projectwindow" element={<ProjectWindowPage />} />
                     <Route path="/aiassistant" element={<AIAssistantWindowPage />} />

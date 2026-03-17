@@ -119,6 +119,16 @@
     background: var(--tool-window-tab-selected-bg);
 }
 
+/* Active (focused) tool window tab */
+.tool-window-focused .tw-tab-selected {
+    background: var(--tool-window-tab-selected-bg-active);
+    border-color: var(--tool-window-tab-selected-border-active);
+}
+
+.tool-window-focused .tw-tab-selected:hover {
+    background: var(--tool-window-tab-selected-bg-active);
+}
+
 .tw-tab-label {
     font-family: 'Inter', sans-serif;
     font-weight: 500;

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react';
 import ToolWindow from './ToolWindow';
 import Popup from '../popup/Popup';
 import PopupCell from '../popup/PopupCell';
@@ -85,22 +85,87 @@ function TerminalWindow({
     onTabAdd,
     onTabClose,
     actions = ['more', 'minimize'],
-    blocks = defaultBlocks,
+    blocks: blocksProp = defaultBlocks,
     input = defaultInput,
     showSearch: showSearchProp = false,
+    onCommand,
     className = "",
     ...props
 }) {
     const [showSearch, setShowSearch] = useState(showSearchProp);
     const [searchQuery, setSearchQuery] = useState('');
     const [contextMenu, setContextMenu] = useState(null);
+    const [currentInput, setCurrentInput] = useState('');
+    const [internalBlocks, setInternalBlocks] = useState(blocksProp);
+    const [commandHistory, setCommandHistory] = useState([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
     const searchInputRef = useRef(null);
+    const hiddenInputRef = useRef(null);
     const wrapperRef = useRef(null);
+    const scrollAreaRef = useRef(null);
+
+    // Sync blocks prop to internal state
+    useEffect(() => {
+        setInternalBlocks(blocksProp);
+    }, [blocksProp]);
 
     // Sync prop
     useEffect(() => {
         setShowSearch(showSearchProp);
     }, [showSearchProp]);
+
+    // Auto-scroll to bottom on mount and when blocks/input change
+    useLayoutEffect(() => {
+        const el = scrollAreaRef.current;
+        if (el) {
+            el.scrollTop = el.scrollHeight;
+        }
+    }, [internalBlocks, input, currentInput]);
+
+    // Focus hidden input when clicking on the terminal area
+    const focusInput = useCallback(() => {
+        if (hiddenInputRef.current && !showSearch) {
+            hiddenInputRef.current.focus();
+        }
+    }, [showSearch]);
+
+    // Handle terminal input keydown (typing, Enter, history)
+    const handleTerminalInputKeyDown = useCallback((e) => {
+        if (e.key === 'Enter' && currentInput.trim()) {
+            e.preventDefault();
+            const command = currentInput.trim();
+            // Append the typed command as a new block
+            const newBlock = {
+                path: input?.path || '~',
+                lines: [{ type: 'command', text: command }],
+            };
+            setInternalBlocks(prev => [...prev, newBlock]);
+            setCommandHistory(prev => [command, ...prev]);
+            setHistoryIndex(-1);
+            setCurrentInput('');
+            if (onCommand) onCommand(command);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            setCommandHistory(prev => {
+                const nextIndex = historyIndex + 1;
+                if (nextIndex < prev.length) {
+                    setHistoryIndex(nextIndex);
+                    setCurrentInput(prev[nextIndex]);
+                }
+                return prev;
+            });
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex > 0) {
+                const nextIndex = historyIndex - 1;
+                setHistoryIndex(nextIndex);
+                setCurrentInput(commandHistory[nextIndex]);
+            } else if (historyIndex === 0) {
+                setHistoryIndex(-1);
+                setCurrentInput('');
+            }
+        }
+    }, [currentInput, input, historyIndex, commandHistory, onCommand]);
 
     // Keyboard shortcut: Cmd/Ctrl+F
     const handleKeyDown = useCallback((e) => {
@@ -167,7 +232,7 @@ function TerminalWindow({
         return <p key={index} className="terminal-output">{line.text || ''}</p>;
     };
 
-    const renderCommandBlock = (block, index, isLast) => (
+    const renderCommandBlock = (block, index, showSeparator) => (
         <React.Fragment key={index}>
             <div className="terminal-command-block">
                 <div className="terminal-command-block-inner">
@@ -176,7 +241,7 @@ function TerminalWindow({
                         {block.lines && block.lines.map(renderBlockLine)}
                     </div>
                 </div>
-                {!isLast && (
+                {showSeparator && (
                     <div className="terminal-block-separator">
                         <div className="terminal-block-separator-line" />
                     </div>
@@ -184,6 +249,42 @@ function TerminalWindow({
             </div>
         </React.Fragment>
     );
+
+    const renderInputBlock = () => {
+        if (!input) return null;
+        const showGhost = !currentInput && input.ghost;
+        return (
+            <div className="terminal-command-block terminal-input-block" onClick={focusInput}>
+                <div className="terminal-command-block-inner">
+                    <div className="terminal-path-and-command">
+                        <p className="terminal-prompt-path">{input.path}</p>
+                        {input.branch && (
+                            <p className="terminal-input-branch">git:({input.branch})</p>
+                        )}
+                        <div className="terminal-input-cursor-line">
+                            {currentInput && <span className="terminal-typed-text">{currentInput}</span>}
+                            <span className="terminal-cursor" />
+                            {showGhost && <span className="terminal-ghost">{input.ghost}</span>}
+                        </div>
+                        <input
+                            ref={hiddenInputRef}
+                            className="terminal-hidden-input"
+                            type="text"
+                            value={currentInput}
+                            onChange={(e) => {
+                                setCurrentInput(e.target.value);
+                                setHistoryIndex(-1);
+                            }}
+                            onKeyDown={handleTerminalInputKeyDown}
+                            autoFocus
+                            spellCheck={false}
+                            autoComplete="off"
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <ToolWindow
@@ -242,26 +343,15 @@ function TerminalWindow({
                     </div>
                 )}
 
-                {/* Command blocks output */}
-                <div className="terminal-output-area">
-                    {blocks.map((block, i) => renderCommandBlock(block, i, i === blocks.length - 1))}
+                {/* Single scrollable buffer: output blocks + input prompt */}
+                <div className="terminal-output-area" ref={scrollAreaRef} onClick={focusInput}>
+                    {internalBlocks.map((block, i) => {
+                        // Show separator after every block if there's a next block or an input following
+                        const hasNext = i < internalBlocks.length - 1 || !!input;
+                        return renderCommandBlock(block, i, hasNext);
+                    })}
+                    {renderInputBlock()}
                 </div>
-
-                {/* Input area at bottom */}
-                {input && (
-                    <div className="terminal-input-area">
-                        <div className="terminal-input-header">
-                            <span className="terminal-input-path">{input.path}</span>
-                            {input.branch && (
-                                <span className="terminal-input-branch">git:({input.branch})</span>
-                            )}
-                        </div>
-                        <div className="terminal-input-cursor-line">
-                            <span className="terminal-cursor" />
-                            {input.ghost && <span className="terminal-ghost">{input.ghost}</span>}
-                        </div>
-                    </div>
-                )}
 
                 {/* Context menu */}
                 {contextMenu && (

@@ -21,6 +21,7 @@ function IDEWindow({
     const [rightStripeSelected, setRightStripeSelected] = useState(null);
     const [showLeftPanel, setShowLeftPanel] = useState(true);
     const [showRightPanel, setShowRightPanel] = useState(false);
+    const [focusedPanel, setFocusedPanel] = useState(null);
 
     // Project tree data
     const projectTreeData = [
@@ -84,20 +85,40 @@ function IDEWindow({
 
     const handleLeftStripeClick = (id) => {
         if (leftStripeSelected === id) {
+            const willClose = showLeftPanel;
             setShowLeftPanel(!showLeftPanel);
+            if (willClose) {
+                setFocusedPanel(null);
+            } else {
+                setFocusedPanel('left');
+            }
         } else {
             setLeftStripeSelected(id);
             setShowLeftPanel(true);
+            setFocusedPanel('left');
         }
     };
 
     const handleRightStripeClick = (id) => {
         if (rightStripeSelected === id) {
+            const willClose = showRightPanel;
             setShowRightPanel(!showRightPanel);
+            if (willClose) {
+                setFocusedPanel(null);
+            } else {
+                setFocusedPanel('right');
+            }
         } else {
             setRightStripeSelected(id);
             setShowRightPanel(true);
+            setFocusedPanel('right');
         }
+    };
+
+    const getStripeState = (panel, selectionId, currentSelection, isPanelOpen) => {
+        if (currentSelection !== selectionId || !isPanelOpen) return 'default';
+        if (focusedPanel === panel) return 'selected';
+        return 'inactive';
     };
 
     return (
@@ -117,26 +138,26 @@ function IDEWindow({
                 <StripeContainer className="ide-stripe-left">
                     <Stripe 
                         icon="toolwindows/project@20x20" 
-                        state={leftStripeSelected === 'project' && showLeftPanel ? 'selected' : 'default'} 
+                        state={getStripeState('left', 'project', leftStripeSelected, showLeftPanel)} 
                         title="Project"
                         onClick={() => handleLeftStripeClick('project')}
                     />
                     <Stripe 
                         icon="toolwindows/commit@20x20" 
-                        state={leftStripeSelected === 'commit' && showLeftPanel ? 'selected' : 'default'}
+                        state={getStripeState('left', 'commit', leftStripeSelected, showLeftPanel)}
                         title="Commit"
                         onClick={() => handleLeftStripeClick('commit')}
                     />
                     <Stripe 
                         icon="toolwindows/structure@20x20" 
-                        state={leftStripeSelected === 'structure' && showLeftPanel ? 'selected' : 'default'}
+                        state={getStripeState('left', 'structure', leftStripeSelected, showLeftPanel)}
                         title="Structure"
                         onClick={() => handleLeftStripeClick('structure')}
                     />
                     <StripeContainer.Separator />
                     <Stripe 
                         icon="toolwindows/bookmarks@20x20" 
-                        state={leftStripeSelected === 'bookmarks' && showLeftPanel ? 'selected' : 'default'}
+                        state={getStripeState('left', 'bookmarks', leftStripeSelected, showLeftPanel)}
                         title="Bookmarks"
                         onClick={() => handleLeftStripeClick('bookmarks')}
                     />
@@ -152,6 +173,8 @@ function IDEWindow({
                             width="100%"
                             height="100%"
                             actions={['more', 'minimize']}
+                            focused={focusedPanel === 'left'}
+                            onFocus={() => setFocusedPanel('left')}
                             className="ide-tool-window"
                         >
                             <Tree 
@@ -164,7 +187,7 @@ function IDEWindow({
                 )}
 
                 {/* Editor Area */}
-                <div className="ide-editor-area">
+                <div className="ide-editor-area" onMouseDown={() => setFocusedPanel(null)}>
                     {/* Editor Tabs */}
                     <div className="ide-editor-tabs">
                         <TabBar tabs={editorTabs} direction="horizontal" size="small" />
@@ -189,6 +212,8 @@ function IDEWindow({
                             width="100%"
                             height="100%"
                             actions={['more', 'minimize']}
+                            focused={focusedPanel === 'right'}
+                            onFocus={() => setFocusedPanel('right')}
                             className="ide-tool-window"
                         >
                             <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
@@ -202,19 +227,19 @@ function IDEWindow({
                 <StripeContainer className="ide-stripe-right">
                     <Stripe 
                         icon="toolwindows/notifications@20x20" 
-                        state={rightStripeSelected === 'notifications' && showRightPanel ? 'selected' : 'default'}
+                        state={getStripeState('right', 'notifications', rightStripeSelected, showRightPanel)}
                         title="Notifications"
                         onClick={() => handleRightStripeClick('notifications')}
                     />
                     <Stripe 
                         icon="toolwindows/gradle@20x20" 
-                        state={rightStripeSelected === 'gradle' && showRightPanel ? 'selected' : 'default'}
+                        state={getStripeState('right', 'gradle', rightStripeSelected, showRightPanel)}
                         title="Gradle"
                         onClick={() => handleRightStripeClick('gradle')}
                     />
                     <Stripe 
                         icon="toolwindows/database@20x20" 
-                        state={rightStripeSelected === 'database' && showRightPanel ? 'selected' : 'default'}
+                        state={getStripeState('right', 'database', rightStripeSelected, showRightPanel)}
                         title="Database"
                         onClick={() => handleRightStripeClick('database')}
                     />

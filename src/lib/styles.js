@@ -20,9 +20,8 @@ import '../ui/components/radio/Radio.css';
 import '../ui/components/toggle/Toggle.css';
 
 // Layout Styles
-import '../ui/components/idelayout/IDELayout.css';
-import '../ui/components/idewindow/IDEWindow.css';
 import '../ui/components/mainwindow/MainWindow.css';
+import '../ui/components/idewindow/IDEWindow.css';
 
 // Navigation Styles
 import '../ui/components/tabs/Tab.css';

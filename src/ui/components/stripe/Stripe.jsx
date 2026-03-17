@@ -22,6 +22,7 @@ function Stripe({
     const getStateClass = () => {
         if (disabled) return 'stripe-inactive';
         if (state === 'selected') return 'stripe-selected';
+        if (state === 'inactive') return 'stripe-inactive';
         return 'stripe-default';
     };
 

@@ -28,9 +28,8 @@ export { default as DialogHeader } from '../ui/components/dialog/DialogHeader';
 export { default as DialogFooter } from '../ui/components/dialog/DialogFooter';
 
 // Layout Components
-export { default as IDELayout } from '../ui/components/idelayout/IDELayout';
-export { default as IDEWindow } from '../ui/components/idewindow/IDEWindow';
 export { default as MainWindow } from '../ui/components/mainwindow/MainWindow';
+export { default as IDEWindow } from '../ui/components/idewindow/IDEWindow';
 
 // Navigation Components
 export { default as Tab } from '../ui/components/tabs/Tab';

@@ -4,12 +4,16 @@ import StripeContainer from '../stripe/StripeContainer';
 import Stripe from '../stripe/Stripe';
 import StatusBar from '../statusbar/StatusBar';
 import ToolWindow from '../toolwindow/ToolWindow';
-import Tab from '../tabs/Tab';
+import TerminalWindow from '../toolwindow/TerminalWindow';
+import ProjectWindow from '../toolwindow/ProjectWindow';
+import AIAssistantWindow from '../toolwindow/AIAssistantWindow';
+import TabBar from '../tabs/TabBar';
+import CodeExample from '../showcase/CodeExample';
 import './MainWindow.css';
 
 /**
- * MainWindow component - represents the full IDE window layout
- * 
+ * MainWindow component - IDE window layout using Island theme
+ *
  * Layout structure:
  * - Main Toolbar (top)
  * - Left Stripe (vertical toolbar)
@@ -18,9 +22,9 @@ import './MainWindow.css';
  * - Status Bar (bottom)
  */
 function MainWindow({
-    projectName = "commons-math",
-    projectIcon = "CM",
-    projectColor = "teal",
+    projectName = "intellij",
+    projectIcon = "IJ",
+    projectColor = "cobalt",
     branchName = "main",
     runConfig = "IDEA Community",
     className = "",
@@ -28,21 +32,26 @@ function MainWindow({
 }) {
     // Left stripe state
     const [leftStripeSelection, setLeftStripeSelection] = useState('project');
-    
+    const [showLeftPanel, setShowLeftPanel] = useState(true);
+
     // Right stripe state
     const [rightStripeSelection, setRightStripeSelection] = useState('ai');
-    
+    const [showRightPanel, setShowRightPanel] = useState(true);
+
     // Bottom stripe items state
     const [bottomStripeSelection, setBottomStripeSelection] = useState('terminal');
+    const [showBottomPanel, setShowBottomPanel] = useState(true);
+
+    // Focus tracking: which panel currently has focus ('editor', 'left', 'right', 'bottom')
+    const [focusedPanel, setFocusedPanel] = useState('editor');
 
     // Editor tabs state
-    const [activeEditorTab, setActiveEditorTab] = useState('4');
     const editorTabs = [
-        { id: '1', label: 'FunctionUtils.java', icon: 'nodes/class' },
-        { id: '2', label: 'add-hover.svg', icon: 'fileTypes/svg' },
-        { id: '3', label: 'add.svg', icon: 'fileTypes/svg' },
-        { id: '4', label: 'AdapterScript.java', icon: 'nodes/class', closable: true },
-        { id: '5', label: 'AdapterScriptInterface.java', icon: 'nodes/interface' },
+        { id: '1', label: 'FunctionUtils.java', icon: 'fileTypes/java', closable: true },
+        { id: '2', label: 'add-hover.svg', icon: 'fileTypes/svg', closable: true },
+        { id: '3', label: 'add.svg', icon: 'fileTypes/svg', closable: true },
+        { id: '4', label: 'AdapterScript.java', icon: 'fileTypes/java', closable: true },
+        { id: '5', label: 'AdapterScriptInterface.java', icon: 'fileTypes/java', closable: true },
     ];
 
     // Terminal tabs state
@@ -52,17 +61,66 @@ function MainWindow({
         { id: 'local1', label: 'Local (1)', closable: true },
     ];
 
+    // Project tree data
+    const projectTreeData = [
+        {
+            id: '1',
+            label: projectName,
+            icon: 'nodes/folder',
+            isExpanded: true,
+            children: [
+                { id: '1-1', label: '.idea', icon: 'nodes/folder' },
+                {
+                    id: '1-2',
+                    label: 'src',
+                    icon: 'nodes/folder',
+                    isExpanded: true,
+                    children: [
+                        {
+                            id: '1-2-1',
+                            label: 'java',
+                            icon: 'nodes/folder',
+                            isExpanded: true,
+                            children: [
+                                { id: '1-2-1-1', label: 'analysis', icon: 'nodes/folder' },
+                                { id: '1-2-1-2', label: 'BivariateFunction.java', icon: 'fileTypes/java' },
+                                { id: '1-2-1-3', label: 'FunctionUtils.java', icon: 'fileTypes/java' },
+                                { id: '1-2-1-4', label: 'MultivariateFunction.java', icon: 'fileTypes/java' },
+                                { id: '1-2-1-5', label: 'TrivariateFunction.java', icon: 'fileTypes/java' }
+                            ]
+                        },
+                        { id: '1-2-2', label: 'polynomials', icon: 'nodes/folder' },
+                        { id: '1-2-3', label: 'solver', icon: 'nodes/folder' }
+                    ]
+                },
+                {
+                    id: '1-3',
+                    label: 'test',
+                    icon: 'nodes/folder',
+                    children: [
+                        {
+                            id: '1-3-1',
+                            label: 'java',
+                            icon: 'nodes/folder',
+                            children: [
+                                { id: '1-3-1-1', label: 'FunctionUtilsTest.java', icon: 'fileTypes/java' },
+                                { id: '1-3-1-2', label: 'MonitoredFunction.java', icon: 'fileTypes/java' }
+                            ]
+                        }
+                    ]
+                },
+                { id: '1-4', label: 'External Libraries', icon: 'nodes/ppLibFolder' }
+            ]
+        }
+    ];
+
     // Status bar breadcrumbs
     const breadcrumbs = [
-        { label: 'intellij', module: true },
-        { label: 'accurate-math-core', module: true },
+        { label: projectName, module: true },
         { label: 'src' },
         { label: 'main' },
         { label: 'java' },
-        { label: 'org' },
-        { label: 'math' },
-        { label: 'core' },
-        { label: 'AccurateMath', icon: true, iconName: 'nodes/class' }
+        { label: 'AdapterScript', icon: true, iconName: 'nodes/class' }
     ];
 
     // Status bar widgets
@@ -73,176 +131,254 @@ function MainWindow({
         { type: 'icon', iconName: 'general/unlocked' }
     ];
 
+    const getStripeState = (panelType, id, isShown) => {
+        if (!isShown) return 'default';
+        const panelKey = panelType === 'left' ? leftStripeSelection :
+                         panelType === 'right' ? rightStripeSelection :
+                         bottomStripeSelection;
+        if (panelKey !== id) return 'default';
+        return focusedPanel === panelType ? 'selected' : 'inactive';
+    };
+
+    const handleLeftStripeClick = (id) => {
+        if (leftStripeSelection === id) {
+            setShowLeftPanel(!showLeftPanel);
+        } else {
+            setLeftStripeSelection(id);
+            setShowLeftPanel(true);
+        }
+        setFocusedPanel('left');
+    };
+
+    const handleRightStripeClick = (id) => {
+        if (rightStripeSelection === id) {
+            setShowRightPanel(!showRightPanel);
+        } else {
+            setRightStripeSelection(id);
+            setShowRightPanel(true);
+        }
+        setFocusedPanel('right');
+    };
+
+    const handleBottomStripeClick = (id) => {
+        if (bottomStripeSelection === id) {
+            setShowBottomPanel(!showBottomPanel);
+        } else {
+            setBottomStripeSelection(id);
+            setShowBottomPanel(true);
+        }
+        setFocusedPanel('bottom');
+    };
+
     return (
-        <div className={`main-window ${className}`} {...props}>
+        <div className={`ide-layout ide-layout-island ${className}`} {...props}>
             {/* Main Toolbar */}
-            <MainToolbar 
+            <MainToolbar
                 projectName={projectName}
+                projectIcon={projectIcon}
+                projectColor={projectColor}
                 branchName={branchName}
                 runConfig={runConfig}
             />
-            
+
             {/* Main Content Area */}
-            <div className="main-window-content">
+            <div className="ide-layout-content">
                 {/* Left Stripe */}
-                <div className="main-window-stripe main-window-stripe-left">
+                <div className="ide-layout-stripe ide-layout-stripe-left">
                     <StripeContainer className="stripe-section-top">
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/project@20x20"
-                            state={leftStripeSelection === 'project' ? 'selected' : 'default'}
+                            state={getStripeState('left', 'project', showLeftPanel)}
                             title="Project"
-                            onClick={() => setLeftStripeSelection('project')}
+                            onClick={() => handleLeftStripeClick('project')}
                         />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/commit@20x20"
-                            state={leftStripeSelection === 'commit' ? 'selected' : 'default'}
+                            state={getStripeState('left', 'commit', showLeftPanel)}
                             title="Commit"
-                            onClick={() => setLeftStripeSelection('commit')}
+                            onClick={() => handleLeftStripeClick('commit')}
                         />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/vcs@20x20"
-                            state={leftStripeSelection === 'pullRequests' ? 'selected' : 'default'}
+                            state={getStripeState('left', 'pullRequests', showLeftPanel)}
                             title="Pull Requests"
-                            onClick={() => setLeftStripeSelection('pullRequests')}
+                            onClick={() => handleLeftStripeClick('pullRequests')}
                         />
                         <StripeContainer.Separator />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/structure@20x20"
-                            state={leftStripeSelection === 'structure' ? 'selected' : 'default'}
+                            state={getStripeState('left', 'structure', showLeftPanel)}
                             title="Structure"
-                            onClick={() => setLeftStripeSelection('structure')}
-                        />
-                        <Stripe 
-                            icon="toolwindows/toolWindowOverflow@20x20"
-                            state={leftStripeSelection === 'more' ? 'selected' : 'default'}
-                            title="More tool windows"
-                            onClick={() => setLeftStripeSelection('more')}
+                            onClick={() => handleLeftStripeClick('structure')}
                         />
                     </StripeContainer>
                     <StripeContainer className="stripe-section-bottom">
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/terminal@20x20"
-                            state={bottomStripeSelection === 'terminal' ? 'selected' : 'default'}
+                            state={getStripeState('bottom', 'terminal', showBottomPanel)}
                             title="Terminal"
-                            onClick={() => setBottomStripeSelection('terminal')}
+                            onClick={() => handleBottomStripeClick('terminal')}
                         />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/run@20x20"
-                            state={bottomStripeSelection === 'run' ? 'selected' : 'default'}
+                            state={getStripeState('bottom', 'run', showBottomPanel)}
                             title="Run"
-                            onClick={() => setBottomStripeSelection('run')}
+                            onClick={() => handleBottomStripeClick('run')}
                         />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/debug@20x20"
-                            state={bottomStripeSelection === 'debug' ? 'selected' : 'default'}
+                            state={getStripeState('bottom', 'debug', showBottomPanel)}
                             title="Debug"
-                            onClick={() => setBottomStripeSelection('debug')}
-                        />
-                        <Stripe 
-                            icon="toolwindows/find@20x20"
-                            state={bottomStripeSelection === 'find' ? 'selected' : 'default'}
-                            title="Find"
-                            onClick={() => setBottomStripeSelection('find')}
+                            onClick={() => handleBottomStripeClick('debug')}
                         />
                     </StripeContainer>
                 </div>
 
-                {/* Central Content */}
-                <div className="main-window-center">
+                {/* Center Content Area */}
+                <div className="ide-layout-center">
                     {/* Top Row: Tool Windows and Editor */}
-                    <div className="main-window-top-row">
+                    <div className="ide-layout-top-row">
                         {/* Left Tool Window (Project) */}
-                        <ToolWindow
-                            title="Project"
-                            width={280}
-                            height="auto"
-                            actions={['more', 'minimize']}
-                            className="main-window-tool-window main-window-tool-window-left"
-                        >
-                            {/* Tree content would go here */}
-                        </ToolWindow>
+                        {showLeftPanel && (
+                            leftStripeSelection === 'project' ? (
+                                <ProjectWindow
+                                    width={280}
+                                    height="auto"
+                                    treeData={projectTreeData}
+                                    focused={focusedPanel === 'left'}
+                                    onFocus={() => setFocusedPanel('left')}
+                                    className="ide-layout-tool-window ide-layout-tool-window-left"
+                                />
+                            ) : (
+                                <ToolWindow
+                                    title={leftStripeSelection === 'commit' ? 'Commit' :
+                                           leftStripeSelection === 'pullRequests' ? 'Pull Requests' : 'Structure'}
+                                    width={280}
+                                    height="auto"
+                                    actions={['more', 'minimize']}
+                                    focused={focusedPanel === 'left'}
+                                    onFocus={() => setFocusedPanel('left')}
+                                    className="ide-layout-tool-window ide-layout-tool-window-left"
+                                >
+                                    <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                                        No content available
+                                    </div>
+                                </ToolWindow>
+                            )
+                        )}
 
                         {/* Editor Area */}
-                        <div className="editor-area">
-                            <div className="editor-tabs">
-                                {editorTabs.map((tab) => (
-                                    <Tab
-                                        key={tab.id}
-                                        label={tab.label}
-                                        icon={tab.icon}
-                                        active={tab.id === activeEditorTab}
-                                        closable={tab.id === activeEditorTab || tab.closable}
-                                        onClick={() => setActiveEditorTab(tab.id)}
-                                    />
-                                ))}
+                        <div className="ide-layout-editor-area" onMouseDown={() => setFocusedPanel('editor')}>
+                            <div className="ide-layout-editor-tabs">
+                                <TabBar
+                                    tabs={editorTabs.map(t => ({ label: t.label, icon: t.icon, closable: t.closable }))}
+                                    direction="horizontal"
+                                    size="small"
+                                    focused={focusedPanel === 'editor'}
+                                />
                             </div>
-                            <div className="editor-content">
-                                {/* Editor content would go here */}
+                            <div className="ide-layout-editor-content">
+                                <CodeExample showLineNumbers={true} />
                             </div>
                         </div>
 
                         {/* Right Tool Window (AI Assistant) */}
-                        <ToolWindow
-                            title="AI Assistant"
-                            width={320}
-                            height="auto"
-                            actions={['add', 'more', 'minimize']}
-                            className="main-window-tool-window main-window-tool-window-right"
-                        >
-                            {/* AI Assistant content would go here */}
-                        </ToolWindow>
+                        {showRightPanel && (
+                            rightStripeSelection === 'ai' ? (
+                                <AIAssistantWindow
+                                    width={320}
+                                    height="auto"
+                                    empty={true}
+                                    focused={focusedPanel === 'right'}
+                                    onFocus={() => setFocusedPanel('right')}
+                                    className="ide-layout-tool-window ide-layout-tool-window-right"
+                                />
+                            ) : (
+                                <ToolWindow
+                                    title={rightStripeSelection === 'database' ? 'Database' :
+                                           rightStripeSelection === 'maven' ? 'Maven' : 'Notifications'}
+                                    width={320}
+                                    height="auto"
+                                    actions={['more', 'minimize']}
+                                    focused={focusedPanel === 'right'}
+                                    onFocus={() => setFocusedPanel('right')}
+                                    className="ide-layout-tool-window ide-layout-tool-window-right"
+                                >
+                                    <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                                        No content available
+                                    </div>
+                                </ToolWindow>
+                            )
+                        )}
                     </div>
 
                     {/* Bottom Tool Window (Terminal) */}
-                    <ToolWindow
-                        title="Terminal"
-                        width="auto"
-                        height={220}
-                        headerType="tabs"
-                        tabs={terminalTabs}
-                        activeTab={activeTerminalTab === 'local' ? 0 : 1}
-                        onTabChange={(index) => setActiveTerminalTab(index === 0 ? 'local' : 'local1')}
-                        actions={['add', 'more', 'minimize']}
-                        className="main-window-tool-window main-window-tool-window-bottom"
-                    >
-                        {/* Terminal content would go here */}
-                    </ToolWindow>
+                    {showBottomPanel && (
+                        bottomStripeSelection === 'terminal' ? (
+                            <TerminalWindow
+                                width="auto"
+                                height={180}
+                                tabs={terminalTabs}
+                                activeTab={activeTerminalTab === 'local' ? 0 : 1}
+                                onTabChange={(index) => setActiveTerminalTab(index === 0 ? 'local' : 'local1')}
+                                blocks={[]}
+                                input={{ path: '~/projects/' + projectName, branch: 'main' }}
+                                focused={focusedPanel === 'bottom'}
+                                onFocus={() => setFocusedPanel('bottom')}
+                                className="ide-layout-tool-window ide-layout-tool-window-bottom"
+                            />
+                        ) : (
+                            <ToolWindow
+                                title={bottomStripeSelection === 'run' ? 'Run' : 'Debug'}
+                                width="auto"
+                                height={180}
+                                actions={['more', 'minimize']}
+                                focused={focusedPanel === 'bottom'}
+                                onFocus={() => setFocusedPanel('bottom')}
+                                className="ide-layout-tool-window ide-layout-tool-window-bottom"
+                            >
+                                <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                                    No content available
+                                </div>
+                            </ToolWindow>
+                        )
+                    )}
                 </div>
 
                 {/* Right Stripe */}
-                <div className="main-window-stripe main-window-stripe-right">
+                <div className="ide-layout-stripe ide-layout-stripe-right">
                     <StripeContainer className="stripe-section-top">
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/aiAssistantToolWindow@20x20"
-                            state={rightStripeSelection === 'ai' ? 'selected' : 'default'}
+                            state={getStripeState('right', 'ai', showRightPanel)}
                             title="AI Assistant"
-                            onClick={() => setRightStripeSelection('ai')}
+                            onClick={() => handleRightStripeClick('ai')}
                         />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/services@20x20"
-                            state={rightStripeSelection === 'database' ? 'selected' : 'default'}
+                            state={getStripeState('right', 'database', showRightPanel)}
                             title="Database"
-                            onClick={() => setRightStripeSelection('database')}
+                            onClick={() => handleRightStripeClick('database')}
                         />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/dependencies@20x20"
-                            state={rightStripeSelection === 'maven' ? 'selected' : 'default'}
+                            state={getStripeState('right', 'maven', showRightPanel)}
                             title="Maven"
-                            onClick={() => setRightStripeSelection('maven')}
+                            onClick={() => handleRightStripeClick('maven')}
                         />
                         <StripeContainer.Separator />
-                        <Stripe 
+                        <Stripe
                             icon="toolwindows/notifications@20x20"
-                            state={rightStripeSelection === 'notifications' ? 'selected' : 'default'}
+                            state={getStripeState('right', 'notifications', showRightPanel)}
                             title="Notifications"
-                            onClick={() => setRightStripeSelection('notifications')}
+                            onClick={() => handleRightStripeClick('notifications')}
                         />
                     </StripeContainer>
                 </div>
             </div>
 
             {/* Status Bar */}
-            <StatusBar 
+            <StatusBar
                 breadcrumbs={breadcrumbs}
                 widgets={widgets}
             />
@@ -251,4 +387,3 @@ function MainWindow({
 }
 
 export default MainWindow;
-

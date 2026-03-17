@@ -53,6 +53,16 @@
     background: var(--tool-window-tab-selected-bg);
 }
 
+/* Selected + Active (focused) state — blue pill fill + border */
+.tab-selected-active {
+    background: var(--tool-window-tab-selected-bg-active);
+    border-color: var(--tool-window-tab-selected-border-active);
+}
+
+.tab-selected-active:hover {
+    background: var(--tool-window-tab-selected-bg-active);
+}
+
 /* Icon styling */
 .tab-icon {
     width: 16px;

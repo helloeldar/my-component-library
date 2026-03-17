@@ -14,7 +14,7 @@
 
 .line-numbers {
     background: transparent;
-    border-right: 1px solid var(--border-secondary);
+    border-right: 1px solid var(--border-primary);
     padding: 12px 0px 12px 4px;
     color: var(--text-disabled);
     user-select: none;

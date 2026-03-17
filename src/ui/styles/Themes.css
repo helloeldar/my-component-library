@@ -294,15 +294,22 @@
     --tool-window-tab-close: var(--icon-secondary);
     --tool-window-tab-close-hover: var(--text-primary);
     --tool-window-tab-close-bg-hover: var(--gray-30);
-    --tool-window-tab-selected-bg: #DFE1E5; /* L: pill tab selected bg */
-    --tool-window-tab-selected-border: #C9CCD6; /* L: pill tab selected border */
+    --tool-window-tab-selected-bg: #DFE1E5; /* L: pill tab selected bg (inactive) */
+    --tool-window-tab-selected-border: #C9CCD6; /* L: pill tab selected border (inactive) */
+    --tool-window-tab-selected-bg-active: #E3EBFE; /* L: pill tab selected bg (active) — blue-150 */
+    --tool-window-tab-selected-border-active: #A7C5FF; /* L: pill tab selected border (active) — blue-120 */
     --tool-window-bg: var(--bg-elevated);
     --tool-window-border: var(--border-secondary);
     --tool-window-content-bg: var(--bg-elevated);
     --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --tool-window-scrollbar-track: var(--gray-10);
-    --tool-window-scrollbar-thumb: var(--gray-50);
-    --tool-window-scrollbar-thumb-hover: var(--gray-60);
+    --tool-window-scrollbar-track: var(--scrollbar-track);
+    --tool-window-scrollbar-thumb: var(--scrollbar-thumb);
+    --tool-window-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+
+    /* Scrollbar - Light Theme */
+    --scrollbar-track: var(--gray-10);
+    --scrollbar-thumb: var(--gray-50);
+    --scrollbar-thumb-hover: var(--gray-60);
     --editor-default-text: var(--editor-light-default-text);
     --editor-error: var(--editor-light-error);
     --editor-warning: var(--editor-light-warning);
@@ -548,17 +555,24 @@
     --tool-window-tab-close: var(--icon-secondary); /* D: tool window tab close */
     --tool-window-tab-close-hover: var(--text-primary); /* D: tool window tab close hover */
     --tool-window-tab-close-bg-hover: var(--gray-110); /* D: tool window tab close bg hover */
-    --tool-window-tab-selected-bg: #26282C; /* D: pill tab selected bg (tab/tab-selected-bg-inactive) */
-    --tool-window-tab-selected-border: #40434A; /* D: pill tab selected border (tab/tab-selected-border-inactive) */
+    --tool-window-tab-selected-bg: #26282C; /* D: pill tab selected bg (inactive) — gray-30 */
+    --tool-window-tab-selected-border: #40434A; /* D: pill tab selected border (inactive) — gray-50 */
+    --tool-window-tab-selected-bg-active: #233558; /* D: pill tab selected bg (active) — blue-40 */
+    --tool-window-tab-selected-border-active: #2E4D89; /* D: pill tab selected border (active) — blue-60 */
 
     /* Tool Window Colors */
     --tool-window-bg: #191A1C; /* D: tool window background */
     --tool-window-border: var(--gray-120); /* D: tool window border */
     --tool-window-content-bg: var(--bg-secondary); /* D: tool window content background */
     --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* D: tool window shadow */
-    --tool-window-scrollbar-track: var(--gray-130); /* D: tool window scrollbar track */
-    --tool-window-scrollbar-thumb: var(--gray-90); /* D: tool window scrollbar thumb */
-    --tool-window-scrollbar-thumb-hover: var(--gray-80); /* D: tool window scrollbar thumb hover */
+    --tool-window-scrollbar-track: var(--scrollbar-track); /* D: tool window scrollbar track */
+    --tool-window-scrollbar-thumb: var(--scrollbar-thumb); /* D: tool window scrollbar thumb */
+    --tool-window-scrollbar-thumb-hover: var(--scrollbar-thumb-hover); /* D: tool window scrollbar thumb hover */
+
+    /* Scrollbar - Dark Theme */
+    --scrollbar-track: var(--gray-130);
+    --scrollbar-thumb: var(--gray-90);
+    --scrollbar-thumb-hover: var(--gray-80);
 
     /* Editor Semantic Colors - Dark Theme */
     --editor-default-text: var(--editor-dark-default-text);
@@ -644,4 +658,27 @@
     --island-border: rgba(255, 255, 255, 0.08);
     --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
     --island-editor-bg: #17181A;
+}
+
+/* Global Opaque Scrollbar Styling */
+.theme-light ::-webkit-scrollbar,
+.theme-dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.theme-light ::-webkit-scrollbar-track,
+.theme-dark ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+.theme-light ::-webkit-scrollbar-thumb,
+.theme-dark ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+.theme-light ::-webkit-scrollbar-thumb:hover,
+.theme-dark ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
 }

@@ -18,6 +18,7 @@ function Tab({
     label,
     icon,
     active = false,
+    focused = false,
     disabled = false,
     closable = false,
     size,
@@ -30,6 +31,7 @@ function Tab({
     const classes = [
         'tab',
         active ? 'tab-selected' : '',
+        active && focused ? 'tab-selected-active' : '',
         size === 'small' ? 'tab-small' : ''
     ].filter(Boolean).join(' ');
 
