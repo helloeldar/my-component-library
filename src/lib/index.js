@@ -22,6 +22,11 @@ export { default as ProgressBar } from '../ui/components/progressbar/ProgressBar
 export { default as Radio, RadioGroup } from '../ui/components/radio/Radio';
 export { default as Toggle } from '../ui/components/toggle/Toggle';
 
+// Dialog Components
+export { default as Dialog } from '../ui/components/dialog/Dialog';
+export { default as DialogHeader } from '../ui/components/dialog/DialogHeader';
+export { default as DialogFooter } from '../ui/components/dialog/DialogFooter';
+
 // Layout Components
 export { default as IDELayout } from '../ui/components/idelayout/IDELayout';
 export { default as IDEWindow } from '../ui/components/idewindow/IDEWindow';

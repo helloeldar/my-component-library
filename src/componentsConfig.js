@@ -6,6 +6,7 @@ export const componentsConfig = [
     { name: 'Checkbox', key: 'checkbox', description: 'Checkbox with checked, indeterminate, and disabled states', category: 'components' },
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components' },
     { name: 'Combobox', key: 'combobox', description: 'Editable dropdown with filtering and selection', category: 'components' },
+    { name: 'Dialog', key: 'dialog', description: 'Modal dialog window with header, content area, and footer buttons', category: 'components' },
     { name: 'Dropdown', key: 'dropdown', description: 'Select dropdown with options list', category: 'components' },
     { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components' },
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components' },

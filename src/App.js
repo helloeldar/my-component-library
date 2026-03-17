@@ -34,6 +34,7 @@ import Table from './ui/components/table/Table';
 import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import Alert from './ui/components/alert/Alert';
+import Dialog from './ui/components/dialog/Dialog';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
@@ -1908,6 +1909,60 @@ function AlertPage() {
     );
 }
 
+function DialogPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Dialog</h1>
+            <p className="component-description">
+                Modal dialog window with header (macOS traffic light buttons + title),
+                scrollable content area, and footer (help icon + action buttons).
+            </p>
+
+            <div className="component-section">
+                <h2>Default Dialog</h2>
+                <p className="section-description">
+                    Empty dialog with default Cancel / Apply / OK buttons.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <Dialog title="Settings" width={500} height={350} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Dialog with Content</h2>
+                <p className="section-description">
+                    Dialog with custom body content and two buttons.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <Dialog
+                        title="Confirm Action"
+                        width={420}
+                        buttons={[
+                            { children: 'Cancel' },
+                            { children: 'OK' },
+                        ]}
+                    >
+                        <div style={{ padding: '20px', color: 'var(--text-primary)', fontSize: '13px', lineHeight: '20px' }}>
+                            <p>Are you sure you want to proceed with this action?</p>
+                            <p style={{ marginTop: '8px', color: 'var(--text-secondary)' }}>This operation cannot be undone.</p>
+                        </div>
+                    </Dialog>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Wide Dialog</h2>
+                <p className="section-description">
+                    Wider dialog similar to the Settings screen in Figma.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <Dialog title="Settings" width={880} height={495} />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function TerminalWindowPage() {
     return (
         <div className="component-showcase">
@@ -2205,6 +2260,7 @@ function AppContent() {
                     <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
                     <Route path="/alert" element={<AlertPage />} />
+                    <Route path="/dialog" element={<DialogPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>

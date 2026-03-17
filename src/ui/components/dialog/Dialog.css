@@ -1,0 +1,107 @@
+/* Dialog */
+.dialog {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background: var(--dialog-bg);
+    border: 0.5px solid var(--dialog-border);
+    box-shadow: var(--dialog-shadow);
+    overflow: hidden;
+}
+
+/* Dialog Header */
+.dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 7px 9px;
+    background: var(--dialog-bg);
+    border-radius: 5px 5px 0 0;
+}
+
+.dialog-header-macos-buttons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.dialog-header-macos-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dialog-header-macos-button-close {
+    background: #FF5F57;
+}
+
+.dialog-header-macos-button-minimize {
+    background: #FEBC2E;
+}
+
+.dialog-header-macos-button-expand {
+    background: #28C840;
+}
+
+.dialog-header-title {
+    flex: 1;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--dialog-header-text);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dialog-header-border {
+    height: 1px;
+    background: var(--dialog-border);
+}
+
+/* Dialog Content */
+.dialog-content {
+    flex: 1;
+    overflow: auto;
+    background: var(--dialog-content-bg);
+}
+
+/* Dialog Footer */
+.dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: var(--dialog-bg);
+    border-top: 1px solid var(--dialog-border);
+    min-height: 57px;
+    box-sizing: border-box;
+}
+
+.dialog-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dialog-footer-help {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.dialog-footer-help:hover {
+    opacity: 1;
+}
+
+.dialog-footer-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
