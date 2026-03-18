@@ -8,7 +8,7 @@ import './TerminalWindow.css';
 /**
  * TerminalWindow - A standalone terminal tool window component.
  *
- * Can be used independently for prototypes or embedded inside Main Window (IDELayout).
+ * Can be used independently for prototypes or embedded inside Main Window.
  * Renders a terminal-style interface with monospace text and command prompt.
  *
  * Supports:
@@ -296,6 +296,7 @@ function TerminalWindow({
             tabs={tabs}
             activeTab={activeTab}
             onTabChange={onTabChange}
+            showSeparator={true}
             actions={actions}
             className={`terminal-window ${className}`}
             {...props}

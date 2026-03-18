@@ -1,16 +1,15 @@
 import Icon from '../icon/Icon';
-import Tab from '../tabs/Tab';
+import TabBar from '../tabs/TabBar';
 import './ToolWindowHeader.css';
 
 function ToolWindowHeader({
-    title = "Header", 
+    title = "Header",
     icon,
-    type = "label", 
-    tabs = [], 
+    type = "label",
+    tabs = [],
     activeTab = 0,
     onTabChange,
     showSeparator = false,
-    border = true,
     dropdown = false,
     actions = ['more', 'minimize'],
     onActionClick,
@@ -56,36 +55,15 @@ function ToolWindowHeader({
         if (!tabs || tabs.length === 0) return null;
 
         return (
-            <div className="tw-tab-bar">
-                <div className="tw-tab-bar-tabs">
-                    {tabs.map((tab, index) => (
-                        <Tab
-                            key={index}
-                            label={tab.label}
-                            icon={tab.icon}
-                            active={index === activeTab}
-                            focused={focused}
-                            closable={tab.closable}
-                            onClick={() => onTabChange && onTabChange(index)}
-                            onClose={() => onActionClick && onActionClick('tabClose', index)}
-                        />
-                    ))}
-                </div>
-                <div className="tw-tab-bar-icons">
-                    <button
-                        className="tool-window-action-button"
-                        onClick={() => onActionClick && onActionClick('add')}
-                    >
-                        <Icon name="general/add" size={16} />
-                    </button>
-                    <button
-                        className="tool-window-action-button"
-                        onClick={() => onActionClick && onActionClick('dropdown')}
-                    >
-                        <Icon name="general/chevronDown" size={16} />
-                    </button>
-                </div>
-            </div>
+            <TabBar
+                tabs={tabs}
+                activeTab={activeTab}
+                onTabChange={onTabChange}
+                onTabClose={(index) => onActionClick && onActionClick('tabClose', index)}
+                focused={focused}
+                actions={['add', 'dropdown']}
+                onActionClick={onActionClick}
+            />
         );
     };
 
@@ -123,7 +101,7 @@ function ToolWindowHeader({
                     </>
                 )}
             </div>
-            {(border || showSeparator || type === 'separator') && (
+            {showSeparator && (
                 <div className="tool-window-header-separator"></div>
             )}
         </div>

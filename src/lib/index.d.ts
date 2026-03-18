@@ -83,6 +83,7 @@ export interface IconButtonProps {
 }
 
 export const IconButton: FC<IconButtonProps>;
+export const MainToolbarIconButton: FC<Omit<IconButtonProps, 'variant'>>;
 
 // Input
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -181,7 +182,7 @@ export const MainWindow: FC<{ children?: ReactNode; className?: string }>;
 // Navigation Components
 export const Tab: FC<{ label: string; icon?: string; active?: boolean; closable?: boolean; onClick?: () => void; onClose?: () => void }>;
 export const TabBar: FC<{ tabs?: any[]; activeTab?: string; orientation?: 'horizontal' | 'vertical'; onTabChange?: (id: string) => void }>;
-export const Stripe: FC<{ icon: string; label?: string; active?: boolean; inactive?: boolean; badge?: boolean; position?: 'left' | 'right'; onClick?: () => void }>;
+export const StripeIconButton: FC<{ icon: string; label?: string; active?: boolean; inactive?: boolean; badge?: boolean; position?: 'left' | 'right'; onClick?: () => void }>;
 export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'right' }>;
 
 // Toolbar Components
@@ -195,8 +196,8 @@ export const StatusBarProgress: FC<{ label?: string; value?: number; indetermina
 export const StatusBarWidget: FC<{ icon?: string; label?: string; onClick?: () => void }>;
 
 // Tool Window Components
-export const ToolWindow: FC<{ title?: string; icon?: string; children?: ReactNode; tabs?: any[]; activeTab?: string; onTabChange?: (id: string) => void; onClose?: () => void }>;
-export const ToolWindowHeader: FC<{ title?: string; icon?: string; actions?: ReactNode; onClose?: () => void }>;
+export const ToolWindow: FC<{ title?: string; icon?: string; children?: ReactNode; tabs?: any[]; activeTab?: string; onTabChange?: (id: string) => void; showSeparator?: boolean; onClose?: () => void }>;
+export const ToolWindowHeader: FC<{ title?: string; icon?: string; actions?: ReactNode; showSeparator?: boolean; onClose?: () => void }>;
 export const TerminalWindow: FC<{ title?: string; width?: number | string; height?: number | string; tabs?: any[]; activeTab?: number; onTabChange?: (index: number) => void; actions?: string[]; lines?: any[]; className?: string }>;
 export const ProjectWindow: FC<{ title?: string; width?: number | string; height?: number | string; treeData?: any[]; actions?: string[]; onNodeSelect?: (id: string) => void; onNodeToggle?: (id: string) => void; className?: string }>;
 export const AIAssistantWindow: FC<{ title?: string; width?: number | string; height?: number | string; messages?: any[]; placeholder?: string; empty?: boolean; actions?: string[]; className?: string }>;
