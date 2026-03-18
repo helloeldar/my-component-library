@@ -260,7 +260,8 @@
     /* Success/Green — from Figma icon + feedback tokens */
     --success-bg: var(--green-160); /* Figma: feedback/feedback-success-bg = green-160 */
     --success-icon-fill: var(--green-160); /* Figma: icon/icon-green-fill = #F2FCF3 */
-    --success-icon-outline: var(--green-80); /* Figma: icon/icon-green-stroke = #208A3C */
+    --icon-green-stroke: #208A3C; /* Figma: icon/icon-green-stroke */
+    --success-icon-outline: var(--icon-green-stroke); /* alias */
     --success-icon: var(--green-100); /* Figma: icon/icon-green-solid = #55A76A */
     --success-icon-stroke: var(--green-80); /* Figma: icon/icon-green-stroke-accent */
     --success-stripe: var(--green-110); /* Figma: icon/icon-green-solid */
@@ -539,6 +540,7 @@
 
     /* Success/Green */
     --success-bg: var(--green-40); /* Figma: feedback/feedback-success-bg = green-40 */
+    --icon-green-stroke: #57965C; /* Figma: icon/icon-green-stroke */
     --success-icon: var(--green-100); /* Figma: icon/icon-green-solid = #57965C */
     --success-icon-stroke: var(--green-80); /* Figma: icon/icon-green-stroke-accent */
     --file-color-green: var(--green-40); /* Figma: green-40 */

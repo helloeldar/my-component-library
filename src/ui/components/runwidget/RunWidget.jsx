@@ -93,6 +93,7 @@ function RunWidget({
                     icon="run/run_stroke"
                     tooltip="Run"
                     shortcut="⌃R"
+                    className="run-widget-button-icon-green"
                     onClick={onRun}
                 />
             )}
@@ -110,6 +111,7 @@ function RunWidget({
                     icon="run/debug_stroke"
                     tooltip="Debug"
                     shortcut="⌃D"
+                    className="run-widget-button-icon-green"
                     onClick={onDebug}
                 />
             )}
