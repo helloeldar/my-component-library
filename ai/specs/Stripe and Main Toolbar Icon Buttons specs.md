@@ -73,3 +73,23 @@ No focus outline at all on any icon buttons. Both `:focus` and `:focus-visible` 
 | `toolbar-bg-hovered` | `--icon-button-hover-bg: #EBECF0` / `--stripe-default-hover-bg: #EBECF0` | `--icon-button-hover-bg: #393B40` / `--stripe-default-hover-bg: #393B40` |
 | `toolbar-bg-pressed` | `--icon-button-pressed-bg: #DFE1E5` / `--stripe-inactive-bg: #DFE1E5` | `--icon-button-pressed-bg: #4E5157` / `--stripe-inactive-bg: #4E5157` |
 | `toolbar-selected-bg-active` | `--stripe-selected-bg: #3574F0` | `--stripe-selected-bg: #3871E1` |
+
+---
+
+## Separators
+
+### Stripe Separator (horizontal, inside vertical Stripe)
+- **Container**: 40×11px (full stripe width)
+- **Line**: 24×1px, centered
+- **Color**: `--border-secondary`
+- **Component**: `StripeContainer.Separator`
+- **File**: `src/ui/components/stripe/StripeContainer.jsx`
+
+### Main Toolbar Vertical Separator (vertical, inside horizontal toolbar)
+- **Container**: 11×40px (full toolbar height)
+- **Line**: 1×24px, centered
+- **Color**: `--border-secondary`
+- **Component**: `MainToolbarVerticalSeparator`
+- **File**: `src/ui/components/maintoolbar/MainToolbarVerticalSeparator.jsx`
+
+Both separators follow the same pattern: a flex container with centered 1px line using `--border-secondary`. The vertical separator is the rotated equivalent of the stripe separator.

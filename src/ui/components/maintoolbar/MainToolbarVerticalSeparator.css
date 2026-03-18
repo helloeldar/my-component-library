@@ -1,0 +1,15 @@
+/* Main Toolbar Vertical Separator */
+.main-toolbar-vertical-separator {
+    width: 11px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.main-toolbar-vertical-separator-line {
+    width: 1px;
+    height: 24px;
+    background: var(--border-secondary);
+}

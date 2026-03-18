@@ -186,6 +186,7 @@ export const StripeIconButton: FC<{ icon: string; label?: string; active?: boole
 export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'right' }>;
 
 // Toolbar Components
+export const MainToolbarVerticalSeparator: FC<{}>;
 export const ToolbarDropdown: FC<{ label: string; icon?: string; theme?: string; disabled?: boolean; options?: any[]; value?: string; onChange?: (value: string) => void }>;
 export const ProjectSelector: FC<{ projectName: string; projectIcon?: string; disabled?: boolean; onClick?: () => void }>;
 

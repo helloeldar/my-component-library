@@ -1,5 +1,6 @@
 import React from 'react';
 import { MainToolbarIconButton } from '../iconbutton/IconButton';
+import MainToolbarVerticalSeparator from '../maintoolbar/MainToolbarVerticalSeparator';
 import ProjectSelector from '../projectselector/ProjectSelector';
 import RunWidget from '../runwidget/RunWidget';
 import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
@@ -49,6 +50,7 @@ function MainToolbar({
                     runConfig={runConfig}
                 />
                 
+                <MainToolbarVerticalSeparator />
                 <div className="toolbar-actions">
                     <MainToolbarIconButton icon="codeWithMe/cwmAccess@20x20" tooltip="Code With Me" />
                     <MainToolbarIconButton icon="general/search@20x20" tooltip="Search Everywhere" shortcut="Double ⇧" />

@@ -38,6 +38,7 @@ export { default as StripeIconButton } from '../ui/components/stripe/Stripe';
 export { default as StripeContainer } from '../ui/components/stripe/StripeContainer';
 
 // Toolbar Components
+export { default as MainToolbarVerticalSeparator } from '../ui/components/maintoolbar/MainToolbarVerticalSeparator';
 export { default as ToolbarDropdown } from '../ui/components/toolbardropdown/ToolbarDropdown';
 export { default as ProjectSelector } from '../ui/components/projectselector/ProjectSelector';
 export { default as RunWidget } from '../ui/components/runwidget/RunWidget';
