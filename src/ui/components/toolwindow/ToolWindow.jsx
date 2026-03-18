@@ -3,7 +3,6 @@ import './ToolWindow.css';
 
 function ToolWindow({ 
     title = "Tool Window",
-    icon,
     width = 300,
     height = 400,
     headerType = "label",
@@ -30,7 +29,6 @@ function ToolWindow({
         >
             <ToolWindowHeader
                 title={title}
-                icon={icon}
                 type={headerType}
                 tabs={tabs}
                 activeTab={activeTab}
