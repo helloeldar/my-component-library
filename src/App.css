@@ -13,11 +13,16 @@
     border-right: 1px solid var(--border-secondary);
     padding: 20px;
     flex-shrink: 0;
-    overflow-y: overlay;
+    overflow-y: auto;
+    scrollbar-width: none;
     height: 100vh;
     position: sticky;
     top: 0;
     box-sizing: border-box;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar-header {
