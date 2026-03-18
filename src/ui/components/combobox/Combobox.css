@@ -50,7 +50,6 @@
     border: 1px solid var(--border-control);
     border-radius: 4px;
     min-height: 28px;
-    transition: all 0.15s ease;
 }
 
 /* Combobox input */
@@ -164,7 +163,6 @@
     color: var(--text-primary);
     border-radius: 4px;
     cursor: pointer;
-    transition: background 0.1s ease;
 }
 
 .combobox-option:hover:not(.combobox-option-disabled) {

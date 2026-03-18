@@ -35,9 +35,10 @@ import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import Alert from './ui/components/alert/Alert';
 import Dialog from './ui/components/dialog/Dialog';
+import Icon from './ui/components/icon/Icon';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getHomeSections } from './componentsConfig';
+import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -2196,8 +2197,36 @@ function MainWindowPage() {
 function Sidebar() {
     const location = useLocation();
     const { theme, toggleTheme } = useTheme();
-    
+    const [collapsedSections, setCollapsedSections] = useState({});
+    const [searchQuery, setSearchQuery] = useState('');
+
     const isActive = (path) => location.pathname === path;
+    const isSearching = searchQuery.trim().length > 0;
+    const matchesSearch = (name) => name.toLowerCase().includes(searchQuery.trim().toLowerCase());
+
+    const toggleSection = (section) => {
+        setCollapsedSections(prev => ({ ...prev, [section]: !prev[section] }));
+    };
+
+    const isSectionOpen = (section) => {
+        if (isSearching) return true;
+        return !collapsedSections[section];
+    };
+
+    const stylesItems = [
+        { name: 'Typography', key: 'typography' },
+        { name: 'Colors', key: 'colors' }
+    ];
+
+    const windowsItems = getSortedWindowsOnly().filter(c => c.key !== 'mainwindow');
+    const componentsItems = getSortedComponentsOnly();
+
+    const filteredWindows = isSearching ? windowsItems.filter(c => matchesSearch(c.name)) : windowsItems;
+    const filteredComponents = isSearching ? componentsItems.filter(c => matchesSearch(c.name)) : componentsItems;
+    const filteredStyles = isSearching ? stylesItems.filter(c => matchesSearch(c.name)) : stylesItems;
+
+    const showHome = !isSearching || matchesSearch('Home');
+    const showMainWindow = !isSearching || matchesSearch('Main Window');
 
     return (
         <div className="sidebar">
@@ -2212,31 +2241,101 @@ function Sidebar() {
                     onClick={toggleTheme}
                 />
             </div>
-            
-            <div className="nav-category">
-                <Link to="/" className={`nav-item ${isActive('/') ? 'active' : ''}`}>
-                    Home
-                </Link>
-            </div>
 
-            {getHomeSections().map((section) => {
-                const visiblePages = section.pages.filter(page => page.status !== 'coming-soon');
-                if (visiblePages.length === 0) return null;
-                return (
-                    <div key={section.key} className="nav-category">
-                        <div className="nav-category-title">{section.name}</div>
-                        {visiblePages.map((page) => (
-                            <Link
-                                key={page.key}
-                                to={`/${page.key}`}
-                                className={`nav-item ${isActive(`/${page.key}`) ? 'active' : ''}`}
-                            >
-                                {page.name}
-                            </Link>
-                        ))}
+            <Search
+                value={searchQuery}
+                onChange={setSearchQuery}
+                placeholder="Search..."
+                className="sidebar-search"
+            />
+
+            {showHome && (
+                <div className="nav-category">
+                    <Link to="/" className={`nav-item ${isActive('/') ? 'active' : ''}`}>
+                        Home
+                    </Link>
+                </div>
+            )}
+
+            {showMainWindow && (
+                <div className="nav-category">
+                    <Link to="/mainwindow" className={`nav-item ${isActive('/mainwindow') ? 'active' : ''}`}>
+                        Main Window
+                    </Link>
+                </div>
+            )}
+
+            {filteredWindows.length > 0 && (
+                <div className="nav-category">
+                    <div className="nav-category-title" onClick={() => toggleSection('windows')}>
+                        <span className={`nav-category-chevron ${isSectionOpen('windows') ? 'open' : ''}`}>
+                            <Icon name="general/chevronRight" size={16} />
+                        </span>
+                        Windows
                     </div>
-                );
-            })}
+                    {isSectionOpen('windows') && (
+                        <div className="nav-category-items">
+                            {filteredWindows.map((component) => (
+                                <Link
+                                    key={component.key}
+                                    to={`/${component.key}`}
+                                    className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
+                                >
+                                    {component.name}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {filteredComponents.length > 0 && (
+                <div className="nav-category">
+                    <div className="nav-category-title" onClick={() => toggleSection('components')}>
+                        <span className={`nav-category-chevron ${isSectionOpen('components') ? 'open' : ''}`}>
+                            <Icon name="general/chevronRight" size={16} />
+                        </span>
+                        Components
+                    </div>
+                    {isSectionOpen('components') && (
+                        <div className="nav-category-items">
+                            {filteredComponents.map((component) => (
+                                <Link
+                                    key={component.key}
+                                    to={`/${component.key}`}
+                                    className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
+                                >
+                                    {component.name}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {filteredStyles.length > 0 && (
+                <div className="nav-category">
+                    <div className="nav-category-title" onClick={() => toggleSection('styles')}>
+                        <span className={`nav-category-chevron ${isSectionOpen('styles') ? 'open' : ''}`}>
+                            <Icon name="general/chevronRight" size={16} />
+                        </span>
+                        Styles
+                    </div>
+                    {isSectionOpen('styles') && (
+                        <div className="nav-category-items">
+                            {filteredStyles.map((item) => (
+                                <Link
+                                    key={item.key}
+                                    to={`/${item.key}`}
+                                    className={`nav-item ${isActive(`/${item.key}`) ? 'active' : ''}`}
+                                >
+                                    {item.name}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
 
         </div>
     );

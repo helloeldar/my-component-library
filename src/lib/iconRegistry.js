@@ -1488,168 +1488,24 @@ import icon_toolbar_unknown from '../icons/toolbar/unknown.svg';
 import icon_toolbar_unknown_20x20 from '../icons/toolbar/unknown@20x20.svg';
 import icon_toolbar_unknown_20x20_dark from '../icons/toolbar/unknown@20x20_dark.svg';
 import icon_toolbar_unknown_dark from '../icons/toolbar/unknown_dark.svg';
-import icon_toolwindows__ConcurrencyDiagramToolwindow from '../icons/toolwindows/ ConcurrencyDiagramToolwindow.svg';
-import icon_toolwindows__ConcurrencyDiagramToolwindow_20x20 from '../icons/toolwindows/ ConcurrencyDiagramToolwindow@20x20.svg';
-import icon_toolwindows__aiDebuggerEvalToolWindow from '../icons/toolwindows/ aiDebuggerEvalToolWindow.svg';
-import icon_toolwindows__aiDebuggerEvalToolWindow_20x20 from '../icons/toolwindows/ aiDebuggerEvalToolWindow@20x20.svg';
-import icon_toolwindows__aiDebuggerToolWindow from '../icons/toolwindows/ aiDebuggerToolWindow.svg';
-import icon_toolwindows__aiDebuggerToolWindow_20x20 from '../icons/toolwindows/ aiDebuggerToolWindow@20x20.svg';
-import icon_toolwindows__amazonEMR from '../icons/toolwindows/ amazonEMR.svg';
-import icon_toolwindows__ant from '../icons/toolwindows/ ant.svg';
-import icon_toolwindows__ant_20x20 from '../icons/toolwindows/ ant@20x20.svg';
-import icon_toolwindows__awsGlueToolWindow from '../icons/toolwindows/ awsGlueToolWindow.svg';
-import icon_toolwindows__awsGlueToolWindow_20x20 from '../icons/toolwindows/ awsGlueToolWindow@20x20.svg';
-import icon_toolwindows__bookmarks from '../icons/toolwindows/ bookmarks.svg';
-import icon_toolwindows__bookmarks_20x20 from '../icons/toolwindows/ bookmarks@20x20.svg';
-import icon_toolwindows__build from '../icons/toolwindows/ build.svg';
-import icon_toolwindows__build_20x20 from '../icons/toolwindows/ build@20x20.svg';
-import icon_toolwindows__cdiToolWindow from '../icons/toolwindows/ cdiToolWindow.svg';
-import icon_toolwindows__cdiToolWindow_20x20 from '../icons/toolwindows/ cdiToolWindow@20x20.svg';
-import icon_toolwindows__changes from '../icons/toolwindows/ changes.svg';
-import icon_toolwindows__changes_20x20 from '../icons/toolwindows/ changes@20x20.svg';
-import icon_toolwindows__commit from '../icons/toolwindows/ commit.svg';
-import icon_toolwindows__commit_20x20 from '../icons/toolwindows/ commit@20x20.svg';
-import icon_toolwindows__composeToolWindow from '../icons/toolwindows/ composeToolWindow.svg';
-import icon_toolwindows__coverage_20x20 from '../icons/toolwindows/ coverage@20x20.svg';
-import icon_toolwindows__cwmAccess from '../icons/toolwindows/ cwmAccess.svg';
-import icon_toolwindows__cwmAccess_20x20_1 from '../icons/toolwindows/ cwmAccess@20x20-1.svg';
-import icon_toolwindows__cwmAccess_20x20 from '../icons/toolwindows/ cwmAccess@20x20.svg';
-import icon_toolwindows__cwmUsers from '../icons/toolwindows/ cwmUsers.svg';
-import icon_toolwindows__cwmUsers_20x20 from '../icons/toolwindows/ cwmUsers@20x20.svg';
-import icon_toolwindows__cypress from '../icons/toolwindows/ cypress.svg';
-import icon_toolwindows__databaseChanges_20x20 from '../icons/toolwindows/ databaseChanges@20x20.svg';
-import icon_toolwindows__databricksToolWindow from '../icons/toolwindows/ databricksToolWindow.svg';
-import icon_toolwindows__databricksToolWindow_20x20 from '../icons/toolwindows/ databricksToolWindow@20x20.svg';
-import icon_toolwindows__dbms from '../icons/toolwindows/ dbms.svg';
-import icon_toolwindows__dbms_20x20 from '../icons/toolwindows/ dbms@20x20.svg';
-import icon_toolwindows__debug from '../icons/toolwindows/ debug.svg';
-import icon_toolwindows__debug_20x20 from '../icons/toolwindows/ debug@20x20.svg';
-import icon_toolwindows__dependencies from '../icons/toolwindows/ dependencies.svg';
-import icon_toolwindows__dependencies_20x20 from '../icons/toolwindows/ dependencies@20x20.svg';
-import icon_toolwindows__dependencyAnalyzer from '../icons/toolwindows/ dependencyAnalyzer.svg';
-import icon_toolwindows__dependencyAnalyzer_20x20 from '../icons/toolwindows/ dependencyAnalyzer@20x20.svg';
-import icon_toolwindows__documentation from '../icons/toolwindows/ documentation.svg';
-import icon_toolwindows__documentation_20x20 from '../icons/toolwindows/ documentation@20x20.svg';
-import icon_toolwindows__endpoints from '../icons/toolwindows/ endpoints.svg';
-import icon_toolwindows__endpoints_20x20 from '../icons/toolwindows/ endpoints@20x20.svg';
-import icon_toolwindows__exceptionAnalyzer from '../icons/toolwindows/ exceptionAnalyzer.svg';
-import icon_toolwindows__exceptionAnalyzer_20x20 from '../icons/toolwindows/ exceptionAnalyzer@20x20.svg';
-import icon_toolwindows__feedback from '../icons/toolwindows/ feedback.svg';
-import icon_toolwindows__feedback_20x20 from '../icons/toolwindows/ feedback@20x20.svg';
-import icon_toolwindows__find from '../icons/toolwindows/ find.svg';
-import icon_toolwindows__find_20x20 from '../icons/toolwindows/ find@20x20.svg';
-import icon_toolwindows__findExternalUsages from '../icons/toolwindows/ findExternalUsages.svg';
-import icon_toolwindows__findExternalUsages_20x20 from '../icons/toolwindows/ findExternalUsages@20x20.svg';
-import icon_toolwindows__gitLabToolWindow from '../icons/toolwindows/ gitLabToolWindow.svg';
-import icon_toolwindows__gradle from '../icons/toolwindows/ gradle.svg';
-import icon_toolwindows__gradle_20x20 from '../icons/toolwindows/ gradle@20x20.svg';
-import icon_toolwindows__hierarchy from '../icons/toolwindows/ hierarchy.svg';
-import icon_toolwindows__hierarchy_20x20 from '../icons/toolwindows/ hierarchy@20x20.svg';
-import icon_toolwindows__hive from '../icons/toolwindows/ hive.svg';
-import icon_toolwindows__kotlinToolWindow from '../icons/toolwindows/ kotlinToolWindow.svg';
-import icon_toolwindows__learn from '../icons/toolwindows/ learn.svg';
-import icon_toolwindows__learn_20x20 from '../icons/toolwindows/ learn@20x20.svg';
-import icon_toolwindows__makefileToolWindow from '../icons/toolwindows/ makefileToolWindow.svg';
-import icon_toolwindows__maven from '../icons/toolwindows/ maven.svg';
-import icon_toolwindows__maven_20x20 from '../icons/toolwindows/ maven@20x20.svg';
-import icon_toolwindows__messages_20x20 from '../icons/toolwindows/ messages@20x20.svg';
-import icon_toolwindows__notifications_20x20 from '../icons/toolwindows/ notifications@20x20.svg';
-import icon_toolwindows__npm from '../icons/toolwindows/ npm.svg';
-import icon_toolwindows__npm_20x20 from '../icons/toolwindows/ npm@20x20.svg';
-import icon_toolwindows__packageManager from '../icons/toolwindows/ packageManager.svg';
-import icon_toolwindows__packageManager_20x20 from '../icons/toolwindows/ packageManager@20x20.svg';
-import icon_toolwindows__problems from '../icons/toolwindows/ problems.svg';
-import icon_toolwindows__problems_20x20 from '../icons/toolwindows/ problems@20x20.svg';
-import icon_toolwindows__profiler from '../icons/toolwindows/ profiler.svg';
-import icon_toolwindows__profiler_20x20 from '../icons/toolwindows/ profiler@20x20.svg';
-import icon_toolwindows__profilerAndroid from '../icons/toolwindows/ profilerAndroid.svg';
-import icon_toolwindows__profilerAndroid_20x20 from '../icons/toolwindows/ profilerAndroid@20x20.svg';
-import icon_toolwindows__project from '../icons/toolwindows/ project.svg';
-import icon_toolwindows__project_20x20 from '../icons/toolwindows/ project@20x20.svg';
-import icon_toolwindows__pullRequests from '../icons/toolwindows/ pullRequests.svg';
-import icon_toolwindows__pullRequests_20x20 from '../icons/toolwindows/ pullRequests@20x20.svg';
-import icon_toolwindows__pythonConsoleToolWindow from '../icons/toolwindows/ pythonConsoleToolWindow.svg';
-import icon_toolwindows__pythonConsoleToolWindow_20x20 from '../icons/toolwindows/ pythonConsoleToolWindow@20x20.svg';
-import icon_toolwindows__pythonPackages from '../icons/toolwindows/ pythonPackages.svg';
-import icon_toolwindows__repositories from '../icons/toolwindows/ repositories.svg';
-import icon_toolwindows__repositories_20x20 from '../icons/toolwindows/ repositories@20x20.svg';
-import icon_toolwindows__run from '../icons/toolwindows/ run.svg';
-import icon_toolwindows__run_20x20 from '../icons/toolwindows/ run@20x20.svg';
-import icon_toolwindows__scalaProfiler from '../icons/toolwindows/ scalaProfiler.svg';
-import icon_toolwindows__scalaProfiler_20x20 from '../icons/toolwindows/ scalaProfiler@20x20.svg';
-import icon_toolwindows__serialMonitor from '../icons/toolwindows/ serialMonitor.svg';
-import icon_toolwindows__serialMonitor_20x20 from '../icons/toolwindows/ serialMonitor@20x20.svg';
-import icon_toolwindows__services from '../icons/toolwindows/ services.svg';
-import icon_toolwindows__services_20x20 from '../icons/toolwindows/ services@20x20.svg';
-import icon_toolwindows__settingSync from '../icons/toolwindows/ settingSync.svg';
-import icon_toolwindows__settingSync_20x20 from '../icons/toolwindows/ settingSync@20x20.svg';
-import icon_toolwindows__spaceToolWindow from '../icons/toolwindows/ spaceToolWindow.svg';
-import icon_toolwindows__spaceToolWindow_20x20 from '../icons/toolwindows/ spaceToolWindow@20x20.svg';
-import icon_toolwindows__spark from '../icons/toolwindows/ spark.svg';
-import icon_toolwindows__spark_20x20 from '../icons/toolwindows/ spark@20x20.svg';
-import icon_toolwindows__statisticsEventLog from '../icons/toolwindows/ statisticsEventLog.svg';
-import icon_toolwindows__statisticsEventLog_20x20 from '../icons/toolwindows/ statisticsEventLog@20x20.svg';
-import icon_toolwindows__structure from '../icons/toolwindows/ structure.svg';
-import icon_toolwindows__structure_20x20 from '../icons/toolwindows/ structure@20x20.svg';
-import icon_toolwindows__task_20x20 from '../icons/toolwindows/ task@20x20.svg';
-import icon_toolwindows__terminal from '../icons/toolwindows/ terminal.svg';
-import icon_toolwindows__terminal_20x20 from '../icons/toolwindows/terminal@20x20.svg';
-import icon_toolwindows__todo from '../icons/toolwindows/ todo.svg';
-import icon_toolwindows__todo_20x20 from '../icons/toolwindows/ todo@20x20.svg';
-import icon_toolwindows__toolWindowBeanValidator from '../icons/toolwindows/ toolWindowBeanValidator.svg';
-import icon_toolwindows__toolWindowBeanValidator_20x20 from '../icons/toolwindows/ toolWindowBeanValidator@20x20.svg';
-import icon_toolwindows__toolWindowCadence from '../icons/toolwindows/ toolWindowCadence.svg';
-import icon_toolwindows__toolWindowCadence_20x20 from '../icons/toolwindows/ toolWindowCadence@20x20.svg';
-import icon_toolwindows__toolWindowCellExplorer from '../icons/toolwindows/ toolWindowCellExplorer.svg';
-import icon_toolwindows__toolWindowCheckDetails from '../icons/toolwindows/ toolWindowCheckDetails.svg';
-import icon_toolwindows__toolWindowClock from '../icons/toolwindows/ toolWindowClock.svg';
-import icon_toolwindows__toolWindowClock_20x20 from '../icons/toolwindows/ toolWindowClock@20x20.svg';
-import icon_toolwindows__toolWindowConsole from '../icons/toolwindows/ toolWindowConsole.svg';
-import icon_toolwindows__toolWindowConsole_20x20 from '../icons/toolwindows/ toolWindowConsole@20x20.svg';
-import icon_toolwindows__toolWindowDart from '../icons/toolwindows/ toolWindowDart.svg';
-import icon_toolwindows__toolWindowDart_20x20 from '../icons/toolwindows/ toolWindowDart@20x20.svg';
-import icon_toolwindows__toolWindowDataView from '../icons/toolwindows/ toolWindowDataView.svg';
-import icon_toolwindows__toolWindowDataView_20x20 from '../icons/toolwindows/ toolWindowDataView@20x20.svg';
-import icon_toolwindows__toolWindowDjango from '../icons/toolwindows/ toolWindowDjango.svg';
-import icon_toolwindows__toolWindowDocker from '../icons/toolwindows/ toolWindowDocker.svg';
-import icon_toolwindows__toolWindowDocker_20x20 from '../icons/toolwindows/ toolWindowDocker@20x20.svg';
-import icon_toolwindows__toolWindowJsonPath from '../icons/toolwindows/ toolWindowJsonPath.svg';
-import icon_toolwindows__toolWindowJsonPath_20x20 from '../icons/toolwindows/ toolWindowJsonPath@20x20.svg';
-import icon_toolwindows__toolWindowKubernetes from '../icons/toolwindows/ toolWindowKubernetes.svg';
-import icon_toolwindows__toolWindowKubernetes_20x20 from '../icons/toolwindows/ toolWindowKubernetes@20x20.svg';
-import icon_toolwindows__toolWindowPubServe from '../icons/toolwindows/ toolWindowPubServe.svg';
-import icon_toolwindows__toolWindowRPackages from '../icons/toolwindows/ toolWindowRPackages.svg';
-import icon_toolwindows__toolWindowRecordDebug from '../icons/toolwindows/ toolWindowRecordDebug.svg';
-import icon_toolwindows__toolWindowRecordDebug_20x20 from '../icons/toolwindows/ toolWindowRecordDebug@20x20.svg';
-import icon_toolwindows__toolWindowSQLGenerator from '../icons/toolwindows/ toolWindowSQLGenerator.svg';
-import icon_toolwindows__toolWindowSQLGenerator_20x20 from '../icons/toolwindows/ toolWindowSQLGenerator@20x20.svg';
-import icon_toolwindows__toolWindowTimer from '../icons/toolwindows/ toolWindowTimer.svg';
-import icon_toolwindows__toolWindowTimer_20x20 from '../icons/toolwindows/ toolWindowTimer@20x20.svg';
-import icon_toolwindows__toolWindowTypeScript from '../icons/toolwindows/ toolWindowTypeScript.svg';
-import icon_toolwindows__toolWindowTypeScript_20x20 from '../icons/toolwindows/ toolWindowTypeScript@20x20.svg';
-import icon_toolwindows__transfer from '../icons/toolwindows/ transfer.svg';
-import icon_toolwindows__transferToolWindow from '../icons/toolwindows/ transferToolWindow.svg';
-import icon_toolwindows__unknown_20x20 from '../icons/toolwindows/ unknown@20x20.svg';
-import icon_toolwindows__vcs from '../icons/toolwindows/ vcs.svg';
-import icon_toolwindows__vcs_20x20 from '../icons/toolwindows/ vcs@20x20.svg';
-import icon_toolwindows__web from '../icons/toolwindows/ web.svg';
-import icon_toolwindows__web_20x20 from '../icons/toolwindows/ web@20x20.svg';
-import icon_toolwindows__webInspector from '../icons/toolwindows/ webInspector.svg';
-import icon_toolwindows__webServer from '../icons/toolwindows/ webServer.svg';
-import icon_toolwindows__webServer_20x20 from '../icons/toolwindows/ webServer@20x20.svg';
-import icon_toolwindows__westToolWindow from '../icons/toolwindows/ westToolWindow.svg';
-import icon_toolwindows__westToolWindow_20x20 from '../icons/toolwindows/ westToolWindow@20x20.svg';
-import icon_toolwindows__writerside from '../icons/toolwindows/ writerside.svg';
-import icon_toolwindows__writersidePreview from '../icons/toolwindows/ writersidePreview.svg';
+import icon_toolwindows_ConcurrencyDiagramToolwindow from '../icons/toolwindows/ConcurrencyDiagramToolwindow.svg';
+import icon_toolwindows_ConcurrencyDiagramToolwindow_20x20 from '../icons/toolwindows/ConcurrencyDiagramToolwindow@20x20.svg';
 import icon_toolwindows_Timer from '../icons/toolwindows/Timer.svg';
 import icon_toolwindows_Vector from '../icons/toolwindows/Vector.svg';
 import icon_toolwindows_West from '../icons/toolwindows/West.svg';
 import icon_toolwindows_aiAssistantToolWindow from '../icons/toolwindows/aiAssistantToolWindow.svg';
 import icon_toolwindows_aiAssistantToolWindow_20x20 from '../icons/toolwindows/aiAssistantToolWindow@20x20.svg';
+import icon_toolwindows_aiDebuggerEvalToolWindow from '../icons/toolwindows/aiDebuggerEvalToolWindow.svg';
+import icon_toolwindows_aiDebuggerEvalToolWindow_20x20 from '../icons/toolwindows/aiDebuggerEvalToolWindow@20x20.svg';
+import icon_toolwindows_aiDebuggerToolWindow from '../icons/toolwindows/aiDebuggerToolWindow.svg';
+import icon_toolwindows_aiDebuggerToolWindow_20x20 from '../icons/toolwindows/aiDebuggerToolWindow@20x20.svg';
+import icon_toolwindows_amazonEMR from '../icons/toolwindows/amazonEMR.svg';
 import icon_toolwindows_ant from '../icons/toolwindows/ant.svg';
 import icon_toolwindows_ant_20x20 from '../icons/toolwindows/ant@20x20.svg';
 import icon_toolwindows_ant_20x20_dark from '../icons/toolwindows/ant@20x20_dark.svg';
 import icon_toolwindows_ant_dark from '../icons/toolwindows/ant_dark.svg';
+import icon_toolwindows_awsGlueToolWindow from '../icons/toolwindows/awsGlueToolWindow.svg';
+import icon_toolwindows_awsGlueToolWindow_20x20 from '../icons/toolwindows/awsGlueToolWindow@20x20.svg';
 import icon_toolwindows_bookmarks from '../icons/toolwindows/bookmarks.svg';
 import icon_toolwindows_bookmarks_20x20 from '../icons/toolwindows/bookmarks@20x20.svg';
 import icon_toolwindows_bookmarks_20x20_dark from '../icons/toolwindows/bookmarks@20x20_dark.svg';
@@ -1658,6 +1514,8 @@ import icon_toolwindows_build from '../icons/toolwindows/build.svg';
 import icon_toolwindows_build_20x20 from '../icons/toolwindows/build@20x20.svg';
 import icon_toolwindows_build_20x20_dark from '../icons/toolwindows/build@20x20_dark.svg';
 import icon_toolwindows_build_dark from '../icons/toolwindows/build_dark.svg';
+import icon_toolwindows_cdiToolWindow from '../icons/toolwindows/cdiToolWindow.svg';
+import icon_toolwindows_cdiToolWindow_20x20 from '../icons/toolwindows/cdiToolWindow@20x20.svg';
 import icon_toolwindows_changes from '../icons/toolwindows/changes.svg';
 import icon_toolwindows_changes_20x20 from '../icons/toolwindows/changes@20x20.svg';
 import icon_toolwindows_changes_20x20_dark from '../icons/toolwindows/changes@20x20_dark.svg';
@@ -1666,14 +1524,26 @@ import icon_toolwindows_commit from '../icons/toolwindows/commit.svg';
 import icon_toolwindows_commit_20x20 from '../icons/toolwindows/commit@20x20.svg';
 import icon_toolwindows_commit_20x20_dark from '../icons/toolwindows/commit@20x20_dark.svg';
 import icon_toolwindows_commit_dark from '../icons/toolwindows/commit_dark.svg';
+import icon_toolwindows_composeToolWindow from '../icons/toolwindows/composeToolWindow.svg';
 import icon_toolwindows_coverage from '../icons/toolwindows/coverage.svg';
 import icon_toolwindows_coverage_20x20 from '../icons/toolwindows/coverage@20x20.svg';
 import icon_toolwindows_coverage_20x20_dark from '../icons/toolwindows/coverage@20x20_dark.svg';
 import icon_toolwindows_coverage_dark from '../icons/toolwindows/coverage_dark.svg';
+import icon_toolwindows_cwmAccess from '../icons/toolwindows/cwmAccess.svg';
+import icon_toolwindows_cwmAccess_20x20_1 from '../icons/toolwindows/cwmAccess@20x20-1.svg';
+import icon_toolwindows_cwmAccess_20x20 from '../icons/toolwindows/cwmAccess@20x20.svg';
+import icon_toolwindows_cwmUsers from '../icons/toolwindows/cwmUsers.svg';
+import icon_toolwindows_cwmUsers_20x20 from '../icons/toolwindows/cwmUsers@20x20.svg';
+import icon_toolwindows_cypress from '../icons/toolwindows/cypress.svg';
+import icon_toolwindows_databaseChanges_20x20 from '../icons/toolwindows/databaseChanges@20x20.svg';
+import icon_toolwindows_databricksToolWindow from '../icons/toolwindows/databricksToolWindow.svg';
+import icon_toolwindows_databricksToolWindow_20x20 from '../icons/toolwindows/databricksToolWindow@20x20.svg';
 import icon_toolwindows_dataflow from '../icons/toolwindows/dataflow.svg';
 import icon_toolwindows_dataflow_20x20 from '../icons/toolwindows/dataflow@20x20.svg';
 import icon_toolwindows_dataflow_20x20_dark from '../icons/toolwindows/dataflow@20x20_dark.svg';
 import icon_toolwindows_dataflow_dark from '../icons/toolwindows/dataflow_dark.svg';
+import icon_toolwindows_dbms from '../icons/toolwindows/dbms.svg';
+import icon_toolwindows_dbms_20x20 from '../icons/toolwindows/dbms@20x20.svg';
 import icon_toolwindows_debug from '../icons/toolwindows/debug.svg';
 import icon_toolwindows_debug_20x20 from '../icons/toolwindows/debug@20x20.svg';
 import icon_toolwindows_debug_20x20_dark from '../icons/toolwindows/debug@20x20_dark.svg';
@@ -1682,22 +1552,40 @@ import icon_toolwindows_dependencies from '../icons/toolwindows/dependencies.svg
 import icon_toolwindows_dependencies_20x20 from '../icons/toolwindows/dependencies@20x20.svg';
 import icon_toolwindows_dependencies_20x20_dark from '../icons/toolwindows/dependencies@20x20_dark.svg';
 import icon_toolwindows_dependencies_dark from '../icons/toolwindows/dependencies_dark.svg';
+import icon_toolwindows_dependencyAnalyzer from '../icons/toolwindows/dependencyAnalyzer.svg';
+import icon_toolwindows_dependencyAnalyzer_20x20 from '../icons/toolwindows/dependencyAnalyzer@20x20.svg';
 import icon_toolwindows_documentation from '../icons/toolwindows/documentation.svg';
 import icon_toolwindows_documentation_20x20 from '../icons/toolwindows/documentation@20x20.svg';
 import icon_toolwindows_documentation_20x20_dark from '../icons/toolwindows/documentation@20x20_dark.svg';
 import icon_toolwindows_documentation_dark from '../icons/toolwindows/documentation_dark.svg';
+import icon_toolwindows_endpoints from '../icons/toolwindows/endpoints.svg';
+import icon_toolwindows_endpoints_20x20 from '../icons/toolwindows/endpoints@20x20.svg';
+import icon_toolwindows_exceptionAnalyzer from '../icons/toolwindows/exceptionAnalyzer.svg';
+import icon_toolwindows_exceptionAnalyzer_20x20 from '../icons/toolwindows/exceptionAnalyzer@20x20.svg';
+import icon_toolwindows_feedback from '../icons/toolwindows/feedback.svg';
+import icon_toolwindows_feedback_20x20 from '../icons/toolwindows/feedback@20x20.svg';
 import icon_toolwindows_find from '../icons/toolwindows/find.svg';
 import icon_toolwindows_find_20x20 from '../icons/toolwindows/find@20x20.svg';
 import icon_toolwindows_find_20x20_dark from '../icons/toolwindows/find@20x20_dark.svg';
+import icon_toolwindows_findExternalUsages from '../icons/toolwindows/findExternalUsages.svg';
+import icon_toolwindows_findExternalUsages_20x20 from '../icons/toolwindows/findExternalUsages@20x20.svg';
 import icon_toolwindows_find_dark from '../icons/toolwindows/find_dark.svg';
+import icon_toolwindows_gitLabToolWindow from '../icons/toolwindows/gitLabToolWindow.svg';
+import icon_toolwindows_gradle from '../icons/toolwindows/gradle.svg';
+import icon_toolwindows_gradle_20x20 from '../icons/toolwindows/gradle@20x20.svg';
 import icon_toolwindows_hierarchy from '../icons/toolwindows/hierarchy.svg';
 import icon_toolwindows_hierarchy_20x20 from '../icons/toolwindows/hierarchy@20x20.svg';
 import icon_toolwindows_hierarchy_20x20_dark from '../icons/toolwindows/hierarchy@20x20_dark.svg';
 import icon_toolwindows_hierarchy_dark from '../icons/toolwindows/hierarchy_dark.svg';
+import icon_toolwindows_hive from '../icons/toolwindows/hive.svg';
+import icon_toolwindows_kotlinToolWindow from '../icons/toolwindows/kotlinToolWindow.svg';
 import icon_toolwindows_learn from '../icons/toolwindows/learn.svg';
 import icon_toolwindows_learn_20x20 from '../icons/toolwindows/learn@20x20.svg';
 import icon_toolwindows_learn_20x20_dark from '../icons/toolwindows/learn@20x20_dark.svg';
 import icon_toolwindows_learn_dark from '../icons/toolwindows/learn_dark.svg';
+import icon_toolwindows_makefileToolWindow from '../icons/toolwindows/makefileToolWindow.svg';
+import icon_toolwindows_maven from '../icons/toolwindows/maven.svg';
+import icon_toolwindows_maven_20x20 from '../icons/toolwindows/maven@20x20.svg';
 import icon_toolwindows_meetNewUi from '../icons/toolwindows/meetNewUi.svg';
 import icon_toolwindows_meetNewUi_20x20 from '../icons/toolwindows/meetNewUi@20x20.svg';
 import icon_toolwindows_meetNewUi_20x20_dark from '../icons/toolwindows/meetNewUi@20x20_dark.svg';
@@ -1710,6 +1598,10 @@ import icon_toolwindows_notifications from '../icons/toolwindows/notifications.s
 import icon_toolwindows_notifications_20x20 from '../icons/toolwindows/notifications@20x20.svg';
 import icon_toolwindows_notifications_20x20_dark from '../icons/toolwindows/notifications@20x20_dark.svg';
 import icon_toolwindows_notifications_dark from '../icons/toolwindows/notifications_dark.svg';
+import icon_toolwindows_npm from '../icons/toolwindows/npm.svg';
+import icon_toolwindows_npm_20x20 from '../icons/toolwindows/npm@20x20.svg';
+import icon_toolwindows_packageManager from '../icons/toolwindows/packageManager.svg';
+import icon_toolwindows_packageManager_20x20 from '../icons/toolwindows/packageManager@20x20.svg';
 import icon_toolwindows_palette from '../icons/toolwindows/palette.svg';
 import icon_toolwindows_palette_20x20 from '../icons/toolwindows/palette@20x20.svg';
 import icon_toolwindows_palette_20x20_dark from '../icons/toolwindows/palette@20x20_dark.svg';
@@ -1730,6 +1622,11 @@ import icon_toolwindows_project from '../icons/toolwindows/project.svg';
 import icon_toolwindows_project_20x20 from '../icons/toolwindows/project@20x20.svg';
 import icon_toolwindows_project_20x20_dark from '../icons/toolwindows/project@20x20_dark.svg';
 import icon_toolwindows_project_dark from '../icons/toolwindows/project_dark.svg';
+import icon_toolwindows_pullRequests from '../icons/toolwindows/pullRequests.svg';
+import icon_toolwindows_pullRequests_20x20 from '../icons/toolwindows/pullRequests@20x20.svg';
+import icon_toolwindows_pythonConsoleToolWindow from '../icons/toolwindows/pythonConsoleToolWindow.svg';
+import icon_toolwindows_pythonConsoleToolWindow_20x20 from '../icons/toolwindows/pythonConsoleToolWindow@20x20.svg';
+import icon_toolwindows_pythonPackages from '../icons/toolwindows/pythonPackages.svg';
 import icon_toolwindows_repositories from '../icons/toolwindows/repositories.svg';
 import icon_toolwindows_repositories_20x20 from '../icons/toolwindows/repositories@20x20.svg';
 import icon_toolwindows_repositories_20x20_dark from '../icons/toolwindows/repositories@20x20_dark.svg';
@@ -1738,6 +1635,10 @@ import icon_toolwindows_run from '../icons/toolwindows/run.svg';
 import icon_toolwindows_run_20x20 from '../icons/toolwindows/run@20x20.svg';
 import icon_toolwindows_run_20x20_dark from '../icons/toolwindows/run@20x20_dark.svg';
 import icon_toolwindows_run_dark from '../icons/toolwindows/run_dark.svg';
+import icon_toolwindows_scalaProfiler from '../icons/toolwindows/scalaProfiler.svg';
+import icon_toolwindows_scalaProfiler_20x20 from '../icons/toolwindows/scalaProfiler@20x20.svg';
+import icon_toolwindows_serialMonitor from '../icons/toolwindows/serialMonitor.svg';
+import icon_toolwindows_serialMonitor_20x20 from '../icons/toolwindows/serialMonitor@20x20.svg';
 import icon_toolwindows_services from '../icons/toolwindows/services.svg';
 import icon_toolwindows_services_20x20 from '../icons/toolwindows/services@20x20.svg';
 import icon_toolwindows_services_20x20_dark from '../icons/toolwindows/services@20x20_dark.svg';
@@ -1746,6 +1647,12 @@ import icon_toolwindows_settingSync from '../icons/toolwindows/settingSync.svg';
 import icon_toolwindows_settingSync_20x20 from '../icons/toolwindows/settingSync@20x20.svg';
 import icon_toolwindows_settingSync_20x20_dark from '../icons/toolwindows/settingSync@20x20_dark.svg';
 import icon_toolwindows_settingSync_dark from '../icons/toolwindows/settingSync_dark.svg';
+import icon_toolwindows_spaceToolWindow from '../icons/toolwindows/spaceToolWindow.svg';
+import icon_toolwindows_spaceToolWindow_20x20 from '../icons/toolwindows/spaceToolWindow@20x20.svg';
+import icon_toolwindows_spark from '../icons/toolwindows/spark.svg';
+import icon_toolwindows_spark_20x20 from '../icons/toolwindows/spark@20x20.svg';
+import icon_toolwindows_statisticsEventLog from '../icons/toolwindows/statisticsEventLog.svg';
+import icon_toolwindows_statisticsEventLog_20x20 from '../icons/toolwindows/statisticsEventLog@20x20.svg';
 import icon_toolwindows_structure from '../icons/toolwindows/structure.svg';
 import icon_toolwindows_structure_20x20 from '../icons/toolwindows/structure@20x20.svg';
 import icon_toolwindows_structure_20x20_dark from '../icons/toolwindows/structure@20x20_dark.svg';
@@ -1754,6 +1661,8 @@ import icon_toolwindows_task from '../icons/toolwindows/task.svg';
 import icon_toolwindows_task_20x20 from '../icons/toolwindows/task@20x20.svg';
 import icon_toolwindows_task_20x20_dark from '../icons/toolwindows/task@20x20_dark.svg';
 import icon_toolwindows_task_dark from '../icons/toolwindows/task_dark.svg';
+import icon_toolwindows_terminal from '../icons/toolwindows/terminal.svg';
+import icon_toolwindows_terminal_20x20 from '../icons/toolwindows/terminal@20x20.svg';
 import icon_toolwindows_todo from '../icons/toolwindows/todo.svg';
 import icon_toolwindows_todo_20x20 from '../icons/toolwindows/todo@20x20.svg';
 import icon_toolwindows_todo_20x20_dark from '../icons/toolwindows/todo@20x20_dark.svg';
@@ -1762,10 +1671,22 @@ import icon_toolwindows_toolWindowAskAI from '../icons/toolwindows/toolWindowAsk
 import icon_toolwindows_toolWindowAskAI_20x20 from '../icons/toolwindows/toolWindowAskAI@20x20.svg';
 import icon_toolwindows_toolWindowAskAI_20x20_dark from '../icons/toolwindows/toolWindowAskAI@20x20_dark.svg';
 import icon_toolwindows_toolWindowAskAI_dark from '../icons/toolwindows/toolWindowAskAI_dark.svg';
+import icon_toolwindows_toolWindowBeanValidator from '../icons/toolwindows/toolWindowBeanValidator.svg';
+import icon_toolwindows_toolWindowBeanValidator_20x20 from '../icons/toolwindows/toolWindowBeanValidator@20x20.svg';
+import icon_toolwindows_toolWindowCadence from '../icons/toolwindows/toolWindowCadence.svg';
+import icon_toolwindows_toolWindowCadence_20x20 from '../icons/toolwindows/toolWindowCadence@20x20.svg';
+import icon_toolwindows_toolWindowCellExplorer from '../icons/toolwindows/toolWindowCellExplorer.svg';
+import icon_toolwindows_toolWindowCheckDetails from '../icons/toolwindows/toolWindowCheckDetails.svg';
+import icon_toolwindows_toolWindowClock from '../icons/toolwindows/toolWindowClock.svg';
+import icon_toolwindows_toolWindowClock_20x20 from '../icons/toolwindows/toolWindowClock@20x20.svg';
 import icon_toolwindows_toolWindowComponents from '../icons/toolwindows/toolWindowComponents.svg';
 import icon_toolwindows_toolWindowComponents_20x20 from '../icons/toolwindows/toolWindowComponents@20x20.svg';
 import icon_toolwindows_toolWindowComponents_20x20_dark from '../icons/toolwindows/toolWindowComponents@20x20_dark.svg';
 import icon_toolwindows_toolWindowComponents_dark from '../icons/toolwindows/toolWindowComponents_dark.svg';
+import icon_toolwindows_toolWindowConsole from '../icons/toolwindows/toolWindowConsole.svg';
+import icon_toolwindows_toolWindowConsole_20x20 from '../icons/toolwindows/toolWindowConsole@20x20.svg';
+import icon_toolwindows_toolWindowDart from '../icons/toolwindows/toolWindowDart.svg';
+import icon_toolwindows_toolWindowDart_20x20 from '../icons/toolwindows/toolWindowDart@20x20.svg';
 import icon_toolwindows_toolWindowDataView from '../icons/toolwindows/toolWindowDataView.svg';
 import icon_toolwindows_toolWindowDataView_20x20 from '../icons/toolwindows/toolWindowDataView@20x20.svg';
 import icon_toolwindows_toolWindowDataView_20x20_dark from '../icons/toolwindows/toolWindowDataView@20x20_dark.svg';
@@ -1774,6 +1695,9 @@ import icon_toolwindows_toolWindowDevMode from '../icons/toolwindows/toolWindowD
 import icon_toolwindows_toolWindowDevMode_20x20 from '../icons/toolwindows/toolWindowDevMode@20x20.svg';
 import icon_toolwindows_toolWindowDevMode_20x20_dark from '../icons/toolwindows/toolWindowDevMode@20x20_dark.svg';
 import icon_toolwindows_toolWindowDevMode_dark from '../icons/toolwindows/toolWindowDevMode_dark.svg';
+import icon_toolwindows_toolWindowDjango from '../icons/toolwindows/toolWindowDjango.svg';
+import icon_toolwindows_toolWindowDocker from '../icons/toolwindows/toolWindowDocker.svg';
+import icon_toolwindows_toolWindowDocker_20x20 from '../icons/toolwindows/toolWindowDocker@20x20.svg';
 import icon_toolwindows_toolWindowDuplicates from '../icons/toolwindows/toolWindowDuplicates.svg';
 import icon_toolwindows_toolWindowDuplicates_20x20 from '../icons/toolwindows/toolWindowDuplicates@20x20.svg';
 import icon_toolwindows_toolWindowDuplicates_20x20_dark from '../icons/toolwindows/toolWindowDuplicates@20x20_dark.svg';
@@ -1790,18 +1714,33 @@ import icon_toolwindows_toolWindowJsonPath from '../icons/toolwindows/toolWindow
 import icon_toolwindows_toolWindowJsonPath_20x20 from '../icons/toolwindows/toolWindowJsonPath@20x20.svg';
 import icon_toolwindows_toolWindowJsonPath_20x20_dark from '../icons/toolwindows/toolWindowJsonPath@20x20_dark.svg';
 import icon_toolwindows_toolWindowJsonPath_dark from '../icons/toolwindows/toolWindowJsonPath_dark.svg';
+import icon_toolwindows_toolWindowKubernetes from '../icons/toolwindows/toolWindowKubernetes.svg';
+import icon_toolwindows_toolWindowKubernetes_20x20 from '../icons/toolwindows/toolWindowKubernetes@20x20.svg';
 import icon_toolwindows_toolWindowOverflow from '../icons/toolwindows/toolWindowOverflow.svg';
 import icon_toolwindows_toolWindowOverflow_20x20 from '../icons/toolwindows/toolWindowOverflow@20x20.svg';
 import icon_toolwindows_toolWindowOverflow_20x20_dark from '../icons/toolwindows/toolWindowOverflow@20x20_dark.svg';
 import icon_toolwindows_toolWindowOverflow_dark from '../icons/toolwindows/toolWindowOverflow_dark.svg';
+import icon_toolwindows_toolWindowPubServe from '../icons/toolwindows/toolWindowPubServe.svg';
+import icon_toolwindows_toolWindowRPackages from '../icons/toolwindows/toolWindowRPackages.svg';
+import icon_toolwindows_toolWindowRecordDebug from '../icons/toolwindows/toolWindowRecordDebug.svg';
+import icon_toolwindows_toolWindowRecordDebug_20x20 from '../icons/toolwindows/toolWindowRecordDebug@20x20.svg';
 import icon_toolwindows_toolWindowRunWithCoverage from '../icons/toolwindows/toolWindowRunWithCoverage.svg';
 import icon_toolwindows_toolWindowRunWithCoverage_20x20 from '../icons/toolwindows/toolWindowRunWithCoverage@20x20.svg';
 import icon_toolwindows_toolWindowRunWithCoverage_20x20_dark from '../icons/toolwindows/toolWindowRunWithCoverage@20x20_dark.svg';
 import icon_toolwindows_toolWindowRunWithCoverage_dark from '../icons/toolwindows/toolWindowRunWithCoverage_dark.svg';
+import icon_toolwindows_toolWindowSQLGenerator from '../icons/toolwindows/toolWindowSQLGenerator.svg';
+import icon_toolwindows_toolWindowSQLGenerator_20x20 from '../icons/toolwindows/toolWindowSQLGenerator@20x20.svg';
+import icon_toolwindows_toolWindowTimer from '../icons/toolwindows/toolWindowTimer.svg';
+import icon_toolwindows_toolWindowTimer_20x20 from '../icons/toolwindows/toolWindowTimer@20x20.svg';
+import icon_toolwindows_toolWindowTypeScript from '../icons/toolwindows/toolWindowTypeScript.svg';
+import icon_toolwindows_toolWindowTypeScript_20x20 from '../icons/toolwindows/toolWindowTypeScript@20x20.svg';
 import icon_toolwindows_toolWindowVariableView from '../icons/toolwindows/toolWindowVariableView.svg';
 import icon_toolwindows_toolWindowVariableView_20x20 from '../icons/toolwindows/toolWindowVariableView@20x20.svg';
 import icon_toolwindows_toolWindowVariableView_20x20_dark from '../icons/toolwindows/toolWindowVariableView@20x20_dark.svg';
 import icon_toolwindows_toolWindowVariableView_dark from '../icons/toolwindows/toolWindowVariableView_dark.svg';
+import icon_toolwindows_transfer from '../icons/toolwindows/transfer.svg';
+import icon_toolwindows_transferToolWindow from '../icons/toolwindows/transferToolWindow.svg';
+import icon_toolwindows_unknown_20x20 from '../icons/toolwindows/unknown@20x20.svg';
 import icon_toolwindows_vcs from '../icons/toolwindows/vcs.svg';
 import icon_toolwindows_vcs_20x20 from '../icons/toolwindows/vcs@20x20.svg';
 import icon_toolwindows_vcs_20x20_dark from '../icons/toolwindows/vcs@20x20_dark.svg';
@@ -1809,11 +1748,16 @@ import icon_toolwindows_vcs_dark from '../icons/toolwindows/vcs_dark.svg';
 import icon_toolwindows_web from '../icons/toolwindows/web.svg';
 import icon_toolwindows_web_20x20 from '../icons/toolwindows/web@20x20.svg';
 import icon_toolwindows_web_20x20_dark from '../icons/toolwindows/web@20x20_dark.svg';
+import icon_toolwindows_webInspector from '../icons/toolwindows/webInspector.svg';
 import icon_toolwindows_webServer from '../icons/toolwindows/webServer.svg';
 import icon_toolwindows_webServer_20x20 from '../icons/toolwindows/webServer@20x20.svg';
 import icon_toolwindows_webServer_20x20_dark from '../icons/toolwindows/webServer@20x20_dark.svg';
 import icon_toolwindows_webServer_dark from '../icons/toolwindows/webServer_dark.svg';
 import icon_toolwindows_web_dark from '../icons/toolwindows/web_dark.svg';
+import icon_toolwindows_westToolWindow from '../icons/toolwindows/westToolWindow.svg';
+import icon_toolwindows_westToolWindow_20x20 from '../icons/toolwindows/westToolWindow@20x20.svg';
+import icon_toolwindows_writerside from '../icons/toolwindows/writerside.svg';
+import icon_toolwindows_writersidePreview from '../icons/toolwindows/writersidePreview.svg';
 import icon_ultimate_lock from '../icons/ultimate/lock.svg';
 import icon_ultimate_lock_dark from '../icons/ultimate/lock_dark.svg';
 import icon_vcs_abort from '../icons/vcs/abort.svg';
@@ -3393,168 +3337,24 @@ const iconRegistry = {
   'toolbar/unknown@20x20': icon_toolbar_unknown_20x20,
   'toolbar/unknown@20x20_dark': icon_toolbar_unknown_20x20_dark,
   'toolbar/unknown_dark': icon_toolbar_unknown_dark,
-  'toolwindows/ ConcurrencyDiagramToolwindow': icon_toolwindows__ConcurrencyDiagramToolwindow,
-  'toolwindows/ ConcurrencyDiagramToolwindow@20x20': icon_toolwindows__ConcurrencyDiagramToolwindow_20x20,
-  'toolwindows/ aiDebuggerEvalToolWindow': icon_toolwindows__aiDebuggerEvalToolWindow,
-  'toolwindows/ aiDebuggerEvalToolWindow@20x20': icon_toolwindows__aiDebuggerEvalToolWindow_20x20,
-  'toolwindows/ aiDebuggerToolWindow': icon_toolwindows__aiDebuggerToolWindow,
-  'toolwindows/ aiDebuggerToolWindow@20x20': icon_toolwindows__aiDebuggerToolWindow_20x20,
-  'toolwindows/ amazonEMR': icon_toolwindows__amazonEMR,
-  'toolwindows/ ant': icon_toolwindows__ant,
-  'toolwindows/ ant@20x20': icon_toolwindows__ant_20x20,
-  'toolwindows/ awsGlueToolWindow': icon_toolwindows__awsGlueToolWindow,
-  'toolwindows/ awsGlueToolWindow@20x20': icon_toolwindows__awsGlueToolWindow_20x20,
-  'toolwindows/ bookmarks': icon_toolwindows__bookmarks,
-  'toolwindows/ bookmarks@20x20': icon_toolwindows__bookmarks_20x20,
-  'toolwindows/ build': icon_toolwindows__build,
-  'toolwindows/ build@20x20': icon_toolwindows__build_20x20,
-  'toolwindows/ cdiToolWindow': icon_toolwindows__cdiToolWindow,
-  'toolwindows/ cdiToolWindow@20x20': icon_toolwindows__cdiToolWindow_20x20,
-  'toolwindows/ changes': icon_toolwindows__changes,
-  'toolwindows/ changes@20x20': icon_toolwindows__changes_20x20,
-  'toolwindows/ commit': icon_toolwindows__commit,
-  'toolwindows/ commit@20x20': icon_toolwindows__commit_20x20,
-  'toolwindows/ composeToolWindow': icon_toolwindows__composeToolWindow,
-  'toolwindows/ coverage@20x20': icon_toolwindows__coverage_20x20,
-  'toolwindows/ cwmAccess': icon_toolwindows__cwmAccess,
-  'toolwindows/ cwmAccess@20x20-1': icon_toolwindows__cwmAccess_20x20_1,
-  'toolwindows/ cwmAccess@20x20': icon_toolwindows__cwmAccess_20x20,
-  'toolwindows/ cwmUsers': icon_toolwindows__cwmUsers,
-  'toolwindows/ cwmUsers@20x20': icon_toolwindows__cwmUsers_20x20,
-  'toolwindows/ cypress': icon_toolwindows__cypress,
-  'toolwindows/ databaseChanges@20x20': icon_toolwindows__databaseChanges_20x20,
-  'toolwindows/ databricksToolWindow': icon_toolwindows__databricksToolWindow,
-  'toolwindows/ databricksToolWindow@20x20': icon_toolwindows__databricksToolWindow_20x20,
-  'toolwindows/ dbms': icon_toolwindows__dbms,
-  'toolwindows/ dbms@20x20': icon_toolwindows__dbms_20x20,
-  'toolwindows/ debug': icon_toolwindows__debug,
-  'toolwindows/ debug@20x20': icon_toolwindows__debug_20x20,
-  'toolwindows/ dependencies': icon_toolwindows__dependencies,
-  'toolwindows/ dependencies@20x20': icon_toolwindows__dependencies_20x20,
-  'toolwindows/ dependencyAnalyzer': icon_toolwindows__dependencyAnalyzer,
-  'toolwindows/ dependencyAnalyzer@20x20': icon_toolwindows__dependencyAnalyzer_20x20,
-  'toolwindows/ documentation': icon_toolwindows__documentation,
-  'toolwindows/ documentation@20x20': icon_toolwindows__documentation_20x20,
-  'toolwindows/ endpoints': icon_toolwindows__endpoints,
-  'toolwindows/ endpoints@20x20': icon_toolwindows__endpoints_20x20,
-  'toolwindows/ exceptionAnalyzer': icon_toolwindows__exceptionAnalyzer,
-  'toolwindows/ exceptionAnalyzer@20x20': icon_toolwindows__exceptionAnalyzer_20x20,
-  'toolwindows/ feedback': icon_toolwindows__feedback,
-  'toolwindows/ feedback@20x20': icon_toolwindows__feedback_20x20,
-  'toolwindows/ find': icon_toolwindows__find,
-  'toolwindows/ find@20x20': icon_toolwindows__find_20x20,
-  'toolwindows/ findExternalUsages': icon_toolwindows__findExternalUsages,
-  'toolwindows/ findExternalUsages@20x20': icon_toolwindows__findExternalUsages_20x20,
-  'toolwindows/ gitLabToolWindow': icon_toolwindows__gitLabToolWindow,
-  'toolwindows/ gradle': icon_toolwindows__gradle,
-  'toolwindows/ gradle@20x20': icon_toolwindows__gradle_20x20,
-  'toolwindows/ hierarchy': icon_toolwindows__hierarchy,
-  'toolwindows/ hierarchy@20x20': icon_toolwindows__hierarchy_20x20,
-  'toolwindows/ hive': icon_toolwindows__hive,
-  'toolwindows/ kotlinToolWindow': icon_toolwindows__kotlinToolWindow,
-  'toolwindows/ learn': icon_toolwindows__learn,
-  'toolwindows/ learn@20x20': icon_toolwindows__learn_20x20,
-  'toolwindows/ makefileToolWindow': icon_toolwindows__makefileToolWindow,
-  'toolwindows/ maven': icon_toolwindows__maven,
-  'toolwindows/ maven@20x20': icon_toolwindows__maven_20x20,
-  'toolwindows/ messages@20x20': icon_toolwindows__messages_20x20,
-  'toolwindows/ notifications@20x20': icon_toolwindows__notifications_20x20,
-  'toolwindows/ npm': icon_toolwindows__npm,
-  'toolwindows/ npm@20x20': icon_toolwindows__npm_20x20,
-  'toolwindows/ packageManager': icon_toolwindows__packageManager,
-  'toolwindows/ packageManager@20x20': icon_toolwindows__packageManager_20x20,
-  'toolwindows/ problems': icon_toolwindows__problems,
-  'toolwindows/ problems@20x20': icon_toolwindows__problems_20x20,
-  'toolwindows/ profiler': icon_toolwindows__profiler,
-  'toolwindows/ profiler@20x20': icon_toolwindows__profiler_20x20,
-  'toolwindows/ profilerAndroid': icon_toolwindows__profilerAndroid,
-  'toolwindows/ profilerAndroid@20x20': icon_toolwindows__profilerAndroid_20x20,
-  'toolwindows/ project': icon_toolwindows__project,
-  'toolwindows/ project@20x20': icon_toolwindows__project_20x20,
-  'toolwindows/ pullRequests': icon_toolwindows__pullRequests,
-  'toolwindows/ pullRequests@20x20': icon_toolwindows__pullRequests_20x20,
-  'toolwindows/ pythonConsoleToolWindow': icon_toolwindows__pythonConsoleToolWindow,
-  'toolwindows/ pythonConsoleToolWindow@20x20': icon_toolwindows__pythonConsoleToolWindow_20x20,
-  'toolwindows/ pythonPackages': icon_toolwindows__pythonPackages,
-  'toolwindows/ repositories': icon_toolwindows__repositories,
-  'toolwindows/ repositories@20x20': icon_toolwindows__repositories_20x20,
-  'toolwindows/ run': icon_toolwindows__run,
-  'toolwindows/ run@20x20': icon_toolwindows__run_20x20,
-  'toolwindows/ scalaProfiler': icon_toolwindows__scalaProfiler,
-  'toolwindows/ scalaProfiler@20x20': icon_toolwindows__scalaProfiler_20x20,
-  'toolwindows/ serialMonitor': icon_toolwindows__serialMonitor,
-  'toolwindows/ serialMonitor@20x20': icon_toolwindows__serialMonitor_20x20,
-  'toolwindows/ services': icon_toolwindows__services,
-  'toolwindows/ services@20x20': icon_toolwindows__services_20x20,
-  'toolwindows/ settingSync': icon_toolwindows__settingSync,
-  'toolwindows/ settingSync@20x20': icon_toolwindows__settingSync_20x20,
-  'toolwindows/ spaceToolWindow': icon_toolwindows__spaceToolWindow,
-  'toolwindows/ spaceToolWindow@20x20': icon_toolwindows__spaceToolWindow_20x20,
-  'toolwindows/ spark': icon_toolwindows__spark,
-  'toolwindows/ spark@20x20': icon_toolwindows__spark_20x20,
-  'toolwindows/ statisticsEventLog': icon_toolwindows__statisticsEventLog,
-  'toolwindows/ statisticsEventLog@20x20': icon_toolwindows__statisticsEventLog_20x20,
-  'toolwindows/ structure': icon_toolwindows__structure,
-  'toolwindows/ structure@20x20': icon_toolwindows__structure_20x20,
-  'toolwindows/ task@20x20': icon_toolwindows__task_20x20,
-  'toolwindows/ terminal': icon_toolwindows__terminal,
-  'toolwindows/ terminal@20x20': icon_toolwindows__terminal_20x20,
-  'toolwindows/ todo': icon_toolwindows__todo,
-  'toolwindows/ todo@20x20': icon_toolwindows__todo_20x20,
-  'toolwindows/ toolWindowBeanValidator': icon_toolwindows__toolWindowBeanValidator,
-  'toolwindows/ toolWindowBeanValidator@20x20': icon_toolwindows__toolWindowBeanValidator_20x20,
-  'toolwindows/ toolWindowCadence': icon_toolwindows__toolWindowCadence,
-  'toolwindows/ toolWindowCadence@20x20': icon_toolwindows__toolWindowCadence_20x20,
-  'toolwindows/ toolWindowCellExplorer': icon_toolwindows__toolWindowCellExplorer,
-  'toolwindows/ toolWindowCheckDetails': icon_toolwindows__toolWindowCheckDetails,
-  'toolwindows/ toolWindowClock': icon_toolwindows__toolWindowClock,
-  'toolwindows/ toolWindowClock@20x20': icon_toolwindows__toolWindowClock_20x20,
-  'toolwindows/ toolWindowConsole': icon_toolwindows__toolWindowConsole,
-  'toolwindows/ toolWindowConsole@20x20': icon_toolwindows__toolWindowConsole_20x20,
-  'toolwindows/ toolWindowDart': icon_toolwindows__toolWindowDart,
-  'toolwindows/ toolWindowDart@20x20': icon_toolwindows__toolWindowDart_20x20,
-  'toolwindows/ toolWindowDataView': icon_toolwindows__toolWindowDataView,
-  'toolwindows/ toolWindowDataView@20x20': icon_toolwindows__toolWindowDataView_20x20,
-  'toolwindows/ toolWindowDjango': icon_toolwindows__toolWindowDjango,
-  'toolwindows/ toolWindowDocker': icon_toolwindows__toolWindowDocker,
-  'toolwindows/ toolWindowDocker@20x20': icon_toolwindows__toolWindowDocker_20x20,
-  'toolwindows/ toolWindowJsonPath': icon_toolwindows__toolWindowJsonPath,
-  'toolwindows/ toolWindowJsonPath@20x20': icon_toolwindows__toolWindowJsonPath_20x20,
-  'toolwindows/ toolWindowKubernetes': icon_toolwindows__toolWindowKubernetes,
-  'toolwindows/ toolWindowKubernetes@20x20': icon_toolwindows__toolWindowKubernetes_20x20,
-  'toolwindows/ toolWindowPubServe': icon_toolwindows__toolWindowPubServe,
-  'toolwindows/ toolWindowRPackages': icon_toolwindows__toolWindowRPackages,
-  'toolwindows/ toolWindowRecordDebug': icon_toolwindows__toolWindowRecordDebug,
-  'toolwindows/ toolWindowRecordDebug@20x20': icon_toolwindows__toolWindowRecordDebug_20x20,
-  'toolwindows/ toolWindowSQLGenerator': icon_toolwindows__toolWindowSQLGenerator,
-  'toolwindows/ toolWindowSQLGenerator@20x20': icon_toolwindows__toolWindowSQLGenerator_20x20,
-  'toolwindows/ toolWindowTimer': icon_toolwindows__toolWindowTimer,
-  'toolwindows/ toolWindowTimer@20x20': icon_toolwindows__toolWindowTimer_20x20,
-  'toolwindows/ toolWindowTypeScript': icon_toolwindows__toolWindowTypeScript,
-  'toolwindows/ toolWindowTypeScript@20x20': icon_toolwindows__toolWindowTypeScript_20x20,
-  'toolwindows/ transfer': icon_toolwindows__transfer,
-  'toolwindows/ transferToolWindow': icon_toolwindows__transferToolWindow,
-  'toolwindows/ unknown@20x20': icon_toolwindows__unknown_20x20,
-  'toolwindows/ vcs': icon_toolwindows__vcs,
-  'toolwindows/ vcs@20x20': icon_toolwindows__vcs_20x20,
-  'toolwindows/ web': icon_toolwindows__web,
-  'toolwindows/ web@20x20': icon_toolwindows__web_20x20,
-  'toolwindows/ webInspector': icon_toolwindows__webInspector,
-  'toolwindows/ webServer': icon_toolwindows__webServer,
-  'toolwindows/ webServer@20x20': icon_toolwindows__webServer_20x20,
-  'toolwindows/ westToolWindow': icon_toolwindows__westToolWindow,
-  'toolwindows/ westToolWindow@20x20': icon_toolwindows__westToolWindow_20x20,
-  'toolwindows/ writerside': icon_toolwindows__writerside,
-  'toolwindows/ writersidePreview': icon_toolwindows__writersidePreview,
+  'toolwindows/ConcurrencyDiagramToolwindow': icon_toolwindows_ConcurrencyDiagramToolwindow,
+  'toolwindows/ConcurrencyDiagramToolwindow@20x20': icon_toolwindows_ConcurrencyDiagramToolwindow_20x20,
   'toolwindows/Timer': icon_toolwindows_Timer,
   'toolwindows/Vector': icon_toolwindows_Vector,
   'toolwindows/West': icon_toolwindows_West,
   'toolwindows/aiAssistantToolWindow': icon_toolwindows_aiAssistantToolWindow,
   'toolwindows/aiAssistantToolWindow@20x20': icon_toolwindows_aiAssistantToolWindow_20x20,
+  'toolwindows/aiDebuggerEvalToolWindow': icon_toolwindows_aiDebuggerEvalToolWindow,
+  'toolwindows/aiDebuggerEvalToolWindow@20x20': icon_toolwindows_aiDebuggerEvalToolWindow_20x20,
+  'toolwindows/aiDebuggerToolWindow': icon_toolwindows_aiDebuggerToolWindow,
+  'toolwindows/aiDebuggerToolWindow@20x20': icon_toolwindows_aiDebuggerToolWindow_20x20,
+  'toolwindows/amazonEMR': icon_toolwindows_amazonEMR,
   'toolwindows/ant': icon_toolwindows_ant,
   'toolwindows/ant@20x20': icon_toolwindows_ant_20x20,
   'toolwindows/ant@20x20_dark': icon_toolwindows_ant_20x20_dark,
   'toolwindows/ant_dark': icon_toolwindows_ant_dark,
+  'toolwindows/awsGlueToolWindow': icon_toolwindows_awsGlueToolWindow,
+  'toolwindows/awsGlueToolWindow@20x20': icon_toolwindows_awsGlueToolWindow_20x20,
   'toolwindows/bookmarks': icon_toolwindows_bookmarks,
   'toolwindows/bookmarks@20x20': icon_toolwindows_bookmarks_20x20,
   'toolwindows/bookmarks@20x20_dark': icon_toolwindows_bookmarks_20x20_dark,
@@ -3563,6 +3363,8 @@ const iconRegistry = {
   'toolwindows/build@20x20': icon_toolwindows_build_20x20,
   'toolwindows/build@20x20_dark': icon_toolwindows_build_20x20_dark,
   'toolwindows/build_dark': icon_toolwindows_build_dark,
+  'toolwindows/cdiToolWindow': icon_toolwindows_cdiToolWindow,
+  'toolwindows/cdiToolWindow@20x20': icon_toolwindows_cdiToolWindow_20x20,
   'toolwindows/changes': icon_toolwindows_changes,
   'toolwindows/changes@20x20': icon_toolwindows_changes_20x20,
   'toolwindows/changes@20x20_dark': icon_toolwindows_changes_20x20_dark,
@@ -3571,14 +3373,26 @@ const iconRegistry = {
   'toolwindows/commit@20x20': icon_toolwindows_commit_20x20,
   'toolwindows/commit@20x20_dark': icon_toolwindows_commit_20x20_dark,
   'toolwindows/commit_dark': icon_toolwindows_commit_dark,
+  'toolwindows/composeToolWindow': icon_toolwindows_composeToolWindow,
   'toolwindows/coverage': icon_toolwindows_coverage,
   'toolwindows/coverage@20x20': icon_toolwindows_coverage_20x20,
   'toolwindows/coverage@20x20_dark': icon_toolwindows_coverage_20x20_dark,
   'toolwindows/coverage_dark': icon_toolwindows_coverage_dark,
+  'toolwindows/cwmAccess': icon_toolwindows_cwmAccess,
+  'toolwindows/cwmAccess@20x20-1': icon_toolwindows_cwmAccess_20x20_1,
+  'toolwindows/cwmAccess@20x20': icon_toolwindows_cwmAccess_20x20,
+  'toolwindows/cwmUsers': icon_toolwindows_cwmUsers,
+  'toolwindows/cwmUsers@20x20': icon_toolwindows_cwmUsers_20x20,
+  'toolwindows/cypress': icon_toolwindows_cypress,
+  'toolwindows/databaseChanges@20x20': icon_toolwindows_databaseChanges_20x20,
+  'toolwindows/databricksToolWindow': icon_toolwindows_databricksToolWindow,
+  'toolwindows/databricksToolWindow@20x20': icon_toolwindows_databricksToolWindow_20x20,
   'toolwindows/dataflow': icon_toolwindows_dataflow,
   'toolwindows/dataflow@20x20': icon_toolwindows_dataflow_20x20,
   'toolwindows/dataflow@20x20_dark': icon_toolwindows_dataflow_20x20_dark,
   'toolwindows/dataflow_dark': icon_toolwindows_dataflow_dark,
+  'toolwindows/dbms': icon_toolwindows_dbms,
+  'toolwindows/dbms@20x20': icon_toolwindows_dbms_20x20,
   'toolwindows/debug': icon_toolwindows_debug,
   'toolwindows/debug@20x20': icon_toolwindows_debug_20x20,
   'toolwindows/debug@20x20_dark': icon_toolwindows_debug_20x20_dark,
@@ -3587,22 +3401,40 @@ const iconRegistry = {
   'toolwindows/dependencies@20x20': icon_toolwindows_dependencies_20x20,
   'toolwindows/dependencies@20x20_dark': icon_toolwindows_dependencies_20x20_dark,
   'toolwindows/dependencies_dark': icon_toolwindows_dependencies_dark,
+  'toolwindows/dependencyAnalyzer': icon_toolwindows_dependencyAnalyzer,
+  'toolwindows/dependencyAnalyzer@20x20': icon_toolwindows_dependencyAnalyzer_20x20,
   'toolwindows/documentation': icon_toolwindows_documentation,
   'toolwindows/documentation@20x20': icon_toolwindows_documentation_20x20,
   'toolwindows/documentation@20x20_dark': icon_toolwindows_documentation_20x20_dark,
   'toolwindows/documentation_dark': icon_toolwindows_documentation_dark,
+  'toolwindows/endpoints': icon_toolwindows_endpoints,
+  'toolwindows/endpoints@20x20': icon_toolwindows_endpoints_20x20,
+  'toolwindows/exceptionAnalyzer': icon_toolwindows_exceptionAnalyzer,
+  'toolwindows/exceptionAnalyzer@20x20': icon_toolwindows_exceptionAnalyzer_20x20,
+  'toolwindows/feedback': icon_toolwindows_feedback,
+  'toolwindows/feedback@20x20': icon_toolwindows_feedback_20x20,
   'toolwindows/find': icon_toolwindows_find,
   'toolwindows/find@20x20': icon_toolwindows_find_20x20,
   'toolwindows/find@20x20_dark': icon_toolwindows_find_20x20_dark,
+  'toolwindows/findExternalUsages': icon_toolwindows_findExternalUsages,
+  'toolwindows/findExternalUsages@20x20': icon_toolwindows_findExternalUsages_20x20,
   'toolwindows/find_dark': icon_toolwindows_find_dark,
+  'toolwindows/gitLabToolWindow': icon_toolwindows_gitLabToolWindow,
+  'toolwindows/gradle': icon_toolwindows_gradle,
+  'toolwindows/gradle@20x20': icon_toolwindows_gradle_20x20,
   'toolwindows/hierarchy': icon_toolwindows_hierarchy,
   'toolwindows/hierarchy@20x20': icon_toolwindows_hierarchy_20x20,
   'toolwindows/hierarchy@20x20_dark': icon_toolwindows_hierarchy_20x20_dark,
   'toolwindows/hierarchy_dark': icon_toolwindows_hierarchy_dark,
+  'toolwindows/hive': icon_toolwindows_hive,
+  'toolwindows/kotlinToolWindow': icon_toolwindows_kotlinToolWindow,
   'toolwindows/learn': icon_toolwindows_learn,
   'toolwindows/learn@20x20': icon_toolwindows_learn_20x20,
   'toolwindows/learn@20x20_dark': icon_toolwindows_learn_20x20_dark,
   'toolwindows/learn_dark': icon_toolwindows_learn_dark,
+  'toolwindows/makefileToolWindow': icon_toolwindows_makefileToolWindow,
+  'toolwindows/maven': icon_toolwindows_maven,
+  'toolwindows/maven@20x20': icon_toolwindows_maven_20x20,
   'toolwindows/meetNewUi': icon_toolwindows_meetNewUi,
   'toolwindows/meetNewUi@20x20': icon_toolwindows_meetNewUi_20x20,
   'toolwindows/meetNewUi@20x20_dark': icon_toolwindows_meetNewUi_20x20_dark,
@@ -3615,6 +3447,10 @@ const iconRegistry = {
   'toolwindows/notifications@20x20': icon_toolwindows_notifications_20x20,
   'toolwindows/notifications@20x20_dark': icon_toolwindows_notifications_20x20_dark,
   'toolwindows/notifications_dark': icon_toolwindows_notifications_dark,
+  'toolwindows/npm': icon_toolwindows_npm,
+  'toolwindows/npm@20x20': icon_toolwindows_npm_20x20,
+  'toolwindows/packageManager': icon_toolwindows_packageManager,
+  'toolwindows/packageManager@20x20': icon_toolwindows_packageManager_20x20,
   'toolwindows/palette': icon_toolwindows_palette,
   'toolwindows/palette@20x20': icon_toolwindows_palette_20x20,
   'toolwindows/palette@20x20_dark': icon_toolwindows_palette_20x20_dark,
@@ -3635,6 +3471,11 @@ const iconRegistry = {
   'toolwindows/project@20x20': icon_toolwindows_project_20x20,
   'toolwindows/project@20x20_dark': icon_toolwindows_project_20x20_dark,
   'toolwindows/project_dark': icon_toolwindows_project_dark,
+  'toolwindows/pullRequests': icon_toolwindows_pullRequests,
+  'toolwindows/pullRequests@20x20': icon_toolwindows_pullRequests_20x20,
+  'toolwindows/pythonConsoleToolWindow': icon_toolwindows_pythonConsoleToolWindow,
+  'toolwindows/pythonConsoleToolWindow@20x20': icon_toolwindows_pythonConsoleToolWindow_20x20,
+  'toolwindows/pythonPackages': icon_toolwindows_pythonPackages,
   'toolwindows/repositories': icon_toolwindows_repositories,
   'toolwindows/repositories@20x20': icon_toolwindows_repositories_20x20,
   'toolwindows/repositories@20x20_dark': icon_toolwindows_repositories_20x20_dark,
@@ -3643,6 +3484,10 @@ const iconRegistry = {
   'toolwindows/run@20x20': icon_toolwindows_run_20x20,
   'toolwindows/run@20x20_dark': icon_toolwindows_run_20x20_dark,
   'toolwindows/run_dark': icon_toolwindows_run_dark,
+  'toolwindows/scalaProfiler': icon_toolwindows_scalaProfiler,
+  'toolwindows/scalaProfiler@20x20': icon_toolwindows_scalaProfiler_20x20,
+  'toolwindows/serialMonitor': icon_toolwindows_serialMonitor,
+  'toolwindows/serialMonitor@20x20': icon_toolwindows_serialMonitor_20x20,
   'toolwindows/services': icon_toolwindows_services,
   'toolwindows/services@20x20': icon_toolwindows_services_20x20,
   'toolwindows/services@20x20_dark': icon_toolwindows_services_20x20_dark,
@@ -3651,6 +3496,12 @@ const iconRegistry = {
   'toolwindows/settingSync@20x20': icon_toolwindows_settingSync_20x20,
   'toolwindows/settingSync@20x20_dark': icon_toolwindows_settingSync_20x20_dark,
   'toolwindows/settingSync_dark': icon_toolwindows_settingSync_dark,
+  'toolwindows/spaceToolWindow': icon_toolwindows_spaceToolWindow,
+  'toolwindows/spaceToolWindow@20x20': icon_toolwindows_spaceToolWindow_20x20,
+  'toolwindows/spark': icon_toolwindows_spark,
+  'toolwindows/spark@20x20': icon_toolwindows_spark_20x20,
+  'toolwindows/statisticsEventLog': icon_toolwindows_statisticsEventLog,
+  'toolwindows/statisticsEventLog@20x20': icon_toolwindows_statisticsEventLog_20x20,
   'toolwindows/structure': icon_toolwindows_structure,
   'toolwindows/structure@20x20': icon_toolwindows_structure_20x20,
   'toolwindows/structure@20x20_dark': icon_toolwindows_structure_20x20_dark,
@@ -3659,6 +3510,8 @@ const iconRegistry = {
   'toolwindows/task@20x20': icon_toolwindows_task_20x20,
   'toolwindows/task@20x20_dark': icon_toolwindows_task_20x20_dark,
   'toolwindows/task_dark': icon_toolwindows_task_dark,
+  'toolwindows/terminal': icon_toolwindows_terminal,
+  'toolwindows/terminal@20x20': icon_toolwindows_terminal_20x20,
   'toolwindows/todo': icon_toolwindows_todo,
   'toolwindows/todo@20x20': icon_toolwindows_todo_20x20,
   'toolwindows/todo@20x20_dark': icon_toolwindows_todo_20x20_dark,
@@ -3667,10 +3520,22 @@ const iconRegistry = {
   'toolwindows/toolWindowAskAI@20x20': icon_toolwindows_toolWindowAskAI_20x20,
   'toolwindows/toolWindowAskAI@20x20_dark': icon_toolwindows_toolWindowAskAI_20x20_dark,
   'toolwindows/toolWindowAskAI_dark': icon_toolwindows_toolWindowAskAI_dark,
+  'toolwindows/toolWindowBeanValidator': icon_toolwindows_toolWindowBeanValidator,
+  'toolwindows/toolWindowBeanValidator@20x20': icon_toolwindows_toolWindowBeanValidator_20x20,
+  'toolwindows/toolWindowCadence': icon_toolwindows_toolWindowCadence,
+  'toolwindows/toolWindowCadence@20x20': icon_toolwindows_toolWindowCadence_20x20,
+  'toolwindows/toolWindowCellExplorer': icon_toolwindows_toolWindowCellExplorer,
+  'toolwindows/toolWindowCheckDetails': icon_toolwindows_toolWindowCheckDetails,
+  'toolwindows/toolWindowClock': icon_toolwindows_toolWindowClock,
+  'toolwindows/toolWindowClock@20x20': icon_toolwindows_toolWindowClock_20x20,
   'toolwindows/toolWindowComponents': icon_toolwindows_toolWindowComponents,
   'toolwindows/toolWindowComponents@20x20': icon_toolwindows_toolWindowComponents_20x20,
   'toolwindows/toolWindowComponents@20x20_dark': icon_toolwindows_toolWindowComponents_20x20_dark,
   'toolwindows/toolWindowComponents_dark': icon_toolwindows_toolWindowComponents_dark,
+  'toolwindows/toolWindowConsole': icon_toolwindows_toolWindowConsole,
+  'toolwindows/toolWindowConsole@20x20': icon_toolwindows_toolWindowConsole_20x20,
+  'toolwindows/toolWindowDart': icon_toolwindows_toolWindowDart,
+  'toolwindows/toolWindowDart@20x20': icon_toolwindows_toolWindowDart_20x20,
   'toolwindows/toolWindowDataView': icon_toolwindows_toolWindowDataView,
   'toolwindows/toolWindowDataView@20x20': icon_toolwindows_toolWindowDataView_20x20,
   'toolwindows/toolWindowDataView@20x20_dark': icon_toolwindows_toolWindowDataView_20x20_dark,
@@ -3679,6 +3544,9 @@ const iconRegistry = {
   'toolwindows/toolWindowDevMode@20x20': icon_toolwindows_toolWindowDevMode_20x20,
   'toolwindows/toolWindowDevMode@20x20_dark': icon_toolwindows_toolWindowDevMode_20x20_dark,
   'toolwindows/toolWindowDevMode_dark': icon_toolwindows_toolWindowDevMode_dark,
+  'toolwindows/toolWindowDjango': icon_toolwindows_toolWindowDjango,
+  'toolwindows/toolWindowDocker': icon_toolwindows_toolWindowDocker,
+  'toolwindows/toolWindowDocker@20x20': icon_toolwindows_toolWindowDocker_20x20,
   'toolwindows/toolWindowDuplicates': icon_toolwindows_toolWindowDuplicates,
   'toolwindows/toolWindowDuplicates@20x20': icon_toolwindows_toolWindowDuplicates_20x20,
   'toolwindows/toolWindowDuplicates@20x20_dark': icon_toolwindows_toolWindowDuplicates_20x20_dark,
@@ -3695,18 +3563,33 @@ const iconRegistry = {
   'toolwindows/toolWindowJsonPath@20x20': icon_toolwindows_toolWindowJsonPath_20x20,
   'toolwindows/toolWindowJsonPath@20x20_dark': icon_toolwindows_toolWindowJsonPath_20x20_dark,
   'toolwindows/toolWindowJsonPath_dark': icon_toolwindows_toolWindowJsonPath_dark,
+  'toolwindows/toolWindowKubernetes': icon_toolwindows_toolWindowKubernetes,
+  'toolwindows/toolWindowKubernetes@20x20': icon_toolwindows_toolWindowKubernetes_20x20,
   'toolwindows/toolWindowOverflow': icon_toolwindows_toolWindowOverflow,
   'toolwindows/toolWindowOverflow@20x20': icon_toolwindows_toolWindowOverflow_20x20,
   'toolwindows/toolWindowOverflow@20x20_dark': icon_toolwindows_toolWindowOverflow_20x20_dark,
   'toolwindows/toolWindowOverflow_dark': icon_toolwindows_toolWindowOverflow_dark,
+  'toolwindows/toolWindowPubServe': icon_toolwindows_toolWindowPubServe,
+  'toolwindows/toolWindowRPackages': icon_toolwindows_toolWindowRPackages,
+  'toolwindows/toolWindowRecordDebug': icon_toolwindows_toolWindowRecordDebug,
+  'toolwindows/toolWindowRecordDebug@20x20': icon_toolwindows_toolWindowRecordDebug_20x20,
   'toolwindows/toolWindowRunWithCoverage': icon_toolwindows_toolWindowRunWithCoverage,
   'toolwindows/toolWindowRunWithCoverage@20x20': icon_toolwindows_toolWindowRunWithCoverage_20x20,
   'toolwindows/toolWindowRunWithCoverage@20x20_dark': icon_toolwindows_toolWindowRunWithCoverage_20x20_dark,
   'toolwindows/toolWindowRunWithCoverage_dark': icon_toolwindows_toolWindowRunWithCoverage_dark,
+  'toolwindows/toolWindowSQLGenerator': icon_toolwindows_toolWindowSQLGenerator,
+  'toolwindows/toolWindowSQLGenerator@20x20': icon_toolwindows_toolWindowSQLGenerator_20x20,
+  'toolwindows/toolWindowTimer': icon_toolwindows_toolWindowTimer,
+  'toolwindows/toolWindowTimer@20x20': icon_toolwindows_toolWindowTimer_20x20,
+  'toolwindows/toolWindowTypeScript': icon_toolwindows_toolWindowTypeScript,
+  'toolwindows/toolWindowTypeScript@20x20': icon_toolwindows_toolWindowTypeScript_20x20,
   'toolwindows/toolWindowVariableView': icon_toolwindows_toolWindowVariableView,
   'toolwindows/toolWindowVariableView@20x20': icon_toolwindows_toolWindowVariableView_20x20,
   'toolwindows/toolWindowVariableView@20x20_dark': icon_toolwindows_toolWindowVariableView_20x20_dark,
   'toolwindows/toolWindowVariableView_dark': icon_toolwindows_toolWindowVariableView_dark,
+  'toolwindows/transfer': icon_toolwindows_transfer,
+  'toolwindows/transferToolWindow': icon_toolwindows_transferToolWindow,
+  'toolwindows/unknown@20x20': icon_toolwindows_unknown_20x20,
   'toolwindows/vcs': icon_toolwindows_vcs,
   'toolwindows/vcs@20x20': icon_toolwindows_vcs_20x20,
   'toolwindows/vcs@20x20_dark': icon_toolwindows_vcs_20x20_dark,
@@ -3714,11 +3597,16 @@ const iconRegistry = {
   'toolwindows/web': icon_toolwindows_web,
   'toolwindows/web@20x20': icon_toolwindows_web_20x20,
   'toolwindows/web@20x20_dark': icon_toolwindows_web_20x20_dark,
+  'toolwindows/webInspector': icon_toolwindows_webInspector,
   'toolwindows/webServer': icon_toolwindows_webServer,
   'toolwindows/webServer@20x20': icon_toolwindows_webServer_20x20,
   'toolwindows/webServer@20x20_dark': icon_toolwindows_webServer_20x20_dark,
   'toolwindows/webServer_dark': icon_toolwindows_webServer_dark,
   'toolwindows/web_dark': icon_toolwindows_web_dark,
+  'toolwindows/westToolWindow': icon_toolwindows_westToolWindow,
+  'toolwindows/westToolWindow@20x20': icon_toolwindows_westToolWindow_20x20,
+  'toolwindows/writerside': icon_toolwindows_writerside,
+  'toolwindows/writersidePreview': icon_toolwindows_writersidePreview,
   'ultimate/lock': icon_ultimate_lock,
   'ultimate/lock_dark': icon_ultimate_lock_dark,
   'vcs/abort': icon_vcs_abort,

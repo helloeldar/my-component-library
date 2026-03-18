@@ -1,38 +1,64 @@
 import { useState } from 'react';
 import Tab from './Tab';
+import Icon from '../icon/Icon';
 import './TabBar.css';
 
-function TabBar(props) {
-    const [activeTab, setActiveTab] = useState(0);
-    const [tabs, setTabs] = useState(props.tabs || []);
+const actionIcons = {
+    add: 'general/add',
+    dropdown: 'general/chevronDown',
+};
+
+function TabBar({
+    tabs: tabsProp = [],
+    activeTab: controlledActiveTab,
+    onTabChange,
+    onTabClose,
+    focused = false,
+    direction = 'horizontal',
+    wrap = false,
+    actions,
+    onActionClick,
+    className = '',
+}) {
+    // Controlled vs uncontrolled mode
+    const isControlled = controlledActiveTab !== undefined;
+    const [internalActiveTab, setInternalActiveTab] = useState(0);
+    const [internalTabs, setInternalTabs] = useState(tabsProp);
+
+    const activeTab = isControlled ? controlledActiveTab : internalActiveTab;
+    const tabs = isControlled ? tabsProp : internalTabs;
 
     const handleTabClick = (index) => {
-        setActiveTab(index);
+        if (onTabChange) onTabChange(index);
+        if (!isControlled) setInternalActiveTab(index);
     };
 
     const handleTabClose = (index) => {
-        const newTabs = tabs.filter((_, i) => i !== index);
-        setTabs(newTabs);
+        if (onTabClose) {
+            onTabClose(index);
+        } else if (!isControlled) {
+            const newTabs = internalTabs.filter((_, i) => i !== index);
+            setInternalTabs(newTabs);
 
-        // When closing the active tab, switching to the previous one
-        if (index === activeTab && activeTab > 0) {
-            setActiveTab(activeTab - 1);
-        } else if (index < activeTab) {
-            setActiveTab(activeTab - 1);
+            if (index === internalActiveTab && internalActiveTab > 0) {
+                setInternalActiveTab(internalActiveTab - 1);
+            } else if (index < internalActiveTab) {
+                setInternalActiveTab(internalActiveTab - 1);
+            }
         }
     };
 
     let classes = ['tab-bar'];
-    if (props.direction === 'vertical') {
+    if (direction === 'vertical') {
         classes.push('tab-bar-vertical');
     } else {
         classes.push('tab-bar-horizontal');
-        if (props.wrap) {
+        if (wrap) {
             classes.push('tab-bar-wrap');
         }
     }
-    if (props.size === 'small') {
-        classes.push('tab-bar-small');
+    if (className) {
+        classes.push(className);
     }
 
     return (
@@ -43,13 +69,25 @@ function TabBar(props) {
                     label={tab.label}
                     icon={tab.icon}
                     active={index === activeTab}
-                    focused={props.focused}
+                    focused={focused}
                     closable={tab.closable}
-                    size={props.size}
                     onClick={() => handleTabClick(index)}
                     onClose={() => handleTabClose(index)}
                 />
             ))}
+            {actions && actions.length > 0 && (
+                <div className="tab-bar-actions">
+                    {actions.map((action, i) => (
+                        <button
+                            key={i}
+                            className="tool-window-action-button"
+                            onClick={() => onActionClick && onActionClick(action)}
+                        >
+                            {actionIcons[action] && <Icon name={actionIcons[action]} size={16} />}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

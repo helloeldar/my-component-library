@@ -1,1 +1,1 @@
-Read and follow the rules in ai/General rules.md
+Read and follow the rules in AI RULES.md

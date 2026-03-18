@@ -31,19 +31,20 @@
     border: 1px solid transparent;
     transition: background 0.15s ease, opacity 0.15s ease;
     flex-shrink: 0;
+    overflow: visible;
 }
 
 /* Default state: unselected tabs at 67% content opacity */
-.tab:not(.tab-selected) {
+.tab-default {
     opacity: 0.67;
 }
 
-.tab:hover:not(:disabled) {
+.tab-default:hover {
     background: var(--tool-window-tab-bg-hover);
     opacity: 1;
 }
 
-.tab:disabled {
+.tab-default:disabled {
     cursor: default;
     opacity: 0.5;
     pointer-events: none;
@@ -55,18 +56,10 @@
     border-color: var(--tool-window-tab-selected-border);
 }
 
-.tab-selected:hover {
-    background: var(--tool-window-tab-selected-bg);
-}
-
 /* Selected + Active (focused) state — blue pill fill + border */
 .tab-selected-active {
     background: var(--tool-window-tab-selected-bg-active);
     border-color: var(--tool-window-tab-selected-border-active);
-}
-
-.tab-selected-active:hover {
-    background: var(--tool-window-tab-selected-bg-active);
 }
 
 /* Icon styling — 14px container for 16px icon (Figma: -2px left padding) */
@@ -94,13 +87,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 12px;
-    height: 16px;
     flex-shrink: 0;
     cursor: pointer;
     transition: opacity 0.15s ease;
     opacity: 0;
-    overflow: visible;
+    margin-right: -4px;
 }
 
 /* Show close button on selected tabs always */
@@ -108,9 +99,10 @@
     opacity: 1;
 }
 
-/* Show close button on hover */
-.tab:hover .tab-close {
+/* Show close button on hover for default tabs */
+.tab-default:hover .tab-close {
     opacity: 1;
+    overflow: visible;
 }
 
 /* ========================

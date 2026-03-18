@@ -145,8 +145,7 @@
     background: linear-gradient(90deg, var(--island-bg-overlay) 0%, var(--island-bg-overlay) 100%), 
                 linear-gradient(90deg, var(--island-bg) 0%, var(--island-bg) 100%);
     border-radius: 10px;
-    box-shadow: var(--island-shadow);
-    border: 1px solid var(--island-border);
+    box-shadow: var(--island-shadow), inset 0 0 0 1px var(--island-border);
 }
 
 .main-window-island .main-toolbar {

@@ -4,7 +4,6 @@
     font-family: Inter, sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar {
@@ -38,14 +37,24 @@
 /* Theme toggle icon button in sidebar */
 .sidebar-header .icon-button:hover .icon {
     transform: rotate(180deg);
-    transition: transform 0.3s ease;
 }
 
 .nav-category {
     margin-bottom: 24px;
 }
 
+/* Sidebar Search — override Search component defaults */
+.sidebar-search.search {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+/* Collapsible section title */
 .nav-category-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     font-family: 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -54,6 +63,23 @@
     color: var(--text-tertiary);
     margin-bottom: 8px;
     padding: 0 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.nav-category-title:hover {
+    color: var(--text-secondary);
+}
+
+.nav-category-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-category-chevron.open {
+    transform: rotate(90deg);
 }
 
 .nav-item {
@@ -61,7 +87,7 @@
     width: 100%;
     padding: 8px 12px;
     background: none;
-    margin-bottom: 0;
+    margin-bottom: 4px;
     border: none;
     border-radius: 4px;
     text-align: left;
@@ -69,8 +95,7 @@
     font-size: 13px;
     font-weight: 400;
     font-family: 'Inter', sans-serif;
-    color: var(--text-primary);
-    transition: all 0.2s ease;
+    color: var(--text-secondary);
     text-decoration: none;
     box-sizing: border-box;
 }
@@ -174,7 +199,6 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
     text-decoration: none;
 }
 

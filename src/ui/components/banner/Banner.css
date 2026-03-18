@@ -90,7 +90,6 @@
     color: var(--icon-secondary);
     position: relative;
     border-radius: 3px;
-    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .banner-close:hover {

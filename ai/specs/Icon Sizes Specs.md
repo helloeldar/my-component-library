@@ -1,5 +1,10 @@
 # Icon Sizes
 
+## Icon Naming Conventions
+- Filenames must not have leading or trailing spaces.
+- Filenames should follow the standard naming: `iconName.svg` or `iconName@20x20.svg`.
+- Dark variants should use the `_dark.svg` suffix, e.g., `iconName_dark.svg` or `iconName@20x20_dark.svg`.
+
 ## Stripe Icons
 - Stripes always use **20×20** icons. Use the `@20x20` suffix in icon paths, e.g. `toolwindows/project@20x20`.
 - This is the standard size for all tool window stripe buttons in JetBrains IDEs.

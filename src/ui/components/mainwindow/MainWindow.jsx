@@ -362,10 +362,10 @@ function MainWindow({
                             onClick={() => handleRightStripeClick('ai')}
                         />
                         <StripeIconButton
-                            icon="toolwindows/databaseToolWindow@20x20"
-                            state={getStripeState('right', 'maven', showRightPanel)}
-                            title="Maven"
-                            onClick={() => handleRightStripeClick('maven')}
+                            icon="toolwindows/dbms@20x20.svg"
+                            state={getStripeState('right', 'database', showRightPanel)}
+                            title="Database"
+                            onClick={() => handleRightStripeClick('database')}
                         />
                     </StripeContainer>
                 </div>

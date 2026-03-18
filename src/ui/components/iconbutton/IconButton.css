@@ -32,7 +32,6 @@
     inset: 2px; /* 2px inset creates 22x22px bg inside 26x26px button */
     border-radius: 3px; /* Figma spec: 3px radius */
     background: transparent;
-    transition: background-color 0.15s ease;
     z-index: 0;
 }
 

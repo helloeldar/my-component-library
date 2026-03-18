@@ -289,7 +289,7 @@ function TerminalWindow({
     return (
         <ToolWindow
             title={title}
-            icon="toolwindows/ terminal@20x20"
+            icon="toolwindows/terminal@20x20"
             width={width}
             height={height}
             headerType="tabs"

@@ -29,7 +29,7 @@ function Tab({
 
     const classes = [
         'tab',
-        active ? 'tab-selected' : '',
+        active ? 'tab-selected' : 'tab-default',
         active && focused ? 'tab-selected-active' : '',
     ].filter(Boolean).join(' ');
 

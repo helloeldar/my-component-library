@@ -1,6 +1,6 @@
 /* Text styles */
 /* Note: Figma uses "Medium" weight (500) for regular text, but due to rendering
-   inconsistencies between Figma and IntelliJ IDEs, Medium maps to Regular (400)
+   inconsistencies between Figma and IntelliJ IDEs, Medium maps to Regular (500)
    in implementation. Semibold (600) and Bold (700) remain unchanged. */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
@@ -28,7 +28,7 @@
     font-family: Inter, sans-serif;
     font-size: 13px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 16px;
 }
 
@@ -46,7 +46,7 @@
     font-family: Inter, sans-serif;
     font-size: 13px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 18px;
 }
 
@@ -55,7 +55,7 @@
     font-family: Inter, sans-serif;
     font-size: 12px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 16px;
 }
 
@@ -73,7 +73,7 @@
     font-family: "JetBrains Mono", monospace;
     font-size: 13px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 550;
     line-height: 22px;
 }
 
@@ -91,7 +91,7 @@
     font-family: "JetBrains Mono", monospace;
     font-size: 12px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 22px;
 }
 

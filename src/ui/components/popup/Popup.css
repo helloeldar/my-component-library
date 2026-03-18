@@ -10,7 +10,6 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
-    transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
 }
 
 .popup-visible {
