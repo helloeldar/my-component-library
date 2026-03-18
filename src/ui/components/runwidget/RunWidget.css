@@ -1,0 +1,116 @@
+/* Run Widget — Main Toolbar run/debug control group
+ * Matches Figma "Main Toolbar / Run Widget" component.
+ * Three states: Default, Running, Debugging.
+ */
+
+/* Container */
+.run-widget {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+/* Dropdown wrapper — relative for badge positioning */
+.run-widget-dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+/* Status badge — 6px green dot on dropdown icon (Running/Debugging only) */
+.run-widget-badge {
+    position: absolute;
+    top: 10px;
+    left: 26px;
+    width: 6px;
+    height: 6px;
+    background: var(--toolbar-run-bg);
+    border-radius: 50%;
+    border: 1px solid var(--bg-elevated);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Action button — 34x40 wrapper with 16x16 stroke icon
+ * Different from MainToolbarIconButton (40x40, 20px icons).
+ */
+.run-widget-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--icon-default-stroke);
+    position: relative;
+}
+
+/* State background: 30x30 centered in 34x40
+ * Horizontal inset: (34-30)/2 = 2px
+ * Vertical inset: (40-30)/2 = 5px
+ */
+.run-widget-button::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    top: 5px;
+    bottom: 5px;
+    border-radius: 6px;
+    background: transparent;
+    transition: background-color 0.15s ease;
+    z-index: 0;
+}
+
+/* Icon above background layer */
+.run-widget-button .icon {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+/* Default hover (non-accent buttons) */
+.run-widget-button:hover:not(:disabled):not(.run-widget-button-accent-run):not(.run-widget-button-accent-stop)::before {
+    background: var(--icon-button-hover-bg);
+}
+
+/* Pressed (non-accent buttons) */
+.run-widget-button:active:not(:disabled):not(.run-widget-button-accent-run):not(.run-widget-button-accent-stop)::before {
+    background: var(--icon-button-pressed-bg);
+}
+
+/* Run/Rerun/RestartDebug accent — green background */
+.run-widget-button-accent-run::before {
+    background: var(--toolbar-run-bg);
+}
+
+.run-widget-button-accent-run:hover:not(:disabled)::before {
+    background: var(--toolbar-run-bg-hovered);
+}
+
+/* Stop accent — red background */
+.run-widget-button-accent-stop::before {
+    background: var(--toolbar-stop-bg);
+}
+
+.run-widget-button-accent-stop:hover:not(:disabled)::before {
+    background: var(--toolbar-stop-bg-hovered);
+}
+
+/* No focus outline */
+.run-widget-button:focus,
+.run-widget-button:focus-visible {
+    outline: none;
+}
+
+/* Disabled state */
+.run-widget-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.run-widget-button:disabled::before {
+    background: transparent;
+}

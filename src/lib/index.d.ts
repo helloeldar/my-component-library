@@ -189,6 +189,23 @@ export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'ri
 export const ToolbarDropdown: FC<{ label: string; icon?: string; theme?: string; disabled?: boolean; options?: any[]; value?: string; onChange?: (value: string) => void }>;
 export const ProjectSelector: FC<{ projectName: string; projectIcon?: string; disabled?: boolean; onClick?: () => void }>;
 
+// RunWidget
+export interface RunWidgetProps {
+  state?: 'default' | 'running' | 'debugging';
+  runConfig?: string;
+  configIcon?: string;
+  onRun?: () => void;
+  onDebug?: () => void;
+  onStop?: () => void;
+  onRerun?: () => void;
+  onRestartDebug?: () => void;
+  onMore?: () => void;
+  onDropdownClick?: () => void;
+  className?: string;
+}
+
+export const RunWidget: FC<RunWidgetProps>;
+
 // Status Bar Components
 export const StatusBar: FC<{ children?: ReactNode; className?: string }>;
 export const StatusBarBreadcrumb: FC<{ items?: any[]; className?: string }>;

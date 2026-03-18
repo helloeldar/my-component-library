@@ -27,6 +27,7 @@ function MainWindow({
     projectColor = "cobalt",
     branchName = "main",
     runConfig = "IDEA Community",
+    runState = "default",
     className = "",
     ...props
 }) {
@@ -179,6 +180,7 @@ function MainWindow({
                 projectColor={projectColor}
                 branchName={branchName}
                 runConfig={runConfig}
+                runState={runState}
             />
 
             {/* Main Content Area */}

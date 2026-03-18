@@ -420,6 +420,11 @@
     --stripe-badge-default: #55A76A; /* Figma: icon/icon-green-solid */
     --stripe-badge-selected: var(--white);
     --stripe-badge-inactive: #55A76A;
+    --toolbar-run-bg: var(--green-80); /* Figma: toolbar/toolbar-run-bg = accent/accent-success-bg */
+    --toolbar-run-bg-hovered: var(--green-70); /* Figma: toolbar/toolbar-run-bg-hovered */
+    --toolbar-stop-bg: var(--red-80); /* Figma: toolbar/toolbar-stop-bg = accent/accent-error-bg */
+    --toolbar-stop-bg-hovered: var(--red-70); /* Figma: toolbar/toolbar-stop-bg-hovered */
+    --toolbar-icon-over-accent: var(--white); /* Figma: toolbar/toolbar-icon-over-accent */
     --text-white: var(--white);
     --text-tertiary: var(--gray-80);
 
@@ -688,6 +693,11 @@
     --stripe-badge-default: #57965C; /* Figma: icon/icon-green-solid dark */
     --stripe-badge-selected: var(--white);
     --stripe-badge-inactive: #57965C;
+    --toolbar-run-bg: var(--green-80); /* Figma: toolbar/toolbar-run-bg = accent/accent-success-bg */
+    --toolbar-run-bg-hovered: var(--green-70); /* Figma: toolbar/toolbar-run-bg-hovered */
+    --toolbar-stop-bg: var(--red-80); /* Figma: toolbar/toolbar-stop-bg = accent/accent-error-bg */
+    --toolbar-stop-bg-hovered: var(--red-70); /* Figma: toolbar/toolbar-stop-bg-hovered */
+    --toolbar-icon-over-accent: var(--white); /* Figma: toolbar/toolbar-icon-over-accent */
     --text-white: var(--white);
     --text-tertiary: var(--gray-80);
 

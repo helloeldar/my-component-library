@@ -1,17 +1,19 @@
 import React from 'react';
 import { MainToolbarIconButton } from '../iconbutton/IconButton';
 import ProjectSelector from '../projectselector/ProjectSelector';
+import RunWidget from '../runwidget/RunWidget';
 import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import './MainToolbar.css';
 
-function MainToolbar({ 
+function MainToolbar({
     projectName = "intellij",
     projectIcon = "IJ",
     projectColor = "cobalt",
     branchName = "main",
     runConfig = "IDEA Community",
+    runState = "default",
     className = "",
-    ...props 
+    ...props
 }) {
     return (
         <div className={`main-toolbar ${className}`} {...props}>
@@ -42,15 +44,10 @@ function MainToolbar({
 
             {/* Right Side - Run Widget and Actions */}
             <div className="toolbar-right">
-                <div className="run-widget">
-                    <ToolbarDropdown
-                        icon="runConfigurations/application"
-                        text={runConfig}
-                    />
-                    <MainToolbarIconButton icon="run/run_stroke" tooltip="Run" shortcut="⌃R" />
-                    <MainToolbarIconButton icon="run/debug_stroke" tooltip="Debug" shortcut="⌃D" />
-                    <MainToolbarIconButton icon="run/stop_stroke" tooltip="Stop" disabled />
-                </div>
+                <RunWidget
+                    state={runState}
+                    runConfig={runConfig}
+                />
                 
                 <div className="toolbar-actions">
                     <MainToolbarIconButton icon="codeWithMe/cwmAccess@20x20" tooltip="Code With Me" />

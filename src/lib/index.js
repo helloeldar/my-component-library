@@ -40,6 +40,7 @@ export { default as StripeContainer } from '../ui/components/stripe/StripeContai
 // Toolbar Components
 export { default as ToolbarDropdown } from '../ui/components/toolbardropdown/ToolbarDropdown';
 export { default as ProjectSelector } from '../ui/components/projectselector/ProjectSelector';
+export { default as RunWidget } from '../ui/components/runwidget/RunWidget';
 
 // Status Bar Components
 export { default as StatusBar } from '../ui/components/statusbar/StatusBar';
