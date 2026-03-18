@@ -110,7 +110,7 @@ Each component page follows a consistent structure:
 ## Windows Category
 
 - The **Windows** category in the sidebar groups full window-level UI pages.
-- Each tool window is a **standalone reusable component** that can be used independently for prototypes or embedded inside the Main Window (IDELayout).
+- Each tool window is a **standalone reusable component** that can be used independently for prototypes or embedded inside the Main Window.
 - Standalone tool window components:
   - **TerminalWindow** (`src/ui/components/toolwindow/TerminalWindow.jsx`): Terminal with configurable tabs, lines (command/output/success/prompt types), and monospace styling.
   - **ProjectWindow** (`src/ui/components/toolwindow/ProjectWindow.jsx`): Project file tree with configurable tree data, wrapping the Tree component.

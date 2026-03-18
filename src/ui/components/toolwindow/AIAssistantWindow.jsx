@@ -24,7 +24,7 @@ const defaultMessages = [
 /**
  * AIAssistantWindow - A standalone AI Assistant tool window component.
  * 
- * Can be used independently for prototypes or embedded inside Main Window (IDELayout).
+ * Can be used independently for prototypes or embedded inside Main Window.
  * Renders a chat-like interface with user prompts and AI responses.
  * 
  * @param {string} title - Window title (default: "AI Assistant")

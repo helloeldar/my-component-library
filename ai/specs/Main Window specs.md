@@ -40,7 +40,7 @@ When the editor receives focus (clicked):
 
 - `src/ui/components/mainwindow/MainWindow.jsx` (formerly IDELayout.jsx — consolidated from duplicate MainWindow +
   IDELayout)
-- CSS: `src/ui/components/mainwindow/MainWindow.css` (CSS classes still use `ide-layout-*` prefix)
+- CSS: `src/ui/components/mainwindow/MainWindow.css` (CSS classes use `main-window-*` prefix)
 - Route: `/mainwindow`
 
 ## Tab Component Reuse

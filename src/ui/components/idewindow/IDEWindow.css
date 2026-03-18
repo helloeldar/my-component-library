@@ -112,7 +112,7 @@
 /* Editor Tabs */
 .ide-editor-tabs {
     flex-shrink: 0;
-    height: 40px;
+    height: 36px;
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border-primary);
     padding: 0 8px;
@@ -171,7 +171,7 @@
     white-space: nowrap;
 }
 
-/* Tool Window Overrides for IDE Layout */
+/* Tool Window Overrides for Main Window */
 .ide-tool-window {
     border: none;
     border-radius: 0;

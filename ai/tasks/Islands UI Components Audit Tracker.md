@@ -36,7 +36,7 @@
 - `ToolWindow` maps directly to the [Tool Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=605-63656) group.
 - `ToolWindowHeader` maps directly to [Tool Window / Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=605-50202), including label and tab header variants.
 - A first fidelity pass has been applied to `ToolWindowHeader`: minimize now uses the Figma-aligned `general/hide` icon, border rendering is explicit instead of duplicated, and the label header now supports the adjacent dropdown chevron pattern.
-- `MainWindow` and `IDEWindow` cover the main-window shell space, but still need fidelity review against [Main Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-143445).
+- `MainWindow` cover the main-window shell space, but still need fidelity review against [Main Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-143445).
 - The current `MainWindow` implementation is a structural showcase composition: it uses `MainToolbar`, `StripeContainer`, `ToolWindow`, `Tab`, and placeholder content areas rather than reproducing the full Figma shell 1:1.
 - There is no dedicated dialog component family in `src/ui/components/`, even though Figma includes `Dialog`, `Dialog / Header`, `Dialog / Footer`, `Dialog / Group Header`, `Help`, and example dialog screens.
 

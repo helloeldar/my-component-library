@@ -57,7 +57,7 @@ const defaultTreeData = [
 /**
  * ProjectWindow - A standalone Project tool window component.
  * 
- * Can be used independently for prototypes or embedded inside Main Window (IDELayout).
+ * Can be used independently for prototypes or embedded inside Main Window.
  * Renders a file tree using the Tree component.
  * 
  * @param {string} title - Window title (default: "Project")

@@ -6,7 +6,7 @@
    BASE STYLES
    ============================================ */
 
-.ide-layout {
+.main-window {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -16,14 +16,14 @@
 }
 
 /* Main Content Area (stripes + center) */
-.ide-layout-content {
+.main-window-content {
     display: flex;
     flex: 1;
     min-height: 0;
 }
 
 /* Vertical Stripes */
-.ide-layout-stripe {
+.main-window-stripe {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,7 +32,7 @@
     flex-shrink: 0;
 }
 
-.ide-layout-stripe-right {
+.main-window-stripe-right {
     padding-bottom: 6px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 /* Center Content Area */
-.ide-layout-center {
+.main-window-center {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -56,34 +56,34 @@
 }
 
 /* Top Row (Tool Windows + Editor) */
-.ide-layout-top-row {
+.main-window-top-row {
     display: flex;
     flex: 1;
     min-height: 0;
 }
 
 /* Tool Window overrides */
-.ide-layout-tool-window {
+.main-window-tool-window {
     flex-shrink: 0;
 }
 
-.ide-layout-tool-window-left {
+.main-window-tool-window-left {
     width: 280px !important;
     height: auto !important;
 }
 
-.ide-layout-tool-window-right {
+.main-window-tool-window-right {
     width: 320px !important;
     height: auto !important;
 }
 
-.ide-layout-tool-window-bottom {
+.main-window-tool-window-bottom {
     width: 100% !important;
     flex-shrink: 0;
 }
 
 /* Editor Area */
-.ide-layout-editor-area {
+.main-window-editor-area {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -91,29 +91,29 @@
     overflow: hidden;
 }
 
-.ide-layout-editor-tabs {
+.main-window-editor-tabs {
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 36px;
     padding: 0 4px;
     overflow-x: auto;
     scrollbar-width: none;
     flex-shrink: 0;
 }
 
-.ide-layout-editor-tabs .tab-bar {
+.main-window-editor-tabs .tab-bar {
     background: transparent;
 }
 
-.ide-layout .tab-bar {
+.main-window .tab-bar {
     background: transparent;
 }
 
-.ide-layout-editor-tabs::-webkit-scrollbar {
+.main-window-editor-tabs::-webkit-scrollbar {
     display: none;
 }
 
-.ide-layout-editor-content {
+.main-window-editor-content {
     flex: 1;
     min-height: 0;
     overflow: auto;
@@ -124,19 +124,19 @@
     line-height: 18px;
 }
 
-.ide-layout-editor-content .code-example {
+.main-window-editor-content .code-example {
     flex: 1;
     height: 100%;
     border: none;
     border-radius: 0;
 }
 
-.ide-layout-editor-content .code-example .code-input-container {
+.main-window-editor-content .code-example .code-input-container {
     flex: 1;
     height: 100%;
 }
 
-.ide-layout-editor-content .code-example .code-input {
+.main-window-editor-content .code-example .code-input {
     height: 100%;
 }
 
@@ -144,7 +144,7 @@
    ISLAND THEME - Modern design with rounded panels
    ============================================ */
 
-.ide-layout-island {
+.main-window-island {
     background: linear-gradient(90deg, var(--island-bg-overlay) 0%, var(--island-bg-overlay) 100%), 
                 linear-gradient(90deg, var(--island-bg) 0%, var(--island-bg) 100%);
     border-radius: 10px;
@@ -152,61 +152,61 @@
     border: 1px solid var(--island-border);
 }
 
-.ide-layout-island .main-toolbar {
+.main-window-island .main-toolbar {
     flex-shrink: 0;
     border-bottom: none;
     background: transparent;
 }
 
-.ide-layout-island .ide-layout-content {
+.main-window-island .main-window-content {
     gap: 1px;
 }
 
-.ide-layout-island .ide-layout-center {
+.main-window-island .main-window-center {
     gap: 4px;
     border-radius: 10px;
 }
 
-.ide-layout-island .ide-layout-top-row {
+.main-window-island .main-window-top-row {
     gap: 4px;
 }
 
 /* Island theme stripes */
-.ide-layout-island .ide-layout-stripe {
+.main-window-island .main-window-stripe {
     background: transparent;
 }
 
-.ide-layout-island .stripe-container {
+.main-window-island .stripe-container {
     background: transparent;
 }
 
 /* Island theme tool windows */
-.ide-layout-island .ide-layout-tool-window {
+.main-window-island .main-window-tool-window {
     border-radius: 10px;
     overflow: hidden;
 }
 
-.ide-layout-island .ide-layout-tool-window-bottom {
+.main-window-island .main-window-tool-window-bottom {
     height: 180px !important;
 }
 
 /* Island theme editor */
-.ide-layout-island .ide-layout-editor-area {
+.main-window-island .main-window-editor-area {
     background: var(--island-editor-bg);
     border-radius: 10px;
 }
 
-.ide-layout-island .ide-layout-editor-tabs {
+.main-window-island .main-window-editor-tabs {
     background: transparent;
     border-bottom: 1px solid var(--border-primary);
 }
 
-.ide-layout-island .ide-layout-editor-content {
+.main-window-island .main-window-editor-content {
     background: transparent;
 }
 
 /* Island theme status bar */
-.ide-layout-island .status-bar {
+.main-window-island .status-bar {
     border-top: none;
     background: transparent;
 }
@@ -216,31 +216,31 @@
    ============================================ */
 
 @media (max-width: 1200px) {
-    .ide-layout-tool-window-right {
+    .main-window-tool-window-right {
         width: 260px !important;
     }
 }
 
 @media (max-width: 900px) {
-    .ide-layout-tool-window-left {
+    .main-window-tool-window-left {
         width: 220px !important;
     }
     
-    .ide-layout-tool-window-right {
+    .main-window-tool-window-right {
         display: none;
     }
     
-    .ide-layout-stripe-right {
+    .main-window-stripe-right {
         display: none;
     }
 }
 
 @media (max-width: 700px) {
-    .ide-layout-tool-window-left {
+    .main-window-tool-window-left {
         display: none;
     }
     
-    .ide-layout-stripe-left {
+    .main-window-stripe-left {
         display: none;
     }
 }

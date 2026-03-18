@@ -93,8 +93,8 @@
     min-width: 0;
 }
 
-/* IDE Layout demo container */
-.ide-layout-demo {
+/* Main Window demo container */
+.main-window-demo {
     width: 100%;
     height: 700px;
     margin-top: 16px;
