@@ -97,23 +97,130 @@ npm test            # test runner (watch mode)
 
 ## Using as an npm Dependency
 
+### Install
+
+**From local path (recommended for prototyping):**
+
+```bash
+npm install ../int-ui-kit-library
+```
+
+> Run `npm run build:lib` inside the library repo first so the `dist/` folder exists.
+
+**From npm (after publishing):**
+
 ```bash
 npm install @jetbrains/int-ui-kit
 ```
 
+**From Git:**
+
+```bash
+npm install git+https://github.com/user/int-ui-kit-library.git
+```
+
+### Import styles (once, at app root)
+
 ```jsx
 import '@jetbrains/int-ui-kit/styles.css';
-import { ThemeProvider, Button, Input } from '@jetbrains/int-ui-kit';
+```
+
+### Use components
+
+```jsx
+import { ThemeProvider, Button, Input, Icon } from '@jetbrains/int-ui-kit';
 
 function App() {
   return (
     <ThemeProvider>
       <Button type="primary">Click me</Button>
       <Input label="Name" placeholder="Enter name..." />
+      <Icon name="settings" size={16} />
     </ThemeProvider>
   );
 }
 ```
+
+### Theming
+
+Wrap your app in `<ThemeProvider>` to enable light/dark theme support. Use the `useTheme` hook to read or toggle:
+
+```jsx
+import { useTheme } from '@jetbrains/int-ui-kit';
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  return <button onClick={toggleTheme}>Current: {theme}</button>;
+}
+```
+
+### Icons
+
+```jsx
+import { Icon, getIcon, iconNames } from '@jetbrains/int-ui-kit';
+
+// Render by name
+<Icon name="settings" size={16} />
+
+// List all available icons
+console.log(iconNames);
+
+// Get a raw SVG component
+const SettingsIcon = getIcon('settings');
+```
+
+### Peer dependencies
+
+React 18 or 19 — the library does **not** bundle React. Your consumer project must have `react` and `react-dom` installed.
+
+## Setting Up a Prototype Project
+
+```bash
+# 1. Create a new React app (e.g. with Vite)
+npm create vite@latest int-ui-prototypes -- --template react
+
+# 2. Install dependencies
+cd int-ui-prototypes
+npm install
+
+# 3. Link the library (adjust the relative path as needed)
+npm install ../int-ui-kit-library
+
+# 4. Start the dev server
+npm run dev
+```
+
+Then in your prototype's `App.jsx`:
+
+```jsx
+import '@jetbrains/int-ui-kit/styles.css';
+import {
+  ThemeProvider,
+  IDEWindow,
+  MainWindow,
+  ToolWindow,
+  StatusBar,
+  Button,
+} from '@jetbrains/int-ui-kit';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <IDEWindow>
+        <MainWindow>
+          <Button type="primary">Hello from Int UI</Button>
+        </MainWindow>
+        <ToolWindow title="Problems" />
+        <StatusBar />
+      </IDEWindow>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+> After making changes to the library, rebuild with `npm run build:lib` for the prototype to pick them up.
 
 ## Links
 
