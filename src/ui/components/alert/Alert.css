@@ -50,12 +50,6 @@
 .alert .alert-title {
     margin: 0;
     color: var(--text-primary);
-    font-family: Inter, sans-serif;
-    font-size: 16px !important; /* Force override of .component-section h2 */
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0;
 }
 
 .alert-body {

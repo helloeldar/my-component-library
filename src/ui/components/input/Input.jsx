@@ -51,7 +51,7 @@ function Input(props) {
 
     return (
         <div className={`input-container ${layoutClass}`}>
-            <label className="input-label" style={labelWidthStyle}>
+            <label className="input-label text-ui-default" style={labelWidthStyle}>
                 {props.label}:
             </label>
             <div className="input-field-wrapper">

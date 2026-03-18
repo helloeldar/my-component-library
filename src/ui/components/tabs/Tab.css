@@ -82,10 +82,6 @@
 
 /* Label styling */
 .tab-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
     white-space: nowrap;
     color: var(--text-primary);
     overflow: hidden;

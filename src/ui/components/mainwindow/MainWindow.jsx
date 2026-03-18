@@ -278,7 +278,7 @@ function MainWindow({
                                     focused={focusedPanel === 'editor'}
                                 />
                             </div>
-                            <div className="main-window-editor-content">
+                            <div className="main-window-editor-content text-editor-default">
                                 <CodeExample showLineNumbers={true} />
                             </div>
                         </div>
@@ -350,29 +350,22 @@ function MainWindow({
                 <div className="main-window-stripe main-window-stripe-right">
                     <StripeContainer className="stripe-section-top">
                         <StripeIconButton
+                            icon="toolwindows/notifications@20x20"
+                            state={getStripeState('right', 'notifications', showRightPanel)}
+                            title="Notifications"
+                            onClick={() => handleRightStripeClick('notifications')}
+                        />
+                        <StripeIconButton
                             icon="toolwindows/aiAssistantToolWindow@20x20"
                             state={getStripeState('right', 'ai', showRightPanel)}
                             title="AI Assistant"
                             onClick={() => handleRightStripeClick('ai')}
                         />
                         <StripeIconButton
-                            icon="toolwindows/services@20x20"
-                            state={getStripeState('right', 'database', showRightPanel)}
-                            title="Database"
-                            onClick={() => handleRightStripeClick('database')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/dependencies@20x20"
+                            icon="toolwindows/databaseToolWindow@20x20"
                             state={getStripeState('right', 'maven', showRightPanel)}
                             title="Maven"
                             onClick={() => handleRightStripeClick('maven')}
-                        />
-                        <StripeContainer.Separator />
-                        <StripeIconButton
-                            icon="toolwindows/notifications@20x20"
-                            state={getStripeState('right', 'notifications', showRightPanel)}
-                            title="Notifications"
-                            onClick={() => handleRightStripeClick('notifications')}
                         />
                     </StripeContainer>
                 </div>

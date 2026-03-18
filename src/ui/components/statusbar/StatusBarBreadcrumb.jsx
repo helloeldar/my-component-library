@@ -83,7 +83,7 @@ function StatusBarBreadcrumb({
 
     return (
         <Element
-            className={`status-bar-breadcrumb ${getStateClass()} ${className || ''}`}
+            className={`status-bar-breadcrumb text-ui-default ${getStateClass()} ${className || ''}`}
             onClick={handleClick}
             type={isInteractive ? 'button' : undefined}
             {...props}

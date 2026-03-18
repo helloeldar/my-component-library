@@ -83,8 +83,8 @@ function Checkbox({
             </div>
             {(label || hint) && (
                 <div className="checkbox-content">
-                    {label && <span className="checkbox-label">{label}</span>}
-                    {hint && <span className="checkbox-hint">{hint}</span>}
+                    {label && <span className="checkbox-label text-ui-default">{label}</span>}
+                    {hint && <span className="checkbox-hint text-ui-small">{hint}</span>}
                 </div>
             )}
         </label>

@@ -69,7 +69,7 @@ function Search({
                 <input
                     ref={inputRef}
                     type="text"
-                    className="search-input"
+                    className="search-input text-ui-default"
                     value={value}
                     onChange={handleChange}
                     onFocus={handleFocus}

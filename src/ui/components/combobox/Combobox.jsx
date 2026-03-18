@@ -102,13 +102,13 @@ function Combobox({
 
     return (
         <div className={`combobox-container ${isHorizontal ? 'combobox-container-horizontal' : 'combobox-container-vertical'} ${className}`} ref={comboboxRef} {...props}>
-            {label && <label className="combobox-label" style={labelStyle}>{label}:</label>}
+            {label && <label className="combobox-label text-ui-default" style={labelStyle}>{label}:</label>}
             <div className="combobox-field-wrapper">
             <div className={getComboboxClasses()}>
                 <input
                     ref={inputRef}
                     type="text"
-                    className="combobox-input"
+                    className="combobox-input text-ui-default"
                     value={inputValue}
                     placeholder={placeholder}
                     disabled={disabled}
@@ -131,7 +131,7 @@ function Combobox({
                     {filteredOptions.map((option) => (
                         <div
                             key={option.value}
-                            className={`combobox-option ${option.value === value ? 'combobox-option-selected' : ''} ${option.disabled ? 'combobox-option-disabled' : ''}`}
+                            className={`combobox-option text-ui-default ${option.value === value ? 'combobox-option-selected' : ''} ${option.disabled ? 'combobox-option-disabled' : ''}`}
                             onClick={() => handleSelect(option)}
                         >
                             {option.label}
@@ -140,7 +140,7 @@ function Combobox({
                 </div>
             )}
             
-            {hint && <span className="combobox-hint">{hint}</span>}
+            {hint && <span className="combobox-hint text-ui-small">{hint}</span>}
             </div>
         </div>
     );

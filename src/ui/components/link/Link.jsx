@@ -39,7 +39,7 @@ function Link({
 
     const content = (
         <>
-            <span className="link-text">{children}</span>
+            <span className="link-text text-ui-default">{children}</span>
             {type === 'dropdown' && (
                 <span className="link-icon">
                     <Icon name="general/chevronDown" size={16} />

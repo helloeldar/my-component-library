@@ -22,7 +22,7 @@ function DialogHeader({
                         <div className="dialog-header-macos-button dialog-header-macos-button-expand" />
                     </div>
                 )}
-                <span className="dialog-header-title">{title}</span>
+                <span className="dialog-header-title text-ui-default-semibold">{title}</span>
             </div>
             <div className="dialog-header-border" />
         </>

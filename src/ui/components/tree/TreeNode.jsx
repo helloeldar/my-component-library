@@ -44,7 +44,7 @@ function TreeNode({
     return (
         <div className="tree-node-container">
             <div 
-                className={`tree-node ${isSelected ? 'tree-node-selected' : ''}`}
+                className={`tree-node text-ui-default ${isSelected ? 'tree-node-selected' : ''}`}
                 style={{ paddingLeft: `${indentWidth}px` }}
                 onClick={handleSelect}
             >

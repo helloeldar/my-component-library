@@ -62,7 +62,7 @@ function ToolbarDropdown({
             <div className="toolbar-dropdown-content">
                 {renderIcon()}
                 <div className="toolbar-dropdown-text-container">
-                    <span className="toolbar-dropdown-text">{text}</span>
+                    <span className="toolbar-dropdown-text text-ui-default">{text}</span>
                     <Icon name="general/chevronDown" size={16} className="toolbar-dropdown-chevron" />
                 </div>
             </div>

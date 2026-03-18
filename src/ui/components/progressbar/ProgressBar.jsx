@@ -45,7 +45,7 @@ function ProgressBar({
     return (
         <div className={containerClasses} {...props}>
             {label && (
-                <span className="progress-bar-label">{label}</span>
+                <span className="progress-bar-label text-ui-default">{label}</span>
             )}
             
             <div className="progress-bar-content">
@@ -69,7 +69,7 @@ function ProgressBar({
             </div>
             
             {hint && isVertical && (
-                <span className="progress-bar-hint">{hint}</span>
+                <span className="progress-bar-hint text-ui-small">{hint}</span>
             )}
         </div>
     );

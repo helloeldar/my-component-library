@@ -69,10 +69,6 @@
 
 /* Label */
 .progress-bar-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
     color: var(--text-secondary);
     white-space: nowrap;
     flex-shrink: 0;
@@ -84,10 +80,6 @@
 
 /* Hint */
 .progress-bar-hint {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
     color: var(--text-secondary);
 }
 

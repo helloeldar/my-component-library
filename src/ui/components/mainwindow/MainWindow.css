@@ -94,8 +94,8 @@
 .main-window-editor-tabs {
     display: flex;
     align-items: center;
-    height: 36px;
-    padding: 0 4px;
+    height: 40px;
+    padding: 0 2px;
     overflow-x: auto;
     scrollbar-width: none;
     flex-shrink: 0;
@@ -119,9 +119,6 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    line-height: 22px;
 }
 
 .main-window-editor-content .code-example {

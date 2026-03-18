@@ -38,10 +38,6 @@
 
 /* Dropdown Label */
 .dropdown-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
     color: var(--text-primary);
     white-space: nowrap;
 }
@@ -72,10 +68,6 @@
 /* Dropdown value */
 .dropdown-value {
     flex: 1;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
     color: var(--text-primary);
     white-space: nowrap;
     overflow: hidden;
@@ -157,10 +149,6 @@
     display: flex;
     align-items: center;
     padding: 6px 8px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
     color: var(--text-primary);
     border-radius: 4px;
     cursor: pointer;
@@ -182,10 +170,6 @@
 
 /* Dropdown hint */
 .dropdown-hint {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
     color: var(--text-secondary);
 }
 

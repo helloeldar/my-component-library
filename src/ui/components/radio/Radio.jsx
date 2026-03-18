@@ -65,8 +65,8 @@ function Radio({
             </div>
             {(label || hint) && (
                 <div className="radio-content">
-                    {label && <span className="radio-label">{label}</span>}
-                    {hint && <span className="radio-hint">{hint}</span>}
+                    {label && <span className="radio-label text-ui-default">{label}</span>}
+                    {hint && <span className="radio-hint text-ui-small">{hint}</span>}
                 </div>
             )}
         </label>

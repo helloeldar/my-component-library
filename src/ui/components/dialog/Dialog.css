@@ -45,10 +45,6 @@
 
 .dialog-header-title {
     flex: 1;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 16px;
     color: var(--dialog-header-text);
     min-width: 0;
     overflow: hidden;

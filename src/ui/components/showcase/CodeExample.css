@@ -26,11 +26,7 @@
 
 .line-numbers,
 .line-number {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 13px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 22px;
 }
 
 .line-number {
@@ -66,11 +62,7 @@
     right: 0;
     bottom: 0;
     padding: 12px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 13px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 22px;
     color: transparent;
     pointer-events: none;
     z-index: 1;
@@ -95,11 +87,7 @@
     resize: none;
     outline: none;
     tab-size: 4;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 13px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 22px;
 }
 
 .code-example.resizable .code-input {

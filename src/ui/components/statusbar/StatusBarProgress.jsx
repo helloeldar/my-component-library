@@ -31,7 +31,7 @@ function StatusBarProgress({
     return (
         <div className={`status-bar-progress ${className || ''}`} {...props}>
             {label && (
-                <span className="status-bar-progress-label">{label}</span>
+                <span className="status-bar-progress-label text-ui-default">{label}</span>
             )}
             <div className="status-bar-progress-track">
                 <div 

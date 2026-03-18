@@ -77,7 +77,7 @@ function StatusBarWidget({
 
     return (
         <div
-            className={`status-bar-widget ${getStateClass()} ${className || ''}`}
+            className={`status-bar-widget text-ui-default ${getStateClass()} ${className || ''}`}
             onClick={handleClick}
             role="button"
             tabIndex={0}

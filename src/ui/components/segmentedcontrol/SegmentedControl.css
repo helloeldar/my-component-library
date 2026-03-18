@@ -37,10 +37,6 @@
 }
 
 .segmented-button-content {
-    font-family: Inter, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 16px;
     color: var(--segmented-control-text);
     white-space: nowrap;
 }

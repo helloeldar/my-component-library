@@ -58,7 +58,7 @@ function Toggle({
             <div className="toggle-track">
                 <div className="toggle-fill" />
                 {showLabel && (
-                    <span className="toggle-label">
+                    <span className="toggle-label text-ui-default">
                         {checked ? 'ON' : 'OFF'}
                     </span>
                 )}

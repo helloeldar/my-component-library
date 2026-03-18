@@ -79,7 +79,7 @@ function Dropdown({
 
     return (
         <div className={`dropdown-container ${isHorizontal ? 'dropdown-container-horizontal' : 'dropdown-container-vertical'} ${className}`} ref={dropdownRef} {...props}>
-            {label && <label className="dropdown-label" style={labelStyle}>{label}:</label>}
+            {label && <label className="dropdown-label text-ui-default" style={labelStyle}>{label}:</label>}
             <div className="dropdown-field-wrapper">
             <div
                 className={getDropdownClasses()}
@@ -93,7 +93,7 @@ function Dropdown({
                 aria-disabled={disabled}
             >
                 <div className="dropdown-content">
-                    <span className={`dropdown-value ${!selectedOption ? 'dropdown-placeholder' : ''}`}>
+                    <span className={`dropdown-value text-ui-default ${!selectedOption ? 'dropdown-placeholder' : ''}`}>
                         {selectedOption ? selectedOption.label : placeholder}
                     </span>
                     <div className="dropdown-chevron">
@@ -107,7 +107,7 @@ function Dropdown({
                     {options.map((option) => (
                         <div
                             key={option.value}
-                            className={`dropdown-option ${option.value === value ? 'dropdown-option-selected' : ''} ${option.disabled ? 'dropdown-option-disabled' : ''}`}
+                            className={`dropdown-option text-ui-default ${option.value === value ? 'dropdown-option-selected' : ''} ${option.disabled ? 'dropdown-option-disabled' : ''}`}
                             onClick={() => handleSelect(option)}
                         >
                             {option.label}
@@ -116,7 +116,7 @@ function Dropdown({
                 </div>
             )}
             
-            {hint && <span className="dropdown-hint">{hint}</span>}
+            {hint && <span className="dropdown-hint text-ui-small">{hint}</span>}
             </div>
         </div>
     );

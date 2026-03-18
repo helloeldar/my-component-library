@@ -40,7 +40,7 @@ function ProjectSelector(props) {
                         </div>
                     </div>
                     <div className="project-text-dropdown">
-                        <span className="project-text">
+                        <span className="project-text text-ui-default">
                             {props.projectName || 'Project Name'}
                         </span>
                         <div className="chevron-down">

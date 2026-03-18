@@ -1,6 +1,5 @@
 import Icon from '../icon/Icon';
 import './PopupCell.css';
-import '../../styles/Typography.css';
 
 function PopupCell(props) {
     let classes = ['popup-cell'];
@@ -58,7 +57,7 @@ function PopupCell(props) {
             return (
                 <>
                     {props.text && (
-                        <div className="popup-cell-separator-text text-ui-small">
+                        <div className="popup-cell-separator-text text-ui-small-semibold">
                             {props.text}
                         </div>
                     )}

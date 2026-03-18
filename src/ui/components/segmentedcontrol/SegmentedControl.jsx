@@ -45,7 +45,7 @@ function SegmentedControl({
                     onClick={() => handleClick(option.value)}
                     disabled={disabled}
                 >
-                    <span className="segmented-button-content">
+                    <span className="segmented-button-content text-ui-default">
                         {option.label}
                     </span>
                 </button>

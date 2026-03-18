@@ -28,10 +28,6 @@
 }
 
 .popup-cell-header-text {
-    font-family: Inter, sans-serif;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 600;
     line-height: 20px;
     color: var(--text-primary);
     width: 100%;
@@ -51,11 +47,6 @@
 }
 
 .popup-cell-separator-text {
-    font-family: Inter, sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 16px;
     color: var(--text-secondary);
 }
 

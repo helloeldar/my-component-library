@@ -53,7 +53,7 @@ function Banner({
                     </span>
                 )}
                 <div className="banner-body">
-                    <span className="banner-text">{children}</span>
+                    <span className="banner-text text-ui-default">{children}</span>
                     {actions.length > 0 && (
                         <div className="banner-actions">
                             {actions.map((action, index) => (

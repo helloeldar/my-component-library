@@ -236,7 +236,7 @@ function TerminalWindow({
         <React.Fragment key={index}>
             <div className="terminal-command-block">
                 <div className="terminal-command-block-inner">
-                    <div className="terminal-path-and-command">
+                    <div className="terminal-path-and-command text-editor-default">
                         <p className="terminal-prompt-path">{block.path}</p>
                         {block.lines && block.lines.map(renderBlockLine)}
                     </div>
@@ -256,7 +256,7 @@ function TerminalWindow({
         return (
             <div className="terminal-command-block terminal-input-block" onClick={focusInput}>
                 <div className="terminal-command-block-inner">
-                    <div className="terminal-path-and-command">
+                    <div className="terminal-path-and-command text-editor-default">
                         <p className="terminal-prompt-path">{input.path}</p>
                         {input.branch && (
                             <p className="terminal-input-branch">git:({input.branch})</p>

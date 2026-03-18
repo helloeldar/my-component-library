@@ -78,7 +78,7 @@ function Table({
                         {columns.map((column, index) => (
                             <div
                                 key={column.key || index}
-                                className="table-header-cell"
+                                className="table-header-cell text-ui-default"
                                 style={column.width ? { width: column.width } : {}}
                             >
                                 {column.title}
@@ -97,12 +97,12 @@ function Table({
                                 {columns.map((column, colIndex) => (
                                     <div
                                         key={column.key || colIndex}
-                                        className="table-cell"
+                                        className="table-cell text-ui-default"
                                     >
                                         {editable && !column.render ? (
                                             <input
                                                 type="text"
-                                                className="table-cell-input"
+                                                className="table-cell-input text-ui-default"
                                                 value={row[column.key] || ''}
                                                 onChange={(e) => onCellChange && onCellChange(rowIndex, column.key, e.target.value)}
                                                 onClick={(e) => e.stopPropagation()}

@@ -96,11 +96,11 @@ function CodeExample({
     return (
         <div className={`code-example ${className} ${showLineNumbers ? 'with-line-numbers' : ''} ${resizable ? 'resizable' : ''}`} {...props}>
             {showLineNumbers && (
-                <div className="line-numbers" ref={lineNumbersRef}>
+                <div className="line-numbers text-editor-default" ref={lineNumbersRef}>
                     {getLineNumbers().map(lineNum => (
-                        <div 
-                            key={lineNum} 
-                            className={`line-number ${isFocused && lineNum === currentLine ? 'current' : ''}`}
+                        <div
+                            key={lineNum}
+                            className={`line-number text-editor-default ${isFocused && lineNum === currentLine ? 'current' : ''}`}
                         >
                             {lineNum}
                         </div>
@@ -116,7 +116,7 @@ function CodeExample({
                 )}
                 <textarea
                     ref={textareaRef}
-                    className="code-input"
+                    className="code-input text-editor-default"
                     value={code}
                     onChange={handleChange}
                     placeholder={placeholder}

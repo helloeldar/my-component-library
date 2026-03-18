@@ -70,7 +70,7 @@ function ToolWindowHeader({
     const renderTitle = () => (
         <div className="tool-window-header-title-group">
             {icon && <Icon name={icon} size={20} />}
-            <h3 className="tool-window-header-title">{title}</h3>
+            <h3 className="tool-window-header-title text-ui-default-semibold">{title}</h3>
             {dropdown && (
                 <button
                     type="button"

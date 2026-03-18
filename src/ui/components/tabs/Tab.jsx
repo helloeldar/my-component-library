@@ -21,7 +21,6 @@ function Tab({
     focused = false,
     disabled = false,
     closable = false,
-    size,
     onClick,
     onClose,
     ...props
@@ -32,7 +31,6 @@ function Tab({
         'tab',
         active ? 'tab-selected' : '',
         active && focused ? 'tab-selected-active' : '',
-        size === 'small' ? 'tab-small' : ''
     ].filter(Boolean).join(' ');
 
     const renderIcon = () => {
@@ -51,7 +49,7 @@ function Tab({
     };
 
     return (
-        <div className={`tab-wrapper ${size === 'small' ? 'tab-wrapper-small' : ''}`}>
+        <div className="tab-wrapper">
             <button 
                 className={classes}
                 onClick={onClick}
@@ -59,7 +57,7 @@ function Tab({
                 {...props}
             >
                 {renderIcon()}
-                <span className="tab-label">{label}</span>
+                <span className="tab-label text-ui-default">{label}</span>
                 {closable && (
                     <span
                         className="tab-close"
