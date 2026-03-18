@@ -27,6 +27,9 @@ export { default as Dialog } from '../ui/components/dialog/Dialog';
 export { default as DialogHeader } from '../ui/components/dialog/DialogHeader';
 export { default as DialogFooter } from '../ui/components/dialog/DialogFooter';
 
+// Editor Component
+export { default as Editor } from '../ui/components/editor/Editor';
+
 // Layout Components
 export { default as MainWindow } from '../ui/components/mainwindow/MainWindow';
 export { default as IDEWindow } from '../ui/components/idewindow/IDEWindow';

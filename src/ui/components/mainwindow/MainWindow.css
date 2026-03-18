@@ -116,7 +116,7 @@
 .main-window-editor-content {
     flex: 1;
     min-height: 0;
-    overflow: auto;
+    overflow: overlay;
     display: flex;
     flex-direction: column;
 }

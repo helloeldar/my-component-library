@@ -17,7 +17,7 @@
 /* Output area (scrollable command blocks) */
 .terminal-output-area {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: overlay;
     display: flex;
     flex-direction: column;
     gap: 1px;

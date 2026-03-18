@@ -1,0 +1,287 @@
+/* Editor Component */
+
+.editor {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    background: var(--editor-bg, #191A1C);
+}
+
+/* ============================================
+   GUTTER
+   ============================================ */
+
+.editor-gutter {
+    flex-shrink: 0;
+    overflow: hidden;
+    user-select: none;
+    min-width: 56px;
+    border-right: 1px solid var(--border-primary);
+}
+
+.editor-gutter-inner {
+    padding: 7px 0;
+}
+
+.editor-gutter-row {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 4px 0 0;
+    border-radius: 0;
+}
+
+.editor-gutter-row.active {
+    background: var(--editor-current-line-bg);
+}
+
+.editor-gutter-line-number {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 32px;
+    padding: 0 4px;
+    cursor: pointer;
+    height: 100%;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 22px;
+    color: var(--editor-line-number);
+}
+
+.editor-gutter-row.active .editor-gutter-line-number {
+    color: var(--editor-line-number-active);
+}
+
+.editor-gutter-line-number:hover {
+    color: var(--editor-line-number-active);
+}
+
+/* Breakpoint dot */
+.editor-breakpoint-dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #DB5860;
+    flex-shrink: 0;
+}
+
+/* Inline gutter actions */
+.editor-gutter-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 2px;
+}
+
+.editor-gutter-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+.editor-gutter-action:hover {
+    opacity: 1;
+    background: var(--bg-secondary);
+}
+
+/* ============================================
+   EDITOR CODE AREA (prism-react-editor overrides)
+   ============================================ */
+
+.editor-code {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.editor-code .prism-code-editor {
+    --pce-bg: transparent;
+    --pce-selection: var(--selection-bg);
+    --pce-cursor: var(--editor-default-text);
+    --pce-line-number: var(--editor-line-number);
+    --pce-bg-highlight: var(--editor-current-line-bg);
+    --padding-inline: 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 22px;
+    color: var(--editor-default-text);
+    height: 100%;
+    scrollbar-width: none;
+}
+
+.editor-code .prism-code-editor::-webkit-scrollbar {
+    display: none;
+}
+
+.editor-code .pce-has-selection .active-line:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.editor-code .pce-wrapper {
+    margin: 7px 0;
+}
+
+/* ============================================
+   SYNTAX HIGHLIGHTING — Prism token to IntelliJ mapping
+   Colors from Figma: Int UI Kit / Islands / Editor
+   ============================================ */
+
+/* Keyword — #CF8E6D (dark) */
+.editor-code .token.keyword,
+.editor-code .token.atrule,
+.editor-code .token.important {
+    color: var(--editor-keyword);
+}
+
+/* String — #6AAB73 (dark) */
+.editor-code .token.string,
+.editor-code .token.char,
+.editor-code .token.attr-value,
+.editor-code .token.template-string,
+.editor-code .token.triple-quoted-string {
+    color: var(--editor-string);
+}
+
+/* Comment — #7A7E85 (dark) */
+.editor-code .token.comment {
+    color: var(--editor-comment);
+    font-style: italic;
+}
+
+/* Doc comment — #5F826B (dark) */
+.editor-code .token.doc-comment,
+.editor-code .token.prolog,
+.editor-code .token.javadoc {
+    color: var(--editor-doc-comment);
+    font-style: italic;
+}
+
+/* Number — #2AACB8 (dark) */
+.editor-code .token.number,
+.editor-code .token.integer,
+.editor-code .token.float,
+.editor-code .token.hexcode {
+    color: var(--editor-number);
+}
+
+/* Method — #56A8F5 (dark) */
+.editor-code .token.function,
+.editor-code .token.method,
+.editor-code .token.function-variable {
+    color: var(--editor-method);
+}
+
+/* Constant — #C77DBB (dark) */
+.editor-code .token.constant,
+.editor-code .token.boolean {
+    color: var(--editor-constant);
+}
+
+/* Metadata / Annotation — #B3AE60 (dark) */
+.editor-code .token.annotation,
+.editor-code .token.decorator,
+.editor-code .token.namespace {
+    color: var(--editor-annotation);
+}
+
+/* Type parameter / Class — #16BAAC (dark) */
+.editor-code .token.class-name,
+.editor-code .token.maybe-class-name,
+.editor-code .token.builtin,
+.editor-code .token.type {
+    color: var(--editor-type-parameter);
+}
+
+/* HTML tag — #D5B778 (dark) */
+.editor-code .token.tag {
+    color: var(--editor-html-tag);
+}
+
+.editor-code .token.attr-name {
+    color: var(--editor-annotation);
+}
+
+/* Link — #548AF7 (dark) */
+.editor-code .token.url {
+    color: var(--editor-link);
+    text-decoration: underline;
+}
+
+/* Property / Implicit param — #C77DBB (dark) */
+.editor-code .token.property {
+    color: var(--editor-implicit-param);
+}
+
+/* Todo — #8BB33D (dark) */
+.editor-code .token.todo {
+    color: var(--editor-todo);
+}
+
+/* Default text — #BCBEC4 (dark) */
+.editor-code .token.punctuation {
+    color: var(--editor-default-text);
+}
+
+.editor-code .token.operator,
+.editor-code .token.arrow {
+    color: var(--editor-default-text);
+}
+
+/* Regex — same as string */
+.editor-code .token.regex {
+    color: var(--editor-string);
+}
+
+/* Python-specific: decorator is annotation color */
+.editor-code .token.decorator.annotation,
+.editor-code .token.decorator.function {
+    color: var(--editor-annotation);
+}
+
+/* Kotlin/Java: generics and type params */
+.editor-code .token.generics {
+    color: var(--editor-type-parameter);
+}
+
+/* Error/Warning tokens (for linting overlays) */
+.editor-code .token.deleted {
+    color: var(--editor-error);
+}
+
+.editor-code .token.inserted {
+    color: var(--editor-string);
+}
+
+.editor-code .token.changed {
+    color: var(--editor-warning);
+}
+
+/* ============================================
+   MAINWINDOW INTEGRATION
+   ============================================ */
+
+.ide-layout-editor-content .editor {
+    flex: 1;
+    height: 100%;
+}
+
+.ide-layout-editor-content .editor .prism-code-editor {
+    height: 100%;
+}
