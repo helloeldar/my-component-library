@@ -180,8 +180,8 @@ export const IDEWindow: FC<{ children?: ReactNode; className?: string }>;
 export const MainWindow: FC<{ children?: ReactNode; className?: string }>;
 
 // Navigation Components
-export const Tab: FC<{ label: string; icon?: string; active?: boolean; closable?: boolean; onClick?: () => void; onClose?: () => void }>;
-export const TabBar: FC<{ tabs?: any[]; activeTab?: string; orientation?: 'horizontal' | 'vertical'; onTabChange?: (id: string) => void }>;
+export const Tab: FC<{ label: string; icon?: string | ReactNode; active?: boolean; focused?: boolean; disabled?: boolean; closable?: boolean; onClick?: () => void; onClose?: () => void }>;
+export const TabBar: FC<{ tabs?: Array<{ label: string; icon?: string; closable?: boolean }>; activeTab?: number; onTabChange?: (index: number) => void; onTabClose?: (index: number) => void; focused?: boolean; direction?: 'horizontal' | 'vertical'; wrap?: boolean; actions?: string[]; onActionClick?: (action: string) => void; className?: string }>;
 export const StripeIconButton: FC<{ icon: string; label?: string; active?: boolean; inactive?: boolean; badge?: boolean; position?: 'left' | 'right'; onClick?: () => void }>;
 export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'right' }>;
 

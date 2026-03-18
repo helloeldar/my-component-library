@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Icon from '../icon/Icon';
 import './Stripe.css';
 
-function Stripe({ 
+function StripeIconButton({
     icon,
     state = 'default', 
     badge = false, 
@@ -59,4 +59,4 @@ function Stripe({
     );
 }
 
-export default Stripe;
+export default StripeIconButton;

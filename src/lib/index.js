@@ -13,7 +13,7 @@ export { default as Checkbox } from '../ui/components/checkbox/Checkbox';
 export { default as Combobox } from '../ui/components/combobox/Combobox';
 export { default as Dropdown } from '../ui/components/dropdown/Dropdown';
 export { default as Icon } from '../ui/components/icon/Icon';
-export { default as IconButton } from '../ui/components/iconbutton/IconButton';
+export { default as IconButton, MainToolbarIconButton } from '../ui/components/iconbutton/IconButton';
 export { default as Input } from '../ui/components/input/Input';
 export { default as Link } from '../ui/components/link/Link';
 export { default as Popup } from '../ui/components/popup/Popup';
@@ -34,7 +34,7 @@ export { default as IDEWindow } from '../ui/components/idewindow/IDEWindow';
 // Navigation Components
 export { default as Tab } from '../ui/components/tabs/Tab';
 export { default as TabBar } from '../ui/components/tabs/TabBar';
-export { default as Stripe } from '../ui/components/stripe/Stripe';
+export { default as StripeIconButton } from '../ui/components/stripe/Stripe';
 export { default as StripeContainer } from '../ui/components/stripe/StripeContainer';
 
 // Toolbar Components

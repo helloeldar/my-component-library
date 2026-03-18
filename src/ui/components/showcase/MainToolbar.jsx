@@ -1,5 +1,5 @@
 import React from 'react';
-import ToolbarIconButton from '../iconbutton/IconButton';
+import { MainToolbarIconButton } from '../iconbutton/IconButton';
 import ProjectSelector from '../projectselector/ProjectSelector';
 import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import './MainToolbar.css';
@@ -47,15 +47,15 @@ function MainToolbar({
                         icon="runConfigurations/application"
                         text={runConfig}
                     />
-                    <ToolbarIconButton icon="run/run_stroke" variant="mainToolbar" tooltip="Run" shortcut="⌃R" />
-                    <ToolbarIconButton icon="run/debug_stroke" variant="mainToolbar" tooltip="Debug" shortcut="⌃D" />
-                    <ToolbarIconButton icon="run/stop_stroke" variant="mainToolbar" tooltip="Stop" disabled />
+                    <MainToolbarIconButton icon="run/run_stroke" tooltip="Run" shortcut="⌃R" />
+                    <MainToolbarIconButton icon="run/debug_stroke" tooltip="Debug" shortcut="⌃D" />
+                    <MainToolbarIconButton icon="run/stop_stroke" tooltip="Stop" disabled />
                 </div>
                 
                 <div className="toolbar-actions">
-                    <ToolbarIconButton icon="codeWithMe/cwmAccess@20x20" variant="mainToolbar" tooltip="Code With Me" />
-                    <ToolbarIconButton icon="general/search@20x20" variant="mainToolbar" tooltip="Search Everywhere" shortcut="Double ⇧" />
-                    <ToolbarIconButton icon="general/settings@20x20" variant="mainToolbar" tooltip="Settings" />
+                    <MainToolbarIconButton icon="codeWithMe/cwmAccess@20x20" tooltip="Code With Me" />
+                    <MainToolbarIconButton icon="general/search@20x20" tooltip="Search Everywhere" shortcut="Double ⇧" />
+                    <MainToolbarIconButton icon="general/settings@20x20" tooltip="Settings" />
                 </div>
             </div>
         </div>

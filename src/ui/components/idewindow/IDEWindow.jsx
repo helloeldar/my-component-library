@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import MainToolbar from '../showcase/MainToolbar';
 import StripeContainer from '../stripe/StripeContainer';
-import Stripe from '../stripe/Stripe';
+import StripeIconButton from '../stripe/Stripe';
 import ToolWindow from '../toolwindow/ToolWindow';
 import Tree from '../tree/Tree';
 import TabBar from '../tabs/TabBar';
@@ -136,26 +136,26 @@ function IDEWindow({
             <div className="ide-content">
                 {/* Left Stripe */}
                 <StripeContainer className="ide-stripe-left">
-                    <Stripe 
+                    <StripeIconButton
                         icon="toolwindows/project@20x20" 
                         state={getStripeState('left', 'project', leftStripeSelected, showLeftPanel)} 
                         title="Project"
                         onClick={() => handleLeftStripeClick('project')}
                     />
-                    <Stripe 
+                    <StripeIconButton
                         icon="toolwindows/commit@20x20" 
                         state={getStripeState('left', 'commit', leftStripeSelected, showLeftPanel)}
                         title="Commit"
                         onClick={() => handleLeftStripeClick('commit')}
                     />
-                    <Stripe 
+                    <StripeIconButton
                         icon="toolwindows/structure@20x20" 
                         state={getStripeState('left', 'structure', leftStripeSelected, showLeftPanel)}
                         title="Structure"
                         onClick={() => handleLeftStripeClick('structure')}
                     />
                     <StripeContainer.Separator />
-                    <Stripe 
+                    <StripeIconButton
                         icon="toolwindows/bookmarks@20x20" 
                         state={getStripeState('left', 'bookmarks', leftStripeSelected, showLeftPanel)}
                         title="Bookmarks"
@@ -187,10 +187,10 @@ function IDEWindow({
                 )}
 
                 {/* Editor Area */}
-                <div className="ide-editor-area" onMouseDown={() => setFocusedPanel(null)}>
+                <div className="ide-editor-area" onMouseDown={() => setFocusedPanel('editor')}>
                     {/* Editor Tabs */}
                     <div className="ide-editor-tabs">
-                        <TabBar tabs={editorTabs} direction="horizontal" size="small" />
+                        <TabBar tabs={editorTabs} direction="horizontal" focused={focusedPanel === 'editor'} />
                     </div>
                     
                     {/* Editor Content */}
@@ -225,19 +225,19 @@ function IDEWindow({
 
                 {/* Right Stripe */}
                 <StripeContainer className="ide-stripe-right">
-                    <Stripe 
+                    <StripeIconButton
                         icon="toolwindows/notifications@20x20" 
                         state={getStripeState('right', 'notifications', rightStripeSelected, showRightPanel)}
                         title="Notifications"
                         onClick={() => handleRightStripeClick('notifications')}
                     />
-                    <Stripe 
+                    <StripeIconButton
                         icon="toolwindows/gradle@20x20" 
                         state={getStripeState('right', 'gradle', rightStripeSelected, showRightPanel)}
                         title="Gradle"
                         onClick={() => handleRightStripeClick('gradle')}
                     />
-                    <Stripe 
+                    <StripeIconButton
                         icon="toolwindows/database@20x20" 
                         state={getStripeState('right', 'database', rightStripeSelected, showRightPanel)}
                         title="Database"

@@ -36,7 +36,7 @@
 - `ToolWindow` maps directly to the [Tool Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=605-63656) group.
 - `ToolWindowHeader` maps directly to [Tool Window / Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=605-50202), including label and tab header variants.
 - A first fidelity pass has been applied to `ToolWindowHeader`: minimize now uses the Figma-aligned `general/hide` icon, border rendering is explicit instead of duplicated, and the label header now supports the adjacent dropdown chevron pattern.
-- `MainWindow`, `IDEWindow`, and `IDELayout` cover the main-window shell space, but still need fidelity review against [Main Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-143445).
+- `MainWindow` and `IDEWindow` cover the main-window shell space, but still need fidelity review against [Main Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-143445).
 - The current `MainWindow` implementation is a structural showcase composition: it uses `MainToolbar`, `StripeContainer`, `ToolWindow`, `Tab`, and placeholder content areas rather than reproducing the full Figma shell 1:1.
 - There is no dedicated dialog component family in `src/ui/components/`, even though Figma includes `Dialog`, `Dialog / Header`, `Dialog / Footer`, `Dialog / Group Header`, `Help`, and example dialog screens.
 
@@ -54,7 +54,8 @@
 | Combobox | `src/ui/components/combobox/Combobox.jsx` | Input | Yes | Unknown | No | Input state matrix appears in Figma metadata |
 | Dropdown | `src/ui/components/dropdown/Dropdown.jsx` | Input | Yes | Unknown | No | Input state matrix appears in Figma metadata |
 | Icon | `src/ui/components/icon/Icon.jsx` | [Toolbar / Icon Button](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5701-76416) | Yes | Unknown | No | Icon rendering utility |
-| IconButton | `src/ui/components/iconbutton/IconButton.jsx` | [Toolbar / Icon Button](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5701-76416) | Yes | Unknown | No | |
+| IconButton | `src/ui/components/iconbutton/IconButton.jsx` | [Toolbar / Icon Button](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5701-76416) | Yes | Unknown | No | Default tool window variant |
+| MainToolbarIconButton | `src/ui/components/iconbutton/IconButton.jsx` | Main Toolbar / Icon Button | Yes | Accurate | No | 40×40 wrapper, 30×30 bg, 6px radius |
 | Input | `src/ui/components/input/Input.jsx` | Input | Yes | Unknown | No | Labelled input states appear in Figma metadata |
 | Link | `src/ui/components/link/Link.jsx` | [Link](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=46-11074) | Yes | Unknown | No | Default, Dropdown, External variants |
 | Popup | `src/ui/components/popup/Popup.jsx` | Popup | Partial | Needs review | No | Generic popup container used by showcase examples rather than named Figma popup variants |
@@ -62,12 +63,12 @@
 | ProgressBar | `src/ui/components/progressbar/ProgressBar.jsx` | [Progress Bar](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7059-86470) | Yes | Unknown | No | Single Line and Multiline variants |
 | Radio | `src/ui/components/radio/Radio.jsx` | [Buttons section](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=6285-70852) | Yes | Unknown | No | Part of Buttons section |
 | Toggle | `src/ui/components/toggle/Toggle.jsx` | [Toggle](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5168-84066) | Yes | Unknown | No | On/Off states |
-| IDELayout | `src/ui/components/idelayout/IDELayout.jsx` | Main Window | Partial | Needs review | No | Composite app shell around the main-window idea rather than a direct Figma primitive |
+| ~~IDELayout~~ | ~~`src/ui/components/idelayout/IDELayout.jsx`~~ | Main Window | Removed | — | — | Consolidated into MainWindow |
 | IDEWindow | `src/ui/components/idewindow/IDEWindow.jsx` | Main Window | Partial | Needs review | No | Likely shell-level composition that needs exact parity review |
 | MainWindow | `src/ui/components/mainwindow/MainWindow.jsx` | Main Window | Partial | Needs fix | No | Structural composition exists, but major parts are still placeholders rather than full Figma parity |
 | Tab | `src/ui/components/tabs/Tab.jsx` | [Tab](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=26471-56584) | Yes | Unknown | No | Selected/Focused/Hover/Pinned variants |
 | TabBar | `src/ui/components/tabs/TabBar.jsx` | [Tab Bar](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5664-81616) | Yes | Unknown | No | |
-| Stripe | `src/ui/components/stripe/Stripe.jsx` | [Stripe](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=269-25319) | Yes | Unknown | No | Left/Right side variants |
+| StripeIconButton | `src/ui/components/stripe/Stripe.jsx` | [Stripe / Icon Button](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=269-25319) | Yes | Accurate | No | 40×40 wrapper, renamed from Stripe |
 | StripeContainer | `src/ui/components/stripe/StripeContainer.jsx` | [Stripes](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7059-97083) | Yes | Unknown | No | Container for stripe buttons |
 | ToolbarDropdown | `src/ui/components/toolbardropdown/ToolbarDropdown.jsx` | Popup / Main Toolbar | Partial | Needs review | No | Generic toolbar popup/dropdown, not yet split into specific Figma variants like Branches or Settings |
 | ProjectSelector | `src/ui/components/projectselector/ProjectSelector.jsx` | Popup / Projects | Yes | Needs review | No | Strong candidate match for the Projects popup |

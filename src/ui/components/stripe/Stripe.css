@@ -11,9 +11,10 @@
     border: none;
 }
 
-.stripe:focus {
-    outline: 2px solid var(--accent-primary);
-    outline-offset: 1px;
+/* No focus outline for icon buttons */
+.stripe:focus,
+.stripe:focus-visible {
+    outline: none;
 }
 
 .stripe-hover-bg {

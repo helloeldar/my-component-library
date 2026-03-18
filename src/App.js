@@ -13,7 +13,7 @@ import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
 import Home from './Home';
-import Stripe from './ui/components/stripe/Stripe';
+import StripeIconButton from './ui/components/stripe/Stripe';
 import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
@@ -940,8 +940,8 @@ function TabsPage() {
             </div>
 
             <div className="component-section">
-                <h2>Small Tabs</h2>
-                <TabBar tabs={tabData} direction="horizontal" size="small" />
+                <h2>Wrapping Tabs</h2>
+                <TabBar tabs={tabData} direction="horizontal" wrap />
             </div>
         </div>
     );
@@ -1102,26 +1102,26 @@ function StripePage() {
                 <div className="component-examples">
                     <div style={{ height: '400px', display: 'flex', justifyContent: 'center' }}>
                         <StripeContainer>
-                            <Stripe 
+                            <StripeIconButton
                                 icon="toolwindows/project@20x20" 
                                 state={selectedStripe === 'project' ? 'selected' : 'default'} 
                                 title="Project"
                                 onClick={() => setSelectedStripe('project')}
                             />
-                            <Stripe 
+                            <StripeIconButton
                                 icon="toolwindows/find@20x20" 
                                 state={selectedStripe === 'search' ? 'selected' : 'default'}
                                 title="Search"
                                 onClick={() => setSelectedStripe('search')}
                             />
-                            <Stripe 
+                            <StripeIconButton
                                 icon="toolwindows/run@20x20" 
                                 state={selectedStripe === 'terminal' ? 'selected' : 'default'}
                                 title="Terminal"
                                 onClick={() => setSelectedStripe('terminal')}
                             />
                             <StripeContainer.Separator />
-                            <Stripe 
+                            <StripeIconButton
                                 icon="general/settings@20x20" 
                                 state={selectedStripe === 'settings' ? 'selected' : 'default'}
                                 title="Settings"
@@ -1781,7 +1781,7 @@ function ToolbarDropdownPage() {
 
                 <div className="component-group">
                     <h3>Light Header Theme</h3>
-                    <div className="component-examples" style={{ background: 'var(--gray-white)', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-primary)', gap: '4px' }}>
+                    <div className="component-examples" style={{ background: 'var(--white)', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-primary)', gap: '4px' }}>
                         <ToolbarDropdown text="File" theme="light-header" />
                         <ToolbarDropdown text="Edit" theme="light-header" />
                         <ToolbarDropdown icon="general/settings" text="Settings" theme="light-header" />
@@ -2178,7 +2178,7 @@ function MainWindowPage() {
             </p>
 
             <div className="component-section">
-                <div className="ide-layout-demo">
+                <div className="main-window-demo">
                     <MainWindow 
                         projectName="commons-math"
                         projectIcon="CM"

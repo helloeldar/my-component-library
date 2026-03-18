@@ -17,11 +17,12 @@
     position: relative;
 }
 
-/* Main Toolbar variant - bigger button with 20px icons */
+/* Main Toolbar variant - 40x40 wrapper with 20px icons (per Figma spec) */
 .toolbar-icon-button-main-toolbar {
-    width: 30px;
-    height: 30px;
-    padding: 5px; /* (30 - 20) / 2 = 5px around 20px icon */
+    width: 40px;
+    height: 40px;
+    padding: 10px; /* (40 - 20) / 2 = 10px around 20px icon */
+    color: var(--icon-default-stroke);
 }
 
 /* State background layer - positioned with 2px inset per Figma specs */
@@ -35,10 +36,10 @@
     z-index: 0;
 }
 
-/* Main Toolbar variant background layer - 2px inset creates 26x26px bg inside 30x30px button */
+/* Main Toolbar variant background layer - 5px inset creates 30x30px bg inside 40x40px button */
 .toolbar-icon-button-main-toolbar::before {
-    inset: 2px;
-    border-radius: 5px;
+    inset: 5px;
+    border-radius: 6px; /* Figma spec: 6px radius */
 }
 
 /* Icon layer above background */
@@ -60,15 +61,20 @@
     color: var(--text-primary);
 }
 
+/* Main Toolbar variant: icon color stays constant across all states */
+.toolbar-icon-button-main-toolbar:hover:not(:disabled) {
+    color: var(--icon-default-stroke);
+}
+
 /* Active/Pressed State */
 .toolbar-icon-button:active:not(:disabled)::before {
     background: var(--icon-button-pressed-bg);
 }
 
-/* Focus State */
+/* No focus outline for icon buttons */
+.toolbar-icon-button:focus,
 .toolbar-icon-button:focus-visible {
-    outline: 2px solid var(--border-focus);
-    outline-offset: 1px;
+    outline: none;
 }
 
 /* Disabled State */
