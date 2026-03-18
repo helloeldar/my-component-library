@@ -47,7 +47,7 @@
 .banner-text {
     font-family: Inter, sans-serif;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 16px;
     color: var(--text-primary);
 }
@@ -117,59 +117,59 @@
 
 /* Info Banner - Blue */
 .banner-info {
-    background-color: var(--blue-130); /* #1A263C */
-    border-color: var(--blue-110); /* #263C69 */
-    --banner-action-color: var(--blue-60); /* #739EF2 */
+    background-color: var(--blue-40); /* Figma: feedback/feedback-brand-bg (dark) */
+    border-color: var(--blue-60); /* Figma: feedback/feedback-brand-border (dark) */
+    --banner-action-color: var(--blue-100); /* Figma: text/text-link (dark) */
 }
 
 /* Error Banner - Red */
 .banner-error {
-    background-color: var(--red-130); /* #3D1C1D */
-    border-color: var(--red-110); /* #67292E */
-    --banner-action-color: var(--blue-60); /* Actions still use blue links */
+    background-color: var(--red-40); /* Figma: feedback/feedback-error-bg (dark) */
+    border-color: var(--red-60); /* Figma: feedback/feedback-error-border (dark) */
+    --banner-action-color: var(--blue-100); /* Actions still use blue links */
 }
 
 /* Warning Banner - Yellow */
 .banner-warning {
-    background-color: var(--yellow-130); /* #302414 */
-    border-color: var(--yellow-110); /* #4F391B */
-    --banner-action-color: var(--blue-60);
+    background-color: var(--yellow-40); /* Figma: feedback/feedback-warning-bg (dark) */
+    border-color: var(--yellow-60); /* Figma: feedback/feedback-warning-border (dark) */
+    --banner-action-color: var(--blue-100);
 }
 
 /* Success Banner - Green */
 .banner-success {
-    background-color: var(--green-130); /* #19291E */
-    border-color: var(--green-110); /* #24432E */
-    --banner-action-color: var(--blue-60);
+    background-color: var(--green-40); /* Figma: feedback/feedback-success-bg (dark) */
+    border-color: var(--green-60); /* Figma: feedback/feedback-success-border (dark) */
+    --banner-action-color: var(--blue-100);
 }
 
 /* ================================
    Light Theme Overrides
    ================================ */
 .theme-light .banner-info {
-    background-color: var(--blue-20);
-    border-color: var(--blue-40);
-    --banner-action-color: var(--blue-90); /* #2E5BB5 */
+    background-color: var(--blue-150); /* Figma: ~feedback brand bg (light) */
+    border-color: var(--blue-130); /* Figma: feedback/feedback-brand-border (light) */
+    --banner-action-color: var(--blue-70); /* Figma: text/text-link (light) */
 }
 
 .theme-light .banner-error {
-    background-color: var(--red-20);
-    border-color: var(--red-40);
-    --banner-action-color: var(--blue-90);
+    background-color: var(--red-150); /* Figma: ~feedback error bg (light) */
+    border-color: var(--red-130); /* Figma: feedback/feedback-error-border (light) */
+    --banner-action-color: var(--blue-70);
 }
 
 .theme-light .banner-warning {
-    background-color: var(--yellow-20);
-    border-color: var(--yellow-40);
-    --banner-action-color: var(--blue-90);
+    background-color: var(--yellow-150); /* Figma: ~feedback warning bg (light) */
+    border-color: var(--yellow-130); /* Figma: feedback/feedback-warning-border (light) */
+    --banner-action-color: var(--blue-70);
 }
 
 .theme-light .banner-success {
-    background-color: var(--green-20);
-    border-color: var(--green-40);
-    --banner-action-color: var(--blue-90);
+    background-color: var(--green-150); /* Figma: ~feedback success bg (light) */
+    border-color: var(--green-130); /* Figma: feedback/feedback-success-border (light) */
+    --banner-action-color: var(--blue-70);
 }
 
 .theme-light .banner-text {
-    color: var(--gray-black);
+    color: var(--black);
 }

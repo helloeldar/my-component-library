@@ -62,7 +62,7 @@
 
 .color-value {
     font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     color: var(--text-secondary);
@@ -70,7 +70,7 @@
 
 .color-variable {
     font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 11px;
     line-height: 14px;
     color: var(--accent-primary);

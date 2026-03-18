@@ -55,7 +55,7 @@
 .project-icon-text {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 400;
     color: white;
     line-height: 1;
     text-align: center;
@@ -73,7 +73,7 @@
 .project-text {
     font-family: 'Inter', sans-serif;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 16px;
     color: inherit;
     white-space: nowrap;

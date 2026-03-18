@@ -39,7 +39,7 @@
 /* Combobox Label */
 .combobox-label {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 13px;
     line-height: 16px;
     color: var(--text-primary);
@@ -65,7 +65,7 @@
     border: none;
     outline: none;
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 13px;
     line-height: 16px;
     color: var(--text-primary);
@@ -170,7 +170,7 @@
     align-items: center;
     padding: 6px 8px;
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 13px;
     line-height: 16px;
     color: var(--text-primary);
@@ -195,7 +195,7 @@
 /* Combobox hint */
 .combobox-hint {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     color: var(--text-secondary);
