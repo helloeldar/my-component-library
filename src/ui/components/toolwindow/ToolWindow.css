@@ -12,7 +12,7 @@
 .tool-window-content {
     flex: 1;
     background: var(--tool-window-bg);
-    overflow-y: auto;
+    overflow-y: overlay;
     overflow-x: hidden;
     position: relative;
     min-height: 0; /* Important for flex child to allow shrinking */
@@ -30,10 +30,19 @@
 .tool-window-content::-webkit-scrollbar-thumb {
     background: var(--tool-window-scrollbar-thumb);
     border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.tool-window-content:hover::-webkit-scrollbar-thumb {
+    background: var(--tool-window-scrollbar-thumb-visible);
 }
 
 .tool-window-content::-webkit-scrollbar-thumb:hover {
     background: var(--tool-window-scrollbar-thumb-hover);
+}
+
+.tool-window-content:hover::-webkit-scrollbar-track {
+    background: var(--tool-window-scrollbar-track-hover);
 }
 
 /* Content Padding */

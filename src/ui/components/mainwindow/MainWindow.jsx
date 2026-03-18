@@ -8,7 +8,7 @@ import TerminalWindow from '../toolwindow/TerminalWindow';
 import ProjectWindow from '../toolwindow/ProjectWindow';
 import AIAssistantWindow from '../toolwindow/AIAssistantWindow';
 import TabBar from '../tabs/TabBar';
-import CodeExample from '../showcase/CodeExample';
+import Editor from '../editor/Editor';
 import './MainWindow.css';
 
 /**
@@ -278,7 +278,7 @@ function MainWindow({
                                 />
                             </div>
                             <div className="ide-layout-editor-content">
-                                <CodeExample showLineNumbers={true} />
+                                <Editor language="java" />
                             </div>
                         </div>
 

@@ -35,6 +35,7 @@ import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import Alert from './ui/components/alert/Alert';
 import Dialog from './ui/components/dialog/Dialog';
+import Editor from './ui/components/editor/Editor';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getHomeSections } from './componentsConfig';
@@ -1418,6 +1419,130 @@ users.forEach(user => {
         );
     };
 
+function EditorPage() {
+    const [breakpoints, setBreakpoints] = useState([5, 12]);
+
+    const handleBreakpointToggle = (line) => {
+        setBreakpoints(prev =>
+            prev.includes(line) ? prev.filter(l => l !== line) : [...prev, line]
+        );
+    };
+
+    const javaCode = `/** Convert regular functions to {@link MultivariateDifferentiableFunction}. ...*/
+public static MultivariateDifferentiableFunction toDifferentiable(final MultivariateFunction f,
+                                                                   final MultivariateVectorFunction gradient) {
+
+    return new MultivariateDifferentiableFunction() {
+
+        /** {@inheritDoc} */
+        @Override
+        public double value(final double[] point) { return f.value(point); }
+
+        /** {@inheritDoc} */
+        @Override
+        public DerivativeStructure value(final DerivativeStructure[] point) {
+
+            // set up the input parameters
+            final double[] dPoint = new double[point.length];
+            for (int i = 0; i < point.length; ++i) {
+                dPoint[i] = point[i].getValue();
+                if (point[i].getOrder() > 1) {
+                    throw new NumberIsTooLargeException(point[i].getOrder(), 1, true);
+                }
+            }
+
+            // evaluate regular functions
+            final double     v = f.value(dPoint);
+            final double[] dv = gradient.value(dPoint);
+            if (dv.length != point.length) {
+                // the gradient function is inconsistent
+                throw new DimensionMismatchException(dv.length, point.length);
+            }
+        }
+    };
+}`;
+
+    const jsCode = `import { useState, useEffect } from 'react';
+
+function useLocalStorage(key, initialValue) {
+    const [value, setValue] = useState(() => {
+        const stored = localStorage.getItem(key);
+        return stored !== null ? JSON.parse(stored) : initialValue;
+    });
+
+    useEffect(() => {
+        localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+
+    return [value, setValue];
+}
+
+export default useLocalStorage;`;
+
+    return (
+        <div className="component-showcase">
+            <h1>Editor</h1>
+            <p className="component-description">
+                Code editor with Prism-based syntax highlighting, line numbers, breakpoints, 
+                and inline gutter actions. Built on prism-react-editor.
+            </p>
+
+            <div className="component-section">
+                <h2>Java Editor</h2>
+                <div className="component-examples-vertical">
+                    <div style={{ height: 400, border: '1px solid var(--border-primary)', borderRadius: 8, overflow: 'hidden' }}>
+                        <Editor code={javaCode} language="java" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>JavaScript Editor</h2>
+                <div className="component-examples-vertical">
+                    <div style={{ height: 300, border: '1px solid var(--border-primary)', borderRadius: 8, overflow: 'hidden' }}>
+                        <Editor code={jsCode} language="javascript" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Breakpoints</h2>
+                <p className="section-description">
+                    Click a line number to toggle a breakpoint. Lines 5 and 12 have breakpoints set by default.
+                </p>
+                <div className="component-examples-vertical">
+                    <div style={{ height: 300, border: '1px solid var(--border-primary)', borderRadius: 8, overflow: 'hidden' }}>
+                        <Editor
+                            code={jsCode}
+                            language="javascript"
+                            breakpoints={breakpoints}
+                            onBreakpointToggle={handleBreakpointToggle}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Read Only</h2>
+                <div className="component-examples-vertical">
+                    <div style={{ height: 200, border: '1px solid var(--border-primary)', borderRadius: 8, overflow: 'hidden' }}>
+                        <Editor code={javaCode} language="java" readOnly={true} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Line Numbers</h2>
+                <div className="component-examples-vertical">
+                    <div style={{ height: 200, border: '1px solid var(--border-primary)', borderRadius: 8, overflow: 'hidden' }}>
+                        <Editor code={jsCode} language="javascript" showLineNumbers={false} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function StatusBarPage() {
     return (
         <div className="component-showcase">
@@ -2275,6 +2400,7 @@ function AppContent() {
                     <Route path="/stripe" element={<StripePage />} />
                     <Route path="/popup" element={<PopupPage />} />
                     <Route path="/codeexample" element={<CodeExamplePage />} />
+                    <Route path="/editor" element={<EditorPage />} />
                     <Route path="/toolwindow" element={<ToolWindowPage />} />
                     <Route path="/toolbardropdown" element={<ToolbarDropdownPage />} />
                     <Route path="/mainwindow" element={<MainWindowPage />} />

@@ -303,13 +303,22 @@
     --tool-window-content-bg: var(--bg-elevated);
     --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --tool-window-scrollbar-track: var(--scrollbar-track);
+    --tool-window-scrollbar-track-hover: var(--scrollbar-track-hover);
     --tool-window-scrollbar-thumb: var(--scrollbar-thumb);
+    --tool-window-scrollbar-thumb-visible: var(--scrollbar-thumb-visible);
     --tool-window-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
 
     /* Scrollbar - Light Theme */
-    --scrollbar-track: var(--gray-10);
-    --scrollbar-thumb: var(--gray-50);
-    --scrollbar-thumb-hover: var(--gray-60);
+    --scrollbar-track: transparent;
+    --scrollbar-track-hover: var(--gray-10);
+    --scrollbar-thumb: transparent;
+    --scrollbar-thumb-visible: rgba(0, 0, 0, 0.15);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
+    --editor-bg: var(--gray-white);
+    --editor-current-line-bg: var(--gray-10);
+    --editor-current-line-bg-focused: var(--gray-20);
+    --editor-line-number: var(--gray-50);
+    --editor-line-number-active: var(--gray-70);
     --editor-default-text: var(--editor-light-default-text);
     --editor-error: var(--editor-light-error);
     --editor-warning: var(--editor-light-warning);
@@ -566,15 +575,24 @@
     --tool-window-content-bg: var(--bg-secondary); /* D: tool window content background */
     --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* D: tool window shadow */
     --tool-window-scrollbar-track: var(--scrollbar-track); /* D: tool window scrollbar track */
+    --tool-window-scrollbar-track-hover: var(--scrollbar-track-hover); /* D: tool window scrollbar track hover */
     --tool-window-scrollbar-thumb: var(--scrollbar-thumb); /* D: tool window scrollbar thumb */
+    --tool-window-scrollbar-thumb-visible: var(--scrollbar-thumb-visible); /* D: tool window scrollbar thumb visible */
     --tool-window-scrollbar-thumb-hover: var(--scrollbar-thumb-hover); /* D: tool window scrollbar thumb hover */
 
     /* Scrollbar - Dark Theme */
-    --scrollbar-track: var(--gray-130);
-    --scrollbar-thumb: var(--gray-90);
-    --scrollbar-thumb-hover: var(--gray-80);
+    --scrollbar-track: transparent;
+    --scrollbar-track-hover: var(--gray-130);
+    --scrollbar-thumb: transparent;
+    --scrollbar-thumb-visible: rgba(255, 255, 255, 0.15);
+    --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
 
     /* Editor Semantic Colors - Dark Theme */
+    --editor-bg: #191A1C;
+    --editor-current-line-bg: #1F2024;
+    --editor-current-line-bg-focused: #214283;
+    --editor-line-number: #4B5059;
+    --editor-line-number-active: #A1A3AB;
     --editor-default-text: var(--editor-dark-default-text);
     --editor-error: var(--editor-dark-error);
     --editor-warning: var(--editor-dark-warning);
@@ -660,7 +678,7 @@
     --island-editor-bg: #17181A;
 }
 
-/* Global Opaque Scrollbar Styling */
+/* Global Scrollbar Styling — hidden by default, visible on hover */
 .theme-light ::-webkit-scrollbar,
 .theme-dark ::-webkit-scrollbar {
     width: 8px;
@@ -676,9 +694,22 @@
 .theme-dark ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb);
     border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.theme-light :hover > ::-webkit-scrollbar-thumb,
+.theme-dark :hover > ::-webkit-scrollbar-thumb,
+.theme-light ::-webkit-scrollbar-thumb:hover,
+.theme-dark ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-visible);
 }
 
 .theme-light ::-webkit-scrollbar-thumb:hover,
 .theme-dark ::-webkit-scrollbar-thumb:hover {
     background: var(--scrollbar-thumb-hover);
+}
+
+.theme-light :hover > ::-webkit-scrollbar-track,
+.theme-dark :hover > ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-hover);
 }

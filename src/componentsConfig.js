@@ -44,6 +44,7 @@ export const componentsConfig = [
     // App Kit
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Editor', key: 'editor', description: 'Code editor with syntax highlighting, breakpoints, and inline gutter actions', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Main Window', key: 'mainwindow', description: 'Complete IDE window layout with island theme', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'AI Assistant', key: 'aiassistant', description: 'AI Assistant tool window with chat-like interface', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Project', key: 'projectwindow', description: 'Project tool window with file tree navigation', category: 'windows', section: 'appkit', status: 'ready', preview: null },
