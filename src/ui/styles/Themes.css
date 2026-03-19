@@ -482,6 +482,13 @@
     --terminal-output: var(--black);
     --terminal-cursor: var(--black);
 
+    /* Dialog */
+    --dialog-bg: var(--white); /* Figma: container/popup-bg */
+    --dialog-content-bg: var(--white);
+    --dialog-border: var(--gray-130); /* Figma: container/popup-border */
+    --dialog-header-text: var(--text-primary);
+    --dialog-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* Figma: shadow/shadow-popup */
+
     /* Island Layout */
     --island-bg: var(--gray-150); /* Figma: container/main-window-bg */
     --island-bg-overlay: var(--transparent-black-10);
@@ -764,6 +771,13 @@
     --terminal-command: #BCBEC4;
     --terminal-output: var(--gray-100);
     --terminal-cursor: #BCBEC4;
+
+    /* Dialog */
+    --dialog-bg: var(--gray-30); /* Figma: container/popup-bg */
+    --dialog-content-bg: var(--gray-30);
+    --dialog-border: var(--gray-50); /* Figma: container/popup-border */
+    --dialog-header-text: var(--text-primary);
+    --dialog-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Figma: shadow/shadow-popup */
 
     /* Island Layout */
     --island-bg: var(--gray-30); /* Figma: container/main-window-bg */

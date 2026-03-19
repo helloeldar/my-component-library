@@ -1,7 +1,5 @@
-/* Text styles */
-/* Note: Figma uses "Medium" weight (500) for regular text, but due to rendering
-   inconsistencies between Figma and IntelliJ IDEs, Medium maps to Regular (500)
-   in implementation. Semibold (600) and Bold (700) remain unchanged. */
+/* Text styles — matches Figma Int UI Kit typography tokens */
+/* Figma Medium (500) → CSS 500, Semibold (600) → 600, Bold (700) → 700 */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
@@ -23,7 +21,7 @@
     line-height: 20px;
 }
 
-/* UI: Default — Inter Regular 13/16 */
+/* UI: Default — Inter Medium 13/16 */
 .text-ui-default {
     font-family: Inter, sans-serif;
     font-size: 13px;
@@ -41,7 +39,7 @@
     line-height: 16px;
 }
 
-/* UI: Paragraph — Inter Regular 13/18 */
+/* UI: Paragraph — Inter Medium 13/18 */
 .text-ui-paragraph {
     font-family: Inter, sans-serif;
     font-size: 13px;
@@ -50,7 +48,7 @@
     line-height: 18px;
 }
 
-/* UI: Medium — Inter Regular 12/16 */
+/* UI: Medium — Inter Medium 12/16 */
 .text-ui-small {
     font-family: Inter, sans-serif;
     font-size: 12px;

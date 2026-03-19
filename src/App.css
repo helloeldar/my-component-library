@@ -156,7 +156,7 @@
     margin-bottom: 40px;
 }
 
-.component-section h2 {
+.component-section > h2 {
     margin: 0 0 20px 0;
     font-size: 24px;
     font-weight: 600;
@@ -180,6 +180,7 @@
     justify-content: center;
     align-items: center;
     background: var(--bg-elevated);
+    border: 1px solid var(--border-secondary);
     border-radius: 8px;
     display: flex;
     gap: 12px;
@@ -191,6 +192,7 @@
     width: 706px;
     padding: 48px 40px 52px 40px;
     background: var(--bg-elevated);
+    border: 1px solid var(--border-secondary);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
