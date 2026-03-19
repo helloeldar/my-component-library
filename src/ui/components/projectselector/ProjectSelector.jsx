@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Popup from '../popup/Popup';
+import PopupProjects from '../popup/PopupProjects';
 import Icon from '../icon/Icon';
 import './ProjectSelector.css';
 
 function ProjectSelector(props) {
     const [isOpen, setIsOpen] = useState(false);
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const handleClickOutside = (e) => {
+            if (containerRef.current && !containerRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isOpen]);
 
     const handleClick = () => {
         setIsOpen(!isOpen);
@@ -28,8 +41,16 @@ function ProjectSelector(props) {
         classes.push('project-selector-pressed');
     }
 
+    const popupStyle = {
+        position: 'absolute',
+        top: '100%',
+        left: 0,
+        marginTop: '4px',
+        zIndex: 1000
+    };
+
     return (
-        <div className="project-selector-container">
+        <div className="project-selector-container" ref={containerRef}>
             <button className={classes.join(' ')} onClick={handleClick}>
                 <div className="project-selector-content">
                     <div className={`project-icon ${props.projectColor ? `project-icon-${props.projectColor}` : ''}`}>
@@ -49,22 +70,14 @@ function ProjectSelector(props) {
                     </div>
                 </div>
             </button>
-            
+
             {isOpen && props.projects && (
-                <Popup 
+                <Popup
                     visible={isOpen}
-                    style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: 0,
-                        right: 0,
-                        marginTop: '4px',
-                        minWidth: '300px',
-                        zIndex: 1000
-                    }}
+                    style={{ ...popupStyle, minWidth: '300px' }}
                 >
                     {props.projects.map((project, index) => (
-                        <Popup.Cell 
+                        <Popup.Cell
                             key={index}
                             type="multiline"
                             icon={
@@ -83,6 +96,10 @@ function ProjectSelector(props) {
                         </Popup.Cell>
                     ))}
                 </Popup>
+            )}
+
+            {isOpen && !props.projects && (
+                <PopupProjects style={popupStyle} />
             )}
         </div>
     );

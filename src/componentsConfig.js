@@ -17,10 +17,10 @@ export const componentsConfig = [
     // Feedback
     { name: 'Banner', key: 'banner', description: 'Notification bar for important information, warnings, errors, or success messages', category: 'components', section: 'feedback', status: 'ready', preview: '/previews/banner.png' },
     { name: 'Alert', key: 'alert', description: 'Dialog alert with title, body, icon, and action buttons', category: 'components', section: 'feedback', status: 'ready', preview: '/previews/alert.png' },
-    { name: 'Balloon', key: 'balloon', description: 'Notification balloon for non-modal messages', category: 'components', section: 'feedback', status: 'coming-soon', preview: null },
+    { name: 'Balloon', key: 'balloon', description: 'Notification balloon for non-modal messages', category: 'components', section: 'feedback', status: 'ready', preview: null },
 
     // Help
-    { name: 'Tooltip', key: 'tooltip', description: 'Contextual tooltip for additional information on hover', category: 'components', section: 'help', status: 'coming-soon', preview: null },
+    { name: 'Tooltip', key: 'tooltip', description: 'Contextual tooltip for additional information on hover', category: 'components', section: 'help', status: 'ready', preview: null },
     { name: 'Help Text', key: 'helptext', description: 'Inline help text for form fields and settings', category: 'components', section: 'help', status: 'coming-soon', preview: null },
     { name: 'Empty State', key: 'emptystate', description: 'Placeholder content for empty views and panels', category: 'components', section: 'help', status: 'coming-soon', preview: null },
 
@@ -49,6 +49,8 @@ export const componentsConfig = [
     { name: 'AI Assistant', key: 'aiassistant', description: 'AI Assistant tool window with chat-like interface', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Project', key: 'projectwindow', description: 'Project tool window with file tree navigation', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Terminal', key: 'terminal', description: 'Terminal tool window with tabbed sessions', category: 'windows', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Popup / Projects', key: 'popupprojects', description: 'Projects popup with recent projects and quick actions', category: 'windows', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Popup / Branches', key: 'popupbranches', description: 'Branches popup with search, VCS actions, and branch tree', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar Breadcrumb', key: 'statusbarbreadcrumb', description: 'Breadcrumb navigation item for status bar', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components', section: 'appkit', status: 'ready', preview: null },

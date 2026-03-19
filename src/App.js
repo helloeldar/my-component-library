@@ -17,6 +17,8 @@ import StripeIconButton from './ui/components/stripe/Stripe';
 import StripeContainer from './ui/components/stripe/StripeContainer';
 import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
+import PopupProjects from './ui/components/popup/PopupProjects';
+import PopupBranches from './ui/components/popup/PopupBranches';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import MainWindow from './ui/components/mainwindow/MainWindow';
 import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
@@ -37,6 +39,8 @@ import Alert from './ui/components/alert/Alert';
 import Dialog from './ui/components/dialog/Dialog';
 import Icon from './ui/components/icon/Icon';
 import Editor from './ui/components/editor/Editor';
+import Tooltip from './ui/components/tooltip/Tooltip';
+import Notification from './ui/components/notification/Notification';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
@@ -1303,6 +1307,42 @@ function PopupPage() {
     );
 }
 
+function PopupProjectsPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Popup / Projects</h1>
+            <p className="component-description">
+                Projects popup showing recent projects, quick actions, and project icons with colored monogram badges.
+            </p>
+            <div className="component-section">
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <PopupProjects />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function PopupBranchesPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Popup / Branches</h1>
+            <p className="component-description">
+                Branches popup with search, VCS actions, and tree-structured local and remote branch listing.
+            </p>
+            <div className="component-section">
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <PopupBranches />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function CodeExamplePage() {
     const javaCodeLines = [
         { content: "// ...", tokens: [{ text: "// ...", type: "comment" }] },
@@ -2089,6 +2129,151 @@ function DialogPage() {
     );
 }
 
+function TooltipPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Tooltip</h1>
+            <p className="component-description">
+                Contextual popup that appears on hover to provide additional information about a UI element.
+            </p>
+
+            <div className="component-section">
+                <h2>Default</h2>
+                <p className="section-description">
+                    Hover over the buttons to see the tooltip.
+                </p>
+                <div className="component-examples" style={{ gap: '24px' }}>
+                    <Tooltip text="Settings" placement="bottom">
+                        <ToolbarIconButton icon="general/settings" tooltip={undefined} />
+                    </Tooltip>
+                    <Tooltip text="Search Everywhere" shortcut="⇧⇧" placement="bottom">
+                        <ToolbarIconButton icon="actions/search" tooltip={undefined} />
+                    </Tooltip>
+                    <Tooltip text="Run" shortcut="⌃R" placement="bottom">
+                        <ToolbarIconButton icon="actions/execute" tooltip={undefined} />
+                    </Tooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Placement</h2>
+                <p className="section-description">
+                    Tooltips can appear on any side of the trigger element.
+                </p>
+                <div className="component-examples" style={{ gap: '48px', padding: '32px 0' }}>
+                    <Tooltip text="Top tooltip" placement="top">
+                        <Button type="secondary">Top</Button>
+                    </Tooltip>
+                    <Tooltip text="Bottom tooltip" placement="bottom">
+                        <Button type="secondary">Bottom</Button>
+                    </Tooltip>
+                    <Tooltip text="Left tooltip" placement="left">
+                        <Button type="secondary">Left</Button>
+                    </Tooltip>
+                    <Tooltip text="Right tooltip" placement="right">
+                        <Button type="secondary">Right</Button>
+                    </Tooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Shortcut</h2>
+                <p className="section-description">
+                    Tooltips can display a keyboard shortcut alongside the label.
+                </p>
+                <div className="component-examples" style={{ gap: '24px' }}>
+                    <Tooltip text="Copy" shortcut="⌘C" placement="bottom">
+                        <Button type="secondary">Copy</Button>
+                    </Tooltip>
+                    <Tooltip text="Paste" shortcut="⌘V" placement="bottom">
+                        <Button type="secondary">Paste</Button>
+                    </Tooltip>
+                    <Tooltip text="Find in Files" shortcut="⇧⌘F" placement="bottom">
+                        <Button type="secondary">Find in Files</Button>
+                    </Tooltip>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function BalloonPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Balloon</h1>
+            <p className="component-description">
+                Toast notifications that appear to inform users of events, build results, or actions.
+                Typically shown in the bottom-right corner of the IDE.
+            </p>
+
+            <div className="component-section">
+                <h2>Types</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="info"
+                        title="Indexing Complete"
+                    >
+                        Project files have been indexed successfully.
+                    </Notification>
+                    <Notification
+                        type="success"
+                        title="Build Successful"
+                        timestamp="just now"
+                    >
+                        Build completed in 12.4 seconds with no errors.
+                    </Notification>
+                    <Notification
+                        type="warning"
+                        title="Deprecated API Usage"
+                    >
+                        Found 3 usages of deprecated APIs in your project.
+                    </Notification>
+                    <Notification
+                        type="error"
+                        title="Build Failed"
+                        timestamp="2 min ago"
+                    >
+                        Compilation failed with 2 errors. See the Build tool window for details.
+                    </Notification>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Actions</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="info"
+                        title="Plugin Update Available"
+                        actions={[
+                            { label: 'Update', onClick: () => {} },
+                            { label: 'Release Notes', onClick: () => {} },
+                        ]}
+                    >
+                        Kotlin plugin 1.9.0 is available.
+                    </Notification>
+                    <Notification
+                        type="error"
+                        title="Unresolved Reference"
+                        actions={[
+                            { label: 'Add Import', onClick: () => {} },
+                        ]}
+                    >
+                        Cannot resolve symbol 'useState'.
+                    </Notification>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Title Only</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification type="success" title="File saved" />
+                    <Notification type="info" title="VCS update completed" timestamp="3 min ago" />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function TerminalWindowPage() {
     return (
         <div className="component-showcase">
@@ -2498,6 +2683,8 @@ function AppContent() {
                     <Route path="/tree" element={<TreePage />} />
                     <Route path="/stripe" element={<StripePage />} />
                     <Route path="/popup" element={<PopupPage />} />
+                    <Route path="/popupprojects" element={<PopupProjectsPage />} />
+                    <Route path="/popupbranches" element={<PopupBranchesPage />} />
                     <Route path="/codeexample" element={<CodeExamplePage />} />
                     <Route path="/editor" element={<EditorPage />} />
                     <Route path="/toolwindow" element={<ToolWindowPage />} />
@@ -2512,6 +2699,8 @@ function AppContent() {
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
                     <Route path="/alert" element={<AlertPage />} />
                     <Route path="/dialog" element={<DialogPage />} />
+                    <Route path="/tooltip" element={<TooltipPage />} />
+                    <Route path="/balloon" element={<BalloonPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>

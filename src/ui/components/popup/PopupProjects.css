@@ -1,0 +1,13 @@
+.popup-project-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 22px;
+    color: white;
+}

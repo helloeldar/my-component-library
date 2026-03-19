@@ -96,6 +96,11 @@
 }
 
 
+/* VCS Dropdown Container */
+.vcs-dropdown-container {
+    position: relative;
+}
+
 /* VCS Widget */
 .vcs-widget {
     display: flex;

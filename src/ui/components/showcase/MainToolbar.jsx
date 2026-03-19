@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MainToolbarIconButton } from '../iconbutton/IconButton';
 import MainToolbarVerticalSeparator from '../maintoolbar/MainToolbarVerticalSeparator';
 import ProjectSelector from '../projectselector/ProjectSelector';
+import PopupBranches from '../popup/PopupBranches';
 import RunWidget from '../runwidget/RunWidget';
 import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import './MainToolbar.css';
@@ -16,6 +17,20 @@ function MainToolbar({
     className = "",
     ...props
 }) {
+    const [branchesOpen, setBranchesOpen] = useState(false);
+    const vcsRef = useRef(null);
+
+    useEffect(() => {
+        if (!branchesOpen) return;
+        const handleClickOutside = (e) => {
+            if (vcsRef.current && !vcsRef.current.contains(e.target)) {
+                setBranchesOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [branchesOpen]);
+
     return (
         <div className={`main-toolbar ${className}`} {...props}>
             {/* Left Group - Window Controls, Project, and VCS */}
@@ -29,17 +44,29 @@ function MainToolbar({
 
             {/* Left Side - Project and VCS */}
             <div className="toolbar-left">
-                    <ProjectSelector 
+                    <ProjectSelector
                         projectName={projectName}
                         projectIcon={projectIcon}
                         projectColor={projectColor}
                     />
-                    
-                    <ToolbarDropdown 
-                        icon="vcs/branch" 
-                        text={branchName} 
-                        theme="dark" 
-                    />
+
+                    <div className="vcs-dropdown-container" ref={vcsRef}>
+                        <ToolbarDropdown
+                            icon="vcs/branch"
+                            text={branchName}
+                            theme="dark"
+                            onClick={() => setBranchesOpen(!branchesOpen)}
+                        />
+                        {branchesOpen && (
+                            <PopupBranches style={{
+                                position: 'absolute',
+                                top: '100%',
+                                left: 0,
+                                marginTop: '4px',
+                                zIndex: 1000
+                            }} />
+                        )}
+                    </div>
                 </div>
             </div>
 
