@@ -116,6 +116,81 @@ npm run build:lib
 npm publish --access public
 ```
 
+---
+
+## Keeping the Package Up to Date
+
+### Problem
+
+Currently, publishing is fully manual. Every time we change components, fix bugs, or add features, someone must remember to build, bump the version, and publish. This is error-prone — it's easy to forget a step or publish a broken build.
+
+### Goal
+
+Every merge to `main` that changes library code should automatically result in a new npm package version being published, with no manual steps required.
+
+### Required Infrastructure
+
+#### 1. Pre-publish Safety Script
+
+A `prepublishOnly` script in `package.json` that runs build + tests before any publish, preventing broken packages from reaching npm.
+
+```json
+"prepublishOnly": "npm run build:lib"
+```
+
+#### 2. Automated Versioning
+
+Use **semantic-release** to automatically determine the next version number based on commit message conventions:
+- `fix:` commits → patch bump (0.1.0 → 0.1.1)
+- `feat:` commits → minor bump (0.1.0 → 0.2.0)
+- `BREAKING CHANGE:` → major bump (0.1.0 → 1.0.0)
+
+This removes the need for manual `npm version` calls and generates changelogs automatically.
+
+**Required config**: `.releaserc.json` at repo root.
+
+#### 3. GitHub Actions CI/CD
+
+Two workflows:
+
+**a) CI — on every PR:**
+- Install dependencies
+- Run `npm run build:lib`
+- Run `npm test` (when tests exist)
+- Prevents broken code from merging
+
+**b) Release — on push to `main`:**
+- Install dependencies
+- Build the library
+- Run semantic-release (handles version bump + npm publish + GitHub release + changelog)
+
+**Required files**: `.github/workflows/ci.yml`, `.github/workflows/release.yml`
+
+#### 4. NPM Token as GitHub Secret
+
+- Generate an npm access token (Automation type) from npmjs.com
+- Store it as `NPM_TOKEN` in the GitHub repo's Settings → Secrets → Actions
+
+#### 5. Commit Message Convention
+
+Adopt [Conventional Commits](https://www.conventionalcommits.org/) so semantic-release can determine version bumps:
+- `fix: correct button hover color` → patch
+- `feat: add Dropdown component` → minor
+- `feat!: redesign ThemeProvider API` → major
+- `chore: update devDependencies` → no release
+
+### What This Changes for Contributors
+
+| Before | After |
+|---|---|
+| Manual `npm version` + `npm publish` | Automatic on merge to `main` |
+| Easy to forget building before publish | `prepublishOnly` prevents it |
+| No changelog | Auto-generated from commits |
+| No CI checks on PRs | Build + test gate on every PR |
+| Version in `package.json` updated by hand | Managed by semantic-release |
+
+---
+
 ## Important Notes
 
 - The `"private": true` flag was removed from `package.json` to allow npm publishing.

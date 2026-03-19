@@ -72,6 +72,10 @@ export default [
       }),
       terser(),
     ],
-    external: ['react', 'react-dom'],
+    external: [
+      'react',
+      'react-dom',
+      /^prism-react-editor(\/.*)?$/,
+    ],
   },
 ];
