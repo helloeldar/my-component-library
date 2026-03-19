@@ -52,7 +52,6 @@
     background: var(--bg-primary);
     pointer-events: none;
     z-index: 1;
-    transition: top 0.1s ease;
 }
 
 .syntax-highlight-overlay {

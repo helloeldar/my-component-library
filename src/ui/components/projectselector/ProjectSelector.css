@@ -12,7 +12,6 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s ease;
     color: var(--text-primary);
     min-width: 0;
 }
@@ -84,7 +83,6 @@
     align-items: center;
     justify-content: center;
     color: var(--icon-secondary);
-    transition: transform 0.2s ease;
 }
 
 .project-selector-hovered .chevron-down,

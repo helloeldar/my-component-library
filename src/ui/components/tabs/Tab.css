@@ -29,7 +29,6 @@
     cursor: pointer;
     background: transparent;
     border: 1px solid transparent;
-    transition: background 0.15s ease, opacity 0.15s ease;
     flex-shrink: 0;
     overflow: visible;
 }
@@ -89,7 +88,6 @@
     justify-content: center;
     flex-shrink: 0;
     cursor: pointer;
-    transition: opacity 0.15s ease;
     opacity: 0;
     margin-right: -4px;
 }

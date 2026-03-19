@@ -29,7 +29,6 @@
     cursor: pointer;
     border-radius: 4px;
     color: var(--icon-secondary);
-    transition: background 0.15s ease;
 }
 
 .table-toolbar-button:hover:not(:disabled) {

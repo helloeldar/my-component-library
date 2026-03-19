@@ -789,7 +789,6 @@
 .theme-dark ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb);
     border-radius: 4px;
-    transition: background 0.2s ease;
 }
 
 .theme-light :hover > ::-webkit-scrollbar-thumb,

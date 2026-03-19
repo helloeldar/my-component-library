@@ -14,8 +14,6 @@
     border-radius: 4px;
     min-height: 26px;
     box-sizing: border-box;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    
     /* Dark theme default */
     background: var(--search-bg);
     border: 1px solid var(--search-border);
@@ -88,7 +86,6 @@
     padding: 0;
     border-radius: 4px;
     color: var(--search-close-color);
-    transition: background 0.15s ease;
 }
 
 .search-close:hover {

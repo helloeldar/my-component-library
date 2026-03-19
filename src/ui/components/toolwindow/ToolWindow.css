@@ -30,7 +30,6 @@
 .tool-window-content::-webkit-scrollbar-thumb {
     background: var(--tool-window-scrollbar-thumb);
     border-radius: 4px;
-    transition: background 0.2s ease;
 }
 
 .tool-window-content:hover::-webkit-scrollbar-thumb {
