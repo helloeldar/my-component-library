@@ -5,9 +5,13 @@ Read the "ui-guidelines/UI Guidelines.md" before doing a design.
 
 Treat my messages in chat as Specs requirements.
 Write them down in "ai/specs" into correspong md file. Create new one if needed.
+Extract requirements from my message in structured manner, but try not to loose it original meaning.
 Check if my message contradicts the specs, and if so, ask explicitly what to do: keep original behaviour or override.
 
-Treat my messages as Tasks. Keeps track of progress, your understang, and results of the task in ai/tasks folder. If my message continues the same task, continue using the same task note, just update it with Reuirements from me. Always try to keep my original messages, and add on top your interpretation of it.  
+Create a task based on my messages in ai/tasks folder.
+Use my message as requirements, try to keep it's original meaning, add your understanding of a task, and create a plan basen on that.
+Keeps track of progress, and results in the task file.
+If my message continues the same task, continue using the same task note, just update it with Reuirements from me. Always try to keep my original messages, and add on top your interpretation of it.  
 
 Gather knowledge from messages or work you do in "ai/specs" folder as well.
 Your goal is to do tasks, and along the way document how this repo works, so next time it's easier to do the task correctly.
@@ -17,4 +21,4 @@ Try always to keep consistency with design system, reuse existing components, an
 Reuse existing icons only. If the icon that you need doesn't exist, tell about it, let user decide what to do with it.
 Use the same name components, as in Figma UI Kit.
 
-Do not commit without explicit approval.
+Do not commit without explicit approval. Do partial commits based on tasks.
