@@ -155,3 +155,35 @@ The entire content (output blocks + input prompt) is in **one scrollable area**.
 ---
 
 **The hardest part to prototype realistically** is the streaming output + scroll behavior — specifically the "auto-scroll unless user has scrolled up" pattern. Worth solving early.
+
+---
+
+## Tab Management
+
+Terminal supports multiple session tabs (e.g., "Local", "Local (1)", "Local (2)").
+
+### Tab behavior
+
+| Action | Behavior |
+|---|---|
+| Click "+" button | Adds a new tab named `Local (n)` where n increments (1, 2, 3…). New tab becomes active. |
+| Click tab close (×) | Removes the tab. If active tab was closed, selects the previous tab. Last remaining tab cannot be closed. |
+| Click a tab | Switches to that tab (selected state). |
+| Focus inside terminal | Tab shows focused/active style (highlighted color). |
+| Blur terminal | Tab goes back to default selected style. |
+
+### Controlled vs Uncontrolled modes
+
+TerminalWindow supports both modes — same pattern as TabBar:
+
+- **Uncontrolled (standalone)**: When no `onTabChange` is provided, TerminalWindow manages its own tab state internally. Tab add/close/switch all work out of the box. This is the mode used on the UI Showcase page.
+- **Controlled**: When `onTabChange` (and optionally `onTabClose`, `onTabAdd`) are provided, the parent manages tab state. This is the mode used inside MainWindow.
+
+### Focus tracking
+
+- When `focused` prop is provided, it's used directly (controlled by parent, e.g. MainWindow's `focusedPanel`).
+- When `focused` prop is omitted (standalone), TerminalWindow tracks focus/blur on its content wrapper and passes the state to ToolWindow → TabBar → Tab for the active/focused tab styling.
+
+### Action forwarding
+
+TerminalWindow handles `tabClose` and `add` actions internally, and forwards all actions (including `minimize`, `more`) to the parent via `onActionClick` prop. This allows MainWindow to handle minimize (hide panel) while TerminalWindow handles tab logic.

@@ -79,19 +79,35 @@ function TerminalWindow({
     title = "Terminal",
     width = 600,
     height = 250,
-    tabs = [{ label: 'Local', closable: true }],
-    activeTab = 0,
+    tabs: tabsProp = [{ label: 'Local', closable: true }],
+    activeTab: activeTabProp,
     onTabChange,
     onTabAdd,
     onTabClose,
+    onActionClick: onActionClickProp,
     actions = ['more', 'minimize'],
     blocks: blocksProp = defaultBlocks,
     input = defaultInput,
     showSearch: showSearchProp = false,
+    focused: focusedProp,
     onCommand,
     className = "",
     ...props
 }) {
+    // Controlled vs uncontrolled tab management
+    const isControlled = onTabChange !== undefined;
+    const [internalTabs, setInternalTabs] = useState(tabsProp);
+    const [internalActiveTab, setInternalActiveTab] = useState(0);
+    const tabCounter = useRef(0);
+
+    const tabs = isControlled ? tabsProp : internalTabs;
+    const activeTab = isControlled ? (activeTabProp ?? 0) : internalActiveTab;
+
+    // Focus tracking for standalone mode
+    const isFocusControlled = focusedProp !== undefined;
+    const [internalFocused, setInternalFocused] = useState(false);
+    const focused = isFocusControlled ? focusedProp : internalFocused;
+
     const [showSearch, setShowSearch] = useState(showSearchProp);
     const [searchQuery, setSearchQuery] = useState('');
     const [contextMenu, setContextMenu] = useState(null);
@@ -286,6 +302,61 @@ function TerminalWindow({
         );
     };
 
+    const handleTabChange = useCallback((index) => {
+        if (onTabChange) onTabChange(index);
+        if (!isControlled) setInternalActiveTab(index);
+    }, [onTabChange, isControlled]);
+
+    const handleTabClose = useCallback((index) => {
+        if (onTabClose) {
+            onTabClose(index);
+        } else if (!isControlled) {
+            setInternalTabs(prev => {
+                if (prev.length <= 1) return prev;
+                const next = prev.filter((_, i) => i !== index);
+                setInternalActiveTab(current => {
+                    if (current >= next.length) return next.length - 1;
+                    if (index < current) return current - 1;
+                    return current;
+                });
+                return next;
+            });
+        }
+    }, [onTabClose, isControlled]);
+
+    const handleTabAdd = useCallback(() => {
+        if (onTabAdd) {
+            onTabAdd();
+        } else if (!isControlled) {
+            tabCounter.current += 1;
+            const n = tabCounter.current;
+            setInternalTabs(prev => {
+                const next = [...prev, { label: `Local (${n})`, closable: true }];
+                setInternalActiveTab(next.length - 1);
+                return next;
+            });
+        }
+    }, [onTabAdd, isControlled]);
+
+    const handleActionClick = useCallback((action, payload) => {
+        if (action === 'tabClose') {
+            handleTabClose(payload);
+        } else if (action === 'add') {
+            handleTabAdd();
+        }
+        if (onActionClickProp) onActionClickProp(action, payload);
+    }, [handleTabClose, handleTabAdd, onActionClickProp]);
+
+    const handleFocus = useCallback(() => {
+        if (!isFocusControlled) setInternalFocused(true);
+    }, [isFocusControlled]);
+
+    const handleBlur = useCallback((e) => {
+        if (!isFocusControlled && wrapperRef.current && !wrapperRef.current.contains(e.relatedTarget)) {
+            setInternalFocused(false);
+        }
+    }, [isFocusControlled]);
+
     return (
         <ToolWindow
             title={title}
@@ -294,9 +365,11 @@ function TerminalWindow({
             headerType="tabs"
             tabs={tabs}
             activeTab={activeTab}
-            onTabChange={onTabChange}
+            onTabChange={handleTabChange}
+            onActionClick={handleActionClick}
             showSeparator={true}
             actions={actions}
+            focused={focused}
             className={`terminal-window ${className}`}
             {...props}
         >
@@ -305,6 +378,8 @@ function TerminalWindow({
                 ref={wrapperRef}
                 onContextMenu={handleContextMenu}
                 onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
                 tabIndex={-1}
             >
                 {/* Search overlay */}

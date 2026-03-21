@@ -36,6 +36,19 @@ Allows consumers to inject arbitrary React content into the header toolbar area,
 />
 ```
 
+### Action Callbacks
+
+ToolWindow passes `onActionClick` to ToolWindowHeader, which dispatches it from:
+- **Header action buttons** (more, minimize, close) → `onActionClick('minimize')`, `onActionClick('more')`, etc.
+- **TabBar close button** → `onActionClick('tabClose', index)`
+- **TabBar "+" button** → `onActionClick('add')`
+
+Specialized windows like TerminalWindow intercept tab-related actions (`tabClose`, `add`) and handle them internally, then forward all actions to a parent-provided `onActionClick` prop. This allows the parent (e.g. MainWindow) to handle actions like `minimize` without needing to know about tab internals.
+
+### Minimize behavior
+
+The minimize action hides the tool window panel. In MainWindow, clicking minimize on the bottom Terminal sets `showBottomPanel` to `false`. The panel can be re-opened by clicking the corresponding stripe button.
+
 ## ToolWindowHeader
 
 ### Header Bottom Separator

@@ -56,11 +56,31 @@ function MainWindow({
     ];
 
     // Terminal tabs state
-    const [activeTerminalTab, setActiveTerminalTab] = useState('local');
-    const terminalTabs = [
-        { id: 'local', label: 'Local', closable: true },
-        { id: 'local1', label: 'Local (1)', closable: true },
-    ];
+    const [activeTerminalTab, setActiveTerminalTab] = useState(0);
+    const [terminalTabs, setTerminalTabs] = useState([
+        { label: 'Local', closable: true },
+    ]);
+    const terminalTabCounter = React.useRef(0);
+
+    const handleTerminalTabClose = (index) => {
+        setTerminalTabs(prev => {
+            if (prev.length <= 1) return prev;
+            const next = prev.filter((_, i) => i !== index);
+            setActiveTerminalTab(current => {
+                if (current >= next.length) return next.length - 1;
+                if (index < current) return current - 1;
+                return current;
+            });
+            return next;
+        });
+    };
+
+    const handleTerminalTabAdd = () => {
+        terminalTabCounter.current += 1;
+        const n = terminalTabCounter.current;
+        setTerminalTabs(prev => [...prev, { label: `Local (${n})`, closable: true }]);
+        setActiveTerminalTab(terminalTabs.length);
+    };
 
     // Project tree data
     const projectTreeData = [
@@ -320,8 +340,13 @@ function MainWindow({
                                 width="auto"
                                 height={180}
                                 tabs={terminalTabs}
-                                activeTab={activeTerminalTab === 'local' ? 0 : 1}
-                                onTabChange={(index) => setActiveTerminalTab(index === 0 ? 'local' : 'local1')}
+                                activeTab={activeTerminalTab}
+                                onTabChange={setActiveTerminalTab}
+                                onTabClose={handleTerminalTabClose}
+                                onTabAdd={handleTerminalTabAdd}
+                                onActionClick={(action) => {
+                                    if (action === 'minimize') setShowBottomPanel(false);
+                                }}
                                 blocks={[]}
                                 input={{ path: '~/projects/' + projectName, branch: 'main' }}
                                 focused={focusedPanel === 'bottom'}

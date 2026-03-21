@@ -45,3 +45,44 @@ Stripe icons: src/icons/toolwindows/terminal@20x20.svg
 - [ ] Gear menu with engine/settings options (low priority for prototype)
 - [ ] ~~Alternate buffer swap (vim mode) (low priority for prototype)~~ - no need
 - [x] ~~Inline completion ghost text~~  - no need
+
+---
+
+## Tab Add/Close + Minimize (2026-03-22)
+
+### Requirements (from chat)
+
+> "Terminal tool window: When I close Tab — should actually close. When I press add — it should add new tab with name Local (n)"
+> "This also should work when I have only Terminal tool window. Tab should have Active state when focus inside of the tab. And I should able to create and delete new tabs"
+> "Also fix that in Main window Minimize button doesn't work"
+
+### What was done
+
+1. **TerminalWindow — controlled/uncontrolled tab management**
+   - When no `onTabChange` is provided (standalone / showcase page), TerminalWindow manages its own tab state: `internalTabs`, `internalActiveTab`, `tabCounter` ref
+   - `handleTabClose(index)` — removes tab, adjusts active index, prevents closing last tab
+   - `handleTabAdd()` — appends `Local (n)` with incrementing counter, activates new tab
+   - `handleTabChange(index)` — switches active tab internally
+   - When `onTabChange`/`onTabClose`/`onTabAdd` are provided (MainWindow), delegates to parent
+
+2. **TerminalWindow — focus tracking**
+   - When `focused` prop is omitted (standalone), tracks `onFocus`/`onBlur` on content wrapper
+   - Passes `focused` state to ToolWindow → ToolWindowHeader → TabBar → Tab for active/focused styling
+
+3. **TerminalWindow — action forwarding**
+   - Added `onActionClick` as named prop (renamed internally to `onActionClickProp`)
+   - `handleActionClick` handles `tabClose`/`add` internally, forwards ALL actions to parent's `onActionClick`
+   - Fixes minimize and any custom action delegation
+
+4. **MainWindow — stateful terminal tabs**
+   - `terminalTabs` is now `useState` (starts with single "Local" tab)
+   - `activeTerminalTab` is index-based (number) instead of string-based
+   - `handleTerminalTabClose` / `handleTerminalTabAdd` manage state
+   - `onActionClick` handler on TerminalWindow calls `setShowBottomPanel(false)` for minimize
+
+### Files changed
+
+- `src/ui/components/toolwindow/TerminalWindow.jsx` — core tab/focus/action logic
+- `src/ui/components/mainwindow/MainWindow.jsx` — stateful tabs + minimize handler
+- `ai/specs/Terminal specs.md` — documented tab management section
+- `ai/specs/Tool Window specs.md` — documented action callbacks + minimize behavior
