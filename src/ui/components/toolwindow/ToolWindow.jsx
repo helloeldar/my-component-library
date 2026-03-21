@@ -15,7 +15,8 @@ function ToolWindow({
     focused = false,
     onFocus,
     children,
-    className = ""
+    className = "",
+    toolbarExtra
 }) {
     const focusedClass = focused ? 'tool-window-focused' : '';
     return (
@@ -37,6 +38,7 @@ function ToolWindow({
                 actions={actions}
                 onActionClick={onActionClick}
                 focused={focused}
+                toolbarExtra={toolbarExtra}
             />
             <div className="tool-window-content">
                 {children}

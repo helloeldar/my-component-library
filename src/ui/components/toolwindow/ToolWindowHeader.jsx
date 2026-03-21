@@ -13,7 +13,8 @@ function ToolWindowHeader({
     dropdown = false,
     actions = ['more', 'minimize'],
     onActionClick,
-    focused = false
+    focused = false,
+    toolbarExtra
 }) {
     const getActionIcon = (action) => {
             switch (action) {
@@ -92,11 +93,13 @@ function ToolWindowHeader({
                             {renderTitle()}
                             {renderTabs()}
                         </div>
+                        {toolbarExtra}
                         {renderActions()}
                     </>
                 ) : (
                     <>
                         {renderTitle()}
+                        {toolbarExtra}
                         {renderActions()}
                     </>
                 )}
