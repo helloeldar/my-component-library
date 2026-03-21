@@ -1,3 +1,4 @@
+Use Dark theme by default.
 Islands UI is our current and only supported theme.
 No need to support a "New UI" theme — only the Island theme is used.
 
