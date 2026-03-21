@@ -1,0 +1,30 @@
+/* Tooltip trigger wrapper */
+.tooltip-trigger {
+    display: inline-flex;
+    position: relative;
+}
+
+/* Tooltip */
+.tooltip {
+    position: fixed;
+    z-index: 10000;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    background: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip-text {
+    color: inherit;
+}
+
+.tooltip-shortcut {
+    color: inherit;
+    opacity: 0.7;
+}

@@ -52,3 +52,18 @@ Extracted into separate task: ai/tasks/Task - Reacreate Terminal tool window.md
 - Confirmed that the current `MainWindow` is still a showcase-style structural composition and not yet a 1:1 implementation of the Figma shell.
 - After re-checking the brief, reprioritized the next implementation target to `TerminalWindow`, since that is the user’s explicitly stated area of interest.
 - Defined the first terminal batch around tighter header/tab spacing, denser terminal styling, and more realistic prompt/output states.
+
+### Batch 2 — New components (2026-03-19)
+
+Implemented 4 new components from the "Figma components with no repo implementation" list:
+
+1. **Tooltip** (`src/ui/components/tooltip/Tooltip.jsx`) — Contextual popup on hover with text, shortcut display, and configurable placement (top/bottom/left/right). Uses existing `--tooltip-bg` / `--tooltip-text` theme tokens. Showcase page added.
+2. **Notification** (`src/ui/components/notification/Notification.jsx`) — Toast notification balloon with info/warning/error/success types, title, body, action links, timestamp, and close button. Left-border accent per type. Showcase page added as "Balloon".
+3. **ToolbarSeparator** (`src/ui/components/toolbar/ToolbarSeparator.jsx`) — Generic toolbar divider supporting both vertical (for horizontal toolbars) and horizontal (for vertical toolbars) orientations.
+4. **DialogGroupHeader** (`src/ui/components/dialog/DialogGroupHeader.jsx`) — Section header inside dialog content areas with title + separator line. Completes the Dialog family.
+
+All 4 components:
+- Exported from `src/lib/index.js`
+- Follow existing component patterns (functional components, CSS custom properties, BEM-style classes)
+- Support light and dark themes via existing semantic tokens
+- Tooltip and Balloon showcase pages added to `src/App.js` and `componentsConfig.js` (status changed from `coming-soon` to `ready`)

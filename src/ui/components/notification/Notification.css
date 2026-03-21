@@ -1,0 +1,118 @@
+/* Notification / Balloon */
+.notification {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    background: var(--popup-bg);
+    border: 1px solid var(--popup-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+/* Header */
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px 8px 12px;
+}
+
+.notification-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+}
+
+.notification-title {
+    flex: 1;
+    color: var(--text-primary);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.notification-header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.notification-timestamp {
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.notification-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--icon-secondary);
+    border-radius: 3px;
+}
+
+.notification-close:hover {
+    background: var(--icon-button-hover-bg);
+    color: var(--text-primary);
+}
+
+.notification-close:active {
+    background: var(--icon-button-pressed-bg);
+}
+
+/* Body */
+.notification-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 12px 12px 36px; /* 12px + 16px icon + 8px gap = 36px left indent */
+}
+
+.notification-content {
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+/* Actions */
+.notification-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.notification-action.link {
+    padding: 0;
+}
+
+/* Type-specific left border accent */
+.notification-info {
+    border-left: 3px solid var(--accent-primary);
+}
+
+.notification-warning {
+    border-left: 3px solid var(--warning-icon-stroke);
+}
+
+.notification-error {
+    border-left: 3px solid var(--error-icon-outline);
+}
+
+.notification-success {
+    border-left: 3px solid var(--icon-green-stroke);
+}
+
+/* Dark theme shadow */
+.theme-dark .notification {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.40);
+}

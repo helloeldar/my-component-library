@@ -1,0 +1,31 @@
+/* Toolbar Separator - vertical (in horizontal toolbar) */
+.toolbar-separator-vertical {
+    width: 9px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.toolbar-separator-vertical .toolbar-separator-line {
+    width: 1px;
+    height: 16px;
+    background: var(--separator);
+}
+
+/* Toolbar Separator - horizontal (in vertical toolbar) */
+.toolbar-separator-horizontal {
+    width: 28px;
+    height: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.toolbar-separator-horizontal .toolbar-separator-line {
+    width: 16px;
+    height: 1px;
+    background: var(--separator);
+}

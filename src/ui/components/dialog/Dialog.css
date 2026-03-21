@@ -101,3 +101,23 @@
     align-items: center;
     gap: 12px;
 }
+
+/* Dialog Group Header */
+.dialog-group-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0 4px;
+}
+
+.dialog-group-header-title {
+    color: var(--text-primary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.dialog-group-header-line {
+    flex: 1;
+    height: 1px;
+    background: var(--separator);
+}

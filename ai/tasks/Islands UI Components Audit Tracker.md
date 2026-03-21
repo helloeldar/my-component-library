@@ -86,6 +86,10 @@
 | Search | `src/ui/components/search/Search.jsx` | Popup / Search Everywhere | Partial | Needs review | No | Showcase component exists, but it is not currently exported from `src/lib/index.js` |
 | SegmentedControl | `src/ui/components/segmentedcontrol/SegmentedControl.jsx` | [Segmented Control](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7281-46902) | Yes | Unknown | No | Active, Disabled, Focused states |
 | Table | `src/ui/components/table/Table.jsx` | [Table](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7278-46644) | Yes | Unknown | No | Header, Cell, Toolbar sub-components |
+| Tooltip | `src/ui/components/tooltip/Tooltip.jsx` | [Tooltip / Tooltip](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=55-9038) | Yes | Needs review | No | New: placement, shortcut, delay props. Showcase page added. |
+| Notification | `src/ui/components/notification/Notification.jsx` | [Notification](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=3595-83697) | Yes | Needs review | No | New: info/warning/error/success types, title, actions, timestamp. Showcase page added as "Balloon". |
+| ToolbarSeparator | `src/ui/components/toolbar/ToolbarSeparator.jsx` | [Toolbar / Separator](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5701-76320) | Yes | Needs review | No | New: vertical/horizontal orientation for toolbar dividers. |
+| DialogGroupHeader | `src/ui/components/dialog/DialogGroupHeader.jsx` | [Dialog / Group Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7072-91228) | Yes | Needs review | No | New: section header with title + separator line. |
 
 ## Known audit gaps to resolve next
 
@@ -108,12 +112,12 @@
 
 | Figma component | Node ID | Priority | Notes |
 | --- | --- | --- | --- |
-| Tooltip / Tooltip | 55:9038 | Medium | Simple tooltip |
+| ~~Tooltip / Tooltip~~ | ~~55:9038~~ | ~~Medium~~ | **Implemented** as `Tooltip` component |
 | Tooltip / Got It | 56:8741 | Low | Onboarding tooltip with arrow |
 | Tooltip / Help | 7191:45453 | Low | Help tooltip |
 | Tooltip / Editor | 71:9760 | Low | Error/Warning/Success/Info editor tooltips |
 | Tooltip / Validation | 10134:67704 | Medium | Validation error/warning tooltips |
-| Notification | 3595:83697 | Medium | Toast notification |
+| ~~Notification~~ | ~~3595:83697~~ | ~~Medium~~ | **Implemented** as `Notification` component |
 | Notification stack | 461:98574 | Low | Stacked notifications |
 | Scrollbar | 6222:73552 | Low | Horizontal/Vertical scrollbar |
 | Shortcut sequence | 20050:22805 | Low | Keyboard shortcut display |
@@ -125,34 +129,34 @@
 | Toolbar / Button | 5701:76161 | Medium | Toolbar text button with states |
 | Toolbar / Dropdown | 9393:66721 | Medium | Toolbar dropdown with states |
 | Toolbar / Search | 9578:67119 | Medium | Toolbar inline search |
-| Toolbar / Separator | 5701:76320 | Low | Toolbar divider |
-| Dialog / Group Header | 7072:91228 | Medium | Section header inside dialogs |
+| ~~Toolbar / Separator~~ | ~~5701:76320~~ | ~~Low~~ | **Implemented** as `ToolbarSeparator` component |
+| ~~Dialog / Group Header~~ | ~~7072:91228~~ | ~~Medium~~ | **Implemented** as `DialogGroupHeader` component |
 | Selection | 26807:71264 | Low | Selection patterns |
 
-## Next implementation target
+## Completed implementation targets
 
-- `TerminalWindow`
-  - Current repo component: `src/ui/components/toolwindow/TerminalWindow.jsx`
-  - Closest current Figma source: the bottom terminal tool window inside [Main Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-143445)
-- Reason for priority:
-  - The task brief explicitly calls out the Terminal tool window as the user’s main interest.
-  - The current implementation is functional for prototyping, but still looks like a simplified placeholder.
-  - The recent `ToolWindowHeader` fidelity pass is a useful base for improving it next.
+- ~~`TerminalWindow`~~ — **Done**: fidelity pass landed with structured line types, terminal CSS tokens, context menu, search overlay.
+- ~~`Dialog` family~~ — **Done**: Dialog, DialogHeader, DialogFooter, DialogGroupHeader created.
+- ~~`Tooltip`~~ — **Done**: Tooltip component with placement, shortcut, and delay.
+- ~~`Notification`~~ — **Done**: Notification component with types, actions, timestamps.
+- ~~`ToolbarSeparator`~~ — **Done**: Generic toolbar divider (vertical/horizontal).
 
-## Backlog candidate after terminal
+## Next implementation candidates
 
-- `Dialog` family
-  - Base dialog node: [Dialog](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-146272)
-  - Related primitives:
-    - [Dialog / Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-146218)
-    - [Dialog / Footer](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-146235)
-    - [Dialog / Group Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7072-91228)
-    - [Help](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7070-146181)
+Remaining Figma components not yet implemented, in rough priority order:
 
-## First terminal implementation batch
-
-- Tighten `TerminalWindow` to match the bottom tool-window look more closely:
-  - refine header/tab spacing on top of the improved `ToolWindowHeader`
-  - replace the placeholder terminal content styling with a denser, more IDE-like terminal surface
-  - add more realistic prompt/output states instead of the current minimal sample lines
-  - compare the terminal area against the Main Window screenshot and reduce obvious placeholder feel
+1. **Tooltip / Validation** (10134:67704) — Validation error/warning tooltips near form controls
+2. **Loader Animated** (5767:82632) — Spinning loader for indeterminate states
+3. **Toolbar** (1146:54334) — Full horizontal/vertical toolbar container
+4. **Toolbar / Button** (5701:76161) — Toolbar text button with states
+5. **Toolbar / Dropdown** (9393:66721) — Toolbar dropdown with states
+6. **Toolbar / Search** (9578:67119) — Toolbar inline search
+7. **Editor / Search Replace** (27268:37610) — Find/replace bar
+8. **Tooltip / Got It** (56:8741) — Onboarding tooltip with arrow
+9. **Tooltip / Help** (7191:45453) — Help tooltip
+10. **Tooltip / Editor** (71:9760) — Editor error/warning tooltips
+11. **Notification stack** (461:98574) — Stacked notifications
+12. **Scrollbar** (6222:73552) — Custom scrollbar component
+13. **Shortcut sequence** (20050:22805) — Keyboard shortcut display
+14. **Code Sample** (3711:79004) — Inline code sample
+15. **Selection** (26807:71264) — Selection patterns
