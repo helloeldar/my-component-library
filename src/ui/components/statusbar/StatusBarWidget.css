@@ -46,7 +46,6 @@
 /* Hovered state */
 .status-bar-widget-hovered {
     background: var(--control-bg-hover);
-    cursor: pointer;
 }
 
 .status-bar-widget-hovered .status-bar-widget-text {
@@ -60,11 +59,6 @@
 
 .status-bar-widget-pressed .status-bar-widget-text {
     color: var(--text-secondary);
-}
-
-/* Interactive hover behavior */
-.status-bar-widget:hover {
-    cursor: pointer;
 }
 
 .status-bar-widget-default:hover {

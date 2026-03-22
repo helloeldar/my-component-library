@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-    width: 200px;
+    width: 250px;
     min-width: 200px;
     background: var(--bg-elevated);
     border-right: 1px solid var(--border-secondary);
@@ -51,7 +51,7 @@
 
 /* Sidebar Search — override Search component defaults */
 .sidebar-search.search {
-    width: 100%;
+    width: stretch;
     padding: 0;
     margin-bottom: 16px;
 }
