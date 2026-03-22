@@ -88,7 +88,7 @@ const moreMenuItems = [
     { label: 'Settings', icon: 'general/settings' },
     { type: 'separator' },
     { label: 'Close All' },
-    { label: 'Show Toolbar', icon: 'general/greenCheckmark' },
+    { label: 'Show Toolbar', icon: 'general/checkmark' },
     { label: 'Group Tabs' },
     { label: 'View Mode', submenu: true },
     { label: 'Move to', submenu: true },
@@ -104,7 +104,7 @@ const headerContextMenuItems = [
     { label: 'Settings', icon: 'general/settings' },
     { type: 'separator' },
     { label: 'Close All' },
-    { label: 'Show Toolbar', icon: 'general/greenCheckmark' },
+    { label: 'Show Toolbar', icon: 'general/checkmark' },
     { label: 'Group Tabs' },
     { label: 'View Mode', submenu: true },
     { label: 'Move to', submenu: true },
@@ -113,6 +113,43 @@ const headerContextMenuItems = [
     { label: 'Remove from Sidebar' },
     { label: 'Hide', shortcut: '⇧⎋' },
 ];
+
+/**
+ * Smart popup positioning: default bottom-right, flip left/top when no space.
+ * Coordinates are viewport-relative (for position: fixed).
+ */
+function positionPopup(popupEl, anchor, gap = 4) {
+    if (!popupEl) return;
+    // Measure the .popup child — position:absolute child doesn't contribute
+    // to the wrapper's dimensions, so wrapper rect would be 0×0
+    const popup = popupEl.querySelector('.popup') || popupEl;
+    const popupRect = popup.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    const anchorBottom = anchor.bottom ?? anchor.y;
+    const anchorTop = anchor.top ?? anchor.y;
+    const anchorLeft = anchor.left ?? anchor.x;
+    const anchorRight = anchor.right ?? anchor.x;
+
+    // Default: below anchor, left-aligned
+    let top = anchorBottom + gap;
+    let left = anchorLeft;
+
+    // Flip up if no space below
+    if (top + popupRect.height > vh) {
+        top = anchorTop - gap - popupRect.height;
+    }
+
+    // Flip left if no space on right
+    if (left + popupRect.width > vw) {
+        left = anchorRight - popupRect.width;
+    }
+
+    popupEl.style.top = `${top}px`;
+    popupEl.style.left = `${left}px`;
+    popupEl.style.opacity = '1';
+}
 
 function TerminalWindow({
     title = "Terminal",
@@ -150,8 +187,8 @@ function TerminalWindow({
     const [showSearch, setShowSearch] = useState(showSearchProp);
     const [searchQuery, setSearchQuery] = useState('');
     const [contextMenu, setContextMenu] = useState(null);
-    const [chevronMenu, setChevronMenu] = useState(false);
-    const [moreMenu, setMoreMenu] = useState(false);
+    const [chevronMenu, setChevronMenu] = useState(null);
+    const [moreMenu, setMoreMenu] = useState(null);
     const [headerContextMenu, setHeaderContextMenu] = useState(null);
     const [currentInput, setCurrentInput] = useState('');
     const [internalBlocks, setInternalBlocks] = useState(blocksProp);
@@ -162,6 +199,9 @@ function TerminalWindow({
     const wrapperRef = useRef(null);
     const scrollAreaRef = useRef(null);
     const toolWindowRef = useRef(null);
+    const chevronPopupRef = useRef(null);
+    const morePopupRef = useRef(null);
+    const headerContextPopupRef = useRef(null);
 
     // Sync blocks prop to internal state
     useEffect(() => {
@@ -180,6 +220,27 @@ function TerminalWindow({
             el.scrollTop = el.scrollHeight;
         }
     }, [internalBlocks, input, currentInput]);
+
+    // Position chevron popup after render (before paint)
+    useLayoutEffect(() => {
+        if (chevronMenu && chevronPopupRef.current) {
+            positionPopup(chevronPopupRef.current, chevronMenu.triggerRect);
+        }
+    }, [chevronMenu]);
+
+    // Position more popup after render (before paint)
+    useLayoutEffect(() => {
+        if (moreMenu && morePopupRef.current) {
+            positionPopup(morePopupRef.current, moreMenu.triggerRect);
+        }
+    }, [moreMenu]);
+
+    // Position header context menu after render (before paint)
+    useLayoutEffect(() => {
+        if (headerContextMenu && headerContextPopupRef.current) {
+            positionPopup(headerContextPopupRef.current, headerContextMenu, 0);
+        }
+    }, [headerContextMenu]);
 
     // Focus hidden input when clicking on the terminal area
     const focusInput = useCallback(() => {
@@ -239,22 +300,15 @@ function TerminalWindow({
         }
     }, []);
 
-    // Close all popups on outside click
+    // Close all popups
     const closeAllPopups = useCallback(() => {
         setContextMenu(null);
-        setChevronMenu(false);
-        setMoreMenu(false);
+        setChevronMenu(null);
+        setMoreMenu(null);
         setHeaderContextMenu(null);
     }, []);
 
-    useEffect(() => {
-        const anyOpen = contextMenu || chevronMenu || moreMenu || headerContextMenu;
-        if (anyOpen) {
-            const handleClick = () => closeAllPopups();
-            document.addEventListener('click', handleClick);
-            return () => document.removeEventListener('click', handleClick);
-        }
-    }, [contextMenu, chevronMenu, moreMenu, headerContextMenu, closeAllPopups]);
+    const anyPopupOpen = contextMenu || chevronMenu || moreMenu || headerContextMenu;
 
     const handleContextMenu = (e) => {
         e.preventDefault();
@@ -395,13 +449,21 @@ function TerminalWindow({
         } else if (action === 'add') {
             handleTabAdd();
         } else if (action === 'dropdown') {
-            setChevronMenu(prev => !prev);
-            setMoreMenu(false);
+            setMoreMenu(null);
             setHeaderContextMenu(null);
+            setChevronMenu(prev => {
+                if (prev) return null;
+                const btn = toolWindowRef.current?.querySelector('.tab-bar-actions .tool-window-action-button:last-child');
+                return btn ? { triggerRect: btn.getBoundingClientRect() } : null;
+            });
         } else if (action === 'more') {
-            setMoreMenu(prev => !prev);
-            setChevronMenu(false);
+            setChevronMenu(null);
             setHeaderContextMenu(null);
+            setMoreMenu(prev => {
+                if (prev) return null;
+                const btn = toolWindowRef.current?.querySelector('.tool-window-header-actions .tool-window-action-button:first-child');
+                return btn ? { triggerRect: btn.getBoundingClientRect() } : null;
+            });
         }
         if (onActionClickProp) onActionClickProp(action, payload);
     }, [handleTabClose, handleTabAdd, onActionClickProp]);
@@ -418,16 +480,10 @@ function TerminalWindow({
 
     const handleHeaderContextMenu = useCallback((e) => {
         e.preventDefault();
-        const rect = toolWindowRef.current?.getBoundingClientRect();
-        if (rect) {
-            setHeaderContextMenu({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
-            });
-            setChevronMenu(false);
-            setMoreMenu(false);
-            setContextMenu(null);
-        }
+        setHeaderContextMenu({ x: e.clientX, y: e.clientY });
+        setChevronMenu(null);
+        setMoreMenu(null);
+        setContextMenu(null);
     }, []);
 
     const renderMenuItems = (items, onItemClick) =>
@@ -451,13 +507,25 @@ function TerminalWindow({
         );
 
     return (
-        <div className="terminal-window-wrapper" ref={toolWindowRef} onContextMenu={(e) => {
-            // Only handle right-click on the header area (not the terminal content)
-            const header = toolWindowRef.current?.querySelector('.tool-window-header');
-            if (header && header.contains(e.target)) {
-                handleHeaderContextMenu(e);
-            }
-        }}>
+        <div
+            className={[
+                'terminal-window-wrapper',
+                chevronMenu && 'terminal-dropdown-active',
+                moreMenu && 'terminal-more-active',
+            ].filter(Boolean).join(' ')}
+            ref={toolWindowRef}
+            onContextMenu={(e) => {
+                // Only handle right-click on the header area (not the terminal content)
+                const header = toolWindowRef.current?.querySelector('.tool-window-header');
+                if (header && header.contains(e.target)) {
+                    handleHeaderContextMenu(e);
+                }
+            }}
+        >
+        {/* Click-away overlay to close any open popup */}
+        {anyPopupOpen && (
+            <div className="terminal-popup-overlay" onClick={closeAllPopups} />
+        )}
         <ToolWindow
             title={title}
             width={width}
@@ -557,7 +625,7 @@ function TerminalWindow({
 
             {/* Chevron dropdown (shell selector) */}
             {chevronMenu && (
-                <div className="terminal-chevron-menu">
+                <div ref={chevronPopupRef} className="terminal-popup-menu" style={{ opacity: 0 }}>
                     <Popup visible>
                         {renderMenuItems(chevronMenuItems, closeAllPopups)}
                     </Popup>
@@ -566,7 +634,7 @@ function TerminalWindow({
 
             {/* Three dots (more) menu */}
             {moreMenu && (
-                <div className="terminal-more-menu">
+                <div ref={morePopupRef} className="terminal-popup-menu" style={{ opacity: 0 }}>
                     <Popup visible>
                         {renderMenuItems(moreMenuItems, closeAllPopups)}
                     </Popup>
@@ -575,10 +643,7 @@ function TerminalWindow({
 
             {/* Header right-click context menu */}
             {headerContextMenu && (
-                <div
-                    className="terminal-header-context-menu"
-                    style={{ left: headerContextMenu.x, top: headerContextMenu.y }}
-                >
+                <div ref={headerContextPopupRef} className="terminal-popup-menu" style={{ opacity: 0 }}>
                     <Popup visible>
                         {renderMenuItems(headerContextMenuItems, closeAllPopups)}
                     </Popup>

@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    cursor: pointer;
+    border-radius: 4px;
 }
 
 .popup-cell:hover:not(.popup-cell-separator):not(.popup-cell-header):not(.popup-cell-footer):not(.popup-cell-search) {
@@ -103,8 +103,8 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 8px;
-    right: 8px;
+    left: 0;
+    right: 0;
     bottom: 0;
     background-color: var(--selection-bg);
     border-radius: 4px;

@@ -236,24 +236,25 @@
     position: relative;
 }
 
-/* Chevron dropdown — below tab bar, aligned left with tabs */
-.terminal-chevron-menu {
-    position: absolute;
-    top: 28px;
-    left: 60px;
-    z-index: 30;
+/* Transparent overlay that catches clicks outside popups */
+.terminal-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
 }
 
-/* Three dots (more) menu — below header, aligned right */
-.terminal-more-menu {
-    position: absolute;
-    top: 28px;
-    right: 24px;
-    z-index: 30;
+/* All popup menus — fixed to viewport, above everything */
+.terminal-popup-menu {
+    position: fixed;
+    z-index: 10000;
 }
 
-/* Header right-click context menu — at cursor position */
-.terminal-header-context-menu {
-    position: absolute;
-    z-index: 30;
+/* Trigger button "clicked" state while popup is open */
+.terminal-dropdown-active .tab-bar-actions .tool-window-action-button:last-child,
+.terminal-more-active .tool-window-header-actions .tool-window-action-button:first-child {
+    background: var(--tool-window-action-bg-active);
+    color: var(--tool-window-action-icon-hover);
 }

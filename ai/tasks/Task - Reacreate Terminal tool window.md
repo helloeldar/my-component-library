@@ -115,3 +115,38 @@ Three popup menus from the real IntelliJ Terminal:
 - `src/ui/components/toolwindow/TerminalWindow.jsx` — menu data, state, rendering, action handling
 - `src/ui/components/toolwindow/TerminalWindow.css` — positioning for chevron, more, and header context menus
 - `ai/specs/Terminal specs.md` — documented popup menus section
+
+---
+
+## Popup Positioning & Active State (2026-03-22)
+
+### Requirements (from chat)
+
+> "Popups should be above all layers."
+> "They should know that there is no space on the right, so they should render on the left direction. Same for the bottom."
+> "Logic: default — bottom right. No space on right — to the left. No space on the bottom — to the top."
+> "Clicked component should keep clicked state while popup is opened."
+> "Popup on left or right side should be aligned with clicked component."
+> "Popup should have 4 px gap between clicked component."
+
+### What was done
+
+1. **Fixed positioning** — Changed all popup menus from `position: absolute` to `position: fixed` with `z-index: 10000`, guaranteeing they render above all layers. Click-outside overlay uses `z-index: 9999`.
+
+2. **Smart positioning with flip logic** — Added `positionPopup()` utility function:
+   - Default: popup below trigger, left-aligned with trigger's left edge
+   - If popup would overflow viewport right edge → flip left (popup's right edge aligns with trigger's right edge)
+   - If popup would overflow viewport bottom edge → flip up (popup above trigger)
+   - 4px gap between trigger and popup (0px for right-click context menus)
+
+3. **Trigger button rect capture** — When `handleActionClick` receives 'dropdown' or 'more', it finds the trigger button via DOM query and stores its `getBoundingClientRect()` in state. For header right-click, cursor coordinates (`clientX`, `clientY`) are stored.
+
+4. **useLayoutEffect positioning** — Each popup has a dedicated `useLayoutEffect` that runs when it opens. It measures the popup element, calls `positionPopup()` to calculate final position with flip logic, and applies it before browser paint (no flash). Initially rendered with `opacity: 0`, then set to `1` after positioning.
+
+5. **Trigger button active state** — When a popup is open, the wrapper div gets `terminal-dropdown-active` or `terminal-more-active` CSS class. CSS selectors target the specific trigger buttons (`.tab-bar-actions .tool-window-action-button:last-child` for dropdown, `.tool-window-header-actions .tool-window-action-button:first-child` for more) and apply active background/icon color.
+
+### Files changed
+
+- `src/ui/components/toolwindow/TerminalWindow.jsx` — positionPopup utility, popup refs, useLayoutEffect positioning, active state classes, fixed positioning
+- `src/ui/components/toolwindow/TerminalWindow.css` — unified `.terminal-popup-menu` class with position: fixed, overlay z-index, trigger active state CSS
+- `ai/specs/Terminal specs.md` — documented popup positioning rules and trigger active state

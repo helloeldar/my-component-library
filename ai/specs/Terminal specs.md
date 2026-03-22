@@ -218,7 +218,7 @@ Triggered by the ⋮ button in the header actions (`more` action).
 | Settings | `icon: general/settings` |
 | ─── separator ─── | |
 | Close All | |
-| Show Toolbar | `icon: general/greenCheckmark` (✓) |
+| Show Toolbar | `icon: general/checkmark` (✓) |
 | Group Tabs | |
 | View Mode | `submenu` |
 | Move to | `submenu` |
@@ -238,7 +238,7 @@ Triggered by right-clicking the header / tab bar area.
 | Settings | `icon: general/settings` |
 | ─── separator ─── | |
 | Close All | |
-| Show Toolbar | `icon: general/greenCheckmark` (✓) |
+| Show Toolbar | `icon: general/checkmark` (✓) |
 | Group Tabs | |
 | View Mode | `submenu` |
 | Move to | `submenu` |
@@ -249,7 +249,6 @@ Triggered by right-clicking the header / tab bar area.
 
 ### Popup behavior
 
-- Only one popup can be open at a time — opening one closes the others
-- Clicking outside any popup closes it (document-level click listener)
-- Menus are positioned absolutely relative to the `terminal-window-wrapper`
-- Items with `iconGap` are auto-computed — if any item in the list has an icon, all non-icon items get a gap for alignment
+See **Popup specs.md** for common popup positioning, flip logic, trigger active state, and z-index rules.
+
+Terminal-specific trigger active styles use `--tool-window-action-bg-active` background and `--tool-window-action-icon-hover` icon color on the chevron (▾) and more (⋮) buttons.
