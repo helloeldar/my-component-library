@@ -75,6 +75,45 @@ const contextMenuItems = [
     { label: 'Clear Buffer' },
 ];
 
+const chevronMenuItems = [
+    { label: 'bash', selected: true },
+    { label: 'zsh' },
+    { label: 'New SSH Session...' },
+    { type: 'separator' },
+    { label: 'Settings', icon: 'general/settings' },
+];
+
+const moreMenuItems = [
+    { label: 'Terminal Engine', submenu: true },
+    { label: 'Settings', icon: 'general/settings' },
+    { type: 'separator' },
+    { label: 'Close All' },
+    { label: 'Show Toolbar', icon: 'general/greenCheckmark' },
+    { label: 'Group Tabs' },
+    { label: 'View Mode', submenu: true },
+    { label: 'Move to', submenu: true },
+    { label: 'Resize', submenu: true },
+    { type: 'separator' },
+    { label: 'Remove from Sidebar' },
+];
+
+const headerContextMenuItems = [
+    { label: 'Rename Session' },
+    { label: 'Move to Editor' },
+    { label: 'Terminal Engine', submenu: true },
+    { label: 'Settings', icon: 'general/settings' },
+    { type: 'separator' },
+    { label: 'Close All' },
+    { label: 'Show Toolbar', icon: 'general/greenCheckmark' },
+    { label: 'Group Tabs' },
+    { label: 'View Mode', submenu: true },
+    { label: 'Move to', submenu: true },
+    { label: 'Resize', submenu: true },
+    { type: 'separator' },
+    { label: 'Remove from Sidebar' },
+    { label: 'Hide', shortcut: '⇧⎋' },
+];
+
 function TerminalWindow({
     title = "Terminal",
     width = 600,
@@ -111,6 +150,9 @@ function TerminalWindow({
     const [showSearch, setShowSearch] = useState(showSearchProp);
     const [searchQuery, setSearchQuery] = useState('');
     const [contextMenu, setContextMenu] = useState(null);
+    const [chevronMenu, setChevronMenu] = useState(false);
+    const [moreMenu, setMoreMenu] = useState(false);
+    const [headerContextMenu, setHeaderContextMenu] = useState(null);
     const [currentInput, setCurrentInput] = useState('');
     const [internalBlocks, setInternalBlocks] = useState(blocksProp);
     const [commandHistory, setCommandHistory] = useState([]);
@@ -119,6 +161,7 @@ function TerminalWindow({
     const hiddenInputRef = useRef(null);
     const wrapperRef = useRef(null);
     const scrollAreaRef = useRef(null);
+    const toolWindowRef = useRef(null);
 
     // Sync blocks prop to internal state
     useEffect(() => {
@@ -196,14 +239,22 @@ function TerminalWindow({
         }
     }, []);
 
-    // Close context menu on outside click
+    // Close all popups on outside click
+    const closeAllPopups = useCallback(() => {
+        setContextMenu(null);
+        setChevronMenu(false);
+        setMoreMenu(false);
+        setHeaderContextMenu(null);
+    }, []);
+
     useEffect(() => {
-        const handleClick = () => setContextMenu(null);
-        if (contextMenu) {
+        const anyOpen = contextMenu || chevronMenu || moreMenu || headerContextMenu;
+        if (anyOpen) {
+            const handleClick = () => closeAllPopups();
             document.addEventListener('click', handleClick);
             return () => document.removeEventListener('click', handleClick);
         }
-    }, [contextMenu]);
+    }, [contextMenu, chevronMenu, moreMenu, headerContextMenu, closeAllPopups]);
 
     const handleContextMenu = (e) => {
         e.preventDefault();
@@ -343,6 +394,14 @@ function TerminalWindow({
             handleTabClose(payload);
         } else if (action === 'add') {
             handleTabAdd();
+        } else if (action === 'dropdown') {
+            setChevronMenu(prev => !prev);
+            setMoreMenu(false);
+            setHeaderContextMenu(null);
+        } else if (action === 'more') {
+            setMoreMenu(prev => !prev);
+            setChevronMenu(false);
+            setHeaderContextMenu(null);
         }
         if (onActionClickProp) onActionClickProp(action, payload);
     }, [handleTabClose, handleTabAdd, onActionClickProp]);
@@ -357,7 +416,48 @@ function TerminalWindow({
         }
     }, [isFocusControlled]);
 
+    const handleHeaderContextMenu = useCallback((e) => {
+        e.preventDefault();
+        const rect = toolWindowRef.current?.getBoundingClientRect();
+        if (rect) {
+            setHeaderContextMenu({
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+            });
+            setChevronMenu(false);
+            setMoreMenu(false);
+            setContextMenu(null);
+        }
+    }, []);
+
+    const renderMenuItems = (items, onItemClick) =>
+        items.map((item, i) =>
+            item.type === 'separator' ? (
+                <PopupCell key={i} type="separator" />
+            ) : (
+                <PopupCell
+                    key={i}
+                    type="line"
+                    icon={item.icon}
+                    iconGap={!item.icon && items.some(it => it.icon)}
+                    shortcut={item.shortcut}
+                    submenu={item.submenu}
+                    selected={item.selected}
+                    onClick={() => onItemClick && onItemClick(item)}
+                >
+                    {item.label}
+                </PopupCell>
+            )
+        );
+
     return (
+        <div className="terminal-window-wrapper" ref={toolWindowRef} onContextMenu={(e) => {
+            // Only handle right-click on the header area (not the terminal content)
+            const header = toolWindowRef.current?.querySelector('.tool-window-header');
+            if (header && header.contains(e.target)) {
+                handleHeaderContextMenu(e);
+            }
+        }}>
         <ToolWindow
             title={title}
             width={width}
@@ -454,6 +554,37 @@ function TerminalWindow({
                 )}
             </div>
         </ToolWindow>
+
+            {/* Chevron dropdown (shell selector) */}
+            {chevronMenu && (
+                <div className="terminal-chevron-menu">
+                    <Popup visible>
+                        {renderMenuItems(chevronMenuItems, closeAllPopups)}
+                    </Popup>
+                </div>
+            )}
+
+            {/* Three dots (more) menu */}
+            {moreMenu && (
+                <div className="terminal-more-menu">
+                    <Popup visible>
+                        {renderMenuItems(moreMenuItems, closeAllPopups)}
+                    </Popup>
+                </div>
+            )}
+
+            {/* Header right-click context menu */}
+            {headerContextMenu && (
+                <div
+                    className="terminal-header-context-menu"
+                    style={{ left: headerContextMenu.x, top: headerContextMenu.y }}
+                >
+                    <Popup visible>
+                        {renderMenuItems(headerContextMenuItems, closeAllPopups)}
+                    </Popup>
+                </div>
+            )}
+        </div>
     );
 }
 

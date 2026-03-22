@@ -187,3 +187,69 @@ TerminalWindow supports both modes — same pattern as TabBar:
 ### Action forwarding
 
 TerminalWindow handles `tabClose` and `add` actions internally, and forwards all actions (including `minimize`, `more`) to the parent via `onActionClick` prop. This allows MainWindow to handle minimize (hide panel) while TerminalWindow handles tab logic.
+
+---
+
+## Popup Menus
+
+Figma reference: https://www.figma.com/design/KF78r6MRvrfBIl9PDICZTQ/New-IJ-Terminal?node-id=3936-146049
+
+Terminal has three popup menus, all rendered with the Popup + PopupCell components.
+
+### 1. Chevron Dropdown (shell selector)
+
+Triggered by the ▾ button next to the "+" tab button (`dropdown` action).
+
+| Item | Props |
+|---|---|
+| bash | `selected` (highlighted) |
+| zsh | |
+| New SSH Session... | |
+| ─── separator ─── | |
+| Settings | `icon: general/settings` |
+
+### 2. Three Dots (More) Menu
+
+Triggered by the ⋮ button in the header actions (`more` action).
+
+| Item | Props |
+|---|---|
+| Terminal Engine | `submenu` (chevron ›) |
+| Settings | `icon: general/settings` |
+| ─── separator ─── | |
+| Close All | |
+| Show Toolbar | `icon: general/greenCheckmark` (✓) |
+| Group Tabs | |
+| View Mode | `submenu` |
+| Move to | `submenu` |
+| Resize | `submenu` |
+| ─── separator ─── | |
+| Remove from Sidebar | |
+
+### 3. Header Right-Click Context Menu
+
+Triggered by right-clicking the header / tab bar area.
+
+| Item | Props |
+|---|---|
+| Rename Session | |
+| Move to Editor | |
+| Terminal Engine | `submenu` |
+| Settings | `icon: general/settings` |
+| ─── separator ─── | |
+| Close All | |
+| Show Toolbar | `icon: general/greenCheckmark` (✓) |
+| Group Tabs | |
+| View Mode | `submenu` |
+| Move to | `submenu` |
+| Resize | `submenu` |
+| ─── separator ─── | |
+| Remove from Sidebar | |
+| Hide | `shortcut: ⇧⎋` |
+
+### Popup behavior
+
+- Only one popup can be open at a time — opening one closes the others
+- Clicking outside any popup closes it (document-level click listener)
+- Menus are positioned absolutely relative to the `terminal-window-wrapper`
+- Items with `iconGap` are auto-computed — if any item in the list has an icon, all non-icon items get a gap for alignment

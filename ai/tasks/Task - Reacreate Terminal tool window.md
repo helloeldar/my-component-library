@@ -86,3 +86,32 @@ Stripe icons: src/icons/toolwindows/terminal@20x20.svg
 - `src/ui/components/mainwindow/MainWindow.jsx` — stateful tabs + minimize handler
 - `ai/specs/Terminal specs.md` — documented tab management section
 - `ai/specs/Tool Window specs.md` — documented action callbacks + minimize behavior
+
+---
+
+## Popup Menus (2026-03-22)
+
+### Requirements (from chat)
+
+> "Add these popup menus to Terminal Tool window"
+> Figma reference: https://www.figma.com/design/KF78r6MRvrfBIl9PDICZTQ/New-IJ-Terminal?node-id=3936-146049
+
+Three popup menus from the real IntelliJ Terminal:
+1. Chevron dropdown (▾) — shell selector: bash, zsh, New SSH Session..., Settings
+2. Three dots menu (⋮) — tool window management: Terminal Engine, Settings, Close All, Show Toolbar ✓, Group Tabs, View Mode, Move to, Resize, Remove from Sidebar
+3. Header right-click context menu — Rename Session, Move to Editor, + all items from more menu, + Hide ⇧⎋
+
+### What was done
+
+1. **Menu data arrays** — defined `chevronMenuItems`, `moreMenuItems`, `headerContextMenuItems` as static arrays at module level, matching the Figma reference screenshots
+2. **Popup state** — added `chevronMenu`, `moreMenu`, `headerContextMenu` state variables; only one popup open at a time
+3. **Action triggers** — `handleActionClick` now handles `dropdown` → toggle chevron menu, `more` → toggle more menu
+4. **Header right-click** — wrapper div detects right-click on `.tool-window-header` and opens context menu at cursor position
+5. **Rendering** — reusable `renderMenuItems()` helper renders any menu array with Popup + PopupCell, supporting icons, submenu arrows, shortcuts, selected state, and icon gap alignment
+6. **Click-outside** — single `useEffect` closes all popups on document click
+
+### Files changed
+
+- `src/ui/components/toolwindow/TerminalWindow.jsx` — menu data, state, rendering, action handling
+- `src/ui/components/toolwindow/TerminalWindow.css` — positioning for chevron, more, and header context menus
+- `ai/specs/Terminal specs.md` — documented popup menus section

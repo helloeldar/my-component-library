@@ -230,3 +230,30 @@
     position: absolute;
     z-index: 20;
 }
+
+/* Wrapper for popup positioning */
+.terminal-window-wrapper {
+    position: relative;
+}
+
+/* Chevron dropdown — below tab bar, aligned left with tabs */
+.terminal-chevron-menu {
+    position: absolute;
+    top: 28px;
+    left: 60px;
+    z-index: 30;
+}
+
+/* Three dots (more) menu — below header, aligned right */
+.terminal-more-menu {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    z-index: 30;
+}
+
+/* Header right-click context menu — at cursor position */
+.terminal-header-context-menu {
+    position: absolute;
+    z-index: 30;
+}
