@@ -14,7 +14,7 @@ function Button(props) {
 
     if (size === 'slim') {
         classes.push('button-slim');
-        classes.push('text-ui-small');
+        classes.push('text-ui-default');
     } else {
         classes.push('button-default');
         classes.push('text-ui-default');

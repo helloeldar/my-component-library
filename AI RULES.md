@@ -18,7 +18,7 @@ Your goal is to do tasks, and along the way document how this repo works, so nex
 
 Be systematic.
 Try always to keep consistency with design system, reuse existing components, and do not invent new components unless asked explicitly.
-Reuse existing icons only. If the icon that you need doesn't exist, tell about it, let user decide what to do with it.
+Reuse existing icons only. NEVER create custom SVG icons inline or as new files. Always look for the icon in src/icons/ first (use Glob or Grep). If the icon that you need doesn't exist, STOP and ask the user — do not invent a substitute.
 Use the same name components, as in Figma UI Kit.
 
 Do not commit without explicit approval. Do partial commits based on tasks.

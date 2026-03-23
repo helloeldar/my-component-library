@@ -66,7 +66,7 @@
 | ~~IDELayout~~ | ~~`src/ui/components/idelayout/IDELayout.jsx`~~ | Main Window | Removed | — | — | Consolidated into MainWindow |
 | IDEWindow | `src/ui/components/idewindow/IDEWindow.jsx` | Main Window | Partial | Needs review | No | Likely shell-level composition that needs exact parity review |
 | MainWindow | `src/ui/components/mainwindow/MainWindow.jsx` | Main Window | Partial | Needs fix | No | Structural composition exists, but major parts are still placeholders rather than full Figma parity |
-| Tab | `src/ui/components/tabs/Tab.jsx` | [Tab](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=26471-56584) | Yes | Unknown | No | Selected/Focused/Hover/Pinned variants |
+| Tab | `src/ui/components/tabs/Tab.jsx` | [Tab](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=26471-56584) | Yes | Unknown | Reviewed, edited manually, don't touch | Selected/Focused/Hover/Pinned variants |
 | TabBar | `src/ui/components/tabs/TabBar.jsx` | [Tab Bar](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5664-81616) | Yes | Unknown | No | |
 | StripeIconButton | `src/ui/components/stripe/Stripe.jsx` | [Stripe / Icon Button](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=269-25319) | Yes | Accurate | No | 40×40 wrapper, renamed from Stripe |
 | StripeContainer | `src/ui/components/stripe/StripeContainer.jsx` | [Stripes](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7059-97083) | Yes | Unknown | No | Container for stripe buttons |

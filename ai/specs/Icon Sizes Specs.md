@@ -1,4 +1,30 @@
-# Icon Sizes
+# Icons Specs
+
+## RULE: Never Create Custom Icons
+- **NEVER** write custom inline SVG icons or create new `.svg` files.
+- **Always** search `src/icons/` first (use Glob `src/icons/**/*.svg` or search by keyword).
+- If a needed icon does not exist in the project, **STOP and ask the user** what to do. Do not invent a substitute.
+- Use the `Icon` component (`src/ui/components/icon/Icon.jsx`) to render all icons. It handles dark/light theme automatically.
+
+## How to Use Icons
+```jsx
+import Icon from '../icon/Icon';
+
+// Renders status/error.svg (light) or status/error_dark.svg (dark) automatically
+<Icon name="status/error" size={16} />
+```
+
+## Available Status Icons
+Located in `src/icons/status/`:
+| Name | Light file | Dark file | Description |
+|---|---|---|---|
+| `status/error` | `error.svg` | `error_dark.svg` | Red circle with ! |
+| `status/warning` | `warning.svg` | `warning_dark.svg` | Yellow triangle with ! |
+| `status/success` | `success.svg` | `success_dark.svg` | Green circle with ✓ |
+| `status/info` | `info.svg` | `info_dark.svg` | Blue circle with i |
+| `status/errorOutline` | `errorOutline.svg` | `errorOutline_dark.svg` | Outlined error |
+| `status/infoOutline` | `infoOutline.svg` | `infoOutline_dark.svg` | Outlined info |
+| `status/warningOutline` | `warningOutline.svg` | `warningOutline_dark.svg` | Outlined warning |
 
 ## Icon Naming Conventions
 - Filenames must not have leading or trailing spaces.

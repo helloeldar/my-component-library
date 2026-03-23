@@ -13,6 +13,14 @@
   - Added `--feedback-success-bg` / `--feedback-success-border` to `Themes.css` (light + dark)
   - Registered in `componentsConfig.js`, exported from `lib/index.js`, page + route in `App.js` at `/tooltipeditor`
 
+## Validation Tooltip — Figma pixel-perfect alignment
+### 2026-03-23
+- **Done:** Verified and updated `ValidationTooltip` against Figma node 3825:8628.
+  - Colors confirmed correct: error dark `#56272B`/`#80383E`, light `#FFF6F5`/`#FFC4C5`; warning dark `#44321D`/`#694820`, light `#FFF6E9`/`#F4CD9A`.
+  - CSS precision: added `font-style: normal`, `letter-spacing: 0`, `flex-shrink: 0` on text/actions elements.
+  - Showcase updated: "All Variants" split-view section shows dark (left, `#191A1C` bg) and light (right, white bg) side by side — mirrors Figma spec frame exactly.
+  - All spacing, typography, shadow, border-radius confirmed matching Figma.
+
 ## Got It Tooltip / Figma alignment
 ### 2026-03-23
 - **Done:** Pixel-perfect Got It Tooltip fixes vs Figma node 3825:8627.
@@ -38,6 +46,16 @@
   - Fill is full-width with `repeating-linear-gradient` (accent → `var(--blue-120)` at 50% → accent, 140px tiles).
   - Slides right with `background-position-x` shift of 140px, 600ms linear infinite.
   - Replaced the old `translateX` bouncing bar approach.
+
+## Button — pixel-perfect Figma alignment
+### 2026-03-23
+- **Done:** Fixed `Button.css` and `Button.jsx` to match Figma nodes 146:52009 (Default) and 6517:82733 (Slim).
+  - `.button-default` padding: `6px 14px` → `6px 12px`
+  - `.button-slim` padding: `4px 11px` → `4px 12px`
+  - Added `min-width: 72px` to both sizes (Figma specifies `min-w-72px`)
+  - Added `.button` base class: `display: inline-flex`, `align-items/justify-content: center`, `gap: 6px`, `cursor: pointer`, `outline: none`, `white-space: nowrap`, `box-sizing: border-box`
+  - `.button-slim` overrides gap to `4px` (Figma: gap between icon+text is 4px for slim, 6px for default)
+  - Slim button now uses `text-ui-default` (13px) instead of `text-ui-small` (12px) — Figma specifies 13px for both sizes
 
 ## Specs / AI RULES
 ### 2025-03-23

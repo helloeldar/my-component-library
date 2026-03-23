@@ -76,7 +76,7 @@ const contextMenuItems = [
 ];
 
 const chevronMenuItems = [
-    { label: 'bash', selected: true },
+    { label: 'bash' },
     { label: 'zsh' },
     { label: 'New SSH Session...' },
     { type: 'separator' },
