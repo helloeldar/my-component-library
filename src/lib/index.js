@@ -20,6 +20,7 @@ export { default as Popup } from '../ui/components/popup/Popup';
 export { default as PopupCell } from '../ui/components/popup/PopupCell';
 export { default as PopupProjects } from '../ui/components/popup/PopupProjects';
 export { default as PopupBranches } from '../ui/components/popup/PopupBranches';
+export { default as Loader } from '../ui/components/loader/Loader';
 export { default as ProgressBar } from '../ui/components/progressbar/ProgressBar';
 export { default as Radio, RadioGroup } from '../ui/components/radio/Radio';
 export { default as Toggle } from '../ui/components/toggle/Toggle';
@@ -32,6 +33,9 @@ export { default as DialogGroupHeader } from '../ui/components/dialog/DialogGrou
 
 // Tooltip
 export { default as Tooltip } from '../ui/components/tooltip/Tooltip';
+export { default as TooltipEditor } from '../ui/components/tooltip/TooltipEditor';
+export { default as TooltipHelp } from '../ui/components/tooltip/TooltipHelp';
+export { default as ValidationTooltip } from '../ui/components/tooltip/ValidationTooltip';
 
 // Notification
 export { default as Notification } from '../ui/components/notification/Notification';

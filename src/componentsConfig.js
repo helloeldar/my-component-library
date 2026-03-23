@@ -21,6 +21,10 @@ export const componentsConfig = [
 
     // Help
     { name: 'Tooltip', key: 'tooltip', description: 'Contextual tooltip for additional information on hover', category: 'components', section: 'help', status: 'ready', preview: null },
+    { name: 'Tooltip Help', key: 'tooltiphelp', description: 'Rich tooltip with header, description, shortcut and link', category: 'components', section: 'help', status: 'ready', preview: null },
+    { name: 'Validation Tooltip', key: 'validationtooltip', description: 'Validation error/warning tooltip with optional action links', category: 'components', section: 'help', status: 'ready', preview: null },
+    { name: 'Tooltip Editor', key: 'tooltipeditor', description: 'Rich editor tooltip with status type, directional arrow, header, text, and hint', category: 'components', section: 'help', status: 'ready', preview: null },
+    { name: 'Got It Tooltip', key: 'gotittooltip', description: 'Onboarding tooltip that introduces new or changed features with a Got It button', category: 'components', section: 'help', status: 'ready', preview: null },
     { name: 'Help Text', key: 'helptext', description: 'Inline help text for form fields and settings', category: 'components', section: 'help', status: 'coming-soon', preview: null },
     { name: 'Empty State', key: 'emptystate', description: 'Placeholder content for empty views and panels', category: 'components', section: 'help', status: 'coming-soon', preview: null },
 
@@ -39,7 +43,7 @@ export const componentsConfig = [
 
     // Progress
     { name: 'Progress Bar', key: 'progressbar', description: 'Progress indicator with optional label and stop button', category: 'components', section: 'progress', status: 'ready', preview: '/previews/progress_bar.png' },
-    { name: 'Loader', key: 'loader', description: 'Spinning or animated loader for indeterminate states', category: 'components', section: 'progress', status: 'coming-soon', preview: null },
+    { name: 'Loader', key: 'loader', description: 'Spinning or animated loader for indeterminate states', category: 'components', section: 'progress', status: 'ready', preview: null },
 
     // App Kit
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components', section: 'appkit', status: 'ready', preview: null },

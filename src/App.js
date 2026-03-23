@@ -26,6 +26,7 @@ import Checkbox from './ui/components/checkbox/Checkbox';
 import Radio, { RadioGroup } from './ui/components/radio/Radio';
 import Toggle from './ui/components/toggle/Toggle';
 import ProgressBar from './ui/components/progressbar/ProgressBar';
+import Loader from './ui/components/loader/Loader';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import UILink from './ui/components/link/Link';
@@ -40,6 +41,10 @@ import Dialog from './ui/components/dialog/Dialog';
 import Icon from './ui/components/icon/Icon';
 import Editor from './ui/components/editor/Editor';
 import Tooltip from './ui/components/tooltip/Tooltip';
+import TooltipEditor from './ui/components/tooltip/TooltipEditor';
+import TooltipHelp from './ui/components/tooltip/TooltipHelp';
+import ValidationTooltip from './ui/components/tooltip/ValidationTooltip';
+import GotItTooltip from './ui/components/tooltip/GotItTooltip';
 import Notification from './ui/components/notification/Notification';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
@@ -678,6 +683,60 @@ function ProgressBarPage() {
                 <div className="component-examples-vertical" style={{width: '300px'}}>
                     <ProgressBar indeterminate label="Loading..." labelPosition="left" />
                     <ProgressBar indeterminate label="Please wait..." labelPosition="top" showStopButton />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function LoaderPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Loader</h1>
+            <p className="component-description">
+                A spinner shown during indeterminate loading states. Based on the IntelliJ UI loader icon.
+            </p>
+
+            <div className="component-section">
+                <h2>Default (16 px)</h2>
+                <p className="component-description">Standard small loader used inline or in compact UIs.</p>
+                <div className="component-examples">
+                    <Loader />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Large (32 px)</h2>
+                <p className="component-description">Larger variant for full-panel or dialog loading states.</p>
+                <div className="component-examples">
+                    <Loader size={32} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Custom sizes</h2>
+                <p className="component-description">Any pixel size is accepted via the <code>size</code> prop.</p>
+                <div className="component-examples" style={{ alignItems: 'center', gap: 24 }}>
+                    <Loader size={12} />
+                    <Loader size={16} />
+                    <Loader size={24} />
+                    <Loader size={32} />
+                    <Loader size={48} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Inline usage</h2>
+                <p className="component-description">Loader can be used inline alongside text labels.</p>
+                <div className="component-examples-vertical">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <Loader />
+                        <span className="text-ui-default">Indexing project…</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <Loader />
+                        <span className="text-ui-default">Loading dependencies…</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2138,18 +2197,34 @@ function TooltipPage() {
             </p>
 
             <div className="component-section">
+                <h2>Static Preview</h2>
+                <p className="section-description">
+                    Tooltip appearance — always visible for inspection.
+                </p>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <div className="tooltip text-ui-default" style={{ position: 'relative', pointerEvents: 'auto' }}>
+                        <span className="tooltip-text">Action name</span>
+                        <span className="tooltip-shortcut">&#x2318;&#x2325;&#x2303;&#x21E7;</span>
+                    </div>
+                    <div className="tooltip text-ui-default" style={{ position: 'relative', pointerEvents: 'auto' }}>
+                        <span className="tooltip-text">Action name</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
                 <h2>Default</h2>
                 <p className="section-description">
-                    Hover over the buttons to see the tooltip.
+                    Tooltips are pinned open here so you can review layout without hovering.
                 </p>
                 <div className="component-examples" style={{ gap: '24px' }}>
-                    <Tooltip text="Settings" placement="bottom">
+                    <Tooltip text="Settings" placement="bottom" alwaysVisible>
                         <ToolbarIconButton icon="general/settings" tooltip={undefined} />
                     </Tooltip>
-                    <Tooltip text="Search Everywhere" shortcut="⇧⇧" placement="bottom">
+                    <Tooltip text="Search Everywhere" shortcut="⇧⇧" placement="bottom" alwaysVisible>
                         <ToolbarIconButton icon="actions/search" tooltip={undefined} />
                     </Tooltip>
-                    <Tooltip text="Run" shortcut="⌃R" placement="bottom">
+                    <Tooltip text="Run" shortcut="⌃R" placement="bottom" alwaysVisible>
                         <ToolbarIconButton icon="actions/execute" tooltip={undefined} />
                     </Tooltip>
                 </div>
@@ -2158,19 +2233,19 @@ function TooltipPage() {
             <div className="component-section">
                 <h2>Placement</h2>
                 <p className="section-description">
-                    Tooltips can appear on any side of the trigger element.
+                    Tooltips can appear on any side of the trigger element (shown pinned open).
                 </p>
                 <div className="component-examples" style={{ gap: '48px', padding: '32px 0' }}>
-                    <Tooltip text="Top tooltip" placement="top">
+                    <Tooltip text="Top tooltip" placement="top" alwaysVisible>
                         <Button type="secondary">Top</Button>
                     </Tooltip>
-                    <Tooltip text="Bottom tooltip" placement="bottom">
+                    <Tooltip text="Bottom tooltip" placement="bottom" alwaysVisible>
                         <Button type="secondary">Bottom</Button>
                     </Tooltip>
-                    <Tooltip text="Left tooltip" placement="left">
+                    <Tooltip text="Left tooltip" placement="left" alwaysVisible>
                         <Button type="secondary">Left</Button>
                     </Tooltip>
-                    <Tooltip text="Right tooltip" placement="right">
+                    <Tooltip text="Right tooltip" placement="right" alwaysVisible>
                         <Button type="secondary">Right</Button>
                     </Tooltip>
                 </div>
@@ -2182,15 +2257,371 @@ function TooltipPage() {
                     Tooltips can display a keyboard shortcut alongside the label.
                 </p>
                 <div className="component-examples" style={{ gap: '24px' }}>
-                    <Tooltip text="Copy" shortcut="⌘C" placement="bottom">
+                    <Tooltip text="Copy" shortcut="⌘C" placement="bottom" alwaysVisible>
                         <Button type="secondary">Copy</Button>
                     </Tooltip>
-                    <Tooltip text="Paste" shortcut="⌘V" placement="bottom">
+                    <Tooltip text="Paste" shortcut="⌘V" placement="bottom" alwaysVisible>
                         <Button type="secondary">Paste</Button>
                     </Tooltip>
-                    <Tooltip text="Find in Files" shortcut="⇧⌘F" placement="bottom">
+                    <Tooltip text="Find in Files" shortcut="⇧⌘F" placement="bottom" alwaysVisible>
                         <Button type="secondary">Find in Files</Button>
                     </Tooltip>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function TooltipHelpPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Tooltip Help</h1>
+            <p className="component-description">
+                Rich tooltip with header, description, shortcut, and external link.
+                Used to show help text for settings and actions. Shown on hovering
+                the question mark icon.
+            </p>
+
+            <div className="component-section">
+                <h2>Full (Header + Body + Shortcut + Link)</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        header="Header"
+                        body="Explain behavior that is not clear from the setting or action name."
+                        shortcut="⌘⌥⌃⇧"
+                        link={{ text: 'External', href: '#', external: true }}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Body Only</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        body="Explain behavior that is not clear from the setting or action name."
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Header</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        header="Header"
+                        body="Explain behavior that is not clear from the setting or action name."
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Shortcut</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        body="Explain behavior that is not clear from the setting or action name."
+                        shortcut="⌘⌥⌃⇧"
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Link</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        body="Explain behavior that is not clear from the setting or action name."
+                        link={{ text: 'External', href: '#', external: true }}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ValidationTooltipPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Validation Tooltip</h1>
+            <p className="component-description">
+                Inline validation feedback tooltip that appears near input fields to display
+                error or warning messages. Can include optional action links.
+            </p>
+
+            <div className="component-section">
+                <h2>Error</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <ValidationTooltip text="Validation error" type="error" />
+                    <ValidationTooltip
+                        text="Validation error"
+                        type="error"
+                        actions={[
+                            { label: 'Action A', onClick: () => {} },
+                            { label: 'Action B', onClick: () => {} },
+                        ]}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Warning</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <ValidationTooltip text="Validation warning" type="warning" />
+                    <ValidationTooltip
+                        text="Validation warning"
+                        type="warning"
+                        actions={[
+                            { label: 'Action A', onClick: () => {} },
+                            { label: 'Action B', onClick: () => {} },
+                        ]}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function GotItTooltipPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Got It Tooltip</h1>
+            <p className="component-description">
+                A Got It tooltip informs users about a new or changed feature and gives basic
+                information about it. It is shown once per user and disappears after clicking
+                "Got It" or can be skipped entirely.
+            </p>
+
+            <div className="component-section">
+                <h2>Full (Step + Header + Body + Link + Skip)</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <GotItTooltip
+                        step="01"
+                        header="Header"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="top"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Arrow Positions</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Top"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="top"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Bottom"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="bottom"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Left"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="left"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Right"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="right"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Step Counter</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <GotItTooltip
+                        header="Header"
+                        arrowPosition="top"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Body Only (Minimal)</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <GotItTooltip arrowPosition="top">
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function TooltipEditorPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Tooltip Editor</h1>
+            <p className="component-description">
+                Rich editor tooltip with status type, directional arrow, header, main text, and hint.
+                Used in code editors to show validation errors, warnings, and contextual information
+                near gutter markers and inline annotations.
+            </p>
+
+            <div className="component-section">
+                <h2>Types — Dark</h2>
+                <p className="component-description">Info, Error, Warning, Success on dark (editor) backgrounds.</p>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <TooltipEditor
+                        type="info"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                    <TooltipEditor
+                        type="error"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                    <TooltipEditor
+                        type="warning"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                    <TooltipEditor
+                        type="success"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Arrow Directions</h2>
+                <p className="component-description">Arrow can point in any of four directions.</p>
+                <div className="component-examples" style={{ gap: '32px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Up</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="up"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Down</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="down"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Left</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="left"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Right</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="right"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Content Variants</h2>
+                <p className="component-description">Header and hint are optional.</p>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Header + Text + Hint</span>
+                        <TooltipEditor
+                            type="warning"
+                            arrow="up"
+                            header="Deprecated API"
+                            text="Use 'newMethod()' instead"
+                            hint="Will be removed in v4.0"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Text only</span>
+                        <TooltipEditor
+                            type="info"
+                            arrow="up"
+                            text="No usages found"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>With menu</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="up"
+                            header="Type mismatch"
+                            text="Expected String, got Int"
+                            hint="Fix type"
+                            menu
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Success</span>
+                        <TooltipEditor
+                            type="success"
+                            arrow="up"
+                            header="Tests passed"
+                            text="All 42 tests completed"
+                            hint="0 failures"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>All Types — All Directions</h2>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, auto)', gap: '24px', justifyContent: 'start' }}>
+                    {['up', 'right', 'down', 'left'].map(arrow =>
+                        ['info', 'error', 'warning', 'success'].map(type => (
+                            <TooltipEditor
+                                key={`${type}-${arrow}`}
+                                type={type}
+                                arrow={arrow}
+                                header="Header"
+                                text="Text"
+                                hint="Hint"
+                            />
+                        ))
+                    )}
                 </div>
             </div>
         </div>
@@ -2674,6 +3105,7 @@ function AppContent() {
                     <Route path="/table" element={<TablePage />} />
                     <Route path="/toggle" element={<TogglePage />} />
                     <Route path="/progressbar" element={<ProgressBarPage />} />
+                    <Route path="/loader" element={<LoaderPage />} />
                     <Route path="/dropdown" element={<DropdownPage />} />
                     <Route path="/combobox" element={<ComboboxPage />} />
                     <Route path="/toolbariconbutton" element={<ToolbarIconButtonPage />} />
@@ -2700,6 +3132,10 @@ function AppContent() {
                     <Route path="/alert" element={<AlertPage />} />
                     <Route path="/dialog" element={<DialogPage />} />
                     <Route path="/tooltip" element={<TooltipPage />} />
+                    <Route path="/tooltiphelp" element={<TooltipHelpPage />} />
+                    <Route path="/validationtooltip" element={<ValidationTooltipPage />} />
+                    <Route path="/tooltipeditor" element={<TooltipEditorPage />} />
+                    <Route path="/gotittooltip" element={<GotItTooltipPage />} />
                     <Route path="/balloon" element={<BalloonPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
