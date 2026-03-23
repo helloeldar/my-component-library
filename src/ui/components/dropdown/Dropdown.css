@@ -14,20 +14,21 @@
 /* Horizontal layout */
 .dropdown-container-horizontal {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     gap: 6px;
     width: 100%;
 }
 
 .dropdown-container-horizontal .dropdown-label {
     flex-shrink: 0;
-    padding: 6px 0;
+    padding: 12px 0;
 }
 
 .dropdown-container-horizontal .dropdown-field-wrapper {
     flex: 1;
     min-width: 0;
     position: relative;
+    padding: 6px 0;
 }
 
 /* Dropdown field wrapper */

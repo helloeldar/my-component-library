@@ -106,8 +106,9 @@
 .dialog-group-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 0 4px;
+    gap: 6px;
+    padding: 6px 0;
+    width: 100%;
 }
 
 .dialog-group-header-title {
@@ -119,5 +120,6 @@
 .dialog-group-header-line {
     flex: 1;
     height: 1px;
-    background: var(--separator);
+    min-width: 0;
+    background: var(--dialog-border);
 }
