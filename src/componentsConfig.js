@@ -48,6 +48,7 @@ export const componentsConfig = [
     { name: 'Main Window', key: 'mainwindow', description: 'Complete IDE window layout with island theme', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'AI Assistant', key: 'aiassistant', description: 'AI Assistant tool window with chat-like interface', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Project', key: 'projectwindow', description: 'Project tool window with file tree navigation', category: 'windows', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Problems', key: 'problemswindow', description: 'Problems tool window with file errors and warnings', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Terminal', key: 'terminal', description: 'Terminal tool window with tabbed sessions', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Popup / Projects', key: 'popupprojects', description: 'Projects popup with recent projects and quick actions', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Popup / Branches', key: 'popupbranches', description: 'Branches popup with search, VCS actions, and branch tree', category: 'components', section: 'appkit', status: 'ready', preview: null },

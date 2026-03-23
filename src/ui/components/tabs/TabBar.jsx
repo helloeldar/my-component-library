@@ -68,6 +68,7 @@ function TabBar({
                     key={index}
                     label={tab.label}
                     icon={tab.icon}
+                    count={tab.count}
                     active={index === activeTab}
                     focused={focused}
                     closable={tab.closable}

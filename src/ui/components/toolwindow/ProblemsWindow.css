@@ -1,0 +1,35 @@
+/* Problems Tool Window */
+
+.problems-window .tool-window-content {
+    padding: 0;
+}
+
+.problems-content {
+    display: flex;
+    height: 100%;
+}
+
+/* Left sidebar toolbar — 35px wide vertical strip */
+.problems-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35px;
+    flex-shrink: 0;
+    padding: 7px 5px 7px 4px;
+    border-right: 1px solid var(--tool-window-border);
+    box-sizing: border-box;
+}
+
+/* Tree area fills remaining space */
+.problems-tree-area {
+    flex: 1;
+    min-width: 0;
+    padding: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.problems-tree-area .empty-state {
+    height: 100%;
+}

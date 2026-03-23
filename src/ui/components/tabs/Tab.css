@@ -81,6 +81,13 @@
     max-width: 256px;
 }
 
+/* Count badge — muted color for numeric indicators */
+.tab-count {
+    color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
 /* Close button — 12px container for 16px icon (Figma: -2px padding left/right) */
 .tab-close {
     display: flex;

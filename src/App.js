@@ -9,6 +9,7 @@ import ToolWindow from './ui/components/toolwindow/ToolWindow';
 import TerminalWindow from './ui/components/toolwindow/TerminalWindow';
 import ProjectWindow from './ui/components/toolwindow/ProjectWindow';
 import AIAssistantWindow from './ui/components/toolwindow/AIAssistantWindow';
+import ProblemsWindow from './ui/components/toolwindow/ProblemsWindow';
 import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
@@ -2480,6 +2481,41 @@ function AIAssistantWindowPage() {
     );
 }
 
+function ProblemsWindowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Problems</h1>
+            <p className="component-description">
+                Problems tool window showing file-level issues with error and warning details.
+                Supports tabbed views for File, Project Errors, Vulnerable Dependencies, Qodana, and AI Self-Review.
+            </p>
+
+            <div className="component-section">
+                <h2>With Problems</h2>
+                <p className="section-description">
+                    Problems view with file nodes and error-level children showing issue messages and line numbers.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <ProblemsWindow />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Empty State</h2>
+                <p className="section-description">
+                    Problems view when the current file has no issues.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <ProblemsWindow
+                        empty={true}
+                        emptyText="No problems in crowdin.yml"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function MainWindowPage() {
     return (
         <div className="component-showcase">
@@ -2756,6 +2792,7 @@ function AppContent() {
                     <Route path="/terminal" element={<TerminalWindowPage />} />
                     <Route path="/projectwindow" element={<ProjectWindowPage />} />
                     <Route path="/aiassistant" element={<AIAssistantWindowPage />} />
+                    <Route path="/problemswindow" element={<ProblemsWindowPage />} />
                     <Route path="/projectwidget" element={<ProjectWidgetPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />

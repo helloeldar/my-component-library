@@ -71,6 +71,7 @@ export { default as ToolWindowHeader } from '../ui/components/toolwindow/ToolWin
 export { default as TerminalWindow } from '../ui/components/toolwindow/TerminalWindow';
 export { default as ProjectWindow } from '../ui/components/toolwindow/ProjectWindow';
 export { default as AIAssistantWindow } from '../ui/components/toolwindow/AIAssistantWindow';
+export { default as ProblemsWindow } from '../ui/components/toolwindow/ProblemsWindow';
 
 // Tree Components
 export { default as Tree } from '../ui/components/tree/Tree';

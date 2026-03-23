@@ -7,6 +7,7 @@ import ToolWindow from '../toolwindow/ToolWindow';
 import TerminalWindow from '../toolwindow/TerminalWindow';
 import ProjectWindow from '../toolwindow/ProjectWindow';
 import AIAssistantWindow from '../toolwindow/AIAssistantWindow';
+import ProblemsWindow from '../toolwindow/ProblemsWindow';
 import TabBar from '../tabs/TabBar';
 import Editor from '../editor/Editor';
 import './MainWindow.css';
@@ -336,6 +337,12 @@ function MainWindow({
                             title="Debug"
                             onClick={() => handleBottomStripeClick('debug')}
                         />
+                        <StripeIconButton
+                            icon="toolwindows/problems@20x20"
+                            state={getStripeState('bottom', 'problems', showBottomPanel)}
+                            title="Problems"
+                            onClick={() => handleBottomStripeClick('problems')}
+                        />
                     </StripeContainer>
                 </div>
 
@@ -416,7 +423,7 @@ function MainWindow({
                         )}
                     </div>
 
-                    {/* Bottom Tool Window (Terminal) */}
+                    {/* Bottom Tool Window (Terminal / Run / Debug / Problems) */}
                     {showBottomPanel && (
                         bottomStripeSelection === 'terminal' ? (
                             <TerminalWindow
@@ -432,6 +439,17 @@ function MainWindow({
                                 }}
                                 blocks={[]}
                                 input={{ path: '~/projects/' + projectName, branch: 'main' }}
+                                focused={focusedPanel === 'bottom'}
+                                onFocus={() => setFocusedPanel('bottom')}
+                                className="main-window-tool-window main-window-tool-window-bottom"
+                            />
+                        ) : bottomStripeSelection === 'problems' ? (
+                            <ProblemsWindow
+                                width="auto"
+                                height={180}
+                                onActionClick={(action) => {
+                                    if (action === 'minimize') setShowBottomPanel(false);
+                                }}
                                 focused={focusedPanel === 'bottom'}
                                 onFocus={() => setFocusedPanel('bottom')}
                                 className="main-window-tool-window main-window-tool-window-bottom"

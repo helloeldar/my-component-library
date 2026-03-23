@@ -5,6 +5,7 @@ import './TreeNode.css';
 function TreeNode({ 
     label, 
     icon, 
+    secondaryText,
     level = 1, 
     hasChildren = false, 
     isExpanded = false, 
@@ -66,6 +67,9 @@ function TreeNode({
                 
                 {renderIcon()}
                 <span className="tree-node-label">{label}</span>
+                {secondaryText && (
+                    <span className="tree-node-secondary">{secondaryText}</span>
+                )}
             </div>
             
             {hasChildren && expanded && children && (

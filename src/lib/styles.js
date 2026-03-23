@@ -45,6 +45,7 @@ import '../ui/components/statusbar/StatusBarWidget.css';
 // Tool Window Styles
 import '../ui/components/toolwindow/ToolWindow.css';
 import '../ui/components/toolwindow/ToolWindowHeader.css';
+import '../ui/components/toolwindow/ProblemsWindow.css';
 
 // Tree Styles
 import '../ui/components/tree/Tree.css';

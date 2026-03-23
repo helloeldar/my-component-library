@@ -13,6 +13,7 @@ function Tree({ data = [], onNodeSelect, onNodeToggle }) {
                     key={nodeId}
                     label={node.label}
                     icon={node.icon}
+                    secondaryText={node.secondaryText}
                     level={level}
                     hasChildren={node.children && node.children.length > 0}
                     isExpanded={node.isExpanded}

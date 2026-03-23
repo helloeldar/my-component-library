@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     gap: 3px;
-    min-width: 0;
+    flex-shrink: 0;
 }
 
 .tool-window-header-title {
@@ -52,6 +52,7 @@
     display: flex;
     align-items: center;
     gap: 0;
+    flex-shrink: 0;
 }
 
 .tool-window-action-button {

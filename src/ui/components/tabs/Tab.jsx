@@ -17,6 +17,7 @@ import './Tab.css';
 function Tab({
     label,
     icon,
+    count,
     active = false,
     focused = false,
     disabled = false,
@@ -58,6 +59,9 @@ function Tab({
             >
                 {renderIcon()}
                 <span className="tab-label text-ui-default">{label}</span>
+                {count != null && (
+                    <span className="tab-count text-ui-default">{count}</span>
+                )}
                 {closable && (
                     <span
                         className="tab-close"
