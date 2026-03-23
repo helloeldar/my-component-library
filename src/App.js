@@ -2643,7 +2643,7 @@ function Sidebar() {
                         <span className={`nav-category-chevron ${isSectionOpen('windows') ? 'open' : ''}`}>
                             <Icon name="general/chevronRight" size={16} />
                         </span>
-                        Windows
+                        Tool windows
                     </div>
                     {isSectionOpen('windows') && (
                         <div className="nav-category-items">

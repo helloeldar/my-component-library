@@ -16,6 +16,7 @@
     overflow-x: hidden;
     position: relative;
     min-height: 0; /* Important for flex child to allow shrinking */
+    padding: 0 8px;
 }
 
 /* Custom Scrollbar Styling */

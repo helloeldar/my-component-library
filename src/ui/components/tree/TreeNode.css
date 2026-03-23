@@ -1,6 +1,7 @@
 /* Tree Node Container */
 .tree-node-container {
     width: 100%;
+    overflow: hidden;
 }
 
 /* Tree Node Base Styles */
@@ -8,7 +9,7 @@
     display: flex;
     align-items: center;
     height: 24px;
-    padding: 2px 0;
+    padding: 4px 8px;
     color: var(--tree-node-text);
     box-sizing: border-box;
     gap: 4px;
@@ -17,6 +18,7 @@
 /* Hover State */
 .tree-node:hover:not(.tree-node-selected) {
     background: var(--tree-node-bg-hover);
+    border-radius: 4px;
 }
 
 /* Selected State */
@@ -37,7 +39,7 @@
     border: none;
     color: var(--tree-node-toggle);
     padding: 0;
-    margin-right: 4px;
+    margin-right: 2px;
 }
 
 .tree-node-toggle:hover {
