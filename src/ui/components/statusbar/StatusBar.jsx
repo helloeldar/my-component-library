@@ -1,17 +1,13 @@
 import StatusBarBreadcrumb from './StatusBarBreadcrumb';
 import StatusBarWidget from './StatusBarWidget';
 import ProgressBar from '../progressbar/ProgressBar';
+import Icon from '../icon/Icon';
 import './StatusBar.css';
 
-/**
- * Chevron separator for breadcrumbs
- */
 function ChevronRight() {
     return (
         <div className="status-bar-chevron">
-            <svg viewBox="0 0 7 7" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.5 0.5L5 3.5L1.5 6.5" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <Icon name="general/chevronRight" size={16} forceTheme="light" />
         </div>
     );
 }

@@ -4,7 +4,6 @@
 }
 
 .loader-spinner {
-    color: var(--icon-secondary, #868A91);
     animation: loader-spin 1s linear infinite;
     display: inline-block;
     flex-shrink: 0;

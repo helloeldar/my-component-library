@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import Icon from '../icon/Icon';
 import './Search.css';
 
 /**
@@ -62,7 +63,7 @@ function Search({
             <div className={contentClasses}>
                 {/* Search Icon */}
                 <div className="search-icon">
-                    <SearchIcon />
+                    <Icon name="general/search" size={16} />
                 </div>
 
                 {/* Input */}
@@ -87,63 +88,12 @@ function Search({
                             onClick={handleClear}
                             tabIndex={-1}
                         >
-                            <CloseIcon />
+                            <Icon name="general/closeSmall" size={16} />
                         </button>
                     )}
                 </div>
             </div>
         </div>
-    );
-}
-
-/**
- * Search icon (magnifying glass)
- */
-function SearchIcon() {
-    return (
-        <svg 
-            width="16" 
-            height="16" 
-            viewBox="0 0 16 16" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <circle 
-                cx="7" 
-                cy="7" 
-                r="4.5" 
-                stroke="currentColor" 
-                strokeWidth="1"
-            />
-            <path 
-                d="M10.5 10.5L13.5 13.5" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round"
-            />
-        </svg>
-    );
-}
-
-/**
- * Close icon (X)
- */
-function CloseIcon() {
-    return (
-        <svg 
-            width="12" 
-            height="12" 
-            viewBox="0 0 12 12" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path 
-                d="M3 3L9 9M9 3L3 9" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round"
-            />
-        </svg>
     );
 }
 
