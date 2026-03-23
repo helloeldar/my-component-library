@@ -11,6 +11,13 @@ Show Tooltips in UI showcase as it is, so user don't have to hover.
 - **R-Showcase-Tooltip-01:** The **Tooltip** showcase sections that demonstrate the hover `Tooltip` component must show the **real** tooltip UI **pinned open** (same component, same positioning), so **no hover is required** to review them.
 - **Cross-ref:** See **Tooltip specs.md** — “Requirements from chat”, **R-Tooltip-Showcase-01**.
 
+## Notification page (`/notification`)
+
+Show hover-state buttons always visible in showcase, so the user does not need to hover.
+
+- **R-Showcase-Notification-01:** The **Notification** showcase section that demonstrates the ⋮ (More) and × (Close) hover buttons must use `forceHoverButtons` prop to pin them **always visible** — no hover required.
+- The `forceHoverButtons` prop adds the `.notification--buttons-visible` CSS class, which applies the same visibility styles as the `:hover` state.
+
 ## Layout
 
 - The app uses a two-column layout: a fixed **Sidebar** on the left and a scrollable **Main Content** area on the right.

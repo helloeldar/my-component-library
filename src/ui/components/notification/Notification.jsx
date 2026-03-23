@@ -1,6 +1,7 @@
 import './Notification.css';
 import Icon from '../icon/Icon';
 import UILink from '../link/Link';
+import Button from '../button/Button';
 
 /**
  * Notification (Balloon) component following IntelliJ UI Guidelines
@@ -18,6 +19,7 @@ import UILink from '../link/Link';
  * @param {string} props.timestamp - Relative timestamp shown below body (optional)
  * @param {function} props.onClose - Close button handler; shows the × icon button on hover
  * @param {function} props.onMore - More button handler; shows the ⋮ icon button on hover
+ * @param {boolean} props.forceHoverButtons - Force hover buttons to always be visible (useful for showcases)
  * @param {string} props.className - Extra CSS classes
  */
 function Notification({
@@ -29,6 +31,7 @@ function Notification({
     timestamp,
     onClose,
     onMore,
+    forceHoverButtons = false,
     className = '',
     ...rest
 }) {
@@ -44,7 +47,7 @@ function Notification({
 
     return (
         <div
-            className={['notification', className].filter(Boolean).join(' ')}
+            className={['notification', forceHoverButtons && 'notification--buttons-visible', className].filter(Boolean).join(' ')}
             role="alert"
             {...rest}
         >
@@ -70,13 +73,13 @@ function Notification({
                     {hasActions && (
                         <div className="notification-actions">
                             {button && (
-                                <button
-                                    type="button"
-                                    className="notification-action-btn text-ui-default"
+                                <Button
+                                    type="secondary"
+                                    className="notification-action-btn"
                                     onClick={button.onClick}
                                 >
                                     {button.label}
-                                </button>
+                                </Button>
                             )}
                             <div className="notification-links">
                                 {actions.map((action, i) => (

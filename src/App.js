@@ -2898,10 +2898,7 @@ function BalloonPage() {
             </div>
 
             <div className="component-section">
-                <h2>Hover State (⋮ and × buttons)</h2>
-                <p className="section-description">
-                    Hover over the notification to reveal the More and Close icon buttons (top-right corner).
-                </p>
+                <h2>With ⋮ and × Buttons</h2>
                 <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
                     <Notification
                         type="info"
@@ -2913,6 +2910,7 @@ function BalloonPage() {
                         ]}
                         onMore={() => {}}
                         onClose={() => {}}
+                        forceHoverButtons
                     >
                         You need to install JDK 18 in order to run this project
                     </Notification>
@@ -2922,6 +2920,7 @@ function BalloonPage() {
                         actions={[{ label: 'Open Build Log', onClick: () => {} }]}
                         onMore={() => {}}
                         onClose={() => {}}
+                        forceHoverButtons
                     >
                         Compilation failed with 2 errors.
                     </Notification>
