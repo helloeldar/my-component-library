@@ -17,6 +17,7 @@
     /* Dark theme default */
     background: var(--search-bg);
     border: 1px solid var(--search-border);
+    width: stretch;
 }
 
 /* Focus state */
@@ -58,7 +59,7 @@
     border: none;
     background: transparent;
     outline: none;
-    color: var(--text-primary);
+    color: var(--text-default);
     min-width: 0;
 }
 

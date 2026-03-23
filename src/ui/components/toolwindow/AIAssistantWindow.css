@@ -11,14 +11,14 @@
     padding: 10px 12px;
     border-radius: 8px;
     background: var(--bg-secondary);
-    color: var(--text-primary);
+    color: var(--text-default);
     align-self: flex-end;
     max-width: 85%;
 }
 
 .ai-assistant-message-assistant {
     padding: 10px 12px;
-    color: var(--text-primary);
+    color: var(--text-default);
     line-height: 1.5;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .ai-assistant-message-assistant code {
-    color: var(--accent-primary);
+    color: var(--accent-brand-bg);
 }
 
 .ai-assistant-message-loading {

@@ -111,7 +111,7 @@
 }
 
 .dialog-group-header-title {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
     flex-shrink: 0;
 }

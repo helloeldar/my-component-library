@@ -98,7 +98,7 @@
 }
 
 .code-input::selection {
-    background: var(--selection-bg);
+    background: var(--selection-bg-active);
 }
 
 /* Syntax Highlighting Tokens using Editor Semantic Colors */

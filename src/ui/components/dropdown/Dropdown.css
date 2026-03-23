@@ -38,7 +38,7 @@
 
 /* Dropdown Label */
 .dropdown-label {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
 }
 
@@ -48,7 +48,7 @@
     align-items: center;
     padding: 0 0 0 9px;
     background: var(--control-bg);
-    border: 1px solid var(--border-control);
+    border: 1px solid var(--control-border);
     border-radius: 4px;
     min-height: 28px;
     cursor: pointer;
@@ -67,7 +67,7 @@
 /* Dropdown value */
 .dropdown-value {
     flex: 1;
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -94,12 +94,12 @@
 
 /* Hover state */
 .dropdown:hover:not(.dropdown-disabled):not(.dropdown-focused) {
-    border-color: var(--border-raised);
+    border-color: var(--control-border-raised);
 }
 
 /* Focus state */
 .dropdown-focused:not(.dropdown-disabled) {
-    border: 2px solid var(--border-focus);
+    border: 2px solid var(--control-focus-border-brand);
     margin: -1px;
 }
 
@@ -148,7 +148,7 @@
     display: flex;
     align-items: center;
     padding: 6px 8px;
-    color: var(--text-primary);
+    color: var(--text-default);
     border-radius: 4px;
     cursor: pointer;
 }
@@ -158,7 +158,7 @@
 }
 
 .dropdown-option-selected {
-    background: var(--selection-bg);
+    background: var(--selection-bg-active);
 }
 
 .dropdown-option-disabled {

@@ -25,16 +25,16 @@
 
 /* Error type */
 .validation-tooltip.validation-error {
-    background: var(--validation-error-bg);
-    border-color: var(--validation-error-border);
-    color: var(--text-primary);
+    background: var(--feedback-error-bg);
+    border-color: var(--feedback-error-border);
+    color: var(--text-default);
 }
 
 /* Warning type */
 .validation-tooltip.validation-warning {
-    background: var(--validation-warning-bg);
-    border-color: var(--validation-warning-border);
-    color: var(--text-primary);
+    background: var(--feedback-warning-bg);
+    border-color: var(--feedback-warning-border);
+    color: var(--text-default);
 }
 
 /* Text element */
@@ -49,7 +49,7 @@
     align-items: flex-start;
     flex-shrink: 0;
     gap: 16px;
-    color: var(--link-text);
+    color: var(--text-link);
 }
 
 .validation-tooltip-action {

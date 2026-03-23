@@ -4,6 +4,7 @@ import './Radio.css';
 function Radio({
     checked = false,
     disabled = false,
+    invalid = false,
     label,
     hint,
     name,
@@ -35,6 +36,9 @@ function Radio({
         }
         if (isHovered && !disabled) {
             classes.push('radio-hovered');
+        }
+        if (invalid && !disabled) {
+            classes.push('radio-invalid');
         }
         
         return classes.join(' ');

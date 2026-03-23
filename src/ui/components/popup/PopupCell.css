@@ -29,7 +29,7 @@
 
 .popup-cell-header-text {
     line-height: 20px;
-    color: var(--text-primary);
+    color: var(--text-default);
     width: 100%;
 }
 
@@ -106,7 +106,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--selection-bg);
+    background-color: var(--selection-bg-active);
     border-radius: 4px;
     z-index: 0;
 }
@@ -141,7 +141,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .popup-cell-icon-gap {
@@ -179,7 +179,7 @@
 
 /* Text */
 .popup-cell-text {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -203,7 +203,7 @@
 }
 
 .popup-cell-primary-text {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -1,0 +1,104 @@
+/* Badge — Islands UI Kit */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    height: 16px;
+    padding: 0 6px;
+    border-radius: 8px;
+    cursor: default;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* Background layer (carries color + opacity) */
+.badge__bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Text layer sits on top of bg */
+.badge__text {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+/* ── Color variants ── */
+
+/* Blue Secondary (default) — bg = --badge-blue-bg-secondary @ --badge-opacity-accent */
+.badge--blue-secondary .badge__bg {
+    background: color-mix(in srgb, var(--badge-blue-bg-secondary) var(--badge-opacity-accent), transparent);
+}
+.badge--blue-secondary .badge__text {
+    color: var(--badge-blue-text-secondary);
+}
+
+/* Blue (primary) — solid bg */
+.badge--blue .badge__bg {
+    background: var(--badge-blue-bg);
+}
+.badge--blue .badge__text {
+    color: var(--badge-blue-text);
+}
+
+/* Green Secondary — bg = --badge-green-bg-secondary @ --badge-opacity-accent */
+.badge--green-secondary .badge__bg {
+    background: color-mix(in srgb, var(--badge-green-bg-secondary) var(--badge-opacity-accent), transparent);
+}
+.badge--green-secondary .badge__text {
+    color: var(--badge-green-text-secondary);
+}
+
+/* Green (primary) — solid bg */
+.badge--green .badge__bg {
+    background: var(--badge-green-bg);
+}
+.badge--green .badge__text {
+    color: var(--badge-green-text);
+}
+
+/* Purple Secondary */
+.badge--purple-secondary .badge__bg {
+    background: color-mix(in srgb, var(--badge-purple-bg-secondary) var(--badge-opacity-accent), transparent);
+}
+.badge--purple-secondary .badge__text {
+    color: var(--badge-purple-text-secondary);
+}
+
+/* Gray Secondary */
+.badge--gray-secondary .badge__bg {
+    background: color-mix(in srgb, var(--badge-gray-bg-secondary) var(--badge-opacity-neutral), transparent);
+}
+.badge--gray-secondary .badge__text {
+    color: var(--badge-gray-text-secondary);
+}
+
+/* Disabled */
+.badge--disabled .badge__bg {
+    background: color-mix(in srgb, var(--badge-bg-disabled) var(--badge-opacity-neutral), transparent);
+}
+.badge--disabled .badge__text {
+    color: var(--badge-text-disabled);
+}
+
+/* ── States ── */
+
+.badge--clickable {
+    cursor: pointer;
+}
+
+.badge--disabled {
+    pointer-events: none;
+}
+
+/* Focus ring — keyboard navigation only, not on click */
+.badge--clickable:focus-visible {
+    outline: 2px solid var(--control-focus-border-brand);
+    outline-offset: 1px;
+}

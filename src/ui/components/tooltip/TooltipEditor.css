@@ -12,13 +12,13 @@
 }
 
 .tooltip-editor--error {
-    --tooltip-editor-bg: var(--validation-error-bg);
-    --tooltip-editor-border: var(--validation-error-border);
+    --tooltip-editor-bg: var(--feedback-error-bg);
+    --tooltip-editor-border: var(--feedback-error-border);
 }
 
 .tooltip-editor--warning {
-    --tooltip-editor-bg: var(--validation-warning-bg);
-    --tooltip-editor-border: var(--validation-warning-border);
+    --tooltip-editor-bg: var(--feedback-warning-bg);
+    --tooltip-editor-border: var(--feedback-warning-border);
 }
 
 .tooltip-editor--success {
@@ -114,14 +114,14 @@
 
 .tooltip-editor-header {
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-default);
     width: 100%;
     margin: 0;
 }
 
 .tooltip-editor-text {
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--text-default);
     width: 100%;
     margin: 0;
 }

@@ -5,6 +5,7 @@ function Checkbox({
     checked = false,
     indeterminate = false,
     disabled = false,
+    invalid = false,
     label,
     hint,
     onChange,
@@ -37,6 +38,9 @@ function Checkbox({
         }
         if (isHovered && !disabled) {
             classes.push('checkbox-hovered');
+        }
+        if (invalid && !disabled) {
+            classes.push('checkbox-invalid');
         }
         
         return classes.join(' ');

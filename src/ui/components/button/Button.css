@@ -47,7 +47,7 @@
     content: '';
     position: absolute;
     inset: -4px;
-    border: 2px solid var(--border-focus);
+    border: 2px solid var(--control-focus-border-brand);
     border-radius: 7px;
     pointer-events: none;
 }
@@ -55,13 +55,13 @@
 .button-primary.button-disabled {
     background: transparent;
     color: var(--text-disabled);
-    border: 1px solid var(--border-control-disabled);
+    border: 1px solid var(--control-border-disabled);
     cursor: not-allowed;
 }
 
 .button-secondary {
     background: var(--button-secondary-bg);
-    color: var(--text-primary);
+    color: var(--text-default);
     border: 1px solid var(--button-secondary-border);
 }
 
@@ -76,7 +76,7 @@
     content: '';
     position: absolute;
     inset: -4px;
-    border: 2px solid var(--border-focus);
+    border: 2px solid var(--control-focus-border-brand);
     border-radius: 7px;
     pointer-events: none;
 }
@@ -84,6 +84,6 @@
 .button-secondary.button-disabled {
     background: transparent;
     color: var(--text-disabled);
-    border: 1px solid var(--border-control-disabled);
+    border: 1px solid var(--control-border-disabled);
     cursor: not-allowed;
 }

@@ -64,8 +64,8 @@
 }
 
 .status-bar-breadcrumb-default .status-bar-breadcrumb-module-inner {
-    background: var(--selection-bg);
-    border-color: var(--accent-primary);
+    background: var(--selection-bg-active);
+    border-color: var(--accent-brand-bg);
 }
 
 /* Hovered state */
@@ -75,27 +75,27 @@
 }
 
 .status-bar-breadcrumb-hovered .status-bar-breadcrumb-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .status-bar-breadcrumb-hovered .status-bar-breadcrumb-module-inner {
-    background: var(--selection-bg);
-    border-color: var(--accent-primary);
+    background: var(--selection-bg-active);
+    border-color: var(--accent-brand-bg);
 }
 
 /* Selected state */
 .status-bar-breadcrumb-selected {
-    background: var(--selection-bg);
+    background: var(--selection-bg-active);
     cursor: pointer;
 }
 
 .status-bar-breadcrumb-selected .status-bar-breadcrumb-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .status-bar-breadcrumb-selected .status-bar-breadcrumb-module-inner {
-    background: var(--selection-bg);
-    border-color: var(--accent-primary);
+    background: var(--selection-bg-active);
+    border-color: var(--accent-brand-bg);
 }
 
 /* Selected Inactive state */
@@ -104,12 +104,12 @@
 }
 
 .status-bar-breadcrumb-selected-inactive .status-bar-breadcrumb-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .status-bar-breadcrumb-selected-inactive .status-bar-breadcrumb-module-inner {
-    background: var(--selection-bg);
-    border-color: var(--accent-primary);
+    background: var(--selection-bg-active);
+    border-color: var(--accent-brand-bg);
 }
 
 /* Interactive states - apply hover styles on actual hover */
@@ -119,5 +119,5 @@
 }
 
 .status-bar-breadcrumb-default:hover .status-bar-breadcrumb-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }

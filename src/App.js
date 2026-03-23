@@ -48,7 +48,6 @@ import ValidationTooltip from './ui/components/tooltip/ValidationTooltip';
 import GotItTooltip from './ui/components/tooltip/GotItTooltip';
 import Notification from './ui/components/notification/Notification';
 import { ThemeProvider, useTheme } from './ThemeContext';
-import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
 import { getSortedWindowsOnly, getComponentsBySection } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
@@ -3204,9 +3203,8 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebar-header">
-                <Link to="/" className="logo">
-                    <Logo className="logo-icon" />
-                    <span className="logo-text">Library</span>
+                <Link to="/">
+                    <span className="logo-text">Int UI Kit</span>
                 </Link>
                 <ToolbarIconButton
                     icon={theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme'}

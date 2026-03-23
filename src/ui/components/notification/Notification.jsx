@@ -1,93 +1,126 @@
-import React from 'react';
-import Icon from '../icon/Icon';
-import Link from '../link/Link';
 import './Notification.css';
-import '../../styles/Typography.css';
+import Icon from '../icon/Icon';
+import UILink from '../link/Link';
 
 /**
- * Notification - Toast notification balloon matching Figma "Notification" component (node 3595:83697).
+ * Notification (Balloon) component following IntelliJ UI Guidelines
+ * https://plugins.jetbrains.com/docs/intellij/balloon.html
  *
- * Appears in the bottom-right of the IDE to inform users of events, build results, or actions.
+ * Appears as a floating card (360px wide) in the bottom-right of the IDE
+ * to inform users about events, build results, or required actions.
+ * On hover, two icon buttons appear top-right: "More" (⋮) and "Close" (×).
  *
- * @param {'info'|'warning'|'error'|'success'} type - Notification type (default: 'info')
- * @param {string} title - Notification title
- * @param {React.ReactNode} children - Body content
- * @param {Array<{label: string, onClick?: function}>} actions - Action links
- * @param {boolean} showCloseButton - Show close button (default: true)
- * @param {function} onClose - Close callback
- * @param {string} timestamp - Optional timestamp text (e.g. "just now", "2 min ago")
- * @param {string} className - Additional CSS classes
+ * @param {'info' | 'error' | 'warning' | 'success'} props.type - Notification type
+ * @param {string} props.title - Bold heading (optional)
+ * @param {React.ReactNode} props.children - Body text (optional)
+ * @param {{ label: string, onClick?: function, href?: string }} props.button - Primary action button (optional)
+ * @param {Array<{ label: string, onClick?: function, href?: string }>} props.actions - Link-style actions
+ * @param {string} props.timestamp - Relative timestamp shown below body (optional)
+ * @param {function} props.onClose - Close button handler; shows the × icon button on hover
+ * @param {function} props.onMore - More button handler; shows the ⋮ icon button on hover
+ * @param {string} props.className - Extra CSS classes
  */
 function Notification({
     type = 'info',
     title,
     children,
+    button,
     actions = [],
-    showCloseButton = true,
-    onClose,
     timestamp,
+    onClose,
+    onMore,
     className = '',
-    ...props
+    ...rest
 }) {
-    const classes = [
-        'notification',
-        `notification-${type}`,
-        className
-    ].filter(Boolean).join(' ');
-
-    const getIconName = () => {
-        const iconMap = {
-            info: 'status/infoOutline',
-            warning: 'status/warningOutline',
-            error: 'status/errorOutline',
-            success: 'status/success'
-        };
-        return iconMap[type] || iconMap.info;
+    const iconMap = {
+        info: 'status/info',
+        error: 'status/error',
+        warning: 'status/warning',
+        success: 'status/success',
     };
 
+    const hasActions = button || actions.length > 0;
+    const hasHoverButtons = onClose !== undefined || onMore !== undefined;
+
     return (
-        <div className={classes} role="alert" {...props}>
-            <div className="notification-header">
-                <span className="notification-icon">
-                    <Icon name={getIconName()} size={16} />
+        <div
+            className={['notification', className].filter(Boolean).join(' ')}
+            role="alert"
+            {...rest}
+        >
+            <div className="notification-icon-text">
+                <span className="notification-type-icon">
+                    <Icon name={iconMap[type] || 'status/info'} size={16} />
                 </span>
-                {title && (
-                    <span className="notification-title text-ui-default-bold">{title}</span>
-                )}
-                <div className="notification-header-right">
-                    {timestamp && (
-                        <span className="notification-timestamp text-ui-small">{timestamp}</span>
+                <div className="notification-body">
+                    {(title || children) && (
+                        <div className="notification-heading-text">
+                            {title && (
+                                <p className="notification-title text-ui-default-semibold">
+                                    {title}
+                                </p>
+                            )}
+                            {children && (
+                                <p className="notification-text text-ui-default">
+                                    {children}
+                                </p>
+                            )}
+                        </div>
                     )}
-                    {showCloseButton && (
-                        <button
-                            type="button"
-                            className="notification-close"
-                            onClick={onClose}
-                            aria-label="Close notification"
-                        >
-                            <Icon name="general/closeSmall" size={16} />
-                        </button>
+                    {hasActions && (
+                        <div className="notification-actions">
+                            {button && (
+                                <button
+                                    type="button"
+                                    className="notification-action-btn text-ui-default"
+                                    onClick={button.onClick}
+                                >
+                                    {button.label}
+                                </button>
+                            )}
+                            <div className="notification-links">
+                                {actions.map((action, i) => (
+                                    <UILink
+                                        key={i}
+                                        onClick={action.onClick}
+                                        href={action.href}
+                                        className="notification-link"
+                                    >
+                                        {action.label}
+                                    </UILink>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {timestamp && (
+                        <p className="notification-timestamp text-ui-small">
+                            {timestamp}
+                        </p>
                     )}
                 </div>
             </div>
-            {(children || actions.length > 0) && (
-                <div className="notification-body">
-                    {children && (
-                        <div className="notification-content text-ui-default">{children}</div>
+
+            {hasHoverButtons && (
+                <div className="notification-hover-buttons" aria-hidden="true">
+                    {onMore !== undefined && (
+                        <button
+                            type="button"
+                            className="notification-icon-btn"
+                            onClick={onMore}
+                            aria-label="More options"
+                        >
+                            <Icon name="general/moreVertical" size={16} />
+                        </button>
                     )}
-                    {actions.length > 0 && (
-                        <div className="notification-actions">
-                            {actions.map((action, index) => (
-                                <Link
-                                    key={index}
-                                    onClick={action.onClick}
-                                    type="default"
-                                    className="notification-action"
-                                >
-                                    {action.label}
-                                </Link>
-                            ))}
-                        </div>
+                    {onClose !== undefined && (
+                        <button
+                            type="button"
+                            className="notification-icon-btn"
+                            onClick={onClose}
+                            aria-label="Close notification"
+                        >
+                            <Icon name="general/close" size={16} />
+                        </button>
                     )}
                 </div>
             )}

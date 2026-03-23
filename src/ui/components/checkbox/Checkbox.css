@@ -35,46 +35,58 @@
     height: 16px;
     border-radius: 3px;
     background: var(--control-bg);
-    border: 1px solid var(--border-control);
+    border: 1px solid var(--control-border);
     box-sizing: border-box;
 }
 
 /* Hover state */
 .checkbox-hovered:not(.checkbox-disabled):not(.checkbox-checked) {
-    border-color: var(--border-raised);
+    border-color: var(--control-border-raised);
 }
 
-/* Focus state */
-.checkbox-focused:not(.checkbox-disabled) {
-    border: 2px solid var(--border-focus);
+/* Focus state (unchecked/indeterminate) */
+.checkbox-focused:not(.checkbox-disabled):not(.checkbox-checked) {
+    border: 2px solid var(--control-focus-border-brand);
 }
 
 /* Checked state */
 .checkbox-checked {
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
+    background: var(--accent-brand-bg);
+    border-color: var(--accent-brand-bg);
 }
 
 .checkbox-checked.checkbox-hovered:not(.checkbox-disabled) {
-    background: var(--accent-primary-hover);
-    border-color: var(--accent-primary-hover);
+    background: var(--accent-brand-bg-hovered);
+    border-color: var(--accent-brand-bg-hovered);
 }
 
+/* Checked + focused: keep accent fill, add 1px gap + 2px ring outside */
 .checkbox-checked.checkbox-focused:not(.checkbox-disabled) {
-    border: 2px solid var(--border-focus);
-    box-shadow: 0 0 0 2px var(--control-bg), 0 0 0 4px var(--border-focus);
+    border: 1px solid var(--accent-brand-bg);
+    box-shadow: 0 0 0 1px var(--control-bg), 0 0 0 3px var(--control-focus-border-brand);
 }
 
 /* Disabled state */
 .checkbox-disabled {
     background: var(--control-bg-disabled);
-    border-color: var(--border-control-disabled);
+    border-color: var(--control-border-disabled);
     cursor: not-allowed;
 }
 
 .checkbox-checked.checkbox-disabled {
     background: var(--control-bg-pressed);
     border-color: var(--control-bg-pressed);
+}
+
+/* Invalid state — unchecked: 2px red border */
+.checkbox-invalid:not(.checkbox-checked) {
+    border: 2px solid var(--control-focus-border-error);
+}
+
+/* Invalid state — checked/indeterminate: accent fill + 1px gap + 2px red ring */
+.checkbox-checked.checkbox-invalid {
+    border: 1px solid var(--accent-brand-bg);
+    box-shadow: 0 0 0 1px var(--control-bg), 0 0 0 3px var(--control-focus-border-error);
 }
 
 /* Checkmark icon */
@@ -85,7 +97,7 @@
     transform: translate(-50%, -50%);
     width: 12px;
     height: 12px;
-    color: var(--text-inverse);
+    color: var(--text-over-accent);
 }
 
 .checkbox-disabled .checkbox-checkmark {
@@ -100,7 +112,7 @@
     transform: translate(-50%, -50%);
     width: 10px;
     height: 2px;
-    background: var(--text-inverse);
+    background: var(--text-over-accent);
     border-radius: 1px;
 }
 
@@ -118,7 +130,7 @@
 
 /* Label */
 .checkbox-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .checkbox-container-disabled .checkbox-label {

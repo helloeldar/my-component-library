@@ -75,7 +75,7 @@
 /* Label styling */
 .tab-label {
     white-space: nowrap;
-    color: var(--text-primary);
+    color: var(--text-default);
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 256px;

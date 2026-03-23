@@ -44,22 +44,22 @@
 /* Progress bar fill */
 .progress-bar-fill {
     height: 100%;
-    background: var(--accent-primary);
+    background: var(--accent-brand-bg);
     border-radius: 2px;
 }
 
 /* Indeterminate animation — full-width gradient stripe that slides right */
 .progress-bar-track:has(.progress-bar-indeterminate) {
-    background: var(--accent-primary);
+    background: var(--accent-brand-bg);
 }
 
 .progress-bar-indeterminate {
     width: 100%;
     background-image: repeating-linear-gradient(
         90deg,
-        var(--accent-primary) 0,
+        var(--accent-brand-bg) 0,
         var(--blue-120) 70px,
-        var(--accent-primary) 140px
+        var(--accent-brand-bg) 140px
     );
     background-size: 140px 100%;
     animation: progress-indeterminate-gradient 600ms linear infinite;
@@ -78,7 +78,7 @@
 }
 
 .progress-bar-vertical .progress-bar-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 /* Hint */

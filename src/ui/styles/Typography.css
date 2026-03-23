@@ -130,7 +130,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .typography-specs {
@@ -152,7 +152,7 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    color: var(--accent-primary);
+    color: var(--accent-brand-bg);
     background: var(--bg-tertiary);
     padding: 4px 8px;
     border-radius: 4px;

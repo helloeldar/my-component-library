@@ -7,6 +7,7 @@
 export { ThemeProvider, useTheme } from '../ThemeContext';
 
 // Core Components
+export { default as Badge, BadgeNew, BadgeBeta, BadgeFree, BadgeTrial } from '../ui/components/badge/Badge';
 export { default as Banner } from '../ui/components/banner/Banner';
 export { default as Button } from '../ui/components/button/Button';
 export { default as Checkbox } from '../ui/components/checkbox/Checkbox';

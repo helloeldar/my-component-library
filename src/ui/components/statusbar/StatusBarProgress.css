@@ -80,7 +80,7 @@
 }
 
 .status-bar-progress-fill {
-    background: var(--accent-primary);
+    background: var(--accent-brand-bg);
 }
 
 .status-bar-progress-stop {

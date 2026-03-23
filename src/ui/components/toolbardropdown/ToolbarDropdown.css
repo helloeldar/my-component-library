@@ -41,11 +41,11 @@
 
 /* Dark Theme (default - for dark toolbar background) */
 .toolbar-dropdown-theme-dark .toolbar-dropdown-text {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .toolbar-dropdown-theme-dark .toolbar-dropdown-icon {
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 .toolbar-dropdown-theme-dark .toolbar-dropdown-chevron {
@@ -62,11 +62,11 @@
 
 /* Light Theme (for light toolbar with dark text) */
 .toolbar-dropdown-theme-light .toolbar-dropdown-text {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .toolbar-dropdown-theme-light .toolbar-dropdown-icon {
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 .toolbar-dropdown-theme-light .toolbar-dropdown-chevron {
@@ -83,11 +83,11 @@
 
 /* Light Header Theme (for light header with dark text) */
 .toolbar-dropdown-theme-light-header .toolbar-dropdown-text {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .toolbar-dropdown-theme-light-header .toolbar-dropdown-icon {
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 .toolbar-dropdown-theme-light-header .toolbar-dropdown-chevron {

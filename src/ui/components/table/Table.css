@@ -28,7 +28,7 @@
     background: transparent;
     cursor: pointer;
     border-radius: 4px;
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 .table-toolbar-button:hover:not(:disabled) {
@@ -118,7 +118,7 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 /* Striped rows */

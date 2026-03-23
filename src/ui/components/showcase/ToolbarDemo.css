@@ -78,7 +78,7 @@
 
 .toolbar-action-label {
     font-weight: 400;
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .toolbar-action-shortcut {

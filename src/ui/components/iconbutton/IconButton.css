@@ -13,7 +13,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
     position: relative;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .toolbar-icon-button:hover:not(:disabled) {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 /* Main Toolbar variant: icon color stays constant across all states */
@@ -90,11 +90,11 @@
 
 /* Toggle Type - Toggled/Selected State */
 .toolbar-icon-button-toggle.toolbar-icon-button-toggled::before {
-    background: var(--selection-bg);
+    background: var(--selection-bg-active);
 }
 
 .toolbar-icon-button-toggle.toolbar-icon-button-toggled {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .toolbar-icon-button-toggle.toolbar-icon-button-toggled:hover::before {
@@ -109,7 +109,7 @@
     right: 4px;
     width: 6px;
     height: 6px;
-    background: var(--accent-primary);
+    background: var(--accent-brand-bg);
     border-radius: 50%;
     z-index: 2;
 }

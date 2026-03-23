@@ -1,12 +1,16 @@
-/* Base Color Tokens — aligned with Figma "Int UI Kit Islands. Color palette" */
-/* Scale: 10 = darkest, 160 = lightest */
+/*
+ * Base Color Palette
+ * Source: figma-exports/Int UI Kit  Islands. Color palette.json
+ * Collection: "Color palette" — single "Default" mode
+ * Scale: 10 = darkest, 160 = lightest
+ */
 :root {
 
-    /* White & Black */
+    /* white, black */
     --white: #FFFFFF;
     --black: #000000;
 
-    /* Gray */
+    /* gray */
     --gray-160: #F7F8F9;
     --gray-150: #E9EAEE;
     --gray-140: #DDDFE4;
@@ -24,7 +28,7 @@
     --gray-20: #212326;
     --gray-10: #191A1C;
 
-    /* Blue */
+    /* blue */
     --blue-160: #F7F8FF;
     --blue-150: #E3EBFE;
     --blue-140: #D0DFFE;
@@ -42,7 +46,7 @@
     --blue-20: #182337;
     --blue-10: #131A28;
 
-    /* Green */
+    /* green */
     --green-160: #F5FAF3;
     --green-150: #E2EFE2;
     --green-140: #CDE5D1;
@@ -60,7 +64,7 @@
     --green-20: #16261C;
     --green-10: #111C15;
 
-    /* Red */
+    /* red */
     --red-160: #FFF6F5;
     --red-150: #FFE5E5;
     --red-140: #FFD6D6;
@@ -78,7 +82,7 @@
     --red-20: #371B1C;
     --red-10: #291416;
 
-    /* Yellow */
+    /* yellow */
     --yellow-160: #FFF6E9;
     --yellow-150: #FDE7C9;
     --yellow-140: #FADBB3;
@@ -96,7 +100,7 @@
     --yellow-20: #2C2115;
     --yellow-10: #201810;
 
-    /* Orange */
+    /* orange */
     --orange-160: #FFF6F3;
     --orange-150: #FFE6DD;
     --orange-140: #FED6CA;
@@ -114,7 +118,7 @@
     --orange-20: #331D16;
     --orange-10: #261611;
 
-    /* Purple */
+    /* purple */
     --purple-160: #FAF6FE;
     --purple-150: #EDE8FD;
     --purple-140: #E2DBFC;
@@ -132,7 +136,7 @@
     --purple-20: #261E3C;
     --purple-10: #1C172B;
 
-    /* Teal */
+    /* teal */
     --teal-160: #F5F9F8;
     --teal-150: #E1EEEC;
     --teal-140: #CDE4E0;
@@ -150,7 +154,7 @@
     --teal-20: #152624;
     --teal-10: #111C1B;
 
-    /* Transparent */
+    /* transparent, transparent-white-*, transparent-black-* */
     --transparent: #FFFFFF00;
     --transparent-white-10: #FFFFFF12;
     --transparent-white-20: #FFFFFF17;
@@ -201,7 +205,11 @@
 
 }
 
-/* Light Theme Semantic Colors — aligned with Figma semantic tokens */
+/*
+ * Semantic Colors — Light Theme
+ * Source: figma-exports/Int UI Kit  Islands. Semantic colors.json
+ * Collection: "Semantic colors" — "Light" mode
+ */
 .theme-light {
     /* Background — from Figma layer system */
     --bg-primary: var(--gray-150); /* Figma: container/main-window-bg = layer-0-bg */
@@ -210,24 +218,27 @@
     --bg-elevated: var(--white); /* Figma: layer-2-bg (popups, editors) */
 
     /* Text — from Figma text tokens */
-    --text-primary: var(--black); /* Figma: text/text-default */
+    --text-default: var(--black); /* Figma: text/text-default */
     --text-secondary: var(--gray-80); /* Figma: text/text-secondary */
     --text-muted: var(--gray-70); /* Figma: text/text-muted */
     --text-disabled: var(--gray-100); /* Figma: text/text-disabled */
-    --text-inverse: var(--white); /* Figma: text/text-over-accent */
+    --text-over-accent: var(--white); /* Figma: text/text-over-accent */
 
-    /* Border — from Figma layer + control tokens */
-    --border-primary: var(--gray-130); /* Figma: container/main-window-border = layer-0-border */
-    --border-secondary: var(--gray-150); /* Figma: layer-1-border */
-    --border-control: var(--gray-130); /* Figma: control/control-border */
-    --border-control-disabled: var(--gray-140); /* Figma: control/control-border-disabled */
-    --border-raised: var(--gray-110); /* Figma: control/control-border-raised */
-    --border-focus: var(--blue-80); /* Figma: accent/accent-brand-border */
+    /* Border */
+    --border-primary: var(--gray-130); /* Figma: container/main-window-border */
+    --border-secondary: var(--gray-150);
+
+    /* Control — from Figma control tokens */
+    --control-border: var(--gray-130); /* Figma: control/control-border */
+    --control-border-disabled: var(--gray-140); /* Figma: control/control-border-disabled */
+    --control-border-raised: var(--gray-110); /* Figma: control/control-border-raised */
+    --control-focus-border-brand: var(--blue-80); /* Figma: control/control-focus-border-brand */
+    --control-focus-border-error: var(--red-80); /* Figma: control/control-focus-border-error */
 
     /* Accent — from Figma accent tokens */
-    --accent-primary: var(--blue-80); /* Figma: accent/accent-brand-bg */
-    --accent-primary-hover: var(--blue-90); /* Figma: accent/accent-brand-border-over-brand */
-    --accent-primary-active: var(--blue-70); /* Figma: blue-70 */
+    --accent-brand-bg: var(--blue-80); /* Figma: accent/accent-brand-bg */
+    --accent-brand-bg-hovered: var(--blue-90); /* Figma: accent/accent-brand-border-over-brand */
+    --accent-brand-bg-pressed: var(--blue-70); /* Figma: blue-70 */
 
     /* Button */
     --button-primary-bg: var(--blue-80); /* Figma: accent/accent-brand-bg */
@@ -240,7 +251,7 @@
     --button-secondary-border: var(--gray-130); /* Figma: control/control-border */
     --button-secondary-border-hover: var(--gray-110); /* Figma: control/control-border-raised */
     --button-secondary-border-active: var(--gray-80);
-    --button-secondary-text: var(--text-primary);
+    --button-secondary-text: var(--text-default);
 
     /* Tab — from Figma tab tokens */
     --tab-bg: transparent;
@@ -248,12 +259,12 @@
     --tab-active-bg: var(--blue-140); /* Figma: toolbar/toolbar-selected-bg = blue-140 */
     --tab-active-border: var(--blue-130); /* Figma: toolbar/toolbar-selected-bg-hovered */
     --tab-inactive-border: var(--gray-130); /* Figma: tab/tab-selected-border-inactive */
-    --tab-active-text: var(--text-primary);
+    --tab-active-text: var(--text-default);
 
     /* Icon — from Figma icon tokens */
     --icon-stroke: var(--gray-80);
-    --icon-secondary: var(--gray-80); /* Figma: icon/icon-secondary-stroke = #818594 */
-    --icon-stroke-muted: var(--gray-100); /* Figma: icon/icon-disabled = gray-120 */
+    --icon-secondary-stroke: var(--gray-80); /* Figma: icon/icon-secondary-stroke = #818594 */
+    --icon-disabled: var(--gray-100); /* Figma: icon/icon-disabled = gray-120 */
     --stripe-icon-color: #6C707E; /* Figma: icon/icon-default-stroke */
     --icon-default-stroke: #6C707E; /* Figma: icon/icon-default-stroke */
 
@@ -279,7 +290,7 @@
     --warning-icon-fill: var(--yellow-160); /* Figma: icon/icon-yellow-fill = #FFFAEB */
     --warning-icon-stroke: var(--yellow-80); /* Figma: icon/icon-yellow-stroke = #C27D04 */
     --warning-banner-stroke: var(--yellow-130); /* Figma: feedback/feedback-warning-border */
-    --warning-text: var(--yellow-80); /* Figma: text/text-warning */
+    --text-warning: var(--yellow-80); /* Figma: text/text-warning */
     --file-color-yellow: var(--yellow-150); /* Figma: yellow-150 */
 
     /* Info/Orange */
@@ -309,7 +320,7 @@
     --control-bg-disabled: var(--gray-160); /* Figma: control/control-bg-disabled */
 
     /* Selection — from Figma selection tokens */
-    --selection-bg: var(--blue-140); /* Figma: selection/selection-bg-active */
+    --selection-bg-active: var(--blue-140); /* Figma: selection/selection-bg-active */
     --selection-bg-inactive: var(--gray-150); /* Figma: selection/selection-bg-inactive */
 
     /* Separator */
@@ -333,11 +344,11 @@
     --tooltip-shortcut: var(--text-muted); /* Figma: text/text-muted = gray-70 */
     --tooltip-shadow: 0px 3px 12px rgba(27, 31, 38, 0.18); /* Figma: shadow-editor-tooltip */
 
-    /* Validation Tooltip — from Figma feedback tokens */
-    --validation-error-bg: var(--red-160); /* Figma: feedback/feedback-error-bg */
-    --validation-error-border: var(--red-130); /* Figma: feedback/feedback-error-border */
-    --validation-warning-bg: var(--yellow-160); /* Figma: feedback/feedback-warning-bg */
-    --validation-warning-border: var(--yellow-130); /* Figma: feedback/feedback-warning-border */
+    /* Feedback — from Figma feedback tokens */
+    --feedback-error-bg: var(--red-160); /* Figma: feedback/feedback-error-bg */
+    --feedback-error-border: var(--red-130); /* Figma: feedback/feedback-error-border */
+    --feedback-warning-bg: var(--yellow-160); /* Figma: feedback/feedback-warning-bg */
+    --feedback-warning-border: var(--yellow-130); /* Figma: feedback/feedback-warning-border */
     --feedback-success-bg: var(--green-160); /* Figma: feedback/feedback-success-bg */
     --feedback-success-border: var(--green-130); /* Figma: feedback/feedback-success-border */
 
@@ -350,10 +361,10 @@
     --got-it-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16); /* Figma: shadow-notification */
 
     /* Link — from Figma text tokens */
-    --link-text: var(--blue-70); /* Figma: text/text-link = blue-70 */
-    --link-text-hover: var(--blue-80);
-    --link-text-pressed: var(--blue-60);
-    --link-text-visited: var(--purple-80);
+    --text-link: var(--blue-70); /* Figma: text/text-link = blue-70 */
+    --text-link-hover: var(--blue-80);
+    --text-link-pressed: var(--blue-60);
+    --text-link-visited: var(--purple-80);
 
     /* Input — from Figma control tokens */
     --input-bg: var(--white); /* Figma: control/control-bg = white */
@@ -364,33 +375,33 @@
     --input-border-error: var(--red-90); /* Figma: control/control-focus-border-error = red-90 */
     --input-border-error-focus: var(--red-90);
     --input-border-disabled: var(--gray-140); /* Figma: control/control-border-disabled */
-    --input-text: var(--text-primary);
+    --input-text: var(--text-default);
     --input-text-disabled: var(--text-disabled);
     --input-text-placeholder: var(--text-muted);
 
     /* Tree */
-    --tree-node-text: var(--text-primary);
-    --tree-node-text-selected: var(--text-primary);
+    --tree-node-text: var(--text-default);
+    --tree-node-text-selected: var(--text-default);
     --tree-node-bg-hover: var(--transparent-black-10); /* Figma: selection/selection-bg-hovered */
     --tree-node-bg-selected: var(--blue-140); /* Figma: selection/selection-bg-active */
     --tree-node-toggle: var(--text-secondary);
-    --tree-node-toggle-hover: var(--text-primary);
+    --tree-node-toggle-hover: var(--text-default);
 
     /* Tool Window Header */
     --tool-window-header-bg: var(--bg-elevated);
     --tool-window-header-border: var(--border-secondary);
     --tool-window-header-separator: var(--border-primary);
-    --tool-window-header-text: var(--text-primary);
-    --tool-window-action-icon: var(--icon-secondary);
-    --tool-window-action-icon-hover: var(--text-primary);
+    --tool-window-header-text: var(--text-default);
+    --tool-window-action-icon: var(--icon-secondary-stroke);
+    --tool-window-action-icon-hover: var(--text-default);
     --tool-window-action-bg-hover: var(--transparent-black-20); /* Figma: core/core-bg-transparent-hovered */
     --tool-window-action-bg-active: var(--transparent-black-30); /* Figma: core/core-bg-transparent-pressed */
-    --tool-window-tab-text: var(--text-primary);
+    --tool-window-tab-text: var(--text-default);
     --tool-window-tab-bg-hover: var(--transparent-black-20);
-    --tool-window-tab-active-text: var(--text-primary);
+    --tool-window-tab-active-text: var(--text-default);
     --tool-window-tab-active-border: var(--blue-80);
-    --tool-window-tab-close: var(--icon-secondary);
-    --tool-window-tab-close-hover: var(--text-primary);
+    --tool-window-tab-close: var(--icon-secondary-stroke);
+    --tool-window-tab-close-hover: var(--text-default);
     --tool-window-tab-close-bg-hover: var(--transparent-black-20);
     --tool-window-tab-selected-bg: var(--gray-150); /* Figma: tab/tab-selected-bg-inactive */
     --tool-window-tab-selected-border: var(--gray-130); /* Figma: tab/tab-selected-border-inactive */
@@ -505,7 +516,7 @@
     --dialog-bg: var(--white); /* Figma: container/popup-bg */
     --dialog-content-bg: var(--white);
     --dialog-border: var(--gray-130); /* Figma: container/popup-border */
-    --dialog-header-text: var(--text-primary);
+    --dialog-header-text: var(--text-default);
     --dialog-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* Figma: shadow/shadow-popup */
 
     /* Island Layout */
@@ -514,9 +525,31 @@
     --island-border: rgba(0, 0, 0, 0.1);
     --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     --island-editor-bg: var(--white); /* Figma: container/editor-bg */
+
+    /* Badge — from Figma Islands semantic colors (badge/) */
+    --badge-blue-bg: var(--blue-80);
+    --badge-blue-text: var(--white);
+    --badge-blue-bg-secondary: var(--blue-80);
+    --badge-blue-text-secondary: var(--blue-70);
+    --badge-green-bg: var(--green-80);
+    --badge-green-text: var(--white);
+    --badge-green-bg-secondary: var(--green-80);
+    --badge-green-text-secondary: var(--green-70);
+    --badge-purple-bg-secondary: var(--purple-80);
+    --badge-purple-text-secondary: var(--purple-70);
+    --badge-gray-bg-secondary: var(--gray-80);
+    --badge-gray-text-secondary: var(--gray-80);
+    --badge-bg-disabled: var(--gray-80);
+    --badge-text-disabled: var(--gray-110);
+    --badge-opacity-accent: 16%;
+    --badge-opacity-neutral: 12%;
 }
 
-/* Dark Theme Semantic Colors — aligned with Figma semantic tokens */
+/*
+ * Semantic Colors — Dark Theme
+ * Source: figma-exports/Int UI Kit  Islands. Semantic colors.json
+ * Collection: "Semantic colors" — "Dark" mode
+ */
 .theme-dark {
     /* Background — from Figma layer system */
     --bg-primary: var(--gray-10); /* Figma: layer-0-bg = tool-window-bg, editor-bg */
@@ -525,24 +558,27 @@
     --bg-elevated: var(--gray-30); /* Figma: container/popup-bg = layer-1-bg */
 
     /* Text — from Figma text tokens */
-    --text-primary: var(--gray-130); /* Figma: text/text-default */
+    --text-default: var(--gray-130); /* Figma: text/text-default */
     --text-secondary: var(--gray-80); /* Figma: text/text-secondary */
     --text-muted: var(--gray-100); /* Figma: text/text-muted */
     --text-disabled: var(--gray-60); /* Figma: text/text-disabled */
-    --text-inverse: var(--black);
+    --text-over-accent: var(--white); /* Figma: text/text-over-accent — always white on brand blue */
 
-    /* Border — from Figma layer + control tokens */
-    --border-primary: var(--gray-30); /* Figma: layer-0-border */
-    --border-secondary: var(--gray-40); /* Figma: layer-1-border */
-    --border-control: var(--gray-50); /* Figma: control/control-border */
-    --border-control-disabled: var(--gray-40); /* Figma: control/control-border-disabled */
-    --border-raised: var(--gray-70); /* Figma: control/control-border-raised */
-    --border-focus: var(--blue-80); /* Figma: accent/accent-brand-border */
+    /* Border */
+    --border-primary: var(--gray-30); /* Figma: container/main-window-border */
+    --border-secondary: var(--gray-40);
+
+    /* Control — from Figma control tokens */
+    --control-border: var(--gray-50); /* Figma: control/control-border */
+    --control-border-disabled: var(--gray-40); /* Figma: control/control-border-disabled */
+    --control-border-raised: var(--gray-70); /* Figma: control/control-border-raised */
+    --control-focus-border-brand: var(--blue-80); /* Figma: control/control-focus-border-brand */
+    --control-focus-border-error: var(--red-80); /* Figma: control/control-focus-border-error */
 
     /* Accent — from Figma accent tokens */
-    --accent-primary: var(--blue-80); /* Figma: accent/accent-brand-bg */
-    --accent-primary-hover: var(--blue-100);
-    --accent-primary-active: var(--blue-90); /* Figma: accent-brand-border-over-brand */
+    --accent-brand-bg: var(--blue-80); /* Figma: accent/accent-brand-bg */
+    --accent-brand-bg-hovered: var(--blue-100);
+    --accent-brand-bg-pressed: var(--blue-90); /* Figma: accent-brand-border-over-brand */
     --accent-secondary: var(--blue-60); /* Figma: blue-60 */
 
     /* Button */
@@ -556,7 +592,7 @@
     --button-secondary-border: var(--gray-50); /* Figma: control/control-border */
     --button-secondary-border-hover: var(--gray-70); /* Figma: control/control-border-raised */
     --button-secondary-border-active: var(--gray-130);
-    --button-secondary-text: var(--text-primary);
+    --button-secondary-text: var(--text-default);
 
     /* Tab — from Figma tab tokens */
     --tab-bg: transparent;
@@ -564,12 +600,12 @@
     --tab-active-bg: var(--blue-60); /* Figma: toolbar/toolbar-selected-bg = blue-60 */
     --tab-active-border: var(--blue-50); /* Figma: blue-50 */
     --tab-inactive-border: var(--gray-70);
-    --tab-active-text: var(--text-primary);
+    --tab-active-text: var(--text-default);
 
     /* Icon — from Figma icon tokens */
     --icon-stroke: var(--gray-130); /* Figma: text/text-default */
-    --icon-secondary: var(--gray-80); /* Figma: icon/icon-secondary-stroke = #868A91 */
-    --icon-stroke-muted: var(--gray-100);
+    --icon-secondary-stroke: var(--gray-80); /* Figma: icon/icon-secondary-stroke = #868A91 */
+    --icon-disabled: var(--gray-100);
     --stripe-icon-color: #CED0D6; /* Figma: icon/icon-default-stroke */
     --icon-default-stroke: #CED0D6; /* Figma: icon/icon-default-stroke */
 
@@ -618,7 +654,7 @@
     --control-bg-disabled: var(--transparent); /* Figma: control/control-bg-disabled = transparent */
 
     /* Selection — from Figma selection tokens */
-    --selection-bg: var(--blue-50); /* Figma: selection/selection-bg-active */
+    --selection-bg-active: var(--blue-50); /* Figma: selection/selection-bg-active */
     --selection-bg-inactive: var(--gray-40); /* Figma: selection/selection-bg-inactive */
 
     /* Separator */
@@ -642,11 +678,11 @@
     --tooltip-shortcut: var(--text-muted); /* Figma: text/text-muted = gray-100 */
     --tooltip-shadow: 0px 3px 12px rgba(27, 31, 38, 0.18); /* Figma: shadow-editor-tooltip */
 
-    /* Validation Tooltip — from Figma feedback tokens */
-    --validation-error-bg: var(--red-40); /* Figma: feedback/feedback-error-bg */
-    --validation-error-border: var(--red-60); /* Figma: feedback/feedback-error-border */
-    --validation-warning-bg: var(--yellow-40); /* Figma: feedback/feedback-warning-bg */
-    --validation-warning-border: var(--yellow-60); /* Figma: feedback/feedback-warning-border */
+    /* Feedback — from Figma feedback tokens */
+    --feedback-error-bg: var(--red-40); /* Figma: feedback/feedback-error-bg */
+    --feedback-error-border: var(--red-60); /* Figma: feedback/feedback-error-border */
+    --feedback-warning-bg: var(--yellow-40); /* Figma: feedback/feedback-warning-bg */
+    --feedback-warning-border: var(--yellow-60); /* Figma: feedback/feedback-warning-border */
     --feedback-success-bg: var(--green-40); /* Figma: feedback/feedback-success-bg */
     --feedback-success-border: var(--green-60); /* Figma: feedback/feedback-success-border */
 
@@ -659,10 +695,10 @@
     --got-it-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16); /* Figma: shadow-notification */
 
     /* Link — from Figma text tokens */
-    --link-text: var(--blue-100); /* Figma: text/text-link */
-    --link-text-hover: var(--blue-110);
-    --link-text-pressed: var(--blue-90);
-    --link-text-visited: var(--purple-90);
+    --text-link: var(--blue-100); /* Figma: text/text-link */
+    --text-link-hover: var(--blue-110);
+    --text-link-pressed: var(--blue-90);
+    --text-link-visited: var(--purple-90);
 
     /* Input — from Figma control tokens */
     --input-bg: var(--gray-30); /* Figma: control/control-bg-raised = gray-30 */
@@ -673,33 +709,33 @@
     --input-border-error: var(--red-80); /* Figma: control/control-focus-border-error */
     --input-border-error-focus: var(--red-80);
     --input-border-disabled: var(--gray-40); /* Figma: control/control-border-disabled */
-    --input-text: var(--text-primary);
+    --input-text: var(--text-default);
     --input-text-disabled: var(--text-disabled);
     --input-text-placeholder: var(--text-muted);
 
     /* Tree */
-    --tree-node-text: var(--text-primary);
-    --tree-node-text-selected: var(--text-primary);
+    --tree-node-text: var(--text-default);
+    --tree-node-text-selected: var(--text-default);
     --tree-node-bg-hover: var(--transparent-white-10); /* Figma: selection/selection-bg-hovered */
     --tree-node-bg-selected: var(--blue-50); /* Figma: selection/selection-bg-active */
     --tree-node-toggle: var(--text-secondary);
-    --tree-node-toggle-hover: var(--text-primary);
+    --tree-node-toggle-hover: var(--text-default);
 
     /* Tool Window Header */
     --tool-window-header-bg: var(--bg-secondary);
     --tool-window-header-border: var(--gray-40); /* Figma: layer-1-border */
     --tool-window-header-separator: var(--gray-40);
-    --tool-window-header-text: var(--text-primary);
-    --tool-window-action-icon: var(--icon-secondary);
-    --tool-window-action-icon-hover: var(--text-primary);
+    --tool-window-header-text: var(--text-default);
+    --tool-window-action-icon: var(--icon-secondary-stroke);
+    --tool-window-action-icon-hover: var(--text-default);
     --tool-window-action-bg-hover: var(--transparent-white-20); /* Figma: core/core-bg-transparent-hovered */
     --tool-window-action-bg-active: var(--transparent-white-40); /* Figma: core/core-bg-transparent-pressed */
-    --tool-window-tab-text: var(--text-primary);
+    --tool-window-tab-text: var(--text-default);
     --tool-window-tab-bg-hover: var(--transparent-white-20);
-    --tool-window-tab-active-text: var(--text-primary);
+    --tool-window-tab-active-text: var(--text-default);
     --tool-window-tab-active-border: var(--blue-80);
-    --tool-window-tab-close: var(--icon-secondary);
-    --tool-window-tab-close-hover: var(--text-primary);
+    --tool-window-tab-close: var(--icon-secondary-stroke);
+    --tool-window-tab-close-hover: var(--text-default);
     --tool-window-tab-close-bg-hover: var(--transparent-white-20);
     --tool-window-tab-selected-bg: var(--gray-30); /* Figma: tab/tab-selected-bg-inactive */
     --tool-window-tab-selected-border: var(--gray-50); /* Figma: tab/tab-selected-border-inactive */
@@ -814,7 +850,7 @@
     --dialog-bg: var(--gray-30); /* Figma: container/popup-bg */
     --dialog-content-bg: var(--gray-30);
     --dialog-border: var(--gray-50); /* Figma: container/popup-border */
-    --dialog-header-text: var(--text-primary);
+    --dialog-header-text: var(--text-default);
     --dialog-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Figma: shadow/shadow-popup */
 
     /* Island Layout */
@@ -823,6 +859,24 @@
     --island-border: rgba(255, 255, 255, 0.08);
     --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
     --island-editor-bg: var(--gray-10); /* Figma: container/editor-bg */
+
+    /* Badge — from Figma Islands semantic colors (badge/) */
+    --badge-blue-bg: var(--blue-90);
+    --badge-blue-text: var(--gray-20);
+    --badge-blue-bg-secondary: var(--blue-60);
+    --badge-blue-text-secondary: var(--blue-140);
+    --badge-green-bg: var(--green-90);
+    --badge-green-text: var(--gray-20);
+    --badge-green-bg-secondary: var(--green-60);
+    --badge-green-text-secondary: var(--green-140);
+    --badge-purple-bg-secondary: var(--purple-60);
+    --badge-purple-text-secondary: var(--purple-140);
+    --badge-gray-bg-secondary: var(--gray-110);
+    --badge-gray-text-secondary: var(--gray-110);
+    --badge-bg-disabled: var(--gray-110);
+    --badge-text-disabled: var(--gray-90);
+    --badge-opacity-accent: 80%;
+    --badge-opacity-neutral: 20%;
 }
 
 /* Global Scrollbar Styling — hidden by default, visible on hover */

@@ -76,12 +76,12 @@
 
 /* Header — Inter Semibold 13/16 */
 .got-it-header {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 /* Body text — Inter Medium 13/18 */
 .got-it-text {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 /* Link — Inter Medium 13/16 */
@@ -110,7 +110,7 @@
     border: 1px solid var(--got-it-control-border);
     border-radius: 4px;
     background: transparent;
-    color: var(--text-primary);
+    color: var(--text-default);
     overflow: clip;
     font-family: 'Inter', sans-serif;
     font-weight: 500;

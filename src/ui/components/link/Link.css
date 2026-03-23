@@ -10,12 +10,12 @@
 }
 
 .link-text {
-    color: var(--link-text);
+    color: var(--text-link);
 }
 
 /* Default type - simple text link */
 .link-default .link-text {
-    color: var(--link-text);
+    color: var(--text-link);
 }
 
 .link-default:hover:not(.link-disabled) .link-text {
@@ -26,7 +26,7 @@
 
 /* Dropdown type - with chevron icon */
 .link-dropdown .link-text {
-    color: var(--link-text);
+    color: var(--text-link);
 }
 
 .link-dropdown:hover:not(.link-disabled) .link-text {
@@ -37,7 +37,7 @@
 
 /* External type - with external link icon */
 .link-external .link-text {
-    color: var(--link-text);
+    color: var(--text-link);
 }
 
 .link-external:hover:not(.link-disabled) .link-text {
@@ -77,7 +77,7 @@
 .link-default .link-icon,
 .link-dropdown .link-icon,
 .link-external .link-icon {
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 .link-disabled .link-icon {
