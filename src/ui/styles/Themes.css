@@ -176,7 +176,7 @@
     --editor-light-number: #1750EB;
     --editor-light-comment: #8C8C8C;
     --editor-light-doc-comment: #8C8C8C;
-    --editor-light-annotation: #9E880D;
+    --editor-light-metadata-text: #9E880D;
     --editor-light-type-parameter: #007E8A;
     --editor-light-implicit-param: #851691;
     --editor-light-html-tag: #0033B3;
@@ -194,7 +194,7 @@
     --editor-dark-number: #2AACB8;
     --editor-dark-comment: #7A7E85;
     --editor-dark-doc-comment: #5F826B;
-    --editor-dark-annotation: #B3AE60;
+    --editor-dark-metadata-text: #B3AE60;
     --editor-dark-type-parameter: #16BAAC;
     --editor-dark-implicit-param: #C77DBB;
     --editor-dark-html-tag: #D5B778;
@@ -414,7 +414,7 @@
     --editor-number: var(--editor-light-number);
     --editor-comment: var(--editor-light-comment);
     --editor-doc-comment: var(--editor-light-doc-comment);
-    --editor-annotation: var(--editor-light-annotation);
+    --editor-metadata-text: var(--editor-light-metadata-text);
     --editor-type-parameter: var(--editor-light-type-parameter);
     --editor-implicit-param: var(--editor-light-implicit-param);
     --editor-html-tag: var(--editor-light-html-tag);
@@ -704,7 +704,7 @@
     --editor-number: var(--editor-dark-number);
     --editor-comment: var(--editor-dark-comment);
     --editor-doc-comment: var(--editor-dark-doc-comment);
-    --editor-annotation: var(--editor-dark-annotation);
+    --editor-metadata-text: var(--editor-dark-metadata-text);
     --editor-type-parameter: var(--editor-dark-type-parameter);
     --editor-implicit-param: var(--editor-dark-implicit-param);
     --editor-html-tag: var(--editor-dark-html-tag);

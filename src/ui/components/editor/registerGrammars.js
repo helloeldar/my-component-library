@@ -112,7 +112,7 @@ languages.java = {
     'triple-quoted-string': { pattern: /"""[ \t]*\n(?:\\.|[^\\])*?"""/g, alias: 'string' },
     char: /'(?:\\.|[^\\\n']){1,6}'/g,
     string: { pattern: /(^|[^\\])"(?:\\.|[^\\\n"])*"/g, lookbehind: true },
-    annotation: { pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/, lookbehind: true, alias: 'punctuation' },
+    annotation: { pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/, lookbehind: true },
     generics: {
         pattern: /<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&))*>)*>)*>)*>/,
         inside: { 'class-name': javaClassName, keyword: javaKeywords, punctuation: /[().,:<>]/, operator: /[?&|]/ },

@@ -198,12 +198,10 @@
 .editor-code .token.annotation,
 .editor-code .token.decorator,
 .editor-code .token.namespace {
-    color: var(--editor-annotation);
+    color: var(--editor-metadata-text);
 }
 
-/* Type parameter / Class — #16BAAC (dark) */
-.editor-code .token.class-name,
-.editor-code .token.maybe-class-name,
+/* Type parameter — #16BAAC (dark) */
 .editor-code .token.builtin,
 .editor-code .token.type {
     color: var(--editor-type-parameter);
@@ -215,7 +213,7 @@
 }
 
 .editor-code .token.attr-name {
-    color: var(--editor-annotation);
+    color: var(--editor-metadata-text);
 }
 
 /* Link — #548AF7 (dark) */
@@ -252,7 +250,7 @@
 /* Python-specific: decorator is annotation color */
 .editor-code .token.decorator.annotation,
 .editor-code .token.decorator.function {
-    color: var(--editor-annotation);
+    color: var(--editor-metadata-text);
 }
 
 /* Kotlin/Java: generics and type params */
@@ -271,6 +269,100 @@
 
 .editor-code .token.changed {
     color: var(--editor-warning);
+}
+
+/* ============================================
+   READER MODE BADGE
+   ============================================ */
+
+.editor-code {
+    position: relative;
+}
+
+.editor-reader-mode {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    z-index: 10;
+}
+
+.editor-reader-mode-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-secondary, #868A91);
+    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-size: 12px;
+    line-height: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.editor-reader-mode-badge .editor-reader-mode-close {
+    display: none;
+}
+
+.editor-reader-mode:hover .editor-reader-mode-badge {
+    padding-left: 4px;
+    background: var(--bg-tertiary, #2B2D30);
+}
+
+.editor-reader-mode:hover .editor-reader-mode-badge .editor-reader-mode-close {
+    display: flex;
+}
+
+.editor-reader-mode-badge:hover {
+    background: var(--bg-hover, #3C3F41);
+    color: var(--text-primary, #DFE1E5);
+}
+
+.editor-reader-mode-tooltip {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 280px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--popup-bg, #2B2D30);
+    border: 1px solid var(--border-primary, #43454A);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.editor-reader-mode-tooltip-title {
+    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+    color: var(--text-primary, #DFE1E5);
+    margin-bottom: 6px;
+}
+
+.editor-reader-mode-tooltip-body {
+    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-size: 12px;
+    line-height: 17px;
+    color: var(--text-secondary, #868A91);
+    margin-bottom: 8px;
+}
+
+.editor-reader-mode-tooltip-link {
+    display: inline;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-size: 12px;
+    line-height: 17px;
+    color: var(--link-color, #548AF7);
+    cursor: pointer;
+}
+
+.editor-reader-mode-tooltip-link:hover {
+    text-decoration: underline;
 }
 
 /* ============================================

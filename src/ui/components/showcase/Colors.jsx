@@ -14,7 +14,7 @@ function Colors() {
         { name: 'Number', variable: '--editor-number' },
         { name: 'Comment', variable: '--editor-comment' },
         { name: 'Doc comment', variable: '--editor-doc-comment' },
-        { name: 'Metadata / Annotation', variable: '--editor-annotation' },
+        { name: 'Metadata text', variable: '--editor-metadata-text' },
         { name: 'Type parameter', variable: '--editor-type-parameter' },
         { name: 'Implicit anonymous class parameter', variable: '--editor-implicit-param' },
         { name: 'HTML tag', variable: '--editor-html-tag' }

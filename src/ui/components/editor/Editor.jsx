@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Editor as PrismEditor } from 'prism-react-editor';
 import { grammarsRegistered } from './registerGrammars';
 import EditorGutter from './EditorGutter';
+import Icon from '../icon/Icon';
 import './Editor.css';
 import 'prism-react-editor/layout.css';
 
@@ -11,6 +12,38 @@ if (!grammarsRegistered) {
 
 const EMPTY_BREAKPOINTS = [];
 
+function ReaderModeBadge({ onClose }) {
+    const [hovered, setHovered] = useState(false);
+
+    return (
+        <div
+            className="editor-reader-mode"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <button className="editor-reader-mode-badge" onClick={onClose}>
+                <span className="editor-reader-mode-close">
+                    <Icon name="general/closeSmall" size={16} />
+                </span>
+                <span className="editor-reader-mode-label">Reader Mode</span>
+            </button>
+            {hovered && (
+                <div className="editor-reader-mode-tooltip">
+                    <div className="editor-reader-mode-tooltip-title">Exit Reader Mode</div>
+                    <div className="editor-reader-mode-tooltip-body">
+                        The Reader mode makes the code convenient to read by showing
+                        documentation as formatted text, font ligatures, code vision hints
+                        with the number of usages, and more
+                    </div>
+                    <button className="editor-reader-mode-tooltip-link" onClick={onClose}>
+                        Configure...
+                    </button>
+                </div>
+            )}
+        </div>
+    );
+}
+
 function Editor({
     code = '',
     language = 'javascript',
@@ -18,6 +51,7 @@ function Editor({
     readOnly = false,
     breakpoints: initialBreakpoints = EMPTY_BREAKPOINTS,
     onBreakpointToggle,
+    onExitReaderMode,
     gutterActions = [],
     className = '',
     ...props
@@ -30,6 +64,7 @@ function Editor({
     const [activeLine, setActiveLine] = useState(1);
     const [lineCount, setLineCount] = useState(() => code.split('\n').length);
     const [isFocused, setIsFocused] = useState(false);
+    const [readerModeDismissed, setReaderModeDismissed] = useState(false);
     const editorRef = useRef(null);
     const gutterRef = useRef(null);
     const correctedLineEl = useRef(null);
@@ -105,6 +140,13 @@ function Editor({
         setActiveLine(line);
     }, []);
 
+    const handleExitReaderMode = useCallback(() => {
+        setReaderModeDismissed(true);
+        onExitReaderMode?.();
+    }, [onExitReaderMode]);
+
+    const showReaderMode = readOnly && !readerModeDismissed;
+
     return (
         <div className={`editor ${className} ${showLineNumbers ? 'editor-with-gutter' : ''} ${isFocused ? 'editor-focused' : ''}`} {...props}>
             {showLineNumbers && (
@@ -119,6 +161,9 @@ function Editor({
                 />
             )}
             <div className="editor-code">
+                {showReaderMode && (
+                    <ReaderModeBadge onClose={handleExitReaderMode} />
+                )}
                 <PrismEditor
                     ref={editorRef}
                     language={language}

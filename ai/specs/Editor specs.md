@@ -18,6 +18,7 @@ Built on top of `prism-react-editor` — a lightweight (~5KB) code editor that u
 | `readOnly` | `boolean` | `false` | Disable editing |
 | `breakpoints` | `number[]` | `[]` | Line numbers with active breakpoints |
 | `onBreakpointToggle` | `(line: number) => void` | — | Callback when a line's breakpoint is toggled |
+| `onExitReaderMode` | `() => void` | — | Callback when Reader Mode badge is dismissed |
 | `gutterActions` | `GutterAction[]` | `[]` | Inline action icons per line |
 | `className` | `string` | `''` | Additional CSS class |
 
@@ -57,9 +58,10 @@ Prism token classes are mapped to the project's existing `--editor-*` CSS variab
 | `number` | `--editor-number` |
 | `function`, `method` | `--editor-method` |
 | `constant`, `boolean` | `--editor-constant` |
-| `annotation`, `decorator` | `--editor-annotation` |
+| `annotation`, `decorator` | `--editor-metadata-text` |
 | `doc-comment`, `prolog` | `--editor-doc-comment` |
-| `class-name`, `builtin` | `--editor-type-parameter` |
+| `builtin` | `--editor-type-parameter` |
+| `class-name` | `--editor-default-text` (inherits) |
 | `tag` | `--editor-html-tag` |
 | `property` | `--editor-implicit-param` |
 | `url` | `--editor-link` |
@@ -73,6 +75,12 @@ The user can provide additional color schemes per language by extending the toke
 Prism grammars are imported for: **Java**, **JavaScript**, **TypeScript**, **Python**, **Kotlin**.
 
 Additional languages can be added by importing `prism-react-editor/prism/languages/<lang>`.
+
+---
+
+## Reader Mode
+
+When `readOnly` is `true`, a floating **Reader Mode** badge appears pinned to the top-right corner of the editor code area. On hover it shows a descriptive tooltip explaining what Reader Mode provides. Clicking the X or the badge dismisses it and fires `onExitReaderMode`.
 
 ---
 
