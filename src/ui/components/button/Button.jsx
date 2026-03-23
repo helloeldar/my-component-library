@@ -2,7 +2,7 @@ import './Button.css';
 import '../../styles/Typography.css';
 
 function Button(props) {
-    const { type, size, disabled, children, className, ...restProps } = props;
+    const { type, size, disabled, focused, children, className, ...restProps } = props;
     
     let classes = ['button'];
 
@@ -22,6 +22,10 @@ function Button(props) {
 
     if (disabled) {
         classes.push('button-disabled');
+    }
+
+    if (focused) {
+        classes.push('button-focused');
     }
     
     if (className) {

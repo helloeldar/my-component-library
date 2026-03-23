@@ -193,6 +193,24 @@ function ButtonsPage() {
                     <Button type="secondary" disabled>Secondary Disabled</Button>
                 </div>
             </div>
+
+            <div className="component-section">
+                <h2>Focused States</h2>
+                <div className="component-group">
+                    <h3>Default Size</h3>
+                    <div className="component-examples">
+                        <Button type="primary" focused>Primary Focused</Button>
+                        <Button type="secondary" focused>Secondary Focused</Button>
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Slim Size</h3>
+                    <div className="component-examples">
+                        <Button type="primary" size="slim" focused>Primary Slim Focused</Button>
+                        <Button type="secondary" size="slim" focused>Secondary Slim Focused</Button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
@@ -2621,21 +2639,34 @@ function TooltipEditorPage() {
             </div>
 
             <div className="component-section">
-                <h2>All Types — All Directions</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, auto)', gap: '24px', justifyContent: 'start' }}>
-                    {['up', 'right', 'down', 'left'].map(arrow =>
-                        ['info', 'error', 'warning', 'success'].map(type => (
-                            <TooltipEditor
-                                key={`${type}-${arrow}`}
-                                type={type}
-                                arrow={arrow}
-                                header="Header"
-                                text="Text"
-                                hint="Hint"
-                            />
-                        ))
-                    )}
-                </div>
+                <h2>All Types × All Directions</h2>
+                <p className="component-description">Each arrow direction with all four status types.</p>
+                {[
+                    { arrow: 'up', label: '↑ Arrow Up' },
+                    { arrow: 'down', label: '↓ Arrow Down' },
+                    { arrow: 'left', label: '← Arrow Left' },
+                    { arrow: 'right', label: '→ Arrow Right' },
+                ].map(({ arrow, label }) => (
+                    <div key={arrow} style={{ marginBottom: '32px' }}>
+                        <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '12px', letterSpacing: '0.03em' }}>
+                            {label}
+                        </div>
+                        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                            {['info', 'error', 'warning', 'success'].map(type => (
+                                <div key={type} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                    <span style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'capitalize' }}>{type}</span>
+                                    <TooltipEditor
+                                        type={type}
+                                        arrow={arrow}
+                                        header="Header"
+                                        text="Text"
+                                        hint="Hint"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

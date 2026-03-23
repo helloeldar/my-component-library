@@ -50,8 +50,8 @@
 ## Button — pixel-perfect Figma alignment
 ### 2026-03-23
 - **Done:** Fixed `Button.css` and `Button.jsx` to match Figma nodes 146:52009 (Default) and 6517:82733 (Slim).
-  - `.button-default` padding: `6px 14px` → `6px 12px`
-  - `.button-slim` padding: `4px 11px` → `4px 12px`
+  - `.button-default` padding: `6px 14px` → `5px 12px` (height = 1+5+16+5+1 = 28px)
+  - `.button-slim` padding: `4px 11px` → `3px 12px` (height = 1+3+16+3+1 = 24px)
   - Added `min-width: 72px` to both sizes (Figma specifies `min-w-72px`)
   - Added `.button` base class: `display: inline-flex`, `align-items/justify-content: center`, `gap: 6px`, `cursor: pointer`, `outline: none`, `white-space: nowrap`, `box-sizing: border-box`
   - `.button-slim` overrides gap to `4px` (Figma: gap between icon+text is 4px for slim, 6px for default)
