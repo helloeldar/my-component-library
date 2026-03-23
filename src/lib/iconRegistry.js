@@ -159,6 +159,9 @@ import icon_actions_unshare from '../icons/actions/unshare.svg';
 import icon_actions_unshare_dark from '../icons/actions/unshare_dark.svg';
 import icon_actions_viewAsImage from '../icons/actions/viewAsImage.svg';
 import icon_actions_viewAsImage_dark from '../icons/actions/viewAsImage_dark.svg';
+import icon_aiAssistant_aiAssistant from '../icons/aiAssistant/aiAssistant.svg';
+import icon_aiAssistant_aiAssistantColored from '../icons/aiAssistant/aiAssistantColored.svg';
+import icon_aiAssistant_aiAssistantDisabled from '../icons/aiAssistant/aiAssistantDisabled.svg';
 import icon_bookmarks_addBookmarksList from '../icons/bookmarks/addBookmarksList.svg';
 import icon_bookmarks_addBookmarksList_dark from '../icons/bookmarks/addBookmarksList_dark.svg';
 import icon_bookmarks_bookmark from '../icons/bookmarks/bookmark.svg';
@@ -255,6 +258,11 @@ import icon_build_taskGroup from '../icons/build/taskGroup.svg';
 import icon_build_taskGroup_dark from '../icons/build/taskGroup_dark.svg';
 import icon_build_toggleOfflineMode from '../icons/build/toggleOfflineMode.svg';
 import icon_build_toggleOfflineMode_dark from '../icons/build/toggleOfflineMode_dark.svg';
+import icon_checkbox_radiobutton_checkbox_bg from '../icons/checkbox-radiobutton/checkbox-bg.svg';
+import icon_checkbox_radiobutton_checkbox_indeterminate from '../icons/checkbox-radiobutton/checkbox-indeterminate.svg';
+import icon_checkbox_radiobutton_checkbox__heckmark from '../icons/checkbox-radiobutton/checkbox-сheckmark.svg';
+import icon_checkbox_radiobutton_radiobutton_bg from '../icons/checkbox-radiobutton/radiobutton-bg.svg';
+import icon_checkbox_radiobutton_radiobutton_dot from '../icons/checkbox-radiobutton/radiobutton-dot.svg';
 import icon_codeInsight_inlayGlobe from '../icons/codeInsight/inlayGlobe.svg';
 import icon_codeInsight_inlayGlobe_dark from '../icons/codeInsight/inlayGlobe_dark.svg';
 import icon_codeInsight_inlayRenameInComments from '../icons/codeInsight/inlayRenameInComments.svg';
@@ -574,6 +582,7 @@ import icon_general_autoscrollToSource from '../icons/general/autoscrollToSource
 import icon_general_autoscrollToSource_dark from '../icons/general/autoscrollToSource_dark.svg';
 import icon_general_balloon from '../icons/general/balloon.svg';
 import icon_general_balloon_dark from '../icons/general/balloon_dark.svg';
+import icon_general_checkmark from '../icons/general/checkmark.svg';
 import icon_general_chevronDown from '../icons/general/chevronDown.svg';
 import icon_general_chevronDownLarge from '../icons/general/chevronDownLarge.svg';
 import icon_general_chevronDownLargeWhite from '../icons/general/chevronDownLargeWhite.svg';
@@ -1061,6 +1070,7 @@ import icon_language_php from '../icons/language/php.svg';
 import icon_language_php_dark from '../icons/language/php_dark.svg';
 import icon_language_scala from '../icons/language/scala.svg';
 import icon_language_scala_dark from '../icons/language/scala_dark.svg';
+import icon_loader from '../icons/loader.svg';
 import icon_misc_empty from '../icons/misc/empty.svg';
 import icon_misc_stub from '../icons/misc/stub.svg';
 import icon_misc_stub_20x20 from '../icons/misc/stub@20x20.svg';
@@ -1667,10 +1677,6 @@ import icon_toolwindows_todo from '../icons/toolwindows/todo.svg';
 import icon_toolwindows_todo_20x20 from '../icons/toolwindows/todo@20x20.svg';
 import icon_toolwindows_todo_20x20_dark from '../icons/toolwindows/todo@20x20_dark.svg';
 import icon_toolwindows_todo_dark from '../icons/toolwindows/todo_dark.svg';
-import icon_toolwindows_toolWindowAskAI from '../icons/toolwindows/toolWindowAskAI.svg';
-import icon_toolwindows_toolWindowAskAI_20x20 from '../icons/toolwindows/toolWindowAskAI@20x20.svg';
-import icon_toolwindows_toolWindowAskAI_20x20_dark from '../icons/toolwindows/toolWindowAskAI@20x20_dark.svg';
-import icon_toolwindows_toolWindowAskAI_dark from '../icons/toolwindows/toolWindowAskAI_dark.svg';
 import icon_toolwindows_toolWindowBeanValidator from '../icons/toolwindows/toolWindowBeanValidator.svg';
 import icon_toolwindows_toolWindowBeanValidator_20x20 from '../icons/toolwindows/toolWindowBeanValidator@20x20.svg';
 import icon_toolwindows_toolWindowCadence from '../icons/toolwindows/toolWindowCadence.svg';
@@ -2008,6 +2014,9 @@ const iconRegistry = {
   'actions/unshare_dark': icon_actions_unshare_dark,
   'actions/viewAsImage': icon_actions_viewAsImage,
   'actions/viewAsImage_dark': icon_actions_viewAsImage_dark,
+  'aiAssistant/aiAssistant': icon_aiAssistant_aiAssistant,
+  'aiAssistant/aiAssistantColored': icon_aiAssistant_aiAssistantColored,
+  'aiAssistant/aiAssistantDisabled': icon_aiAssistant_aiAssistantDisabled,
   'bookmarks/addBookmarksList': icon_bookmarks_addBookmarksList,
   'bookmarks/addBookmarksList_dark': icon_bookmarks_addBookmarksList_dark,
   'bookmarks/bookmark': icon_bookmarks_bookmark,
@@ -2104,6 +2113,11 @@ const iconRegistry = {
   'build/taskGroup_dark': icon_build_taskGroup_dark,
   'build/toggleOfflineMode': icon_build_toggleOfflineMode,
   'build/toggleOfflineMode_dark': icon_build_toggleOfflineMode_dark,
+  'checkbox-radiobutton/checkbox-bg': icon_checkbox_radiobutton_checkbox_bg,
+  'checkbox-radiobutton/checkbox-indeterminate': icon_checkbox_radiobutton_checkbox_indeterminate,
+  'checkbox-radiobutton/checkbox-сheckmark': icon_checkbox_radiobutton_checkbox__heckmark,
+  'checkbox-radiobutton/radiobutton-bg': icon_checkbox_radiobutton_radiobutton_bg,
+  'checkbox-radiobutton/radiobutton-dot': icon_checkbox_radiobutton_radiobutton_dot,
   'codeInsight/inlayGlobe': icon_codeInsight_inlayGlobe,
   'codeInsight/inlayGlobe_dark': icon_codeInsight_inlayGlobe_dark,
   'codeInsight/inlayRenameInComments': icon_codeInsight_inlayRenameInComments,
@@ -2423,6 +2437,7 @@ const iconRegistry = {
   'general/autoscrollToSource_dark': icon_general_autoscrollToSource_dark,
   'general/balloon': icon_general_balloon,
   'general/balloon_dark': icon_general_balloon_dark,
+  'general/checkmark': icon_general_checkmark,
   'general/chevronDown': icon_general_chevronDown,
   'general/chevronDownLarge': icon_general_chevronDownLarge,
   'general/chevronDownLargeWhite': icon_general_chevronDownLargeWhite,
@@ -2910,6 +2925,7 @@ const iconRegistry = {
   'language/php_dark': icon_language_php_dark,
   'language/scala': icon_language_scala,
   'language/scala_dark': icon_language_scala_dark,
+  'loader': icon_loader,
   'misc/empty': icon_misc_empty,
   'misc/stub': icon_misc_stub,
   'misc/stub@20x20': icon_misc_stub_20x20,
@@ -3516,10 +3532,6 @@ const iconRegistry = {
   'toolwindows/todo@20x20': icon_toolwindows_todo_20x20,
   'toolwindows/todo@20x20_dark': icon_toolwindows_todo_20x20_dark,
   'toolwindows/todo_dark': icon_toolwindows_todo_dark,
-  'toolwindows/toolWindowAskAI': icon_toolwindows_toolWindowAskAI,
-  'toolwindows/toolWindowAskAI@20x20': icon_toolwindows_toolWindowAskAI_20x20,
-  'toolwindows/toolWindowAskAI@20x20_dark': icon_toolwindows_toolWindowAskAI_20x20_dark,
-  'toolwindows/toolWindowAskAI_dark': icon_toolwindows_toolWindowAskAI_dark,
   'toolwindows/toolWindowBeanValidator': icon_toolwindows_toolWindowBeanValidator,
   'toolwindows/toolWindowBeanValidator@20x20': icon_toolwindows_toolWindowBeanValidator_20x20,
   'toolwindows/toolWindowCadence': icon_toolwindows_toolWindowCadence,

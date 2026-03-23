@@ -1,5 +1,99 @@
 # Cursor chat — task log
 
+## Component library audit and fixes
+### 2026-03-23
+- **Done:** Full audit of repo for non-library component usage and missing exports. Fixed all identified issues:
+  - **`lib/index.js` exports:** Added 7 missing components: `Search`, `SegmentedControl`, `Alert`, `Table`, `GotItTooltip`, `CommitWindow`, `PopupFindInFiles`
+  - **`ToolWindowHeader.jsx`:** Dropdown chevron button → `ToolbarIconButton`; removed redundant `.tool-window-action-button` CSS (action buttons were already using ToolbarIconButton)
+  - **`Table.jsx`:** Toolbar add/remove icon buttons → `ToolbarIconButton`; text-label fallback stays as plain button
+  - **`GotItTooltip.jsx`:** Raw `<button>` → `Button type="secondary"`; raw `<a>` → `UILink`; CSS trimmed to only border-color and color overrides
+  - **`PopupFindInFiles.jsx`:** Scopes bar raw buttons → `SegmentedControl`; removed duplicate scope button CSS
+  - **`Notification.jsx`:** Hover ⋮/× icon buttons → `ToolbarIconButton`; removed redundant CSS (size/background/border/hover/active all handled by ToolbarIconButton), kept focus-visible override
+  - **`TerminalWindow.jsx`:** Search nav/close buttons → `ToolbarIconButton`; CSS reduced to size/padding override only; removed unused `Icon` import
+
+## VCS Log Tool Window
+### 2026-03-23
+- **Done:** Created `VCSLogWindow` component (`src/ui/components/toolwindow/VCSLogWindow.jsx` + `.css`) matching Figma node 25-3448 from the VCS Components file.
+  - Three-panel layout: Branches sidebar (260px) | Commit log (flex-1) | Commit details (340px)
+  - **Branches sidebar**: vertical toolbar (`general/chevronLeft`, `general/add`, `vcs/fetch`, `vcs/update`, `general/delete`, `general/settings`) + search bar + branch tree (HEAD, Local, Remote, Tags)
+  - **Commit log**: search field with `inline/searchHistory`, `inline/matchCase`, `inline/regex` buttons + "Branch/User/Time" filter buttons + scrollable commit rows with CSS graph circles, ref badges, author, date. One row selected (highlighted with `var(--selection-bg-active)`).
+  - **Commit details**: toolbar (`general/locate`, `vcs/update`, `general/show`, `general/expandAll`, `general/collapseAll`) + repo header + file tree + commit info block.
+  - Commit graph uses CSS `border-radius: 50%` circles with connecting lines (not SVG icons).
+  - `vcs/vcs` and `vcs/branch` icons don't exist in the library — used `vcs/changes` as substitute (same pattern as `PopupBranches.jsx`). No star icon exists — used Unicode `★` character styled in gold.
+  - Registered in `componentsConfig.js` (category: `windows`), page + route in `App.js` at `/vcslog`.
+
+## Settings Dialog
+### 2026-03-23
+- **Done:** Created `SettingsDialog` component from Figma node 7072:91658 ("Dialog / Settings").
+  - `src/ui/components/showcase/SettingsDialog.jsx` — self-contained, interactive dialog built exclusively from existing library components.
+  - `src/ui/components/showcase/SettingsDialog.css` — two-panel layout override on `.dialog-content` + layout classes.
+  - **Left panel** (283px): `Search` component + `TreeNode` components with interactive expand/collapse and selection state. Tree structure mirrors Figma: Appearance and Behavior (expanded, 7 children), Keymap, Editor, Plugins, Version Control, Build/Execution, Languages, Tools.
+  - **Right panel**: Breadcrumb (text + `Icon chevronRight`), then 4 sections:
+    - Top controls: `Dropdown` (Theme/Zoom), `Checkbox` (Sync with OS, custom font), `Link` (external, "Get more themes"), disabled dropdowns (font/size when unchecked)
+    - Accessibility (`DialogGroupHeader`): 3 `Checkbox` with hints
+    - UI Options (`DialogGroupHeader`): 2-column `Checkbox` grid + `Button` "Background Image"
+    - Antialiasing (`DialogGroupHeader`): 2 horizontal `Dropdown` (IDE/Editor)
+  - **Footer**: Cancel/Apply(disabled)/OK buttons via `Dialog` component's `buttons` prop.
+  - Registered in `componentsConfig.js` (key: `settings`, category: `windows`) + route `/settings` in `App.js`.
+
+## Commit Tool Window
+### 2026-03-23
+- **Done:** Created `CommitWindow` component (`src/ui/components/toolwindow/CommitWindow.jsx` + `.css`) matching Figma node 27921:15443.
+  - Structure: `ToolWindow` wrapper → top toolbar → file tree → bottom panel (amend + message + buttons)
+  - Toolbar uses `ToolbarIconButton` with icons: `general/refresh`, `vcs/revert`, `vcs/patch`, `toolwindows/aiAssistantToolWindow`, `general/show`, `general/expandAll`, `general/collapseAll`
+  - File tree: collapsible group rows with `Checkbox` + label + count; leaf rows with `Checkbox` + java file icon + link-colored filename + path
+  - Bottom panel: `Checkbox` (Amend), `general/history` icon button, AI icon button, "X modified" link text, textarea, Commit (primary) + Commit and Push... (secondary) buttons, settings icon button
+  - Props: `title`, `width`, `height`, `files`, `commitMessage`, `onCommit`, `onCommitAndPush`, `className`
+  - Registered in `componentsConfig.js` (key: `commit`, section: `appkit`, category: `windows`) and route `/commit` in `App.js`
+
+## Popup / Find in Files component
+### 2026-03-23
+- **Done:** Created `PopupFindInFiles` component from Figma node 6515:93391.
+  - `src/ui/components/popup/PopupFindInFiles.jsx` — props: `title`, `matchSummary`, `replaceField`, `results`, `className`, `style`
+  - `src/ui/components/popup/PopupFindInFiles.css` — 677px wide popup with complex header, search section, scopes bar, results list, code preview, footer
+  - Uses library components: `Checkbox`, `Combobox`, `ToolbarIconButton` (filter + pin), `Button`, `Icon` for all icons
+  - Search field: focused blue border (`--control-focus-border-brand`), `toolwindows/find` icon, inline toggle buttons (`inline/newLine`, `inline/matchCase`, `inline/exactWords`, `inline/regex`)
+  - Scopes bar: pressed state for active scope
+  - Results: left column (icon `nodes/class` + name + line), right column (code snippet), first row selection
+  - Footer: absolute positioned, "Open results in new tab" checkbox, ⌘↩ shortcut, "Open in Find Window" button
+  - Syntax-highlighted code preview using `--editor-bg` background
+  - `replaceField` variant adds a second search field with `inline/preserveCase` toggle
+  - Registered in `componentsConfig.js` (key: `popupfindinfiles`, section: appkit), route `/popupfindinfiles` in `App.js`
+
+## Welcome Dialog component
+### 2026-03-23
+- **Done:** Created `WelcomeDialog` component (`src/ui/components/dialog/WelcomeDialog.jsx` + `.css`) matching Figma node 11490-43649 "Dialog / Welcome Screen".
+  - Uses existing library components: `DialogHeader`, `Button`, `ToolbarIconButton`, `Icon`, `Search`.
+  - Layout: 797×649px dialog with left sidebar (221px) + right content area.
+  - **Sidebar:** IDE icon (Figma asset URL) + product name/version, navigation tree (Projects, Remote Development expanded with SSH + JetBrains Space, Customize, Plugins, Tutorials), settings icon button at bottom.
+  - **Content:** Search field + action buttons (New Project, Open, Get From VCS) + separator, scrollable project list with colored gradient icon boxes + name/path, notifications icon button with badge at bottom-right.
+  - Navigation + project selection: uncontrolled (internal state) by default, controlled when `activeNav`/`onNavChange` or `selectedProjectId`/`onProjectSelect` are provided.
+  - CSS uses `::before` pseudo-elements for hover + selection backgrounds (matching Figma `inset-[0_12px]` / `inset-[0_8px]` approach).
+  - Header title color overridden to `var(--text-muted)` (Figma: text/text-muted) via `.welcome-dialog .dialog-header-title`.
+  - SSH and JetBrains Space icons use Figma MCP asset URLs (no equivalent in `src/icons/`).
+  - Registered in `componentsConfig.js` (key: `welcomedialog`, section: container), exported from `src/lib/index.js`, page + route in `App.js` at `/welcomedialog`.
+
+## Popup / Search Everywhere
+### 2026-03-23
+- **Done:** Created `SearchEverywherePopup` component (`src/ui/components/popup/SearchEverywherePopup.jsx` + `.css`) matching Figma node 6515:81938.
+  - Props: `tabs`, `activeTab`, `onTabChange`, `includeNonProject`, `onIncludeNonProjectChange`, `searchValue`, `onSearchChange`, `items`, `footerText`, `className`, `style`
+  - Header: 40px, uses `TabBar` with `focused={true}` (active tab renders with blue pill), `Checkbox` "Include non-project items", `ToolbarIconButton` for filter and openInToolWindow
+  - Search: uses `Search` component with new `icon="toolwindows/find"` and `alwaysFocused={true}` props; full-width via CSS override
+  - Results list: uses `PopupCell type="advanced"` — new type added to PopupCell supporting `module`, `moduleIcon`, `shortcut` props; selection bg inset 8px from left/right edges
+  - Footer: 8px spacer + `PopupCell type="footer"` with secondary 12px text
+  - Library changes: `Search.jsx` — added `icon` and `alwaysFocused` props; `PopupCell.jsx/.css` — added `type="advanced"` with advanced row layout
+  - Registered in `componentsConfig.js` (key: `popupsearcheverywhere`), route `/popupsearcheverywhere` in `App.js`
+
+## Semantic Colors showcase page
+### 2026-03-23
+- **Done:** Created `SemanticColors` component (`src/ui/components/showcase/SemanticColors.jsx`).
+  - Shows all semantic CSS variables from `Themes.css` grouped by category: Text, Link, Background, Accent, Control, Selection, Icon, Toolbar, Feedback, Tooltip, Got It Tooltip, Input, Tab, Popup, Dialog, Tool Window, Scrollbar, Separator, Badge, Island Layout.
+  - Each token shows: color swatch (live `var(--x)` — auto-switches with theme), display name, Figma token path as description, CSS variable name, and computed `rgb()` value.
+  - `useResolvedColor` hook uses `getComputedStyle` + `MutationObserver` on `document.documentElement` to re-read values when theme class changes.
+  - Registered in `stylesPages` and `categoriesConfig` in `componentsConfig.js` (key: `semanticcolors`).
+  - Route `/semanticcolors` added to `App.js`.
+  - Uses existing `Colors.css` styles (`.color-palette`, `.color-item`, `.color-swatch`, etc.).
+
 ## Figma token naming alignment (Themes.css)
 ### 2026-03-23
 - **Done:** Renamed all CSS variables in `Themes.css` (and all usages across project) to match Figma token names from `figma-exports/Int UI Kit Islands. Semantic colors.json`.
