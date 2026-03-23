@@ -30,6 +30,7 @@ import Loader from './ui/components/loader/Loader';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import UILink from './ui/components/link/Link';
+import Badge, { BadgeNew, BadgeBeta, BadgeFree, BadgeTrial } from './ui/components/badge/Badge';
 import Banner from './ui/components/banner/Banner';
 import SegmentedControl from './ui/components/segmentedcontrol/SegmentedControl';
 import Search from './ui/components/search/Search';
@@ -48,7 +49,7 @@ import GotItTooltip from './ui/components/tooltip/GotItTooltip';
 import Notification from './ui/components/notification/Notification';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
-import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
+import { getSortedWindowsOnly, getComponentsBySection } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -155,6 +156,113 @@ function BannerPage() {
     );
 }
 
+function BadgePage() {
+    return (
+        <div className="component-showcase">
+            <h1>Badge</h1>
+            <p className="component-description">
+                A badge is a small label used to highlight status, categories, or attributes. It is non-interactive by default but can be made clickable.
+            </p>
+
+            <div className="component-section">
+                <h2>Fixed Types</h2>
+                <p className="component-description">Predefined badges for standard labels. Use these whenever the label is "New", "Beta", "Free", or "Trial".</p>
+                <div className="component-examples" style={{ alignItems: 'center', gap: '8px' }}>
+                    <BadgeNew />
+                    <BadgeBeta />
+                    <BadgeFree />
+                    <BadgeTrial />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Color Variants</h2>
+                <div className="component-group">
+                    <h3>Blue Secondary (default)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue-secondary" text="Label" />
+                        <Badge color="blue-secondary" text="New" />
+                        <Badge color="blue-secondary" text="Longer text" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Blue (Primary)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue" text="Label" />
+                        <Badge color="blue" text="New" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Green Secondary</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="green-secondary" text="Label" />
+                        <Badge color="green-secondary" text="Trial" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Green (Primary)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="green" text="Label" />
+                        <Badge color="green" text="Free" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Purple Secondary</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="purple-secondary" text="Label" />
+                        <Badge color="purple-secondary" text="Beta" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Gray Secondary</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="gray-secondary" text="Label" />
+                        <Badge color="gray-secondary" text="Tag" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-group">
+                    <h3>Default (no action on click)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue-secondary" text="Label" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Clickable (cursor: pointer)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue-secondary" text="Clickable" onClick={() => {}} />
+                        <Badge color="blue" text="Clickable" onClick={() => {}} />
+                        <Badge color="green-secondary" text="Clickable" onClick={() => {}} />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Disabled</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="disabled" text="Disabled" />
+                        <Badge disabled text="Disabled" />
+                        <Badge color="blue" disabled text="Disabled" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Usage examples</h2>
+                <p className="component-description">Badges can appear inline with text or next to other elements.</p>
+                <div className="component-examples" style={{ alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                    <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 13 }}>Feature name</span>
+                    <BadgeNew />
+                    <BadgeBeta />
+                    <BadgeTrial />
+                    <BadgeFree />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function ButtonsPage() {
     return (
         <div className="component-showcase">
@@ -234,6 +342,9 @@ function CheckboxPage() {
                     <Checkbox label="Indeterminate" checked={true} indeterminate={true} />
                     <Checkbox label="Disabled unchecked" disabled={true} />
                     <Checkbox label="Disabled checked" checked={true} disabled={true} />
+                    <Checkbox label="Invalid unchecked" checked={false} invalid={true} />
+                    <Checkbox label="Invalid checked" checked={true} invalid={true} />
+                    <Checkbox label="Invalid indeterminate" checked={true} indeterminate={true} invalid={true} />
                 </div>
             </div>
 
@@ -277,6 +388,8 @@ function RadioPage() {
                     <Radio label="Selected" checked={true} name="demo2" />
                     <Radio label="Disabled unselected" disabled={true} name="demo3" />
                     <Radio label="Disabled selected" checked={true} disabled={true} name="demo4" />
+                    <Radio label="Invalid unselected" checked={false} invalid={true} name="demo5" />
+                    <Radio label="Invalid selected" checked={true} invalid={true} name="demo6" />
                 </div>
             </div>
 
@@ -1990,7 +2103,7 @@ function ToolWindowPage() {
                         activeTab={0}
                         actions={['add', 'more', 'minimize']}
                     >
-                        <div style={{ padding: '16px', fontSize: '13px', color: 'var(--text-primary)' }}>
+                        <div style={{ padding: '16px', fontSize: '13px', color: 'var(--text-default)' }}>
                             <div style={{ marginBottom: '8px', color: 'var(--text-secondary)' }}>Debug Console:</div>
                             <div>→ Application started</div>
                             <div>→ Breakpoint set at line 42</div>
@@ -2185,7 +2298,7 @@ function DialogPage() {
                             { children: 'OK' },
                         ]}
                     >
-                        <div style={{ padding: '20px', color: 'var(--text-primary)', fontSize: '13px', lineHeight: '20px' }}>
+                        <div style={{ padding: '20px', color: 'var(--text-default)', fontSize: '13px', lineHeight: '20px' }}>
                             <p>Are you sure you want to proceed with this action?</p>
                             <p style={{ marginTop: '8px', color: 'var(--text-secondary)' }}>This operation cannot be undone.</p>
                         </div>
@@ -2675,7 +2788,7 @@ function TooltipEditorPage() {
 function BalloonPage() {
     return (
         <div className="component-showcase">
-            <h1>Balloon</h1>
+            <h1>Notification</h1>
             <p className="component-description">
                 Toast notifications that appear to inform users of events, build results, or actions.
                 Typically shown in the bottom-right corner of the IDE.
@@ -2714,8 +2827,22 @@ function BalloonPage() {
             </div>
 
             <div className="component-section">
-                <h2>With Actions</h2>
+                <h2>With Button and Actions</h2>
+                <p className="section-description">
+                    Matches Figma node 3595:83697 — button + link actions.
+                </p>
                 <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="info"
+                        title="JDK 18 required"
+                        button={{ label: 'Install JDK 18', onClick: () => {} }}
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                    >
+                        You need to install JDK 18 in order to run this project
+                    </Notification>
                     <Notification
                         type="info"
                         title="Plugin Update Available"
@@ -2743,6 +2870,62 @@ function BalloonPage() {
                 <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
                     <Notification type="success" title="File saved" />
                     <Notification type="info" title="VCS update completed" timestamp="3 min ago" />
+                    <Notification
+                        type="info"
+                        title="2,662 files updated in 844 commits"
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Warning — Low Memory</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="warning"
+                        title="Low memory"
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                    >
+                        The IDE is running low on memory and this might affect performance.
+                        Please consider increasing the heap size.
+                    </Notification>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Hover State (⋮ and × buttons)</h2>
+                <p className="section-description">
+                    Hover over the notification to reveal the More and Close icon buttons (top-right corner).
+                </p>
+                <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="info"
+                        title="JDK 18 required"
+                        button={{ label: 'Install JDK 18', onClick: () => {} }}
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                        onMore={() => {}}
+                        onClose={() => {}}
+                    >
+                        You need to install JDK 18 in order to run this project
+                    </Notification>
+                    <Notification
+                        type="error"
+                        title="Build Failed"
+                        actions={[{ label: 'Open Build Log', onClick: () => {} }]}
+                        onMore={() => {}}
+                        onClose={() => {}}
+                    >
+                        Compilation failed with 2 errors.
+                    </Notification>
                 </div>
             </div>
         </div>
@@ -3004,10 +3187,15 @@ function Sidebar() {
     ];
 
     const windowsItems = getSortedWindowsOnly().filter(c => c.key !== 'mainwindow');
-    const componentsItems = getSortedComponentsOnly();
+    const componentSections = getComponentsBySection();
 
     const filteredWindows = isSearching ? windowsItems.filter(c => matchesSearch(c.name)) : windowsItems;
-    const filteredComponents = isSearching ? componentsItems.filter(c => matchesSearch(c.name)) : componentsItems;
+    const filteredComponentSections = componentSections
+        .map(sec => ({
+            ...sec,
+            components: isSearching ? sec.components.filter(c => matchesSearch(c.name)) : sec.components,
+        }))
+        .filter(sec => sec.components.length > 0);
     const filteredStyles = isSearching ? stylesItems.filter(c => matchesSearch(c.name)) : stylesItems;
 
     const showHome = !isSearching || matchesSearch('Home');
@@ -3053,10 +3241,10 @@ function Sidebar() {
             {filteredWindows.length > 0 && (
                 <div className="nav-category">
                     <div className="nav-category-title" onClick={() => toggleSection('windows')}>
+                        Windows
                         <span className={`nav-category-chevron ${isSectionOpen('windows') ? 'open' : ''}`}>
                             <Icon name="general/chevronRight" size={16} />
                         </span>
-                        Windows
                     </div>
                     {isSectionOpen('windows') && (
                         <div className="nav-category-items">
@@ -3074,24 +3262,43 @@ function Sidebar() {
                 </div>
             )}
 
-            {filteredComponents.length > 0 && (
+            {filteredComponentSections.length > 0 && (
                 <div className="nav-category">
                     <div className="nav-category-title" onClick={() => toggleSection('components')}>
+                        Components
                         <span className={`nav-category-chevron ${isSectionOpen('components') ? 'open' : ''}`}>
                             <Icon name="general/chevronRight" size={16} />
                         </span>
-                        Components
                     </div>
                     {isSectionOpen('components') && (
                         <div className="nav-category-items">
-                            {filteredComponents.map((component) => (
-                                <Link
-                                    key={component.key}
-                                    to={`/${component.key}`}
-                                    className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
-                                >
-                                    {component.name}
-                                </Link>
+                            {filteredComponentSections.map((sec) => (
+                                <div key={sec.sectionKey} className="nav-sub-group">
+                                    {!isSearching && (
+                                        <div
+                                            className="nav-sub-group-title"
+                                            onClick={() => toggleSection(`sub-${sec.sectionKey}`)}
+                                        >
+                                            {sec.sectionName}
+                                            <span className={`nav-category-chevron ${isSectionOpen(`sub-${sec.sectionKey}`) ? 'open' : ''}`}>
+                                                <Icon name="general/chevronRight" size={12} />
+                                            </span>
+                                        </div>
+                                    )}
+                                    {isSectionOpen(`sub-${sec.sectionKey}`) && (
+                                        <div className="nav-sub-group-items">
+                                            {sec.components.map((component) => (
+                                                <Link
+                                                    key={component.key}
+                                                    to={`/${component.key}`}
+                                                    className={`nav-item nav-item--indented ${isActive(`/${component.key}`) ? 'active' : ''}`}
+                                                >
+                                                    {component.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
                             ))}
                         </div>
                     )}
@@ -3101,10 +3308,10 @@ function Sidebar() {
             {filteredStyles.length > 0 && (
                 <div className="nav-category">
                     <div className="nav-category-title" onClick={() => toggleSection('styles')}>
+                        Styles
                         <span className={`nav-category-chevron ${isSectionOpen('styles') ? 'open' : ''}`}>
                             <Icon name="general/chevronRight" size={16} />
                         </span>
-                        Styles
                     </div>
                     {isSectionOpen('styles') && (
                         <div className="nav-category-items">
@@ -3141,6 +3348,7 @@ function AppContent() {
                     <Route path="/typography" element={<Typography />} />
                     <Route path="/colors" element={<Colors />} />
                     <Route path="/banner" element={<BannerPage />} />
+                    <Route path="/badge" element={<BadgePage />} />
                     <Route path="/buttons" element={<ButtonsPage />} />
                     <Route path="/checkbox" element={<CheckboxPage />} />
                     <Route path="/radio" element={<RadioPage />} />
@@ -3180,7 +3388,7 @@ function AppContent() {
                     <Route path="/validationtooltip" element={<ValidationTooltipPage />} />
                     <Route path="/tooltipeditor" element={<TooltipEditorPage />} />
                     <Route path="/gotittooltip" element={<GotItTooltipPage />} />
-                    <Route path="/balloon" element={<BalloonPage />} />
+                    <Route path="/notification" element={<BalloonPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>

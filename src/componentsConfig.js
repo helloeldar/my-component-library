@@ -2,8 +2,13 @@
 export const componentsConfig = [
     // Buttons
     { name: 'Buttons', key: 'buttons', description: 'Primary and secondary button variants', category: 'components', section: 'buttons', status: 'ready', preview: '/previews/button.png' },
-    { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components', section: 'buttons', status: 'ready', preview: '/previews/toolbar button.png' },
+    { name: 'Badge', key: 'badge', description: 'Status badge with color variants: blue, green, purple, gray, and disabled', category: 'components', section: 'buttons', status: 'ready', preview: null },
     { name: 'Link', key: 'link', description: 'Text links with default, dropdown, and external variants', category: 'components', section: 'buttons', status: 'ready', preview: '/previews/link.png' },
+
+    // Toolbar
+    { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components', section: 'toolbar', status: 'ready', preview: '/previews/toolbar button.png' },
+    { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components', section: 'toolbar', status: 'ready', preview: null },
+    { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components', section: 'toolbar', status: 'ready', preview: null },
 
     // Inputs
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components', section: 'inputs', status: 'ready', preview: '/previews/input.png' },
@@ -17,7 +22,7 @@ export const componentsConfig = [
     // Feedback
     { name: 'Banner', key: 'banner', description: 'Notification bar for important information, warnings, errors, or success messages', category: 'components', section: 'feedback', status: 'ready', preview: '/previews/banner.png' },
     { name: 'Alert', key: 'alert', description: 'Dialog alert with title, body, icon, and action buttons', category: 'components', section: 'feedback', status: 'ready', preview: '/previews/alert.png' },
-    { name: 'Balloon', key: 'balloon', description: 'Notification balloon for non-modal messages', category: 'components', section: 'feedback', status: 'ready', preview: null },
+    { name: 'Notification', key: 'notification', description: 'Notification balloon for non-modal messages', category: 'components', section: 'feedback', status: 'ready', preview: null },
 
     // Help
     { name: 'Tooltip', key: 'tooltip', description: 'Contextual tooltip for additional information on hover', category: 'components', section: 'help', status: 'ready', preview: null },
@@ -57,18 +62,17 @@ export const componentsConfig = [
     { name: 'Popup / Branches', key: 'popupbranches', description: 'Branches popup with search, VCS actions, and branch tree', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar Breadcrumb', key: 'statusbarbreadcrumb', description: 'Breadcrumb navigation item for status bar', category: 'components', section: 'appkit', status: 'ready', preview: null },
-    { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components', section: 'appkit', status: 'ready', preview: null },
-    { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components', section: 'appkit', status: 'ready', preview: null },
 ];
 
 // Home page section definitions in display order
 export const homeSections = [
     { key: 'styles', name: 'Styles', description: 'Design tokens and foundational styles' },
-    { key: 'buttons', name: 'Buttons', description: 'Toolbar buttons and button variants' },
+    { key: 'buttons', name: 'Buttons', description: 'Button variants and links' },
+    { key: 'toolbar', name: 'Toolbar', description: 'Toolbar, toolbar icon buttons, and toolbar dropdown' },
     { key: 'inputs', name: 'Inputs', description: 'Input fields, checkboxes, radios, and selection controls' },
     { key: 'feedback', name: 'Feedback', description: 'Banners, alerts, and notification balloons' },
-    { key: 'help', name: 'Help', description: 'Tooltips, help text, and empty states' },
+    { key: 'help', name: 'Tooltips', description: 'Tooltips, help text, and empty states' },
     { key: 'container', name: 'Container', description: 'Dialogs, popups, and tool windows' },
     { key: 'navigation', name: 'Content filtering', description: 'Tabs and segmented controls' },
     { key: 'information', name: 'Information', description: 'Trees and tables' },
@@ -112,6 +116,29 @@ export const getSortedFeaturesOnly = () => {
     return [...componentsConfig]
         .filter(item => item.category === 'features')
         .sort((a, b) => a.name.localeCompare(b.name));
+};
+
+// Function to get components grouped by section (for sidebar grouping)
+export const getComponentsBySection = () => {
+    const sectionOrder = homeSections.map(s => s.key);
+    const grouped = {};
+    componentsConfig
+        .filter(item => item.category === 'components' && item.status !== 'coming-soon')
+        .forEach(item => {
+            if (!grouped[item.section]) grouped[item.section] = [];
+            grouped[item.section].push(item);
+        });
+
+    return sectionOrder
+        .filter(key => grouped[key])
+        .map(key => {
+            const section = homeSections.find(s => s.key === key);
+            return {
+                sectionKey: key,
+                sectionName: section ? section.name : key,
+                components: grouped[key].sort((a, b) => a.name.localeCompare(b.name)),
+            };
+        });
 };
 
 // Function to get only windows (category: 'windows')

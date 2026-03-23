@@ -1,5 +1,29 @@
 # Cursor chat — task log
 
+## Figma token naming alignment (Themes.css)
+### 2026-03-23
+- **Done:** Renamed all CSS variables in `Themes.css` (and all usages across project) to match Figma token names from `figma-exports/Int UI Kit Islands. Semantic colors.json`.
+- Renames applied project-wide with perl one-liners across all CSS/JS files:
+  - `--text-primary` → `--text-default` (Figma: `text/text-default`)
+  - `--text-inverse` → `--text-over-accent` (Figma: `text/text-over-accent`)
+  - `--link-text` / `-hover` / `-pressed` / `-visited` → `--text-link` / `-hover` / `-pressed` / `-visited` (Figma: `text/text-link`)
+  - `--border-control` → `--control-border` (Figma: `control/control-border`)
+  - `--border-control-disabled` → `--control-border-disabled`
+  - `--border-control-invalid` → `--control-focus-border-error`
+  - `--border-raised` → `--control-border-raised`
+  - `--border-focus` → `--control-focus-border-brand`
+  - `--accent-primary` → `--accent-brand-bg`
+  - `--accent-primary-hover` → `--accent-brand-bg-hovered`
+  - `--accent-primary-active` → `--accent-brand-bg-pressed`
+  - `--icon-secondary` → `--icon-secondary-stroke`
+  - `--icon-stroke-muted` → `--icon-disabled`
+  - `--validation-error-bg/border` → `--feedback-error-bg/border`
+  - `--validation-warning-bg/border` → `--feedback-warning-bg/border`
+  - `--selection-bg` → `--selection-bg-active`
+  - `--warning-text` → `--text-warning`
+- `--control-focus-border-error` consolidated into the Control section (removed standalone "Control invalid border" comment)
+- Build passes, no broken references.
+
 ## Badge component
 ### 2026-03-23
 - **Done:** Created `Badge` component (`src/ui/components/badge/Badge.jsx` + `.css`) matching Figma node 2413:19391.
@@ -25,6 +49,14 @@
   - Showcase pages updated with all new invalid states for visual testing
 
 ## Notification (Balloon) component
+### 2026-03-23 (update)
+- **Done:** Renamed "Balloon" → "Notification" in `componentsConfig.js` (key: balloon → notification) and route `/balloon` → `/notification` in `App.js`.
+- **Done:** Added hover buttons (⋮ and ×) from Figma node 3830:46699 (Component-specs file).
+  - Props: `onMore` and `onClose` (both optional). When either is provided, `.notification-hover-buttons` container renders with the icon buttons.
+  - CSS: `opacity: 0 / pointer-events: none` by default; `opacity: 1 / pointer-events: auto` on `.notification:hover`. Absolute `right: 7px, top: 3px`. Each button is 26×26px with 5px padding — matches toolbar icon button spec.
+  - Icons: `general/moreVertical` and `general/close`.
+  - Added "Hover State" demo section to BalloonPage.
+
 ### 2026-03-23
 - **Done:** Created `Notification` component from Figma node 3595:83697 (section 6296:70979).
   - `src/ui/components/notification/Notification.jsx` — props: `type` (info/error/warning/success), `title`, `children` (body text), `button` ({ label, onClick }), `actions` ([{ label, onClick, href }]), `timestamp`, `className`
