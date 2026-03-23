@@ -39,31 +39,21 @@
     box-sizing: border-box;
 }
 
-/* Hover state */
-.radio-hovered:not(.radio-disabled):not(.radio-checked) {
-    border-color: var(--control-border-raised);
-}
 
-/* Focus state (unchecked) */
-.radio-focused:not(.radio-disabled):not(.radio-checked) {
+/* Focus ring — exact Button pattern: inset -4px → 2px gap before 2px stroke */
+.radio-focused:not(.radio-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
     border: 2px solid var(--control-focus-border-brand);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 /* Checked state */
 .radio-checked {
     background: var(--accent-brand-bg);
     border-color: var(--accent-brand-bg);
-}
-
-.radio-checked.radio-hovered:not(.radio-disabled) {
-    background: var(--accent-brand-bg-hovered);
-    border-color: var(--accent-brand-bg-hovered);
-}
-
-/* Checked + focused: keep accent fill, add 1px gap + 2px ring outside */
-.radio-checked.radio-focused:not(.radio-disabled) {
-    border: 1px solid var(--accent-brand-bg);
-    box-shadow: 0 0 0 1px var(--control-bg), 0 0 0 3px var(--control-focus-border-brand);
 }
 
 /* Disabled state */
@@ -78,18 +68,17 @@
     border-color: var(--control-border);
 }
 
-/* Invalid state — unchecked: 2px red border */
-.radio-invalid:not(.radio-checked) {
+/* Invalid ring — same pattern, red stroke */
+.radio-invalid:not(.radio-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
     border: 2px solid var(--control-focus-border-error);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
-/* Invalid state — checked: accent fill + 1px gap + 2px red ring */
-.radio-checked.radio-invalid {
-    border: 1px solid var(--accent-brand-bg);
-    box-shadow: 0 0 0 1px var(--control-bg), 0 0 0 3px var(--control-focus-border-error);
-}
-
-/* Radio dot */
+/* Radio dot — exact Figma dimensions: 6×6 SVG circle */
 .radio-dot {
     position: absolute;
     top: 50%;
@@ -97,12 +86,11 @@
     transform: translate(-50%, -50%);
     width: 6px;
     height: 6px;
-    border-radius: 50%;
-    background: var(--text-over-accent);
+    color: var(--text-over-accent);
 }
 
 .radio-disabled .radio-dot {
-    background: var(--text-secondary);
+    color: var(--text-secondary);
 }
 
 /* Content (label + hint) */

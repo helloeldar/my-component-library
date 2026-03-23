@@ -13,7 +13,6 @@ function Radio({
     className = '',
     ...props
 }) {
-    const [isHovered, setIsHovered] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
     const handleChange = (e) => {
@@ -34,9 +33,6 @@ function Radio({
         if (isFocused && !disabled) {
             classes.push('radio-focused');
         }
-        if (isHovered && !disabled) {
-            classes.push('radio-hovered');
-        }
         if (invalid && !disabled) {
             classes.push('radio-invalid');
         }
@@ -45,10 +41,8 @@ function Radio({
     };
 
     return (
-        <label 
+        <label
             className={`radio-container ${disabled ? 'radio-container-disabled' : ''} ${className}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
             {...props}
         >
             <div className="radio-wrapper">
@@ -64,7 +58,11 @@ function Radio({
                     className="radio-input"
                 />
                 <div className={getRadioClasses()}>
-                    {checked && <div className="radio-dot" />}
+                    {checked && (
+                        <svg className="radio-dot" viewBox="0 0 6 6" fill="none">
+                            <circle cx="3" cy="3" r="3" fill="currentColor" />
+                        </svg>
+                    )}
                 </div>
             </div>
             {(label || hint) && (

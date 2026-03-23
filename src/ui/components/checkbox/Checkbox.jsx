@@ -12,7 +12,6 @@ function Checkbox({
     className = '',
     ...props
 }) {
-    const [isHovered, setIsHovered] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
     const handleChange = (e) => {
@@ -36,9 +35,6 @@ function Checkbox({
         if (isFocused && !disabled) {
             classes.push('checkbox-focused');
         }
-        if (isHovered && !disabled) {
-            classes.push('checkbox-hovered');
-        }
         if (invalid && !disabled) {
             classes.push('checkbox-invalid');
         }
@@ -47,10 +43,8 @@ function Checkbox({
     };
 
     return (
-        <label 
+        <label
             className={`checkbox-container ${disabled ? 'checkbox-container-disabled' : ''} ${className}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
             {...props}
         >
             <div className="checkbox-wrapper">
@@ -70,12 +64,12 @@ function Checkbox({
                 />
                 <div className={getCheckboxClasses()}>
                     {checked && !indeterminate && (
-                        <svg className="checkbox-checkmark" viewBox="0 0 16 16" fill="none">
-                            <path 
-                                d="M3.5 8L6.5 11L12.5 5" 
-                                stroke="currentColor" 
-                                strokeWidth="2" 
-                                strokeLinecap="round" 
+                        <svg className="checkbox-checkmark" viewBox="0 0 11 9" fill="none">
+                            <path
+                                d="M1 4.5L4 7.5L9.5 1"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
                         </svg>

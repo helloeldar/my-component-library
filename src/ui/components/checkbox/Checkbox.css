@@ -39,31 +39,21 @@
     box-sizing: border-box;
 }
 
-/* Hover state */
-.checkbox-hovered:not(.checkbox-disabled):not(.checkbox-checked) {
-    border-color: var(--control-border-raised);
-}
 
-/* Focus state (unchecked/indeterminate) */
-.checkbox-focused:not(.checkbox-disabled):not(.checkbox-checked) {
+/* Focus ring — exact Button pattern: inset -4px → 2px gap before 2px stroke */
+.checkbox-focused:not(.checkbox-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
     border: 2px solid var(--control-focus-border-brand);
+    border-radius: 6px;
+    pointer-events: none;
 }
 
 /* Checked state */
 .checkbox-checked {
     background: var(--accent-brand-bg);
     border-color: var(--accent-brand-bg);
-}
-
-.checkbox-checked.checkbox-hovered:not(.checkbox-disabled) {
-    background: var(--accent-brand-bg-hovered);
-    border-color: var(--accent-brand-bg-hovered);
-}
-
-/* Checked + focused: keep accent fill, add 1px gap + 2px ring outside */
-.checkbox-checked.checkbox-focused:not(.checkbox-disabled) {
-    border: 1px solid var(--accent-brand-bg);
-    box-shadow: 0 0 0 1px var(--control-bg), 0 0 0 3px var(--control-focus-border-brand);
 }
 
 /* Disabled state */
@@ -78,25 +68,24 @@
     border-color: var(--control-bg-pressed);
 }
 
-/* Invalid state — unchecked: 2px red border */
-.checkbox-invalid:not(.checkbox-checked) {
+/* Invalid ring — same pattern, red stroke */
+.checkbox-invalid:not(.checkbox-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
     border: 2px solid var(--control-focus-border-error);
+    border-radius: 6px;
+    pointer-events: none;
 }
 
-/* Invalid state — checked/indeterminate: accent fill + 1px gap + 2px red ring */
-.checkbox-checked.checkbox-invalid {
-    border: 1px solid var(--accent-brand-bg);
-    box-shadow: 0 0 0 1px var(--control-bg), 0 0 0 3px var(--control-focus-border-error);
-}
-
-/* Checkmark icon */
+/* Checkmark icon — exact Figma dimensions: 11×9 viewBox */
 .checkbox-checkmark {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 9px;
     color: var(--text-over-accent);
 }
 
