@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MainToolbarIconButton } from '../iconbutton/IconButton';
-import MainToolbarVerticalSeparator from '../maintoolbar/MainToolbarVerticalSeparator';
-import ProjectSelector from '../projectselector/ProjectSelector';
+import ProjectWidget from '../projectwidget/ProjectWidget';
 import PopupBranches from '../popup/PopupBranches';
+import PopupRunWidget from '../popup/PopupRunWidget';
 import RunWidget from '../runwidget/RunWidget';
 import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import './MainToolbar.css';
@@ -18,7 +18,10 @@ function MainToolbar({
     ...props
 }) {
     const [branchesOpen, setBranchesOpen] = useState(false);
+    const [runPopupOpen, setRunPopupOpen] = useState(false);
+    const [activeRunConfig, setActiveRunConfig] = useState({ name: runConfig, icon: 'runConfigurations/application' });
     const vcsRef = useRef(null);
+    const runRef = useRef(null);
 
     useEffect(() => {
         if (!branchesOpen) return;
@@ -30,6 +33,17 @@ function MainToolbar({
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [branchesOpen]);
+
+    useEffect(() => {
+        if (!runPopupOpen) return;
+        const handleClickOutside = (e) => {
+            if (runRef.current && !runRef.current.contains(e.target)) {
+                setRunPopupOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [runPopupOpen]);
 
     return (
         <div className={`main-toolbar ${className}`} {...props}>
@@ -44,7 +58,7 @@ function MainToolbar({
 
             {/* Left Side - Project and VCS */}
             <div className="toolbar-left">
-                    <ProjectSelector
+                    <ProjectWidget
                         projectName={projectName}
                         projectIcon={projectIcon}
                         projectColor={projectColor}
@@ -52,7 +66,7 @@ function MainToolbar({
 
                     <div className="vcs-dropdown-container" ref={vcsRef}>
                         <ToolbarDropdown
-                            icon="vcs/branch"
+                            icon="toolwindows/vcs"
                             text={branchName}
                             theme="dark"
                             onClick={() => setBranchesOpen(!branchesOpen)}
@@ -72,14 +86,33 @@ function MainToolbar({
 
             {/* Right Side - Run Widget and Actions */}
             <div className="toolbar-right">
-                <RunWidget
-                    state={runState}
-                    runConfig={runConfig}
-                />
-                
-                <MainToolbarVerticalSeparator />
+                <div className="run-widget-container" ref={runRef}>
+                    <RunWidget
+                        state={runState}
+                        runConfig={activeRunConfig.name}
+                        configIcon={activeRunConfig.icon}
+                        onDropdownClick={() => setRunPopupOpen(!runPopupOpen)}
+                    />
+                    {runPopupOpen && (
+                        <PopupRunWidget
+                            activeConfig={activeRunConfig.name}
+                            onSelect={(config) => {
+                                setActiveRunConfig(config);
+                                setRunPopupOpen(false);
+                            }}
+                            style={{
+                                position: 'absolute',
+                                top: '100%',
+                                right: 0,
+                                marginTop: '4px',
+                                zIndex: 1000
+                            }}
+                        />
+                    )}
+                </div>
+
                 <div className="toolbar-actions">
-                    <MainToolbarIconButton icon="codeWithMe/cwmAccess@20x20" tooltip="Code With Me" />
+                    <MainToolbarIconButton icon="toolwindows/aiAssistantToolWindow@20x20" tooltip="AI Assistant" />
                     <MainToolbarIconButton icon="general/search@20x20" tooltip="Search Everywhere" shortcut="Double ⇧" />
                     <MainToolbarIconButton icon="general/settings@20x20" tooltip="Settings" />
                 </div>

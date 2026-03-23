@@ -31,7 +31,7 @@
 
 - `Popup` and `PopupCell` are generic primitives. They support the popup showcase page, but the named Figma popup variants currently appear to be composed in `src/App.js` rather than implemented as standalone components.
 - `Search` most closely maps to [Popup / Search Everywhere](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=6515-81938). It has a showcase page, but it is not exported from `src/lib/index.js`.
-- `ProjectSelector` most closely maps to [Popup / Projects](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=6445-76525).
+- `ProjectWidget` most closely maps to [Popup / Projects](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=6445-76525).
 - `ToolbarDropdown` partially maps to main-toolbar popup patterns such as [Popup / Settings](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=19628-31907) and [Popup / Branches](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=6451-81294), but it is currently a generic text dropdown rather than distinct named variants.
 - `ToolWindow` maps directly to the [Tool Window](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=605-63656) group.
 - `ToolWindowHeader` maps directly to [Tool Window / Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=605-50202), including label and tab header variants.
@@ -71,7 +71,7 @@
 | StripeIconButton | `src/ui/components/stripe/Stripe.jsx` | [Stripe / Icon Button](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=269-25319) | Yes | Accurate | No | 40×40 wrapper, renamed from Stripe |
 | StripeContainer | `src/ui/components/stripe/StripeContainer.jsx` | [Stripes](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7059-97083) | Yes | Unknown | No | Container for stripe buttons |
 | ToolbarDropdown | `src/ui/components/toolbardropdown/ToolbarDropdown.jsx` | Popup / Main Toolbar | Partial | Needs review | No | Generic toolbar popup/dropdown, not yet split into specific Figma variants like Branches or Settings |
-| ProjectSelector | `src/ui/components/projectselector/ProjectSelector.jsx` | Popup / Projects | Yes | Needs review | No | Strong candidate match for the Projects popup |
+| ProjectWidget | `src/ui/components/projectwidget/ProjectWidget.jsx` | Popup / Projects | Yes | Needs review | No | Strong candidate match for the Projects popup |
 | StatusBar | `src/ui/components/statusbar/StatusBar.jsx` | Main Window | Yes | Unknown | No | Likely part of window shell |
 | StatusBarBreadcrumb | `src/ui/components/statusbar/StatusBarBreadcrumb.jsx` | Main Window | Yes | Unknown | No | Likely part of window shell |
 | StatusBarProgress | `src/ui/components/statusbar/StatusBarProgress.jsx` | Main Window | Yes | Unknown | No | Likely part of window shell |

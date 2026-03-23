@@ -25,7 +25,7 @@ src/
 │   │   ├── alert/               # Alert, Banner, Button, Checkbox,
 │   │   ├── banner/              # Combobox, Dialog, Dropdown, Icon,
 │   │   ├── button/              # IconButton, Input, Link, Popup,
-│   │   ├── checkbox/            # ProgressBar, ProjectSelector, Radio,
+│   │   ├── checkbox/            # ProgressBar, ProjectWidget, Radio,
 │   │   ├── combobox/            # Search, SegmentedControl, StatusBar,
 │   │   ├── dialog/              # Stripe, Table, Tabs, Toggle, ToolWindow,
 │   │   ├── dropdown/            # ToolbarDropdown, Tree
@@ -79,7 +79,7 @@ Each component folder typically contains:
 
 ### UI Components (27)
 
-Alert, Banner, Button, Checkbox, Combobox, Dialog, Dropdown, Icon, IconButton, Input, Link, Popup, ProgressBar, ProjectSelector, Radio, Search, SegmentedControl, StatusBar, StatusBarBreadcrumb, Stripe, Table, Tabs, Toggle, ToolbarDropdown, ToolWindow, Tree, CodeExample
+Alert, Banner, Button, Checkbox, Combobox, Dialog, Dropdown, Icon, IconButton, Input, Link, Popup, ProgressBar, ProjectWidget, Radio, Search, SegmentedControl, StatusBar, StatusBarBreadcrumb, Stripe, Table, Tabs, Toggle, ToolbarDropdown, ToolWindow, Tree, CodeExample
 
 ### Window Layouts (4)
 

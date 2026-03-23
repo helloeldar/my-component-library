@@ -1,0 +1,30 @@
+.popup-tree-section-header {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 4px 2px 15px;
+    position: relative;
+    cursor: pointer;
+    height: 24px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.popup-tree-section-header:hover {
+    background-color: var(--popup-cell-bg-hover);
+}
+
+.popup-tree-section-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--text-primary);
+    transition: transform 0.15s ease;
+}
+
+.popup-tree-section-chevron-collapsed {
+    transform: rotate(-90deg);
+}

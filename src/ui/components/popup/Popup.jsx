@@ -1,8 +1,6 @@
 import './Popup.css';
 import PopupCell from './PopupCell';
-// TODO: Add support for custom cells
-// TODO: Add opening and closing behaviour: closes on click outside, closes on escape, etc.
-// TODO: Add behaviour when scrolling the content
+import PopupTreeSection from './PopupTreeSection';
 
 function Popup(props) {
     let classes = ['popup'];
@@ -35,5 +33,6 @@ function Popup(props) {
 }
 
 Popup.Cell = PopupCell;
+Popup.TreeSection = PopupTreeSection;
 
 export default Popup;

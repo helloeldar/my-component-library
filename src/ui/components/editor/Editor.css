@@ -118,11 +118,7 @@
     line-height: 22px;
     color: var(--editor-default-text);
     height: 100%;
-    scrollbar-width: none;
-}
-
-.editor-code .prism-code-editor::-webkit-scrollbar {
-    display: none;
+    scrollbar-width: thin;
 }
 
 .editor-code .pce-has-selection .active-line:after {
@@ -369,11 +365,11 @@
    MAINWINDOW INTEGRATION
    ============================================ */
 
-.ide-layout-editor-content .editor {
+.main-window-editor-content .editor {
     flex: 1;
     height: 100%;
 }
 
-.ide-layout-editor-content .editor .prism-code-editor {
+.main-window-editor-content .editor .prism-code-editor {
     height: 100%;
 }

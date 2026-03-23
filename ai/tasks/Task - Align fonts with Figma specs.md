@@ -46,7 +46,7 @@ Updated all component CSS files to use `font-weight: 400` instead of `500`:
 - ProgressBar.css
 - SegmentedControl.css
 - TerminalWindow.css
-- ProjectSelector.css
+- ProjectWidget.css
 - CodeExample.css
 
 ### 3. MainWindow.css — Editor line-height fix

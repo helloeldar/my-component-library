@@ -66,6 +66,10 @@
     background: var(--stripe-default-hover-bg);
 }
 
+.stripe-default:active .stripe-hover-bg {
+    background: var(--stripe-default-pressed-bg);
+}
+
 .stripe-default.stripe-hovered .stripe-icon {
     color: var(--stripe-icon-color);
 }

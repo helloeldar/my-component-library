@@ -1,0 +1,21 @@
+/* Popup / Run Widget — run configuration selector */
+
+.popup-run-widget {
+    width: 292px;
+}
+
+/* Override default popup-options padding to match Figma spacing */
+.popup-run-widget > .popup-content > .popup-options {
+    padding: 0 8px;
+}
+
+/* Top/bottom spacers — 8px */
+.popup-run-widget-spacer {
+    height: 8px;
+}
+
+/* Section header — "Recent Configurations" */
+.popup-run-widget-section-header {
+    padding: 4px 16px;
+    color: var(--text-secondary);
+}

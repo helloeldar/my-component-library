@@ -51,6 +51,18 @@ Both editor tabs (via `TabBar`) and tool window header tabs (via `ToolWindowHead
 - `TabBar` renders `Tab` components inside `.tab-bar` container
 - Both pass `focused` prop to `Tab` for active state styling
 
+## Stripe Token Overrides (Island Theme)
+
+The island theme stripes sit on a dark background, so they use transparent white overlays instead of the default theme tokens:
+
+| State | Token | Value |
+|---|---|---|
+| Hovered | `toolbar/toolbar-bg-hovered` | `#FFFFFF17` (FFF 9%) |
+| Pressed (:active) | `toolbar/toolbar-bg-pressed` | `#FFFFFF29` (FFF 16%) |
+| Inactive (unfocused) | `toolbar/toolbar-bg-pressed` | `#FFFFFF29` (FFF 16%) |
+
+These are set as CSS variable overrides on `.main-window-island .main-window-stripe` in `MainWindow.css`.
+
 ## Features
 
 - Island theme only (no "default" flat theme)

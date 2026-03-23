@@ -121,19 +121,12 @@
     flex-direction: column;
 }
 
-.main-window-editor-content .code-example {
-    flex: 1;
-    height: 100%;
-    border: none;
-    border-radius: 0;
-}
-
-.main-window-editor-content .code-example .code-input-container {
+.main-window-editor-content .editor {
     flex: 1;
     height: 100%;
 }
 
-.main-window-editor-content .code-example .code-input {
+.main-window-editor-content .editor .prism-code-editor {
     height: 100%;
 }
 
@@ -142,11 +135,38 @@
    ============================================ */
 
 .main-window-island {
+    position: relative;
+    isolation: isolate;
     background: linear-gradient(90deg, var(--island-bg-overlay) 0%, var(--island-bg-overlay) 100%), 
                 linear-gradient(90deg, var(--island-bg) 0%, var(--island-bg) 100%);
     border-radius: 10px;
     box-shadow: var(--island-shadow), inset 0 0 0 1px var(--island-border);
 }
+
+/* Project Color Gradient — subtle glow behind the entire window */
+.main-window-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(ellipse 40% 100% at 20% 0%, var(--project-gradient-color, transparent) 0%, transparent 80%);
+}
+
+/* Project gradient color variants — derived from Figma project/project-color-N tokens */
+.project-color-amber  { --project-gradient-color: #7d5237; }
+.project-color-rust   { --project-gradient-color: #733518; }
+.project-color-olive  { --project-gradient-color: #4b4c37; }
+.project-color-grass  { --project-gradient-color: #3d5940; }
+.project-color-ocean  { --project-gradient-color: #244740; }
+.project-color-sky    { --project-gradient-color: #224963; }
+.project-color-cobalt { --project-gradient-color: #394773; }
+.project-color-violet { --project-gradient-color: #3f2d5a; }
+.project-color-plum   { --project-gradient-color: #5c2d6c; }
 
 .main-window-island .main-toolbar {
     flex-shrink: 0;
@@ -170,6 +190,9 @@
 /* Island theme stripes */
 .main-window-island .main-window-stripe {
     background: transparent;
+    --stripe-default-hover-bg: #FFFFFF17; /* toolbar/toolbar-bg-hovered FFF 9% */
+    --stripe-default-pressed-bg: #FFFFFF29; /* toolbar/toolbar-bg-pressed FFF 16% */
+    --stripe-inactive-bg: #FFFFFF29; /* toolbar/toolbar-bg-pressed FFF 16% */
 }
 
 .main-window-island .stripe-container {

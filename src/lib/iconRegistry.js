@@ -1799,6 +1799,8 @@ import icon_vcs_update from '../icons/vcs/update.svg';
 import icon_vcs_update_20x20 from '../icons/vcs/update@20x20.svg';
 import icon_vcs_update_20x20_dark from '../icons/vcs/update@20x20_dark.svg';
 import icon_vcs_update_dark from '../icons/vcs/update_dark.svg';
+import icon_vcs_vcs from '../icons/vcs/vcs.svg';
+import icon_vcs_vcs_dark from '../icons/vcs/vcs_dark.svg';
 import icon_webReferences_messageQueue from '../icons/webReferences/messageQueue.svg';
 import icon_webReferences_messageQueue_dark from '../icons/webReferences/messageQueue_dark.svg';
 import icon_webReferences_openApi from '../icons/webReferences/openApi.svg';
@@ -3648,6 +3650,8 @@ const iconRegistry = {
   'vcs/update@20x20': icon_vcs_update_20x20,
   'vcs/update@20x20_dark': icon_vcs_update_20x20_dark,
   'vcs/update_dark': icon_vcs_update_dark,
+  'vcs/vcs': icon_vcs_vcs,
+  'vcs/vcs_dark': icon_vcs_vcs_dark,
   'webReferences/messageQueue': icon_webReferences_messageQueue,
   'webReferences/messageQueue_dark': icon_webReferences_messageQueue_dark,
   'webReferences/openApi': icon_webReferences_openApi,

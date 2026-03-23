@@ -1,30 +1,43 @@
-.project-selector-container {
+.project-widget-container {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
 }
 
-.project-selector {
+.project-widget {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 6px 5px;
+    padding: 0 10px;
+    height: 40px;
     background: transparent;
     border: none;
-    border-radius: 6px;
+    outline: none;
     cursor: pointer;
     color: var(--text-primary);
     min-width: 0;
 }
 
-.project-selector-hovered {
-    background: var(--control-bg-hover);
+.project-widget::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 6px;
+    background: transparent;
 }
 
-.project-selector-pressed {
-    background: var(--control-bg-hover);
+.project-widget:hover::before,
+.project-widget-hovered::before {
+    background: var(--icon-button-hover-bg);
 }
 
-.project-selector-content {
+.project-widget-pressed::before {
+    background: var(--icon-button-pressed-bg);
+}
+
+.project-widget-content {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -53,7 +66,7 @@
 .project-icon-text {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
     color: white;
     line-height: 1;
     text-align: center;
@@ -83,11 +96,6 @@
     align-items: center;
     justify-content: center;
     color: var(--icon-secondary);
-}
-
-.project-selector-hovered .chevron-down,
-.project-selector-pressed .chevron-down {
-    transform: rotate(180deg);
 }
 
 .chevron-down svg {

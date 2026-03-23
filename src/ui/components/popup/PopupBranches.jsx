@@ -1,128 +1,184 @@
+import { useState, useRef, useEffect } from 'react';
+import Popup from './Popup';
 import PopupCell from './PopupCell';
 import Icon from '../icon/Icon';
+import Search from '../search/Search';
 import './PopupBranches.css';
 
-function PopupBranches(props) {
-    let classes = ['popup popup-visible popup-branches'];
-    if (props.className) classes.push(props.className);
+const LOCAL_BRANCHES = [
+    { name: 'main', current: true },
+    { name: 'feature_MATH-1563_genetic_algorithm', displayName: 'feature_MATH-1563_g...', hint: 'feature_MATH-1563_g...' },
+    { name: 'feature_MATH-2875' },
+];
+
+const REMOTE_BRANCHES = [
+    { name: 'feature_MATH-1563_genetic_algorithm' },
+    { name: 'main' },
+    { name: '3.6-release' },
+    { name: '3.6.1-release' },
+];
+
+function BranchActionsPopup({ branchName, style }) {
+    return (
+        <Popup visible={true} className="popup-branch-actions" style={style}>
+            <PopupCell type="line">Checkout</PopupCell>
+            <PopupCell type="line">New Branch from '{branchName}'...</PopupCell>
+            <PopupCell type="line">Checkout and Rebase onto 'main'</PopupCell>
+            <PopupCell type="line" disabled>Checkout and Update</PopupCell>
+            <PopupCell type="separator" />
+            <PopupCell type="line">Compare with 'main'</PopupCell>
+            <PopupCell type="line">Show Diff with Working Tree</PopupCell>
+            <PopupCell type="separator" />
+            <PopupCell type="line">Rebase 'main' onto '{branchName}'</PopupCell>
+            <PopupCell type="line">Merge '{branchName}' into 'main'</PopupCell>
+            <PopupCell type="separator" />
+            <PopupCell type="line">New Worktree from '{branchName}'...</PopupCell>
+            <PopupCell type="separator" />
+            <PopupCell type="line" disabled>Update</PopupCell>
+            <PopupCell type="line">Push...</PopupCell>
+            <PopupCell type="separator" />
+            <PopupCell type="line" shortcut="F2">Rename...</PopupCell>
+            <PopupCell type="line">Delete</PopupCell>
+        </Popup>
+    );
+}
+
+function BranchItem({ branch, isActive, onSelect }) {
+    const label = branch.displayName || branch.name;
+    const ref = useRef(null);
 
     return (
-        <div className={classes.join(' ')} style={{ position: 'static', width: '450px', ...props.style }}>
-            {/* Search bar with action buttons */}
-            <div className="popup-branches-search-bar">
-                <div className="popup-branches-search-field">
-                    <Icon name="toolwindows/find" size={16} className="popup-branches-search-icon" />
-                    <span className="popup-branches-search-placeholder text-ui-default">Branches and actions</span>
+        <div className="popup-branches-branch-wrapper" ref={ref}>
+            <div
+                className={`popup-branches-branch ${isActive ? 'popup-branches-branch-active' : ''}`}
+                data-current={branch.current || undefined}
+                onClick={() => onSelect(branch, ref.current)}
+            >
+                <div className="popup-branches-branch-icon">
+                    <Icon name="vcs/vcs" size={16} />
                 </div>
-                <div className="popup-branches-search-actions">
-                    <div className="popup-branches-action-btn">
-                        <Icon name="vcs/fetch" size={16} />
+                <span className="popup-branches-branch-name text-ui-default">{label}</span>
+                {branch.hint && (
+                    <span className="popup-branches-branch-hint text-ui-default">{branch.hint}</span>
+                )}
+                {!branch.current && (
+                    <div className="popup-branches-submenu">
+                        <Icon name="general/chevronRight" size={16} />
                     </div>
-                    <div className="popup-branches-action-btn">
-                        <Icon name="general/settings" size={16} />
-                    </div>
-                </div>
+                )}
             </div>
+            {isActive && (
+                <BranchActionsPopup
+                    branchName={branch.name}
+                    style={{
+                        position: 'absolute',
+                        left: '100%',
+                        top: 0,
+                        marginLeft: '2px',
+                        zIndex: 1001,
+                    }}
+                />
+            )}
+        </div>
+    );
+}
 
-            {/* VCS action items */}
-            <div className="popup-branches-items">
-                <PopupCell type="line" icon="vcs/update" shortcut="⌘T">Update...</PopupCell>
-                <PopupCell type="line" icon="vcs/commit" shortcut="⌘K">Commit...</PopupCell>
-                <PopupCell type="line" icon="vcs/push" shortcut="⌘⇧K">Push...</PopupCell>
+function PopupBranches(props) {
+    const [query, setQuery] = useState('');
+    const [activeBranch, setActiveBranch] = useState(null);
+    const popupRef = useRef(null);
+    const isSearching = query.length > 0;
+    const lowerQuery = query.toLowerCase();
 
-                <PopupCell type="separator" />
+    useEffect(() => {
+        if (!activeBranch) return;
+        const handleClickOutside = (e) => {
+            if (popupRef.current && !popupRef.current.contains(e.target)) {
+                setActiveBranch(null);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [activeBranch]);
 
-                <PopupCell type="line" icon="general/add">New Branch...</PopupCell>
-                <PopupCell type="line" iconGap>Checkout Tag or Revision...</PopupCell>
+    const handleBranchSelect = (branch) => {
+        setActiveBranch(prev => prev?.name === branch.name ? null : branch);
+    };
 
-                <PopupCell type="separator" />
+    const filteredLocal = LOCAL_BRANCHES.filter(b => b.name.toLowerCase().includes(lowerQuery));
+    const filteredRemote = REMOTE_BRANCHES.filter(b => b.name.toLowerCase().includes(lowerQuery));
+    const totalMatches = filteredLocal.length + filteredRemote.length;
 
-                {/* Local branches tree section */}
-                <div className="popup-branches-tree-header">
-                    <div className="popup-branches-tree-chevron">
-                        <Icon name="general/chevronDown" size={16} />
-                    </div>
-                    <span className="text-ui-default">Local</span>
-                </div>
-
-                <div className="popup-branches-branch" data-current="true">
-                    <div className="popup-branches-branch-icon">
-                        <Icon name="vcs/changes" size={16} />
-                    </div>
-                    <span className="popup-branches-branch-name text-ui-default">main</span>
-                </div>
-
-                <div className="popup-branches-branch">
-                    <div className="popup-branches-branch-icon">
-                        <Icon name="vcs/changes" size={16} />
-                    </div>
-                    <span className="popup-branches-branch-name text-ui-default">feature_MATH-1563_g...</span>
-                    <span className="popup-branches-branch-hint text-ui-default">feature_MATH-1563_g...</span>
-                    <div className="popup-branches-submenu">
-                        <Icon name="general/chevronRight" size={16} />
-                    </div>
-                </div>
-
-                <div className="popup-branches-branch">
-                    <div className="popup-branches-branch-icon">
-                        <Icon name="vcs/changes" size={16} />
-                    </div>
-                    <span className="popup-branches-branch-name text-ui-default">feature_MATH-2875</span>
-                    <div className="popup-branches-submenu">
-                        <Icon name="general/chevronRight" size={16} />
-                    </div>
-                </div>
-
-                {/* Remote branches tree section */}
-                <div className="popup-branches-tree-header">
-                    <div className="popup-branches-tree-chevron">
-                        <Icon name="general/chevronDown" size={16} />
-                    </div>
-                    <span className="text-ui-default">Remote</span>
-                </div>
-
-                <div className="popup-branches-branch">
-                    <div className="popup-branches-branch-icon">
-                        <Icon name="vcs/changes" size={16} />
-                    </div>
-                    <span className="popup-branches-branch-name text-ui-default">feature_MATH-1563_genetic_algorithm</span>
-                    <div className="popup-branches-submenu">
-                        <Icon name="general/chevronRight" size={16} />
+    return (
+        <div ref={popupRef}>
+            <Popup visible={true} className="popup-branches" style={{ position: 'static', width: '450px', ...props.style }}>
+                <div className="popup-branches-search-bar">
+                    <Search
+                        placeholder="Branches and actions"
+                        showClose={isSearching}
+                        value={query}
+                        onChange={setQuery}
+                        onClear={() => setQuery('')}
+                    />
+                    <div className="popup-branches-search-actions">
+                        <div className="popup-branches-action-btn">
+                            <Icon name="vcs/fetch" size={16} />
+                        </div>
+                        <div className="popup-branches-action-btn">
+                            <Icon name="general/settings" size={16} />
+                        </div>
                     </div>
                 </div>
 
-                <div className="popup-branches-branch">
-                    <div className="popup-branches-branch-icon">
-                        <Icon name="vcs/changes" size={16} />
-                    </div>
-                    <span className="popup-branches-branch-name text-ui-default">main</span>
-                    <div className="popup-branches-submenu">
-                        <Icon name="general/chevronRight" size={16} />
-                    </div>
-                </div>
+                {!isSearching && (
+                    <>
+                        <PopupCell type="line" icon="vcs/update" shortcut="⌘T">Update...</PopupCell>
+                        <PopupCell type="line" icon="vcs/commit" shortcut="⌘K">Commit...</PopupCell>
+                        <PopupCell type="line" icon="vcs/push" shortcut="⌘⇧K">Push...</PopupCell>
 
-                <div className="popup-branches-branch">
-                    <div className="popup-branches-branch-icon">
-                        <Icon name="vcs/changes" size={16} />
-                    </div>
-                    <span className="popup-branches-branch-name text-ui-default">3.6-release</span>
-                    <div className="popup-branches-submenu">
-                        <Icon name="general/chevronRight" size={16} />
-                    </div>
-                </div>
+                        <PopupCell type="separator" />
 
-                <div className="popup-branches-branch">
-                    <div className="popup-branches-branch-icon">
-                        <Icon name="vcs/changes" size={16} />
-                    </div>
-                    <span className="popup-branches-branch-name text-ui-default">3.6.1-release</span>
-                    <div className="popup-branches-submenu">
-                        <Icon name="general/chevronRight" size={16} />
-                    </div>
-                </div>
-            </div>
+                        <PopupCell type="line" icon="general/add">New Branch...</PopupCell>
+                        <PopupCell type="line" iconGap>Checkout Tag or Revision...</PopupCell>
 
-            <div className="popup-branches-spacer" />
+                        <PopupCell type="separator" />
+                    </>
+                )}
+
+                {isSearching && totalMatches === 0 && (
+                    <div className="popup-branches-empty text-ui-default">
+                        '{query}' not found
+                    </div>
+                )}
+
+                {filteredLocal.length > 0 && (
+                    <Popup.TreeSection title="Local">
+                        {filteredLocal.map(branch => (
+                            <BranchItem
+                                key={branch.name}
+                                branch={branch}
+                                isActive={activeBranch?.name === branch.name}
+                                onSelect={handleBranchSelect}
+                            />
+                        ))}
+                    </Popup.TreeSection>
+                )}
+
+                {filteredRemote.length > 0 && (
+                    <Popup.TreeSection title="Remote">
+                        {filteredRemote.map(branch => (
+                            <BranchItem
+                                key={`remote-${branch.name}`}
+                                branch={branch}
+                                isActive={activeBranch?.name === branch.name}
+                                onSelect={handleBranchSelect}
+                            />
+                        ))}
+                    </Popup.TreeSection>
+                )}
+
+                <div className="popup-branches-spacer" />
+            </Popup>
         </div>
     );
 }

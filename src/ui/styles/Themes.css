@@ -423,6 +423,7 @@
     --icon-button-hover-bg: var(--transparent-black-20); /* Figma: toolbar/toolbar-bg-hovered */
     --icon-button-pressed-bg: var(--transparent-black-30); /* Figma: toolbar/toolbar-bg-pressed */
     --stripe-default-hover-bg: var(--transparent-black-20); /* Figma: toolbar/toolbar-bg-hovered */
+    --stripe-default-pressed-bg: var(--transparent-black-30); /* Figma: toolbar/toolbar-bg-pressed */
     --stripe-selected-bg: var(--blue-80); /* Figma: toolbar/toolbar-selected-bg-active = accent-brand-bg */
     --stripe-selected-hover-bg: var(--blue-90); /* Figma: accent-brand-border-over-brand */
     --stripe-inactive-bg: var(--gray-150); /* Figma: tab/tab-selected-bg-inactive */
@@ -712,7 +713,8 @@
     /* Icon Button / Toolbar — from Figma toolbar tokens */
     --icon-button-hover-bg: var(--transparent-white-20); /* Figma: toolbar/toolbar-bg-hovered */
     --icon-button-pressed-bg: var(--transparent-white-40); /* Figma: toolbar/toolbar-bg-pressed */
-    --stripe-default-hover-bg: var(--transparent-white-20);
+    --stripe-default-hover-bg: var(--transparent-white-20); /* Figma: toolbar/toolbar-bg-hovered */
+    --stripe-default-pressed-bg: var(--transparent-white-40); /* Figma: toolbar/toolbar-bg-pressed */
     --stripe-selected-bg: var(--blue-80); /* Figma: toolbar/toolbar-selected-bg-active = accent-brand-bg */
     --stripe-selected-hover-bg: var(--blue-90);
     --stripe-inactive-bg: var(--gray-50);

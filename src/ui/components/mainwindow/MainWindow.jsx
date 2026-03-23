@@ -135,6 +135,86 @@ function MainWindow({
         }
     ];
 
+    const javaCode = [
+        'package org.apache.commons.math4.analysis;',
+        '',
+        'import org.apache.commons.math4.analysis.function.Identity;',
+        '',
+        '/**',
+        ' * Utility methods for manipulating function objects.',
+        ' *',
+        ' * @since 3.0',
+        ' */',
+        'public class FunctionUtils {',
+        '',
+        '    /**',
+        '     * Composes functions.',
+        '     *',
+        '     * @param f List of functions.',
+        '     * @return the composite function.',
+        '     */',
+        '    public static UnivariateFunction compose(final UnivariateFunction... f) {',
+        '        return new UnivariateFunction() {',
+        '            @Override',
+        '            public double value(double x) {',
+        '                double result = x;',
+        '                for (int i = f.length - 1; i >= 0; i--) {',
+        '                    result = f[i].value(result);',
+        '                }',
+        '                return result;',
+        '            }',
+        '        };',
+        '    }',
+        '',
+        '    /**',
+        '     * Adds functions.',
+        '     *',
+        '     * @param f List of functions.',
+        '     * @return a function that computes the sum.',
+        '     */',
+        '    public static UnivariateFunction add(final UnivariateFunction... f) {',
+        '        return new UnivariateFunction() {',
+        '            @Override',
+        '            public double value(double x) {',
+        '                double result = f[0].value(x);',
+        '                for (int i = 1; i < f.length; i++) {',
+        '                    result += f[i].value(x);',
+        '                }',
+        '                return result;',
+        '            }',
+        '        };',
+        '    }',
+        '',
+        '    /**',
+        '     * Multiplies functions.',
+        '     *',
+        '     * @param f List of functions.',
+        '     * @return a function that computes the product.',
+        '     */',
+        '    public static UnivariateFunction multiply(final UnivariateFunction... f) {',
+        '        return new UnivariateFunction() {',
+        '            @Override',
+        '            public double value(double x) {',
+        '                double result = f[0].value(x);',
+        '                for (int i = 1; i < f.length; i++) {',
+        '                    result *= f[i].value(x);',
+        '                }',
+        '                return result;',
+        '            }',
+        '        };',
+        '    }',
+        '',
+        '    /**',
+        '     * Returns the identity function.',
+        '     *',
+        '     * @return the identity function.',
+        '     */',
+        '    public static UnivariateFunction identity() {',
+        '        return new Identity();',
+        '    }',
+        '}',
+    ].join('\n');
+
     // Status bar breadcrumbs
     const breadcrumbs = [
         { label: projectName, module: true },
@@ -192,7 +272,10 @@ function MainWindow({
     };
 
     return (
-        <div className={`main-window main-window-island ${className}`} {...props}>
+        <div className={`main-window main-window-island project-color-${projectColor} ${className}`} {...props}>
+            {/* Project Color Gradient */}
+            <div className="main-window-gradient" aria-hidden="true" />
+
             {/* Main Toolbar */}
             <MainToolbar
                 projectName={projectName}
@@ -298,8 +381,8 @@ function MainWindow({
                                     focused={focusedPanel === 'editor'}
                                 />
                             </div>
-                            <div className="ide-layout-editor-content">
-                                <Editor language="java" />
+                            <div className="main-window-editor-content">
+                                <Editor language="java" code={javaCode} />
                             </div>
                         </div>
 

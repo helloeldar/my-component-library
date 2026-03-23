@@ -188,7 +188,33 @@ export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'ri
 // Toolbar Components
 export const MainToolbarVerticalSeparator: FC<{}>;
 export const ToolbarDropdown: FC<{ label: string; icon?: string; theme?: string; disabled?: boolean; options?: any[]; value?: string; onChange?: (value: string) => void }>;
-export const ProjectSelector: FC<{ projectName: string; projectIcon?: string; disabled?: boolean; onClick?: () => void }>;
+export const ProjectWidget: FC<{ projectName: string; projectIcon?: string; disabled?: boolean; onClick?: () => void }>;
+
+// PopupLineWithActions
+export interface PopupLineWithActionsAction {
+  icon: string;
+  tooltip?: string;
+  onClick?: () => void;
+}
+
+export interface PopupLineWithActionsProps {
+  icon?: string;
+  text: string;
+  selected?: boolean;
+  actions?: PopupLineWithActionsAction[];
+  onClick?: () => void;
+  className?: string;
+}
+
+export const PopupLineWithActions: FC<PopupLineWithActionsProps>;
+
+// PopupRunWidget
+export interface PopupRunWidgetProps {
+  style?: React.CSSProperties;
+  className?: string;
+}
+
+export const PopupRunWidget: FC<PopupRunWidgetProps>;
 
 // RunWidget
 export interface RunWidgetProps {

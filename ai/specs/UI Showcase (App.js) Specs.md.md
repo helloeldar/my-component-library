@@ -47,7 +47,7 @@ The App is a UI Showcase — a single-page application (SPA) that serves as an i
   - `/link` — Link component
   - `/popup` — Popup component
   - `/progressbar` — Progress Bar component
-  - `/projectselector` — Project Selector component
+  - `/projectwidget` — Project Widget component
   - `/radio` — Radio Button component
   - `/search` — Search component
   - `/segmentedcontrol` — Segmented Control component
@@ -81,7 +81,7 @@ The App is a UI Showcase — a single-page application (SPA) that serves as an i
 - Component CSS files must use **semantic** CSS variables (e.g., `--bg-elevated`, `--text-primary`, `--border-control`) instead of raw palette variables (e.g., `--gray-120`, `--gray-30`) or hardcoded hex colors. Raw palette variables are theme-independent and will not change with the theme.
 - Component CSS must not use `.theme-dark` or `.theme-light` prefixed selectors for theming. Instead, use semantic variables that are defined differently in each theme block in `Themes.css`.
 - The Island theme variant of the Main Window uses island-specific semantic variables (`--island-bg`, `--island-bg-overlay`, `--island-border`, `--island-shadow`, `--island-editor-bg`) that are defined separately for light and dark themes in `Themes.css`.
-- Exceptions: Decorative brand colors (e.g., macOS traffic light buttons, project icon gradients, ProjectSelector color swatches) may use hardcoded values since they are intentionally theme-independent.
+- Exceptions: Decorative brand colors (e.g., macOS traffic light buttons, project icon gradients, ProjectWidget color swatches) may use hardcoded values since they are intentionally theme-independent.
 
 ## Component Showcase Pages
 

@@ -20,6 +20,8 @@ export { default as Popup } from '../ui/components/popup/Popup';
 export { default as PopupCell } from '../ui/components/popup/PopupCell';
 export { default as PopupProjects } from '../ui/components/popup/PopupProjects';
 export { default as PopupBranches } from '../ui/components/popup/PopupBranches';
+export { default as PopupLineWithActions } from '../ui/components/popup/PopupLineWithActions';
+export { default as PopupRunWidget } from '../ui/components/popup/PopupRunWidget';
 export { default as ProgressBar } from '../ui/components/progressbar/ProgressBar';
 export { default as Radio, RadioGroup } from '../ui/components/radio/Radio';
 export { default as Toggle } from '../ui/components/toggle/Toggle';
@@ -53,7 +55,7 @@ export { default as StripeContainer } from '../ui/components/stripe/StripeContai
 export { default as MainToolbarVerticalSeparator } from '../ui/components/maintoolbar/MainToolbarVerticalSeparator';
 export { default as ToolbarSeparator } from '../ui/components/toolbar/ToolbarSeparator';
 export { default as ToolbarDropdown } from '../ui/components/toolbardropdown/ToolbarDropdown';
-export { default as ProjectSelector } from '../ui/components/projectselector/ProjectSelector';
+export { default as ProjectWidget } from '../ui/components/projectwidget/ProjectWidget';
 export { default as RunWidget } from '../ui/components/runwidget/RunWidget';
 
 // Status Bar Components

@@ -19,7 +19,7 @@ import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import PopupProjects from './ui/components/popup/PopupProjects';
 import PopupBranches from './ui/components/popup/PopupBranches';
-import ProjectSelector from './ui/components/projectselector/ProjectSelector';
+import ProjectWidget from './ui/components/projectwidget/ProjectWidget';
 import MainWindow from './ui/components/mainwindow/MainWindow';
 import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
 import Checkbox from './ui/components/checkbox/Checkbox';
@@ -1737,7 +1737,7 @@ function StatusBarBreadcrumbPage() {
     );
 }
 
-function ProjectSelectorPage() {
+function ProjectWidgetPage() {
         const projects = [
             { 
                 name: 'my-component-library', 
@@ -1785,12 +1785,12 @@ function ProjectSelectorPage() {
 
         return (
             <div className="component-showcase">
-                <h1>Project Selector</h1>
+                <h1>Project Widget</h1>
 
                 <div className="component-section">
-                    <h2>Basic Project Selector</h2>
+                    <h2>Basic Project Widget</h2>
                     <div className="component-examples">
-                        <ProjectSelector 
+                        <ProjectWidget 
                             projectName="my-component-library"
                             projectIcon="MC"
                             projectColor="cobalt"
@@ -1803,19 +1803,19 @@ function ProjectSelectorPage() {
                 <div className="component-section">
                     <h2>Different Project Names</h2>
                     <div className="component-examples">
-                        <ProjectSelector 
+                        <ProjectWidget 
                             projectName="intellij-platform-ui"
                             projectIcon="IP"
                             projectColor="amber"
                             projects={projects}
                         />
-                        <ProjectSelector 
+                        <ProjectWidget 
                             projectName="kotlin-multiplatform-mobile"
                             projectIcon="KM"
                             projectColor="violet"
                             projects={projects}
                         />
-                        <ProjectSelector 
+                        <ProjectWidget 
                             projectName="spring-boot-samples"
                             projectIcon="SB"
                             projectColor="grass"
@@ -1827,13 +1827,13 @@ function ProjectSelectorPage() {
                 <div className="component-section">
                     <h2>Interactive States</h2>
                     <div className="component-examples">
-                        <ProjectSelector 
+                        <ProjectWidget 
                             projectName="react-native-app"
                             projectIcon="RN"
                             projectColor="plum"
                             projects={projects}
                         />
-                        <ProjectSelector 
+                        <ProjectWidget 
                             projectName="jetbrains-webstorm"
                             projectIcon="JW"
                             projectColor="ocean"
@@ -2493,7 +2493,7 @@ function MainWindowPage() {
                     <MainWindow 
                         projectName="commons-math"
                         projectIcon="CM"
-                        projectColor="teal"
+                        projectColor="grass"
                         branchName="feature/new-ui"
                         runConfig="IDEA Community"
                     />
@@ -2693,7 +2693,7 @@ function AppContent() {
                     <Route path="/terminal" element={<TerminalWindowPage />} />
                     <Route path="/projectwindow" element={<ProjectWindowPage />} />
                     <Route path="/aiassistant" element={<AIAssistantWindowPage />} />
-                    <Route path="/projectselector" element={<ProjectSelectorPage />} />
+                    <Route path="/projectwidget" element={<ProjectWidgetPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />

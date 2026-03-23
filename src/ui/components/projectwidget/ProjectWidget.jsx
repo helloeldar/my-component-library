@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import Popup from '../popup/Popup';
 import PopupProjects from '../popup/PopupProjects';
 import Icon from '../icon/Icon';
-import './ProjectSelector.css';
+import './ProjectWidget.css';
 
-function ProjectSelector(props) {
+function ProjectWidget(props) {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef(null);
 
@@ -33,12 +33,12 @@ function ProjectSelector(props) {
         }
     };
 
-    let classes = ['project-selector'];
+    let classes = ['project-widget'];
     if (props.state === 'hovered' || isOpen) {
-        classes.push('project-selector-hovered');
+        classes.push('project-widget-hovered');
     }
     if (props.state === 'pressed') {
-        classes.push('project-selector-pressed');
+        classes.push('project-widget-pressed');
     }
 
     const popupStyle = {
@@ -50,9 +50,9 @@ function ProjectSelector(props) {
     };
 
     return (
-        <div className="project-selector-container" ref={containerRef}>
+        <div className="project-widget-container" ref={containerRef}>
             <button className={classes.join(' ')} onClick={handleClick}>
-                <div className="project-selector-content">
+                <div className="project-widget-content">
                     <div className={`project-icon ${props.projectColor ? `project-icon-${props.projectColor}` : ''}`}>
                         <div className="project-icon-background">
                             <span className="project-icon-text">
@@ -105,4 +105,4 @@ function ProjectSelector(props) {
     );
 }
 
-export default ProjectSelector;
+export default ProjectWidget;

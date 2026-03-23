@@ -55,7 +55,7 @@ export const componentsConfig = [
     { name: 'Status Bar Breadcrumb', key: 'statusbarbreadcrumb', description: 'Breadcrumb navigation item for status bar', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components', section: 'appkit', status: 'ready', preview: null },
-    { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Project Widget', key: 'projectwidget', description: 'Dropdown for selecting active project with icon and name', category: 'components', section: 'appkit', status: 'ready', preview: null },
 ];
 
 // Home page section definitions in display order

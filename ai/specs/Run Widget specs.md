@@ -28,6 +28,7 @@ Different from MainToolbarIconButton which is 40×40px with 20×20px icons.
 
 ### Dropdown
 Uses existing ToolbarDropdown component with `runConfigurations/application` icon.
+Clicking the dropdown opens the **Run Widget Popup** — see [Run Widget Popup specs](Run%20Widget%20Popup%20specs.md).
 
 ### Status Badge (Running/Debugging only)
 - 6px green dot on dropdown icon's top-right corner

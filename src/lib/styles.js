@@ -15,6 +15,8 @@ import '../ui/components/iconbutton/IconButton.css';
 import '../ui/components/input/Input.css';
 import '../ui/components/popup/Popup.css';
 import '../ui/components/popup/PopupCell.css';
+import '../ui/components/popup/PopupLineWithActions.css';
+import '../ui/components/popup/PopupRunWidget.css';
 import '../ui/components/progressbar/ProgressBar.css';
 import '../ui/components/radio/Radio.css';
 import '../ui/components/toggle/Toggle.css';
@@ -31,7 +33,7 @@ import '../ui/components/stripe/StripeContainer.css';
 
 // Toolbar Styles
 import '../ui/components/toolbardropdown/ToolbarDropdown.css';
-import '../ui/components/projectselector/ProjectSelector.css';
+import '../ui/components/projectwidget/ProjectWidget.css';
 
 // Status Bar Styles
 import '../ui/components/statusbar/StatusBar.css';
