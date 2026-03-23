@@ -4,6 +4,13 @@
 
 The App is a UI Showcase — a single-page application (SPA) that serves as an interactive catalog of reusable UI components and design tokens styled to look like real JetBrains IDEs. It is used by non-developers to create prototypes.
 
+## Tooltip page (`/tooltip`)
+
+Show Tooltips in UI showcase as it is, so user don't have to hover.
+
+- **R-Showcase-Tooltip-01:** The **Tooltip** showcase sections that demonstrate the hover `Tooltip` component must show the **real** tooltip UI **pinned open** (same component, same positioning), so **no hover is required** to review them.
+- **Cross-ref:** See **Tooltip specs.md** — “Requirements from chat”, **R-Tooltip-Showcase-01**.
+
 ## Layout
 
 - The app uses a two-column layout: a fixed **Sidebar** on the left and a scrollable **Main Content** area on the right.
@@ -57,6 +64,10 @@ The App is a UI Showcase — a single-page application (SPA) that serves as an i
   - `/table` — Table component
   - `/tabs` — Tabs component
   - `/toggle` — Toggle component
+  - `/tooltip` — Tooltip component (hover tooltip; showcase pins examples open)
+  - `/tooltiphelp` — Tooltip Help component
+  - `/validationtooltip` — Validation Tooltip component
+  - `/gotittooltip` — Got It Tooltip component
   - `/toolbar` — Toolbar component
   - `/toolbardropdown` — Toolbar Dropdown component
   - `/toolbariconbutton` — Toolbar Icon Button component

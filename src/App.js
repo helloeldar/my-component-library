@@ -2337,6 +2337,15 @@ function TooltipHelpPage() {
 }
 
 function ValidationTooltipPage() {
+    const errorActions = [
+        { label: 'Action A', onClick: () => {} },
+        { label: 'Action B', onClick: () => {} },
+    ];
+    const warningActions = [
+        { label: 'Action A', onClick: () => {} },
+        { label: 'Action B', onClick: () => {} },
+    ];
+
     return (
         <div className="component-showcase">
             <h1>Validation Tooltip</h1>
@@ -2346,17 +2355,28 @@ function ValidationTooltipPage() {
             </p>
 
             <div className="component-section">
+                <h2>All Variants</h2>
+                <div style={{ display: 'flex', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-secondary)' }}>
+                    <div className="theme-dark" style={{ flex: 1, background: '#191A1C', padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
+                        <ValidationTooltip text="Validation error" type="error" />
+                        <ValidationTooltip text="Validation error" type="error" actions={errorActions} />
+                        <ValidationTooltip text="Validation warning" type="warning" />
+                        <ValidationTooltip text="Validation warning" type="warning" actions={warningActions} />
+                    </div>
+                    <div className="theme-light" style={{ flex: 1, background: '#FFFFFF', padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
+                        <ValidationTooltip text="Validation error" type="error" />
+                        <ValidationTooltip text="Validation error" type="error" actions={errorActions} />
+                        <ValidationTooltip text="Validation warning" type="warning" />
+                        <ValidationTooltip text="Validation warning" type="warning" actions={warningActions} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
                 <h2>Error</h2>
                 <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
                     <ValidationTooltip text="Validation error" type="error" />
-                    <ValidationTooltip
-                        text="Validation error"
-                        type="error"
-                        actions={[
-                            { label: 'Action A', onClick: () => {} },
-                            { label: 'Action B', onClick: () => {} },
-                        ]}
-                    />
+                    <ValidationTooltip text="Validation error" type="error" actions={errorActions} />
                 </div>
             </div>
 
@@ -2364,14 +2384,7 @@ function ValidationTooltipPage() {
                 <h2>Warning</h2>
                 <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
                     <ValidationTooltip text="Validation warning" type="warning" />
-                    <ValidationTooltip
-                        text="Validation warning"
-                        type="warning"
-                        actions={[
-                            { label: 'Action A', onClick: () => {} },
-                            { label: 'Action B', onClick: () => {} },
-                        ]}
-                    />
+                    <ValidationTooltip text="Validation warning" type="warning" actions={warningActions} />
                 </div>
             </div>
         </div>

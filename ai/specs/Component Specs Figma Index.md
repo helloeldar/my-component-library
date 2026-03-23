@@ -23,6 +23,6 @@ This file contains detailed per-component specs with annotated measurements, the
 | 13 | Shortcuts | — | Not started |
 | 14 | Stripe and Main toolbar Icons Button | [Stripe and Main Toolbar Icon Buttons specs.md](Stripe%20and%20Main%20Toolbar%20Icon%20Buttons%20specs.md) | Documented |
 | 15 | Tab | [Tab Component.md](Tab%20Component.md) | Documented |
-| 16 | Tooltip: Editor | — | Not started |
+| 16 | Tooltip: Editor | [Tooltip specs.md](Tooltip%20specs.md) | Documented |
 | 17 | Tooltip: Got It | — | Not started |
 | 18 | Tooltip: Validation | — | Not started |

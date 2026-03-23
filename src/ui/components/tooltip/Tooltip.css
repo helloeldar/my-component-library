@@ -4,27 +4,30 @@
     position: relative;
 }
 
-/* Tooltip */
+/* Tooltip — matches Figma "Tooltip / Tooltip" (node 3825:7763) */
 .tooltip {
     position: fixed;
     z-index: 10000;
-    display: inline-flex;
-    align-items: center;
+    display: flex;
+    align-items: flex-start;
     gap: 8px;
-    padding: 4px 8px;
+    padding: 8px;
     background: var(--tooltip-bg);
     color: var(--tooltip-text);
+    border: 1px solid var(--tooltip-border);
     border-radius: 4px;
-    white-space: nowrap;
     pointer-events: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--tooltip-shadow);
 }
 
 .tooltip-text {
     color: inherit;
+    flex: 1 0 0;
+    min-width: 0;
 }
 
 .tooltip-shortcut {
-    color: inherit;
-    opacity: 0.7;
+    color: var(--tooltip-shortcut);
+    white-space: nowrap;
+    flex-shrink: 0;
 }

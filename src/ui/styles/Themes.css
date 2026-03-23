@@ -326,9 +326,28 @@
     --popup-border: var(--gray-150); /* Figma: container/popup-border */
     --popup-separator: var(--separator);
 
-    /* Tooltip */
-    --tooltip-bg: var(--gray-30); /* Dark-ish tooltip */
-    --tooltip-text: var(--white);
+    /* Tooltip — from Figma feedback tokens */
+    --tooltip-bg: var(--white); /* Figma: feedback/feedback-bg = white */
+    --tooltip-text: var(--black); /* Figma: text/text-default = black */
+    --tooltip-border: var(--gray-130); /* Figma: feedback/feedback-border = #D1D3D9 */
+    --tooltip-shortcut: var(--text-muted); /* Figma: text/text-muted = gray-70 */
+    --tooltip-shadow: 0px 3px 12px rgba(27, 31, 38, 0.18); /* Figma: shadow-editor-tooltip */
+
+    /* Validation Tooltip — from Figma feedback tokens */
+    --validation-error-bg: var(--red-160); /* Figma: feedback/feedback-error-bg */
+    --validation-error-border: var(--red-130); /* Figma: feedback/feedback-error-border */
+    --validation-warning-bg: var(--yellow-160); /* Figma: feedback/feedback-warning-bg */
+    --validation-warning-border: var(--yellow-130); /* Figma: feedback/feedback-warning-border */
+    --feedback-success-bg: var(--green-160); /* Figma: feedback/feedback-success-bg */
+    --feedback-success-border: var(--green-130); /* Figma: feedback/feedback-success-border */
+
+    /* Got It Tooltip — from Figma got-it tokens */
+    --got-it-bg: var(--white); /* Figma: got-it/got-it-bg = white */
+    --got-it-border: var(--gray-130); /* Figma: got-it/got-it-border = #D1D3D9 */
+    --got-it-text-step: var(--gray-90); /* Figma: got-it/got-it-text-step = #8B8E94 */
+    --got-it-text-link: var(--blue-70); /* Figma: got-it/got-it-text-link = #2F5EB9 */
+    --got-it-control-border: var(--gray-130); /* Figma: feedback/feedback-control-border = #D1D3D9 */
+    --got-it-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16); /* Figma: shadow-notification */
 
     /* Link — from Figma text tokens */
     --link-text: var(--blue-70); /* Figma: text/text-link = blue-70 */
@@ -616,9 +635,28 @@
     --popup-border: var(--gray-40); /* Figma: container/popup-border */
     --popup-separator: var(--separator);
 
-    /* Tooltip */
-    --tooltip-bg: var(--gray-130);
-    --tooltip-text: var(--black);
+    /* Tooltip — from Figma feedback tokens */
+    --tooltip-bg: var(--gray-40); /* Figma: feedback/feedback-bg = #33353B */
+    --tooltip-text: var(--gray-130); /* Figma: text/text-default = #D1D3D9 */
+    --tooltip-border: var(--gray-40); /* Figma: feedback/feedback-border = #33353B */
+    --tooltip-shortcut: var(--text-muted); /* Figma: text/text-muted = gray-100 */
+    --tooltip-shadow: 0px 3px 12px rgba(27, 31, 38, 0.18); /* Figma: shadow-editor-tooltip */
+
+    /* Validation Tooltip — from Figma feedback tokens */
+    --validation-error-bg: var(--red-40); /* Figma: feedback/feedback-error-bg */
+    --validation-error-border: var(--red-60); /* Figma: feedback/feedback-error-border */
+    --validation-warning-bg: var(--yellow-40); /* Figma: feedback/feedback-warning-bg */
+    --validation-warning-border: var(--yellow-60); /* Figma: feedback/feedback-warning-border */
+    --feedback-success-bg: var(--green-40); /* Figma: feedback/feedback-success-bg */
+    --feedback-success-border: var(--green-60); /* Figma: feedback/feedback-success-border */
+
+    /* Got It Tooltip — from Figma got-it tokens */
+    --got-it-bg: var(--blue-60); /* Figma: got-it/got-it-bg = #2E4D89 */
+    --got-it-border: var(--blue-60); /* Figma: got-it/got-it-border = #2E4D89 */
+    --got-it-text-step: var(--gray-90); /* Figma: got-it/got-it-text-step = #8B8E94 */
+    --got-it-text-link: var(--blue-110); /* Figma: got-it/got-it-text-link = #92B7FF */
+    --got-it-control-border: rgba(255, 255, 255, 0.23); /* Figma: feedback/feedback-control-border */
+    --got-it-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16); /* Figma: shadow-notification */
 
     /* Link — from Figma text tokens */
     --link-text: var(--blue-100); /* Figma: text/text-link */
