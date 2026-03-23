@@ -84,11 +84,9 @@
     color: var(--text-default);
 }
 
-/* Link — Inter Medium 13/16 */
-.got-it-link {
+/* Link — color override using got-it-specific token */
+.got-it-link.link {
     color: var(--got-it-text-link);
-    text-decoration: none;
-    white-space: nowrap;
 }
 
 /* Actions row */
@@ -99,25 +97,9 @@
     padding: 6px 0;
 }
 
-/* Got It button — border button, rounded 4px, min-width 72px */
-.got-it-button {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 6px;
-    min-width: 72px;
-    padding: 6px 12px;
-    border: 1px solid var(--got-it-control-border);
-    border-radius: 4px;
-    background: transparent;
-    color: var(--text-default);
-    overflow: clip;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    white-space: nowrap;
-    cursor: pointer;
+/* Got It button — uses Button secondary with got-it-specific border color */
+.got-it-button.button-secondary {
+    border-color: var(--got-it-control-border);
 }
 
 /* Skip All link */

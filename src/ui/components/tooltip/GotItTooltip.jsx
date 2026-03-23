@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '../button/Button';
+import UILink from '../link/Link';
 import './GotItTooltip.css';
 import '../../styles/Typography.css';
 
@@ -53,13 +55,13 @@ function GotItTooltip({
                             <div className="got-it-text text-ui-paragraph">{children}</div>
                         )}
                         {link && (
-                            <a className="got-it-link text-ui-default" href={linkHref || '#'}>{link}</a>
+                            <UILink href={linkHref || '#'} className="got-it-link">{link}</UILink>
                         )}
                     </div>
                     <div className="got-it-actions">
-                        <button className="got-it-button" onClick={onGotIt}>
+                        <Button type="secondary" className="got-it-button" onClick={onGotIt}>
                             {buttonText}
-                        </button>
+                        </Button>
                         {skipText && (
                             <span className="got-it-skip" onClick={onSkip}>{skipText}</span>
                         )}

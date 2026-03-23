@@ -2,6 +2,7 @@ import './Notification.css';
 import Icon from '../icon/Icon';
 import UILink from '../link/Link';
 import Button from '../button/Button';
+import ToolbarIconButton from '../iconbutton/IconButton';
 
 /**
  * Notification (Balloon) component following IntelliJ UI Guidelines
@@ -106,24 +107,20 @@ function Notification({
             {hasHoverButtons && (
                 <div className="notification-hover-buttons" aria-hidden="true">
                     {onMore !== undefined && (
-                        <button
-                            type="button"
-                            className="notification-icon-btn"
+                        <ToolbarIconButton
+                            icon="general/moreVertical"
+                            tooltip="More options"
                             onClick={onMore}
-                            aria-label="More options"
-                        >
-                            <Icon name="general/moreVertical" size={16} />
-                        </button>
+                            className="notification-icon-btn"
+                        />
                     )}
                     {onClose !== undefined && (
-                        <button
-                            type="button"
-                            className="notification-icon-btn"
+                        <ToolbarIconButton
+                            icon="general/close"
+                            tooltip="Close"
                             onClick={onClose}
-                            aria-label="Close notification"
-                        >
-                            <Icon name="general/close" size={16} />
-                        </button>
+                            className="notification-icon-btn"
+                        />
                     )}
                 </div>
             )}

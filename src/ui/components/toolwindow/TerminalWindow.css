@@ -199,22 +199,9 @@
 }
 
 .terminal-search-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 24px;
     height: 24px;
-    background: none;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    color: var(--icon-secondary-stroke);
-    padding: 0;
-}
-
-.terminal-search-btn:hover {
-    background: var(--control-bg-hover);
-    color: var(--text-default);
+    padding: 4px;
 }
 
 .terminal-search-count {
