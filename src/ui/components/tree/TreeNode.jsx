@@ -11,6 +11,7 @@ function TreeNode({
     isSelected = false, 
     onToggle, 
     onSelect, 
+    prefix,
     children 
 }) {
     const [expanded, setExpanded] = useState(isExpanded);
@@ -64,6 +65,7 @@ function TreeNode({
                 )}
                 {!hasChildren && <div className="tree-node-spacer" />}
                 
+                {prefix && <div className="tree-node-prefix" onClick={e => e.stopPropagation()}>{prefix}</div>}
                 {renderIcon()}
                 <span className="tree-node-label">{label}</span>
             </div>

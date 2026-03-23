@@ -75,9 +75,16 @@ Each file leaf has a `status` that represents its git change type:
 | `'unversioned'` | File is not tracked by git |
 
 ### Status Summary (bottom panel)
-The "X modified" text reflects **selected** (checked) files only.  
-Format: `"{n} modified"`, `"{n} added"`, `"{n} deleted"` — joined by `", "`, showing only statuses with count > 0.  
-If nothing is selected: empty string.  
+The status summary reflects **selected** (checked) files only. Hidden when nothing is selected.  
+Each status segment is colored independently (see [Interaction specs](Interaction%20specs.md)):
+
+| Status | Color | Example |
+|--------|-------|---------|
+| modified | `--text-link` blue | `2 modified` |
+| added | `--vcs-added-text` green | `1 added` |
+| deleted | `--vcs-deleted-text` red | `1 deleted` |
+
+Segments joined with `", "` separator. Only statuses with count > 0 are shown.  
 Examples: `"2 modified"` · `"1 modified, 1 added"` · `"2 modified, 1 deleted"`
 
 ### Default data
@@ -97,7 +104,11 @@ Border-top: `var(--tool-window-border)`. Flex column, `flex-shrink: 0`.
 ### 4a. Amend Toolbar Row
 Padding: 7 px 12 px 1 px.  
 Left cluster: `Checkbox` label="Amend" → `general/history` icon button → `aiAssistant/aiAssistantColored` icon button  
-Right: "**X modified**" link text (`text-link` color, text-ui-default)
+Right: status summary (see § Status Summary)
+
+**Amend checkbox behaviour:**
+- **Check** → snapshot current textarea content, fill textarea with `previousCommitMessage` prop
+- **Uncheck** → restore textarea to the snapshot taken before amend was activated
 
 ### 4b. Commit Message Textarea
 Padding: 0 12 px.  
@@ -122,8 +133,9 @@ Right: `general/settings` icon button (Commit Options)
 | `height` | number\|string | `606` | Window height |
 | `files` | Array | (sample data) | Tree groups with children |
 | `commitMessage` | string | `""` | Controlled textarea value |
-| `onCommit` | func | — | Called with `(message, amend)` |
-| `onCommitAndPush` | func | — | Called with `(message, amend)` |
+| `previousCommitMessage` | string | (sample message) | Loaded into textarea when Amend is checked |
+| `onCommit` | func | — | Called with `(message, amend, checkedIds)` |
+| `onCommitAndPush` | func | — | Called with `(message, amend, checkedIds)` |
 | `className` | string | `""` | Extra CSS classes |
 
 ### `files` item shape

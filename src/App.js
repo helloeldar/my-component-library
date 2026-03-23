@@ -9,6 +9,7 @@ import ToolWindow from './ui/components/toolwindow/ToolWindow';
 import TerminalWindow from './ui/components/toolwindow/TerminalWindow';
 import ProjectWindow from './ui/components/toolwindow/ProjectWindow';
 import AIAssistantWindow from './ui/components/toolwindow/AIAssistantWindow';
+import CommitWindow from './ui/components/toolwindow/CommitWindow';
 import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
@@ -3135,6 +3136,28 @@ function AIAssistantWindowPage() {
     );
 }
 
+function CommitWindowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Commit</h1>
+            <p className="component-description">
+                VCS Commit tool window with a file change tree, Amend option, commit message
+                textarea, and Commit / Commit and Push buttons. Matches Figma node 27921:15443.
+            </p>
+
+            <div className="component-section">
+                <h2>Default</h2>
+                <p className="section-description">
+                    Commit window with two modified Java files and a collapsed Unversioned Files group.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <CommitWindow />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function MainWindowPage() {
     return (
         <div className="component-showcase">
@@ -3374,6 +3397,7 @@ function AppContent() {
                     <Route path="/terminal" element={<TerminalWindowPage />} />
                     <Route path="/projectwindow" element={<ProjectWindowPage />} />
                     <Route path="/aiassistant" element={<AIAssistantWindowPage />} />
+                    <Route path="/commit" element={<CommitWindowPage />} />
                     <Route path="/projectselector" element={<ProjectSelectorPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />

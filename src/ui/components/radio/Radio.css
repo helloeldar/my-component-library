@@ -40,8 +40,8 @@
 }
 
 
-/* Focus ring — exact Button pattern: inset -4px → 2px gap before 2px stroke */
-.radio-focused:not(.radio-disabled)::after {
+/* Focus ring — keyboard navigation only (:focus-visible, not on mouse click) */
+.radio-input:focus-visible + .radio-circle:not(.radio-disabled)::after {
     content: '';
     position: absolute;
     inset: -4px;

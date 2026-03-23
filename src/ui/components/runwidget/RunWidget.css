@@ -110,10 +110,13 @@
     fill: var(--icon-green-stroke);
 }
 
-/* No focus outline */
-.run-widget-button:focus,
-.run-widget-button:focus-visible {
+/* No focus outline on mouse click; keyboard focus handled by browser default */
+.run-widget-button:focus {
     outline: none;
+}
+.run-widget-button:focus-visible {
+    outline: 2px solid var(--control-focus-border-brand);
+    outline-offset: 1px;
 }
 
 /* Disabled state */

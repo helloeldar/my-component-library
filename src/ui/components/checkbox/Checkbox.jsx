@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Checkbox.css';
 
 function Checkbox({
@@ -12,8 +11,6 @@ function Checkbox({
     className = '',
     ...props
 }) {
-    const [isFocused, setIsFocused] = useState(false);
-
     const handleChange = (e) => {
         if (!disabled && onChange) {
             onChange(e.target.checked);
@@ -31,9 +28,6 @@ function Checkbox({
         }
         if (disabled) {
             classes.push('checkbox-disabled');
-        }
-        if (isFocused && !disabled) {
-            classes.push('checkbox-focused');
         }
         if (invalid && !disabled) {
             classes.push('checkbox-invalid');
@@ -53,8 +47,6 @@ function Checkbox({
                     checked={checked}
                     disabled={disabled}
                     onChange={handleChange}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                     className="checkbox-input"
                     ref={(el) => {
                         if (el) {

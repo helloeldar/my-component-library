@@ -543,6 +543,10 @@
     --badge-text-disabled: var(--gray-110);
     --badge-opacity-accent: 16%;
     --badge-opacity-neutral: 12%;
+
+    /* VCS status text colors */
+    --vcs-added-text: var(--green-70);    /* #2A6E47 — readable on light bg */
+    --vcs-deleted-text: var(--red-80);    /* #C54E58 — readable on light bg */
 }
 
 /*
@@ -877,6 +881,10 @@
     --badge-text-disabled: var(--gray-90);
     --badge-opacity-accent: 80%;
     --badge-opacity-neutral: 20%;
+
+    /* VCS status text colors */
+    --vcs-added-text: var(--green-100);   /* #6DB083 — readable on dark bg */
+    --vcs-deleted-text: var(--red-90);    /* #E4656E — readable on dark bg */
 }
 
 /* Global Scrollbar Styling — hidden by default, visible on hover */

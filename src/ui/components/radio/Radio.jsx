@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Radio.css';
 
 function Radio({
@@ -13,8 +12,6 @@ function Radio({
     className = '',
     ...props
 }) {
-    const [isFocused, setIsFocused] = useState(false);
-
     const handleChange = (e) => {
         if (!disabled && onChange) {
             onChange(e.target.value);
@@ -29,9 +26,6 @@ function Radio({
         }
         if (disabled) {
             classes.push('radio-disabled');
-        }
-        if (isFocused && !disabled) {
-            classes.push('radio-focused');
         }
         if (invalid && !disabled) {
             classes.push('radio-invalid');
@@ -53,8 +47,6 @@ function Radio({
                     name={name}
                     value={value}
                     onChange={handleChange}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                     className="radio-input"
                 />
                 <div className={getRadioClasses()}>
