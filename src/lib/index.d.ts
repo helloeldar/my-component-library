@@ -59,6 +59,19 @@ export interface DropdownProps {
 export const Dropdown: FC<DropdownProps>;
 export const Combobox: FC<DropdownProps>;
 
+// EmptyState
+export interface EmptyStateProps {
+  explanation: string;
+  actionText?: string;
+  actionShortcut?: string;
+  onAction?: () => void;
+  helpText?: string;
+  helpHref?: string;
+  className?: string;
+}
+
+export const EmptyState: FC<EmptyStateProps>;
+
 // Icon
 export interface IconProps {
   name: string;

@@ -1,0 +1,46 @@
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 48px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.empty-state-explanation {
+    margin: 0 0 4px;
+    color: var(--text-secondary);
+    width: 100%;
+}
+
+.empty-state-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.empty-state-action .link {
+    padding: 0;
+}
+
+.empty-state-shortcut {
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.empty-state-help {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding-top: 20px;
+    width: 100%;
+}
+
+.empty-state-help .link {
+    padding: 0;
+}

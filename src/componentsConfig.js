@@ -22,7 +22,7 @@ export const componentsConfig = [
     // Help
     { name: 'Tooltip', key: 'tooltip', description: 'Contextual tooltip for additional information on hover', category: 'components', section: 'help', status: 'ready', preview: null },
     { name: 'Help Text', key: 'helptext', description: 'Inline help text for form fields and settings', category: 'components', section: 'help', status: 'coming-soon', preview: null },
-    { name: 'Empty State', key: 'emptystate', description: 'Placeholder content for empty views and panels', category: 'components', section: 'help', status: 'coming-soon', preview: null },
+    { name: 'Empty State', key: 'emptystate', description: 'Placeholder content for empty views and panels', category: 'components', section: 'help', status: 'ready', preview: null },
 
     // Container
     { name: 'Dialog', key: 'dialog', description: 'Modal dialog window with header, content area, and footer buttons', category: 'components', section: 'container', status: 'ready', preview: '/previews/dialog.png' },

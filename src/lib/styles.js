@@ -11,6 +11,7 @@ import '../ui/components/button/Button.css';
 import '../ui/components/checkbox/Checkbox.css';
 import '../ui/components/combobox/Combobox.css';
 import '../ui/components/dropdown/Dropdown.css';
+import '../ui/components/emptystate/EmptyState.css';
 import '../ui/components/iconbutton/IconButton.css';
 import '../ui/components/input/Input.css';
 import '../ui/components/popup/Popup.css';

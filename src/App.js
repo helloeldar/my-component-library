@@ -41,8 +41,9 @@ import Icon from './ui/components/icon/Icon';
 import Editor from './ui/components/editor/Editor';
 import Tooltip from './ui/components/tooltip/Tooltip';
 import Notification from './ui/components/notification/Notification';
+import EmptyState from './ui/components/emptystate/EmptyState';
 import { ThemeProvider, useTheme } from './ThemeContext';
-import { ReactComponent as Logo } from './icons/nodes/pluginLogo.svg';
+import { ReactComponent as Logo } from './icons/ij-platform-logo.svg';
 import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
@@ -2503,6 +2504,67 @@ function MainWindowPage() {
     );
 }
 
+function EmptyStatePage() {
+    return (
+        <div className="component-showcase">
+            <h1>Empty State</h1>
+            <p className="component-description">
+                Empty states inform users why a container is empty and provide actions to fill it.
+            </p>
+
+            <div className="component-section">
+                <h2>Default</h2>
+                <p className="section-description">
+                    Explanation text with an action link, keyboard shortcut, and a help link.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'center' }}>
+                    <div style={{ width: 324, height: 262, border: '1px solid var(--border-primary)', borderRadius: 4 }}>
+                        <EmptyState
+                            explanation="No datasources added."
+                            actionText="Add data source…"
+                            actionShortcut="⌘N"
+                            onAction={() => {}}
+                            helpText="Defining a database"
+                            helpHref="https://www.jetbrains.com/help/"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Help</h2>
+                <p className="section-description">
+                    Only explanation and action link, without a help link.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'center' }}>
+                    <div style={{ width: 324, height: 200, border: '1px solid var(--border-primary)', borderRadius: 4 }}>
+                        <EmptyState
+                            explanation="No configurations added."
+                            actionText="Add configuration…"
+                            actionShortcut="⌘N"
+                            onAction={() => {}}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Explanation Only</h2>
+                <p className="section-description">
+                    Minimal empty state with only the explanation text.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'center' }}>
+                    <div style={{ width: 324, height: 160, border: '1px solid var(--border-primary)', borderRadius: 4 }}>
+                        <EmptyState
+                            explanation="No items to display."
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // Sidebar Navigation Component
 function Sidebar() {
     const location = useLocation();
@@ -2543,7 +2605,7 @@ function Sidebar() {
             <div className="sidebar-header">
                 <Link to="/" className="logo">
                     <Logo className="logo-icon" />
-                    <span className="logo-text">Library</span>
+                    <span className="logo-text">Int UI Kit for Web</span>
                 </Link>
                 <ToolbarIconButton
                     icon={theme === 'light' ? 'theme/darkTheme' : 'theme/lightTheme'}
@@ -2675,6 +2737,7 @@ function AppContent() {
                     <Route path="/toggle" element={<TogglePage />} />
                     <Route path="/progressbar" element={<ProgressBarPage />} />
                     <Route path="/dropdown" element={<DropdownPage />} />
+                    <Route path="/emptystate" element={<EmptyStatePage />} />
                     <Route path="/combobox" element={<ComboboxPage />} />
                     <Route path="/toolbariconbutton" element={<ToolbarIconButtonPage />} />
                     <Route path="/tabs" element={<TabsPage />} />

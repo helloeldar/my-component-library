@@ -12,6 +12,7 @@ export { default as Button } from '../ui/components/button/Button';
 export { default as Checkbox } from '../ui/components/checkbox/Checkbox';
 export { default as Combobox } from '../ui/components/combobox/Combobox';
 export { default as Dropdown } from '../ui/components/dropdown/Dropdown';
+export { default as EmptyState } from '../ui/components/emptystate/EmptyState';
 export { default as Icon } from '../ui/components/icon/Icon';
 export { default as IconButton, MainToolbarIconButton } from '../ui/components/iconbutton/IconButton';
 export { default as Input } from '../ui/components/input/Input';
