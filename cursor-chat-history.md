@@ -1,6 +1,57 @@
 # Cursor chat — task log
 
+## Badge component
+### 2026-03-23
+- **Done:** Created `Badge` component (`src/ui/components/badge/Badge.jsx` + `.css`) matching Figma node 2413:19391.
+  - Props: `text` (string), `color` ('blue-secondary'|'blue'|'green-secondary'|'green'|'purple-secondary'|'gray-secondary'|'disabled'), `disabled` (bool), `onClick` (func), `title` (string)
+  - Fixed presets: `BadgeNew` (blue), `BadgeBeta` (purple-secondary), `BadgeFree` (green), `BadgeTrial` (green-secondary)
+  - Dimensions: 16px height, 6px horizontal padding, 8px border-radius, 12px medium Inter font
+  - Colors from Figma Islands semantic tokens (`badge/` collection), mapped to existing `--blue-*`, `--green-*`, `--purple-*`, `--gray-*` CSS variables
+  - Background applied via `color-mix(in srgb, <base-color> <opacity>, transparent)` — matches Figma opacity layer approach
+  - States: default (cursor default), clickable (cursor pointer, `role=button`, keyboard accessible), disabled (pointer-events none)
+  - Focus ring: `:focus-visible` only — keyboard navigation only, not on click
+  - Added badge CSS variables to both `theme-light` and `theme-dark` blocks in `Themes.css`
+  - Registered in `componentsConfig.js`, exported from `src/lib/index.js`, page + route in `App.js` at `/badge`
+
+## Checkbox & Radio pixel-perfect Figma alignment
+### 2026-03-23
+- **Done:** Audited and fixed `Checkbox` and `Radio` components against Figma node 27006:54307.
+  - Added `invalid` prop to both `Checkbox.jsx` and `Radio.jsx`; class `checkbox-invalid` / `radio-invalid` applied when `invalid && !disabled`
+  - Fixed checked+focused focus ring: was `box-shadow: 0 0 0 2px bg, 0 0 0 4px blue` (4px extension), corrected to `0 0 0 1px bg, 0 0 0 3px blue` (3px extension matching Figma `inset: -18.75%` on 16px = 3px)
+  - Fixed unchecked+focused CSS selector: was `.checkbox-focused:not(.checkbox-disabled)` (also applied to checked), now `.checkbox-focused:not(.checkbox-disabled):not(.checkbox-checked)` to avoid conflict
+  - Added invalid unchecked: `border: 2px solid var(--border-control-invalid)` (red-80 = `#C54E58`)
+  - Added invalid checked/indeterminate: `box-shadow: 0 0 0 1px bg, 0 0 0 3px red` red ring
+  - Added `--border-control-invalid: var(--red-80)` to both light and dark in `Themes.css`
+  - Showcase pages updated with all new invalid states for visual testing
+
+## Notification (Balloon) component
+### 2026-03-23
+- **Done:** Created `Notification` component from Figma node 3595:83697 (section 6296:70979).
+  - `src/ui/components/notification/Notification.jsx` — props: `type` (info/error/warning/success), `title`, `children` (body text), `button` ({ label, onClick }), `actions` ([{ label, onClick, href }]), `timestamp`, `className`
+  - `src/ui/components/notification/Notification.css` — width 360px, padding 10px 12px, border-radius 8px; reuses `var(--tooltip-bg)` / `var(--tooltip-border)` / `var(--dialog-shadow)` (same Figma tokens: feedback/feedback-bg, feedback/feedback-border, shadow/shadow-popup)
+  - `notification-action-btn`: bordered button using `var(--got-it-control-border)` = feedback/feedback-control-border
+  - Already exported from `src/lib/index.js`
+  - `BalloonPage` in `App.js` updated: added "JDK 18 required" example with button + links, "Low memory" warning, and "Title only + actions" variant to match Figma showcase
+
+## Icon audit
+### 2026-03-23
+- **Done:** Audited all JSX files for custom inline SVG icons. Replaced 6 custom SVGs with `<Icon>` component from library:
+  - `Search.jsx`: `SearchIcon` → `general/search`, `CloseIcon` → `general/closeSmall`
+  - `TooltipHelp.jsx`: `ExternalLinkIcon` → `ide/externalLink` (exact same path, now uses official icon)
+  - `StatusBar.jsx`: `ChevronRight` → `general/chevronRight`
+  - `StatusBarWidget.jsx`: placeholder stub SVG → `misc/stub`
+  - `StatusBarBreadcrumb.jsx`: placeholder stub SVG → `misc/stub`
+  - `PopupCell.jsx`: submenu chevron SVG → `general/chevronRight`
+- **Cannot replace (justified):**
+  - `Checkbox.jsx` checkmark: needs `currentColor` (white on blue); library icons have fixed gray colors
+  - `TooltipEditor.jsx` arrow triangles: structural tooltip pointer shapes, not icon-library icons
+  - `GotItTooltip.jsx` arrow triangles: same — tooltip pointer shapes
+  - ~~`Loader.jsx`~~ → **replaced**: now uses `<Icon name="loader">` with `.loader-spinner` CSS animation class; `transform: rotate()` works on `<img>` elements
+
 ## Tooltips / UI showcase
+### 2026-03-23
+- **Done:** Sidebar Components list now uses section-based grouping. All tooltip pages (Tooltip, Tooltip Help, Validation Tooltip, Tooltip Editor, Got It Tooltip) appear under a collapsible "Tooltips" sub-group. Other sections (Buttons, Inputs, Feedback, etc.) also grouped. `getComponentsBySection()` added to `componentsConfig.js`; 'help' section renamed to 'Tooltips'. CSS: `.nav-sub-group`, `.nav-sub-group-title`, `.nav-item--indented`. No routes/pages changed.
+
 ### 2025-03-23
 - **Done:** Tooltip showcase (`TooltipPage` in `App.js`) uses new `alwaysVisible` on `Tooltip` so demos show the real component (fixed positioning) without hover. `Tooltip.jsx`: `alwaysVisible` prop + `useLayoutEffect` for position/resize.
 

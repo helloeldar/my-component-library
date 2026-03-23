@@ -38,8 +38,18 @@
 
 .button-primary:focus-visible,
 .button-primary.button-focused {
-    outline: 2px solid var(--border-focus);
-    outline-offset: 3px;
+    position: relative;
+    outline: none;
+}
+
+.button-primary:focus-visible::after,
+.button-primary.button-focused::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--border-focus);
+    border-radius: 7px;
+    pointer-events: none;
 }
 
 .button-primary.button-disabled {
@@ -57,7 +67,18 @@
 
 .button-secondary:focus-visible,
 .button-secondary.button-focused {
+    position: relative;
+    outline: none;
+}
+
+.button-secondary:focus-visible::after,
+.button-secondary.button-focused::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
     border: 2px solid var(--border-focus);
+    border-radius: 7px;
+    pointer-events: none;
 }
 
 .button-secondary.button-disabled {
