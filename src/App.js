@@ -10,8 +10,10 @@ import TerminalWindow from './ui/components/toolwindow/TerminalWindow';
 import ProjectWindow from './ui/components/toolwindow/ProjectWindow';
 import AIAssistantWindow from './ui/components/toolwindow/AIAssistantWindow';
 import CommitWindow from './ui/components/toolwindow/CommitWindow';
+import VCSLogWindow from './ui/components/toolwindow/VCSLogWindow';
 import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
+import SemanticColors from './ui/components/showcase/SemanticColors';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
 import Home from './Home';
 import StripeIconButton from './ui/components/stripe/Stripe';
@@ -20,6 +22,8 @@ import CodeExample from './ui/components/showcase/CodeExample';
 import Popup from './ui/components/popup/Popup';
 import PopupProjects from './ui/components/popup/PopupProjects';
 import PopupBranches from './ui/components/popup/PopupBranches';
+import SearchEverywherePopup from './ui/components/popup/SearchEverywherePopup';
+import PopupFindInFiles from './ui/components/popup/PopupFindInFiles';
 import ProjectSelector from './ui/components/projectselector/ProjectSelector';
 import MainWindow from './ui/components/mainwindow/MainWindow';
 import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
@@ -40,6 +44,7 @@ import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import Alert from './ui/components/alert/Alert';
 import Dialog from './ui/components/dialog/Dialog';
+import WelcomeDialog from './ui/components/dialog/WelcomeDialog';
 import Icon from './ui/components/icon/Icon';
 import Editor from './ui/components/editor/Editor';
 import Tooltip from './ui/components/tooltip/Tooltip';
@@ -48,6 +53,7 @@ import TooltipHelp from './ui/components/tooltip/TooltipHelp';
 import ValidationTooltip from './ui/components/tooltip/ValidationTooltip';
 import GotItTooltip from './ui/components/tooltip/GotItTooltip';
 import Notification from './ui/components/notification/Notification';
+import SettingsDialog from './ui/components/showcase/SettingsDialog';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { getSortedWindowsOnly, getComponentsBySection } from './componentsConfig';
 import './ui/styles/Themes.css';
@@ -1533,6 +1539,52 @@ function PopupBranchesPage() {
     );
 }
 
+function SearchEverywherePopupPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Popup / Search Everywhere</h1>
+            <p className="component-description">
+                Search Everywhere popup with tabbed navigation (All, Classes, Files, Symbols, Actions),
+                a large search field with blue focus border, advanced result rows with icons and module info,
+                and a footer hint.
+            </p>
+            <div className="component-section">
+                <div className="component-examples">
+                    <div style={{ display: 'inline-block', padding: '20px' }}>
+                        <SearchEverywherePopup />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function PopupFindInFilesPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Popup / Find in Files</h1>
+            <p className="component-description">
+                Find in Files popup with search field, inline action toggles, scope tabs, result list with code preview, and footer actions.
+            </p>
+            <div className="component-section">
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <PopupFindInFiles />
+                    </div>
+                </div>
+            </div>
+            <div className="component-section">
+                <h2>With Replace Field</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <PopupFindInFiles replaceField={true} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function CodeExamplePage() {
     const javaCodeLines = [
         { content: "// ...", tokens: [{ text: "// ...", type: "comment" }] },
@@ -2314,6 +2366,25 @@ function DialogPage() {
                 <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
                     <Dialog title="Settings" width={880} height={495} />
                 </div>
+            </div>
+        </div>
+    );
+}
+
+function WelcomeDialogPage() {
+    return <WelcomeDialog />;
+}
+
+function SettingsPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Settings</h1>
+            <p className="component-description">
+                Settings dialog with two-panel layout: navigation tree on the left, settings content on the right.
+                Built from library components only. Figma: <a href="https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7072-91658" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-link)'}}>Dialog / Settings (node 7072:91658)</a>.
+            </p>
+            <div className="component-section">
+                <SettingsDialog />
             </div>
         </div>
     );
@@ -3158,6 +3229,26 @@ function CommitWindowPage() {
     );
 }
 
+function VCSLogWindowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>VCS Log</h1>
+            <p className="component-description">
+                VCS Log tool window with a Branches sidebar, commit graph, and commit details panel.
+                Matches Figma node 25-3448 from the VCS Components file.
+            </p>
+
+            <div className="component-section">
+                <h2>Default</h2>
+                <p className="section-description">
+                    Log tab active, "fixup mac/linux/win all in cross platform" commit selected.
+                </p>
+                <VCSLogWindow width="100%" />
+            </div>
+        </div>
+    );
+}
+
 function MainWindowPage() {
     return (
         <div className="component-showcase">
@@ -3204,7 +3295,8 @@ function Sidebar() {
 
     const stylesItems = [
         { name: 'Typography', key: 'typography' },
-        { name: 'Colors', key: 'colors' }
+        { name: 'Colors', key: 'colors' },
+        { name: 'Semantic Colors', key: 'semanticcolors' }
     ];
 
     const windowsItems = getSortedWindowsOnly().filter(c => c.key !== 'mainwindow');
@@ -3367,6 +3459,7 @@ function AppContent() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/typography" element={<Typography />} />
                     <Route path="/colors" element={<Colors />} />
+                    <Route path="/semanticcolors" element={<SemanticColors />} />
                     <Route path="/banner" element={<BannerPage />} />
                     <Route path="/badge" element={<BadgePage />} />
                     <Route path="/buttons" element={<ButtonsPage />} />
@@ -3389,6 +3482,8 @@ function AppContent() {
                     <Route path="/popup" element={<PopupPage />} />
                     <Route path="/popupprojects" element={<PopupProjectsPage />} />
                     <Route path="/popupbranches" element={<PopupBranchesPage />} />
+                    <Route path="/popupsearcheverywhere" element={<SearchEverywherePopupPage />} />
+                    <Route path="/popupfindinfiles" element={<PopupFindInFilesPage />} />
                     <Route path="/codeexample" element={<CodeExamplePage />} />
                     <Route path="/editor" element={<EditorPage />} />
                     <Route path="/toolwindow" element={<ToolWindowPage />} />
@@ -3398,12 +3493,15 @@ function AppContent() {
                     <Route path="/projectwindow" element={<ProjectWindowPage />} />
                     <Route path="/aiassistant" element={<AIAssistantWindowPage />} />
                     <Route path="/commit" element={<CommitWindowPage />} />
+                    <Route path="/vcslog" element={<VCSLogWindowPage />} />
                     <Route path="/projectselector" element={<ProjectSelectorPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
                     <Route path="/alert" element={<AlertPage />} />
                     <Route path="/dialog" element={<DialogPage />} />
+                    <Route path="/settings" element={<SettingsPage />} />
+                    <Route path="/welcomedialog" element={<WelcomeDialogPage />} />
                     <Route path="/tooltip" element={<TooltipPage />} />
                     <Route path="/tooltiphelp" element={<TooltipHelpPage />} />
                     <Route path="/validationtooltip" element={<ValidationTooltipPage />} />

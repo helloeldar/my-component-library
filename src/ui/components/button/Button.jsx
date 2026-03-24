@@ -2,7 +2,7 @@ import './Button.css';
 import '../../styles/Typography.css';
 
 function Button(props) {
-    const { type, size, disabled, focused, children, className, ...restProps } = props;
+    const { type = 'secondary', size, disabled, focused, children, className, ...restProps } = props;
     
     let classes = ['button'];
 

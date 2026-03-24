@@ -41,6 +41,10 @@
     color: var(--text-secondary);
 }
 
+.sidebar-header a {
+    text-decoration: none;
+}
+
 /* Theme toggle icon button in sidebar */
 .sidebar-header .icon-button:hover .icon {
     transform: rotate(180deg);
@@ -274,6 +278,7 @@ a.logo:active {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-default);
+    text-decoration: none;
 }
 
 /* Stripe Demo Styles */

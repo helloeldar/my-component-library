@@ -18,17 +18,19 @@
     padding: 4px;
 }
 
-/* Pill — 28px tall (6px top/bottom padding + 16px line-height) */
+/* Pill — 28px tall (5px top/bottom padding + 16px line-height + 1px border × 2, all inside) */
 .tab {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     min-width: 40px;
-    padding: 6px 8px;
+    padding: 5px 8px;
     border-radius: 6px;
     cursor: pointer;
     background: transparent;
     border: 1px solid transparent;
+    box-sizing: border-box;
     flex-shrink: 0;
     overflow: visible;
 }

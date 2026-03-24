@@ -15,6 +15,8 @@ import './Search.css';
  * @param {function} props.onClear - Callback when clear button is clicked
  * @param {function} props.onFocus - Callback when input is focused
  * @param {function} props.onBlur - Callback when input loses focus
+ * @param {string} props.icon - Icon name to show on the left (default: general/search)
+ * @param {boolean} props.alwaysFocused - Keep the focused border style regardless of actual focus state
  * @param {string} props.className - Additional CSS classes
  */
 function Search({ 
@@ -26,6 +28,8 @@ function Search({
     onClear,
     onFocus,
     onBlur,
+    icon = 'general/search',
+    alwaysFocused = false,
     className = '',
     ...rest
 }) {
@@ -54,7 +58,7 @@ function Search({
 
     const contentClasses = [
         'search-content',
-        isFocused ? 'focused' : '',
+        (isFocused || alwaysFocused) ? 'focused' : '',
         invalid ? 'invalid' : ''
     ].filter(Boolean).join(' ');
 
@@ -63,7 +67,7 @@ function Search({
             <div className={contentClasses}>
                 {/* Search Icon */}
                 <div className="search-icon">
-                    <Icon name="general/search" size={16} />
+                    <Icon name={icon} size={16} />
                 </div>
 
                 {/* Input */}

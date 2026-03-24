@@ -90,6 +90,7 @@
 | Notification | `src/ui/components/notification/Notification.jsx` | [Notification](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=3595-83697) | Yes | Needs review | No | New: info/warning/error/success types, title, actions, timestamp. Showcase page added as "Balloon". |
 | ToolbarSeparator | `src/ui/components/toolbar/ToolbarSeparator.jsx` | [Toolbar / Separator](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5701-76320) | Yes | Needs review | No | New: vertical/horizontal orientation for toolbar dividers. |
 | DialogGroupHeader | `src/ui/components/dialog/DialogGroupHeader.jsx` | [Dialog / Group Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7072-91228) | Yes | Needs review | No | New: section header with title + separator line. |
+| VCSLogWindow | `src/ui/components/toolwindow/VCSLogWindow.jsx` | [VCS Log](https://www.figma.com/design/g2D8IcRkSJTt9vAmhp0Amu/VCS-Components?node-id=234-10695) | Partial | Needs review | No | WIP: 3-panel layout (branches, commit log, details), SVG graph dots, branch tree. Needs polish. |
 
 ## Known audit gaps to resolve next
 

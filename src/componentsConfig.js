@@ -54,16 +54,21 @@ export const componentsConfig = [
     { name: 'Stripe', key: 'stripe', description: 'Vertical toolbar buttons with container', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Code Example', key: 'codeexample', description: 'Code display with syntax highlighting and line numbers', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Editor', key: 'editor', description: 'Code editor with syntax highlighting, breakpoints, and inline gutter actions', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Welcome Dialog', key: 'welcomedialog', description: 'IntelliJ IDEA startup welcome screen with sidebar navigation, project list, and search', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Main Window', key: 'mainwindow', description: 'Complete IDE window layout with island theme', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'AI Assistant', key: 'aiassistant', description: 'AI Assistant tool window with chat-like interface', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Project', key: 'projectwindow', description: 'Project tool window with file tree navigation', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Terminal', key: 'terminal', description: 'Terminal tool window with tabbed sessions', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Commit', key: 'commit', description: 'VCS Commit tool window with file tree, amend option, and commit message', category: 'windows', section: 'appkit', status: 'ready', preview: null },
+    { name: 'VCS Log', key: 'vcslog', description: 'VCS Log tool window with Branches sidebar, commit graph, and commit details', category: 'windows', section: 'appkit', status: 'ready', preview: null },
     { name: 'Popup / Projects', key: 'popupprojects', description: 'Projects popup with recent projects and quick actions', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Popup / Branches', key: 'popupbranches', description: 'Branches popup with search, VCS actions, and branch tree', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Popup / Search Everywhere', key: 'popupsearcheverywhere', description: 'Search Everywhere popup with tabbed navigation, large search field, and advanced result rows', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Popup / Find in Files', key: 'popupfindinfiles', description: 'Find in Files popup with search, scopes, result list and code preview', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar Breadcrumb', key: 'statusbarbreadcrumb', description: 'Breadcrumb navigation item for status bar', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Project Selector', key: 'projectselector', description: 'Dropdown for selecting active project with icon and name', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Settings', key: 'settings', description: 'Full Settings dialog with two-panel layout: navigation tree and settings content area', category: 'windows', section: 'appkit', status: 'ready', preview: null },
 ];
 
 // Home page section definitions in display order
@@ -85,6 +90,7 @@ export const homeSections = [
 export const stylesPages = [
     { name: 'Typography', key: 'typography', description: 'Text styles for UI and editor', status: 'ready', preview: '/previews/typography.png' },
     { name: 'Colors', key: 'colors', description: 'Color scales and palettes', status: 'ready', preview: '/previews/colours.png' },
+    { name: 'Semantic Colors', key: 'semanticcolors', description: 'Theme-aware semantic color tokens from Figma Islands', status: 'ready', preview: null },
 ];
 
 // Returns home page sections with their pages populated
@@ -156,7 +162,8 @@ export const categoriesConfig = [
         description: 'Design tokens and foundational styles',
         pages: [
             { name: 'Typography', key: 'typography', description: 'Text styles for UI and editor' },
-            { name: 'Colors', key: 'colors', description: 'Color scales and palettes' }
+            { name: 'Colors', key: 'colors', description: 'Color scales and palettes' },
+            { name: 'Semantic Colors', key: 'semanticcolors', description: 'Theme-aware semantic color tokens from Figma Islands' }
         ]
     },
     {

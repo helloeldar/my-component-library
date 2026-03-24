@@ -14,6 +14,8 @@ function PopupCell(props) {
         classes.push('popup-cell-search');
     } else if (props.type === 'multiline') {
         classes.push('popup-cell-multiline');
+    } else if (props.type === 'advanced') {
+        classes.push('popup-cell-advanced');
     } else {
         classes.push('popup-cell-line');
     }
@@ -93,6 +95,37 @@ function PopupCell(props) {
                             <div className="popup-cell-hint-text text-ui-small">
                                 {props.hint}
                             </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // Advanced cell — Search Everywhere style: left (icon + name + path) | right (module + icon OR shortcut)
+        // Selection background is handled via ::before on the outer .popup-cell-advanced element
+        // so it uses inset: 0 8px from the outer cell edges (not the padded content area).
+        if (props.type === 'advanced') {
+            return (
+                <div className="popup-cell-adv-content">
+                    <div className="popup-cell-adv-left">
+                        {renderIcon()}
+                        <span className="popup-cell-adv-name text-ui-default">{props.children}</span>
+                        {props.hint && (
+                            <span className="popup-cell-adv-path text-ui-default">{props.hint}</span>
+                        )}
+                    </div>
+                    <div className="popup-cell-adv-right">
+                        {props.shortcut ? (
+                            <span className="popup-cell-adv-shortcut text-ui-default">{props.shortcut}</span>
+                        ) : (
+                            <>
+                                {props.module && (
+                                    <span className="popup-cell-adv-module text-ui-default">{props.module}</span>
+                                )}
+                                {props.moduleIcon && (
+                                    <Icon name={props.moduleIcon} size={16} />
+                                )}
+                            </>
                         )}
                     </div>
                 </div>
