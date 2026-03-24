@@ -7,6 +7,13 @@ import PopupRunWidget from '../popup/PopupRunWidget';
 import RunWidget from '../runwidget/RunWidget';
 import './MainToolbar.css';
 
+const DEFAULT_RIGHT_ACTIONS = [
+    { icon: 'toolwindows/aiAssistantToolWindow@20x20', tooltip: 'AI Assistant' },
+    { icon: 'codeWithMe/cwmAccess@20x20', tooltip: 'Code With Me' },
+    { icon: 'general/search@20x20', tooltip: 'Search Everywhere', shortcut: 'Double ⇧', actionKey: 'searchEverywhere' },
+    { icon: 'general/settings@20x20', tooltip: 'Settings', actionKey: 'settings' },
+];
+
 function MainToolbar({
     projectName = "intellij",
     projectIcon = "IJ",
@@ -16,6 +23,9 @@ function MainToolbar({
     runState = "default",
     onSearchEverywhere,
     onSettings,
+    leftExtra,
+    rightActions,
+    showWindowControls = true,
     className = "",
     ...props
 }) {
@@ -52,11 +62,13 @@ function MainToolbar({
             {/* Left Group - Window Controls, Project, and VCS */}
             <div className="toolbar-left-group">
             {/* macOS Window Controls */}
-            <div className="window-controls">
-                <div className="window-control close"></div>
-                <div className="window-control minimize"></div>
-                <div className="window-control maximize"></div>
-            </div>
+            {showWindowControls && (
+                <div className="window-controls">
+                    <div className="window-control close"></div>
+                    <div className="window-control minimize"></div>
+                    <div className="window-control maximize"></div>
+                </div>
+            )}
 
             {/* Left Side - Project and VCS */}
             <div className="toolbar-left">
@@ -112,11 +124,40 @@ function MainToolbar({
                     )}
                 </div>
 
+                {leftExtra}
+
                 <div className="toolbar-actions">
-                    <MainToolbarIconButton icon="toolwindows/aiAssistantToolWindow@20x20" tooltip="AI Assistant" />
-                    <MainToolbarIconButton icon="codeWithMe/cwmAccess@20x20" tooltip="Code With Me" />
-                    <MainToolbarIconButton icon="general/search@20x20" tooltip="Search Everywhere" shortcut="Double ⇧" onClick={onSearchEverywhere} />
-                    <MainToolbarIconButton icon="general/settings@20x20" tooltip="Settings" onClick={onSettings} />
+                    {rightActions !== undefined ? (
+                        React.isValidElement(rightActions) ? rightActions : (
+                            rightActions.map((action, i) => (
+                                <MainToolbarIconButton
+                                    key={i}
+                                    icon={action.icon}
+                                    tooltip={action.tooltip}
+                                    shortcut={action.shortcut}
+                                    onClick={
+                                        action.onClick ||
+                                        (action.actionKey === 'searchEverywhere' ? onSearchEverywhere : undefined) ||
+                                        (action.actionKey === 'settings' ? onSettings : undefined)
+                                    }
+                                />
+                            ))
+                        )
+                    ) : (
+                        DEFAULT_RIGHT_ACTIONS.map((action, i) => (
+                            <MainToolbarIconButton
+                                key={i}
+                                icon={action.icon}
+                                tooltip={action.tooltip}
+                                shortcut={action.shortcut}
+                                onClick={
+                                    action.actionKey === 'searchEverywhere' ? onSearchEverywhere :
+                                    action.actionKey === 'settings' ? onSettings :
+                                    undefined
+                                }
+                            />
+                        ))
+                    )}
                 </div>
             </div>
         </div>
@@ -124,3 +165,4 @@ function MainToolbar({
 }
 
 export default MainToolbar;
+export { DEFAULT_RIGHT_ACTIONS };

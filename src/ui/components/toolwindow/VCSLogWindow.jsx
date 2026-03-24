@@ -7,9 +7,9 @@ import ToolbarSeparator from '../toolbar/ToolbarSeparator';
 import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import './VCSLogWindow.css';
 
-/* ─── Static data ───────────────────────────────────────────────────────────── */
+/* ─── Default data (exported for consumer reuse) ─────────────────────────────── */
 
-const BRANCHES = {
+const DEFAULT_BRANCHES = {
     local: [
         { id: 'master', label: 'master', current: true },
         { id: 'feature', label: 'feature', hasChildren: true, expanded: false },
@@ -31,9 +31,7 @@ const BRANCHES = {
     ],
 };
 
-// dotColor: 'blue' | 'orange' | 'gray'
-// isHead: shows outer-ring style (HEAD of branch)
-const COMMITS = [
+const DEFAULT_COMMITS = [
     {
         id: 1, dotColor: 'blue', isHead: true,
         message: 'Empty project: conte...',
@@ -92,7 +90,7 @@ const COMMITS = [
     },
 ];
 
-const DETAILS_FILES = [
+const DEFAULT_DETAILS_FILES = [
     {
         id: 'path', label: 'src/main/java/org/java/analysis', isPath: true, indent: 0,
         expanded: true,
@@ -103,6 +101,17 @@ const DETAILS_FILES = [
         ],
     },
 ];
+
+const DEFAULT_COMMIT_DETAILS = {
+    repoName: 'FastMath',
+    repoPath: '~/IdeaProjects/fastmath',
+    fileCount: 3,
+    title: 'fixup mac/linux/win all in cross platform',
+    hash: 'd71b8c93',
+    author: 'Xin Tung',
+    authorEmail: 'Xin.Tung@gmail.com',
+    date: '14.8.2020, 19:20',
+};
 
 /* ─── Graph ──────────────────────────────────────────────────────────────────── */
 
@@ -202,7 +211,7 @@ function BranchNode({ label, indent = 0, current, icon, hasChevron, expanded }) 
     );
 }
 
-function BranchesSidebar() {
+function BranchesSidebar({ branches = DEFAULT_BRANCHES }) {
     const [branchSearch, setBranchSearch] = useState('');
 
     return (
@@ -234,7 +243,7 @@ function BranchesSidebar() {
 
                     {/* Local */}
                     <BranchNode label="Local" indent={0} hasChevron expanded />
-                    {BRANCHES.local.map(b => (
+                    {branches.local.map(b => (
                         <BranchNode
                             key={b.id}
                             label={b.label}
@@ -248,7 +257,7 @@ function BranchesSidebar() {
 
                     {/* Remote */}
                     <BranchNode label="Remote" indent={0} hasChevron expanded />
-                    {BRANCHES.remote.map(r => (
+                    {branches.remote.map(r => (
                         <div key={r.id}>
                             <BranchNode
                                 label={r.label}
@@ -321,7 +330,7 @@ function CommitRow({ commit, index, total, selectedId, onSelect }) {
     );
 }
 
-function CommitLog({ selectedId, onSelect }) {
+function CommitLog({ commits = DEFAULT_COMMITS, selectedId, onSelect }) {
     return (
         <div className="vcs-log-commits">
             {/* Toolbar */}
@@ -356,12 +365,12 @@ function CommitLog({ selectedId, onSelect }) {
 
             {/* Commit rows */}
             <div className="vcs-log-commit-table">
-                {COMMITS.map((commit, index) => (
+                {commits.map((commit, index) => (
                     <CommitRow
                         key={commit.id}
                         commit={commit}
                         index={index}
-                        total={COMMITS.length}
+                        total={commits.length}
                         selectedId={selectedId}
                         onSelect={onSelect}
                     />
@@ -401,7 +410,8 @@ function DetailsTreeNode({ node, indent = 0 }) {
     );
 }
 
-function CommitDetails() {
+function CommitDetails({ detailsFiles = DEFAULT_DETAILS_FILES, commitDetails = DEFAULT_COMMIT_DETAILS }) {
+    const d = { ...DEFAULT_COMMIT_DETAILS, ...commitDetails };
     return (
         <div className="vcs-log-details">
             {/* Toolbar — no custom bg, uses tool-window default */}
@@ -419,13 +429,13 @@ function CommitDetails() {
 
             {/* Repo header */}
             <div className="vcs-log-details-header">
-                <span className="vcs-log-details-repo">FastMath</span>
-                <span className="vcs-log-details-meta">3 files ~/IdeaProjects/fastmath</span>
+                <span className="vcs-log-details-repo">{d.repoName}</span>
+                <span className="vcs-log-details-meta">{d.fileCount} files {d.repoPath}</span>
             </div>
 
             {/* File tree */}
             <div className="vcs-log-details-tree">
-                {DETAILS_FILES.map(node => (
+                {detailsFiles.map(node => (
                     <DetailsTreeNode key={node.id} node={node} />
                 ))}
             </div>
@@ -433,13 +443,13 @@ function CommitDetails() {
             {/* Commit info */}
             <div className="vcs-log-commit-info">
                 <div className="vcs-log-commit-info-title">
-                    fixup mac/linux/win all in cross platform
+                    {d.title}
                 </div>
                 <div className="vcs-log-commit-info-meta">
-                    <span className="vcs-log-commit-hash">d71b8c93</span>
-                    {' '}Xin Tung{' '}
-                    <span style={{ color: 'var(--text-link)' }}>&lt;Xin.Tung@gmail.com&gt;</span>
-                    {' '}on 14.8.2020, 19:20
+                    <span className="vcs-log-commit-hash">{d.hash}</span>
+                    {' '}{d.author}{' '}
+                    <span style={{ color: 'var(--text-link)' }}>&lt;{d.authorEmail}&gt;</span>
+                    {' '}on {d.date}
                 </div>
             </div>
         </div>
@@ -454,6 +464,14 @@ function CommitDetails() {
  * Matches Figma node 25-3448 / 234-10695 from the VCS Components file.
  */
 function VCSLogWindow({
+    title = 'Git',
+    tabs: headerTabs,
+    branches,
+    commits,
+    detailsFiles,
+    commitDetails,
+    selectedCommitId: controlledSelectedId,
+    onCommitSelect,
     width = 1256,
     height = 369,
     focused = false,
@@ -461,17 +479,25 @@ function VCSLogWindow({
     onActionClick,
     className = '',
 }) {
-    const [activeTab, setActiveTab] = useState(0); // "Log" tab active by default
-    const [selectedCommitId, setSelectedCommitId] = useState(7); // "fixup..." selected
+    const [activeTab, setActiveTab] = useState(0);
+    const [internalSelectedId, setInternalSelectedId] = useState(controlledSelectedId ?? 7);
+
+    const currentSelectedId = controlledSelectedId !== undefined ? controlledSelectedId : internalSelectedId;
+    const handleCommitSelect = (id) => {
+        if (onCommitSelect) { onCommitSelect(id); }
+        else { setInternalSelectedId(id); }
+    };
+
+    const resolvedTabs = headerTabs ?? [
+        { label: 'Log', closable: false },
+        { label: 'Console', closable: true },
+    ];
 
     return (
         <ToolWindow
-            title="Git"
+            title={title}
             headerType="tabs"
-            tabs={[
-                { label: 'Log', closable: false },
-                { label: 'Console', closable: true },
-            ]}
+            tabs={resolvedTabs}
             activeTab={activeTab}
             onTabChange={setActiveTab}
             actions={['more', 'minimize']}
@@ -482,13 +508,14 @@ function VCSLogWindow({
             onFocus={onFocus}
             className={`vcs-log-window ${className}`.trim()}
         >
-            <BranchesSidebar />
+            <BranchesSidebar branches={branches} />
             <div className="vcs-log-panel-divider" />
-            <CommitLog selectedId={selectedCommitId} onSelect={setSelectedCommitId} />
+            <CommitLog commits={commits} selectedId={currentSelectedId} onSelect={handleCommitSelect} />
             <div className="vcs-log-panel-divider" />
-            <CommitDetails />
+            <CommitDetails detailsFiles={detailsFiles} commitDetails={commitDetails} />
         </ToolWindow>
     );
 }
 
 export default VCSLogWindow;
+export { DEFAULT_BRANCHES, DEFAULT_COMMITS, DEFAULT_DETAILS_FILES, DEFAULT_COMMIT_DETAILS };

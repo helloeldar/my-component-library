@@ -33,7 +33,15 @@ const FONT_OPTIONS = [
 
 const SIZE_OPTIONS = ['11', '12', '13', '14', '15', '16'].map(v => ({ value: v, label: v }));
 
-function SettingsDialog({ onClose }) {
+function SettingsDialog({
+    title = 'Settings',
+    width = 891,
+    height = 653,
+    buttons: buttonsProp,
+    onClose,
+    children: childrenProp,
+    className: extraClassName = '',
+}) {
     const [searchValue, setSearchValue] = useState('');
     const [selectedNode, setSelectedNode] = useState('appearance');
 
@@ -62,21 +70,16 @@ function SettingsDialog({ onClose }) {
 
     const sel = (id) => setSelectedNode(id);
 
-    return (
-        <Dialog
-            title="Settings"
-            width={891}
-            height={653}
-            className="settings-dialog"
-            buttons={[
-                { children: 'Cancel', onClick: onClose },
-                { children: 'Apply', disabled: true },
-                { children: 'OK', onClick: onClose },
-            ]}
-        >
-            <div className="settings-layout">
-                {/* Left Tree Panel */}
-                <div className="settings-tree-panel">
+    const resolvedButtons = buttonsProp ?? [
+        { children: 'Cancel', onClick: onClose },
+        { children: 'Apply', disabled: true },
+        { children: 'OK', onClick: onClose },
+    ];
+
+    const defaultContent = (
+        <div className="settings-layout">
+            {/* Left Tree Panel */}
+            <div className="settings-tree-panel">
                     <div className="settings-tree-search">
                         <Search value={searchValue} onChange={setSearchValue} placeholder="" />
                     </div>
@@ -237,6 +240,17 @@ function SettingsDialog({ onClose }) {
                     </div>
                 </div>
             </div>
+    );
+
+    return (
+        <Dialog
+            title={title}
+            width={width}
+            height={height}
+            className={`settings-dialog ${extraClassName}`}
+            buttons={resolvedButtons}
+        >
+            {childrenProp !== undefined ? childrenProp : defaultContent}
         </Dialog>
     );
 }

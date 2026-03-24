@@ -13,6 +13,16 @@ Added a null-check guard before delegating to AdapterScript.
 
 Fixes #1042`;
 
+const DEFAULT_TOOLBAR_BUTTONS = [
+    { icon: 'general/refresh', tooltip: 'Refresh' },
+    { icon: 'vcs/revert', tooltip: 'Rollback' },
+    { icon: 'vcs/patch', tooltip: 'Create Patch' },
+    { icon: 'aiAssistant/aiAssistantColored', tooltip: 'AI Self-Review' },
+    { icon: 'general/show', tooltip: 'Show' },
+    { icon: 'general/expandAll', tooltip: 'Expand All' },
+    { icon: 'general/collapseAll', tooltip: 'Collapse All' },
+];
+
 const defaultFiles = [
     {
         id: 'changes',
@@ -95,6 +105,11 @@ function CommitWindow({
     files = defaultFiles,
     commitMessage: controlledMessage,
     previousCommitMessage = DEFAULT_PREVIOUS_COMMIT,
+    toolbarButtons = DEFAULT_TOOLBAR_BUTTONS,
+    amendLabel = 'Amend',
+    messagePlaceholder = 'Commit message',
+    commitLabel = 'Commit',
+    commitAndPushLabel = 'Commit and Push...',
     onCommit,
     onCommitAndPush,
     focused = false,
@@ -176,13 +191,9 @@ function CommitWindow({
         >
             {/* Toolbar */}
             <div className="commit-toolbar">
-                <ToolbarIconButton icon="general/refresh" tooltip="Refresh" />
-                <ToolbarIconButton icon="vcs/revert" tooltip="Rollback" />
-                <ToolbarIconButton icon="vcs/patch" tooltip="Create Patch" />
-                <ToolbarIconButton icon="aiAssistant/aiAssistantColored" tooltip="AI Self-Review" />
-                <ToolbarIconButton icon="general/show" tooltip="Show" />
-                <ToolbarIconButton icon="general/expandAll" tooltip="Expand All" />
-                <ToolbarIconButton icon="general/collapseAll" tooltip="Collapse All" />
+                {toolbarButtons.map((btn, i) => (
+                    <ToolbarIconButton key={i} icon={btn.icon} tooltip={btn.tooltip} onClick={btn.onClick} />
+                ))}
             </div>
 
             {/* File Tree */}
@@ -242,7 +253,7 @@ function CommitWindow({
                 <div className="commit-amend-toolbar">
                     <div className="commit-amend-left">
                         <Checkbox
-                            label="Amend"
+                            label={amendLabel}
                             checked={amend}
                             onChange={handleAmendChange}
                         />
@@ -265,7 +276,7 @@ function CommitWindow({
                 <div className="commit-message-area">
                     <textarea
                         className="commit-message-textarea text-ui-default"
-                        placeholder="Commit message"
+                        placeholder={messagePlaceholder}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
@@ -278,13 +289,13 @@ function CommitWindow({
                             type="primary"
                             onClick={() => onCommit && onCommit(message, amend, checkedIds)}
                         >
-                            Commit
+                            {commitLabel}
                         </Button>
                         <Button
                             type="secondary"
                             onClick={() => onCommitAndPush && onCommitAndPush(message, amend, checkedIds)}
                         >
-                            Commit and Push...
+                            {commitAndPushLabel}
                         </Button>
                     </div>
                     <ToolbarIconButton icon="general/settings" tooltip="Commit Options" />
@@ -295,3 +306,4 @@ function CommitWindow({
 }
 
 export default CommitWindow;
+export { DEFAULT_TOOLBAR_BUTTONS as DEFAULT_COMMIT_TOOLBAR_BUTTONS };

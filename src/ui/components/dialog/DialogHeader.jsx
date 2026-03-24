@@ -5,16 +5,20 @@ import React from 'react';
  *
  * @param {string} title - Dialog title text
  * @param {boolean} showMacOSButtons - Whether to show macOS close/minimize/expand buttons (default: true)
+ * @param {ReactNode} children - Custom title content (icon + title, etc.). When provided, renders children instead of title text.
+ * @param {object} style - Inline styles forwarded to root element
  * @param {string} className - Additional CSS classes
  */
 function DialogHeader({
     title = "Title",
     showMacOSButtons = true,
+    children,
+    style,
     className = "",
 }) {
     return (
         <>
-            <div className={`dialog-header ${className}`}>
+            <div className={`dialog-header ${className}`} style={style}>
                 {showMacOSButtons && (
                     <div className="dialog-header-macos-buttons">
                         <div className="dialog-header-macos-button dialog-header-macos-button-close" />
@@ -22,7 +26,9 @@ function DialogHeader({
                         <div className="dialog-header-macos-button dialog-header-macos-button-expand" />
                     </div>
                 )}
-                <span className="dialog-header-title text-ui-default-semibold">{title}</span>
+                {children ? children : (
+                    <span className="dialog-header-title text-ui-default-semibold">{title}</span>
+                )}
             </div>
             <div className="dialog-header-border" />
         </>

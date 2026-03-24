@@ -12,8 +12,15 @@ if (!grammarsRegistered) {
 
 const EMPTY_BREAKPOINTS = [];
 
-function ReaderModeBadge({ onClose }) {
+const DEFAULT_READER_MODE_TOOLTIP = {
+    title: 'Exit Reader Mode',
+    body: 'The Reader mode makes the code convenient to read by showing documentation as formatted text, font ligatures, code vision hints with the number of usages, and more',
+    linkText: 'Configure...',
+};
+
+function ReaderModeBadge({ onClose, label = 'Reader Mode', tooltip = DEFAULT_READER_MODE_TOOLTIP }) {
     const [hovered, setHovered] = useState(false);
+    const tt = { ...DEFAULT_READER_MODE_TOOLTIP, ...tooltip };
 
     return (
         <div
@@ -25,18 +32,14 @@ function ReaderModeBadge({ onClose }) {
                 <span className="editor-reader-mode-close">
                     <Icon name="general/closeSmall" size={16} />
                 </span>
-                <span className="editor-reader-mode-label">Reader Mode</span>
+                <span className="editor-reader-mode-label">{label}</span>
             </button>
             {hovered && (
                 <div className="editor-reader-mode-tooltip">
-                    <div className="editor-reader-mode-tooltip-title">Exit Reader Mode</div>
-                    <div className="editor-reader-mode-tooltip-body">
-                        The Reader mode makes the code convenient to read by showing
-                        documentation as formatted text, font ligatures, code vision hints
-                        with the number of usages, and more
-                    </div>
+                    <div className="editor-reader-mode-tooltip-title">{tt.title}</div>
+                    <div className="editor-reader-mode-tooltip-body">{tt.body}</div>
                     <button className="editor-reader-mode-tooltip-link" onClick={onClose}>
-                        Configure...
+                        {tt.linkText}
                     </button>
                 </div>
             )}
@@ -53,6 +56,9 @@ function Editor({
     onBreakpointToggle,
     onExitReaderMode,
     gutterActions = [],
+    readerModeLabel,
+    readerModeTooltip,
+    showReaderMode: showReaderModeProp,
     className = '',
     ...props
 }) {
@@ -145,7 +151,9 @@ function Editor({
         onExitReaderMode?.();
     }, [onExitReaderMode]);
 
-    const showReaderMode = readOnly && !readerModeDismissed;
+    const showReaderMode = showReaderModeProp !== undefined
+        ? showReaderModeProp && !readerModeDismissed
+        : readOnly && !readerModeDismissed;
 
     return (
         <div className={`editor ${className} ${showLineNumbers ? 'editor-with-gutter' : ''} ${isFocused ? 'editor-focused' : ''}`} {...props}>
@@ -162,7 +170,11 @@ function Editor({
             )}
             <div className="editor-code">
                 {showReaderMode && (
-                    <ReaderModeBadge onClose={handleExitReaderMode} />
+                    <ReaderModeBadge
+                        onClose={handleExitReaderMode}
+                        label={readerModeLabel}
+                        tooltip={readerModeTooltip}
+                    />
                 )}
                 <PrismEditor
                     ref={editorRef}
