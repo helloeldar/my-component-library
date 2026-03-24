@@ -16,6 +16,263 @@ import TabBar from '../tabs/TabBar';
 import Editor from '../editor/Editor';
 import './MainWindow.css';
 
+/* ─── Default data (exported for consumer reuse) ─────────────────────────────── */
+
+const DEFAULT_EDITOR_TABS = [
+    { id: '1', label: 'FunctionUtils.java', icon: 'fileTypes/java', closable: true },
+    { id: '2', label: 'add-hover.svg', icon: 'fileTypes/svg', closable: true },
+    { id: '3', label: 'add.svg', icon: 'fileTypes/svg', closable: true },
+    { id: '4', label: 'AdapterScript.java', icon: 'fileTypes/java', closable: true },
+    { id: '5', label: 'AdapterScriptInterface.java', icon: 'fileTypes/java', closable: true },
+];
+
+const DEFAULT_JAVA_CODE = [
+    'package org.apache.commons.math4.analysis;',
+    '',
+    'import org.apache.commons.math4.analysis.function.Identity;',
+    '',
+    '/**',
+    ' * Utility methods for manipulating function objects.',
+    ' *',
+    ' * @since 3.0',
+    ' */',
+    'public class FunctionUtils {',
+    '',
+    '    /**',
+    '     * Composes functions.',
+    '     *',
+    '     * @param f List of functions.',
+    '     * @return the composite function.',
+    '     */',
+    '    public static UnivariateFunction compose(final UnivariateFunction... f) {',
+    '        return new UnivariateFunction() {',
+    '            @Override',
+    '            public double value(double x) {',
+    '                double result = x;',
+    '                for (int i = f.length - 1; i >= 0; i--) {',
+    '                    result = f[i].value(result);',
+    '                }',
+    '                return result;',
+    '            }',
+    '        };',
+    '    }',
+    '',
+    '    /**',
+    '     * Adds functions.',
+    '     *',
+    '     * @param f List of functions.',
+    '     * @return a function that computes the sum.',
+    '     */',
+    '    public static UnivariateFunction add(final UnivariateFunction... f) {',
+    '        return new UnivariateFunction() {',
+    '            @Override',
+    '            public double value(double x) {',
+    '                double result = f[0].value(x);',
+    '                for (int i = 1; i < f.length; i++) {',
+    '                    result += f[i].value(x);',
+    '                }',
+    '                return result;',
+    '            }',
+    '        };',
+    '    }',
+    '',
+    '    /**',
+    '     * Multiplies functions.',
+    '     *',
+    '     * @param f List of functions.',
+    '     * @return a function that computes the product.',
+    '     */',
+    '    public static UnivariateFunction multiply(final UnivariateFunction... f) {',
+    '        return new UnivariateFunction() {',
+    '            @Override',
+    '            public double value(double x) {',
+    '                double result = f[0].value(x);',
+    '                for (int i = 1; i < f.length; i++) {',
+    '                    result *= f[i].value(x);',
+    '                }',
+    '                return result;',
+    '            }',
+    '        };',
+    '    }',
+    '',
+    '    /**',
+    '     * Returns the identity function.',
+    '     *',
+    '     * @return the identity function.',
+    '     */',
+    '    public static UnivariateFunction identity() {',
+    '        return new Identity();',
+    '    }',
+    '}',
+].join('\n');
+
+const DEFAULT_PROJECT_TREE_DATA = [
+    {
+        id: '1',
+        label: 'intellij',
+        icon: 'nodes/folder',
+        isExpanded: true,
+        children: [
+            { id: '1-1', label: '.idea', icon: 'nodes/folder' },
+            {
+                id: '1-2',
+                label: 'src',
+                icon: 'nodes/folder',
+                isExpanded: true,
+                children: [
+                    {
+                        id: '1-2-1',
+                        label: 'java',
+                        icon: 'nodes/folder',
+                        isExpanded: true,
+                        children: [
+                            { id: '1-2-1-1', label: 'analysis', icon: 'nodes/folder' },
+                            { id: '1-2-1-2', label: 'BivariateFunction.java', icon: 'fileTypes/java' },
+                            { id: '1-2-1-3', label: 'FunctionUtils.java', icon: 'fileTypes/java' },
+                            { id: '1-2-1-4', label: 'MultivariateFunction.java', icon: 'fileTypes/java' },
+                            { id: '1-2-1-5', label: 'TrivariateFunction.java', icon: 'fileTypes/java' }
+                        ]
+                    },
+                    { id: '1-2-2', label: 'polynomials', icon: 'nodes/folder' },
+                    { id: '1-2-3', label: 'solver', icon: 'nodes/folder' }
+                ]
+            },
+            {
+                id: '1-3',
+                label: 'test',
+                icon: 'nodes/folder',
+                children: [
+                    {
+                        id: '1-3-1',
+                        label: 'java',
+                        icon: 'nodes/folder',
+                        children: [
+                            { id: '1-3-1-1', label: 'FunctionUtilsTest.java', icon: 'fileTypes/java' },
+                            { id: '1-3-1-2', label: 'MonitoredFunction.java', icon: 'fileTypes/java' }
+                        ]
+                    }
+                ]
+            },
+            { id: '1-4', label: 'External Libraries', icon: 'nodes/ppLibFolder' }
+        ]
+    }
+];
+
+const DEFAULT_LEFT_STRIPE_ITEMS = [
+    { id: 'project', icon: 'toolwindows/project@20x20', tooltip: 'Project', section: 'top' },
+    { id: 'commit', icon: 'toolwindows/commit@20x20', tooltip: 'Commit', section: 'top' },
+    { id: '_separator_1', separator: true, section: 'top' },
+    { id: 'structure', icon: 'toolwindows/structure@20x20', tooltip: 'Structure', section: 'top' },
+    { id: 'git', icon: 'toolwindows/vcs@20x20', tooltip: 'Git', panel: 'bottom', section: 'bottom' },
+    { id: 'terminal', icon: 'toolwindows/terminal@20x20', tooltip: 'Terminal', panel: 'bottom', section: 'bottom' },
+    { id: 'run', icon: 'toolwindows/run@20x20', tooltip: 'Run', panel: 'bottom', section: 'bottom' },
+    { id: 'debug', icon: 'toolwindows/debug@20x20', tooltip: 'Debug', panel: 'bottom', section: 'bottom' },
+    { id: 'problems', icon: 'toolwindows/problems@20x20', tooltip: 'Problems', panel: 'bottom', section: 'bottom' },
+];
+
+const DEFAULT_RIGHT_STRIPE_ITEMS = [
+    { id: 'notifications', icon: 'toolwindows/notifications@20x20', tooltip: 'Notifications' },
+    { id: 'ai', icon: 'toolwindows/aiAssistantToolWindow@20x20', tooltip: 'AI Assistant' },
+    { id: 'database', icon: 'toolwindows/dbms@20x20.svg', tooltip: 'Database' },
+];
+
+const DEFAULT_BOTTOM_STRIPE_ITEMS = [];
+
+/* ─── Default panel content renderers ────────────────────────────────────────── */
+
+function defaultLeftPanelContent(stripeId, { projectTreeData, focusedPanel, setFocusedPanel, setShowLeftPanel }) {
+    const commonProps = {
+        focused: focusedPanel === 'left',
+        onFocus: () => setFocusedPanel('left'),
+        onActionClick: (action) => { if (action === 'minimize') setShowLeftPanel(false); },
+        className: 'main-window-tool-window main-window-tool-window-left',
+    };
+
+    if (stripeId === 'project') {
+        return <ProjectWindow width={280} height="auto" treeData={projectTreeData} {...commonProps} />;
+    }
+    if (stripeId === 'commit') {
+        return <CommitWindow width={280} height="auto" {...commonProps} />;
+    }
+    return (
+        <ToolWindow title="Structure" width={280} height="auto" actions={['more', 'minimize']} {...commonProps}>
+            <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                No content available
+            </div>
+        </ToolWindow>
+    );
+}
+
+function defaultRightPanelContent(stripeId, { focusedPanel, setFocusedPanel, setShowRightPanel }) {
+    const commonProps = {
+        focused: focusedPanel === 'right',
+        onFocus: () => setFocusedPanel('right'),
+        onActionClick: (action) => { if (action === 'minimize') setShowRightPanel(false); },
+        className: 'main-window-tool-window main-window-tool-window-right',
+    };
+
+    if (stripeId === 'ai') {
+        return <AIAssistantWindow width={320} height="auto" empty={true} {...commonProps} />;
+    }
+    return (
+        <ToolWindow
+            title={stripeId === 'database' ? 'Database' : stripeId === 'maven' ? 'Maven' : 'Notifications'}
+            width={320} height="auto" actions={['more', 'minimize']} {...commonProps}
+        >
+            <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                No content available
+            </div>
+        </ToolWindow>
+    );
+}
+
+function defaultBottomPanelContent(stripeId, {
+    projectName, focusedPanel, setFocusedPanel, setShowBottomPanel,
+    terminalTabs, activeTerminalTab, setActiveTerminalTab,
+    handleTerminalTabClose, handleTerminalTabAdd,
+}) {
+    const commonProps = {
+        focused: focusedPanel === 'bottom',
+        onFocus: () => setFocusedPanel('bottom'),
+        onActionClick: (action) => { if (action === 'minimize') setShowBottomPanel(false); },
+        className: 'main-window-tool-window main-window-tool-window-bottom',
+    };
+
+    if (stripeId === 'terminal') {
+        return (
+            <TerminalWindow
+                width="auto" height={180}
+                tabs={terminalTabs}
+                activeTab={activeTerminalTab}
+                onTabChange={setActiveTerminalTab}
+                onTabClose={handleTerminalTabClose}
+                onTabAdd={handleTerminalTabAdd}
+                blocks={[]}
+                input={{ path: '~/projects/' + projectName, branch: 'main' }}
+                {...commonProps}
+            />
+        );
+    }
+    if (stripeId === 'git') {
+        return <VCSLogWindow width="auto" height={180} {...commonProps} />;
+    }
+    if (stripeId === 'problems') {
+        return <ProblemsWindow width="auto" height={180} {...commonProps} />;
+    }
+    return (
+        <ToolWindow
+            title={stripeId === 'run' ? 'Run' : 'Debug'}
+            width="auto" height={180} actions={['more', 'minimize']} {...commonProps}
+        >
+            <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+                No content available
+            </div>
+        </ToolWindow>
+    );
+}
+
+/* ─── MainWindow component ───────────────────────────────────────────────────── */
+
 /**
  * MainWindow component - IDE window layout using Island theme
  *
@@ -33,42 +290,38 @@ function MainWindow({
     branchName = "main",
     runConfig = "IDEA Community",
     runState = "default",
+    editorTabs = DEFAULT_EDITOR_TABS,
+    editorCode = DEFAULT_JAVA_CODE,
+    editorLanguage = "java",
+    projectTreeData = DEFAULT_PROJECT_TREE_DATA,
+    leftStripeItems = DEFAULT_LEFT_STRIPE_ITEMS,
+    rightStripeItems = DEFAULT_RIGHT_STRIPE_ITEMS,
+    bottomStripeItems = DEFAULT_BOTTOM_STRIPE_ITEMS,
+    leftPanelContent,
+    rightPanelContent,
+    bottomPanelContent,
+    toolbar,
+    statusBarProps,
+    overlays,
     className = "",
     ...props
 }) {
-    // Left stripe state
     const [leftStripeSelection, setLeftStripeSelection] = useState('project');
     const [showLeftPanel, setShowLeftPanel] = useState(true);
 
-    // Right stripe state
     const [rightStripeSelection, setRightStripeSelection] = useState('ai');
     const [showRightPanel, setShowRightPanel] = useState(true);
 
-    // Bottom stripe items state
     const [bottomStripeSelection, setBottomStripeSelection] = useState('terminal');
     const [showBottomPanel, setShowBottomPanel] = useState(true);
 
-    // Focus tracking: which panel currently has focus ('editor', 'left', 'right', 'bottom')
     const [focusedPanel, setFocusedPanel] = useState('editor');
 
-    // Overlay state
     const [showSearchEverywhere, setShowSearchEverywhere] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
 
-    // Editor tabs state
-    const editorTabs = [
-        { id: '1', label: 'FunctionUtils.java', icon: 'fileTypes/java', closable: true },
-        { id: '2', label: 'add-hover.svg', icon: 'fileTypes/svg', closable: true },
-        { id: '3', label: 'add.svg', icon: 'fileTypes/svg', closable: true },
-        { id: '4', label: 'AdapterScript.java', icon: 'fileTypes/java', closable: true },
-        { id: '5', label: 'AdapterScriptInterface.java', icon: 'fileTypes/java', closable: true },
-    ];
-
-    // Terminal tabs state
     const [activeTerminalTab, setActiveTerminalTab] = useState(0);
-    const [terminalTabs, setTerminalTabs] = useState([
-        { label: 'Local', closable: true },
-    ]);
+    const [terminalTabs, setTerminalTabs] = useState([{ label: 'Local', closable: true }]);
     const terminalTabCounter = React.useRef(0);
 
     const handleTerminalTabClose = (index) => {
@@ -91,155 +344,23 @@ function MainWindow({
         setActiveTerminalTab(terminalTabs.length);
     };
 
-    // Project tree data
-    const projectTreeData = [
-        {
-            id: '1',
-            label: projectName,
-            icon: 'nodes/folder',
-            isExpanded: true,
-            children: [
-                { id: '1-1', label: '.idea', icon: 'nodes/folder' },
-                {
-                    id: '1-2',
-                    label: 'src',
-                    icon: 'nodes/folder',
-                    isExpanded: true,
-                    children: [
-                        {
-                            id: '1-2-1',
-                            label: 'java',
-                            icon: 'nodes/folder',
-                            isExpanded: true,
-                            children: [
-                                { id: '1-2-1-1', label: 'analysis', icon: 'nodes/folder' },
-                                { id: '1-2-1-2', label: 'BivariateFunction.java', icon: 'fileTypes/java' },
-                                { id: '1-2-1-3', label: 'FunctionUtils.java', icon: 'fileTypes/java' },
-                                { id: '1-2-1-4', label: 'MultivariateFunction.java', icon: 'fileTypes/java' },
-                                { id: '1-2-1-5', label: 'TrivariateFunction.java', icon: 'fileTypes/java' }
-                            ]
-                        },
-                        { id: '1-2-2', label: 'polynomials', icon: 'nodes/folder' },
-                        { id: '1-2-3', label: 'solver', icon: 'nodes/folder' }
-                    ]
-                },
-                {
-                    id: '1-3',
-                    label: 'test',
-                    icon: 'nodes/folder',
-                    children: [
-                        {
-                            id: '1-3-1',
-                            label: 'java',
-                            icon: 'nodes/folder',
-                            children: [
-                                { id: '1-3-1-1', label: 'FunctionUtilsTest.java', icon: 'fileTypes/java' },
-                                { id: '1-3-1-2', label: 'MonitoredFunction.java', icon: 'fileTypes/java' }
-                            ]
-                        }
-                    ]
-                },
-                { id: '1-4', label: 'External Libraries', icon: 'nodes/ppLibFolder' }
-            ]
-        }
-    ];
+    const defaultStatusBarProps = {
+        breadcrumbs: [
+            { label: projectName, module: true },
+            { label: 'src' },
+            { label: 'main' },
+            { label: 'java' },
+            { label: 'AdapterScript', icon: true, iconName: 'nodes/class' }
+        ],
+        widgets: [
+            { type: 'text', text: '39:34' },
+            { type: 'text', text: 'LF' },
+            { type: 'text', text: 'UTF-8' },
+            { type: 'icon', iconName: 'general/unlocked' }
+        ],
+    };
 
-    const javaCode = [
-        'package org.apache.commons.math4.analysis;',
-        '',
-        'import org.apache.commons.math4.analysis.function.Identity;',
-        '',
-        '/**',
-        ' * Utility methods for manipulating function objects.',
-        ' *',
-        ' * @since 3.0',
-        ' */',
-        'public class FunctionUtils {',
-        '',
-        '    /**',
-        '     * Composes functions.',
-        '     *',
-        '     * @param f List of functions.',
-        '     * @return the composite function.',
-        '     */',
-        '    public static UnivariateFunction compose(final UnivariateFunction... f) {',
-        '        return new UnivariateFunction() {',
-        '            @Override',
-        '            public double value(double x) {',
-        '                double result = x;',
-        '                for (int i = f.length - 1; i >= 0; i--) {',
-        '                    result = f[i].value(result);',
-        '                }',
-        '                return result;',
-        '            }',
-        '        };',
-        '    }',
-        '',
-        '    /**',
-        '     * Adds functions.',
-        '     *',
-        '     * @param f List of functions.',
-        '     * @return a function that computes the sum.',
-        '     */',
-        '    public static UnivariateFunction add(final UnivariateFunction... f) {',
-        '        return new UnivariateFunction() {',
-        '            @Override',
-        '            public double value(double x) {',
-        '                double result = f[0].value(x);',
-        '                for (int i = 1; i < f.length; i++) {',
-        '                    result += f[i].value(x);',
-        '                }',
-        '                return result;',
-        '            }',
-        '        };',
-        '    }',
-        '',
-        '    /**',
-        '     * Multiplies functions.',
-        '     *',
-        '     * @param f List of functions.',
-        '     * @return a function that computes the product.',
-        '     */',
-        '    public static UnivariateFunction multiply(final UnivariateFunction... f) {',
-        '        return new UnivariateFunction() {',
-        '            @Override',
-        '            public double value(double x) {',
-        '                double result = f[0].value(x);',
-        '                for (int i = 1; i < f.length; i++) {',
-        '                    result *= f[i].value(x);',
-        '                }',
-        '                return result;',
-        '            }',
-        '        };',
-        '    }',
-        '',
-        '    /**',
-        '     * Returns the identity function.',
-        '     *',
-        '     * @return the identity function.',
-        '     */',
-        '    public static UnivariateFunction identity() {',
-        '        return new Identity();',
-        '    }',
-        '}',
-    ].join('\n');
-
-    // Status bar breadcrumbs
-    const breadcrumbs = [
-        { label: projectName, module: true },
-        { label: 'src' },
-        { label: 'main' },
-        { label: 'java' },
-        { label: 'AdapterScript', icon: true, iconName: 'nodes/class' }
-    ];
-
-    // Status bar widgets
-    const widgets = [
-        { type: 'text', text: '39:34' },
-        { type: 'text', text: 'LF' },
-        { type: 'text', text: 'UTF-8' },
-        { type: 'icon', iconName: 'general/unlocked' }
-    ];
+    const resolvedStatusBarProps = statusBarProps ?? defaultStatusBarProps;
 
     const getStripeState = (panelType, id, isShown) => {
         if (!isShown) return 'default';
@@ -280,126 +401,95 @@ function MainWindow({
         setFocusedPanel('bottom');
     };
 
+    const panelContext = {
+        projectName, projectTreeData,
+        focusedPanel, setFocusedPanel,
+        setShowLeftPanel, setShowRightPanel, setShowBottomPanel,
+        terminalTabs, activeTerminalTab, setActiveTerminalTab,
+        handleTerminalTabClose, handleTerminalTabAdd,
+    };
+
+    const renderLeftPanel = leftPanelContent || defaultLeftPanelContent;
+    const renderRightPanel = rightPanelContent || defaultRightPanelContent;
+    const renderBottomPanel = bottomPanelContent || defaultBottomPanelContent;
+
+    const leftTopItems = leftStripeItems.filter(i => i.section === 'top' || (!i.section && !i.panel));
+    const leftBottomItems = leftStripeItems.filter(i => i.section === 'bottom' || i.panel === 'bottom');
+
+    const defaultOverlays = (
+        <>
+            {showSearchEverywhere && (
+                <div className="main-window-overlay" onMouseDown={() => setShowSearchEverywhere(false)}>
+                    <div className="main-window-overlay-popup" onMouseDown={(e) => e.stopPropagation()}>
+                        <SearchEverywherePopup />
+                    </div>
+                </div>
+            )}
+            {showSettings && (
+                <div className="main-window-overlay main-window-overlay-modal" onMouseDown={() => setShowSettings(false)}>
+                    <div className="main-window-overlay-dialog" onMouseDown={(e) => e.stopPropagation()}>
+                        <SettingsDialog onClose={() => setShowSettings(false)} />
+                    </div>
+                </div>
+            )}
+        </>
+    );
+
     return (
         <div className={`main-window main-window-island project-color-${projectColor} ${className}`} {...props}>
-            {/* Project Color Gradient */}
             <div className="main-window-gradient" aria-hidden="true" />
 
-            {/* Main Toolbar */}
-            <MainToolbar
-                projectName={projectName}
-                projectIcon={projectIcon}
-                projectColor={projectColor}
-                branchName={branchName}
-                runConfig={runConfig}
-                runState={runState}
-                onSearchEverywhere={() => setShowSearchEverywhere(true)}
-                onSettings={() => setShowSettings(true)}
-            />
+            {toolbar !== undefined ? toolbar : (
+                <MainToolbar
+                    projectName={projectName}
+                    projectIcon={projectIcon}
+                    projectColor={projectColor}
+                    branchName={branchName}
+                    runConfig={runConfig}
+                    runState={runState}
+                    onSearchEverywhere={() => setShowSearchEverywhere(true)}
+                    onSettings={() => setShowSettings(true)}
+                />
+            )}
 
-            {/* Main Content Area */}
             <div className="main-window-content">
                 {/* Left Stripe */}
                 <div className="main-window-stripe main-window-stripe-left">
                     <StripeContainer className="stripe-section-top">
-                        <StripeIconButton
-                            icon="toolwindows/project@20x20"
-                            state={getStripeState('left', 'project', showLeftPanel)}
-                            title="Project"
-                            onClick={() => handleLeftStripeClick('project')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/commit@20x20"
-                            state={getStripeState('left', 'commit', showLeftPanel)}
-                            title="Commit"
-                            onClick={() => handleLeftStripeClick('commit')}
-                        />
-                        <StripeContainer.Separator />
-                        <StripeIconButton
-                            icon="toolwindows/structure@20x20"
-                            state={getStripeState('left', 'structure', showLeftPanel)}
-                            title="Structure"
-                            onClick={() => handleLeftStripeClick('structure')}
-                        />
+                        {leftTopItems.map(item => {
+                            if (item.separator) return <StripeContainer.Separator key={item.id} />;
+                            return (
+                                <StripeIconButton
+                                    key={item.id}
+                                    icon={item.icon}
+                                    state={getStripeState(item.panel || 'left', item.id, item.panel === 'bottom' ? showBottomPanel : showLeftPanel)}
+                                    title={item.tooltip}
+                                    onClick={() => item.panel === 'bottom' ? handleBottomStripeClick(item.id) : handleLeftStripeClick(item.id)}
+                                />
+                            );
+                        })}
                     </StripeContainer>
                     <StripeContainer className="stripe-section-bottom">
-                        <StripeIconButton
-                            icon="toolwindows/vcs@20x20"
-                            state={getStripeState('bottom', 'git', showBottomPanel)}
-                            title="Git"
-                            onClick={() => handleBottomStripeClick('git')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/terminal@20x20"
-                            state={getStripeState('bottom', 'terminal', showBottomPanel)}
-                            title="Terminal"
-                            onClick={() => handleBottomStripeClick('terminal')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/run@20x20"
-                            state={getStripeState('bottom', 'run', showBottomPanel)}
-                            title="Run"
-                            onClick={() => handleBottomStripeClick('run')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/debug@20x20"
-                            state={getStripeState('bottom', 'debug', showBottomPanel)}
-                            title="Debug"
-                            onClick={() => handleBottomStripeClick('debug')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/problems@20x20"
-                            state={getStripeState('bottom', 'problems', showBottomPanel)}
-                            title="Problems"
-                            onClick={() => handleBottomStripeClick('problems')}
-                        />
+                        {leftBottomItems.map(item => {
+                            if (item.separator) return <StripeContainer.Separator key={item.id} />;
+                            return (
+                                <StripeIconButton
+                                    key={item.id}
+                                    icon={item.icon}
+                                    state={getStripeState(item.panel || 'bottom', item.id, item.panel === 'bottom' ? showBottomPanel : showLeftPanel)}
+                                    title={item.tooltip}
+                                    onClick={() => item.panel === 'bottom' ? handleBottomStripeClick(item.id) : handleLeftStripeClick(item.id)}
+                                />
+                            );
+                        })}
                     </StripeContainer>
                 </div>
 
                 {/* Center Content Area */}
                 <div className="main-window-center">
-                    {/* Top Row: Tool Windows and Editor */}
                     <div className="main-window-top-row">
-                        {/* Left Tool Window (Project) */}
-                        {showLeftPanel && (
-                            leftStripeSelection === 'project' ? (
-                                <ProjectWindow
-                                    width={280}
-                                    height="auto"
-                                    treeData={projectTreeData}
-                                    focused={focusedPanel === 'left'}
-                                    onFocus={() => setFocusedPanel('left')}
-                                    onActionClick={(action) => { if (action === 'minimize') setShowLeftPanel(false); }}
-                                    className="main-window-tool-window main-window-tool-window-left"
-                                />
-                            ) : leftStripeSelection === 'commit' ? (
-                                <CommitWindow
-                                    width={280}
-                                    height="auto"
-                                    focused={focusedPanel === 'left'}
-                                    onFocus={() => setFocusedPanel('left')}
-                                    onActionClick={(action) => { if (action === 'minimize') setShowLeftPanel(false); }}
-                                    className="main-window-tool-window main-window-tool-window-left"
-                                />
-                            ) : (
-                                <ToolWindow
-                                    title="Structure"
-                                    width={280}
-                                    height="auto"
-                                    actions={['more', 'minimize']}
-                                    focused={focusedPanel === 'left'}
-                                    onFocus={() => setFocusedPanel('left')}
-                                    onActionClick={(action) => { if (action === 'minimize') setShowLeftPanel(false); }}
-                                    className="main-window-tool-window main-window-tool-window-left"
-                                >
-                                    <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
-                                        No content available
-                                    </div>
-                                </ToolWindow>
-                            )
-                        )}
+                        {showLeftPanel && renderLeftPanel(leftStripeSelection, panelContext)}
 
-                        {/* Editor Area */}
                         <div className="main-window-editor-area" onMouseDown={() => setFocusedPanel('editor')}>
                             <div className="main-window-editor-tabs">
                                 <TabBar
@@ -409,163 +499,48 @@ function MainWindow({
                                 />
                             </div>
                             <div className="main-window-editor-content">
-                                <Editor language="java" code={javaCode} />
+                                <Editor language={editorLanguage} code={editorCode} />
                             </div>
                         </div>
 
-                        {/* Right Tool Window (AI Assistant) */}
-                        {showRightPanel && (
-                            rightStripeSelection === 'ai' ? (
-                                <AIAssistantWindow
-                                    width={320}
-                                    height="auto"
-                                    empty={true}
-                                    focused={focusedPanel === 'right'}
-                                    onFocus={() => setFocusedPanel('right')}
-                                    onActionClick={(action) => { if (action === 'minimize') setShowRightPanel(false); }}
-                                    className="main-window-tool-window main-window-tool-window-right"
-                                />
-                            ) : (
-                                <ToolWindow
-                                    title={rightStripeSelection === 'database' ? 'Database' :
-                                           rightStripeSelection === 'maven' ? 'Maven' : 'Notifications'}
-                                    width={320}
-                                    height="auto"
-                                    actions={['more', 'minimize']}
-                                    focused={focusedPanel === 'right'}
-                                    onFocus={() => setFocusedPanel('right')}
-                                    onActionClick={(action) => { if (action === 'minimize') setShowRightPanel(false); }}
-                                    className="main-window-tool-window main-window-tool-window-right"
-                                >
-                                    <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
-                                        No content available
-                                    </div>
-                                </ToolWindow>
-                            )
-                        )}
+                        {showRightPanel && renderRightPanel(rightStripeSelection, panelContext)}
                     </div>
 
-                    {/* Bottom Tool Window (Terminal / Run / Debug / Problems) */}
-                    {showBottomPanel && (
-                        bottomStripeSelection === 'terminal' ? (
-                            <TerminalWindow
-                                width="auto"
-                                height={180}
-                                tabs={terminalTabs}
-                                activeTab={activeTerminalTab}
-                                onTabChange={setActiveTerminalTab}
-                                onTabClose={handleTerminalTabClose}
-                                onTabAdd={handleTerminalTabAdd}
-                                onActionClick={(action) => {
-                                    if (action === 'minimize') setShowBottomPanel(false);
-                                }}
-                                blocks={[]}
-                                input={{ path: '~/projects/' + projectName, branch: 'main' }}
-                                focused={focusedPanel === 'bottom'}
-                                onFocus={() => setFocusedPanel('bottom')}
-                                className="main-window-tool-window main-window-tool-window-bottom"
-                            />
-                        ) : bottomStripeSelection === 'git' ? (
-                            <VCSLogWindow
-                                width="auto"
-                                height={180}
-                                focused={focusedPanel === 'bottom'}
-                                onFocus={() => setFocusedPanel('bottom')}
-                                onActionClick={(action) => { if (action === 'minimize') setShowBottomPanel(false); }}
-                                className="main-window-tool-window main-window-tool-window-bottom"
-                            />
-                        ) : bottomStripeSelection === 'problems' ? (
-                            <ProblemsWindow
-                                width="auto"
-                                height={180}
-                                onActionClick={(action) => {
-                                    if (action === 'minimize') setShowBottomPanel(false);
-                                }}
-                                focused={focusedPanel === 'bottom'}
-                                onFocus={() => setFocusedPanel('bottom')}
-                                className="main-window-tool-window main-window-tool-window-bottom"
-                            />
-                        ) : (
-                            <ToolWindow
-                                title={bottomStripeSelection === 'run' ? 'Run' : 'Debug'}
-                                width="auto"
-                                height={180}
-                                actions={['more', 'minimize']}
-                                focused={focusedPanel === 'bottom'}
-                                onFocus={() => setFocusedPanel('bottom')}
-                                onActionClick={(action) => { if (action === 'minimize') setShowBottomPanel(false); }}
-                                className="main-window-tool-window main-window-tool-window-bottom"
-                            >
-                                <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
-                                    No content available
-                                </div>
-                            </ToolWindow>
-                        )
-                    )}
+                    {showBottomPanel && renderBottomPanel(bottomStripeSelection, panelContext)}
                 </div>
 
                 {/* Right Stripe */}
                 <div className="main-window-stripe main-window-stripe-right">
                     <StripeContainer className="stripe-section-top">
-                        <StripeIconButton
-                            icon="toolwindows/notifications@20x20"
-                            state={getStripeState('right', 'notifications', showRightPanel)}
-                            title="Notifications"
-                            onClick={() => handleRightStripeClick('notifications')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/aiAssistantToolWindow@20x20"
-                            state={getStripeState('right', 'ai', showRightPanel)}
-                            title="AI Assistant"
-                            onClick={() => handleRightStripeClick('ai')}
-                        />
-                        <StripeIconButton
-                            icon="toolwindows/dbms@20x20.svg"
-                            state={getStripeState('right', 'database', showRightPanel)}
-                            title="Database"
-                            onClick={() => handleRightStripeClick('database')}
-                        />
+                        {rightStripeItems.map(item => {
+                            if (item.separator) return <StripeContainer.Separator key={item.id} />;
+                            return (
+                                <StripeIconButton
+                                    key={item.id}
+                                    icon={item.icon}
+                                    state={getStripeState('right', item.id, showRightPanel)}
+                                    title={item.tooltip}
+                                    onClick={() => handleRightStripeClick(item.id)}
+                                />
+                            );
+                        })}
                     </StripeContainer>
                 </div>
             </div>
 
-            {/* Status Bar */}
-            <StatusBar
-                breadcrumbs={breadcrumbs}
-                widgets={widgets}
-            />
+            <StatusBar {...resolvedStatusBarProps} />
 
-            {/* Search Everywhere overlay */}
-            {showSearchEverywhere && (
-                <div
-                    className="main-window-overlay"
-                    onMouseDown={() => setShowSearchEverywhere(false)}
-                >
-                    <div
-                        className="main-window-overlay-popup"
-                        onMouseDown={(e) => e.stopPropagation()}
-                    >
-                        <SearchEverywherePopup />
-                    </div>
-                </div>
-            )}
-
-            {/* Settings Dialog overlay */}
-            {showSettings && (
-                <div
-                    className="main-window-overlay main-window-overlay-modal"
-                    onMouseDown={() => setShowSettings(false)}
-                >
-                    <div
-                        className="main-window-overlay-dialog"
-                        onMouseDown={(e) => e.stopPropagation()}
-                    >
-                        <SettingsDialog onClose={() => setShowSettings(false)} />
-                    </div>
-                </div>
-            )}
+            {overlays !== undefined ? overlays : defaultOverlays}
         </div>
     );
 }
 
 export default MainWindow;
+export {
+    DEFAULT_EDITOR_TABS,
+    DEFAULT_JAVA_CODE,
+    DEFAULT_PROJECT_TREE_DATA,
+    DEFAULT_LEFT_STRIPE_ITEMS,
+    DEFAULT_RIGHT_STRIPE_ITEMS,
+    DEFAULT_BOTTOM_STRIPE_ITEMS,
+};

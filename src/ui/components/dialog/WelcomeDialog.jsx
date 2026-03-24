@@ -106,12 +106,15 @@ function WelcomeDialog({
     ideVersion = "Ultimate 2025.2",
     ideIconUrl = ideaIcon32,
     projects = DEFAULT_PROJECTS,
+    navItems = NAV_ITEMS,
     activeNav,
     onNavChange,
     selectedProjectId,
     onProjectSelect,
     searchValue,
     onSearchChange,
+    searchPlaceholder = "Search projects",
+    actionLabels,
     onNewProject,
     onOpen,
     onGetFromVCS,
@@ -142,9 +145,16 @@ function WelcomeDialog({
         else { setInternalSearch(val); }
     };
 
+    const labels = {
+        newProject: 'New Project',
+        open: 'Open',
+        getFromVcs: 'Get From VCS',
+        ...actionLabels,
+    };
+
     return (
         <div className={`welcome-dialog ${className}`}>
-            <DialogHeader title="Welcome to IntelliJ IDEA" showMacOSButtons={true} />
+            <DialogHeader title={`Welcome to ${ideTitle}`} showMacOSButtons={true} />
 
             <div className="welcome-dialog-body">
                 {/* Left sidebar */}
@@ -165,7 +175,7 @@ function WelcomeDialog({
                         </div>
 
                         <nav className="welcome-nav">
-                            {NAV_ITEMS.map(item => (
+                            {navItems.map(item => (
                                 <NavItem
                                     key={item.id}
                                     item={item}
@@ -193,13 +203,13 @@ function WelcomeDialog({
                                 <Search
                                     value={currentSearch}
                                     onChange={handleSearchChange}
-                                    placeholder="Search projects"
+                                    placeholder={searchPlaceholder}
                                     showClose={!!currentSearch}
                                 />
                                 <div className="welcome-action-buttons">
-                                    <Button type="secondary" onClick={onNewProject}>New Project</Button>
-                                    <Button type="secondary" onClick={onOpen}>Open</Button>
-                                    <Button type="secondary" onClick={onGetFromVCS}>Get From VCS</Button>
+                                    <Button type="secondary" onClick={onNewProject}>{labels.newProject}</Button>
+                                    <Button type="secondary" onClick={onOpen}>{labels.open}</Button>
+                                    <Button type="secondary" onClick={onGetFromVCS}>{labels.getFromVcs}</Button>
                                 </div>
                             </div>
                             <div className="welcome-search-separator" />

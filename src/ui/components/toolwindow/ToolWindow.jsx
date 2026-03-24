@@ -16,7 +16,9 @@ function ToolWindow({
     onFocus,
     children,
     className = "",
-    toolbarExtra
+    toolbarExtra,
+    style,
+    ...rest
 }) {
     const focusedClass = focused ? 'tool-window-focused' : '';
     return (
@@ -24,9 +26,11 @@ function ToolWindow({
             className={`tool-window ${focusedClass} ${className}`}
             style={{ 
                 width: typeof width === 'number' ? `${width}px` : width, 
-                height: typeof height === 'number' ? `${height}px` : height 
+                height: typeof height === 'number' ? `${height}px` : height,
+                ...style,
             }}
             onMouseDown={onFocus}
+            {...rest}
         >
             <ToolWindowHeader
                 title={title}

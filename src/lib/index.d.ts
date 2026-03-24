@@ -583,7 +583,53 @@ export const Editor: FC<EditorProps>;
 
 // Layout Components
 export const IDEWindow: FC<{ children?: ReactNode; className?: string }>;
-export const MainWindow: FC<{ children?: ReactNode; className?: string }>;
+
+export interface EditorTabDef {
+  id: string;
+  label: string;
+  icon?: string;
+  closable?: boolean;
+}
+
+export interface StripeItemDef {
+  id: string;
+  icon?: string;
+  tooltip?: string;
+  section?: 'top' | 'bottom';
+  panel?: 'bottom';
+  separator?: boolean;
+}
+
+export interface MainWindowProps {
+  projectName?: string;
+  projectIcon?: string;
+  projectColor?: string;
+  branchName?: string;
+  runConfig?: string;
+  runState?: string;
+  editorTabs?: EditorTabDef[];
+  editorCode?: string;
+  editorLanguage?: string;
+  projectTreeData?: any[];
+  leftStripeItems?: StripeItemDef[];
+  rightStripeItems?: StripeItemDef[];
+  bottomStripeItems?: StripeItemDef[];
+  leftPanelContent?: (stripeId: string, props: any) => ReactNode;
+  rightPanelContent?: (stripeId: string, props: any) => ReactNode;
+  bottomPanelContent?: (stripeId: string, props: any) => ReactNode;
+  toolbar?: ReactNode;
+  statusBarProps?: StatusBarProps;
+  overlays?: ReactNode;
+  className?: string;
+}
+
+export const MainWindow: FC<MainWindowProps>;
+export const DEFAULT_EDITOR_TABS: EditorTabDef[];
+export const DEFAULT_JAVA_CODE: string;
+export const DEFAULT_PROJECT_TREE_DATA: any[];
+export const DEFAULT_LEFT_STRIPE_ITEMS: StripeItemDef[];
+export const DEFAULT_RIGHT_STRIPE_ITEMS: StripeItemDef[];
+export const DEFAULT_BOTTOM_STRIPE_ITEMS: StripeItemDef[];
 
 // Navigation Components
 export const Tab: FC<{ label: string; icon?: string | ReactNode; active?: boolean; focused?: boolean; disabled?: boolean; closable?: boolean; onClick?: () => void; onClose?: () => void }>;
@@ -620,13 +666,61 @@ export interface RunWidgetProps {
 export const RunWidget: FC<RunWidgetProps>;
 
 // Status Bar Components
-export const StatusBar: FC<{ children?: ReactNode; className?: string }>;
+export interface StatusBarBreadcrumbItem {
+  label: string;
+  icon?: boolean;
+  iconName?: string;
+  module?: boolean;
+  state?: string;
+  onClick?: () => void;
+}
+
+export interface StatusBarWidgetItem {
+  type: 'text' | 'icon';
+  text?: string;
+  iconName?: string;
+  state?: string;
+  onClick?: () => void;
+}
+
+export interface StatusBarProps {
+  progress?: boolean;
+  progressLabel?: string;
+  progressValue?: number;
+  onProgressStop?: () => void;
+  breadcrumbs?: StatusBarBreadcrumbItem[];
+  widgets?: StatusBarWidgetItem[];
+  className?: string;
+}
+
+export const StatusBar: FC<StatusBarProps>;
+export const DEFAULT_BREADCRUMBS: StatusBarBreadcrumbItem[];
+export const DEFAULT_WIDGETS: StatusBarWidgetItem[];
 export const StatusBarBreadcrumb: FC<{ items?: any[]; className?: string }>;
 export const StatusBarProgress: FC<{ label?: string; value?: number; indeterminate?: boolean }>;
 export const StatusBarWidget: FC<{ icon?: string; label?: string; onClick?: () => void }>;
 
 // Tool Window Components
-export const ToolWindow: FC<{ title?: string; icon?: string; children?: ReactNode; tabs?: any[]; activeTab?: string; onTabChange?: (id: string) => void; showSeparator?: boolean; onClose?: () => void; toolbarExtra?: ReactNode }>;
+export interface ToolWindowProps extends HTMLAttributes<HTMLDivElement> {
+  title?: string;
+  width?: number | string;
+  height?: number | string;
+  headerType?: 'label' | 'tabs';
+  tabs?: any[];
+  activeTab?: number;
+  onTabChange?: (index: number) => void;
+  showSeparator?: boolean;
+  actions?: string[];
+  onActionClick?: (action: string) => void;
+  focused?: boolean;
+  onFocus?: () => void;
+  children?: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+  toolbarExtra?: ReactNode;
+}
+
+export const ToolWindow: FC<ToolWindowProps>;
 export const ToolWindowHeader: FC<{ title?: string; icon?: string; actions?: ReactNode; showSeparator?: boolean; onClose?: () => void; toolbarExtra?: ReactNode }>;
 export const TerminalWindow: FC<{ title?: string; width?: number | string; height?: number | string; tabs?: any[]; activeTab?: number; onTabChange?: (index: number) => void; actions?: string[]; lines?: any[]; className?: string; toolbarExtra?: ReactNode }>;
 export const ProjectWindow: FC<{ title?: string; width?: number | string; height?: number | string; treeData?: any[]; actions?: string[]; onNodeSelect?: (id: string) => void; onNodeToggle?: (id: string) => void; className?: string; toolbarExtra?: ReactNode }>;
@@ -652,6 +746,12 @@ export interface ProblemsWindowProps {
 export const ProblemsWindow: FC<ProblemsWindowProps>;
 
 // CommitWindow
+export interface CommitToolbarButton {
+  icon: string;
+  tooltip?: string;
+  onClick?: () => void;
+}
+
 export interface CommitWindowProps {
   title?: string;
   width?: number | string;
@@ -659,8 +759,13 @@ export interface CommitWindowProps {
   files?: any[];
   commitMessage?: string;
   previousCommitMessage?: string;
-  onCommit?: (message: string, amend: boolean, checkedFileIds: string[]) => void;
-  onCommitAndPush?: (message: string, amend: boolean, checkedFileIds: string[]) => void;
+  toolbarButtons?: CommitToolbarButton[];
+  amendLabel?: string;
+  messagePlaceholder?: string;
+  commitLabel?: string;
+  commitAndPushLabel?: string;
+  onCommit?: (message: string, amend: boolean, checkedIds: Set<string>) => void;
+  onCommitAndPush?: (message: string, amend: boolean, checkedIds: Set<string>) => void;
   focused?: boolean;
   onFocus?: () => void;
   onActionClick?: (action: string) => void;
@@ -668,10 +773,129 @@ export interface CommitWindowProps {
 }
 
 export const CommitWindow: FC<CommitWindowProps>;
+export const DEFAULT_COMMIT_TOOLBAR_BUTTONS: CommitToolbarButton[];
+
+// VCSLogWindow
+export interface VCSLogCommit {
+  id: number;
+  dotColor?: 'blue' | 'orange' | 'gray';
+  isHead?: boolean;
+  message?: string;
+  messageLink?: string;
+  messageSuffix?: string;
+  refs?: Array<{ type: string; label: string }>;
+  author: string;
+  date: string;
+}
+
+export interface VCSLogCommitDetails {
+  repoName?: string;
+  repoPath?: string;
+  fileCount?: number;
+  title?: string;
+  hash?: string;
+  author?: string;
+  authorEmail?: string;
+  date?: string;
+}
+
+export interface VCSLogWindowProps {
+  title?: string;
+  tabs?: any[];
+  branches?: any;
+  commits?: VCSLogCommit[];
+  detailsFiles?: any[];
+  commitDetails?: VCSLogCommitDetails;
+  selectedCommitId?: number;
+  onCommitSelect?: (id: number) => void;
+  width?: number | string;
+  height?: number | string;
+  focused?: boolean;
+  onFocus?: () => void;
+  onActionClick?: (action: string) => void;
+  className?: string;
+}
+
+export const VCSLogWindow: FC<VCSLogWindowProps>;
+export const DEFAULT_BRANCHES: any;
+export const DEFAULT_COMMITS: VCSLogCommit[];
+export const DEFAULT_DETAILS_FILES: any[];
+export const DEFAULT_COMMIT_DETAILS: VCSLogCommitDetails;
 
 // Tree Components
 export const Tree: FC<{ data?: any[]; selectedId?: string; onSelect?: (id: string) => void; onExpand?: (id: string, expanded: boolean) => void }>;
-export const TreeNode: FC<{ node: any; level?: number; selectedId?: string; onSelect?: (id: string) => void; onExpand?: (id: string, expanded: boolean) => void; prefix?: ReactNode }>;
+
+export interface TreeNodeProps {
+  label?: ReactNode;
+  icon?: string | ReactNode;
+  secondaryText?: string;
+  level?: number;
+  hasChildren?: boolean;
+  isExpanded?: boolean;
+  isSelected?: boolean;
+  onToggle?: (expanded: boolean) => void;
+  onSelect?: (selected: boolean) => void;
+  prefix?: ReactNode;
+  children?: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+}
+
+export const TreeNode: FC<TreeNodeProps>;
+
+// DialogHeader
+export interface DialogHeaderProps {
+  title?: string;
+  showMacOSButtons?: boolean;
+  children?: ReactNode;
+  style?: CSSProperties;
+  className?: string;
+}
+
+export const DialogHeader: FC<DialogHeaderProps>;
+
+// WelcomeDialog
+export interface WelcomeProject {
+  id: string;
+  name: string;
+  path: string;
+  initials: string;
+  gradient: [string, string];
+}
+
+export interface WelcomeNavItem {
+  id: string;
+  label: string;
+  level: number;
+  chevron?: 'none' | 'down' | 'right';
+  iconUrl?: string;
+}
+
+export interface WelcomeDialogProps {
+  ideTitle?: string;
+  ideVersion?: string;
+  ideIconUrl?: string;
+  projects?: WelcomeProject[];
+  navItems?: WelcomeNavItem[];
+  activeNav?: string;
+  onNavChange?: (id: string) => void;
+  selectedProjectId?: string;
+  onProjectSelect?: (id: string) => void;
+  searchValue?: string;
+  onSearchChange?: (value: string) => void;
+  searchPlaceholder?: string;
+  actionLabels?: { newProject?: string; open?: string; getFromVcs?: string };
+  onNewProject?: () => void;
+  onOpen?: () => void;
+  onGetFromVCS?: () => void;
+  onSettings?: () => void;
+  onNotifications?: () => void;
+  className?: string;
+}
+
+export const WelcomeDialog: FC<WelcomeDialogProps>;
+export const DEFAULT_PROJECTS: WelcomeProject[];
+export const NAV_ITEMS: WelcomeNavItem[];
 
 // Icon Registry
 export const iconRegistry: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>>;

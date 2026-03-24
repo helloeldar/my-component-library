@@ -39,7 +39,7 @@ export { default as Dialog } from '../ui/components/dialog/Dialog';
 export { default as DialogHeader } from '../ui/components/dialog/DialogHeader';
 export { default as DialogFooter } from '../ui/components/dialog/DialogFooter';
 export { default as DialogGroupHeader } from '../ui/components/dialog/DialogGroupHeader';
-export { default as WelcomeDialog } from '../ui/components/dialog/WelcomeDialog';
+export { default as WelcomeDialog, DEFAULT_PROJECTS, NAV_ITEMS } from '../ui/components/dialog/WelcomeDialog';
 
 // Tooltip
 export { default as Tooltip } from '../ui/components/tooltip/Tooltip';
@@ -55,7 +55,7 @@ export { default as Notification } from '../ui/components/notification/Notificat
 export { default as Editor } from '../ui/components/editor/Editor';
 
 // Layout Components
-export { default as MainWindow } from '../ui/components/mainwindow/MainWindow';
+export { default as MainWindow, DEFAULT_EDITOR_TABS, DEFAULT_JAVA_CODE, DEFAULT_PROJECT_TREE_DATA, DEFAULT_LEFT_STRIPE_ITEMS, DEFAULT_RIGHT_STRIPE_ITEMS, DEFAULT_BOTTOM_STRIPE_ITEMS } from '../ui/components/mainwindow/MainWindow';
 export { default as IDEWindow } from '../ui/components/idewindow/IDEWindow';
 
 // Navigation Components
@@ -77,7 +77,7 @@ export { default as ProjectWidget } from '../ui/components/projectwidget/Project
 export { default as RunWidget } from '../ui/components/runwidget/RunWidget';
 
 // Status Bar Components
-export { default as StatusBar } from '../ui/components/statusbar/StatusBar';
+export { default as StatusBar, DEFAULT_BREADCRUMBS, DEFAULT_WIDGETS } from '../ui/components/statusbar/StatusBar';
 export { default as StatusBarBreadcrumb } from '../ui/components/statusbar/StatusBarBreadcrumb';
 export { default as StatusBarProgress } from '../ui/components/statusbar/StatusBarProgress';
 export { default as StatusBarWidget } from '../ui/components/statusbar/StatusBarWidget';
@@ -89,7 +89,8 @@ export { default as TerminalWindow } from '../ui/components/toolwindow/TerminalW
 export { default as ProjectWindow } from '../ui/components/toolwindow/ProjectWindow';
 export { default as AIAssistantWindow } from '../ui/components/toolwindow/AIAssistantWindow';
 export { default as ProblemsWindow } from '../ui/components/toolwindow/ProblemsWindow';
-export { default as CommitWindow } from '../ui/components/toolwindow/CommitWindow';
+export { default as CommitWindow, DEFAULT_COMMIT_TOOLBAR_BUTTONS } from '../ui/components/toolwindow/CommitWindow';
+export { default as VCSLogWindow, DEFAULT_BRANCHES, DEFAULT_COMMITS, DEFAULT_DETAILS_FILES, DEFAULT_COMMIT_DETAILS } from '../ui/components/toolwindow/VCSLogWindow';
 
 // Tree Components
 export { default as Tree } from '../ui/components/tree/Tree';

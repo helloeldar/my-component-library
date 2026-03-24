@@ -13,7 +13,9 @@ function TreeNode({
     onToggle, 
     onSelect, 
     prefix,
-    children 
+    children,
+    className = '',
+    style,
 }) {
     const [expanded, setExpanded] = useState(isExpanded);
 
@@ -44,7 +46,7 @@ function TreeNode({
     const indentWidth = level === 1 ? 16 : level === 2 ? 32 : 50 + (level - 3) * 18;
 
     return (
-        <div className="tree-node-container">
+        <div className={`tree-node-container ${className}`} style={style}>
             <div 
                 className={`tree-node text-ui-default ${isSelected ? 'tree-node-selected' : ''}`}
                 style={{ paddingLeft: `${indentWidth}px` }}
