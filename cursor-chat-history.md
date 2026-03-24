@@ -1,5 +1,26 @@
 # Cursor chat — task log
 
+## NPM Package Update Process spec
+### 2026-03-24
+- **Issue:** Consumer repo couldn't see `Badge` component. Root cause: `src/lib/index.d.ts` was missing type declarations for Badge (and ~20 other recently added components). The JS exports and dist files were correct.
+- **Done:** Created `ai/specs/NPM Package Update Process.md` — documents the manual update checklist (export → types → build → commit → reinstall) and a 4-level automation plan:
+  - Level 1 (now): `prepublishOnly` script + export validation script
+  - Level 2 (soon): husky pre-commit hook to auto-rebuild dist
+  - Level 3 (later): GitHub Actions CI/CD with semantic-release
+  - Level 4 (DX): `npm link` + `rollup --watch` for instant local dev
+- Identified missing `index.d.ts` types for: Badge, Banner, Search, SegmentedControl, Alert, Table, Loader, Link, Dialog family, Tooltip family, Notification, Editor, WelcomeDialog, CommitWindow, ProblemsWindow, PopupProjects, PopupBranches, PopupFindInFiles.
+
+## Component Editability audit and spec
+### 2026-03-24
+- **Done:** Audited all components against the Goal.md requirement: "every component should be easily editable without rewriting."
+- Identified 12 issues across 5 severity levels. Key blockers:
+  - `MainWindow` — monolithic 571-line shell with all demo data hardcoded
+  - `SettingsDialog` — only `onClose` prop, entire UI fixed
+  - `VCSLogWindow` — all data in module constants, no data props
+  - `WelcomeDialog` — ignores its own `ideTitle` prop, hardcoded nav/labels
+  - `StatusBar` — empty arrays `[]` still render defaults (can't get empty bar)
+- Created spec: `ai/specs/Component Editability specs.md` — documents every issue, required prop changes, default data exports, and 4-phase implementation plan.
+
 ## ToolbarButton component created
 ### 2026-03-24
 - **Done:** Created `ToolbarButton` component (`src/ui/components/toolbar/ToolbarButton.jsx` + `.css`).
@@ -323,3 +344,23 @@
 ## Specs / AI RULES
 ### 2025-03-23
 - **Done:** User asked to record chat messages as requirements per **AI RULES.md**. Added structured reqs to **`ai/specs/Tooltip specs.md`** (showcase + props) and **`ai/specs/UI Showcase (App.js) Specs.md.md`** (chat→spec process + `/tooltip` showcase rule). Task: **`ai/tasks/Task - Chat requirements documented in specs.md`**.
+
+## Figma Semantic Colors full sync + Showcase separation
+### 2026-03-24
+- **Done:** Full sync of `src/ui/styles/Themes.css` with `figma-exports/Int UI Kit Islands. Semantic colors.json` (source of truth).
+  - Python sync script (`scripts/sync-figma-tokens.py` — run via shell) reads Figma JSON, resolves alias chains (`Color palette:blue-80` → `var(--blue-80)`, `Semantic colors:layer/layer-0-bg` → `var(--layer-0-bg)`), generates `.theme-light` / `.theme-dark` blocks.
+  - **260 Figma tokens** added in 20 groups (layer, core, accent, text, container, control, toolbar, feedback, selection, icon, tab, popup, got-it, inlay, scrollbar, toggle, project, editor, badge, shadow).
+  - **~190 component tokens** kept, all rewritten to reference Figma semantic tokens.
+  - Value mismatches fixed: `--icon-disabled`, `--dialog-bg` (now `var(--layer-1-bg)`), `--toolbar-run/stop-bg-hovered`, `--editor-bg` (was broken `var(--gray-white)`).
+  - Alias chain approach: `--tooltip-bg: var(--feedback-bg)` instead of `var(--white)`.
+- **Broken refs fixed across codebase:**
+  - `--text-primary` → `--text-default` (PopupTreeSection.css, PopupLineWithActions.css)
+  - `--selection-bg` → `--selection-bg-active` (PopupLineWithActions.css, PopupBranches.css)
+  - `--control-bg-hover` → `--core-bg-transparent-hovered` (StatusBarWidget/Progress/Breadcrumb)
+  - `--control-bg-pressed` → `--core-bg-transparent-pressed` (Toggle.css, Checkbox.css)
+  - `--tree-hover-bg` → `--tree-node-bg-hover` (VCSLogWindow.css)
+  - Editor.css: `--bg-hover`, `--text-primary`, `--link-color`, `--font-family-ui` → proper tokens
+- **ShowcaseTheme.css created** (`src/ui/styles/ShowcaseTheme.css`): showcase tokens (`--showcase-bg`, `--showcase-sidebar-bg`, `--showcase-card-bg`, `--island-*`, etc.) independent from UI Kit. Imported in App.js.
+  - App.css, Home.css, ToolbarDemo.css, MainToolbar.css, CodeExample.css updated to use `--showcase-*` tokens.
+- **SemanticColors.jsx updated**: groups now match Figma structure exactly (Layer, Core, Accent, Text, Container, Control, Toolbar, Feedback, Selection, Icon, Tab, Popup, Got It, Scrollbar, Toggle, Badge, Shadow).
+- Build passes (`Compiled successfully`), 0 undefined CSS variable references verified by automated scan.

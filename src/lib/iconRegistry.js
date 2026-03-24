@@ -1004,6 +1004,7 @@ import icon_ide_logos_Product_WebStorm__Size_48__OS_Windows from '../icons/ide_l
 import icon_ide_logos_Product_WebStorm__Size_64__OS_Windows_2 from '../icons/ide_logos/Product=WebStorm, Size=64, OS=Windows 2.svg';
 import icon_ide_logos_Product_WebStorm__Size_64__OS_Windows_3 from '../icons/ide_logos/Product=WebStorm, Size=64, OS=Windows 3.svg';
 import icon_ide_logos_Product_WebStorm__Size_64__OS_Windows from '../icons/ide_logos/Product=WebStorm, Size=64, OS=Windows.svg';
+import icon_ij_platform_logo from '../icons/ij-platform-logo.svg';
 import icon_image_actualZoom from '../icons/image/actualZoom.svg';
 import icon_image_actualZoom_dark from '../icons/image/actualZoom_dark.svg';
 import icon_image_colorPicker from '../icons/image/colorPicker.svg';
@@ -1334,6 +1335,7 @@ import icon_progress_stop from '../icons/progress/stop.svg';
 import icon_progress_stopHovered from '../icons/progress/stopHovered.svg';
 import icon_progress_stopHovered_dark from '../icons/progress/stopHovered_dark.svg';
 import icon_progress_stop_dark from '../icons/progress/stop_dark.svg';
+import icon_python_ssh from '../icons/python/ssh.svg';
 import icon_remoteServers_resumeScaled from '../icons/remoteServers/resumeScaled.svg';
 import icon_remoteServers_suspendScaled from '../icons/remoteServers/suspendScaled.svg';
 import icon_run_attachToProcess from '../icons/run/attachToProcess.svg';
@@ -1766,6 +1768,31 @@ import icon_toolwindows_writerside from '../icons/toolwindows/writerside.svg';
 import icon_toolwindows_writersidePreview from '../icons/toolwindows/writersidePreview.svg';
 import icon_ultimate_lock from '../icons/ultimate/lock.svg';
 import icon_ultimate_lock_dark from '../icons/ultimate/lock_dark.svg';
+import icon_vcs__abort from '../icons/vcs/ abort.svg';
+import icon_vcs__abort_stroke from '../icons/vcs/ abort_stroke.svg';
+import icon_vcs__branch from '../icons/vcs/ branch.svg';
+import icon_vcs__changelist from '../icons/vcs/ changelist.svg';
+import icon_vcs__changes from '../icons/vcs/ changes.svg';
+import icon_vcs__commit from '../icons/vcs/ commit.svg';
+import icon_vcs__currentBranch from '../icons/vcs/ currentBranch.svg';
+import icon_vcs__currentBranchFavorite from '../icons/vcs/ currentBranchFavorite.svg';
+import icon_vcs__fetch from '../icons/vcs/ fetch.svg';
+import icon_vcs__fetch_20x20 from '../icons/vcs/ fetch@20x20.svg';
+import icon_vcs__incomingUpdate from '../icons/vcs/ incomingUpdate.svg';
+import icon_vcs__intelliSort from '../icons/vcs/ intelliSort.svg';
+import icon_vcs__outgoingPush from '../icons/vcs/ outgoingPush.svg';
+import icon_vcs__push from '../icons/vcs/ push.svg';
+import icon_vcs__push_20x20 from '../icons/vcs/ push@20x20.svg';
+import icon_vcs__resolveContinue from '../icons/vcs/ resolveContinue.svg';
+import icon_vcs__resolveContinue_stroke from '../icons/vcs/ resolveContinue_stroke.svg';
+import icon_vcs__revert from '../icons/vcs/ revert.svg';
+import icon_vcs__skipCommit from '../icons/vcs/ skipCommit.svg';
+import icon_vcs__skipCommit_stroke from '../icons/vcs/ skipCommit_stroke.svg';
+import icon_vcs__stash from '../icons/vcs/ stash.svg';
+import icon_vcs__unshelve from '../icons/vcs/ unshelve.svg';
+import icon_vcs__update from '../icons/vcs/ update.svg';
+import icon_vcs__update_20x20 from '../icons/vcs/ update@20x20.svg';
+import icon_vcs__vcs from '../icons/vcs/ vcs.svg';
 import icon_vcs_abort from '../icons/vcs/abort.svg';
 import icon_vcs_abort_dark from '../icons/vcs/abort_dark.svg';
 import icon_vcs_abort_stroke from '../icons/vcs/abort_stroke.svg';
@@ -2861,6 +2888,7 @@ const iconRegistry = {
   'ide_logos/Product=WebStorm, Size=64, OS=Windows 2': icon_ide_logos_Product_WebStorm__Size_64__OS_Windows_2,
   'ide_logos/Product=WebStorm, Size=64, OS=Windows 3': icon_ide_logos_Product_WebStorm__Size_64__OS_Windows_3,
   'ide_logos/Product=WebStorm, Size=64, OS=Windows': icon_ide_logos_Product_WebStorm__Size_64__OS_Windows,
+  'ij-platform-logo': icon_ij_platform_logo,
   'image/actualZoom': icon_image_actualZoom,
   'image/actualZoom_dark': icon_image_actualZoom_dark,
   'image/colorPicker': icon_image_colorPicker,
@@ -3191,6 +3219,7 @@ const iconRegistry = {
   'progress/stopHovered': icon_progress_stopHovered,
   'progress/stopHovered_dark': icon_progress_stopHovered_dark,
   'progress/stop_dark': icon_progress_stop_dark,
+  'python/ssh': icon_python_ssh,
   'remoteServers/resumeScaled': icon_remoteServers_resumeScaled,
   'remoteServers/suspendScaled': icon_remoteServers_suspendScaled,
   'run/attachToProcess': icon_run_attachToProcess,
@@ -3623,6 +3652,31 @@ const iconRegistry = {
   'toolwindows/writersidePreview': icon_toolwindows_writersidePreview,
   'ultimate/lock': icon_ultimate_lock,
   'ultimate/lock_dark': icon_ultimate_lock_dark,
+  'vcs/ abort': icon_vcs__abort,
+  'vcs/ abort_stroke': icon_vcs__abort_stroke,
+  'vcs/ branch': icon_vcs__branch,
+  'vcs/ changelist': icon_vcs__changelist,
+  'vcs/ changes': icon_vcs__changes,
+  'vcs/ commit': icon_vcs__commit,
+  'vcs/ currentBranch': icon_vcs__currentBranch,
+  'vcs/ currentBranchFavorite': icon_vcs__currentBranchFavorite,
+  'vcs/ fetch': icon_vcs__fetch,
+  'vcs/ fetch@20x20': icon_vcs__fetch_20x20,
+  'vcs/ incomingUpdate': icon_vcs__incomingUpdate,
+  'vcs/ intelliSort': icon_vcs__intelliSort,
+  'vcs/ outgoingPush': icon_vcs__outgoingPush,
+  'vcs/ push': icon_vcs__push,
+  'vcs/ push@20x20': icon_vcs__push_20x20,
+  'vcs/ resolveContinue': icon_vcs__resolveContinue,
+  'vcs/ resolveContinue_stroke': icon_vcs__resolveContinue_stroke,
+  'vcs/ revert': icon_vcs__revert,
+  'vcs/ skipCommit': icon_vcs__skipCommit,
+  'vcs/ skipCommit_stroke': icon_vcs__skipCommit_stroke,
+  'vcs/ stash': icon_vcs__stash,
+  'vcs/ unshelve': icon_vcs__unshelve,
+  'vcs/ update': icon_vcs__update,
+  'vcs/ update@20x20': icon_vcs__update_20x20,
+  'vcs/ vcs': icon_vcs__vcs,
   'vcs/abort': icon_vcs_abort,
   'vcs/abort_dark': icon_vcs_abort_dark,
   'vcs/abort_stroke': icon_vcs_abort_stroke,
