@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useLayoutEffect } from
 import ToolWindow from './ToolWindow';
 import Popup from '../popup/Popup';
 import PopupCell from '../popup/PopupCell';
-import Icon from '../icon/Icon';
+import ToolbarIconButton from '../iconbutton/IconButton';
 import './TerminalWindow.css';
 
 /**
@@ -76,7 +76,7 @@ const contextMenuItems = [
 ];
 
 const chevronMenuItems = [
-    { label: 'bash', selected: true },
+    { label: 'bash' },
     { label: 'zsh' },
     { label: 'New SSH Session...' },
     { type: 'separator' },
@@ -569,20 +569,23 @@ function TerminalWindow({
                         />
                         <span className="terminal-search-count">0 results</span>
                         <div className="terminal-search-nav">
-                            <button className="terminal-search-btn" title="Previous match">
-                                <Icon name="general/chevronUp" size={16} />
-                            </button>
-                            <button className="terminal-search-btn" title="Next match">
-                                <Icon name="general/chevronDown" size={16} />
-                            </button>
+                            <ToolbarIconButton
+                                icon="general/chevronUp"
+                                tooltip="Previous match"
+                                className="terminal-search-btn"
+                            />
+                            <ToolbarIconButton
+                                icon="general/chevronDown"
+                                tooltip="Next match"
+                                className="terminal-search-btn"
+                            />
                         </div>
-                        <button
-                            className="terminal-search-btn"
-                            title="Close"
+                        <ToolbarIconButton
+                            icon="general/closeSmall"
+                            tooltip="Close"
                             onClick={() => { setShowSearch(false); setSearchQuery(''); }}
-                        >
-                            <Icon name="general/closeSmall" size={16} />
-                        </button>
+                            className="terminal-search-btn"
+                        />
                     </div>
                 )}
 

@@ -14,6 +14,8 @@ function PopupCell(props) {
         classes.push('popup-cell-search');
     } else if (props.type === 'multiline') {
         classes.push('popup-cell-multiline');
+    } else if (props.type === 'advanced') {
+        classes.push('popup-cell-advanced');
     } else {
         classes.push('popup-cell-line');
     }
@@ -99,6 +101,37 @@ function PopupCell(props) {
             );
         }
 
+        // Advanced cell — Search Everywhere style: left (icon + name + path) | right (module + icon OR shortcut)
+        // Selection background is handled via ::before on the outer .popup-cell-advanced element
+        // so it uses inset: 0 8px from the outer cell edges (not the padded content area).
+        if (props.type === 'advanced') {
+            return (
+                <div className="popup-cell-adv-content">
+                    <div className="popup-cell-adv-left">
+                        {renderIcon()}
+                        <span className="popup-cell-adv-name text-ui-default">{props.children}</span>
+                        {props.hint && (
+                            <span className="popup-cell-adv-path text-ui-default">{props.hint}</span>
+                        )}
+                    </div>
+                    <div className="popup-cell-adv-right">
+                        {props.shortcut ? (
+                            <span className="popup-cell-adv-shortcut text-ui-default">{props.shortcut}</span>
+                        ) : (
+                            <>
+                                {props.module && (
+                                    <span className="popup-cell-adv-module text-ui-default">{props.module}</span>
+                                )}
+                                {props.moduleIcon && (
+                                    <Icon name={props.moduleIcon} size={16} />
+                                )}
+                            </>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
         // Default line type
         return (
             <div className="popup-cell-content">
@@ -131,9 +164,7 @@ function PopupCell(props) {
                 )}
                 {props.submenu && (
                     <div className="popup-cell-submenu-icon">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <Icon name="general/chevronRight" size={16} />
                     </div>
                 )}
             </div>

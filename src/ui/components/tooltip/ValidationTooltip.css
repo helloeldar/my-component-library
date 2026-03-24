@@ -1,0 +1,62 @@
+/* Validation Tooltip — matches Figma "Tooltip / Validation" (node 3825:7736) */
+
+.validation-tooltip {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 4px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    box-shadow: var(--tooltip-shadow);
+}
+
+/* With actions: different padding */
+.validation-tooltip.has-actions {
+    padding: 10px 12px 12px 12px;
+}
+
+/* Error type */
+.validation-tooltip.validation-error {
+    background: var(--feedback-error-bg);
+    border-color: var(--feedback-error-border);
+    color: var(--text-default);
+}
+
+/* Warning type */
+.validation-tooltip.validation-warning {
+    background: var(--feedback-warning-bg);
+    border-color: var(--feedback-warning-border);
+    color: var(--text-default);
+}
+
+/* Text element */
+.validation-tooltip-text {
+    flex-shrink: 0;
+    color: inherit;
+}
+
+/* Actions row */
+.validation-tooltip-actions {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    gap: 16px;
+    color: var(--text-link);
+}
+
+.validation-tooltip-action {
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.validation-tooltip-action:hover {
+    text-decoration: underline;
+}

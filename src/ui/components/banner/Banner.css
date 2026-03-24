@@ -45,7 +45,7 @@
 
 /* Banner Text */
 .banner-text {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 /* Actions Container */
@@ -87,14 +87,14 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
     position: relative;
     border-radius: 3px;
 }
 
 .banner-close:hover {
     background: var(--icon-button-hover-bg);
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .banner-close:active {
@@ -102,7 +102,7 @@
 }
 
 .banner-close:focus-visible {
-    outline: 2px solid var(--border-focus);
+    outline: 2px solid var(--control-focus-border-brand);
     outline-offset: 1px;
 }
 

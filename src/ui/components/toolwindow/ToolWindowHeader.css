@@ -27,14 +27,6 @@
 }
 
 .tool-window-header-dropdown {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    background: none;
-    border: none;
     color: var(--tool-window-header-text);
 }
 
@@ -55,26 +47,6 @@
     flex-shrink: 0;
 }
 
-.tool-window-action-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: none;
-    border: none;
-    border-radius: 4px;
-    color: var(--tool-window-action-icon);
-}
-
-.tool-window-action-button:hover {
-    background: var(--tool-window-action-bg-hover);
-    color: var(--tool-window-action-icon-hover);
-}
-
-.tool-window-action-button:active {
-    background: var(--tool-window-action-bg-active);
-}
 
 /* Separator */
 .tool-window-header-separator {

@@ -75,7 +75,7 @@
     height: 40px;
     padding: 0 10px;
     cursor: pointer;
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 .vcs-widget:hover {
@@ -86,7 +86,7 @@
     font-family: "Inter", sans-serif;
     font-size: 13px;
     font-weight: 400;
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 /* Run Widget Container — positioned anchor for run popup */

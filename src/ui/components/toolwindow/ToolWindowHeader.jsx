@@ -1,5 +1,6 @@
 import Icon from '../icon/Icon';
 import TabBar from '../tabs/TabBar';
+import ToolbarIconButton from '../iconbutton/IconButton';
 import './ToolWindowHeader.css';
 
 function ToolWindowHeader({
@@ -38,14 +39,13 @@ function ToolWindowHeader({
             <div className="tool-window-header-actions">
                 {actions.map((action, index) => {
                     const iconName = getActionIcon(action);
+                    if (!iconName) return null;
                     return (
-                        <button
+                        <ToolbarIconButton
                             key={index}
-                            className="tool-window-action-button"
+                            icon={iconName}
                             onClick={() => onActionClick && onActionClick(action)}
-                        >
-                            {iconName && <Icon name={iconName} size={16} />}
-                        </button>
+                        />
                     );
                 })}
             </div>
@@ -62,7 +62,7 @@ function ToolWindowHeader({
                 onTabChange={onTabChange}
                 onTabClose={(index) => onActionClick && onActionClick('tabClose', index)}
                 focused={focused}
-                actions={['add', 'dropdown']}
+                actions={['add']}
                 onActionClick={onActionClick}
             />
         );
@@ -73,13 +73,11 @@ function ToolWindowHeader({
             {icon && <Icon name={icon} size={20} />}
             <h3 className="tool-window-header-title text-ui-default-semibold">{title}</h3>
             {dropdown && (
-                <button
-                    type="button"
+                <ToolbarIconButton
+                    icon="general/chevronDown"
                     className="tool-window-header-dropdown"
                     onClick={() => onActionClick && onActionClick('dropdown')}
-                >
-                    <Icon name="general/chevronDown" size={16} />
-                </button>
+                />
             )}
         </div>
     );

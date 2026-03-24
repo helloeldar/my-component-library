@@ -35,40 +35,31 @@
     height: 16px;
     border-radius: 3px;
     background: var(--control-bg);
-    border: 1px solid var(--border-control);
+    border: 1px solid var(--control-border);
     box-sizing: border-box;
 }
 
-/* Hover state */
-.checkbox-hovered:not(.checkbox-disabled):not(.checkbox-checked) {
-    border-color: var(--border-raised);
-}
 
-/* Focus state */
-.checkbox-focused:not(.checkbox-disabled) {
-    border: 2px solid var(--border-focus);
+/* Focus ring — keyboard navigation only (:focus-visible, not on mouse click) */
+.checkbox-input:focus-visible + .checkbox-box:not(.checkbox-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--control-focus-border-brand);
+    border-radius: 6px;
+    pointer-events: none;
 }
 
 /* Checked state */
 .checkbox-checked {
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
-}
-
-.checkbox-checked.checkbox-hovered:not(.checkbox-disabled) {
-    background: var(--accent-primary-hover);
-    border-color: var(--accent-primary-hover);
-}
-
-.checkbox-checked.checkbox-focused:not(.checkbox-disabled) {
-    border: 2px solid var(--border-focus);
-    box-shadow: 0 0 0 2px var(--control-bg), 0 0 0 4px var(--border-focus);
+    background: var(--accent-brand-bg);
+    border-color: var(--accent-brand-bg);
 }
 
 /* Disabled state */
 .checkbox-disabled {
     background: var(--control-bg-disabled);
-    border-color: var(--border-control-disabled);
+    border-color: var(--control-border-disabled);
     cursor: not-allowed;
 }
 
@@ -77,15 +68,25 @@
     border-color: var(--control-bg-pressed);
 }
 
-/* Checkmark icon */
+/* Invalid ring — same pattern, red stroke */
+.checkbox-invalid:not(.checkbox-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--control-focus-border-error);
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+/* Checkmark icon — exact Figma dimensions: 11×9 viewBox */
 .checkbox-checkmark {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    color: var(--text-inverse);
+    width: 11px;
+    height: 9px;
+    color: var(--text-over-accent);
 }
 
 .checkbox-disabled .checkbox-checkmark {
@@ -100,7 +101,7 @@
     transform: translate(-50%, -50%);
     width: 10px;
     height: 2px;
-    background: var(--text-inverse);
+    background: var(--text-over-accent);
     border-radius: 1px;
 }
 
@@ -118,7 +119,7 @@
 
 /* Label */
 .checkbox-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .checkbox-container-disabled .checkbox-label {

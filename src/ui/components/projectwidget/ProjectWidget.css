@@ -14,7 +14,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    color: var(--text-primary);
+    color: var(--text-default);
     min-width: 0;
 }
 
@@ -95,7 +95,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--icon-secondary);
+    color: var(--icon-secondary-stroke);
 }
 
 .chevron-down svg {

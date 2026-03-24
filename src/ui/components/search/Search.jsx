@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import Icon from '../icon/Icon';
 import './Search.css';
 
 /**
@@ -14,6 +15,8 @@ import './Search.css';
  * @param {function} props.onClear - Callback when clear button is clicked
  * @param {function} props.onFocus - Callback when input is focused
  * @param {function} props.onBlur - Callback when input loses focus
+ * @param {string} props.icon - Icon name to show on the left (default: general/search)
+ * @param {boolean} props.alwaysFocused - Keep the focused border style regardless of actual focus state
  * @param {string} props.className - Additional CSS classes
  */
 function Search({ 
@@ -25,6 +28,8 @@ function Search({
     onClear,
     onFocus,
     onBlur,
+    icon = 'general/search',
+    alwaysFocused = false,
     className = '',
     ...rest
 }) {
@@ -53,7 +58,7 @@ function Search({
 
     const contentClasses = [
         'search-content',
-        isFocused ? 'focused' : '',
+        (isFocused || alwaysFocused) ? 'focused' : '',
         invalid ? 'invalid' : ''
     ].filter(Boolean).join(' ');
 
@@ -62,7 +67,7 @@ function Search({
             <div className={contentClasses}>
                 {/* Search Icon */}
                 <div className="search-icon">
-                    <SearchIcon />
+                    <Icon name={icon} size={16} />
                 </div>
 
                 {/* Input */}
@@ -87,63 +92,12 @@ function Search({
                             onClick={handleClear}
                             tabIndex={-1}
                         >
-                            <CloseIcon />
+                            <Icon name="general/closeSmall" size={16} />
                         </button>
                     )}
                 </div>
             </div>
         </div>
-    );
-}
-
-/**
- * Search icon (magnifying glass)
- */
-function SearchIcon() {
-    return (
-        <svg 
-            width="16" 
-            height="16" 
-            viewBox="0 0 16 16" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <circle 
-                cx="7" 
-                cy="7" 
-                r="4.5" 
-                stroke="currentColor" 
-                strokeWidth="1"
-            />
-            <path 
-                d="M10.5 10.5L13.5 13.5" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round"
-            />
-        </svg>
-    );
-}
-
-/**
- * Close icon (X)
- */
-function CloseIcon() {
-    return (
-        <svg 
-            width="12" 
-            height="12" 
-            viewBox="0 0 12 12" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path 
-                d="M3 3L9 9M9 3L3 9" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round"
-            />
-        </svg>
     );
 }
 

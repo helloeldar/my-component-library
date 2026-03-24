@@ -47,7 +47,7 @@ function Link({
             )}
             {type === 'external' && (
                 <span className="link-icon">
-                    <ExternalLinkIcon />
+                    <Icon name="ide/externalLink" size={16} />
                 </span>
             )}
         </>
@@ -83,29 +83,6 @@ function Link({
     );
 }
 
-/**
- * External link icon (arrow pointing to top-right)
- * Based on IntelliJ Platform icon style
- */
-function ExternalLinkIcon() {
-    return (
-        <svg 
-            width="16" 
-            height="16" 
-            viewBox="0 0 16 16" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path 
-                d="M5 4.5H11.5V11M11.5 4.5L4.5 11.5" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-            />
-        </svg>
-    );
-}
 
 export default Link;
 

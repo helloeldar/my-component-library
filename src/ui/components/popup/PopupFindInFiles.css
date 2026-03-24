@@ -1,0 +1,380 @@
+/* Popup / Find in Files
+ * Figma node: 6515:93391
+ */
+
+.popup-find-in-files {
+    display: flex;
+    flex-direction: column;
+    width: 677px;
+    background-color: var(--popup-bg);
+    border: 0.5px solid var(--popup-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 45px; /* reserve space for footer */
+}
+
+/* ──────────────────────────────────────────────────────
+   HEADER
+────────────────────────────────────────────────────── */
+.pfif-header {
+    display: flex;
+    align-items: center;
+    height: 41px;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--popup-border);
+    background-color: var(--popup-bg);
+    padding: 0 8px 0 12px;
+    gap: 8px;
+    position: relative;
+}
+
+.pfif-header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+    min-width: 0;
+}
+
+.pfif-header-title {
+    color: var(--text-default);
+    white-space: nowrap;
+}
+
+.pfif-header-summary {
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.pfif-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* Override Checkbox label padding to fit inline in header */
+.pfif-header-right .checkbox-container {
+    padding: 0;
+}
+
+.pfif-file-mask-combobox {
+    width: 119px !important;
+}
+
+.pfif-file-mask-combobox .combobox-container-vertical {
+    margin: 0;
+}
+
+.pfif-header-icons {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────────────
+   SEARCH SECTION
+────────────────────────────────────────────────────── */
+.pfif-search-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 4px 8px 6px;
+    flex-shrink: 0;
+}
+
+.pfif-search-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--control-border);
+    border-radius: 4px;
+    padding: 3px 6px;
+    background: var(--control-bg, transparent);
+}
+
+/* Focused / active state – blue 2px border */
+.pfif-search-field-focused {
+    border: 2px solid var(--control-focus-border-brand);
+    padding: 2px 5px; /* compensate 1px extra border */
+}
+
+.pfif-search-icon {
+    flex-shrink: 0;
+    color: var(--icon-secondary-stroke);
+}
+
+.pfif-search-placeholder {
+    flex: 1 0 0;
+    min-width: 0;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pfif-search-actions {
+    display: flex;
+    align-items: center;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+/* Inline search icon button (Type=Inline Search) */
+.pfif-inline-btn {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: var(--icon-secondary-stroke);
+    position: relative;
+    border-radius: 3px;
+    flex-shrink: 0;
+    outline: none;
+}
+
+.pfif-inline-btn:hover {
+    background: var(--icon-button-hover-bg);
+    color: var(--text-default);
+}
+
+/* Blue selected state – specific to inline search context */
+.pfif-inline-btn-selected {
+    background: var(--selection-bg-active);
+    color: var(--text-default);
+}
+
+.pfif-inline-btn-selected:hover {
+    background: var(--tab-active-bg, var(--selection-bg-active));
+}
+
+/* ──────────────────────────────────────────────────────
+   SCOPES BAR — Toolbar / Button
+   Figma: outer wrap = 2px padding, pressed bg inset 2px radius 3px
+────────────────────────────────────────────────────── */
+.pfif-scopes {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+/* Outer wrapper provides the 2px gap around the pressed background */
+.pfif-scope-btn-wrap {
+    position: relative;
+    padding: 2px;
+    flex-shrink: 0;
+}
+
+/* Active/pressed state background: inset 2px, radius 3px */
+.pfif-scope-btn-bg {
+    position: absolute;
+    inset: 2px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.16);
+    pointer-events: none;
+}
+
+.theme-light .pfif-scope-btn-bg {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* Hover background on inactive buttons */
+.pfif-scope-btn-wrap:not(:has(.pfif-scope-btn-bg)):hover::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 3px;
+    background: var(--icon-button-hover-bg);
+    pointer-events: none;
+}
+
+.pfif-scope-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    color: var(--text-default);
+    white-space: nowrap;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+
+/* ──────────────────────────────────────────────────────
+   RESULTS LIST
+────────────────────────────────────────────────────── */
+.pfif-results {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.pfif-result-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+.pfif-result-row-selected::before {
+    content: '';
+    position: absolute;
+    inset: 0 8px;
+    background: var(--selection-bg-active);
+    border-radius: 4px;
+}
+
+.pfif-result-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 252px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.pfif-result-item-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pfif-result-name {
+    flex: 1 0 0;
+    min-width: 0;
+    color: var(--text-default);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.pfif-result-line {
+    color: var(--text-secondary);
+    text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.pfif-result-snippet {
+    flex: 1 0 0;
+    min-width: 0;
+    color: var(--text-default);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+    z-index: 1;
+}
+
+/* ──────────────────────────────────────────────────────
+   SEPARATOR CELL
+────────────────────────────────────────────────────── */
+.pfif-separator-cell {
+    padding: 4px 10px;
+    flex-shrink: 0;
+}
+
+.pfif-separator {
+    height: 1px;
+    background: var(--popup-border);
+}
+
+/* ──────────────────────────────────────────────────────
+   FILE TITLE
+────────────────────────────────────────────────────── */
+.pfif-file-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 20px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.pfif-file-name {
+    color: var(--text-default);
+    flex-shrink: 0;
+}
+
+.pfif-file-path {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────────────
+   CODE PREVIEW
+────────────────────────────────────────────────────── */
+.pfif-code-preview {
+    flex: 1 0 0;
+    min-height: 120px;
+    background-color: var(--editor-bg);
+    overflow: hidden;
+    position: relative;
+}
+
+.pfif-code-content {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    padding: 2px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 22px;
+    white-space: pre;
+}
+
+.pfif-code-line {
+    display: block;
+}
+
+/* ──────────────────────────────────────────────────────
+   FOOTER
+────────────────────────────────────────────────────── */
+.pfif-footer {
+    position: absolute;
+    bottom: 0.5px;
+    left: -0.5px;
+    right: -0.5px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: var(--popup-bg);
+    border-top: 1px solid var(--popup-border);
+}
+
+.pfif-footer .checkbox-container {
+    padding: 0;
+}
+
+.pfif-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.pfif-footer-shortcut {
+    color: var(--text-secondary);
+    white-space: nowrap;
+}

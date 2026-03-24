@@ -7,6 +7,7 @@
 export { ThemeProvider, useTheme } from '../ThemeContext';
 
 // Core Components
+export { default as Badge, BadgeNew, BadgeBeta, BadgeFree, BadgeTrial } from '../ui/components/badge/Badge';
 export { default as Banner } from '../ui/components/banner/Banner';
 export { default as Button } from '../ui/components/button/Button';
 export { default as Checkbox } from '../ui/components/checkbox/Checkbox';
@@ -23,18 +24,29 @@ export { default as PopupProjects } from '../ui/components/popup/PopupProjects';
 export { default as PopupBranches } from '../ui/components/popup/PopupBranches';
 export { default as PopupLineWithActions } from '../ui/components/popup/PopupLineWithActions';
 export { default as PopupRunWidget } from '../ui/components/popup/PopupRunWidget';
+export { default as PopupFindInFiles } from '../ui/components/popup/PopupFindInFiles';
+export { default as Loader } from '../ui/components/loader/Loader';
 export { default as ProgressBar } from '../ui/components/progressbar/ProgressBar';
 export { default as Radio, RadioGroup } from '../ui/components/radio/Radio';
+export { default as Search } from '../ui/components/search/Search';
+export { default as SegmentedControl } from '../ui/components/segmentedcontrol/SegmentedControl';
+export { default as Table } from '../ui/components/table/Table';
 export { default as Toggle } from '../ui/components/toggle/Toggle';
+export { default as Alert } from '../ui/components/alert/Alert';
 
 // Dialog Components
 export { default as Dialog } from '../ui/components/dialog/Dialog';
 export { default as DialogHeader } from '../ui/components/dialog/DialogHeader';
 export { default as DialogFooter } from '../ui/components/dialog/DialogFooter';
 export { default as DialogGroupHeader } from '../ui/components/dialog/DialogGroupHeader';
+export { default as WelcomeDialog } from '../ui/components/dialog/WelcomeDialog';
 
 // Tooltip
 export { default as Tooltip } from '../ui/components/tooltip/Tooltip';
+export { default as TooltipEditor } from '../ui/components/tooltip/TooltipEditor';
+export { default as TooltipHelp } from '../ui/components/tooltip/TooltipHelp';
+export { default as ValidationTooltip } from '../ui/components/tooltip/ValidationTooltip';
+export { default as GotItTooltip } from '../ui/components/tooltip/GotItTooltip';
 
 // Notification
 export { default as Notification } from '../ui/components/notification/Notification';
@@ -72,6 +84,7 @@ export { default as TerminalWindow } from '../ui/components/toolwindow/TerminalW
 export { default as ProjectWindow } from '../ui/components/toolwindow/ProjectWindow';
 export { default as AIAssistantWindow } from '../ui/components/toolwindow/AIAssistantWindow';
 export { default as ProblemsWindow } from '../ui/components/toolwindow/ProblemsWindow';
+export { default as CommitWindow } from '../ui/components/toolwindow/CommitWindow';
 
 // Tree Components
 export { default as Tree } from '../ui/components/tree/Tree';

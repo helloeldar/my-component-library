@@ -72,7 +72,7 @@
 
 /* Hyperlink styling */
 .terminal-link {
-    color: var(--link-text);
+    color: var(--text-link);
     text-decoration: none;
     cursor: pointer;
     line-height: 22px;
@@ -155,7 +155,7 @@
 
 /* Selection highlight */
 .terminal-output-area ::selection {
-    background: var(--selection-bg);
+    background: var(--selection-bg-active);
 }
 
 /* Search overlay */
@@ -199,22 +199,9 @@
 }
 
 .terminal-search-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 24px;
     height: 24px;
-    background: none;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    color: var(--icon-secondary);
-    padding: 0;
-}
-
-.terminal-search-btn:hover {
-    background: var(--control-bg-hover);
-    color: var(--text-primary);
+    padding: 4px;
 }
 
 .terminal-search-count {

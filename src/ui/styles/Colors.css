@@ -16,7 +16,7 @@
     font-weight: 600;
     font-size: 18px;
     line-height: 24px;
-    color: var(--text-primary);
+    color: var(--text-default);
     margin: 0;
 }
 
@@ -57,7 +57,7 @@
     font-weight: 600;
     font-size: 13px;
     line-height: 16px;
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .color-value {
@@ -73,7 +73,7 @@
     font-weight: 400;
     font-size: 11px;
     line-height: 14px;
-    color: var(--accent-primary);
+    color: var(--accent-brand-bg);
     background: var(--bg-tertiary);
     padding: 2px 6px;
     border-radius: 3px;

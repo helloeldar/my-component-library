@@ -1,0 +1,150 @@
+/* ─── Commit Window ─────────────────────────────────────────────────────── */
+
+.commit-window {
+    display: flex;
+    flex-direction: column;
+}
+
+.commit-window .tool-window-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ─── Top Toolbar ──────────────────────────────────────────────────────────── */
+
+.commit-toolbar {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 34px;
+    padding: 4px 7px;
+    gap: 0;
+}
+
+/* ─── File Tree ────────────────────────────────────────────────────────────── */
+
+.commit-tree {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 0;
+    min-height: 0;
+}
+
+/* Suppress Checkbox label margin inside tree nodes */
+.commit-tree .checkbox-container {
+    padding: 0;
+    margin: 0;
+    cursor: default;
+}
+
+/* TreeNode label slot content */
+.commit-group-label {
+    color: var(--text-default);
+    white-space: nowrap;
+}
+
+.commit-group-count {
+    color: var(--text-secondary);
+    white-space: nowrap;
+    margin-left: 6px;
+}
+
+.commit-file-name {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.commit-file-path {
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    margin-left: 6px;
+}
+
+/* VCS status colors — used for both filename text and summary segments */
+.commit-status-modified   { color: var(--text-link); }
+.commit-status-added      { color: var(--vcs-added-text); }
+.commit-status-deleted    { color: var(--vcs-deleted-text); }
+.commit-status-unversioned { color: var(--text-secondary); }
+
+/* ─── Bottom Panel ─────────────────────────────────────────────────────────── */
+
+.commit-bottom-panel {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--tool-window-border);
+}
+
+/* Amend toolbar */
+.commit-amend-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 12px 1px 12px;
+    flex-shrink: 0;
+}
+
+.commit-amend-left {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.commit-amend-left .checkbox-container {
+    padding: 8px 0;
+    margin-right: 4px;
+}
+
+.commit-modified-count {
+    color: var(--text-link);
+    white-space: nowrap;
+}
+
+/* Commit Message textarea */
+.commit-message-area {
+    padding: 0 12px;
+    flex-shrink: 0;
+}
+
+.commit-message-textarea {
+    width: 100%;
+    height: 120px;
+    resize: none;
+    box-sizing: border-box;
+    padding: 6px 9px;
+    border: 1px solid var(--control-border);
+    border-radius: 4px;
+    background: var(--control-bg);
+    color: var(--text-default);
+    font-family: inherit;
+    outline: none;
+}
+
+.commit-message-textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.commit-message-textarea:focus {
+    border-color: var(--control-focus-border-brand);
+    box-shadow: 0 0 0 2px var(--control-focus-border-brand);
+}
+
+/* Action row */
+.commit-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    flex-shrink: 0;
+}
+
+.commit-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

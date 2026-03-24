@@ -5,7 +5,7 @@
     border-radius: 4px;
 }
 
-.popup-cell:hover:not(.popup-cell-separator):not(.popup-cell-header):not(.popup-cell-footer):not(.popup-cell-search) {
+.popup-cell:hover:not(.popup-cell-separator):not(.popup-cell-header):not(.popup-cell-footer):not(.popup-cell-search):not(.popup-cell-advanced) {
     background-color: var(--popup-cell-bg-hover);
 }
 
@@ -29,7 +29,7 @@
 
 .popup-cell-header-text {
     line-height: 20px;
-    color: var(--text-primary);
+    color: var(--text-default);
     width: 100%;
 }
 
@@ -106,7 +106,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--selection-bg);
+    background-color: var(--selection-bg-active);
     border-radius: 4px;
     z-index: 0;
 }
@@ -141,7 +141,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .popup-cell-icon-gap {
@@ -179,7 +179,7 @@
 
 /* Text */
 .popup-cell-text {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -203,7 +203,7 @@
 }
 
 .popup-cell-primary-text {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -223,6 +223,94 @@
     flex-shrink: 0;
     margin-left: auto;
     padding-left: 8px;
+}
+
+/* ========================
+   ADVANCED CELL (Search Everywhere style)
+   ======================== */
+
+/*
+ * Layout: outer cell has 4px/16px padding for content spacing.
+ * The selection/hover background uses ::before with inset: 0 8px —
+ * positioned relative to the outer .popup-cell (position: relative),
+ * so it sits 8px from the outer cell edges regardless of content padding.
+ */
+.popup-cell-advanced {
+    padding: 4px 16px;
+    cursor: default;
+}
+
+/* Hover background — inset 8px from outer cell edges */
+.popup-cell-advanced:hover::before {
+    content: '';
+    position: absolute;
+    inset: 0 8px;
+    background: var(--popup-cell-bg-hover);
+    border-radius: 4px;
+    z-index: 0;
+}
+
+/* Selected background — inset 8px from outer cell edges */
+.popup-cell-advanced.popup-cell-selected::before {
+    content: '';
+    position: absolute;
+    inset: 0 8px;
+    background: var(--selection-bg-active);
+    border-radius: 4px;
+    z-index: 0;
+}
+
+/* Row layout: 16px tall, left and right absolutely positioned inside content area */
+.popup-cell-adv-content {
+    position: relative;
+    height: 16px;
+    width: 100%;
+    z-index: 1;
+}
+
+.popup-cell-adv-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    max-width: calc(100% - 160px);
+    overflow: hidden;
+}
+
+.popup-cell-adv-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.popup-cell-adv-name {
+    color: var(--text-default);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.popup-cell-adv-path {
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.popup-cell-adv-module {
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.popup-cell-adv-shortcut {
+    color: var(--text-secondary);
+    white-space: nowrap;
 }
 
 /* Submenu icon */

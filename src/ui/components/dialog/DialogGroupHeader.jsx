@@ -22,7 +22,7 @@ function DialogGroupHeader({
 
     return (
         <div className={classes} {...props}>
-            <span className="dialog-group-header-title text-ui-default-bold">{title}</span>
+            <span className="dialog-group-header-title text-ui-default">{title}</span>
             <div className="dialog-group-header-line" />
         </div>
     );

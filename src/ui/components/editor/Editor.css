@@ -108,7 +108,7 @@
 
 .editor-code .prism-code-editor {
     --pce-bg: transparent;
-    --pce-selection: var(--selection-bg);
+    --pce-selection: var(--selection-bg-active);
     --pce-cursor: var(--editor-default-text);
     --pce-line-number: var(--editor-line-number);
     --pce-bg-highlight: var(--editor-current-line-bg);

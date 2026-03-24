@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import './Radio.css';
 
 function Radio({
     checked = false,
     disabled = false,
+    invalid = false,
     label,
     hint,
     name,
@@ -12,9 +12,6 @@ function Radio({
     className = '',
     ...props
 }) {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
-
     const handleChange = (e) => {
         if (!disabled && onChange) {
             onChange(e.target.value);
@@ -30,21 +27,16 @@ function Radio({
         if (disabled) {
             classes.push('radio-disabled');
         }
-        if (isFocused && !disabled) {
-            classes.push('radio-focused');
-        }
-        if (isHovered && !disabled) {
-            classes.push('radio-hovered');
+        if (invalid && !disabled) {
+            classes.push('radio-invalid');
         }
         
         return classes.join(' ');
     };
 
     return (
-        <label 
+        <label
             className={`radio-container ${disabled ? 'radio-container-disabled' : ''} ${className}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
             {...props}
         >
             <div className="radio-wrapper">
@@ -55,12 +47,14 @@ function Radio({
                     name={name}
                     value={value}
                     onChange={handleChange}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                     className="radio-input"
                 />
                 <div className={getRadioClasses()}>
-                    {checked && <div className="radio-dot" />}
+                    {checked && (
+                        <svg className="radio-dot" viewBox="0 0 6 6" fill="none">
+                            <circle cx="3" cy="3" r="3" fill="currentColor" />
+                        </svg>
+                    )}
                 </div>
             </div>
             {(label || hint) && (

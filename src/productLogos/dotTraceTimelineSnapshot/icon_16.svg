@@ -1,0 +1,6 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#DD1265" d="M1 16V0h10.41L15 3.59V16z"/>
+  <path d="M11 1H2v14h12V4z"/>
+  <path fill="#fff" d="M10 5.5 7 3v2H3v1h4v2zm3 5L10 8v2H3v1h7v2z"/>
+</svg>

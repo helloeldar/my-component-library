@@ -9,7 +9,7 @@
 }
 
 .toggle:focus-visible {
-    box-shadow: 0 0 0 2px var(--border-focus);
+    box-shadow: 0 0 0 2px var(--control-focus-border-brand);
     border-radius: 3px;
 }
 
@@ -30,7 +30,7 @@
 /* Toggle ON state */
 .toggle-on .toggle-track {
     background: var(--control-bg-pressed);
-    border: 1px solid var(--border-raised);
+    border: 1px solid var(--control-border-raised);
 }
 
 .toggle-on .toggle-fill {
@@ -47,7 +47,7 @@
     position: absolute;
     top: 2px;
     left: 8px;
-    color: var(--text-inverse);
+    color: var(--text-over-accent);
 }
 
 /* Toggle OFF state */

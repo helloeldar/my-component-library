@@ -38,7 +38,7 @@
 
 /* Combobox Label */
 .combobox-label {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
 }
 
@@ -47,7 +47,7 @@
     display: flex;
     align-items: center;
     background: var(--control-bg);
-    border: 1px solid var(--border-control);
+    border: 1px solid var(--control-border);
     border-radius: 4px;
     min-height: 28px;
 }
@@ -59,7 +59,7 @@
     background: transparent;
     border: none;
     outline: none;
-    color: var(--text-primary);
+    color: var(--text-default);
     min-width: 0;
 }
 
@@ -96,17 +96,17 @@
     top: 4px;
     bottom: 4px;
     width: 1px;
-    background: var(--border-control);
+    background: var(--control-border);
 }
 
 /* Hover state */
 .combobox:hover:not(.combobox-disabled):not(.combobox-focused) {
-    border-color: var(--border-raised);
+    border-color: var(--control-border-raised);
 }
 
 /* Focus state */
 .combobox-focused:not(.combobox-disabled) {
-    border: 2px solid var(--border-focus);
+    border: 2px solid var(--control-focus-border-brand);
     margin: -1px;
 }
 
@@ -160,7 +160,7 @@
     display: flex;
     align-items: center;
     padding: 6px 8px;
-    color: var(--text-primary);
+    color: var(--text-default);
     border-radius: 4px;
     cursor: pointer;
 }
@@ -170,7 +170,7 @@
 }
 
 .combobox-option-selected {
-    background: var(--selection-bg);
+    background: var(--selection-bg-active);
 }
 
 .combobox-option-disabled {

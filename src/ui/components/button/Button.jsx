@@ -2,7 +2,7 @@ import './Button.css';
 import '../../styles/Typography.css';
 
 function Button(props) {
-    const { type, size, disabled, children, className, ...restProps } = props;
+    const { type = 'secondary', size, disabled, focused, children, className, ...restProps } = props;
     
     let classes = ['button'];
 
@@ -14,7 +14,7 @@ function Button(props) {
 
     if (size === 'slim') {
         classes.push('button-slim');
-        classes.push('text-ui-small');
+        classes.push('text-ui-default');
     } else {
         classes.push('button-default');
         classes.push('text-ui-default');
@@ -22,6 +22,10 @@ function Button(props) {
 
     if (disabled) {
         classes.push('button-disabled');
+    }
+
+    if (focused) {
+        classes.push('button-focused');
     }
     
     if (className) {

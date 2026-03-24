@@ -10,8 +10,11 @@ import TerminalWindow from './ui/components/toolwindow/TerminalWindow';
 import ProjectWindow from './ui/components/toolwindow/ProjectWindow';
 import AIAssistantWindow from './ui/components/toolwindow/AIAssistantWindow';
 import ProblemsWindow from './ui/components/toolwindow/ProblemsWindow';
+import CommitWindow from './ui/components/toolwindow/CommitWindow';
+import VCSLogWindow from './ui/components/toolwindow/VCSLogWindow';
 import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
+import SemanticColors from './ui/components/showcase/SemanticColors';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
 import Home from './Home';
 import StripeIconButton from './ui/components/stripe/Stripe';
@@ -21,15 +24,19 @@ import Popup from './ui/components/popup/Popup';
 import PopupProjects from './ui/components/popup/PopupProjects';
 import PopupBranches from './ui/components/popup/PopupBranches';
 import ProjectWidget from './ui/components/projectwidget/ProjectWidget';
+import SearchEverywherePopup from './ui/components/popup/SearchEverywherePopup';
+import PopupFindInFiles from './ui/components/popup/PopupFindInFiles';
 import MainWindow from './ui/components/mainwindow/MainWindow';
 import ToolbarDropdown from './ui/components/toolbardropdown/ToolbarDropdown';
 import Checkbox from './ui/components/checkbox/Checkbox';
 import Radio, { RadioGroup } from './ui/components/radio/Radio';
 import Toggle from './ui/components/toggle/Toggle';
 import ProgressBar from './ui/components/progressbar/ProgressBar';
+import Loader from './ui/components/loader/Loader';
 import Dropdown from './ui/components/dropdown/Dropdown';
 import Combobox from './ui/components/combobox/Combobox';
 import UILink from './ui/components/link/Link';
+import Badge, { BadgeNew, BadgeBeta, BadgeFree, BadgeTrial } from './ui/components/badge/Badge';
 import Banner from './ui/components/banner/Banner';
 import SegmentedControl from './ui/components/segmentedcontrol/SegmentedControl';
 import Search from './ui/components/search/Search';
@@ -38,14 +45,20 @@ import StatusBarBreadcrumb from './ui/components/statusbar/StatusBarBreadcrumb';
 import StatusBar from './ui/components/statusbar/StatusBar';
 import Alert from './ui/components/alert/Alert';
 import Dialog from './ui/components/dialog/Dialog';
+import WelcomeDialog from './ui/components/dialog/WelcomeDialog';
 import Icon from './ui/components/icon/Icon';
 import Editor from './ui/components/editor/Editor';
 import Tooltip from './ui/components/tooltip/Tooltip';
+import TooltipEditor from './ui/components/tooltip/TooltipEditor';
+import TooltipHelp from './ui/components/tooltip/TooltipHelp';
+import ValidationTooltip from './ui/components/tooltip/ValidationTooltip';
+import GotItTooltip from './ui/components/tooltip/GotItTooltip';
 import Notification from './ui/components/notification/Notification';
 import EmptyState from './ui/components/emptystate/EmptyState';
+import SettingsDialog from './ui/components/showcase/SettingsDialog';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/ij-platform-logo.svg';
-import { getSortedComponentsOnly, getSortedWindowsOnly } from './componentsConfig';
+import { getSortedWindowsOnly, getComponentsBySection } from './componentsConfig';
 import './ui/styles/Themes.css';
 import './App.css';
 
@@ -152,6 +165,113 @@ function BannerPage() {
     );
 }
 
+function BadgePage() {
+    return (
+        <div className="component-showcase">
+            <h1>Badge</h1>
+            <p className="component-description">
+                A badge is a small label used to highlight status, categories, or attributes. It is non-interactive by default but can be made clickable.
+            </p>
+
+            <div className="component-section">
+                <h2>Fixed Types</h2>
+                <p className="component-description">Predefined badges for standard labels. Use these whenever the label is "New", "Beta", "Free", or "Trial".</p>
+                <div className="component-examples" style={{ alignItems: 'center', gap: '8px' }}>
+                    <BadgeNew />
+                    <BadgeBeta />
+                    <BadgeFree />
+                    <BadgeTrial />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Color Variants</h2>
+                <div className="component-group">
+                    <h3>Blue Secondary (default)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue-secondary" text="Label" />
+                        <Badge color="blue-secondary" text="New" />
+                        <Badge color="blue-secondary" text="Longer text" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Blue (Primary)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue" text="Label" />
+                        <Badge color="blue" text="New" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Green Secondary</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="green-secondary" text="Label" />
+                        <Badge color="green-secondary" text="Trial" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Green (Primary)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="green" text="Label" />
+                        <Badge color="green" text="Free" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Purple Secondary</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="purple-secondary" text="Label" />
+                        <Badge color="purple-secondary" text="Beta" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Gray Secondary</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="gray-secondary" text="Label" />
+                        <Badge color="gray-secondary" text="Tag" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-group">
+                    <h3>Default (no action on click)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue-secondary" text="Label" />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Clickable (cursor: pointer)</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="blue-secondary" text="Clickable" onClick={() => {}} />
+                        <Badge color="blue" text="Clickable" onClick={() => {}} />
+                        <Badge color="green-secondary" text="Clickable" onClick={() => {}} />
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Disabled</h3>
+                    <div className="component-examples" style={{ alignItems: 'center' }}>
+                        <Badge color="disabled" text="Disabled" />
+                        <Badge disabled text="Disabled" />
+                        <Badge color="blue" disabled text="Disabled" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Usage examples</h2>
+                <p className="component-description">Badges can appear inline with text or next to other elements.</p>
+                <div className="component-examples" style={{ alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                    <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 13 }}>Feature name</span>
+                    <BadgeNew />
+                    <BadgeBeta />
+                    <BadgeTrial />
+                    <BadgeFree />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function ButtonsPage() {
     return (
         <div className="component-showcase">
@@ -190,6 +310,24 @@ function ButtonsPage() {
                     <Button type="secondary" disabled>Secondary Disabled</Button>
                 </div>
             </div>
+
+            <div className="component-section">
+                <h2>Focused States</h2>
+                <div className="component-group">
+                    <h3>Default Size</h3>
+                    <div className="component-examples">
+                        <Button type="primary" focused>Primary Focused</Button>
+                        <Button type="secondary" focused>Secondary Focused</Button>
+                    </div>
+                </div>
+                <div className="component-group">
+                    <h3>Slim Size</h3>
+                    <div className="component-examples">
+                        <Button type="primary" size="slim" focused>Primary Slim Focused</Button>
+                        <Button type="secondary" size="slim" focused>Secondary Slim Focused</Button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
@@ -213,6 +351,9 @@ function CheckboxPage() {
                     <Checkbox label="Indeterminate" checked={true} indeterminate={true} />
                     <Checkbox label="Disabled unchecked" disabled={true} />
                     <Checkbox label="Disabled checked" checked={true} disabled={true} />
+                    <Checkbox label="Invalid unchecked" checked={false} invalid={true} />
+                    <Checkbox label="Invalid checked" checked={true} invalid={true} />
+                    <Checkbox label="Invalid indeterminate" checked={true} indeterminate={true} invalid={true} />
                 </div>
             </div>
 
@@ -256,6 +397,8 @@ function RadioPage() {
                     <Radio label="Selected" checked={true} name="demo2" />
                     <Radio label="Disabled unselected" disabled={true} name="demo3" />
                     <Radio label="Disabled selected" checked={true} disabled={true} name="demo4" />
+                    <Radio label="Invalid unselected" checked={false} invalid={true} name="demo5" />
+                    <Radio label="Invalid selected" checked={true} invalid={true} name="demo6" />
                 </div>
             </div>
 
@@ -680,6 +823,60 @@ function ProgressBarPage() {
                 <div className="component-examples-vertical" style={{width: '300px'}}>
                     <ProgressBar indeterminate label="Loading..." labelPosition="left" />
                     <ProgressBar indeterminate label="Please wait..." labelPosition="top" showStopButton />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function LoaderPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Loader</h1>
+            <p className="component-description">
+                A spinner shown during indeterminate loading states. Based on the IntelliJ UI loader icon.
+            </p>
+
+            <div className="component-section">
+                <h2>Default (16 px)</h2>
+                <p className="component-description">Standard small loader used inline or in compact UIs.</p>
+                <div className="component-examples">
+                    <Loader />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Large (32 px)</h2>
+                <p className="component-description">Larger variant for full-panel or dialog loading states.</p>
+                <div className="component-examples">
+                    <Loader size={32} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Custom sizes</h2>
+                <p className="component-description">Any pixel size is accepted via the <code>size</code> prop.</p>
+                <div className="component-examples" style={{ alignItems: 'center', gap: 24 }}>
+                    <Loader size={12} />
+                    <Loader size={16} />
+                    <Loader size={24} />
+                    <Loader size={32} />
+                    <Loader size={48} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Inline usage</h2>
+                <p className="component-description">Loader can be used inline alongside text labels.</p>
+                <div className="component-examples-vertical">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <Loader />
+                        <span className="text-ui-default">Indexing project…</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <Loader />
+                        <span className="text-ui-default">Loading dependencies…</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1345,6 +1542,52 @@ function PopupBranchesPage() {
     );
 }
 
+function SearchEverywherePopupPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Popup / Search Everywhere</h1>
+            <p className="component-description">
+                Search Everywhere popup with tabbed navigation (All, Classes, Files, Symbols, Actions),
+                a large search field with blue focus border, advanced result rows with icons and module info,
+                and a footer hint.
+            </p>
+            <div className="component-section">
+                <div className="component-examples">
+                    <div style={{ display: 'inline-block', padding: '20px' }}>
+                        <SearchEverywherePopup />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function PopupFindInFilesPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Popup / Find in Files</h1>
+            <p className="component-description">
+                Find in Files popup with search field, inline action toggles, scope tabs, result list with code preview, and footer actions.
+            </p>
+            <div className="component-section">
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <PopupFindInFiles />
+                    </div>
+                </div>
+            </div>
+            <div className="component-section">
+                <h2>With Replace Field</h2>
+                <div className="component-examples">
+                    <div style={{ position: 'relative', display: 'inline-block', padding: '20px' }}>
+                        <PopupFindInFiles replaceField={true} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function CodeExamplePage() {
     const javaCodeLines = [
         { content: "// ...", tokens: [{ text: "// ...", type: "comment" }] },
@@ -1915,7 +2158,7 @@ function ToolWindowPage() {
                         activeTab={0}
                         actions={['add', 'more', 'minimize']}
                     >
-                        <div style={{ padding: '16px', fontSize: '13px', color: 'var(--text-primary)' }}>
+                        <div style={{ padding: '16px', fontSize: '13px', color: 'var(--text-default)' }}>
                             <div style={{ marginBottom: '8px', color: 'var(--text-secondary)' }}>Debug Console:</div>
                             <div>→ Application started</div>
                             <div>→ Breakpoint set at line 42</div>
@@ -2110,7 +2353,7 @@ function DialogPage() {
                             { children: 'OK' },
                         ]}
                     >
-                        <div style={{ padding: '20px', color: 'var(--text-primary)', fontSize: '13px', lineHeight: '20px' }}>
+                        <div style={{ padding: '20px', color: 'var(--text-default)', fontSize: '13px', lineHeight: '20px' }}>
                             <p>Are you sure you want to proceed with this action?</p>
                             <p style={{ marginTop: '8px', color: 'var(--text-secondary)' }}>This operation cannot be undone.</p>
                         </div>
@@ -2131,6 +2374,25 @@ function DialogPage() {
     );
 }
 
+function WelcomeDialogPage() {
+    return <WelcomeDialog />;
+}
+
+function SettingsPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Settings</h1>
+            <p className="component-description">
+                Settings dialog with two-panel layout: navigation tree on the left, settings content on the right.
+                Built from library components only. Figma: <a href="https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7072-91658" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-link)'}}>Dialog / Settings (node 7072:91658)</a>.
+            </p>
+            <div className="component-section">
+                <SettingsDialog />
+            </div>
+        </div>
+    );
+}
+
 function TooltipPage() {
     return (
         <div className="component-showcase">
@@ -2140,18 +2402,34 @@ function TooltipPage() {
             </p>
 
             <div className="component-section">
+                <h2>Static Preview</h2>
+                <p className="section-description">
+                    Tooltip appearance — always visible for inspection.
+                </p>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <div className="tooltip text-ui-default" style={{ position: 'relative', pointerEvents: 'auto' }}>
+                        <span className="tooltip-text">Action name</span>
+                        <span className="tooltip-shortcut">&#x2318;&#x2325;&#x2303;&#x21E7;</span>
+                    </div>
+                    <div className="tooltip text-ui-default" style={{ position: 'relative', pointerEvents: 'auto' }}>
+                        <span className="tooltip-text">Action name</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
                 <h2>Default</h2>
                 <p className="section-description">
-                    Hover over the buttons to see the tooltip.
+                    Tooltips are pinned open here so you can review layout without hovering.
                 </p>
                 <div className="component-examples" style={{ gap: '24px' }}>
-                    <Tooltip text="Settings" placement="bottom">
+                    <Tooltip text="Settings" placement="bottom" alwaysVisible>
                         <ToolbarIconButton icon="general/settings" tooltip={undefined} />
                     </Tooltip>
-                    <Tooltip text="Search Everywhere" shortcut="⇧⇧" placement="bottom">
+                    <Tooltip text="Search Everywhere" shortcut="⇧⇧" placement="bottom" alwaysVisible>
                         <ToolbarIconButton icon="actions/search" tooltip={undefined} />
                     </Tooltip>
-                    <Tooltip text="Run" shortcut="⌃R" placement="bottom">
+                    <Tooltip text="Run" shortcut="⌃R" placement="bottom" alwaysVisible>
                         <ToolbarIconButton icon="actions/execute" tooltip={undefined} />
                     </Tooltip>
                 </div>
@@ -2160,19 +2438,19 @@ function TooltipPage() {
             <div className="component-section">
                 <h2>Placement</h2>
                 <p className="section-description">
-                    Tooltips can appear on any side of the trigger element.
+                    Tooltips can appear on any side of the trigger element (shown pinned open).
                 </p>
                 <div className="component-examples" style={{ gap: '48px', padding: '32px 0' }}>
-                    <Tooltip text="Top tooltip" placement="top">
+                    <Tooltip text="Top tooltip" placement="top" alwaysVisible>
                         <Button type="secondary">Top</Button>
                     </Tooltip>
-                    <Tooltip text="Bottom tooltip" placement="bottom">
+                    <Tooltip text="Bottom tooltip" placement="bottom" alwaysVisible>
                         <Button type="secondary">Bottom</Button>
                     </Tooltip>
-                    <Tooltip text="Left tooltip" placement="left">
+                    <Tooltip text="Left tooltip" placement="left" alwaysVisible>
                         <Button type="secondary">Left</Button>
                     </Tooltip>
-                    <Tooltip text="Right tooltip" placement="right">
+                    <Tooltip text="Right tooltip" placement="right" alwaysVisible>
                         <Button type="secondary">Right</Button>
                     </Tooltip>
                 </div>
@@ -2184,13 +2462,13 @@ function TooltipPage() {
                     Tooltips can display a keyboard shortcut alongside the label.
                 </p>
                 <div className="component-examples" style={{ gap: '24px' }}>
-                    <Tooltip text="Copy" shortcut="⌘C" placement="bottom">
+                    <Tooltip text="Copy" shortcut="⌘C" placement="bottom" alwaysVisible>
                         <Button type="secondary">Copy</Button>
                     </Tooltip>
-                    <Tooltip text="Paste" shortcut="⌘V" placement="bottom">
+                    <Tooltip text="Paste" shortcut="⌘V" placement="bottom" alwaysVisible>
                         <Button type="secondary">Paste</Button>
                     </Tooltip>
-                    <Tooltip text="Find in Files" shortcut="⇧⌘F" placement="bottom">
+                    <Tooltip text="Find in Files" shortcut="⇧⌘F" placement="bottom" alwaysVisible>
                         <Button type="secondary">Find in Files</Button>
                     </Tooltip>
                 </div>
@@ -2199,10 +2477,392 @@ function TooltipPage() {
     );
 }
 
+function TooltipHelpPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Tooltip Help</h1>
+            <p className="component-description">
+                Rich tooltip with header, description, shortcut, and external link.
+                Used to show help text for settings and actions. Shown on hovering
+                the question mark icon.
+            </p>
+
+            <div className="component-section">
+                <h2>Full (Header + Body + Shortcut + Link)</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        header="Header"
+                        body="Explain behavior that is not clear from the setting or action name."
+                        shortcut="⌘⌥⌃⇧"
+                        link={{ text: 'External', href: '#', external: true }}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Body Only</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        body="Explain behavior that is not clear from the setting or action name."
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Header</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        header="Header"
+                        body="Explain behavior that is not clear from the setting or action name."
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Shortcut</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        body="Explain behavior that is not clear from the setting or action name."
+                        shortcut="⌘⌥⌃⇧"
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With Link</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <TooltipHelp
+                        body="Explain behavior that is not clear from the setting or action name."
+                        link={{ text: 'External', href: '#', external: true }}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ValidationTooltipPage() {
+    const errorActions = [
+        { label: 'Action A', onClick: () => {} },
+        { label: 'Action B', onClick: () => {} },
+    ];
+    const warningActions = [
+        { label: 'Action A', onClick: () => {} },
+        { label: 'Action B', onClick: () => {} },
+    ];
+
+    return (
+        <div className="component-showcase">
+            <h1>Validation Tooltip</h1>
+            <p className="component-description">
+                Inline validation feedback tooltip that appears near input fields to display
+                error or warning messages. Can include optional action links.
+            </p>
+
+            <div className="component-section">
+                <h2>All Variants</h2>
+                <div style={{ display: 'flex', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-secondary)' }}>
+                    <div className="theme-dark" style={{ flex: 1, background: '#191A1C', padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
+                        <ValidationTooltip text="Validation error" type="error" />
+                        <ValidationTooltip text="Validation error" type="error" actions={errorActions} />
+                        <ValidationTooltip text="Validation warning" type="warning" />
+                        <ValidationTooltip text="Validation warning" type="warning" actions={warningActions} />
+                    </div>
+                    <div className="theme-light" style={{ flex: 1, background: '#FFFFFF', padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
+                        <ValidationTooltip text="Validation error" type="error" />
+                        <ValidationTooltip text="Validation error" type="error" actions={errorActions} />
+                        <ValidationTooltip text="Validation warning" type="warning" />
+                        <ValidationTooltip text="Validation warning" type="warning" actions={warningActions} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Error</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <ValidationTooltip text="Validation error" type="error" />
+                    <ValidationTooltip text="Validation error" type="error" actions={errorActions} />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Warning</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <ValidationTooltip text="Validation warning" type="warning" />
+                    <ValidationTooltip text="Validation warning" type="warning" actions={warningActions} />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function GotItTooltipPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Got It Tooltip</h1>
+            <p className="component-description">
+                A Got It tooltip informs users about a new or changed feature and gives basic
+                information about it. It is shown once per user and disappears after clicking
+                "Got It" or can be skipped entirely.
+            </p>
+
+            <div className="component-section">
+                <h2>Full (Step + Header + Body + Link + Skip)</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <GotItTooltip
+                        step="01"
+                        header="Header"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="top"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Arrow Positions</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Top"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="top"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Bottom"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="bottom"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Left"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="left"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                    <GotItTooltip
+                        step="01"
+                        header="Arrow Right"
+                        link="Link"
+                        skipText="Skip All"
+                        arrowPosition="right"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Without Step Counter</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <GotItTooltip
+                        header="Header"
+                        arrowPosition="top"
+                    >
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Body Only (Minimal)</h2>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start' }}>
+                    <GotItTooltip arrowPosition="top">
+                        A Got It tooltip informs users about a new or changed feature and gives basic information about it.
+                    </GotItTooltip>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function TooltipEditorPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Tooltip Editor</h1>
+            <p className="component-description">
+                Rich editor tooltip with status type, directional arrow, header, main text, and hint.
+                Used in code editors to show validation errors, warnings, and contextual information
+                near gutter markers and inline annotations.
+            </p>
+
+            <div className="component-section">
+                <h2>Types — Dark</h2>
+                <p className="component-description">Info, Error, Warning, Success on dark (editor) backgrounds.</p>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <TooltipEditor
+                        type="info"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                    <TooltipEditor
+                        type="error"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                    <TooltipEditor
+                        type="warning"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                    <TooltipEditor
+                        type="success"
+                        arrow="up"
+                        header="Header"
+                        text="Text"
+                        hint="Hint"
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Arrow Directions</h2>
+                <p className="component-description">Arrow can point in any of four directions.</p>
+                <div className="component-examples" style={{ gap: '32px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Up</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="up"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Down</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="down"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Left</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="left"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Right</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="right"
+                            header="Unresolved reference"
+                            text="Cannot resolve symbol 'foo'"
+                            hint="Add import statement"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Content Variants</h2>
+                <p className="component-description">Header and hint are optional.</p>
+                <div className="component-examples" style={{ gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Header + Text + Hint</span>
+                        <TooltipEditor
+                            type="warning"
+                            arrow="up"
+                            header="Deprecated API"
+                            text="Use 'newMethod()' instead"
+                            hint="Will be removed in v4.0"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Text only</span>
+                        <TooltipEditor
+                            type="info"
+                            arrow="up"
+                            text="No usages found"
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>With menu</span>
+                        <TooltipEditor
+                            type="error"
+                            arrow="up"
+                            header="Type mismatch"
+                            text="Expected String, got Int"
+                            hint="Fix type"
+                            menu
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Success</span>
+                        <TooltipEditor
+                            type="success"
+                            arrow="up"
+                            header="Tests passed"
+                            text="All 42 tests completed"
+                            hint="0 failures"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>All Types × All Directions</h2>
+                <p className="component-description">Each arrow direction with all four status types.</p>
+                {[
+                    { arrow: 'up', label: '↑ Arrow Up' },
+                    { arrow: 'down', label: '↓ Arrow Down' },
+                    { arrow: 'left', label: '← Arrow Left' },
+                    { arrow: 'right', label: '→ Arrow Right' },
+                ].map(({ arrow, label }) => (
+                    <div key={arrow} style={{ marginBottom: '32px' }}>
+                        <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '12px', letterSpacing: '0.03em' }}>
+                            {label}
+                        </div>
+                        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                            {['info', 'error', 'warning', 'success'].map(type => (
+                                <div key={type} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                    <span style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'capitalize' }}>{type}</span>
+                                    <TooltipEditor
+                                        type={type}
+                                        arrow={arrow}
+                                        header="Header"
+                                        text="Text"
+                                        hint="Hint"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 function BalloonPage() {
     return (
         <div className="component-showcase">
-            <h1>Balloon</h1>
+            <h1>Notification</h1>
             <p className="component-description">
                 Toast notifications that appear to inform users of events, build results, or actions.
                 Typically shown in the bottom-right corner of the IDE.
@@ -2241,8 +2901,22 @@ function BalloonPage() {
             </div>
 
             <div className="component-section">
-                <h2>With Actions</h2>
+                <h2>With Button and Actions</h2>
+                <p className="section-description">
+                    Matches Figma node 3595:83697 — button + link actions.
+                </p>
                 <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="info"
+                        title="JDK 18 required"
+                        button={{ label: 'Install JDK 18', onClick: () => {} }}
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                    >
+                        You need to install JDK 18 in order to run this project
+                    </Notification>
                     <Notification
                         type="info"
                         title="Plugin Update Available"
@@ -2270,6 +2944,61 @@ function BalloonPage() {
                 <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
                     <Notification type="success" title="File saved" />
                     <Notification type="info" title="VCS update completed" timestamp="3 min ago" />
+                    <Notification
+                        type="info"
+                        title="2,662 files updated in 844 commits"
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                    />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Warning — Low Memory</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="warning"
+                        title="Low memory"
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                    >
+                        The IDE is running low on memory and this might affect performance.
+                        Please consider increasing the heap size.
+                    </Notification>
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With ⋮ and × Buttons</h2>
+                <div className="component-examples-vertical" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                    <Notification
+                        type="info"
+                        title="JDK 18 required"
+                        button={{ label: 'Install JDK 18', onClick: () => {} }}
+                        actions={[
+                            { label: 'Action', onClick: () => {} },
+                            { label: 'More', onClick: () => {} },
+                        ]}
+                        onMore={() => {}}
+                        onClose={() => {}}
+                        forceHoverButtons
+                    >
+                        You need to install JDK 18 in order to run this project
+                    </Notification>
+                    <Notification
+                        type="error"
+                        title="Build Failed"
+                        actions={[{ label: 'Open Build Log', onClick: () => {} }]}
+                        onMore={() => {}}
+                        onClose={() => {}}
+                        forceHoverButtons
+                    >
+                        Compilation failed with 2 errors.
+                    </Notification>
                 </div>
             </div>
         </div>
@@ -2516,6 +3245,48 @@ function ProblemsWindowPage() {
     );
 }
 
+function CommitWindowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Commit</h1>
+            <p className="component-description">
+                VCS Commit tool window with a file change tree, Amend option, commit message
+                textarea, and Commit / Commit and Push buttons. Matches Figma node 27921:15443.
+            </p>
+
+            <div className="component-section">
+                <h2>Default</h2>
+                <p className="section-description">
+                    Commit window with two modified Java files and a collapsed Unversioned Files group.
+                </p>
+                <div className="component-examples" style={{ justifyContent: 'flex-start' }}>
+                    <CommitWindow />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function VCSLogWindowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>VCS Log</h1>
+            <p className="component-description">
+                VCS Log tool window with a Branches sidebar, commit graph, and commit details panel.
+                Matches Figma node 25-3448 from the VCS Components file.
+            </p>
+
+            <div className="component-section">
+                <h2>Default</h2>
+                <p className="section-description">
+                    Log tab active, "fixup mac/linux/win all in cross platform" commit selected.
+                </p>
+                <VCSLogWindow width="100%" />
+            </div>
+        </div>
+    );
+}
+
 function MainWindowPage() {
     return (
         <div className="component-showcase">
@@ -2623,14 +3394,20 @@ function Sidebar() {
 
     const stylesItems = [
         { name: 'Typography', key: 'typography' },
-        { name: 'Colors', key: 'colors' }
+        { name: 'Colors', key: 'colors' },
+        { name: 'Semantic Colors', key: 'semanticcolors' }
     ];
 
     const windowsItems = getSortedWindowsOnly().filter(c => c.key !== 'mainwindow');
-    const componentsItems = getSortedComponentsOnly();
+    const componentSections = getComponentsBySection();
 
     const filteredWindows = isSearching ? windowsItems.filter(c => matchesSearch(c.name)) : windowsItems;
-    const filteredComponents = isSearching ? componentsItems.filter(c => matchesSearch(c.name)) : componentsItems;
+    const filteredComponentSections = componentSections
+        .map(sec => ({
+            ...sec,
+            components: isSearching ? sec.components.filter(c => matchesSearch(c.name)) : sec.components,
+        }))
+        .filter(sec => sec.components.length > 0);
     const filteredStyles = isSearching ? stylesItems.filter(c => matchesSearch(c.name)) : stylesItems;
 
     const showHome = !isSearching || matchesSearch('Home');
@@ -2676,10 +3453,10 @@ function Sidebar() {
             {filteredWindows.length > 0 && (
                 <div className="nav-category">
                     <div className="nav-category-title" onClick={() => toggleSection('windows')}>
+                        Windows
                         <span className={`nav-category-chevron ${isSectionOpen('windows') ? 'open' : ''}`}>
                             <Icon name="general/chevronRight" size={16} />
                         </span>
-                        Tool windows
                     </div>
                     {isSectionOpen('windows') && (
                         <div className="nav-category-items">
@@ -2697,24 +3474,43 @@ function Sidebar() {
                 </div>
             )}
 
-            {filteredComponents.length > 0 && (
+            {filteredComponentSections.length > 0 && (
                 <div className="nav-category">
                     <div className="nav-category-title" onClick={() => toggleSection('components')}>
+                        Components
                         <span className={`nav-category-chevron ${isSectionOpen('components') ? 'open' : ''}`}>
                             <Icon name="general/chevronRight" size={16} />
                         </span>
-                        Components
                     </div>
                     {isSectionOpen('components') && (
                         <div className="nav-category-items">
-                            {filteredComponents.map((component) => (
-                                <Link
-                                    key={component.key}
-                                    to={`/${component.key}`}
-                                    className={`nav-item ${isActive(`/${component.key}`) ? 'active' : ''}`}
-                                >
-                                    {component.name}
-                                </Link>
+                            {filteredComponentSections.map((sec) => (
+                                <div key={sec.sectionKey} className="nav-sub-group">
+                                    {!isSearching && (
+                                        <div
+                                            className="nav-sub-group-title"
+                                            onClick={() => toggleSection(`sub-${sec.sectionKey}`)}
+                                        >
+                                            {sec.sectionName}
+                                            <span className={`nav-category-chevron ${isSectionOpen(`sub-${sec.sectionKey}`) ? 'open' : ''}`}>
+                                                <Icon name="general/chevronRight" size={12} />
+                                            </span>
+                                        </div>
+                                    )}
+                                    {isSectionOpen(`sub-${sec.sectionKey}`) && (
+                                        <div className="nav-sub-group-items">
+                                            {sec.components.map((component) => (
+                                                <Link
+                                                    key={component.key}
+                                                    to={`/${component.key}`}
+                                                    className={`nav-item nav-item--indented ${isActive(`/${component.key}`) ? 'active' : ''}`}
+                                                >
+                                                    {component.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
                             ))}
                         </div>
                     )}
@@ -2724,10 +3520,10 @@ function Sidebar() {
             {filteredStyles.length > 0 && (
                 <div className="nav-category">
                     <div className="nav-category-title" onClick={() => toggleSection('styles')}>
+                        Styles
                         <span className={`nav-category-chevron ${isSectionOpen('styles') ? 'open' : ''}`}>
                             <Icon name="general/chevronRight" size={16} />
                         </span>
-                        Styles
                     </div>
                     {isSectionOpen('styles') && (
                         <div className="nav-category-items">
@@ -2763,7 +3559,9 @@ function AppContent() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/typography" element={<Typography />} />
                     <Route path="/colors" element={<Colors />} />
+                    <Route path="/semanticcolors" element={<SemanticColors />} />
                     <Route path="/banner" element={<BannerPage />} />
+                    <Route path="/badge" element={<BadgePage />} />
                     <Route path="/buttons" element={<ButtonsPage />} />
                     <Route path="/checkbox" element={<CheckboxPage />} />
                     <Route path="/radio" element={<RadioPage />} />
@@ -2772,6 +3570,7 @@ function AppContent() {
                     <Route path="/table" element={<TablePage />} />
                     <Route path="/toggle" element={<TogglePage />} />
                     <Route path="/progressbar" element={<ProgressBarPage />} />
+                    <Route path="/loader" element={<LoaderPage />} />
                     <Route path="/dropdown" element={<DropdownPage />} />
                     <Route path="/emptystate" element={<EmptyStatePage />} />
                     <Route path="/combobox" element={<ComboboxPage />} />
@@ -2784,6 +3583,8 @@ function AppContent() {
                     <Route path="/popup" element={<PopupPage />} />
                     <Route path="/popupprojects" element={<PopupProjectsPage />} />
                     <Route path="/popupbranches" element={<PopupBranchesPage />} />
+                    <Route path="/popupsearcheverywhere" element={<SearchEverywherePopupPage />} />
+                    <Route path="/popupfindinfiles" element={<PopupFindInFilesPage />} />
                     <Route path="/codeexample" element={<CodeExamplePage />} />
                     <Route path="/editor" element={<EditorPage />} />
                     <Route path="/toolwindow" element={<ToolWindowPage />} />
@@ -2794,13 +3595,21 @@ function AppContent() {
                     <Route path="/aiassistant" element={<AIAssistantWindowPage />} />
                     <Route path="/problemswindow" element={<ProblemsWindowPage />} />
                     <Route path="/projectwidget" element={<ProjectWidgetPage />} />
+                    <Route path="/commit" element={<CommitWindowPage />} />
+                    <Route path="/vcslog" element={<VCSLogWindowPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
                     <Route path="/alert" element={<AlertPage />} />
                     <Route path="/dialog" element={<DialogPage />} />
+                    <Route path="/settings" element={<SettingsPage />} />
+                    <Route path="/welcomedialog" element={<WelcomeDialogPage />} />
                     <Route path="/tooltip" element={<TooltipPage />} />
-                    <Route path="/balloon" element={<BalloonPage />} />
+                    <Route path="/tooltiphelp" element={<TooltipHelpPage />} />
+                    <Route path="/validationtooltip" element={<ValidationTooltipPage />} />
+                    <Route path="/tooltipeditor" element={<TooltipEditorPage />} />
+                    <Route path="/gotittooltip" element={<GotItTooltipPage />} />
+                    <Route path="/notification" element={<BalloonPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>

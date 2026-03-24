@@ -1,0 +1,35 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#a)">
+    <mask id="b" width="412" height="412" x="50" y="50" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+      <path fill="#fff" d="M152.537 50C86.695 50 50 86.695 50 152.537v206.926C50 425.321 86.695 462 152.537 462h206.926C425.321 462 462 425.305 462 359.463V152.537C462 86.679 425.305 50 359.463 50z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="#6B57FF" d="M462.016 294.635H212.553v167.381h249.463z"/>
+      <path fill="url(#c)" d="M228.648 50H50v412.016h178.648z"/>
+      <path fill="url(#d)" d="M50 400.89v61.126h186.663l225.353-148.149V50H198.165z"/>
+    </g>
+    <path d="M384.763 127.253h-257.51v257.51h257.51z"/>
+    <path fill="#fff" d="m281.762 210.944-51.502-38.627v25.751h-51.502v25.751h51.502v25.751zm51.502 77.253-51.502-38.627v25.751H178.758v25.751h103.004v25.751z"/>
+  </g>
+  <defs>
+    <linearGradient id="c" x1="44.93" x2="223.916" y1="52.35" y2="438.486" gradientUnits="userSpaceOnUse">
+      <stop offset=".18" stop-color="#6B57FF"/>
+      <stop offset=".54" stop-color="#FF2358"/>
+    </linearGradient>
+    <linearGradient id="d" x1="49.984" x2="462.032" y1="462" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset=".12" stop-color="#FF2358"/>
+      <stop offset=".92" stop-color="#FF45ED"/>
+    </linearGradient>
+    <filter id="a" width="438" height="438" x="37" y="42" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="5"/>
+      <feGaussianBlur stdDeviation="6.5"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_33_3964"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_33_3964" result="shape"/>
+    </filter>
+  </defs>
+</svg>

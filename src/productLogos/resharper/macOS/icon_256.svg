@@ -1,0 +1,35 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#a)">
+    <mask id="b" width="206" height="206" x="25" y="25" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+      <path fill="#fff" d="M179.733 231C212.661 231 231 212.653 231 179.733V76.267C231 43.339 212.653 25 179.733 25H76.267C43.347 25 25 43.347 25 76.267v103.458c0 32.928 18.347 51.267 51.267 51.267h103.458z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="url(#c)" d="M99.908 25H25v131.092h74.908z"/>
+      <path fill="#FFB700" d="M231.001 156.092H118.635V231h112.366z"/>
+      <path fill="url(#d)" d="M231 25H99.908L25 156.092V231h93.633l112.359-74.989V25z"/>
+    </g>
+    <path d="M193.541 62.459H62.458V193.55h131.091V62.459z"/>
+    <path fill="#fff" d="M132.368 167.326H79.934v8.739h52.434zm34.127-68.689v-6.292l-6.896.016 2.663-12.425h-6.96l-2.664 12.44-10.421.025 2.672-12.465h-6.961l-2.671 12.481-8.546.016v6.293l7.202-.016-2.47 11.531-8.224.016v6.204l6.888-.016-2.664 12.424h6.961l2.663-12.44 10.421-.024-2.671 12.464h6.96l2.672-12.48 8.545-.016v-6.205l-7.218.016 2.471-11.53 8.24-.017zm-17.671 11.564-10.421.024 2.471-11.531 10.42-.025zm-59.016.185h8.24l10.534 18.483h10.943l-11.652-19.602c.781-.249 1.602-.426 2.318-.756 2.655-1.312 4.691-3.106 6.116-5.416 1.44-2.317 2.164-4.98 2.164-8.039 0-3.057-.708-5.64-2.132-7.91-1.4-2.269-3.404-4.063-6.011-5.335-2.607-1.271-5.625-1.883-9.053-1.883h-21.01v48.941h9.543zm0-22.5h10.839c1.61 0 3.01.306 4.193.878 1.215.611 2.148 1.44 2.792 2.535.652 1.094.982 2.357.982 3.846s-.322 2.752-.982 3.886c-.652 1.095-1.585 1.924-2.792 2.535-1.191.612-2.583.877-4.193.877H89.808V87.887"/>
+  </g>
+  <defs>
+    <linearGradient id="c" x1="62.458" x2="62.458" y1="150.813" y2="26.545" gradientUnits="userSpaceOnUse">
+      <stop  offset="0" stop-color="#FF43F2"/>
+      <stop offset="1" stop-color="#FFB700"/>
+    </linearGradient>
+    <linearGradient id="d" x1="31.124" x2="223.38" y1="224.828" y2="32.58" gradientUnits="userSpaceOnUse">
+      <stop offset=".18" stop-color="#FF43F2"/>
+      <stop offset=".83" stop-color="#FF0A67"/>
+    </linearGradient>
+    <filter id="a" width="219" height="219" x="18.5" y="21" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="2.5"/>
+      <feGaussianBlur stdDeviation="3.25"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_29_14207"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_29_14207" result="shape"/>
+    </filter>
+  </defs>
+</svg>

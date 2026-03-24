@@ -1,0 +1,304 @@
+/* Welcome Dialog — matches Figma node 11490-43649 "Dialog / Welcome Screen" */
+
+/* Override header title color: Figma uses text/text-muted for this header */
+.welcome-dialog .dialog-header-title {
+    color: var(--text-muted);
+}
+
+/* Root container: 797×649px, same dialog chrome as Dialog */
+.welcome-dialog {
+    display: flex;
+    flex-direction: column;
+    width: 797px;
+    height: 649px;
+    border-radius: 8px;
+    background: var(--dialog-bg);
+    border: 0.5px solid var(--dialog-border);
+    box-shadow: var(--dialog-shadow);
+    overflow: hidden;
+}
+
+/* Body area below header: fills remaining height, split into sidebar + content */
+.welcome-dialog-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* ───────────────────────────────────────── Sidebar (left) ── */
+
+.welcome-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 221px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--dialog-border);
+    background: var(--dialog-bg);
+}
+
+.welcome-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 28px;
+}
+
+/* IDE logo + product name */
+.welcome-sidebar-ide-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+}
+
+.welcome-ide-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.welcome-ide-name {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.welcome-ide-title {
+    color: var(--text-default);
+}
+
+.welcome-ide-version {
+    color: var(--text-secondary);
+}
+
+/* Navigation list */
+.welcome-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nav item */
+.welcome-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Selection + hover highlight via ::before pseudo-element.
+   Left margin comes from padding-left on the item itself;
+   right margin is 12px (matching inset-[0_12px] in Figma). */
+.welcome-nav-item::before {
+    content: '';
+    position: absolute;
+    inset: 0 12px;
+    border-radius: 4px;
+    background: transparent;
+    pointer-events: none;
+    transition: background 80ms;
+}
+
+.welcome-nav-item-selected::before {
+    background: var(--tree-node-bg-selected);
+}
+
+.welcome-nav-item:hover:not(.welcome-nav-item-selected)::before {
+    background: var(--tree-node-bg-hover);
+}
+
+/* Chevron column: always 16px wide */
+.welcome-nav-item-chevron {
+    position: relative;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-secondary-stroke);
+}
+
+/* Icon inside chevron: smaller chevron for nav arrows */
+.welcome-nav-item-chevron .icon {
+    opacity: 0.7;
+}
+
+/* Inline content: icon + label */
+.welcome-nav-item-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 20px;
+}
+
+.welcome-nav-item-icon {
+    flex-shrink: 0;
+    display: block;
+}
+
+.welcome-nav-item-label {
+    color: var(--text-default);
+    white-space: nowrap;
+}
+
+
+/* Sidebar footer: settings icon */
+.welcome-sidebar-footer {
+    display: flex;
+    align-items: center;
+    padding: 0 16px 16px;
+}
+
+/* ───────────────────────────────────────── Content (right) ── */
+
+.welcome-content {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--dialog-bg);
+}
+
+.welcome-content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Search area: search field + action buttons + separator */
+.welcome-search-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+    flex-shrink: 0;
+}
+
+.welcome-search-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.welcome-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* Remove vertical padding from buttons row (buttons handle their own padding) */
+.welcome-action-buttons .button {
+    align-self: center;
+}
+
+.welcome-search-separator {
+    height: 1px;
+    background: var(--dialog-border);
+}
+
+/* Project list */
+.welcome-project-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Single project cell */
+.welcome-project-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Selection + hover highlight: 8px inset on left/right (matching Figma inset-[0_8px]) */
+.welcome-project-cell::before {
+    content: '';
+    position: absolute;
+    inset: 0 8px;
+    border-radius: 4px;
+    background: transparent;
+    pointer-events: none;
+    transition: background 80ms;
+}
+
+.welcome-project-cell-selected::before {
+    background: var(--tree-node-bg-selected);
+}
+
+.welcome-project-cell:hover:not(.welcome-project-cell-selected)::before {
+    background: var(--tree-node-bg-hover);
+}
+
+.welcome-project-cell-content {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* Project icon: 20×20 gradient rounded square with initials */
+.welcome-project-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-project-icon-initials {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Project info: name + path */
+.welcome-project-cell-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.welcome-project-name {
+    color: var(--text-default);
+}
+
+.welcome-project-path {
+    color: var(--text-secondary);
+}
+
+/* Content footer: notifications icon aligned to bottom-right */
+.welcome-content-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24px 16px;
+    flex-shrink: 0;
+}

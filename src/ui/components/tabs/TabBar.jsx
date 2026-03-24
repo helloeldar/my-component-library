@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import Tab from './Tab';
-import Icon from '../icon/Icon';
+import ToolbarIconButton from '../iconbutton/IconButton';
 import './TabBar.css';
 
 const actionIcons = {
     add: 'general/add',
-    dropdown: 'general/chevronDown',
 };
 
 function TabBar({
@@ -79,13 +78,13 @@ function TabBar({
             {actions && actions.length > 0 && (
                 <div className="tab-bar-actions">
                     {actions.map((action, i) => (
-                        <button
-                            key={i}
-                            className="tool-window-action-button"
-                            onClick={() => onActionClick && onActionClick(action)}
-                        >
-                            {actionIcons[action] && <Icon name={actionIcons[action]} size={16} />}
-                        </button>
+                        actionIcons[action] && (
+                            <ToolbarIconButton
+                                key={i}
+                                icon={actionIcons[action]}
+                                onClick={() => onActionClick && onActionClick(action)}
+                            />
+                        )
                     ))}
                 </div>
             )}

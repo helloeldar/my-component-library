@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../icon/Icon';
+import ToolbarIconButton from '../iconbutton/IconButton';
 import './Table.css';
 
 function Table({
@@ -56,19 +57,25 @@ function Table({
             {showToolbar && allToolbarActions.length > 0 && (
                 <div className="table-toolbar">
                     {allToolbarActions.map((action, index) => (
-                        <button
-                            key={index}
-                            className={`table-toolbar-button ${action.disabled ? 'disabled' : ''}`}
-                            onClick={action.disabled ? undefined : action.onClick}
-                            title={action.title}
-                            disabled={action.disabled}
-                        >
-                            {action.icon ? (
-                                <Icon name={action.icon} size={16} />
-                            ) : (
-                                action.label
-                            )}
-                        </button>
+                        action.icon ? (
+                            <ToolbarIconButton
+                                key={index}
+                                icon={action.icon}
+                                tooltip={action.title}
+                                disabled={action.disabled}
+                                onClick={action.disabled ? undefined : action.onClick}
+                            />
+                        ) : (
+                            <button
+                                key={index}
+                                className="table-toolbar-button"
+                                onClick={action.disabled ? undefined : action.onClick}
+                                title={action.title}
+                                disabled={action.disabled}
+                            >
+                                {action.label}
+                            </button>
+                        )
                     ))}
                 </div>
             )}

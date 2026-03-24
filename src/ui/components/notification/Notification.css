@@ -1,118 +1,126 @@
-/* Notification / Balloon */
+/* Notification (Balloon) Component
+ * Following IntelliJ UI Guidelines & Int UI Kit Figma specs
+ * Figma: feedback/feedback-bg, feedback/feedback-border, shadow/shadow-popup
+ * https://plugins.jetbrains.com/docs/intellij/balloon.html
+ */
+
 .notification {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 360px;
-    background: var(--popup-bg);
-    border: 1px solid var(--popup-border);
+    padding: 10px 12px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--tooltip-border);   /* feedback/feedback-border */
+    background-color: var(--tooltip-bg);        /* feedback/feedback-bg */
+    box-shadow: var(--dialog-shadow);           /* shadow/shadow-popup */
+    box-sizing: border-box;
     overflow: hidden;
 }
 
-/* Header */
-.notification-header {
+/* Icon + text row */
+.notification-icon-text {
     display: flex;
-    align-items: center;
     gap: 8px;
-    padding: 8px 8px 8px 12px;
+    align-items: flex-start;
 }
 
-.notification-icon {
-    flex-shrink: 0;
+/* Status type icon (16×16) */
+.notification-type-icon {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
     width: 16px;
     height: 16px;
 }
 
-.notification-title {
-    flex: 1;
-    color: var(--text-primary);
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.notification-header-right {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-}
-
-.notification-timestamp {
-    color: var(--text-secondary);
-    white-space: nowrap;
-}
-
-.notification-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    padding: 0;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: var(--icon-secondary);
-    border-radius: 3px;
-}
-
-.notification-close:hover {
-    background: var(--icon-button-hover-bg);
-    color: var(--text-primary);
-}
-
-.notification-close:active {
-    background: var(--icon-button-pressed-bg);
-}
-
-/* Body */
+/* Body column: heading+text + actions + timestamp */
 .notification-body {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 0 12px 12px 36px; /* 12px + 16px icon + 8px gap = 36px left indent */
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
 }
 
-.notification-content {
-    color: var(--text-primary);
-    line-height: 1.4;
+/* Heading + body text block */
+.notification-heading-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 2px;
 }
 
-/* Actions */
+/* Title — 13px/16px semibold, default text color */
+.notification-title {
+    margin: 0;
+    color: var(--text-default);
+}
+
+/* Body text — 13px/16px medium, default text color */
+.notification-text {
+    margin: 0;
+    color: var(--text-default);
+}
+
+/* Timestamp — 12px, secondary color */
+.notification-timestamp {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+/* Actions row: button + links aligned, gap 12px, with vertical padding */
 .notification-actions {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* Link group inside actions */
+.notification-links {
+    display: flex;
+    align-items: center;
     gap: 16px;
 }
 
-.notification-action.link {
+/* Link override — remove default link padding for compact layout */
+.notification-link.link {
     padding: 0;
 }
 
-/* Type-specific left border accent */
-.notification-info {
-    border-left: 3px solid var(--accent-primary);
+/* Notification button border override
+ * Figma: feedback/feedback-control-border = rgba(255,255,255,0.23) dark / gray-130 light
+ */
+.notification-action-btn.button-secondary {
+    border-color: var(--got-it-control-border);
 }
 
-.notification-warning {
-    border-left: 3px solid var(--warning-icon-stroke);
+/* ============================
+   Hover buttons (⋮ and ×)
+   Figma: absolute right: 7px, top: 3px — appear on card hover
+   ============================ */
+
+.notification-hover-buttons {
+    position: absolute;
+    top: 3px;
+    right: 7px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease;
 }
 
-.notification-error {
-    border-left: 3px solid var(--error-icon-outline);
+.notification:hover .notification-hover-buttons,
+.notification--buttons-visible .notification-hover-buttons {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.notification-success {
-    border-left: 3px solid var(--icon-green-stroke);
-}
-
-/* Dark theme shadow */
-.theme-dark .notification {
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.40);
+/* Notification hover icon buttons — ToolbarIconButton with focus ring */
+.notification-icon-btn:focus-visible {
+    outline: 2px solid var(--control-focus-border-brand);
+    outline-offset: 1px;
 }

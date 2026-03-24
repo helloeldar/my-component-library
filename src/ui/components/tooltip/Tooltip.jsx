@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import './Tooltip.css';
 import '../../styles/Typography.css';
 
@@ -11,6 +11,7 @@ import '../../styles/Typography.css';
  * @param {string} shortcut - Optional keyboard shortcut to display
  * @param {string} placement - Tooltip placement: 'top' | 'bottom' | 'left' | 'right' (default: 'bottom')
  * @param {number} delay - Hover delay in ms before showing (default: 500)
+ * @param {boolean} alwaysVisible - When true, tooltip stays open (e.g. component library showcase)
  * @param {string} className - Additional CSS classes
  */
 function Tooltip({
@@ -19,10 +20,11 @@ function Tooltip({
     shortcut,
     placement = 'bottom',
     delay = 500,
+    alwaysVisible = false,
     className = '',
     ...props
 }) {
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(alwaysVisible);
     const [position, setPosition] = useState({ top: 0, left: 0 });
     const triggerRef = useRef(null);
     const tooltipRef = useRef(null);
@@ -63,20 +65,24 @@ function Tooltip({
         setPosition({ top, left });
     };
 
-    useEffect(() => {
-        if (visible) {
-            updatePosition();
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [visible]);
+    useLayoutEffect(() => {
+        if (!visible) return undefined;
+        updatePosition();
+        const onResize = () => updatePosition();
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [visible, placement, text, shortcut]);
 
     const handleMouseEnter = () => {
+        if (alwaysVisible) return;
         timeoutRef.current = setTimeout(() => {
             setVisible(true);
         }, delay);
     };
 
     const handleMouseLeave = () => {
+        if (alwaysVisible) return;
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
             timeoutRef.current = null;
@@ -107,13 +113,13 @@ function Tooltip({
             {children}
             {visible && (
                 <div
-                    className={`tooltip tooltip-${placement} ${className}`}
+                    className={`tooltip text-ui-default tooltip-${placement} ${className}`}
                     ref={tooltipRef}
                     style={{ top: position.top, left: position.left }}
                 >
-                    <span className="tooltip-text text-ui-small">{text}</span>
+                    <span className="tooltip-text">{text}</span>
                     {shortcut && (
-                        <span className="tooltip-shortcut text-ui-small">{shortcut}</span>
+                        <span className="tooltip-shortcut">{shortcut}</span>
                     )}
                 </div>
             )}

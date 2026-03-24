@@ -35,49 +35,50 @@
     height: 16px;
     border-radius: 50%;
     background: var(--control-bg);
-    border: 1px solid var(--border-control);
+    border: 1px solid var(--control-border);
     box-sizing: border-box;
 }
 
-/* Hover state */
-.radio-hovered:not(.radio-disabled):not(.radio-checked) {
-    border-color: var(--border-raised);
-}
 
-/* Focus state */
-.radio-focused:not(.radio-disabled) {
-    border: 2px solid var(--border-focus);
+/* Focus ring — keyboard navigation only (:focus-visible, not on mouse click) */
+.radio-input:focus-visible + .radio-circle:not(.radio-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--control-focus-border-brand);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 /* Checked state */
 .radio-checked {
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
-}
-
-.radio-checked.radio-hovered:not(.radio-disabled) {
-    background: var(--accent-primary-hover);
-    border-color: var(--accent-primary-hover);
-}
-
-.radio-checked.radio-focused:not(.radio-disabled) {
-    border: 2px solid var(--border-focus);
-    box-shadow: 0 0 0 2px var(--control-bg), 0 0 0 4px var(--border-focus);
+    background: var(--accent-brand-bg);
+    border-color: var(--accent-brand-bg);
 }
 
 /* Disabled state */
 .radio-disabled {
     background: var(--control-bg-disabled);
-    border-color: var(--border-control-disabled);
+    border-color: var(--control-border-disabled);
     cursor: not-allowed;
 }
 
 .radio-checked.radio-disabled {
-    background: var(--border-control);
-    border-color: var(--border-control);
+    background: var(--control-border);
+    border-color: var(--control-border);
 }
 
-/* Radio dot */
+/* Invalid ring — same pattern, red stroke */
+.radio-invalid:not(.radio-disabled)::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--control-focus-border-error);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Radio dot — exact Figma dimensions: 6×6 SVG circle */
 .radio-dot {
     position: absolute;
     top: 50%;
@@ -85,12 +86,11 @@
     transform: translate(-50%, -50%);
     width: 6px;
     height: 6px;
-    border-radius: 50%;
-    background: var(--text-inverse);
+    color: var(--text-over-accent);
 }
 
 .radio-disabled .radio-dot {
-    background: var(--text-secondary);
+    color: var(--text-secondary);
 }
 
 /* Content (label + hint) */
@@ -103,7 +103,7 @@
 
 /* Label */
 .radio-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 .radio-container-disabled .radio-label {

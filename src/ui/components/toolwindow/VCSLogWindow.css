@@ -1,0 +1,518 @@
+/* ─── VCS Log Window ────────────────────────────────────────────────────────── */
+
+.vcs-log-window .tool-window-content {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* ─── Panel dividers ─────────────────────────────────────────────────────────── */
+
+.vcs-log-panel-divider {
+    width: 1px;
+    flex-shrink: 0;
+    background: var(--tool-window-border);
+    align-self: stretch;
+}
+
+/* ─── PANEL 1: Branches Sidebar ──────────────────────────────────────────────── */
+
+.vcs-log-branches {
+    display: flex;
+    flex-direction: row;
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--tool-window-bg);
+    overflow: hidden;
+}
+
+/* Vertical icon toolbar */
+.vcs-log-branches-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 38px;
+    flex-shrink: 0;
+    padding: 4px 0;
+    background: var(--tool-window-bg);
+    border-right: 1px solid var(--tool-window-border);
+}
+
+/* Horizontal separator inside vertical toolbar */
+.vcs-log-branches-toolbar .toolbar-separator-horizontal {
+    width: 20px;
+}
+
+.vcs-log-branches-tree-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* Search component override — remove outer padding, stretch to fill, add border */
+.vcs-log-branches-search {
+    padding: 0;
+    width: auto;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--tool-window-border);
+}
+
+.vcs-log-branches-search .search-content {
+    border-radius: 0;
+    border: none;
+    border-bottom: none;
+    min-height: 33px;
+    padding: 0 6px;
+    background: var(--tool-window-bg);
+}
+
+.vcs-log-branches-search .search-content.focused {
+    border: none;
+    box-shadow: inset 0 0 0 2px var(--search-border-focus);
+    padding: 0 6px;
+}
+
+.vcs-log-branch-tree {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 6px 0;
+}
+
+/* Branch tree nodes */
+.vcs-log-tree-node {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    padding-right: 12px;
+    gap: 2px;
+    cursor: default;
+    position: relative;
+    white-space: nowrap;
+}
+
+.vcs-log-tree-node:hover {
+    background: var(--tree-hover-bg, rgba(128,128,128,0.08));
+}
+
+.vcs-log-tree-node.selected {
+    background: var(--selection-bg-active);
+}
+
+.vcs-log-tree-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--tree-node-toggle);
+}
+
+.vcs-log-tree-chevron-placeholder {
+    width: 16px;
+    flex-shrink: 0;
+}
+
+.vcs-log-tree-icon {
+    flex-shrink: 0;
+    color: var(--icon-secondary-stroke);
+}
+
+.vcs-log-tree-label {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--text-default);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vcs-log-branch-star {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 2px;
+}
+
+/* ─── PANEL 2: Commit Log ────────────────────────────────────────────────────── */
+
+.vcs-log-commits {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    background: var(--tool-window-bg);
+}
+
+.vcs-log-commits-toolbar {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 34px;
+    padding: 2px 4px;
+    gap: 2px;
+    border-bottom: 1px solid var(--tool-window-border);
+}
+
+/* Search field (text + hash input with inline buttons) */
+.vcs-log-search-field {
+    display: flex;
+    align-items: center;
+    height: 26px;
+    border: 1px solid var(--control-border);
+    border-radius: 4px;
+    background: var(--control-bg);
+    padding: 0 2px 0 6px;
+    gap: 0;
+    flex-shrink: 0;
+    width: 160px;
+}
+
+.vcs-log-search-field input {
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-default);
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+}
+
+.vcs-log-search-field input::placeholder {
+    color: var(--text-secondary);
+}
+
+.vcs-log-search-inline-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 3px;
+    color: var(--icon-secondary-stroke);
+    flex-shrink: 0;
+}
+
+.vcs-log-search-inline-btn:hover {
+    background: var(--icon-button-hover-bg);
+    color: var(--text-default);
+}
+
+/* Filter dropdown-style buttons */
+.vcs-log-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 26px;
+    padding: 0 4px;
+    border: none;
+    background: none;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-default);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.vcs-log-filter-btn:hover {
+    background: var(--icon-button-hover-bg);
+}
+
+.vcs-log-filter-caret {
+    font-size: 9px;
+    color: var(--text-secondary);
+}
+
+/* Commit table */
+.vcs-log-commit-table {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+}
+
+.vcs-log-commit-row {
+    display: flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 8px 0 4px;
+    gap: 0;
+    cursor: default;
+}
+
+.vcs-log-commit-row:hover {
+    background: var(--tree-hover-bg, rgba(128,128,128,0.08));
+}
+
+.vcs-log-commit-row.selected {
+    background: var(--selection-bg-active);
+}
+
+.vcs-log-commit-row.selected .vcs-log-commit-message {
+    font-weight: 600;
+}
+
+.vcs-log-commit-row.selected .vcs-log-commit-author,
+.vcs-log-commit-row.selected .vcs-log-commit-date {
+    font-weight: 600;
+}
+
+/* ─── Commit Graph ───────────────────────────────────────────────────────────── */
+
+.vcs-log-graph-col {
+    width: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    align-self: stretch; /* fill full row height for line continuity */
+}
+
+/* Line segments — top and bottom halves drawn separately so first/last row
+   only draw the half they need, keeping the line flush with each dot center */
+.vcs-log-graph-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    pointer-events: none;
+}
+
+.vcs-log-graph-line-top {
+    top: 0;
+    height: 50%;
+}
+
+.vcs-log-graph-line-bottom {
+    top: 50%;
+    height: 50%;
+}
+
+/* SVG-based commit dot — sits above the absolutely-positioned line segments */
+.vcs-log-graph-dot-svg {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* ─── Message column ─────────────────────────────────────────────────────────── */
+
+.vcs-log-commit-message-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 8px;
+    overflow: hidden;
+}
+
+.vcs-log-commit-message {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-default);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vcs-log-commit-link {
+    color: var(--text-link);
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Ref badge (e.g. origin/master) */
+.vcs-log-ref-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 5px;
+    height: 16px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.vcs-log-ref-badge.remote {
+    background: var(--blue-140, #EDF3FF);
+    color: var(--blue-70, #3574F0);
+    border: 1px solid var(--blue-110, #D4E2FF);
+}
+
+.vcs-log-ref-badge.local {
+    background: var(--green-140, #F2FCF3);
+    color: var(--green-70, #208A3C);
+    border: 1px solid var(--green-110, #C7EDCA);
+}
+
+.theme-dark .vcs-log-ref-badge.remote {
+    background: rgba(53, 116, 240, 0.2);
+    color: var(--blue-70, #548AF7);
+    border-color: rgba(53, 116, 240, 0.35);
+}
+
+.theme-dark .vcs-log-ref-badge.local {
+    background: rgba(32, 138, 60, 0.2);
+    color: var(--green-70, #5FAD65);
+    border-color: rgba(32, 138, 60, 0.35);
+}
+
+/* Author column */
+.vcs-log-commit-author {
+    width: 120px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-default);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 4px;
+}
+
+/* Date column */
+.vcs-log-commit-date {
+    width: 130px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    text-align: right;
+}
+
+.vcs-log-commit-row.selected .vcs-log-commit-date {
+    color: var(--text-default);
+}
+
+/* ─── PANEL 3: Commit Details ─────────────────────────────────────────────────── */
+
+.vcs-log-details {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--tool-window-bg);
+}
+
+/* No background — inherits tool-window-bg */
+.vcs-log-details-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    height: 34px;
+    padding: 4px 2px;
+    border-bottom: 1px solid var(--tool-window-border);
+}
+
+.vcs-log-details-toolbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.vcs-log-details-header {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 10px 4px 10px;
+    flex-shrink: 0;
+}
+
+.vcs-log-details-repo {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-default);
+    white-space: nowrap;
+}
+
+.vcs-log-details-meta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.vcs-log-details-tree {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2px 0;
+    min-height: 0;
+}
+
+.vcs-log-details-tree-node {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    gap: 4px;
+    white-space: nowrap;
+    cursor: default;
+    padding-right: 8px;
+}
+
+.vcs-log-details-tree-node:hover {
+    background: var(--tree-hover-bg, rgba(128,128,128,0.08));
+}
+
+.vcs-log-details-tree-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-default);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vcs-log-details-tree-label.path {
+    color: var(--text-secondary);
+}
+
+/* Commit info block */
+.vcs-log-commit-info {
+    flex-shrink: 0;
+    padding: 10px;
+    border-top: 1px solid var(--tool-window-border);
+    background: var(--bg-secondary);
+}
+
+.vcs-log-commit-info-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-default);
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.vcs-log-commit-info-meta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.vcs-log-commit-info-meta .vcs-log-commit-hash {
+    color: var(--text-link);
+}

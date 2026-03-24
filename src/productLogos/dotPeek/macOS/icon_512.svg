@@ -1,0 +1,37 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#a)">
+    <mask id="b" width="412" height="412" x="50" y="50" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+      <path fill="#fff" d="M152.537 50C86.695 50 50 86.695 50 152.537v206.926C50 425.321 86.695 462 152.537 462h206.926C425.321 462 462 425.305 462 359.463V152.537C462 86.679 425.305 50 359.463 50z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="url(#c)" d="M435.428 274.677H316.33a30.5 30.5 0 0 0-8.047 1.288l-201.18 64.249c-11.009 3.541-18.476 13.777-18.476 25.3v69.979c0 14.613 11.909 26.523 26.523 26.523h346.866V301.265c0-14.678-11.91-26.588-26.588-26.588"/>
+      <path fill="#FF45ED" d="M286.587 50v69.914L163.256 260.836H50v201.18h123.927v-.032h11.266c7.596-.129 16.287-5.054 21.244-10.783L337.88 297.853h124.136V50z"/>
+      <path fill="url(#d)" d="M462.016 462.016H400.89L50 313.851V50h263.867l148.149 225.353z"/>
+    </g>
+    <path d="M384.763 127.253h-257.51v257.51h257.51z"/>
+    <path fill="#fff" fill-rule="evenodd" d="M159.506 159.377h36.76c9.141 0 17.382 2.141 24.592 6.245s12.908 9.866 16.996 17.189 6.18 15.643 6.18 24.914c0 9.27-2.092 17.494-6.18 24.85-4.088 7.355-9.721 13.084-16.996 17.253-7.275 4.168-15.451 6.18-24.592 6.18h-36.76zm51.631 76.481c4.361-2.591 7.693-6.229 10.043-11.073s3.541-10.494 3.541-17.06c0-6.567-1.191-12.312-3.541-17.125-2.35-4.812-5.682-8.481-10.043-11.073-4.362-2.591-9.335-3.862-15.064-3.862h-17.769v64.055h17.769c5.729 0 10.734-1.303 15.064-3.862"/>
+    <path fill="#fff" d="M262.381 333.261H159.377v19.313h103.004z"/>
+    <path fill="#fff" fill-rule="evenodd" d="M301.973 159.377h-41.459v96.631h18.798v-36.502h22.082c6.953 0 13.069-1.239 18.219-3.734s9.254-6.068 12.038-10.622 4.249-9.914 4.249-15.837-1.336-11.218-4.12-15.708-6.743-8.015-11.91-10.494-11.073-3.734-17.897-3.734m12.554 37.661c-1.288 2.189-3.106 3.831-5.472 5.022s-5.15 1.802-8.305 1.802h-21.438v-28.777h21.438q4.732 0 8.305 1.739c2.382 1.158 4.2 2.816 5.472 4.957 1.271 2.14 1.931 4.635 1.931 7.596s-.644 5.472-1.931 7.661"/>
+  </g>
+  <defs>
+    <linearGradient id="c" x1="107.891" x2="452.054" y1="482.89" y2="323.363" gradientUnits="userSpaceOnUse">
+      <stop offset=".3" stop-color="#FF45ED"/>
+      <stop offset=".84" stop-color="#6B57FF"/>
+    </linearGradient>
+    <linearGradient id="d" x1="462" x2="50" y1="462.032" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset=".29" stop-color="#6B57FF"/>
+      <stop offset=".89" stop-color="#07C3F2"/>
+    </linearGradient>
+    <filter id="a" width="438" height="438" x="37" y="42" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="5"/>
+      <feGaussianBlur stdDeviation="6.5"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_29_16684"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_29_16684" result="shape"/>
+    </filter>
+  </defs>
+</svg>

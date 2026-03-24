@@ -1,0 +1,36 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#a)">
+    <mask id="b" width="412" height="412" x="50" y="50" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+      <path fill="#fff" d="M152.537 50C86.695 50 50 86.695 50 152.537v206.926C50 425.321 86.695 462 152.537 462h206.926C425.321 462 462 425.305 462 359.463V152.537C462 86.679 425.305 50 359.463 50z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="#6B57FF" d="M462.016 294.635H212.553v167.381h249.463z"/>
+      <path fill="url(#c)" d="M228.648 50H50v412.016h178.648z"/>
+      <path fill="url(#d)" d="M50 400.89v61.126h186.663l225.353-148.149V50H198.165z"/>
+    </g>
+    <path d="M384.763 127.253h-257.51v257.51h257.51z"/>
+    <path fill="#fff" d="M275.324 165.879h-38.626c-7.082 0-12.876-5.794-12.876-12.875s5.794-12.876 12.876-12.876h38.626c7.082 0 12.876 5.794 12.876 12.876s-5.794 12.875-12.876 12.875m54.399 51.245c-.45 2.897-1.481 5.794-3.283 8.305l-7.661 10.751c5.15 9.785 8.047 20.922 8.047 32.703 0 39.077-31.738 70.816-70.815 70.816s-70.815-31.739-70.815-70.816 31.738-70.815 70.815-70.815c11.781 0 22.918 2.961 32.704 8.047l10.751-7.661c2.51-1.738 5.343-2.897 8.304-3.347-14.678-10.301-32.446-16.417-51.695-16.417-49.764 0-90.128 40.365-90.128 90.129s40.364 90.128 90.128 90.128 90.129-40.364 90.129-90.128c0-19.313-6.116-37.146-16.416-51.76z"/>
+    <path fill="#fff" d="m306.933 208.948-62.06 44.163c-.837.579-1.674 1.352-2.446 2.124-7.532 7.532-7.532 19.764 0 27.296 7.532 7.533 19.764 7.533 27.296 0a25 25 0 0 0 2.124-2.446l44.163-62.06c1.803-2.511 1.546-5.987-.708-8.305s-5.794-2.51-8.304-.708z"/>
+  </g>
+  <defs>
+    <linearGradient id="c" x1="44.93" x2="223.916" y1="52.35" y2="438.486" gradientUnits="userSpaceOnUse">
+      <stop offset=".18" stop-color="#6B57FF"/>
+      <stop offset=".54" stop-color="#FF2358"/>
+    </linearGradient>
+    <linearGradient id="d" x1="49.984" x2="462.032" y1="462" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset=".12" stop-color="#FF2358"/>
+      <stop offset=".92" stop-color="#FF45ED"/>
+    </linearGradient>
+    <filter id="a" width="438" height="438" x="37" y="42" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="5"/>
+      <feGaussianBlur stdDeviation="6.5"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_33_4667"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_33_4667" result="shape"/>
+    </filter>
+  </defs>
+</svg>

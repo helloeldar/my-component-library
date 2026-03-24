@@ -53,6 +53,13 @@
     margin-right: 4px;
 }
 
+/* Prefix slot (e.g. Checkbox) */
+.tree-node-prefix {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
 /* Icon */
 .tree-node-icon {
     display: flex;

@@ -1,0 +1,105 @@
+/* ========================
+   Popup / Search Everywhere
+   Figma node: 6515:81938
+   ======================== */
+
+.search-everywhere-popup {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    background: var(--popup-bg);
+    border: 0.5px solid var(--popup-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* ========================
+   Header: 40px, tabs left + controls right
+   ======================== */
+.search-everywhere-header {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--popup-border);
+    background: var(--popup-bg);
+    overflow: hidden;
+    position: relative;
+}
+
+.search-everywhere-tabs-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.search-everywhere-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 15px;
+    flex-shrink: 0;
+}
+
+/* Align checkbox label vertically */
+.search-everywhere-header-right .checkbox-container {
+    padding: 0;
+}
+
+/* ========================
+   Search field (large variant)
+   ======================== */
+.search-everywhere-search {
+    padding: 0 8px 2px 8px;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Override default 224px width — fill available width */
+.search-everywhere-search-field {
+    width: 100%;
+}
+
+.search-everywhere-search-field .search-content {
+    width: 100%;
+}
+
+/* ========================
+   Results list
+   ======================== */
+.search-everywhere-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+    flex: 1;
+}
+
+/* Empty state */
+.search-everywhere-empty {
+    padding: 8px 24px;
+    color: var(--text-secondary);
+}
+
+/* ========================
+   Footer spacer + footer row
+   ======================== */
+.search-everywhere-footer-spacer {
+    height: 8px;
+    flex-shrink: 0;
+}
+
+.search-everywhere-popup .popup-cell-footer {
+    background: var(--popup-bg);
+    border-radius: 0 0 7px 7px;
+}
+
+.search-everywhere-popup .popup-cell-footer .popup-cell-text {
+    font-size: 12px;
+    line-height: 16px;
+}

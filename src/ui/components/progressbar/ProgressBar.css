@@ -44,26 +44,30 @@
 /* Progress bar fill */
 .progress-bar-fill {
     height: 100%;
-    background: var(--accent-primary);
+    background: var(--accent-brand-bg);
     border-radius: 2px;
 }
 
-/* Indeterminate animation */
-.progress-bar-indeterminate {
-    width: 30% !important;
-    animation: progress-indeterminate 1.5s ease-in-out infinite;
+/* Indeterminate animation — full-width gradient stripe that slides right */
+.progress-bar-track:has(.progress-bar-indeterminate) {
+    background: var(--accent-brand-bg);
 }
 
-@keyframes progress-indeterminate {
-    0% {
-        transform: translateX(-100%);
-    }
-    50% {
-        transform: translateX(200%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+.progress-bar-indeterminate {
+    width: 100%;
+    background-image: repeating-linear-gradient(
+        90deg,
+        var(--accent-brand-bg) 0,
+        var(--blue-120) 70px,
+        var(--accent-brand-bg) 140px
+    );
+    background-size: 140px 100%;
+    animation: progress-indeterminate-gradient 600ms linear infinite;
+}
+
+@keyframes progress-indeterminate-gradient {
+    from { background-position-x: 0; }
+    to   { background-position-x: 140px; }
 }
 
 /* Label */
@@ -74,7 +78,7 @@
 }
 
 .progress-bar-vertical .progress-bar-label {
-    color: var(--text-primary);
+    color: var(--text-default);
 }
 
 /* Hint */

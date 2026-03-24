@@ -8,6 +8,10 @@ import TerminalWindow from '../toolwindow/TerminalWindow';
 import ProjectWindow from '../toolwindow/ProjectWindow';
 import AIAssistantWindow from '../toolwindow/AIAssistantWindow';
 import ProblemsWindow from '../toolwindow/ProblemsWindow';
+import CommitWindow from '../toolwindow/CommitWindow';
+import VCSLogWindow from '../toolwindow/VCSLogWindow';
+import SearchEverywherePopup from '../popup/SearchEverywherePopup';
+import SettingsDialog from '../showcase/SettingsDialog';
 import TabBar from '../tabs/TabBar';
 import Editor from '../editor/Editor';
 import './MainWindow.css';
@@ -46,6 +50,10 @@ function MainWindow({
 
     // Focus tracking: which panel currently has focus ('editor', 'left', 'right', 'bottom')
     const [focusedPanel, setFocusedPanel] = useState('editor');
+
+    // Overlay state
+    const [showSearchEverywhere, setShowSearchEverywhere] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     // Editor tabs state
     const editorTabs = [
@@ -285,6 +293,8 @@ function MainWindow({
                 branchName={branchName}
                 runConfig={runConfig}
                 runState={runState}
+                onSearchEverywhere={() => setShowSearchEverywhere(true)}
+                onSettings={() => setShowSettings(true)}
             />
 
             {/* Main Content Area */}
@@ -304,12 +314,6 @@ function MainWindow({
                             title="Commit"
                             onClick={() => handleLeftStripeClick('commit')}
                         />
-                        <StripeIconButton
-                            icon="toolwindows/vcs@20x20"
-                            state={getStripeState('left', 'pullRequests', showLeftPanel)}
-                            title="Pull Requests"
-                            onClick={() => handleLeftStripeClick('pullRequests')}
-                        />
                         <StripeContainer.Separator />
                         <StripeIconButton
                             icon="toolwindows/structure@20x20"
@@ -319,6 +323,12 @@ function MainWindow({
                         />
                     </StripeContainer>
                     <StripeContainer className="stripe-section-bottom">
+                        <StripeIconButton
+                            icon="toolwindows/vcs@20x20"
+                            state={getStripeState('bottom', 'git', showBottomPanel)}
+                            title="Git"
+                            onClick={() => handleBottomStripeClick('git')}
+                        />
                         <StripeIconButton
                             icon="toolwindows/terminal@20x20"
                             state={getStripeState('bottom', 'terminal', showBottomPanel)}
@@ -359,17 +369,27 @@ function MainWindow({
                                     treeData={projectTreeData}
                                     focused={focusedPanel === 'left'}
                                     onFocus={() => setFocusedPanel('left')}
+                                    onActionClick={(action) => { if (action === 'minimize') setShowLeftPanel(false); }}
+                                    className="main-window-tool-window main-window-tool-window-left"
+                                />
+                            ) : leftStripeSelection === 'commit' ? (
+                                <CommitWindow
+                                    width={280}
+                                    height="auto"
+                                    focused={focusedPanel === 'left'}
+                                    onFocus={() => setFocusedPanel('left')}
+                                    onActionClick={(action) => { if (action === 'minimize') setShowLeftPanel(false); }}
                                     className="main-window-tool-window main-window-tool-window-left"
                                 />
                             ) : (
                                 <ToolWindow
-                                    title={leftStripeSelection === 'commit' ? 'Commit' :
-                                           leftStripeSelection === 'pullRequests' ? 'Pull Requests' : 'Structure'}
+                                    title="Structure"
                                     width={280}
                                     height="auto"
                                     actions={['more', 'minimize']}
                                     focused={focusedPanel === 'left'}
                                     onFocus={() => setFocusedPanel('left')}
+                                    onActionClick={(action) => { if (action === 'minimize') setShowLeftPanel(false); }}
                                     className="main-window-tool-window main-window-tool-window-left"
                                 >
                                     <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
@@ -402,6 +422,7 @@ function MainWindow({
                                     empty={true}
                                     focused={focusedPanel === 'right'}
                                     onFocus={() => setFocusedPanel('right')}
+                                    onActionClick={(action) => { if (action === 'minimize') setShowRightPanel(false); }}
                                     className="main-window-tool-window main-window-tool-window-right"
                                 />
                             ) : (
@@ -413,6 +434,7 @@ function MainWindow({
                                     actions={['more', 'minimize']}
                                     focused={focusedPanel === 'right'}
                                     onFocus={() => setFocusedPanel('right')}
+                                    onActionClick={(action) => { if (action === 'minimize') setShowRightPanel(false); }}
                                     className="main-window-tool-window main-window-tool-window-right"
                                 >
                                     <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
@@ -443,6 +465,15 @@ function MainWindow({
                                 onFocus={() => setFocusedPanel('bottom')}
                                 className="main-window-tool-window main-window-tool-window-bottom"
                             />
+                        ) : bottomStripeSelection === 'git' ? (
+                            <VCSLogWindow
+                                width="auto"
+                                height={180}
+                                focused={focusedPanel === 'bottom'}
+                                onFocus={() => setFocusedPanel('bottom')}
+                                onActionClick={(action) => { if (action === 'minimize') setShowBottomPanel(false); }}
+                                className="main-window-tool-window main-window-tool-window-bottom"
+                            />
                         ) : bottomStripeSelection === 'problems' ? (
                             <ProblemsWindow
                                 width="auto"
@@ -462,6 +493,7 @@ function MainWindow({
                                 actions={['more', 'minimize']}
                                 focused={focusedPanel === 'bottom'}
                                 onFocus={() => setFocusedPanel('bottom')}
+                                onActionClick={(action) => { if (action === 'minimize') setShowBottomPanel(false); }}
                                 className="main-window-tool-window main-window-tool-window-bottom"
                             >
                                 <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
@@ -502,6 +534,36 @@ function MainWindow({
                 breadcrumbs={breadcrumbs}
                 widgets={widgets}
             />
+
+            {/* Search Everywhere overlay */}
+            {showSearchEverywhere && (
+                <div
+                    className="main-window-overlay"
+                    onMouseDown={() => setShowSearchEverywhere(false)}
+                >
+                    <div
+                        className="main-window-overlay-popup"
+                        onMouseDown={(e) => e.stopPropagation()}
+                    >
+                        <SearchEverywherePopup />
+                    </div>
+                </div>
+            )}
+
+            {/* Settings Dialog overlay */}
+            {showSettings && (
+                <div
+                    className="main-window-overlay main-window-overlay-modal"
+                    onMouseDown={() => setShowSettings(false)}
+                >
+                    <div
+                        className="main-window-overlay-dialog"
+                        onMouseDown={(e) => e.stopPropagation()}
+                    >
+                        <SettingsDialog onClose={() => setShowSettings(false)} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

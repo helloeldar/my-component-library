@@ -66,12 +66,12 @@
 | ~~IDELayout~~ | ~~`src/ui/components/idelayout/IDELayout.jsx`~~ | Main Window | Removed | — | — | Consolidated into MainWindow |
 | IDEWindow | `src/ui/components/idewindow/IDEWindow.jsx` | Main Window | Partial | Needs review | No | Likely shell-level composition that needs exact parity review |
 | MainWindow | `src/ui/components/mainwindow/MainWindow.jsx` | Main Window | Partial | Needs fix | No | Structural composition exists, but major parts are still placeholders rather than full Figma parity |
-| Tab | `src/ui/components/tabs/Tab.jsx` | [Tab](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=26471-56584) | Yes | Unknown | No | Selected/Focused/Hover/Pinned variants |
+| Tab | `src/ui/components/tabs/Tab.jsx` | [Tab](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=26471-56584) | Yes | Unknown | Reviewed, edited manually, don't touch | Selected/Focused/Hover/Pinned variants |
 | TabBar | `src/ui/components/tabs/TabBar.jsx` | [Tab Bar](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5664-81616) | Yes | Unknown | No | |
 | StripeIconButton | `src/ui/components/stripe/Stripe.jsx` | [Stripe / Icon Button](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=269-25319) | Yes | Accurate | No | 40×40 wrapper, renamed from Stripe |
 | StripeContainer | `src/ui/components/stripe/StripeContainer.jsx` | [Stripes](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7059-97083) | Yes | Unknown | No | Container for stripe buttons |
 | ToolbarDropdown | `src/ui/components/toolbardropdown/ToolbarDropdown.jsx` | Popup / Main Toolbar | Partial | Needs review | No | Generic toolbar popup/dropdown, not yet split into specific Figma variants like Branches or Settings |
-| ProjectWidget | `src/ui/components/projectwidget/ProjectWidget.jsx` | Popup / Projects | Yes | Needs review | No | Strong candidate match for the Projects popup |
+| ProjectWidget | `src/ui/components/projectwidget/ProjectWidget.jsx` | Popup / Projects | Yes | Needs review | No | Strong candidate match for the Projects popup (renamed from ProjectSelector) |
 | StatusBar | `src/ui/components/statusbar/StatusBar.jsx` | Main Window | Yes | Unknown | No | Likely part of window shell |
 | StatusBarBreadcrumb | `src/ui/components/statusbar/StatusBarBreadcrumb.jsx` | Main Window | Yes | Unknown | No | Likely part of window shell |
 | StatusBarProgress | `src/ui/components/statusbar/StatusBarProgress.jsx` | Main Window | Yes | Unknown | No | Likely part of window shell |
@@ -90,6 +90,7 @@
 | Notification | `src/ui/components/notification/Notification.jsx` | [Notification](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=3595-83697) | Yes | Needs review | No | New: info/warning/error/success types, title, actions, timestamp. Showcase page added as "Balloon". |
 | ToolbarSeparator | `src/ui/components/toolbar/ToolbarSeparator.jsx` | [Toolbar / Separator](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=5701-76320) | Yes | Needs review | No | New: vertical/horizontal orientation for toolbar dividers. |
 | DialogGroupHeader | `src/ui/components/dialog/DialogGroupHeader.jsx` | [Dialog / Group Header](https://www.figma.com/design/zKwabe7qCf1c0LFu93997q/Int-UI-Kit--Islands?node-id=7072-91228) | Yes | Needs review | No | New: section header with title + separator line. |
+| VCSLogWindow | `src/ui/components/toolwindow/VCSLogWindow.jsx` | [VCS Log](https://www.figma.com/design/g2D8IcRkSJTt9vAmhp0Amu/VCS-Components?node-id=234-10695) | Partial | Needs review | No | WIP: 3-panel layout (branches, commit log, details), SVG graph dots, branch tree. Needs polish. |
 
 ## Known audit gaps to resolve next
 
@@ -110,28 +111,30 @@
 
 ## Figma components with no repo implementation yet
 
-| Figma component | Node ID | Priority | Notes |
-| --- | --- | --- | --- |
-| ~~Tooltip / Tooltip~~ | ~~55:9038~~ | ~~Medium~~ | **Implemented** as `Tooltip` component |
-| Tooltip / Got It | 56:8741 | Low | Onboarding tooltip with arrow |
-| Tooltip / Help | 7191:45453 | Low | Help tooltip |
-| Tooltip / Editor | 71:9760 | Low | Error/Warning/Success/Info editor tooltips |
-| Tooltip / Validation | 10134:67704 | Medium | Validation error/warning tooltips |
-| ~~Notification~~ | ~~3595:83697~~ | ~~Medium~~ | **Implemented** as `Notification` component |
-| Notification stack | 461:98574 | Low | Stacked notifications |
-| Scrollbar | 6222:73552 | Low | Horizontal/Vertical scrollbar |
-| Shortcut sequence | 20050:22805 | Low | Keyboard shortcut display |
-| Code Sample | 3711:79004 | Low | Inline code sample |
-| Loader Animated | 5767:82632 | Medium | Spinning loader |
-| Editor | 7059:95560 | Medium | Full editor component |
-| Editor / Search Replace | 27268:37610 | Medium | Find/replace bar |
-| Toolbar | 1146:54334 | Medium | Horizontal/Vertical toolbar |
-| Toolbar / Button | 5701:76161 | Medium | Toolbar text button with states |
-| Toolbar / Dropdown | 9393:66721 | Medium | Toolbar dropdown with states |
-| Toolbar / Search | 9578:67119 | Medium | Toolbar inline search |
-| ~~Toolbar / Separator~~ | ~~5701:76320~~ | ~~Low~~ | **Implemented** as `ToolbarSeparator` component |
+
+| Figma component           | Node ID        | Priority   | Notes                                            |
+| ------------------------- | -------------- | ---------- | ------------------------------------------------ |
+| ~~Tooltip / Tooltip~~     | ~~55:9038~~    | ~~Medium~~ | **Implemented** as `Tooltip` component           |
+| Tooltip / Got It          | 56:8741        | Low        | Onboarding tooltip with arrow                    |
+| Tooltip / Help            | 7191:45453     | Low        | Help tooltip                                     |
+| Tooltip / Editor          | 71:9760        | Low        | Error/Warning/Success/Info editor tooltips       |
+| Tooltip / Validation      | 10134:67704    | Medium     | Validation error/warning tooltips                |
+| ~~Notification~~          | ~~3595:83697~~ | ~~Medium~~ | **Implemented** as `Notification` component      |
+| Notification stack        | 461:98574      | Low        | Stacked notifications                            |
+| Scrollbar                 | 6222:73552     | Low        | Horizontal/Vertical scrollbar                    |
+| Shortcut sequence         | 20050:22805    | Low        | Keyboard shortcut display                        |
+| Code Sample               | 3711:79004     | Low        | Inline code sample                               |
+| Loader Animated           | 5767:82632     | Medium     | Spinning loader                                  |
+| Editor                    | 7059:95560     | Medium     | Full editor component                            |
+| Editor / Search Replace   | 27268:37610    | Medium     | Find/replace bar                                 |
+| Toolbar                   | 1146:54334     | Medium     | Horizontal/Vertical toolbar                      |
+| Toolbar / Button          | 5701:76161     | Medium     | Toolbar text button with states                  |
+| Toolbar / Dropdown        | 9393:66721     | Medium     | Toolbar dropdown with states                     |
+| Toolbar / Search          | 9578:67119     | Medium     | Toolbar inline search                            |
+| ~~Toolbar / Separator~~   | ~~5701:76320~~ | ~~Low~~    | **Implemented** as `ToolbarSeparator` component  |
 | ~~Dialog / Group Header~~ | ~~7072:91228~~ | ~~Medium~~ | **Implemented** as `DialogGroupHeader` component |
-| Selection | 26807:71264 | Low | Selection patterns |
+| Selection                 | 26807:71264    | Low        | Selection patterns                               |
+
 
 ## Completed implementation targets
 
@@ -160,3 +163,4 @@ Remaining Figma components not yet implemented, in rough priority order:
 13. **Shortcut sequence** (20050:22805) — Keyboard shortcut display
 14. **Code Sample** (3711:79004) — Inline code sample
 15. **Selection** (26807:71264) — Selection patterns
+
