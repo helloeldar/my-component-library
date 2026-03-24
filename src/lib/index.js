@@ -3,6 +3,9 @@
  * A design system for building JetBrains-style interfaces
  */
 
+// Global styles (theme tokens, typography)
+import './styles';
+
 // Theme Provider
 export { ThemeProvider, useTheme } from '../ThemeContext';
 
