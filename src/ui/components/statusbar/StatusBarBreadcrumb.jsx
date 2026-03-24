@@ -51,11 +51,11 @@ function StatusBarBreadcrumb({
     const renderIcon = () => {
         if (!icon) return null;
         
-        // If iconName is provided, use the Icon component with light theme
+        // If iconName is provided, use the Icon component with dark theme (status bar has dark bg)
         if (iconName) {
             return (
                 <div className="status-bar-breadcrumb-icon">
-                    <Icon name={iconName} size={16} forceTheme="light" />
+                    <Icon name={iconName} size={16} forceTheme="dark" />
                 </div>
             );
         }
@@ -63,7 +63,7 @@ function StatusBarBreadcrumb({
         // Default placeholder icon (stub)
         return (
             <div className="status-bar-breadcrumb-icon">
-                <Icon name="misc/stub" size={16} forceTheme="light" />
+                <Icon name="misc/stub" size={16} forceTheme="dark" />
             </div>
         );
     };

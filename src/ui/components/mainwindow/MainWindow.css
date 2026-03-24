@@ -13,6 +13,7 @@
     height: 100%;
     min-height: 600px;
     overflow: hidden;
+    position: relative;
 }
 
 /* Main Content Area (stripes + center) */
@@ -239,5 +240,33 @@
     .main-window-stripe-left {
         display: none;
     }
+}
+
+/* ============================================
+   OVERLAYS (Search Everywhere, Settings)
+   ============================================ */
+
+.main-window-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 500;
+}
+
+.main-window-overlay-modal {
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-window-overlay-popup {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.main-window-overlay-dialog {
+    /* centered by flex on parent */
 }
 

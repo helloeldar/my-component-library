@@ -14,6 +14,8 @@ function MainToolbar({
     branchName = "main",
     runConfig = "IDEA Community",
     runState = "default",
+    onSearchEverywhere,
+    onSettings,
     className = "",
     ...props
 }) {
@@ -80,8 +82,8 @@ function MainToolbar({
                 <MainToolbarVerticalSeparator />
                 <div className="toolbar-actions">
                     <MainToolbarIconButton icon="codeWithMe/cwmAccess@20x20" tooltip="Code With Me" />
-                    <MainToolbarIconButton icon="general/search@20x20" tooltip="Search Everywhere" shortcut="Double ⇧" />
-                    <MainToolbarIconButton icon="general/settings@20x20" tooltip="Settings" />
+                    <MainToolbarIconButton icon="general/search@20x20" tooltip="Search Everywhere" shortcut="Double ⇧" onClick={onSearchEverywhere} />
+                    <MainToolbarIconButton icon="general/settings@20x20" tooltip="Settings" onClick={onSettings} />
                 </div>
             </div>
         </div>

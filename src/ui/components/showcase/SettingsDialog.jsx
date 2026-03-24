@@ -33,7 +33,7 @@ const FONT_OPTIONS = [
 
 const SIZE_OPTIONS = ['11', '12', '13', '14', '15', '16'].map(v => ({ value: v, label: v }));
 
-function SettingsDialog() {
+function SettingsDialog({ onClose }) {
     const [searchValue, setSearchValue] = useState('');
     const [selectedNode, setSelectedNode] = useState('appearance');
 
@@ -69,9 +69,9 @@ function SettingsDialog() {
             height={653}
             className="settings-dialog"
             buttons={[
-                { children: 'Cancel' },
+                { children: 'Cancel', onClick: onClose },
                 { children: 'Apply', disabled: true },
-                { children: 'OK' },
+                { children: 'OK', onClick: onClose },
             ]}
         >
             <div className="settings-layout">

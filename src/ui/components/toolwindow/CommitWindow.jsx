@@ -97,6 +97,9 @@ function CommitWindow({
     previousCommitMessage = DEFAULT_PREVIOUS_COMMIT,
     onCommit,
     onCommitAndPush,
+    focused = false,
+    onFocus,
+    onActionClick,
     className = '',
 }) {
     const [amend, setAmend] = useState(false);
@@ -166,6 +169,9 @@ function CommitWindow({
             width={width}
             height={height}
             actions={['more', 'minimize']}
+            onActionClick={onActionClick}
+            focused={focused}
+            onFocus={onFocus}
             className={`commit-window ${className}`}
         >
             {/* Toolbar */}

@@ -21,6 +21,11 @@
   - Commit graph uses CSS `border-radius: 50%` circles with connecting lines (not SVG icons).
   - `vcs/vcs` and `vcs/branch` icons don't exist in the library — used `vcs/changes` as substitute (same pattern as `PopupBranches.jsx`). No star icon exists — used Unicode `★` character styled in gold.
   - Registered in `componentsConfig.js` (category: `windows`), page + route in `App.js` at `/vcslog`.
+- **Updated (graph refactor):** Replaced CSS div-based graph dots with inline SVG circles.
+  - Regular commit: 9×9 `<circle fill>` — matches Figma node `146:5208`.
+  - HEAD commit: 13×13 SVG with **three concentric circles** (outer ring r=6, middle ring r=4, inner dot r=2.5) — matches Figma node `49:28625` ("Circles in circles :)").
+  - SVG ring gaps are transparent → adapt to any row background (selected/hover/default) without needing a background color override.
+  - Removed incorrect logic that changed dot color to orange on row selection — dot color reflects branch color, not selection state.
 
 ## Settings Dialog
 ### 2026-03-23
@@ -36,6 +41,17 @@
   - **Footer**: Cancel/Apply(disabled)/OK buttons via `Dialog` component's `buttons` prop.
   - Registered in `componentsConfig.js` (key: `settings`, category: `windows`) + route `/settings` in `App.js`.
 
+## MainWindow interactive wiring
+### 2026-03-23
+- **Done:** Wired up 4 interactive elements in the Main Window demo:
+  - **"Commit" stripe button** → opens `CommitWindow` in the left panel (was showing generic empty ToolWindow). Added `focused`/`onFocus` props to `CommitWindow.jsx`.
+  - **"Git" stripe button** → moved from left stripe top section to bottom stripe section. Opens `VCSLogWindow` in the bottom panel. Renamed id from `pullRequests` to `git`.
+  - **"Search Everywhere" toolbar button** → opens `SearchEverywherePopup` as a centered overlay. Click outside to dismiss.
+  - **"Settings" toolbar button** → opens `SettingsDialog` as a modal overlay with backdrop. Cancel/OK buttons dismiss it.
+  - Added `onSearchEverywhere`/`onSettings` props to `MainToolbar.jsx`.
+  - Added `onClose` prop to `SettingsDialog.jsx` (passed to Cancel and OK buttons).
+  - Added overlay CSS classes to `MainWindow.css`: `.main-window-overlay`, `.main-window-overlay-modal`, `.main-window-overlay-popup`, `.main-window-overlay-dialog`. Added `position: relative` to `.main-window`.
+
 ## Commit Tool Window
 ### 2026-03-23
 - **Done:** Created `CommitWindow` component (`src/ui/components/toolwindow/CommitWindow.jsx` + `.css`) matching Figma node 27921:15443.
@@ -45,6 +61,8 @@
   - Bottom panel: `Checkbox` (Amend), `general/history` icon button, AI icon button, "X modified" link text, textarea, Commit (primary) + Commit and Push... (secondary) buttons, settings icon button
   - Props: `title`, `width`, `height`, `files`, `commitMessage`, `onCommit`, `onCommitAndPush`, `className`
   - Registered in `componentsConfig.js` (key: `commit`, section: `appkit`, category: `windows`) and route `/commit` in `App.js`
+  - Committed as `25c7209` on `bulat/sprint`: `feat(toolwindow): add Commit tool window with VCS file tree and amend support`
+  - Additional cross-cutting changes in this commit: `TreeNode` got `prefix` prop; `Checkbox`/`Radio`/`RunWidget` switched to CSS `:focus-visible` focus rings; `Themes.css` got `--vcs-added-text`/`--vcs-deleted-text`; new `ai/specs/Interaction specs.md`
 
 ## Popup / Find in Files component
 ### 2026-03-23
