@@ -1,0 +1,20 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <path fill="url(#a)" d="m10.17 1.83-8.34 8.34A6.25 6.25 0 0 0 0 14.59V29.5A2.5 2.5 0 0 0 2.5 32h14.91a6.26 6.26 0 0 0 4.42-1.83l8.34-8.34A6.25 6.25 0 0 0 32 17.41V2.5A2.5 2.5 0 0 0 29.5 0H14.59a6.26 6.26 0 0 0-4.42 1.83"/>
+  <path d="M24 8H4v20h20z"/>
+  <path fill="#fff" d="M15 23.5H6.5v2H15z"/>
+  <path fill="#12B81B" d="M32 16H16v16h16z"/>
+  <path fill="url(#b)" d="M32 16H16v16h16z"/>
+  <path fill="#fff" d="m28 24-8 5V19z"/>
+  <defs>
+    <linearGradient id="a" x1=".425" x2="31.31" y1="31.36" y2=".905" gradientUnits="userSpaceOnUse">
+      <stop  offset="0" stop-color="#FF9419"/>
+      <stop offset=".43" stop-color="#FF021D"/>
+      <stop offset=".99" stop-color="#E600FF"/>
+    </linearGradient>
+    <linearGradient id="b" x1="24" x2="24" y1="16" y2="32" gradientUnits="userSpaceOnUse">
+      <stop  offset="0" stop-color="#15BF13"/>
+      <stop offset="1" stop-color="#039A3E"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,35 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#a)">
+    <mask id="b" width="104" height="104" x="12" y="12" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+      <path fill="#fff" d="M37.883 12C21.263 12 12 21.263 12 37.883v52.234C12 106.74 21.263 116 37.883 116h52.234C106.74 116 116 106.737 116 90.117V37.883C116 21.26 106.737 12 90.117 12z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="#FDB60D" d="M71.315 12H12v43.877h17.185z"/>
+      <path fill="url(#c)" d="m75.426 12-.589 104.004h41.167V12z"/>
+      <path fill="url(#d)" d="M116.004 12H68.885L12 49.397v66.607h66.603l37.401-88.574z"/>
+    </g>
+    <path d="M96.503 31.5H31.501v65.003h65.002z"/>
+    <path fill="#fff" d="m57.503 55.974 13.374 8.028-13.374 8.028V55.99m-6.5-11.489v39.002l32.5-19.501z"/>
+  </g>
+  <defs>
+    <linearGradient id="c" x1="118.901" x2="74.48" y1="114.659" y2="18.821" gradientUnits="userSpaceOnUse">
+      <stop offset=".3" stop-color="#FDB60D"/>
+      <stop offset=".7" stop-color="#FF45ED"/>
+    </linearGradient>
+    <linearGradient id="d" x1="116.008" x2="12" y1="12.004" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset=".31" stop-color="#FF45ED"/>
+      <stop offset=".83" stop-color="#6B57FF"/>
+    </linearGradient>
+    <filter id="a" width="110.5" height="110.5" x="8.75" y="10" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="1.25"/>
+      <feGaussianBlur stdDeviation="1.625"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_29_15418"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_29_15418" result="shape"/>
+    </filter>
+  </defs>
+</svg>

@@ -1,0 +1,18 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <path fill="url(#a)" d="M2.06 32h17.065c.83 0 1.58-.495 1.9-1.26l7.9-18.71c.11-.26.165-.54.16-.82l-.075-9.165A2.06 2.06 0 0 0 26.95 0h-8.835c-.4 0-.795.12-1.13.34L.93 10.895c-.58.38-.93 1.025-.93 1.72V29.94C0 31.075.925 32 2.06 32"/>
+  <path fill="url(#b)" d="M24.505 29h5.43c1.14 0 2.065-.925 2.065-2.06v-6.285c0-.1 0-.2-.02-.3l-2.725-18.59A2.065 2.065 0 0 0 27.215 0h-7.7c-1.14 0-2.065.925-2.065 2.065v9.25q.001.324.1.625l4.99 15.625A2.07 2.07 0 0 0 24.505 29"/>
+  <path fill="#FDB60D" d="M23.775 29h6.13c1.15 0 2.08-.945 2.06-2.095L32 21.5c-.01-.59-.395-1.265-.84-1.65L12.08 3.495A2.07 2.07 0 0 0 10.735 3H5.06C3.925 3 3 3.925 3 5.06v5.505c0 .595.255 1.16.705 1.55l18.71 16.375c.38.33.86.51 1.36.51"/>
+  <path d="M26 6H6v20h20z"/>
+  <path fill="#fff" d="M14 13.53 18.115 16 14 18.47v-4.935M12 10v12l10-6z"/>
+  <defs>
+    <linearGradient id="a" x1="29.839" x2=".54" y1="2.036" y2="31.331" gradientUnits="userSpaceOnUse">
+      <stop offset=".31" stop-color="#FF45ED"/>
+      <stop offset=".83" stop-color="#6B57FF"/>
+    </linearGradient>
+    <linearGradient id="b" x1="32.194" x2="19.804" y1="28.165" y2="1.435" gradientUnits="userSpaceOnUse">
+      <stop offset=".3" stop-color="#FDB60D"/>
+      <stop offset=".7" stop-color="#FF45ED"/>
+    </linearGradient>
+  </defs>
+</svg>

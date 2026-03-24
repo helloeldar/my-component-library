@@ -1,0 +1,35 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#a)">
+    <mask id="b" width="28" height="28" x="2" y="2" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+      <path fill="#fff" d="M8.969 2C4.494 2 2 4.494 2 8.969V23.03C2 27.507 4.494 30 8.969 30H23.03c4.477 0 6.97-2.494 6.97-6.969V8.97C30 4.493 27.506 2 23.031 2z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="#FDB60D" d="M17.97 2H2v11.813h4.627z"/>
+      <path fill="url(#d)" d="m19.076 2-.158 28.001H30V2z"/>
+      <path fill="url(#e)" d="M30.001 2H17.315L2 12.068v17.933h17.932l10.07-23.847z"/>
+    </g>
+    <path d="M24.75 7.25H7.25v17.5h17.5z"/>
+    <path fill="#fff" d="M14.25 13.84 17.852 16l-3.6 2.162v-4.318M12.5 10.75v10.5L21.25 16z"/>
+  </g>
+  <defs>
+    <linearGradient id="d" x1="30.781" x2="18.822" y1="29.639" y2="3.836" gradientUnits="userSpaceOnUse">
+      <stop offset=".3" stop-color="#FDB60D"/>
+      <stop offset=".7" stop-color="#FF45ED"/>
+    </linearGradient>
+    <linearGradient id="e" x1="30.002" x2="2" y1="2.001" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset=".31" stop-color="#FF45ED"/>
+      <stop offset=".83" stop-color="#6B57FF"/>
+    </linearGradient>
+    <filter id="a" width="31.2" height="31.2" x=".4" y="1.1" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy=".7"/>
+      <feGaussianBlur stdDeviation=".8"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_29_15419"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_29_15419" result="shape"/>
+    </filter>
+  </defs>
+</svg>

@@ -1,0 +1,35 @@
+<!-- Copyright © 2000–2024 JetBrains s.r.o. -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#a)">
+    <mask id="b" width="412" height="412" x="50" y="50" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+      <path fill="#fff" d="M152.537 50C86.695 50 50 86.695 50 152.537v206.926C50 425.321 86.695 462 152.537 462h206.926C425.321 462 462 425.305 462 359.463V152.537C462 86.679 425.305 50 359.463 50z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="#FDB60D" d="M284.978 50H50v173.819h68.079z"/>
+      <path fill="url(#c)" d="m301.265 50-2.333 412.016h163.084V50z"/>
+      <path fill="url(#d)" d="M462.016 50H275.353L50 198.149v263.867h263.851l148.165-350.89z"/>
+    </g>
+    <path d="M384.763 127.253h-257.51v257.51h257.51z"/>
+    <path fill="#fff" d="m230.26 224.205 52.983 31.803-52.983 31.802v-63.54m-25.751-45.515v154.506l128.755-77.253z"/>
+  </g>
+  <defs>
+    <linearGradient id="c" x1="473.491" x2="297.515" y1="456.689" y2="77.022" gradientUnits="userSpaceOnUse">
+      <stop offset=".3" stop-color="#FDB60D"/>
+      <stop offset=".7" stop-color="#FF45ED"/>
+    </linearGradient>
+    <linearGradient id="d" x1="462.032" x2="50" y1="50.016" y2="462" gradientUnits="userSpaceOnUse">
+      <stop offset=".31" stop-color="#FF45ED"/>
+      <stop offset=".83" stop-color="#6B57FF"/>
+    </linearGradient>
+    <filter id="a" width="438" height="438" x="37" y="42" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="5"/>
+      <feGaussianBlur stdDeviation="6.5"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_29_15416"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_29_15416" result="shape"/>
+    </filter>
+  </defs>
+</svg>
