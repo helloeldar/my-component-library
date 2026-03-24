@@ -291,7 +291,7 @@
     border-radius: 6px;
     background: transparent;
     color: var(--text-secondary, #868A91);
-    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-family: "Inter", -apple-system, sans-serif;
     font-size: 12px;
     line-height: 20px;
     cursor: pointer;
@@ -312,8 +312,8 @@
 }
 
 .editor-reader-mode-badge:hover {
-    background: var(--bg-hover, #3C3F41);
-    color: var(--text-primary, #DFE1E5);
+    background: var(--core-bg-transparent-hovered);
+    color: var(--text-default);
 }
 
 .editor-reader-mode-tooltip {
@@ -329,16 +329,16 @@
 }
 
 .editor-reader-mode-tooltip-title {
-    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-family: "Inter", -apple-system, sans-serif;
     font-size: 13px;
     font-weight: 700;
     line-height: 18px;
-    color: var(--text-primary, #DFE1E5);
+    color: var(--text-default);
     margin-bottom: 6px;
 }
 
 .editor-reader-mode-tooltip-body {
-    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-family: "Inter", -apple-system, sans-serif;
     font-size: 12px;
     line-height: 17px;
     color: var(--text-secondary, #868A91);
@@ -350,10 +350,10 @@
     padding: 0;
     border: none;
     background: none;
-    font-family: var(--font-family-ui, "Inter", -apple-system, sans-serif);
+    font-family: "Inter", -apple-system, sans-serif;
     font-size: 12px;
     line-height: 17px;
-    color: var(--link-color, #548AF7);
+    color: var(--text-link);
     cursor: pointer;
 }
 

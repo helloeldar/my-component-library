@@ -80,7 +80,7 @@
 }
 
 .popup-branches-branch-active::before {
-    background-color: var(--selection-bg);
+    background-color: var(--selection-bg-active);
 }
 
 .popup-branches-branch > * {

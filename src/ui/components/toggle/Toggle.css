@@ -29,7 +29,7 @@
 
 /* Toggle ON state */
 .toggle-on .toggle-track {
-    background: var(--control-bg-pressed);
+    background: var(--core-bg-transparent-pressed);
     border: 1px solid var(--control-border-raised);
 }
 
@@ -62,7 +62,7 @@
     left: 18px;
     width: 34px;
     height: 18px;
-    background: var(--control-bg-pressed);
+    background: var(--core-bg-transparent-pressed);
     border-radius: 0 2px 2px 0;
 }
 

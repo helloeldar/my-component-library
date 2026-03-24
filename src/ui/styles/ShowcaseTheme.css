@@ -1,0 +1,61 @@
+/*
+ * Showcase Theme Tokens
+ * These tokens control the appearance of the UI Showcase app (sidebar, pages, cards, demos).
+ * They are separate from the UI Kit library tokens so the showcase can be styled independently.
+ */
+
+.theme-light {
+    /* Showcase layout */
+    --showcase-bg: var(--layer-0-bg);
+    --showcase-sidebar-bg: var(--layer-2-bg);
+    --showcase-sidebar-border: var(--layer-1-border);
+    --showcase-content-bg: var(--layer-0-bg);
+    --showcase-card-bg: var(--layer-2-bg);
+    --showcase-card-border: var(--layer-0-border);
+    --showcase-card-hover-bg: var(--layer-1-bg);
+    --showcase-card-hover-border: var(--layer-1-border);
+    --showcase-section-bg: var(--layer-1-bg);
+    --showcase-section-border: var(--layer-0-border);
+    --showcase-examples-bg: var(--layer-2-bg);
+    --showcase-examples-border: var(--layer-1-border);
+    --showcase-nav-active-bg: var(--layer-1-bg);
+    --showcase-nav-hover-bg: var(--transparent-black-10);
+    --showcase-preview-bg: var(--layer-1-bg);
+    --showcase-badge-bg: var(--layer-1-bg);
+    --showcase-badge-border: var(--layer-0-border);
+
+    /* Island layout (MainWindow demo) */
+    --island-bg: var(--layer-0-bg);
+    --island-bg-overlay: var(--transparent-black-10);
+    --island-border: rgba(0, 0, 0, 0.1);
+    --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --island-editor-bg: var(--layer-2-bg);
+}
+
+.theme-dark {
+    /* Showcase layout */
+    --showcase-bg: var(--layer-0-bg);
+    --showcase-sidebar-bg: var(--layer-2-bg);
+    --showcase-sidebar-border: var(--layer-1-border);
+    --showcase-content-bg: var(--layer-0-bg);
+    --showcase-card-bg: var(--layer-2-bg);
+    --showcase-card-border: var(--layer-0-border);
+    --showcase-card-hover-bg: var(--layer-1-bg);
+    --showcase-card-hover-border: var(--layer-1-border);
+    --showcase-section-bg: var(--layer-1-bg);
+    --showcase-section-border: var(--layer-0-border);
+    --showcase-examples-bg: var(--layer-2-bg);
+    --showcase-examples-border: var(--layer-1-border);
+    --showcase-nav-active-bg: var(--layer-1-bg);
+    --showcase-nav-hover-bg: var(--transparent-white-10);
+    --showcase-preview-bg: var(--layer-1-bg);
+    --showcase-badge-bg: var(--layer-1-bg);
+    --showcase-badge-border: var(--layer-0-border);
+
+    /* Island layout (MainWindow demo) */
+    --island-bg: var(--layer-1-bg);
+    --island-bg-overlay: rgba(0, 0, 0, 0.12);
+    --island-border: rgba(255, 255, 255, 0.08);
+    --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+    --island-editor-bg: var(--layer-0-bg);
+}

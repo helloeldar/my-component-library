@@ -64,8 +64,8 @@
 }
 
 .checkbox-checked.checkbox-disabled {
-    background: var(--control-bg-pressed);
-    border-color: var(--control-bg-pressed);
+    background: var(--core-bg-transparent-pressed);
+    border-color: var(--core-bg-transparent-pressed);
 }
 
 /* Invalid ring — same pattern, red stroke */

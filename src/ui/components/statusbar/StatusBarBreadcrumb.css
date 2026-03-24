@@ -70,7 +70,7 @@
 
 /* Hovered state */
 .status-bar-breadcrumb-hovered {
-    background: var(--control-bg-hover);
+    background: var(--core-bg-transparent-hovered);
     cursor: pointer;
 }
 
@@ -114,7 +114,7 @@
 
 /* Interactive states - apply hover styles on actual hover */
 .status-bar-breadcrumb-default:hover {
-    background: var(--control-bg-hover);
+    background: var(--core-bg-transparent-hovered);
     cursor: pointer;
 }
 

@@ -2,15 +2,15 @@
     display: flex;
     min-height: 100vh;
     font-family: Inter, sans-serif;
-    background: var(--bg-primary);
+    background: var(--showcase-bg);
     color: var(--text-default);
 }
 
 .sidebar {
     width: 220px;
     min-width: 180px;
-    background: var(--bg-elevated);
-    border-right: 1px solid var(--border-secondary);
+    background: var(--showcase-sidebar-bg);
+    border-right: 1px solid var(--showcase-sidebar-border);
     padding: 16px 8px;
     flex-shrink: 0;
     overflow-y: auto;
@@ -124,7 +124,7 @@
 }
 
 .nav-item.active {
-    background: var(--bg-secondary);
+    background: var(--showcase-nav-active-bg);
     color: var(--text-link);
     font-weight: 500;
 }
@@ -167,7 +167,7 @@
 .main-content {
     flex: 1;
     padding: 40px;
-    background: var(--bg-primary);
+    background: var(--showcase-bg);
     min-width: 0;
 }
 
@@ -184,7 +184,7 @@
     margin-top: 16px;
     border-radius: 8px;
     overflow: hidden;
-    background: var(--bg-primary);
+    background: var(--showcase-bg);
 }
 
 .component-showcase {
@@ -226,8 +226,8 @@
     padding: 48px 24px 52px 24px;
     justify-content: center;
     align-items: center;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-secondary);
+    background: var(--showcase-sidebar-bg);
+    border: 1px solid var(--showcase-examples-border);
     border-radius: 8px;
     display: flex;
     gap: 12px;
@@ -238,8 +238,8 @@
 .component-examples-vertical {
     width: 706px;
     padding: 48px 40px 52px 40px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-secondary);
+    background: var(--showcase-sidebar-bg);
+    border: 1px solid var(--showcase-examples-border);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -298,7 +298,7 @@ a.logo:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: var(--bg-elevated);
+    background: var(--showcase-sidebar-bg);
     padding: 20px;
     border-radius: 8px;
     width: fit-content;

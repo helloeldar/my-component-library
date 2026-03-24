@@ -45,7 +45,7 @@
 
 /* Hovered state */
 .status-bar-widget-hovered {
-    background: var(--control-bg-hover);
+    background: var(--core-bg-transparent-hovered);
 }
 
 .status-bar-widget-hovered .status-bar-widget-text {
@@ -54,7 +54,7 @@
 
 /* Pressed state */
 .status-bar-widget-pressed {
-    background: var(--control-bg-hover);
+    background: var(--core-bg-transparent-hovered);
 }
 
 .status-bar-widget-pressed .status-bar-widget-text {
@@ -62,10 +62,10 @@
 }
 
 .status-bar-widget-default:hover {
-    background: var(--control-bg-hover);
+    background: var(--core-bg-transparent-hovered);
 }
 
 /* Active/pressed behavior */
 .status-bar-widget:active {
-    background: var(--control-bg-hover);
+    background: var(--core-bg-transparent-hovered);
 }

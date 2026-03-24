@@ -84,7 +84,7 @@
 }
 
 .status-bar-progress-stop {
-    background: var(--control-bg-hover);
+    background: var(--core-bg-transparent-hovered);
 }
 
 .status-bar-progress-stop:hover {

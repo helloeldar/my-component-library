@@ -91,7 +91,7 @@
 }
 
 .vcs-log-tree-node:hover {
-    background: var(--tree-hover-bg, rgba(128,128,128,0.08));
+    background: var(--tree-node-bg-hover));
 }
 
 .vcs-log-tree-node.selected {
@@ -251,7 +251,7 @@
 }
 
 .vcs-log-commit-row:hover {
-    background: var(--tree-hover-bg, rgba(128,128,128,0.08));
+    background: var(--tree-node-bg-hover));
 }
 
 .vcs-log-commit-row.selected {
@@ -470,7 +470,7 @@
 }
 
 .vcs-log-details-tree-node:hover {
-    background: var(--tree-hover-bg, rgba(128,128,128,0.08));
+    background: var(--tree-node-bg-hover));
 }
 
 .vcs-log-details-tree-label {

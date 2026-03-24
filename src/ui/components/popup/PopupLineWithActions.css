@@ -16,7 +16,7 @@
     content: '';
     position: absolute;
     inset: 0 0;
-    background-color: var(--selection-bg);
+    background-color: var(--selection-bg-active);
     border-radius: 4px;
     z-index: 0;
 }
@@ -61,7 +61,7 @@
 }
 
 .popup-line-with-actions-text {
-    color: var(--text-primary);
+    color: var(--text-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -97,7 +97,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: var(--text-primary);
+    color: var(--text-default);
     box-sizing: border-box;
 }
 

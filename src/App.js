@@ -63,6 +63,7 @@ import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/ij-platform-logo.svg';
 import { getSortedWindowsOnly, getComponentsBySection } from './componentsConfig';
 import './ui/styles/Themes.css';
+import './ui/styles/ShowcaseTheme.css';
 import './App.css';
 
 // Page Components
