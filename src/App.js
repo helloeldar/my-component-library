@@ -2176,33 +2176,20 @@ function ToolbarDropdownPage() {
             <h1>Toolbar Dropdown</h1>
 
             <div className="component-section">
-                <h2>Themes</h2>
+                <h2>Default</h2>
                 <p className="component-description">
-                    Toolbar dropdown buttons adapt to different toolbar backgrounds with appropriate text and hover colors.
+                    Dropdown button for the main toolbar with text label and chevron icon.
                 </p>
-                
-                <div className="component-group">
-                    <h3>Dark Theme (Default)</h3>
-                    <div className="component-examples" style={{ background: 'var(--gray-140)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
-                        <ToolbarDropdown text="File" theme="dark" />
-                        <ToolbarDropdown text="Edit" theme="dark" />
-                        <ToolbarDropdown icon="general/settings" text="Settings" theme="dark" />
-                    </div>
-                </div>
-
-                <div className="component-group">
-                    <h3>Light Header Theme</h3>
-                    <div className="component-examples" style={{ background: 'var(--white)', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-primary)', gap: '4px' }}>
-                        <ToolbarDropdown text="File" theme="light-header" />
-                        <ToolbarDropdown text="Edit" theme="light-header" />
-                        <ToolbarDropdown icon="general/settings" text="Settings" theme="light-header" />
-                    </div>
+                <div className="component-examples" style={{ background: 'var(--bg-elevated)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
+                    <ToolbarDropdown text="File" theme="dark" />
+                    <ToolbarDropdown text="Edit" theme="dark" />
+                    <ToolbarDropdown icon="general/settings" text="Settings" theme="dark" />
                 </div>
             </div>
 
             <div className="component-section">
                 <h2>States</h2>
-                <div className="component-examples" style={{ background: 'var(--gray-140)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
+                <div className="component-examples" style={{ background: 'var(--bg-elevated)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
                     <ToolbarDropdown text="Default" theme="dark" />
                     <ToolbarDropdown text="Disabled" theme="dark" disabled />
                 </div>
