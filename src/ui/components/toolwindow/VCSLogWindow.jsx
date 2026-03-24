@@ -4,6 +4,7 @@ import Icon from '../icon/Icon';
 import Search from '../search/Search';
 import ToolbarIconButton from '../iconbutton/IconButton';
 import ToolbarSeparator from '../toolbar/ToolbarSeparator';
+import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import './VCSLogWindow.css';
 
 /* ─── Static data ───────────────────────────────────────────────────────────── */
@@ -340,15 +341,9 @@ function CommitLog({ selectedId, onSelect }) {
                 </div>
 
                 {/* Filter buttons */}
-                <button className="vcs-log-filter-btn">
-                    Branch <span className="vcs-log-filter-caret">▾</span>
-                </button>
-                <button className="vcs-log-filter-btn">
-                    User <span className="vcs-log-filter-caret">▾</span>
-                </button>
-                <button className="vcs-log-filter-btn">
-                    Time <span className="vcs-log-filter-caret">▾</span>
-                </button>
+                <ToolbarDropdown text="Branch" theme="dark" />
+                <ToolbarDropdown text="User" theme="dark" />
+                <ToolbarDropdown text="Time" theme="dark" />
 
                 <ToolbarSeparator />
 
