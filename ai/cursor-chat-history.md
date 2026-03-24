@@ -33,3 +33,8 @@ Implemented all 4 phases from `ai/specs/Component Editability specs.md`:
 **Verification:**
 - `npm run build:lib` — passes
 - `npx react-scripts build` — passes
+
+Committed to branch `feat/component-editability` (286ef2b).
+
+### 2026-03-24 (continued)
+Created `ai/specs/Component Customization Guide.md` — practical guide for npm consumers showing how to edit every component area with code examples. Covers the "import defaults, tweak, pass back" pattern and lists all exported default data constants.
