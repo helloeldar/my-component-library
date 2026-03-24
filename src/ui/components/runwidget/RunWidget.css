@@ -98,15 +98,14 @@
     background: var(--toolbar-stop-bg-hovered);
 }
 
-/* Green icon color for Run/Debug buttons (non-accent state)
- * SVGR converts SVG stroke="white" → stroke="#fff" in React output,
- * so we target the "#fff" attribute value.
- */
-.run-widget-button-icon-green svg [stroke="#fff"] {
+/* Green icon color for Run/Debug buttons (non-accent state) */
+.run-widget-button-icon-green svg [stroke="#fff"],
+.run-widget-button-icon-green svg [stroke="white"] {
     stroke: var(--icon-green-stroke);
 }
 
-.run-widget-button-icon-green svg [fill="#fff"] {
+.run-widget-button-icon-green svg [fill="#fff"],
+.run-widget-button-icon-green svg [fill="white"] {
     fill: var(--icon-green-stroke);
 }
 
