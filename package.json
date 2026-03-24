@@ -42,6 +42,7 @@
     "build": "react-scripts build",
     "generate:icons": "node scripts/generateIconRegistry.js",
     "build:lib": "npm run generate:icons && rollup -c rollup.config.mjs",
+    "prepublishOnly": "npm run build:lib",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

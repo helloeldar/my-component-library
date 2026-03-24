@@ -1,6 +1,6 @@
 # Cursor chat — task log
 
-## NPM Package Update Process spec
+## NPM Package Update Process spec + fix
 ### 2026-03-24
 - **Issue:** Consumer repo couldn't see `Badge` component. Root cause: `src/lib/index.d.ts` was missing type declarations for Badge (and ~20 other recently added components). The JS exports and dist files were correct.
 - **Done:** Created `ai/specs/NPM Package Update Process.md` — documents the manual update checklist (export → types → build → commit → reinstall) and a 4-level automation plan:
@@ -8,7 +8,9 @@
   - Level 2 (soon): husky pre-commit hook to auto-rebuild dist
   - Level 3 (later): GitHub Actions CI/CD with semantic-release
   - Level 4 (DX): `npm link` + `rollup --watch` for instant local dev
-- Identified missing `index.d.ts` types for: Badge, Banner, Search, SegmentedControl, Alert, Table, Loader, Link, Dialog family, Tooltip family, Notification, Editor, WelcomeDialog, CommitWindow, ProblemsWindow, PopupProjects, PopupBranches, PopupFindInFiles.
+- **Fixed:** Added type declarations to `src/lib/index.d.ts` for all 25 missing components: Badge (+ BadgeNew/Beta/Free/Trial), Banner, Link, PopupProjects, PopupBranches, PopupFindInFiles, Loader, Search, SegmentedControl, Table, Alert, Dialog, DialogHeader, DialogFooter, DialogGroupHeader, WelcomeDialog, Tooltip, TooltipEditor, TooltipHelp, ValidationTooltip, GotItTooltip, Notification, Editor, ProblemsWindow, CommitWindow. Also added `invalid` prop to Checkbox/Radio types and `prefix` prop to TreeNode.
+- **Fixed:** Added `prepublishOnly` script to `package.json` — auto-runs `build:lib` before any `npm publish`.
+- **Done:** Rebuilt dist with `npm run build:lib` — 75 exports confirmed in dist/cjs/index.js.
 
 ## Component Editability audit and spec
 ### 2026-03-24
