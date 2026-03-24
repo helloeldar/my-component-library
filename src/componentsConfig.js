@@ -98,6 +98,7 @@ export const stylesPages = [
     { name: 'Typography', key: 'typography', description: 'Text styles for UI and editor', status: 'ready', preview: '/previews/typography.png' },
     { name: 'Colors', key: 'colors', description: 'Color scales and palettes', status: 'ready', preview: '/previews/colours.png' },
     { name: 'Semantic Colors', key: 'semanticcolors', description: 'Theme-aware semantic color tokens from Figma Islands', status: 'ready', preview: null },
+    { name: 'Icons', key: 'icons', description: 'All available icons grouped by category with search', status: 'ready', preview: null },
 ];
 
 // Returns home page sections with their pages populated
@@ -170,7 +171,8 @@ export const categoriesConfig = [
         pages: [
             { name: 'Typography', key: 'typography', description: 'Text styles for UI and editor' },
             { name: 'Colors', key: 'colors', description: 'Color scales and palettes' },
-            { name: 'Semantic Colors', key: 'semanticcolors', description: 'Theme-aware semantic color tokens from Figma Islands' }
+            { name: 'Semantic Colors', key: 'semanticcolors', description: 'Theme-aware semantic color tokens from Figma Islands' },
+            { name: 'Icons', key: 'icons', description: 'All available icons grouped by category with search' }
         ]
     },
     {

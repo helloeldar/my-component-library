@@ -16,6 +16,7 @@ import VCSLogWindow from './ui/components/toolwindow/VCSLogWindow';
 import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
 import SemanticColors from './ui/components/showcase/SemanticColors';
+import Icons from './ui/components/showcase/Icons';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
 import MainToolbarDemo from './ui/components/showcase/MainToolbarDemo';
 import Home from './Home';
@@ -3441,7 +3442,8 @@ function Sidebar() {
     const stylesItems = [
         { name: 'Typography', key: 'typography' },
         { name: 'Colors', key: 'colors' },
-        { name: 'Semantic Colors', key: 'semanticcolors' }
+        { name: 'Semantic Colors', key: 'semanticcolors' },
+        { name: 'Icons', key: 'icons' }
     ];
 
     const windowsItems = getSortedWindowsOnly().filter(c => c.key !== 'mainwindow');
@@ -3606,6 +3608,7 @@ function AppContent() {
                     <Route path="/typography" element={<Typography />} />
                     <Route path="/colors" element={<Colors />} />
                     <Route path="/semanticcolors" element={<SemanticColors />} />
+                    <Route path="/icons" element={<Icons />} />
                     <Route path="/banner" element={<BannerPage />} />
                     <Route path="/badge" element={<BadgePage />} />
                     <Route path="/buttons" element={<ButtonsPage />} />

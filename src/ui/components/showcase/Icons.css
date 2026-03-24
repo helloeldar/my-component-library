@@ -1,0 +1,106 @@
+/* Icons Showcase Styles */
+.icons-search-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-primary);
+    padding: 0 0 16px 0;
+}
+
+.icons-summary {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+.icons-group {
+    margin-bottom: 32px;
+}
+
+.icons-group-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--text-default);
+    margin: 0 0 12px 0;
+    text-transform: capitalize;
+}
+
+.icons-group-count {
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-left: 8px;
+}
+
+.icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.icon-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    background: var(--bg-elevated);
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    min-width: 0;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.icon-card:hover {
+    border-color: var(--control-border);
+}
+
+.icon-card:active {
+    background: var(--bg-tertiary);
+}
+
+.icon-card-copied {
+    border-color: var(--accent-brand-bg);
+}
+
+.icon-card-copied .icon-card-name {
+    color: var(--accent-brand-bg);
+    font-weight: 600;
+}
+
+.icon-card-preview {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-card-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--text-default);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.icon-card-name mark {
+    background: var(--accent-brand-bg);
+    color: var(--text-over-accent);
+    border-radius: 2px;
+    padding: 0 1px;
+}
+
+.icons-no-results {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+}

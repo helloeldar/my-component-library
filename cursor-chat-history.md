@@ -308,6 +308,18 @@
   - `.button-slim` overrides gap to `4px` (Figma: gap between icon+text is 4px for slim, 6px for default)
   - Slim button now uses `text-ui-default` (13px) instead of `text-ui-small` (12px) — Figma specifies 13px for both sizes
 
+## Icons showcase page
+### 2026-03-24
+- **Done:** Created `Icons` showcase page (`src/ui/components/showcase/Icons.jsx` + `Icons.css`) showing all ~959 icons from the library.
+  - Groups icons by directory (actions, general, nodes, toolwindows, etc.) with counts per group.
+  - Excludes `_dark` and `@size` variants (auto-resolved by `Icon` component).
+  - Excludes `checkbox-radiobutton` internal icons.
+  - Search filter with highlighted matches and result counts.
+  - Sticky search bar, responsive grid layout, hover border on icon cards.
+  - Each card shows the rendered `<Icon>` at 16px + monospace path name (e.g. `general/add`).
+  - Registered in `stylesPages` and `categoriesConfig` in `componentsConfig.js`.
+  - Route `/icons` added to `App.js`.
+
 ## Specs / AI RULES
 ### 2025-03-23
 - **Done:** User asked to record chat messages as requirements per **AI RULES.md**. Added structured reqs to **`ai/specs/Tooltip specs.md`** (showcase + props) and **`ai/specs/UI Showcase (App.js) Specs.md.md`** (chat→spec process + `/tooltip` showcase rule). Task: **`ai/tasks/Task - Chat requirements documented in specs.md`**.

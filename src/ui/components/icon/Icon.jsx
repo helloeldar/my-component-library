@@ -40,12 +40,13 @@ function Icon({ name, size = 16, className, forceTheme, ...props }) {
         return null;
     }
 
+    const sizeProps = size != null ? { width: size, height: size } : {};
+
     if (typeof iconEntry === 'string') {
         return (
             <img
                 src={iconEntry}
-                width={size}
-                height={size}
+                {...sizeProps}
                 className={`icon ${className || ''}`}
                 alt={resolvedName}
                 {...props}
@@ -57,8 +58,7 @@ function Icon({ name, size = 16, className, forceTheme, ...props }) {
 
     return (
         <IconComponent
-            width={size}
-            height={size}
+            {...sizeProps}
             className={`icon ${className || ''}`}
             {...props}
         />
