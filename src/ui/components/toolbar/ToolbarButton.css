@@ -1,0 +1,70 @@
+/* ToolbarButton — 26px text action button for tool-window toolbars.
+ * Figma: Toolbar / Button (node 5701:76161)
+ */
+.toolbar-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    padding: 2px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 0;
+    flex-shrink: 0;
+    color: var(--text-default);
+}
+
+/* State background — inset 2px, border-radius 3px (Figma _Toolbar / State) */
+.toolbar-button-state-bg {
+    position: absolute;
+    inset: 2px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.toolbar-button-hovered .toolbar-button-state-bg { background: var(--icon-button-hover-bg); }
+.toolbar-button-pressed .toolbar-button-state-bg { background: var(--icon-button-pressed-bg); }
+
+.toolbar-button-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 4px 3px 6px;
+    border-radius: 3px;
+}
+
+/* Text-only: equal padding on both sides */
+.toolbar-button:not(:has(.toolbar-button-icon)) .toolbar-button-content {
+    padding: 3px 6px;
+}
+
+.toolbar-button-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-secondary-stroke);
+}
+
+.toolbar-button-text {
+    white-space: nowrap;
+    color: var(--text-default);
+}
+
+.toolbar-button-chevron {
+    flex-shrink: 0;
+    color: var(--icon-secondary-stroke);
+}
+
+/* Disabled */
+.toolbar-button-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

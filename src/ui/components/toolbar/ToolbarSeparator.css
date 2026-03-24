@@ -1,7 +1,8 @@
 /* Toolbar Separator - vertical (in horizontal toolbar) */
+/* Figma: node 5701:76338 — 9×26px container, 1×20px line */
 .toolbar-separator-vertical {
     width: 9px;
-    height: 28px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,13 +11,14 @@
 
 .toolbar-separator-vertical .toolbar-separator-line {
     width: 1px;
-    height: 16px;
-    background: var(--separator);
+    height: 20px;
+    background: var(--toolbar-border);
 }
 
 /* Toolbar Separator - horizontal (in vertical toolbar) */
+/* Figma: node 5701:76340 — 26×9px container, 20×1px line */
 .toolbar-separator-horizontal {
-    width: 28px;
+    width: 26px;
     height: 9px;
     display: flex;
     align-items: center;
@@ -25,7 +27,7 @@
 }
 
 .toolbar-separator-horizontal .toolbar-separator-line {
-    width: 16px;
+    width: 20px;
     height: 1px;
-    background: var(--separator);
+    background: var(--toolbar-border);
 }

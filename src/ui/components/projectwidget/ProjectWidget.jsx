@@ -1,10 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
 import Popup from '../popup/Popup';
 import PopupProjects from '../popup/PopupProjects';
-import Icon from '../icon/Icon';
+import MainToolbarDropdown from '../maintoolbar/MainToolbarDropdown';
 import './ProjectWidget.css';
 
-function ProjectWidget(props) {
+function ProjectWidget({
+    projectName,
+    projectIcon,
+    projectColor,
+    projects,
+    state,
+    onClick,
+    onProjectSelect,
+}) {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef(null);
 
@@ -20,63 +28,50 @@ function ProjectWidget(props) {
     }, [isOpen]);
 
     const handleClick = () => {
-        setIsOpen(!isOpen);
-        if (props.onClick) {
-            props.onClick();
-        }
+        setIsOpen(prev => !prev);
+        if (onClick) onClick();
     };
 
     const handleProjectSelect = (project) => {
         setIsOpen(false);
-        if (props.onProjectSelect) {
-            props.onProjectSelect(project);
-        }
+        if (onProjectSelect) onProjectSelect(project);
     };
 
-    let classes = ['project-widget'];
-    if (props.state === 'hovered' || isOpen) {
-        classes.push('project-widget-hovered');
-    }
-    if (props.state === 'pressed') {
-        classes.push('project-widget-pressed');
-    }
+    const projectIcon20 = (
+        <div className={`project-icon ${projectColor ? `project-icon-${projectColor}` : ''}`}>
+            <div className="project-icon-background">
+                <span className="project-icon-text">{projectIcon || 'IJ'}</span>
+            </div>
+        </div>
+    );
+
+    // Force hovered look while popup is open, or when parent passes state="hovered"
+    const extraClass = [
+        'project-widget-button',
+        (state === 'hovered' || isOpen) ? 'main-toolbar-dropdown-hovered' : '',
+        state === 'pressed' ? 'main-toolbar-dropdown-pressed' : '',
+    ].filter(Boolean).join(' ');
 
     const popupStyle = {
         position: 'absolute',
         top: '100%',
         left: 0,
         marginTop: '4px',
-        zIndex: 1000
+        zIndex: 1000,
     };
 
     return (
         <div className="project-widget-container" ref={containerRef}>
-            <button className={classes.join(' ')} onClick={handleClick}>
-                <div className="project-widget-content">
-                    <div className={`project-icon ${props.projectColor ? `project-icon-${props.projectColor}` : ''}`}>
-                        <div className="project-icon-background">
-                            <span className="project-icon-text">
-                                {props.projectIcon || 'IJ'}
-                            </span>
-                        </div>
-                    </div>
-                    <div className="project-text-dropdown">
-                        <span className="project-text text-ui-default">
-                            {props.projectName || 'Project Name'}
-                        </span>
-                        <div className="chevron-down">
-                            <Icon name="general/chevronDown" size={16} />
-                        </div>
-                    </div>
-                </div>
-            </button>
+            <MainToolbarDropdown
+                icon={projectIcon20}
+                text={projectName || 'Project Name'}
+                className={extraClass}
+                onClick={handleClick}
+            />
 
-            {isOpen && props.projects && (
-                <Popup
-                    visible={isOpen}
-                    style={{ ...popupStyle, minWidth: '300px' }}
-                >
-                    {props.projects.map((project, index) => (
+            {isOpen && projects && (
+                <Popup visible style={{ ...popupStyle, minWidth: '300px' }}>
+                    {projects.map((project, index) => (
                         <Popup.Cell
                             key={index}
                             type="multiline"
@@ -98,7 +93,7 @@ function ProjectWidget(props) {
                 </Popup>
             )}
 
-            {isOpen && !props.projects && (
+            {isOpen && !projects && (
                 <PopupProjects style={popupStyle} />
             )}
         </div>

@@ -1,5 +1,61 @@
 # Cursor chat — task log
 
+## ToolbarButton component created
+### 2026-03-24
+- **Done:** Created `ToolbarButton` component (`src/ui/components/toolbar/ToolbarButton.jsx` + `.css`).
+  - Matches Figma "Toolbar / Button" (node 5701:76161). 26px height, optional icon, text, optional `showChevron`.
+  - Distinct from: `ToolbarIconButton` (icon-only), `ToolbarDropdown` (label+value filter selector), `MainToolbarDropdown` (40px main toolbar).
+  - State bg: `inset: 2px`, `border-radius: 3px` (same `_Toolbar / State` as other regular toolbar components).
+  - Exported from `lib/index.js` and typed in `lib/index.d.ts`.
+  - Added `ToolbarButtonPage` + `/toolbarbutton` route in `App.js`.
+  - Added `toolbarbutton` entry to `componentsConfig.js`.
+  - Added to `ToolbarDemo.jsx`: own section + included in the preview strip.
+
+## ProjectWidget refactored to use MainToolbarDropdown
+### 2026-03-24
+- **Done:** `ProjectWidget` now uses `MainToolbarDropdown` for its button instead of its own duplicate hover CSS.
+  - `MainToolbarDropdown.jsx`: When `icon` is a React node (not a string), it's rendered directly without a 16px wrapper — so the 20px project icon renders at correct size.
+  - `ProjectWidget.jsx`: Replaced raw `<button>` + own hover CSS with `<MainToolbarDropdown icon={<ProjectIcon>} text={projectName} />`. Open-popup forced hover state via `className="main-toolbar-dropdown-hovered"`. All popup logic (click-outside, project list, PopupProjects) unchanged.
+  - `ProjectWidget.css`: Stripped all hover/state/content CSS (`.project-widget`, `::before`, `.project-widget-content`, `.project-text-dropdown`, `.chevron-down`). Only kept `.project-widget-container`, `.project-widget-button { padding: 0 10px }` (Figma Project Widget variant: `px-[10px]`), `.project-icon` + color variants.
+
+## MainToolbarDropdown hover fix
+### 2026-03-24
+- **Done:** Fixed hover state background on `MainToolbarDropdown` to match Figma node 29121:12416 ("Main Toolbar / Dropdown").
+  - State bg: `inset: 5px` (was 2px), `border-radius: 6px` (was 3px) — matches "Main Toolbar / State" spec (5px → 30px height bg within 40px container). ProjectWidget already used this correctly.
+  - Outer padding: `0 10px 0 14px` (Figma: `pl-14 pr-10`) and `gap: 6px` between icon and text group (was 4px).
+  - Text+chevron gap: `2px` (Figma: `gap-2`) (was 4px).
+  - Chevron color: `--icon-secondary-stroke` (was `--text-muted`).
+  - Simplified JSX: removed JS-managed state tracking; using pure CSS `:hover` and `:active` via `::before` pseudo-element (same pattern as ProjectWidget).
+
+## Toolbar showcase: Main Toolbar added to UI Showcase
+### 2026-03-24
+- **Done:** Split the toolbar showcase to reflect the component split:
+  - Rewrote `ToolbarDemo.jsx` — now shows only regular toolbar components (ToolbarIconButton action/toggle/states, ToolbarSeparator vertical/horizontal, ToolbarDropdown text/label+text/icon/states) with realistic `.toolbar-demo-strip` previews.
+  - Created `MainToolbarDemo.jsx` + `.css` — shows Main Toolbar components (full live preview via `MainToolbar`, MainToolbarIconButton action/toggle/states, MainToolbarDropdown text/icon/label+text/states, MainToolbarVerticalSeparator with group example).
+  - Updated `ToolbarDropdownPage` in `App.js` — fixed description (was "main toolbar", now "tool-window toolbar"), updated background to `--tool-window-bg`.
+  - Added `maintoolbar` entry to `componentsConfig.js` (in both `toolbar` section and `appkit` section), updated descriptions for existing toolbar entries.
+  - Added `/maintoolbar` route to `App.js`.
+
+## Toolbar components split: Main vs Regular
+### 2026-03-24
+- **Done:** Separated Main Toolbar components (40px) from regular toolbar components (26px):
+  - Created `src/ui/components/maintoolbar/MainToolbarIconButton.jsx` — standalone component (was nested inside `IconButton.jsx` as a named export). Thin wrapper around `ToolbarIconButton` with `variant="mainToolbar"`.
+  - Created `src/ui/components/maintoolbar/MainToolbarDropdown.jsx` + `.css` — 40px dropdown for the main toolbar, with its own CSS classes (prefix `main-toolbar-dropdown-`).
+  - Cleaned `ToolbarDropdown.jsx` — removed `variant` prop and `mainToolbar` CSS variant. Now 26px-only.
+  - Removed `MainToolbarIconButton` export from `IconButton.jsx`.
+  - Updated `MainToolbar.jsx` and `RunWidget.jsx` to import from `maintoolbar/` directly.
+  - Updated `lib/index.js` — grouped into "Toolbar Components" (regular) and "Main Toolbar Components" sections.
+  - Updated `lib/index.d.ts` type declarations to match.
+
+## Toolbar components pixel-perfect to Figma
+### 2026-03-24
+- **Done:** Audited toolbar components against Figma node 6285-72286 ("Toolbar" section). Applied pixel-perfect fixes:
+  - **`Themes.css`**: Added `--toolbar-border` CSS variable (light: `--transparent-black-30`, dark: `--transparent-white-30` = rgba(255,255,255,0.13)) for the separator color.
+  - **`ToolbarSeparator.css`**: Fixed container sizes (28px → 26px height/width), line sizes (16px → 20px), color (`--separator` → `--toolbar-border`).
+  - **`IconButton.css`**: Fixed toggled state background — was using `--selection-bg-active` (blue), corrected to `--icon-button-pressed-bg` (semi-transparent). Figma `_Toolbar / State` shows toggled uses pressed background, not blue selection.
+  - **`ToolbarDropdown.jsx`/`.css`**: Added `variant` prop (`default` = 26px, `mainToolbar` = 40px). Default now matches Figma 26px spec (`p-[2px]` container, 3px border-radius on state bg). Hover/pressed now use `--icon-button-hover-bg`/`--icon-button-pressed-bg` CSS vars (not hardcoded rgba). Added `label` prop for label+text style (Figma "Toolbar / Dropdown" filter pattern). Updated `MainToolbar.jsx` and `RunWidget.jsx` to pass `variant="mainToolbar"`.
+  - **`VCSLogWindow.css`**: Removed now-redundant horizontal separator width override.
+
 ## Component library audit and fixes
 ### 2026-03-23
 - **Done:** Full audit of repo for non-library component usage and missing exports. Fixed all identified issues:

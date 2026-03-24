@@ -1,3 +1,7 @@
+---
+alwaysApply: true
+---
+
 This repo is used by non-developers to create prototypes that looks like real JetBrains IDEs.
 
 Read "ai/specs". 

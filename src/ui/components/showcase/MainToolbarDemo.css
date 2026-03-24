@@ -1,0 +1,27 @@
+.main-toolbar-demo-page {
+    gap: 24px;
+}
+
+.main-toolbar-demo-description {
+    max-width: 720px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Full-width frame for the live MainToolbar preview */
+.main-toolbar-demo-frame {
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Strip — simulates the main toolbar background (elevated bg) */
+.main-toolbar-demo-strip {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+    width: fit-content;
+}

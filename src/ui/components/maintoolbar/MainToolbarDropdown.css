@@ -1,0 +1,84 @@
+/* MainToolbarDropdown — 40px height, fills the main application toolbar.
+ * Figma: Main Toolbar / Dropdown (node 11351:34406)
+ * State bg: inset 5px (→ 30px height), border-radius 6px — matches ProjectWidget hover spec.
+ */
+.main-toolbar-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px 0 14px;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 0;
+    flex-shrink: 0;
+    color: var(--text-default);
+}
+
+/* State background — 5px inset all sides → 30×30px bg, 6px radius (Figma Main Toolbar / State) */
+.main-toolbar-dropdown::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 6px;
+    background: transparent;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.main-toolbar-dropdown:hover:not(:disabled)::before,
+.main-toolbar-dropdown-hovered::before {
+    background: var(--icon-button-hover-bg);
+}
+
+.main-toolbar-dropdown:active:not(:disabled)::before,
+.main-toolbar-dropdown-pressed::before {
+    background: var(--icon-button-pressed-bg);
+}
+
+.main-toolbar-dropdown-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.main-toolbar-dropdown-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-secondary-stroke);
+}
+
+.main-toolbar-dropdown-text-container {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.main-toolbar-dropdown-label {
+    white-space: nowrap;
+    color: var(--text-muted);
+}
+
+.main-toolbar-dropdown-text {
+    white-space: nowrap;
+    color: var(--text-default);
+}
+
+.main-toolbar-dropdown-chevron {
+    flex-shrink: 0;
+    color: var(--icon-secondary-stroke);
+}
+
+/* Disabled */
+.main-toolbar-dropdown-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MainToolbarIconButton } from '../iconbutton/IconButton';
+import MainToolbarIconButton from '../maintoolbar/MainToolbarIconButton';
+import MainToolbarDropdown from '../maintoolbar/MainToolbarDropdown';
 import ProjectWidget from '../projectwidget/ProjectWidget';
 import PopupBranches from '../popup/PopupBranches';
 import PopupRunWidget from '../popup/PopupRunWidget';
 import RunWidget from '../runwidget/RunWidget';
-import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
 import './MainToolbar.css';
 
 function MainToolbar({
@@ -67,10 +67,9 @@ function MainToolbar({
                     />
 
                     <div className="vcs-dropdown-container" ref={vcsRef}>
-                        <ToolbarDropdown
+                        <MainToolbarDropdown
                             icon="toolwindows/vcs"
                             text={branchName}
-                            theme="dark"
                             onClick={() => setBranchesOpen(!branchesOpen)}
                         />
                         {branchesOpen && (

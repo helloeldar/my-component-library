@@ -1,5 +1,5 @@
 import Icon from '../icon/Icon';
-import ToolbarDropdown from '../toolbardropdown/ToolbarDropdown';
+import MainToolbarDropdown from '../maintoolbar/MainToolbarDropdown';
 import './RunWidget.css';
 
 /**
@@ -72,7 +72,7 @@ function RunWidget({
         <div className={`run-widget ${className}`} {...props}>
             {/* Run Configuration Dropdown */}
             <div className="run-widget-dropdown">
-                <ToolbarDropdown
+                <MainToolbarDropdown
                     icon={configIcon}
                     text={runConfig}
                     onClick={onDropdownClick}

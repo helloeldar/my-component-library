@@ -3,48 +3,14 @@
     display: inline-flex;
 }
 
-.project-widget {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+/* Override MainToolbarDropdown padding: Project Widget uses px-10 (not pl-14 pr-10)
+ * Figma: Main Toolbar / Dropdown type=Project Widget → px-[10px]
+ */
+.project-widget-button {
     padding: 0 10px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: var(--text-default);
-    min-width: 0;
 }
 
-.project-widget::before {
-    content: '';
-    position: absolute;
-    inset: 5px;
-    border-radius: 6px;
-    background: transparent;
-}
-
-.project-widget:hover::before,
-.project-widget-hovered::before {
-    background: var(--icon-button-hover-bg);
-}
-
-.project-widget-pressed::before {
-    background: var(--icon-button-pressed-bg);
-}
-
-.project-widget-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex: 1;
-    min-width: 0;
-}
-
+/* ── Project Icon (20×20px gradient square with initials) ── */
 .project-icon {
     flex-shrink: 0;
     width: 20px;
@@ -60,7 +26,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 .project-icon-text {
@@ -72,76 +37,19 @@
     text-align: center;
 }
 
-.project-text-dropdown {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    flex: 1;
-    min-width: 0;
-}
-
-.project-text {
-    color: inherit;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.chevron-down {
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--icon-secondary-stroke);
-}
-
-.chevron-down svg {
-    width: 100%;
-    height: 100%;
-}
-
 /* Project icon in popup cells */
 .popup-cell .project-icon {
     width: 20px;
     height: 20px;
 }
 
-/* Different project icon colors - from Figma design */
-.project-icon-amber .project-icon-background {
-    background: linear-gradient(to bottom, #e08855, #e9806f);
-}
-
-.project-icon-rust .project-icon-background {
-    background: linear-gradient(to bottom, #ea580c, #dc2626);
-}
-
-.project-icon-olive .project-icon-background {
-    background: linear-gradient(to bottom, #a1a359, #87aa59);
-}
-
-.project-icon-grass .project-icon-background {
-    background: linear-gradient(to bottom, #5fad65, #3d968b);
-}
-
-.project-icon-ocean .project-icon-background {
-    background: linear-gradient(to bottom, #24a394, #279ccd);
-}
-
-.project-icon-sky .project-icon-background {
-    background: linear-gradient(to bottom, #0ea5e9, #0284c7);
-}
-
-.project-icon-cobalt .project-icon-background {
-    background: linear-gradient(to bottom, #3574f0, #7a64f0);
-}
-
-.project-icon-violet .project-icon-background {
-    background: linear-gradient(to bottom, #874ece, #963dcc);
-}
-
-.project-icon-plum .project-icon-background {
-    background: linear-gradient(to bottom, #d946ef, #c026d3);
-}
+/* ── Color Variants ── */
+.project-icon-amber    .project-icon-background { background: linear-gradient(to bottom, #e08855, #e9806f); }
+.project-icon-rust     .project-icon-background { background: linear-gradient(to bottom, #ea580c, #dc2626); }
+.project-icon-olive    .project-icon-background { background: linear-gradient(to bottom, #a1a359, #87aa59); }
+.project-icon-grass    .project-icon-background { background: linear-gradient(to bottom, #5fad65, #3d968b); }
+.project-icon-ocean    .project-icon-background { background: linear-gradient(to bottom, #24a394, #279ccd); }
+.project-icon-sky      .project-icon-background { background: linear-gradient(to bottom, #0ea5e9, #0284c7); }
+.project-icon-cobalt   .project-icon-background { background: linear-gradient(to bottom, #3574f0, #7a64f0); }
+.project-icon-violet   .project-icon-background { background: linear-gradient(to bottom, #874ece, #963dcc); }
+.project-icon-plum     .project-icon-background { background: linear-gradient(to bottom, #d946ef, #c026d3); }

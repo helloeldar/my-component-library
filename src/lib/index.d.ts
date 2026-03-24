@@ -96,7 +96,6 @@ export interface IconButtonProps {
 }
 
 export const IconButton: FC<IconButtonProps>;
-export const MainToolbarIconButton: FC<Omit<IconButtonProps, 'variant'>>;
 
 // Input
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -198,9 +197,15 @@ export const TabBar: FC<{ tabs?: Array<{ label: string; icon?: string; closable?
 export const StripeIconButton: FC<{ icon: string; label?: string; active?: boolean; inactive?: boolean; badge?: boolean; position?: 'left' | 'right'; onClick?: () => void }>;
 export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'right' }>;
 
-// Toolbar Components
+// Toolbar Components (regular — 26px, for tool-window toolbars)
+export const ToolbarButton: FC<{ text?: string; icon?: string | ReactNode; showChevron?: boolean; disabled?: boolean; onClick?: () => void; className?: string }>;
+export const ToolbarSeparator: FC<{ orientation?: 'vertical' | 'horizontal'; className?: string }>;
+export const ToolbarDropdown: FC<{ text?: string; label?: string; icon?: string; theme?: 'dark' | 'light' | 'light-header'; disabled?: boolean; onClick?: () => void; className?: string }>;
+
+// Main Toolbar Components (40px, for the main application toolbar)
+export const MainToolbarIconButton: FC<Omit<IconButtonProps, 'variant'>>;
+export const MainToolbarDropdown: FC<{ text?: string; label?: string; icon?: string; disabled?: boolean; onClick?: () => void; className?: string }>;
 export const MainToolbarVerticalSeparator: FC<{}>;
-export const ToolbarDropdown: FC<{ label: string; icon?: string; theme?: string; disabled?: boolean; options?: any[]; value?: string; onChange?: (value: string) => void }>;
 export const ProjectWidget: FC<{ projectName: string; projectIcon?: string; disabled?: boolean; onClick?: () => void }>;
 
 // PopupLineWithActions

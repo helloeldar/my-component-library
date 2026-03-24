@@ -88,9 +88,11 @@
     background: transparent;
 }
 
-/* Toggle Type - Toggled/Selected State */
+/* Toggle Type - Toggled/Selected State
+ * Figma _Toolbar / State: toggled uses toolbar-bg-pressed background (same as pressed), not blue selection
+ */
 .toolbar-icon-button-toggle.toolbar-icon-button-toggled::before {
-    background: var(--selection-bg-active);
+    background: var(--icon-button-pressed-bg);
 }
 
 .toolbar-icon-button-toggle.toolbar-icon-button-toggled {
@@ -98,7 +100,7 @@
 }
 
 .toolbar-icon-button-toggle.toolbar-icon-button-toggled:hover::before {
-    background: var(--tab-active-bg);
+    background: var(--icon-button-pressed-bg);
 }
 
 /* Badge for Filter Actions */

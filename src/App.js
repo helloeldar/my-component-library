@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import Button from './ui/components/button/Button';
 import ToolbarIconButton from './ui/components/iconbutton/IconButton';
+import ToolbarButton from './ui/components/toolbar/ToolbarButton';
 import TabBar from './ui/components/tabs/TabBar';
 import Input from './ui/components/input/Input';
 import Tree from './ui/components/tree/Tree';
@@ -16,6 +17,7 @@ import Typography from './ui/components/showcase/Typography';
 import Colors from './ui/components/showcase/Colors';
 import SemanticColors from './ui/components/showcase/SemanticColors';
 import ToolbarDemo from './ui/components/showcase/ToolbarDemo';
+import MainToolbarDemo from './ui/components/showcase/MainToolbarDemo';
 import Home from './Home';
 import StripeIconButton from './ui/components/stripe/Stripe';
 import StripeContainer from './ui/components/stripe/StripeContainer';
@@ -1120,6 +1122,55 @@ function ToolbarIconButtonPage() {
     );
 }
 
+function ToolbarButtonPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Toolbar Button</h1>
+            <p className="component-description">
+                Text action button for tool-window toolbars. 26px height with optional icon and optional dropdown chevron.
+                Use <code>ToolbarIconButton</code> for icon-only buttons, and <code>ToolbarDropdown</code> for label+value filter selectors.
+            </p>
+
+            <div className="component-section">
+                <h2>Text only</h2>
+                <div className="component-examples" style={{ background: 'var(--tool-window-bg)', padding: '4px', borderRadius: '4px', gap: '0' }}>
+                    <ToolbarButton text="Commit…" />
+                    <ToolbarButton text="Rebase…" />
+                    <ToolbarButton text="Cherry-pick" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With icon</h2>
+                <div className="component-examples" style={{ background: 'var(--tool-window-bg)', padding: '4px', borderRadius: '4px', gap: '0' }}>
+                    <ToolbarButton icon="vcs/fetch" text="Fetch" />
+                    <ToolbarButton icon="vcs/update" text="Update" />
+                    <ToolbarButton icon="vcs/push" text="Push" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>With dropdown arrow</h2>
+                <p className="component-description">
+                    Use <code>showChevron</code> when the button opens a list or menu (e.g. a split-button dropdown).
+                </p>
+                <div className="component-examples" style={{ background: 'var(--tool-window-bg)', padding: '4px', borderRadius: '4px', gap: '0' }}>
+                    <ToolbarButton text="Commit…" showChevron />
+                    <ToolbarButton icon="vcs/fetch" text="Fetch" showChevron />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>States</h2>
+                <div className="component-examples" style={{ background: 'var(--tool-window-bg)', padding: '4px', borderRadius: '4px', gap: '0' }}>
+                    <ToolbarButton text="Default" />
+                    <ToolbarButton text="Disabled" disabled />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function TabsPage() {
     const tabData = [
         { label: "Home", closable: true },
@@ -2178,20 +2229,28 @@ function ToolbarDropdownPage() {
             <div className="component-section">
                 <h2>Default</h2>
                 <p className="component-description">
-                    Dropdown button for the main toolbar with text label and chevron icon.
+                    26px dropdown button for tool-window toolbars. Use <code>MainToolbarDropdown</code> for the main application toolbar.
                 </p>
-                <div className="component-examples" style={{ background: 'var(--bg-elevated)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
-                    <ToolbarDropdown text="File" theme="dark" />
-                    <ToolbarDropdown text="Edit" theme="dark" />
-                    <ToolbarDropdown icon="general/settings" text="Settings" theme="dark" />
+                <div className="component-examples" style={{ background: 'var(--tool-window-bg)', padding: '4px', borderRadius: '4px', gap: '0' }}>
+                    <ToolbarDropdown text="Branch" />
+                    <ToolbarDropdown text="User" />
+                    <ToolbarDropdown icon="general/settings" text="Settings" />
+                </div>
+            </div>
+
+            <div className="component-section">
+                <h2>Label + text</h2>
+                <div className="component-examples" style={{ background: 'var(--tool-window-bg)', padding: '4px', borderRadius: '4px', gap: '0' }}>
+                    <ToolbarDropdown label="Branch:" text="main" />
+                    <ToolbarDropdown label="User:" text="All" />
                 </div>
             </div>
 
             <div className="component-section">
                 <h2>States</h2>
-                <div className="component-examples" style={{ background: 'var(--bg-elevated)', padding: '8px 12px', borderRadius: '6px', gap: '4px' }}>
-                    <ToolbarDropdown text="Default" theme="dark" />
-                    <ToolbarDropdown text="Disabled" theme="dark" disabled />
+                <div className="component-examples" style={{ background: 'var(--tool-window-bg)', padding: '4px', borderRadius: '4px', gap: '0' }}>
+                    <ToolbarDropdown text="Default" />
+                    <ToolbarDropdown text="Disabled" disabled />
                 </div>
             </div>
         </div>
@@ -3562,6 +3621,7 @@ function AppContent() {
                     <Route path="/emptystate" element={<EmptyStatePage />} />
                     <Route path="/combobox" element={<ComboboxPage />} />
                     <Route path="/toolbariconbutton" element={<ToolbarIconButtonPage />} />
+                    <Route path="/toolbarbutton" element={<ToolbarButtonPage />} />
                     <Route path="/tabs" element={<TabsPage />} />
                     <Route path="/inputs" element={<InputsPage />} />
                     <Route path="/link" element={<LinkPage />} />
@@ -3585,6 +3645,7 @@ function AppContent() {
                     <Route path="/commit" element={<CommitWindowPage />} />
                     <Route path="/vcslog" element={<VCSLogWindowPage />} />
                     <Route path="/toolbar" element={<ToolbarDemo />} />
+                    <Route path="/maintoolbar" element={<MainToolbarDemo />} />
                     <Route path="/statusbar" element={<StatusBarPage />} />
                     <Route path="/statusbarbreadcrumb" element={<StatusBarBreadcrumbPage />} />
                     <Route path="/alert" element={<AlertPage />} />

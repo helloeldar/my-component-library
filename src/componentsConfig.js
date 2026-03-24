@@ -5,10 +5,14 @@ export const componentsConfig = [
     { name: 'Badge', key: 'badge', description: 'Status badge with color variants: blue, green, purple, gray, and disabled', category: 'components', section: 'buttons', status: 'ready', preview: null },
     { name: 'Link', key: 'link', description: 'Text links with default, dropdown, and external variants', category: 'components', section: 'buttons', status: 'ready', preview: '/previews/link.png' },
 
-    // Toolbar
+    // Toolbar (regular — 26px, tool-window toolbars)
     { name: 'Toolbar Icon Button', key: 'toolbariconbutton', description: 'Toolbar icon buttons with action and toggle types', category: 'components', section: 'toolbar', status: 'ready', preview: '/previews/toolbar button.png' },
-    { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components', section: 'toolbar', status: 'ready', preview: null },
-    { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components', section: 'toolbar', status: 'ready', preview: null },
+    { name: 'Toolbar Button', key: 'toolbarbutton', description: 'Text action button for tool-window toolbars with optional icon and dropdown arrow', category: 'components', section: 'toolbar', status: 'ready', preview: null },
+    { name: 'Toolbar', key: 'toolbar', description: 'Tool-window toolbar with icon buttons, separators, and dropdowns', category: 'components', section: 'toolbar', status: 'ready', preview: null },
+    { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Label + value filter selector for tool-window toolbars', category: 'components', section: 'toolbar', status: 'ready', preview: null },
+
+    // Main Toolbar (40px, main application toolbar)
+    { name: 'Main Toolbar', key: 'maintoolbar', description: 'Main application toolbar with icon buttons, dropdowns, and separators', category: 'components', section: 'toolbar', status: 'ready', preview: null },
 
     // Inputs
     { name: 'Inputs', key: 'inputs', description: 'Text input fields with various states', category: 'components', section: 'inputs', status: 'ready', preview: '/previews/input.png' },
@@ -68,8 +72,8 @@ export const componentsConfig = [
     { name: 'Popup / Find in Files', key: 'popupfindinfiles', description: 'Find in Files popup with search, scopes, result list and code preview', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar', key: 'statusbar', description: 'IDE status bar with breadcrumbs, progress, and widgets', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Status Bar Breadcrumb', key: 'statusbarbreadcrumb', description: 'Breadcrumb navigation item for status bar', category: 'components', section: 'appkit', status: 'ready', preview: null },
-    { name: 'Toolbar', key: 'toolbar', description: 'Main toolbar preview with icon actions', category: 'components', section: 'appkit', status: 'ready', preview: null },
-    { name: 'Toolbar Dropdown', key: 'toolbardropdown', description: 'Dropdown button for main toolbar with themes and states', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Toolbar', key: 'toolbar', description: 'Tool-window toolbar with icon buttons, separators, and dropdowns', category: 'components', section: 'appkit', status: 'ready', preview: null },
+    { name: 'Main Toolbar', key: 'maintoolbar', description: 'Main application toolbar with icon buttons, dropdowns, and separators', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Project Widget', key: 'projectwidget', description: 'Dropdown for selecting active project with icon and name', category: 'components', section: 'appkit', status: 'ready', preview: null },
     { name: 'Settings', key: 'settings', description: 'Full Settings dialog with two-panel layout: navigation tree and settings content area', category: 'windows', section: 'appkit', status: 'ready', preview: null },
 ];

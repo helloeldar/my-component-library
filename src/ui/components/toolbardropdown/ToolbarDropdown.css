@@ -1,18 +1,38 @@
+/* ToolbarDropdown — 26px height for regular tool-window toolbars
+ * Figma: Toolbar / Button (node 5701:76179) / Toolbar / Dropdown (node 9393:66721)
+ * For the main application toolbar use MainToolbarDropdown.
+ */
 .toolbar-dropdown {
-    display: flex;
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    height: 40px;
-    padding: 12px 10px 12px 14px;
+    justify-content: center;
+    height: 26px;
+    padding: 2px;
     border: none;
     background: transparent;
     cursor: pointer;
     border-radius: 0;
+    flex-shrink: 0;
+}
+
+/* State background layer — inset 2px, border-radius 3px (Figma _Toolbar / State) */
+.toolbar-dropdown-state-bg {
+    position: absolute;
+    inset: 2px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .toolbar-dropdown-content {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
+    padding: 3px 2px 3px 4px;
+    border-radius: 3px;
 }
 
 .toolbar-dropdown-icon {
@@ -27,8 +47,11 @@
 .toolbar-dropdown-text-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 2px;
+    gap: 4px;
+}
+
+.toolbar-dropdown-label {
+    white-space: nowrap;
 }
 
 .toolbar-dropdown-text {
@@ -39,78 +62,51 @@
     flex-shrink: 0;
 }
 
-/* Dark Theme (default - for dark toolbar background) */
-.toolbar-dropdown-theme-dark .toolbar-dropdown-text {
-    color: var(--text-default);
+/* ── Dark Theme ── */
+.toolbar-dropdown-theme-dark .toolbar-dropdown-label { color: var(--text-muted); }
+.toolbar-dropdown-theme-dark .toolbar-dropdown-text  { color: var(--text-default); }
+.toolbar-dropdown-theme-dark .toolbar-dropdown-icon  { color: var(--icon-secondary-stroke); }
+.toolbar-dropdown-theme-dark .toolbar-dropdown-chevron { color: var(--text-muted); }
+
+.toolbar-dropdown-theme-dark.toolbar-dropdown-hovered .toolbar-dropdown-state-bg {
+    background: var(--icon-button-hover-bg);
+}
+.toolbar-dropdown-theme-dark.toolbar-dropdown-pressed .toolbar-dropdown-state-bg {
+    background: var(--icon-button-pressed-bg);
 }
 
-.toolbar-dropdown-theme-dark .toolbar-dropdown-icon {
-    color: var(--icon-secondary-stroke);
+/* ── Light Theme ── */
+.toolbar-dropdown-theme-light .toolbar-dropdown-label { color: var(--text-muted); }
+.toolbar-dropdown-theme-light .toolbar-dropdown-text  { color: var(--text-default); }
+.toolbar-dropdown-theme-light .toolbar-dropdown-icon  { color: var(--icon-secondary-stroke); }
+.toolbar-dropdown-theme-light .toolbar-dropdown-chevron { color: var(--text-muted); }
+
+.toolbar-dropdown-theme-light.toolbar-dropdown-hovered .toolbar-dropdown-state-bg {
+    background: var(--icon-button-hover-bg);
+}
+.toolbar-dropdown-theme-light.toolbar-dropdown-pressed .toolbar-dropdown-state-bg {
+    background: var(--icon-button-pressed-bg);
 }
 
-.toolbar-dropdown-theme-dark .toolbar-dropdown-chevron {
-    color: var(--text-muted);
+/* ── Light Header Theme ── */
+.toolbar-dropdown-theme-light-header .toolbar-dropdown-label { color: var(--text-muted); }
+.toolbar-dropdown-theme-light-header .toolbar-dropdown-text  { color: var(--text-default); }
+.toolbar-dropdown-theme-light-header .toolbar-dropdown-icon  { color: var(--icon-secondary-stroke); }
+.toolbar-dropdown-theme-light-header .toolbar-dropdown-chevron { color: var(--text-muted); }
+
+.toolbar-dropdown-theme-light-header.toolbar-dropdown-hovered .toolbar-dropdown-state-bg {
+    background: var(--icon-button-hover-bg);
+}
+.toolbar-dropdown-theme-light-header.toolbar-dropdown-pressed .toolbar-dropdown-state-bg {
+    background: var(--icon-button-pressed-bg);
 }
 
-.toolbar-dropdown-theme-dark.toolbar-dropdown-hovered .toolbar-dropdown-content,
-.toolbar-dropdown-theme-dark.toolbar-dropdown-pressed .toolbar-dropdown-content {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 7px 6px 7px 10px;
-    margin: -7px -6px -7px -10px;
-}
-
-/* Light Theme (for light toolbar with dark text) */
-.toolbar-dropdown-theme-light .toolbar-dropdown-text {
-    color: var(--text-default);
-}
-
-.toolbar-dropdown-theme-light .toolbar-dropdown-icon {
-    color: var(--icon-secondary-stroke);
-}
-
-.toolbar-dropdown-theme-light .toolbar-dropdown-chevron {
-    color: var(--text-muted);
-}
-
-.toolbar-dropdown-theme-light.toolbar-dropdown-hovered .toolbar-dropdown-content,
-.toolbar-dropdown-theme-light.toolbar-dropdown-pressed .toolbar-dropdown-content {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 7px 6px 7px 10px;
-    margin: -7px -6px -7px -10px;
-}
-
-/* Light Header Theme (for light header with dark text) */
-.toolbar-dropdown-theme-light-header .toolbar-dropdown-text {
-    color: var(--text-default);
-}
-
-.toolbar-dropdown-theme-light-header .toolbar-dropdown-icon {
-    color: var(--icon-secondary-stroke);
-}
-
-.toolbar-dropdown-theme-light-header .toolbar-dropdown-chevron {
-    color: var(--text-muted);
-}
-
-.toolbar-dropdown-theme-light-header.toolbar-dropdown-hovered .toolbar-dropdown-content,
-.toolbar-dropdown-theme-light-header.toolbar-dropdown-pressed .toolbar-dropdown-content {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 6px;
-    padding: 7px 6px 7px 10px;
-    margin: -7px -6px -7px -10px;
-}
-
-/* Disabled state */
+/* ── Disabled State ── */
 .toolbar-dropdown-disabled {
     cursor: not-allowed;
     opacity: 0.5;
 }
-
-.toolbar-dropdown-disabled .toolbar-dropdown-text {
+.toolbar-dropdown-disabled .toolbar-dropdown-text,
+.toolbar-dropdown-disabled .toolbar-dropdown-label {
     color: var(--text-disabled);
 }
-
-
-

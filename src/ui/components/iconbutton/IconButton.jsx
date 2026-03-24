@@ -53,13 +53,4 @@ function ToolbarIconButton({
     );
 }
 
-/**
- * MainToolbarIconButton - Icon button for the main toolbar (40x40px wrapper, 20px icon).
- * Matches Figma "Main Toolbar / Icon Button" component spec.
- */
-function MainToolbarIconButton(props) {
-    return <ToolbarIconButton {...props} variant="mainToolbar" />;
-}
-
 export default ToolbarIconButton;
-export { MainToolbarIconButton };

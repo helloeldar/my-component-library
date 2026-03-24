@@ -15,7 +15,7 @@ export { default as Combobox } from '../ui/components/combobox/Combobox';
 export { default as Dropdown } from '../ui/components/dropdown/Dropdown';
 export { default as EmptyState } from '../ui/components/emptystate/EmptyState';
 export { default as Icon } from '../ui/components/icon/Icon';
-export { default as IconButton, MainToolbarIconButton } from '../ui/components/iconbutton/IconButton';
+export { default as IconButton } from '../ui/components/iconbutton/IconButton';
 export { default as Input } from '../ui/components/input/Input';
 export { default as Link } from '../ui/components/link/Link';
 export { default as Popup } from '../ui/components/popup/Popup';
@@ -64,10 +64,15 @@ export { default as TabBar } from '../ui/components/tabs/TabBar';
 export { default as StripeIconButton } from '../ui/components/stripe/Stripe';
 export { default as StripeContainer } from '../ui/components/stripe/StripeContainer';
 
-// Toolbar Components
-export { default as MainToolbarVerticalSeparator } from '../ui/components/maintoolbar/MainToolbarVerticalSeparator';
+// Toolbar Components (regular — 26px, for tool-window toolbars)
+export { default as ToolbarButton } from '../ui/components/toolbar/ToolbarButton';
 export { default as ToolbarSeparator } from '../ui/components/toolbar/ToolbarSeparator';
 export { default as ToolbarDropdown } from '../ui/components/toolbardropdown/ToolbarDropdown';
+
+// Main Toolbar Components (40px, for the main application toolbar)
+export { default as MainToolbarIconButton } from '../ui/components/maintoolbar/MainToolbarIconButton';
+export { default as MainToolbarDropdown } from '../ui/components/maintoolbar/MainToolbarDropdown';
+export { default as MainToolbarVerticalSeparator } from '../ui/components/maintoolbar/MainToolbarVerticalSeparator';
 export { default as ProjectWidget } from '../ui/components/projectwidget/ProjectWidget';
 export { default as RunWidget } from '../ui/components/runwidget/RunWidget';
 

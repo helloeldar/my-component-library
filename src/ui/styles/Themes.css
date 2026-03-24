@@ -466,6 +466,7 @@
     --toolbar-stop-bg: var(--red-80); /* Figma: toolbar/toolbar-stop-bg = accent/accent-error-bg */
     --toolbar-stop-bg-hovered: var(--red-70); /* Figma: toolbar/toolbar-stop-bg-hovered */
     --toolbar-icon-over-accent: var(--white); /* Figma: toolbar/toolbar-icon-over-accent */
+    --toolbar-border: var(--transparent-black-30); /* Figma: toolbar/toolbar-border */
     --text-white: var(--white);
     --text-tertiary: var(--gray-80);
 
@@ -805,6 +806,7 @@
     --toolbar-stop-bg: var(--red-80); /* Figma: toolbar/toolbar-stop-bg = accent/accent-error-bg */
     --toolbar-stop-bg-hovered: var(--red-70); /* Figma: toolbar/toolbar-stop-bg-hovered */
     --toolbar-icon-over-accent: var(--white); /* Figma: toolbar/toolbar-icon-over-accent */
+    --toolbar-border: var(--transparent-white-30); /* Figma: toolbar/toolbar-border */
     --text-white: var(--white);
     --text-tertiary: var(--gray-80);
 

@@ -39,10 +39,6 @@
     border-right: 1px solid var(--tool-window-border);
 }
 
-/* Horizontal separator inside vertical toolbar */
-.vcs-log-branches-toolbar .toolbar-separator-horizontal {
-    width: 20px;
-}
 
 .vcs-log-branches-tree-area {
     display: flex;
