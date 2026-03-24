@@ -291,6 +291,9 @@ function MainWindow({
     runConfig = "IDEA Community",
     runState = "default",
     editorTabs = DEFAULT_EDITOR_TABS,
+    activeEditorTab,
+    onEditorTabChange,
+    onEditorTabClose,
     editorCode = DEFAULT_JAVA_CODE,
     editorLanguage = "java",
     projectTreeData = DEFAULT_PROJECT_TREE_DATA,
@@ -494,6 +497,9 @@ function MainWindow({
                             <div className="main-window-editor-tabs">
                                 <TabBar
                                     tabs={editorTabs.map(t => ({ label: t.label, icon: t.icon, closable: t.closable }))}
+                                    activeTab={activeEditorTab}
+                                    onTabChange={onEditorTabChange}
+                                    onTabClose={onEditorTabClose}
                                     direction="horizontal"
                                     focused={focusedPanel === 'editor'}
                                 />

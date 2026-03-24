@@ -608,6 +608,9 @@ export interface MainWindowProps {
   runConfig?: string;
   runState?: string;
   editorTabs?: EditorTabDef[];
+  activeEditorTab?: number;
+  onEditorTabChange?: (index: number) => void;
+  onEditorTabClose?: (index: number) => void;
   editorCode?: string;
   editorLanguage?: string;
   projectTreeData?: any[];

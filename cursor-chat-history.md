@@ -1,5 +1,15 @@
 # Cursor chat — task log
 
+## Prototype repo (int-ui-prototypes) investigation + fixes
+### 2026-03-24
+- **Investigated:** Prototype repo uses vendored copy of the library (`vendor/@jetbrains/int-ui-kit/`) via Vite aliases, not the npm-linked `node_modules` version.
+- **Fixed (CRITICAL):** `headerExtra` → `toolbarExtra` in UX3732.jsx (2 occurrences + docs). The AI Agents button was silently dropped because the library uses `toolbarExtra`, not `headerExtra`.
+- **Fixed:** `tooltip` → `title` on `StripeIconButton` (2 occurrences). Library uses native `title` attribute for tooltips on stripe buttons.
+- **Fixed:** Removed unsupported `runState` prop from `IDEWindow`.
+- **Fixed:** Stripped sourcemap references from vendor `index.js` and `styles.css` (no `.map` files in vendor folder → Vite warnings).
+- **Fixed:** Stripped `@import url(...)` for Google Fonts from vendor `styles.css` (PostCSS complained about `@import` not being first). Fonts loaded via separate CSS.
+- Dev server starts clean with no warnings.
+
 ## NPM Package Update Process spec + fix
 ### 2026-03-24
 - **Issue:** Consumer repo couldn't see `Badge` component. Root cause: `src/lib/index.d.ts` was missing type declarations for Badge (and ~20 other recently added components). The JS exports and dist files were correct.
