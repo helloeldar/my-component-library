@@ -296,6 +296,7 @@ function MainWindow({
     onEditorTabClose,
     editorCode = DEFAULT_JAVA_CODE,
     editorLanguage = "java",
+    onEditorCodeChange,
     projectTreeData = DEFAULT_PROJECT_TREE_DATA,
     leftStripeItems = DEFAULT_LEFT_STRIPE_ITEMS,
     rightStripeItems = DEFAULT_RIGHT_STRIPE_ITEMS,
@@ -505,7 +506,7 @@ function MainWindow({
                                 />
                             </div>
                             <div className="main-window-editor-content">
-                                <Editor language={editorLanguage} code={editorCode} />
+                                <Editor language={editorLanguage} code={editorCode} onChange={onEditorCodeChange} />
                             </div>
                         </div>
 
