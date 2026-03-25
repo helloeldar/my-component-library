@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import MainToolbar from '../showcase/MainToolbar';
+import MainToolbar from '../maintoolbar/MainToolbar';
 import StripeContainer from '../stripe/StripeContainer';
 import StripeIconButton from '../stripe/Stripe';
 import ToolWindow from '../toolwindow/ToolWindow';

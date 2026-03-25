@@ -58,7 +58,7 @@ import ValidationTooltip from './ui/components/tooltip/ValidationTooltip';
 import GotItTooltip from './ui/components/tooltip/GotItTooltip';
 import Notification from './ui/components/notification/Notification';
 import EmptyState from './ui/components/emptystate/EmptyState';
-import SettingsDialog from './ui/components/showcase/SettingsDialog';
+import SettingsDialog from './ui/components/dialog/SettingsDialog';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { ReactComponent as Logo } from './icons/ij-platform-logo.svg';
 import { getSortedWindowsOnly, getComponentsBySection } from './componentsConfig';

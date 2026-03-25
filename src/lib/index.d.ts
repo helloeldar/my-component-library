@@ -251,6 +251,33 @@ export interface PopupFindInFilesProps {
 
 export const PopupFindInFiles: FC<PopupFindInFilesProps>;
 
+// SearchEverywherePopup
+export interface SearchEverywhereItem {
+  type?: string;
+  icon?: string;
+  title: string;
+  module?: string;
+  moduleIcon?: string;
+  shortcut?: string;
+}
+export interface SearchEverywhereTab {
+  label: string;
+}
+export interface SearchEverywherePopupProps {
+  tabs?: SearchEverywhereTab[];
+  activeTab?: number;
+  onTabChange?: (index: number) => void;
+  includeNonProject?: boolean;
+  onIncludeNonProjectChange?: (value: boolean) => void;
+  searchValue?: string;
+  onSearchChange?: (value: string) => void;
+  items?: SearchEverywhereItem[];
+  footerText?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+export const SearchEverywherePopup: FC<SearchEverywherePopupProps>;
+
 // ProgressBar
 export interface ProgressBarProps {
   value?: number;
@@ -469,6 +496,29 @@ export interface WelcomeDialogProps {
 
 export const WelcomeDialog: FC<WelcomeDialogProps>;
 
+// SettingsDialog
+export interface SettingsTreeItem {
+  id: string;
+  label: string;
+  hasChildren?: boolean;
+  expanded?: boolean;
+  children?: SettingsTreeItem[];
+}
+
+export interface SettingsDialogProps {
+  title?: string;
+  width?: number;
+  height?: number;
+  treeItems?: SettingsTreeItem[];
+  buttons?: Array<{ children: ReactNode; onClick?: () => void; disabled?: boolean; type?: string }>;
+  onClose?: () => void;
+  children?: ReactNode;
+  className?: string;
+}
+
+export const SettingsDialog: FC<SettingsDialogProps>;
+export const DEFAULT_SETTINGS_TREE_ITEMS: SettingsTreeItem[];
+
 // Tooltip
 export interface TooltipProps {
   children: ReactNode;
@@ -646,6 +696,21 @@ export const ToolbarSeparator: FC<{ orientation?: 'vertical' | 'horizontal'; cla
 export const ToolbarDropdown: FC<{ text?: string; label?: string; icon?: string; theme?: 'dark' | 'light' | 'light-header'; disabled?: boolean; onClick?: () => void; className?: string }>;
 
 // Main Toolbar Components (40px, for the main application toolbar)
+export interface MainToolbarProps {
+  projectName?: string;
+  projectIcon?: string;
+  projectColor?: string;
+  branchName?: string;
+  runConfig?: string;
+  runState?: 'default' | 'running' | 'debugging';
+  leftExtra?: ReactNode;
+  rightActions?: ReactNode | Array<{ icon: string; tooltip?: string; onClick?: () => void }>;
+  showWindowControls?: boolean;
+  onSearchEverywhere?: () => void;
+  onSettings?: () => void;
+  className?: string;
+}
+export const MainToolbar: FC<MainToolbarProps>;
 export const MainToolbarIconButton: FC<Omit<IconButtonProps, 'variant'>>;
 export const MainToolbarDropdown: FC<{ text?: string; label?: string; icon?: string | ReactNode; disabled?: boolean; onClick?: () => void; className?: string }>;
 export const MainToolbarVerticalSeparator: FC<{}>;

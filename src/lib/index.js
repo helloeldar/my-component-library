@@ -28,6 +28,7 @@ export { default as PopupBranches } from '../ui/components/popup/PopupBranches';
 export { default as PopupLineWithActions } from '../ui/components/popup/PopupLineWithActions';
 export { default as PopupRunWidget } from '../ui/components/popup/PopupRunWidget';
 export { default as PopupFindInFiles } from '../ui/components/popup/PopupFindInFiles';
+export { default as SearchEverywherePopup } from '../ui/components/popup/SearchEverywherePopup';
 export { default as Loader } from '../ui/components/loader/Loader';
 export { default as ProgressBar } from '../ui/components/progressbar/ProgressBar';
 export { default as Radio, RadioGroup } from '../ui/components/radio/Radio';
@@ -43,6 +44,7 @@ export { default as DialogHeader } from '../ui/components/dialog/DialogHeader';
 export { default as DialogFooter } from '../ui/components/dialog/DialogFooter';
 export { default as DialogGroupHeader } from '../ui/components/dialog/DialogGroupHeader';
 export { default as WelcomeDialog, DEFAULT_PROJECTS, NAV_ITEMS } from '../ui/components/dialog/WelcomeDialog';
+export { default as SettingsDialog, DEFAULT_SETTINGS_TREE_ITEMS } from '../ui/components/dialog/SettingsDialog';
 
 // Tooltip
 export { default as Tooltip } from '../ui/components/tooltip/Tooltip';
@@ -73,6 +75,7 @@ export { default as ToolbarSeparator } from '../ui/components/toolbar/ToolbarSep
 export { default as ToolbarDropdown } from '../ui/components/toolbardropdown/ToolbarDropdown';
 
 // Main Toolbar Components (40px, for the main application toolbar)
+export { default as MainToolbar, DEFAULT_RIGHT_ACTIONS } from '../ui/components/maintoolbar/MainToolbar';
 export { default as MainToolbarIconButton } from '../ui/components/maintoolbar/MainToolbarIconButton';
 export { default as MainToolbarDropdown } from '../ui/components/maintoolbar/MainToolbarDropdown';
 export { default as MainToolbarVerticalSeparator } from '../ui/components/maintoolbar/MainToolbarVerticalSeparator';

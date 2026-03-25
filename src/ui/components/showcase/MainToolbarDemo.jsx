@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import MainToolbar from './MainToolbar';
+import MainToolbar from '../maintoolbar/MainToolbar';
 import MainToolbarIconButton from '../maintoolbar/MainToolbarIconButton';
 import MainToolbarDropdown from '../maintoolbar/MainToolbarDropdown';
 import MainToolbarVerticalSeparator from '../maintoolbar/MainToolbarVerticalSeparator';

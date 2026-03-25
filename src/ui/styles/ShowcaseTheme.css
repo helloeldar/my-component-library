@@ -23,13 +23,6 @@
     --showcase-preview-bg: var(--layer-1-bg);
     --showcase-badge-bg: var(--layer-1-bg);
     --showcase-badge-border: var(--layer-0-border);
-
-    /* Island layout (MainWindow demo) */
-    --island-bg: var(--layer-0-bg);
-    --island-bg-overlay: var(--transparent-black-10);
-    --island-border: rgba(0, 0, 0, 0.1);
-    --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    --island-editor-bg: var(--layer-2-bg);
 }
 
 .theme-dark {
@@ -51,11 +44,4 @@
     --showcase-preview-bg: var(--layer-1-bg);
     --showcase-badge-bg: var(--layer-1-bg);
     --showcase-badge-border: var(--layer-0-border);
-
-    /* Island layout (MainWindow demo) */
-    --island-bg: var(--layer-1-bg);
-    --island-bg-overlay: rgba(0, 0, 0, 0.12);
-    --island-border: rgba(255, 255, 255, 0.08);
-    --island-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
-    --island-editor-bg: var(--layer-0-bg);
 }

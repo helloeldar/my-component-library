@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MainToolbar from '../showcase/MainToolbar';
+import MainToolbar from '../maintoolbar/MainToolbar';
 import StripeContainer from '../stripe/StripeContainer';
 import StripeIconButton from '../stripe/Stripe';
 import StatusBar from '../statusbar/StatusBar';
@@ -11,7 +11,7 @@ import ProblemsWindow from '../toolwindow/ProblemsWindow';
 import CommitWindow from '../toolwindow/CommitWindow';
 import VCSLogWindow from '../toolwindow/VCSLogWindow';
 import SearchEverywherePopup from '../popup/SearchEverywherePopup';
-import SettingsDialog from '../showcase/SettingsDialog';
+import SettingsDialog from '../dialog/SettingsDialog';
 import TabBar from '../tabs/TabBar';
 import Editor from '../editor/Editor';
 import './MainWindow.css';

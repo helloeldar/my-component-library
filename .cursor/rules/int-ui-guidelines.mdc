@@ -1,7 +1,6 @@
 ---
-alwaysApply: true
+alwaysApply: false
 ---
-
 Check IntelliJ UI Guidelines to understand our design principles and best practices:
 https://plugins.jetbrains.com/docs/intellij/ui-guidelines-welcome.html
 Warn if you see a violation of the guidelines.

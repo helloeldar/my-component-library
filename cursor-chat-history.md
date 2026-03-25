@@ -33,6 +33,19 @@
   - `StatusBar` — empty arrays `[]` still render defaults (can't get empty bar)
 - Created spec: `ai/specs/Component Editability specs.md` — documents every issue, required prop changes, default data exports, and 4-phase implementation plan.
 
+### 2026-03-25 — Re-audit vs spec (Goal review)
+- **Result:** Almost fully implemented. Only 3 gaps remain:
+  1. `SettingsDialog` — **`treeItems` prop missing** (left navigation tree is still hardcoded inside component). Spec requires: accept tree data as a prop with current structure as default.
+  2. `SettingsDialog` — **not exported from `src/lib/index.js`**. Consumers can't import it from the package.
+  3. `MainToolbar` (full component) — **not exported from `src/lib/index.js`**. Only the sub-components (`MainToolbarIconButton`, `MainToolbarDropdown`, `MainToolbarVerticalSeparator`) are exported. The `MainToolbar` composite (used in `MainWindow`) itself is not accessible as a library export.
+
+### 2026-03-25 — Fixed all 3 gaps + created prototype guide
+- **Fixed `SettingsDialog` treeItems:** Added `DEFAULT_SETTINGS_TREE_ITEMS` constant and `treeItems` prop. Tree is data-driven via recursive `renderTreeItems()`. Expansion state initialized from `item.expanded`, managed internally. `getFirstLeafId()` picks initial selected node.
+- **Fixed barrel exports:** Added `SettingsDialog + DEFAULT_SETTINGS_TREE_ITEMS` and `MainToolbar` to `src/lib/index.js`.
+- **Fixed types:** Added `SettingsTreeItem`, `SettingsDialogProps`, `MainToolbarProps` to `src/lib/index.d.ts`.
+- **Updated guide:** `ai/specs/Component Customization Guide.md` — added "Prototype mindset" intro (3-level table), `SettingsDialog` treeItems examples, `MainToolbar` section, `DEFAULT_SETTINGS_TREE_ITEMS` in defaults table, complete end-to-end prototype example, 9 tips.
+- Build passes (`npm run build:lib`): 0 errors.
+
 ## ToolbarButton component created
 ### 2026-03-24
 - **Done:** Created `ToolbarButton` component (`src/ui/components/toolbar/ToolbarButton.jsx` + `.css`).
@@ -356,6 +369,23 @@
 ## Specs / AI RULES
 ### 2025-03-23
 - **Done:** User asked to record chat messages as requirements per **AI RULES.md**. Added structured reqs to **`ai/specs/Tooltip specs.md`** (showcase + props) and **`ai/specs/UI Showcase (App.js) Specs.md.md`** (chat→spec process + `/tooltip` showcase rule). Task: **`ai/tasks/Task - Chat requirements documented in specs.md`**.
+
+## Showcase vs Library Separation Audit
+### 2026-03-25
+- **Audited:** Full repo audit for showcase/library boundary violations.
+- **Findings:**
+  1. `--island-*` tokens duplicated — defined in `Themes.css` (library, correct) AND `ShowcaseTheme.css` (incorrect duplicate). MainWindow.css uses them so they must stay in Themes.css.
+  2. `SearchEverywherePopup` — in `popup/` folder (library component) but missing from `lib/index.js` and `lib/index.d.ts`.
+  3. `App.css` — hardcoded `#666` color; used `--transparent-white-10` (palette token) instead of `--showcase-nav-hover-bg`.
+- **Fixed:**
+  - Removed `--island-*` block from `ShowcaseTheme.css` (tokens stay only in Themes.css)
+  - Exported `SearchEverywherePopup` from `lib/index.js` + added TypeScript types to `lib/index.d.ts`
+  - Fixed `App.css`: `#666` → `var(--text-secondary)`, `--transparent-white-10` → `var(--showcase-nav-hover-bg)` (×2)
+- **Created:** `ai/specs/Showcase vs Library Separation.md` — full boundary rules, component categories, audit checklist
+- **Follow-up (2026-03-25):** User confirmed both should be promoted to library:
+  - `SettingsDialog` → moved to `components/dialog/`, exported from lib as `SettingsDialog` + `DEFAULT_SETTINGS_TREE_ITEMS`; CSS tokens fixed (already used `--dialog-border`, no showcase tokens)
+  - `MainToolbar` → moved to `components/maintoolbar/`, exported as `MainToolbar` + `DEFAULT_RIGHT_ACTIONS`; CSS tokens fixed (`--showcase-examples-bg` → `--main-window-bg`, `--showcase-bg` → `--main-window-border`); 4 import sites updated
+- **Already correct:** `lib/styles.js` never imports showcase CSS; `lib/index.js` never exports showcase-folder components; rollup only bundles from `src/lib/` entry
 
 ## Figma Semantic Colors full sync + Showcase separation
 ### 2026-03-24

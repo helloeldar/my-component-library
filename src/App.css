@@ -120,7 +120,7 @@
 }
 
 .nav-item:hover {
-    background: var(--transparent-white-10);
+    background: var(--showcase-nav-hover-bg);
 }
 
 .nav-item.active {
@@ -153,7 +153,7 @@
 }
 
 .nav-sub-group-title:hover {
-    background: var(--transparent-white-10);
+    background: var(--showcase-nav-hover-bg);
 }
 
 .nav-sub-group-items {
@@ -218,7 +218,7 @@
     margin: 0 0 12px 0;
     font-size: 16px;
     font-weight: 400;
-    color: #666;
+    color: var(--text-secondary);
 }
 
 .component-examples {

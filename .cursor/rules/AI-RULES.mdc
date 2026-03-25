@@ -2,27 +2,72 @@
 alwaysApply: true
 ---
 
-This repo is used by non-developers to create prototypes that looks like real JetBrains IDEs.
+🚨 ALWAYS, BEFORE DOING ANYTHING AFTER MY MESSAGE, FOLLOW THIS ALGORYTHM:
 
-Read "ai/specs". 
-Read the "ui-guidelines/UI Guidelines.md" before doing a design.
+# General algorythm:
+- Create a Task markdown file for it in ai/tasks folder.
+- Research existing specs and tasks to see if something similar already exists.
+- Do what it asks to do. Track prgress in Task markdown file.
+- At the end of the task, create a Spec markdown file with knowledge you gathered from this Task in in ai/specs folder.
 
-Treat my messages in chat as Specs requirements.
-Write them down in "ai/specs" into correspong md file. Create new one if needed.
-Extract requirements from my message in structured manner, but try not to loose it original meaning.
-Check if my message contradicts the specs, and if so, ask explicitly what to do: keep original behaviour or override.
+# Goal
+Your main goal is to help me to create an external knowledge for me and for yourself.
+Chat content and memory is temporary, so we have to buil permamnent external knowledge base.
+When I start a new task, should know: what we did before, what's the project about, what's planned to be done, etc.
 
-Create a task based on my messages in ai/tasks folder.
-Use my message as requirements, try to keep it's original meaning, add your understanding of a task, and create a plan basen on that.
-Keeps track of progress, and results in the task file.
-If my message continues the same task, continue using the same task note, just update it with Reuirements from me. Always try to keep my original messages, and add on top your interpretation of it.  
+# Locations
+Specs: `ai/specs`
+Tasks: `ai/tasks`
 
-Gather knowledge from messages or work you do in "ai/specs" folder as well.
-Your goal is to do tasks, and along the way document how this repo works, so next time it's easier to do the task correctly.
+# Task
+If my message asks to do something — this is a Task.
+Usually I start with one message, then add additional details during the process.
+Write it as requirements for the task in the task file.
+Rewrite on the next messages.
+It's ok to use same note for multiple tasks, just update it with new requirements.
+If I ask to do something different, create a new task.
 
+Task file structure:
+Name the file "Task - <short description of the task>".
+- Goal: bigger picture. Generate it based on my message, and your understanding of it.
+- Requirements: extract them from my messages, try to keep it's original meaning, but make it clearer and more structured.
+- Plan
+- Progress: use them with date stamp, so you can track progress over time.
+- Results
+
+# Spec
+Specs are knowledge gathered from doing previous tasks.
+It should help you to research less, and do the task faster.
+Read them, and use what's applicable to current task.
+
+Create specs once you finished the task.
+Always try to figure out: should it be part of existing Spec, or should it be a new one?
+Don't be afraid to restructure existing specs, if they become too big.
+Try to keep them clear and logical.
+
+# Notifications
+If my Task contradicts some Specs, notify me about it.
+
+# ???
 Be systematic.
-Try always to keep consistency with design system, reuse existing components, and do not invent new components unless asked explicitly.
-Reuse existing icons only. NEVER create custom SVG icons inline or as new files. Always look for the icon in src/icons/ first (use Glob or Grep). If the icon that you need doesn't exist, STOP and ask the user — do not invent a substitute.
-Use the same name components, as in Figma UI Kit.
+Always prefer to come up with suystematic solution, in favor of quick ad-hoc solutions.
 
-Do not commit without explicit approval. Do partial commits based on tasks.
+Use upstream thinking.
+Always try to think about the root cause of the problem, not just the symptoms.
+
+Read the "ui-guidelines/UI Guidelines.md" before doing a design.
+At the end of the Task report: what rule you used from it, and how did you apply it.
+
+# Project rules
+🚨 ALWAYS try to use components and icons from Int UI Kit. 
+If they don't exist, STOP and ask the user what to do.
+Don't create them without explicitly asking for it.
+
+## Commit rules
+Do not commit without explicit approval.
+Do partial commits based on tasks.
+Prefer to use this format "Part: What's done"
+
+# User rules
+I'm not a developer
+Help me to do stuff, run terminal command if you suggests them
