@@ -7,7 +7,7 @@ import './StatusBar.css';
 function ChevronRight() {
     return (
         <div className="status-bar-chevron">
-            <Icon name="general/chevronRight" size={16} forceTheme="light" />
+            <Icon name="general/chevronRight" size={16} forceTheme="dark" />
         </div>
     );
 }
