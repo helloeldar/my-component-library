@@ -67,6 +67,7 @@ Don't create them without explicitly asking for it.
 Do not commit without explicit approval.
 Do partial commits based on tasks.
 Prefer to use this format "Part: What's done"
+Example: "Code editor: Changed font size"
 
 # User rules
 I'm not a developer

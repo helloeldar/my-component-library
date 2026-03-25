@@ -203,7 +203,15 @@ function TerminalWindow({
     const morePopupRef = useRef(null);
     const headerContextPopupRef = useRef(null);
 
-    // Sync blocks prop to internal state
+    // Sync props to internal state (uncontrolled mode)
+    useEffect(() => {
+        if (!isControlled) setInternalTabs(tabsProp);
+    }, [tabsProp, isControlled]);
+
+    useEffect(() => {
+        if (!isControlled && activeTabProp !== undefined) setInternalActiveTab(activeTabProp);
+    }, [activeTabProp, isControlled]);
+
     useEffect(() => {
         setInternalBlocks(blocksProp);
     }, [blocksProp]);
