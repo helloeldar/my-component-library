@@ -178,7 +178,7 @@ const DEFAULT_RIGHT_STRIPE_ITEMS = [
 
 const DEFAULT_BOTTOM_STRIPE_ITEMS = [];
 
-const DEFAULT_OPEN_TOOL_WINDOWS = ['project', 'ai', 'terminal'];
+const DEFAULT_OPEN_TOOL_WINDOWS = ['project', 'terminal'];
 
 /* ─── Default panel content renderers ────────────────────────────────────────── */
 
