@@ -637,7 +637,7 @@
     --tool-window-content-bg: var(--tool-window-bg);
     --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --scrollbar-track: transparent;
-    --scrollbar-track-hover: var(--gray-10);
+    --scrollbar-track-hover: transparent;
     --scrollbar-thumb: transparent;
     --scrollbar-thumb-visible: rgba(0, 0, 0, 0.15);
     --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
@@ -1149,7 +1149,7 @@
     --tool-window-content-bg: var(--tool-window-bg);
     --tool-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     --scrollbar-track: transparent;
-    --scrollbar-track-hover: var(--gray-130);
+    --scrollbar-track-hover: transparent;
     --scrollbar-thumb: transparent;
     --scrollbar-thumb-visible: rgba(255, 255, 255, 0.15);
     --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
@@ -1253,4 +1253,9 @@
 .theme-light :hover > ::-webkit-scrollbar-track,
 .theme-dark :hover > ::-webkit-scrollbar-track {
     background: var(--scrollbar-track-hover);
+}
+
+.theme-light ::-webkit-scrollbar-corner,
+.theme-dark ::-webkit-scrollbar-corner {
+    background: transparent;
 }

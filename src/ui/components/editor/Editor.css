@@ -118,7 +118,6 @@
     line-height: 22px;
     color: var(--editor-default-text);
     height: 100%;
-    scrollbar-width: thin;
 }
 
 .editor-code .pce-has-selection .active-line:after {

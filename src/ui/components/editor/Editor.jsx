@@ -124,8 +124,7 @@ function Editor({
     const handleUpdate = useCallback((value, editor) => {
         setLineCount(value.split('\n').length);
         setActiveLine(editor.activeLine);
-        onChange?.(value);
-    }, [onChange]);
+    }, []);
 
     const handleSelectionChange = useCallback((selection, value, editor) => {
         if (correctedLineEl.current) {
@@ -185,6 +184,7 @@ function Editor({
                     lineNumbers={false}
                     readOnly={readOnly}
                     onUpdate={handleUpdate}
+                    onChange={onChange}
                     onSelectionChange={handleSelectionChange}
                 />
             </div>
