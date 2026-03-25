@@ -670,6 +670,7 @@ export interface MainWindowProps {
   leftPanelContent?: (stripeId: string, props: any) => ReactNode;
   rightPanelContent?: (stripeId: string, props: any) => ReactNode;
   bottomPanelContent?: (stripeId: string, props: any) => ReactNode;
+  defaultOpenToolWindows?: string[];
   toolbar?: ReactNode;
   statusBarProps?: StatusBarProps;
   overlays?: ReactNode;
@@ -683,6 +684,7 @@ export const DEFAULT_PROJECT_TREE_DATA: any[];
 export const DEFAULT_LEFT_STRIPE_ITEMS: StripeItemDef[];
 export const DEFAULT_RIGHT_STRIPE_ITEMS: StripeItemDef[];
 export const DEFAULT_BOTTOM_STRIPE_ITEMS: StripeItemDef[];
+export const DEFAULT_OPEN_TOOL_WINDOWS: string[];
 
 // Navigation Components
 export const Tab: FC<{ label: string; icon?: string | ReactNode; active?: boolean; focused?: boolean; disabled?: boolean; closable?: boolean; onClick?: () => void; onClose?: () => void }>;

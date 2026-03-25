@@ -62,6 +62,7 @@ This spec defines what "easily editable" means for every component in the librar
 | `leftPanelContent` | function | current mapping | `(stripeId, props) => ReactNode` — renders left panel content by stripe id |
 | `rightPanelContent` | function | current mapping | `(stripeId, props) => ReactNode` — renders right panel content by stripe id |
 | `bottomPanelContent` | function | current mapping | `(stripeId, props) => ReactNode` — renders bottom panel content by stripe id |
+| `defaultOpenToolWindows` | string[] | `['project', 'ai', 'terminal']` | Which tool windows are open on initial render |
 | `toolbar` | ReactNode | `<MainToolbar .../>` | Custom toolbar replacing the default |
 | `statusBarProps` | object | current breadcrumbs/widgets | Props to spread on StatusBar |
 | `overlays` | ReactNode | current overlays | Custom overlays (popups, dialogs) |
@@ -71,6 +72,7 @@ This spec defines what "easily editable" means for every component in the librar
 - `DEFAULT_LEFT_STRIPE_ITEMS`, `DEFAULT_RIGHT_STRIPE_ITEMS`, `DEFAULT_BOTTOM_STRIPE_ITEMS`
 - `DEFAULT_PROJECT_TREE_DATA`
 - `DEFAULT_JAVA_CODE`
+- `DEFAULT_OPEN_TOOL_WINDOWS`
 
 ---
 

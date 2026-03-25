@@ -178,6 +178,8 @@ const DEFAULT_RIGHT_STRIPE_ITEMS = [
 
 const DEFAULT_BOTTOM_STRIPE_ITEMS = [];
 
+const DEFAULT_OPEN_TOOL_WINDOWS = ['project', 'ai', 'terminal'];
+
 /* ─── Default panel content renderers ────────────────────────────────────────── */
 
 function defaultLeftPanelContent(stripeId, { projectTreeData, focusedPanel, setFocusedPanel, setShowLeftPanel }) {
@@ -304,20 +306,38 @@ function MainWindow({
     leftPanelContent,
     rightPanelContent,
     bottomPanelContent,
+    defaultOpenToolWindows = DEFAULT_OPEN_TOOL_WINDOWS,
     toolbar,
     statusBarProps,
     overlays,
     className = "",
     ...props
 }) {
-    const [leftStripeSelection, setLeftStripeSelection] = useState('project');
-    const [showLeftPanel, setShowLeftPanel] = useState(true);
+    const leftPanelIds = new Set(leftStripeItems.filter(i => !i.separator && i.panel !== 'bottom').map(i => i.id));
+    const rightPanelIds = new Set(rightStripeItems.filter(i => !i.separator).map(i => i.id));
+    const bottomPanelIds = new Set([
+        ...leftStripeItems.filter(i => i.panel === 'bottom' && !i.separator).map(i => i.id),
+        ...bottomStripeItems.filter(i => !i.separator).map(i => i.id),
+    ]);
 
-    const [rightStripeSelection, setRightStripeSelection] = useState('ai');
-    const [showRightPanel, setShowRightPanel] = useState(true);
+    const initialLeft = defaultOpenToolWindows.find(id => leftPanelIds.has(id));
+    const initialRight = defaultOpenToolWindows.find(id => rightPanelIds.has(id));
+    const initialBottom = defaultOpenToolWindows.find(id => bottomPanelIds.has(id));
 
-    const [bottomStripeSelection, setBottomStripeSelection] = useState('terminal');
-    const [showBottomPanel, setShowBottomPanel] = useState(true);
+    const [leftStripeSelection, setLeftStripeSelection] = useState(
+        initialLeft || [...leftPanelIds][0] || 'project'
+    );
+    const [showLeftPanel, setShowLeftPanel] = useState(!!initialLeft);
+
+    const [rightStripeSelection, setRightStripeSelection] = useState(
+        initialRight || [...rightPanelIds][0] || 'ai'
+    );
+    const [showRightPanel, setShowRightPanel] = useState(!!initialRight);
+
+    const [bottomStripeSelection, setBottomStripeSelection] = useState(
+        initialBottom || [...bottomPanelIds][0] || 'terminal'
+    );
+    const [showBottomPanel, setShowBottomPanel] = useState(!!initialBottom);
 
     const [focusedPanel, setFocusedPanel] = useState('editor');
 
@@ -550,4 +570,5 @@ export {
     DEFAULT_LEFT_STRIPE_ITEMS,
     DEFAULT_RIGHT_STRIPE_ITEMS,
     DEFAULT_BOTTOM_STRIPE_ITEMS,
+    DEFAULT_OPEN_TOOL_WINDOWS,
 };
