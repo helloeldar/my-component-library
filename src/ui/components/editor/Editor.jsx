@@ -55,6 +55,7 @@ function Editor({
     breakpoints: initialBreakpoints = EMPTY_BREAKPOINTS,
     onBreakpointToggle,
     onExitReaderMode,
+    onChange,
     gutterActions = [],
     readerModeLabel,
     readerModeTooltip,
@@ -123,7 +124,8 @@ function Editor({
     const handleUpdate = useCallback((value, editor) => {
         setLineCount(value.split('\n').length);
         setActiveLine(editor.activeLine);
-    }, []);
+        onChange?.(value);
+    }, [onChange]);
 
     const handleSelectionChange = useCallback((selection, value, editor) => {
         if (correctedLineEl.current) {
