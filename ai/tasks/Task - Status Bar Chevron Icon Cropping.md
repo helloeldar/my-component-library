@@ -16,7 +16,7 @@ Fix the `general/chevronRight` icon visibility and correct rendering in the Stat
 
 ## Known Issue ⚠️
 
-**Status:** Open — not resolved
+**Status:** Resolved ✅ (2026-03-25)
 
 **Component:** `StatusBar` → `ChevronRight` internal component
 
@@ -30,7 +30,9 @@ The `.status-bar-chevron` wrapper (16×16px) clips the `general/chevronRight` ic
 - `.status-bar-breadcrumbs { overflow: hidden }` clips the icon vertically when the container height is auto-sized below 16px
 - `align-self: stretch` attempt didn't resolve it
 
-**Possible fixes to investigate:**
-1. Import SVG as React component using `?react` suffix or SVGR config — allows inline SVG and CSS `fill`/`width` control
-2. Use CSS to constrain `img` size inside the wrapper: `.status-bar-chevron img { width: 7px; height: 7px; }`
-3. Remove `overflow: hidden` from `.status-bar-breadcrumbs` and handle text truncation differently (e.g., on `.status-bar-breadcrumb-label` only)
+**Fix applied:**
+- Checked Figma design (node 544:47863) — `overflow: clip` belongs on the STATUS BAR container, not the breadcrumbs row
+- Added `overflow: hidden` to `.status-bar` (outer container, 29px tall)
+- Kept `overflow: hidden` on `.status-bar-breadcrumbs` for horizontal truncation of long paths
+- Added `align-self: stretch` to `.status-bar-breadcrumbs` — ensures the container fills the full 29px status bar height, so `overflow: hidden` clips at 29px (not at text height ~14-16px), letting the 16px chevron icons fit without vertical clipping
+- Added `overflow: hidden` + explicit `img { width: 16px; height: 16px; }` to `.status-bar-chevron`
