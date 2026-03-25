@@ -3,6 +3,8 @@
     width: 100%;
     box-sizing: border-box;
     border-radius: 4px;
+    cursor: default;
+    user-select: none;
 }
 
 .popup-cell:hover:not(.popup-cell-separator):not(.popup-cell-header):not(.popup-cell-footer):not(.popup-cell-search):not(.popup-cell-advanced) {
