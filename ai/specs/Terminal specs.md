@@ -111,6 +111,7 @@ The entire content (output blocks + input prompt) is in **one scrollable area**.
 | Monospace font | Character alignment matters (tables, ASCII art) |
 | Distinguish prompt / input / output visually | Clarity of what's user-typed vs system output |
 | Block input during "running" state | Reflects real terminal behavior |
+| Cursor blinks only when terminal is focused | Blinking while unfocused is distracting and incorrect — matches real terminal behavior |
 
 ---
 
@@ -151,6 +152,14 @@ The entire content (output blocks + input prompt) is in **one scrollable area**.
 - Ghost text (AI completion) is hidden when the user starts typing and reappears when input is empty
 - `onCommand` callback prop is fired when a command is submitted
 - `blocks` prop seeds the initial buffer; internally the component manages its own block state so new commands appear immediately
+
+### Cursor (Caret) Behavior
+
+- The cursor is a `<span class="terminal-cursor">` rendered inline in the input line
+- **Blink animation only activates when the terminal is focused** — implemented via CSS `:focus-within` on `.terminal-content-wrapper`
+- When the hidden input loses focus, the cursor stays solid (animation removed), matching real terminal behavior
+- Implementation pattern: base `.terminal-cursor` rule has no animation; `.terminal-content-wrapper:focus-within .terminal-cursor` applies `animation: terminal-blink 1s step-end infinite`
+- This is a pure CSS solution — no JavaScript focus tracking needed for cursor blinking
 
 ---
 

@@ -104,6 +104,9 @@
     height: 15px;
     background: var(--terminal-cursor);
     vertical-align: text-bottom;
+}
+
+.terminal-content-wrapper:focus-within .terminal-cursor {
     animation: terminal-blink 1s step-end infinite;
 }
 
