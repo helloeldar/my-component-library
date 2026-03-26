@@ -16,6 +16,7 @@ function TreeNode({
     children,
     className = '',
     style,
+    flat = false,
 }) {
     const [expanded, setExpanded] = useState(isExpanded);
 
@@ -35,15 +36,13 @@ function TreeNode({
 
     const renderIcon = () => {
         if (!icon) return null;
-        // If icon is a string, treat it as an icon name from the registry
         if (typeof icon === 'string') {
             return <Icon name={icon} size={16} className="tree-node-icon" />;
         }
-        // Otherwise render it directly (React element)
         return <span className="tree-node-icon">{icon}</span>;
     };
 
-    const indentWidth = level === 1 ? 16 : level === 2 ? 32 : 50 + (level - 3) * 18;
+    const indentWidth = flat ? 0 : (level === 1 ? 16 : level === 2 ? 32 : 50 + (level - 3) * 18);
 
     return (
         <div className={`tree-node-container ${className}`} style={style}>
@@ -52,7 +51,7 @@ function TreeNode({
                 style={{ paddingLeft: `${indentWidth}px` }}
                 onClick={handleSelect}
             >
-                {hasChildren && (
+                {!flat && hasChildren && (
                     <button 
                         className={`tree-node-toggle ${expanded ? 'expanded' : ''}`}
                         onClick={(e) => {
@@ -66,7 +65,7 @@ function TreeNode({
                         />
                     </button>
                 )}
-                {!hasChildren && <div className="tree-node-spacer" />}
+                {!flat && !hasChildren && <div className="tree-node-spacer" />}
                 
                 {prefix && <div className="tree-node-prefix" onClick={e => e.stopPropagation()}>{prefix}</div>}
                 {renderIcon()}

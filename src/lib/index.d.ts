@@ -924,7 +924,18 @@ export const DEFAULT_DETAILS_FILES: any[];
 export const DEFAULT_COMMIT_DETAILS: VCSLogCommitDetails;
 
 // Tree Components
-export const Tree: FC<{ data?: any[]; selectedId?: string; onSelect?: (id: string) => void; onExpand?: (id: string, expanded: boolean) => void }>;
+export const Tree: FC<{
+  data?: any[];
+  selectedId?: string;
+  onSelect?: (id: string) => void;
+  onExpand?: (id: string, expanded: boolean) => void;
+  /**
+   * Flat mode — hides chevrons and indentation.
+   * Use for non-hierarchical lists: tasks, sessions, bookmarks, results, etc.
+   * All hover/selection/sizing tokens are preserved.
+   */
+  flat?: boolean;
+}>;
 
 export interface TreeNodeProps {
   label?: ReactNode;
@@ -940,6 +951,8 @@ export interface TreeNodeProps {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  /** Hides chevron/spacer column and indentation. See Tree `flat` prop. */
+  flat?: boolean;
 }
 
 export const TreeNode: FC<TreeNodeProps>;
