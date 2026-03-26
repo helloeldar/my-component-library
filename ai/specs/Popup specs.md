@@ -37,6 +37,32 @@ Popups must render **above all layers** (use `position: fixed` with high `z-inde
 - The `positionPopup()` utility handles the flip logic for both button-triggered and cursor-triggered menus
 - **Important:** Measure the inner `.popup` element, not the wrapper — `position: absolute` children don't contribute to the wrapper's dimensions
 
+### Library Exports (for consumers)
+
+| Export | Type | Location |
+|---|---|---|
+| `positionPopup(popupEl, anchor, gap?)` | function | `src/ui/utils/positionPopup.js` |
+| `PositionedPopup` | React component | `src/ui/components/popup/PositionedPopup.jsx` |
+
+**`positionPopup(popupEl, anchor, gap = 4)`** — imperative util. Pass a DOM element (wrapper, must start at `opacity: 0`) and an anchor rect; sets `top`, `left`, `opacity: 1`.
+
+**`PositionedPopup`** — declarative wrapper. Props: `triggerRect`, `onDismiss`, `gap`, `children`. Calls `positionPopup` via `useLayoutEffect` and renders a fixed overlay for click-outside.
+
+```jsx
+const [open, setOpen] = useState(false);
+const [rect, setRect] = useState(null);
+
+<button onClick={e => { setRect(e.currentTarget.getBoundingClientRect()); setOpen(true); }}>
+  Open
+</button>
+
+{open && (
+  <PositionedPopup triggerRect={rect} onDismiss={() => setOpen(false)}>
+    <Popup>...</Popup>
+  </PositionedPopup>
+)}
+```
+
 ## PopupCell
 
 ### Selection vs hover width

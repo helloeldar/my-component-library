@@ -23,6 +23,8 @@ export { default as Input } from '../ui/components/input/Input';
 export { default as Link } from '../ui/components/link/Link';
 export { default as Popup } from '../ui/components/popup/Popup';
 export { default as PopupCell } from '../ui/components/popup/PopupCell';
+export { default as PositionedPopup } from '../ui/components/popup/PositionedPopup';
+export { positionPopup } from '../ui/utils/positionPopup';
 export { default as PopupProjects } from '../ui/components/popup/PopupProjects';
 export { default as PopupBranches } from '../ui/components/popup/PopupBranches';
 export { default as PopupLineWithActions } from '../ui/components/popup/PopupLineWithActions';

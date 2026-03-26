@@ -191,6 +191,28 @@ export interface PopupCellProps {
 
 export const PopupCell: FC<PopupCellProps>;
 
+// PositionedPopup
+export interface PositionedPopupProps {
+  triggerRect: { top?: number; bottom?: number; left?: number; right?: number; x?: number; y?: number } | DOMRect;
+  onDismiss?: () => void;
+  children?: ReactNode;
+  gap?: number;
+}
+
+export const PositionedPopup: FC<PositionedPopupProps>;
+
+// positionPopup utility
+export interface AnchorRect {
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+  x?: number;
+  y?: number;
+}
+
+export function positionPopup(popupEl: HTMLElement | null, anchor: AnchorRect | DOMRect, gap?: number): void;
+
 // PopupProjects
 export interface PopupProjectsProps {
   className?: string;
