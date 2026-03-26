@@ -5,7 +5,7 @@
 - User scenarios
 - Design specs: used components, states shown
 
-It should use the Prototype wrapper (see Prototype Wrapper specs.md).
+It should use the Prototype wrapper (see `ai/specs/Prototype Wrapper specs.md`).
 
 `/prototyping-kit` — UI that supports prototyping (wrapper, controls, etc.)
 

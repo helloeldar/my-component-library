@@ -820,6 +820,13 @@ export const StripeIconButton: FC<{ icon?: string | ReactNode; monochrome?: bool
 export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'right' }>;
 
 // Toolbar Components (regular — 26px, for tool-window toolbars)
+// Use these inside toolbarExtra, Editor topBar, or any custom bar that lives inside an IDE window.
+// Never use raw <button> elements — toolbar components carry correct sizing, states, and spacing tokens.
+
+/** 26px toolbar button. Use inside any IDE toolbar area (toolbarExtra, Editor topBar, etc.).
+ *  NOTE: shortcut display is a known gap — there is no shortcut prop that renders the key
+ *  inline next to the label (e.g. "Send  ↵"). Workaround: include the key text in `text`.
+ *  This is tracked as a library feature request. */
 export const ToolbarButton: FC<{ text?: string; icon?: string | ReactNode; showChevron?: boolean; disabled?: boolean; onClick?: () => void; className?: string }>;
 export const ToolbarSeparator: FC<{ orientation?: 'vertical' | 'horizontal'; className?: string }>;
 export const ToolbarDropdown: FC<{ text?: string; label?: string; icon?: string; theme?: 'dark' | 'light' | 'light-header'; disabled?: boolean; onClick?: () => void; className?: string }>;

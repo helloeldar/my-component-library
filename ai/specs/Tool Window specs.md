@@ -119,6 +119,53 @@ Renders a standard `+` icon button in the header — identical to Terminal.
 </ToolWindow>
 ```
 
+### Buttons inside toolbars and custom bars must use Toolbar components
+
+**Rule:** Any bar that lives inside an IDE window — whether it's the header toolbar, a `toolbarExtra` slot, or a custom `topBar` inside an `Editor` — is a **toolbar**. Every button inside it must use a toolbar component, never a raw `<button>`, bare `<Icon>`, or hand-crafted `<span>` wrapper.
+
+| Situation | Correct component | Wrong |
+|---|---|---|
+| Icon-only action | `<IconButton icon="..." />` | `<button><Icon name="..." /></button>` |
+| Text + optional icon | `<ToolbarButton text="..." icon="..." />` | `<button className="custom">Send</button>` |
+| Separator between groups | `<ToolbarSeparator />` | `<div style={{ borderLeft: '1px solid ...' }} />` |
+
+**Why:** Toolbar components carry the correct sizing (26px height), hover/pressed/disabled states, and spacing tokens that make a bar look native. Hand-crafted buttons will have subtly wrong padding, missing pressed states, and inconsistent colors.
+
+```jsx
+// ✅ Correct — toolbar-native feel
+<ToolWindow title="Agent Tasks" toolbarExtra={
+  <>
+    <IconButton icon="general/add" title="New Task" onClick={onNew} />
+    <ToolbarSeparator />
+    <ToolbarButton text="Send" icon="actions/execute" onClick={onSend} />
+  </>
+} />
+
+// ❌ Wrong — raw elements break the IDE aesthetic
+<ToolWindow title="Agent Tasks" toolbarExtra={
+  <div style={{ display: 'flex', gap: 4 }}>
+    <button onClick={onNew}>+ New</button>
+    <span style={{ borderLeft: '1px solid #fff' }} />
+    <button onClick={onSend}>Send</button>
+  </div>
+} />
+```
+
+#### Shortcut display on ToolbarButton — known gap
+
+A native IDE button like `[ Send ↵ ]` shows the keyboard shortcut inline next to the label in muted styling.
+
+**Current state:**
+- `IconButton` has `shortcut?: string` — but it only appears in the `title` tooltip, not rendered visually on the button.
+- `ToolbarButton` has **no `shortcut` prop** at all.
+
+**Workaround** (prototype only): pass the key label as `text`:
+```jsx
+<ToolbarButton text="Send  Enter" onClick={onSend} />
+```
+
+**Library gap to resolve:** Add `shortcut?: string` to `ToolbarButton` that renders the key next to the label in muted styling — `[ Send  ↵ ]`.
+
 ### ToolWindow actions reference
 
 | Action string | Icon | Use for |

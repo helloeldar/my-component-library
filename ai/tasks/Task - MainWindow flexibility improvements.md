@@ -64,6 +64,18 @@ Discovered during the Nikita experiment — an attempt to recreate a JetBrains I
 
 ---
 
+## Consumer Session Notes — 2026-03-26
+
+### Toolbar button rule
+- Rule documented: any bar inside an IDE window is a toolbar → use `IconButton`, `ToolbarButton`, `ToolbarSeparator` — never raw `<button>` or `<div>` separators.
+- Added to `ai/specs/Tool Window specs.md` under "IDE Tool Window Patterns".
+
+### Shortcut display gap
+- `ToolbarButton` has no `shortcut` prop to render a key inline (e.g. `[ Send ↵ ]`).
+- `IconButton.shortcut` exists but only sets the `title` tooltip — not rendered visually.
+- Documented as a library gap in the spec and with a JSDoc comment in `index.d.ts`.
+- Workaround in prototypes: pass shortcut text directly in `text` prop.
+
 ## Audit Round 2 — 2026-03-26
 
 ### Goal
