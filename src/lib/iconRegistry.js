@@ -538,6 +538,8 @@ import icon_fileTypes_jspx from '../icons/fileTypes/jspx.svg';
 import icon_fileTypes_jspx_dark from '../icons/fileTypes/jspx_dark.svg';
 import icon_fileTypes_manifest from '../icons/fileTypes/manifest.svg';
 import icon_fileTypes_manifest_dark from '../icons/fileTypes/manifest_dark.svg';
+import icon_fileTypes_markdown from '../icons/fileTypes/markdown.svg';
+import icon_fileTypes_markdown_dark from '../icons/fileTypes/markdown_dark.svg';
 import icon_fileTypes_microsoftWindows from '../icons/fileTypes/microsoftWindows.svg';
 import icon_fileTypes_microsoftWindows_dark from '../icons/fileTypes/microsoftWindows_dark.svg';
 import icon_fileTypes_modified from '../icons/fileTypes/modified.svg';
@@ -2424,6 +2426,8 @@ const iconRegistry = {
   'fileTypes/jspx_dark': icon_fileTypes_jspx_dark,
   'fileTypes/manifest': icon_fileTypes_manifest,
   'fileTypes/manifest_dark': icon_fileTypes_manifest_dark,
+  'fileTypes/markdown': icon_fileTypes_markdown,
+  'fileTypes/markdown_dark': icon_fileTypes_markdown_dark,
   'fileTypes/microsoftWindows': icon_fileTypes_microsoftWindows,
   'fileTypes/microsoftWindows_dark': icon_fileTypes_microsoftWindows_dark,
   'fileTypes/modified': icon_fileTypes_modified,

@@ -43,3 +43,28 @@ Located in `src/icons/status/`:
 
 ## Default Toolbar Icons
 - Regular toolbars (tool windows, dialogs, etc.) use the default `ToolbarIconButton` with **16×16** icons inside a **26×26** button.
+
+## Adding Missing Icons from JetBrains Source
+When an icon doesn't exist in `src/icons/`, source it from the official JetBrains repository before asking the user to create custom SVGs.
+
+**Official source:** `https://github.com/JetBrains/intellij-community`
+
+**Process:**
+1. Browse via GitHub API: `https://api.github.com/repos/JetBrains/intellij-community/contents/<path>`
+2. For file type icons: check `platform/icons/src/fileTypes/` or plugin-specific paths (e.g. `plugins/markdown/core/resources/icons/expui/`)
+3. Download both `iconName.svg` and `iconName_dark.svg` to the appropriate `src/icons/` subfolder
+4. Add import lines to `src/lib/iconRegistry.js` (maintain alphabetical order)
+5. Add registry map entries in the same file
+6. Run `npm run build:lib` to rebuild
+
+**Example — markdown icon sourcing (2026-03-26):**
+- Found at: `plugins/markdown/core/resources/icons/expui/markdown.svg`
+- Not in the root `fileTypes/` folder — was in the plugin's `expui/` subdirectory
+- Placed in: `src/icons/fileTypes/markdown.svg` + `markdown_dark.svg`
+
+## Animated Loader Component
+The `Loader` component exists and is exported from the library:
+- File: `src/ui/components/loader/Loader.jsx`
+- Uses `Icon name="loader"` with CSS spin animation
+- Props: `size` (16 | 32 | 'small' | 'large', default 16), `className`
+- Usage: `import { Loader } from '@jetbrains/int-ui-kit'; <Loader size={16} />`
