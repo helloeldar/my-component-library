@@ -647,11 +647,26 @@ export interface EditorTabDef {
 
 export interface StripeItemDef {
   id: string;
-  icon?: string;
+  icon?: string | ReactNode;
   tooltip?: string;
   section?: 'top' | 'bottom';
   panel?: 'bottom';
   separator?: boolean;
+}
+
+export interface PanelContext {
+  projectName: string;
+  projectTreeData: any[];
+  focusedPanel: string;
+  setFocusedPanel: (panel: string) => void;
+  setShowLeftPanel: (show: boolean) => void;
+  setShowRightPanel: (show: boolean) => void;
+  setShowBottomPanel: (show: boolean) => void;
+  terminalTabs: any[];
+  activeTerminalTab: number;
+  setActiveTerminalTab: (index: number) => void;
+  handleTerminalTabClose: (index: number) => void;
+  handleTerminalTabAdd: () => void;
 }
 
 export interface MainWindowProps {
@@ -673,9 +688,9 @@ export interface MainWindowProps {
   leftStripeItems?: StripeItemDef[];
   rightStripeItems?: StripeItemDef[];
   bottomStripeItems?: StripeItemDef[];
-  leftPanelContent?: (stripeId: string, context: any) => ReactNode;
-  rightPanelContent?: (stripeId: string, context: any) => ReactNode;
-  bottomPanelContent?: (stripeId: string, context: any) => ReactNode;
+  leftPanelContent?: (stripeId: string, context: PanelContext) => ReactNode;
+  rightPanelContent?: (stripeId: string, context: PanelContext) => ReactNode;
+  bottomPanelContent?: (stripeId: string, context: PanelContext) => ReactNode;
   defaultOpenToolWindows?: string[];
   toolbar?: ReactNode;
   statusBarProps?: StatusBarProps;
@@ -694,11 +709,14 @@ export const DEFAULT_LEFT_STRIPE_ITEMS: StripeItemDef[];
 export const DEFAULT_RIGHT_STRIPE_ITEMS: StripeItemDef[];
 export const DEFAULT_BOTTOM_STRIPE_ITEMS: StripeItemDef[];
 export const DEFAULT_OPEN_TOOL_WINDOWS: string[];
+export function defaultLeftPanelContent(stripeId: string, context: PanelContext): ReactNode;
+export function defaultRightPanelContent(stripeId: string, context: PanelContext): ReactNode;
+export function defaultBottomPanelContent(stripeId: string, context: PanelContext): ReactNode;
 
 // Navigation Components
 export const Tab: FC<{ label: string; icon?: string | ReactNode; active?: boolean; focused?: boolean; disabled?: boolean; closable?: boolean; onClick?: () => void; onClose?: () => void }>;
 export const TabBar: FC<{ tabs?: Array<{ label: string; icon?: string; closable?: boolean }>; activeTab?: number; onTabChange?: (index: number) => void; onTabClose?: (index: number) => void; focused?: boolean; direction?: 'horizontal' | 'vertical'; wrap?: boolean; actions?: string[]; onActionClick?: (action: string) => void; className?: string }>;
-export const StripeIconButton: FC<{ icon: string; label?: string; active?: boolean; inactive?: boolean; badge?: boolean; position?: 'left' | 'right'; onClick?: () => void }>;
+export const StripeIconButton: FC<{ icon?: string | ReactNode; label?: string; state?: 'default' | 'selected' | 'inactive'; badge?: boolean; disabled?: boolean; title?: string; onClick?: () => void }>;
 export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'right' }>;
 
 // Toolbar Components (regular — 26px, for tool-window toolbars)

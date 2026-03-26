@@ -78,3 +78,109 @@ MainWindow accepts a `height` prop (default `800`) to control its rendered heigh
 - Panel toggling (left, right, bottom) via stripe buttons
 - Specialized tool windows: ProjectWindow, TerminalWindow, AIAssistantWindow
 - Editor area with CodeExample and line numbers
+
+## Split Left Tool Window
+
+The left stripe's top section supports a separator that splits the left panel into two independent vertical sub-panels.
+
+- Items **before** the separator open in the **top sub-panel**
+- Items **after** the separator open in the **split (bottom) sub-panel**
+- Both sub-panels are independently open/closeable; each minimize button closes only its own sub-panel
+- If no separator exists in the top group → single left panel, identical to previous behavior (backward compatible)
+
+### State
+
+Two independent state pairs replace the previous single `leftStripeSelection` / `showLeftPanel`:
+
+```js
+const [leftTopSelection, setLeftTopSelection]       // active item in top sub-panel
+const [showLeftTopPanel, setShowLeftTopPanel]        // top sub-panel visibility
+const [leftSplitSelection, setLeftSplitSelection]   // active item in split sub-panel
+const [showLeftSplitPanel, setShowLeftSplitPanel]   // split sub-panel visibility
+```
+
+`showLeftPanel` is derived: `showLeftTopPanel || showLeftSplitPanel`.
+
+### Layout
+
+```
+Left stripe:       Left panel column:
+ [Project]    -->  +------------------+
+ [Commit]          |  Project         |  ← top sub-panel (flex: 1)
+  --------         +------------------+  ← gap: 4px
+ [Bookmarks] -->   |  Bookmarks       |  ← split sub-panel (flex: 1)
+── bottom ──       +------------------+
+ [Terminal]  -->   Bottom panel
+```
+
+CSS class `.main-window-left-panel-column` is a flex column; each child gets `flex: 1 / min-height: 0`.
+
+### Stripe item setup example
+
+```jsx
+leftStripeItems={[
+  { id: 'project',   icon: 'toolwindows/project@20x20',   tooltip: 'Project',   section: 'top' },
+  { id: '_sep',      separator: true,                                             section: 'top' },
+  { id: 'bookmarks', icon: 'toolwindows/bookmarks@20x20', tooltip: 'Bookmarks', section: 'top' },
+  { id: 'terminal',  icon: 'toolwindows/terminal@20x20',  tooltip: 'Terminal',  panel: 'bottom', section: 'bottom' },
+]}
+defaultOpenToolWindows={['project', 'bookmarks', 'terminal']}
+```
+
+## Custom Panel Content & Default Renderers
+
+`leftPanelContent`, `rightPanelContent`, `bottomPanelContent` are optional render functions. If omitted, the built-in defaults are used.
+
+### Problem with full replacement
+
+Passing `leftPanelContent` replaces the entire built-in renderer — impossible to add a custom tool window while keeping built-in ones (Project, Commit).
+
+### Solution: exported default renderers
+
+```jsx
+import { MainWindow, defaultLeftPanelContent } from '@jetbrains/int-ui-kit'
+
+<MainWindow
+  leftStripeItems={[
+    ...DEFAULT_LEFT_STRIPE_ITEMS,
+    { id: 'agent-tasks', icon: <img src={claudeSvg} />, tooltip: 'Agent Tasks', section: 'top' },
+  ]}
+  leftPanelContent={(id, ctx) => {
+    if (id === 'agent-tasks') return <AgentTasksPanel />
+    return defaultLeftPanelContent(id, ctx)  // delegate to built-in
+  }}
+/>
+```
+
+Exported: `defaultLeftPanelContent`, `defaultRightPanelContent`, `defaultBottomPanelContent`.
+
+## PanelContext Type
+
+The `ctx` argument passed to panel content functions is now typed as `PanelContext`:
+
+```ts
+export interface PanelContext {
+  projectName: string;
+  projectTreeData: any[];
+  focusedPanel: string;
+  setFocusedPanel: (panel: string) => void;
+  setShowLeftPanel: (show: boolean) => void;
+  setShowRightPanel: (show: boolean) => void;
+  setShowBottomPanel: (show: boolean) => void;
+  terminalTabs: any[];
+  activeTerminalTab: number;
+  setActiveTerminalTab: (index: number) => void;
+  handleTerminalTabClose: (index: number) => void;
+  handleTerminalTabAdd: () => void;
+}
+```
+
+Note: when a split sub-panel calls `setShowLeftPanel(false)`, it closes only its own sub-panel (the context is scoped per-render).
+
+## StripeItemDef.icon accepts ReactNode
+
+`StripeItemDef.icon` accepts `string | ReactNode`. Pass a React element for custom icons (e.g. a Claude `<img>` tag). The runtime `StripeIconButton` already renders both.
+
+```jsx
+{ id: 'claude', icon: <img src={claudeSvg} width={20} height={20} />, tooltip: 'Claude', section: 'top' }
+```

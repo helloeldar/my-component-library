@@ -62,6 +62,21 @@
     min-height: 0;
 }
 
+/* Left Panel Column (wraps top + optional split sub-panels) */
+.main-window-left-panel-column {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 280px;
+    flex-shrink: 0;
+    min-height: 0;
+}
+
+.main-window-left-panel-column > * {
+    flex: 1;
+    min-height: 0;
+}
+
 /* Tool Window overrides */
 .main-window-tool-window {
     flex-shrink: 0;

@@ -1,6 +1,6 @@
 {
   "name": "@jetbrains/int-ui-kit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "JetBrains Int UI Kit — React component library for building JetBrains-style IDE prototypes",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

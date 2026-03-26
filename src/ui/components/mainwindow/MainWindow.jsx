@@ -313,21 +313,42 @@ function MainWindow({
     style,
     ...props
 }) {
-    const leftPanelIds = new Set(leftStripeItems.filter(i => !i.separator && i.panel !== 'bottom').map(i => i.id));
+    const leftTopItems = leftStripeItems.filter(i => i.section === 'top' || (!i.section && !i.panel));
+    const leftBottomItems = leftStripeItems.filter(i => i.section === 'bottom' || i.panel === 'bottom');
+
+    // Split left top items at the first separator into two independent sub-panels
+    const separatorIdx = leftTopItems.findIndex(i => i.separator);
+    const leftTopPanelItems = separatorIdx >= 0 ? leftTopItems.slice(0, separatorIdx).filter(i => !i.separator) : leftTopItems.filter(i => !i.separator);
+    const leftSplitPanelItems = separatorIdx >= 0 ? leftTopItems.slice(separatorIdx + 1).filter(i => !i.separator) : [];
+
+    const leftTopPanelIds = new Set(leftTopPanelItems.map(i => i.id));
+    const leftSplitPanelIds = new Set(leftSplitPanelItems.map(i => i.id));
     const rightPanelIds = new Set(rightStripeItems.filter(i => !i.separator).map(i => i.id));
     const bottomPanelIds = new Set([
-        ...leftStripeItems.filter(i => i.panel === 'bottom' && !i.separator).map(i => i.id),
+        ...leftBottomItems.filter(i => !i.separator).map(i => i.id),
         ...bottomStripeItems.filter(i => !i.separator).map(i => i.id),
     ]);
 
-    const initialLeft = defaultOpenToolWindows.find(id => leftPanelIds.has(id));
+    const initialTop = defaultOpenToolWindows.find(id => leftTopPanelIds.has(id));
+    const initialSplit = defaultOpenToolWindows.find(id => leftSplitPanelIds.has(id));
     const initialRight = defaultOpenToolWindows.find(id => rightPanelIds.has(id));
     const initialBottom = defaultOpenToolWindows.find(id => bottomPanelIds.has(id));
 
-    const [leftStripeSelection, setLeftStripeSelection] = useState(
-        initialLeft || [...leftPanelIds][0] || 'project'
+    const [leftTopSelection, setLeftTopSelection] = useState(
+        initialTop || [...leftTopPanelIds][0] || 'project'
     );
-    const [showLeftPanel, setShowLeftPanel] = useState(!!initialLeft);
+    const [showLeftTopPanel, setShowLeftTopPanel] = useState(!!initialTop);
+
+    const [leftSplitSelection, setLeftSplitSelection] = useState(
+        initialSplit || [...leftSplitPanelIds][0] || null
+    );
+    const [showLeftSplitPanel, setShowLeftSplitPanel] = useState(!!initialSplit);
+
+    const showLeftPanel = showLeftTopPanel || showLeftSplitPanel;
+    const setShowLeftPanel = (show) => {
+        setShowLeftTopPanel(show);
+        setShowLeftSplitPanel(show);
+    };
 
     const [rightStripeSelection, setRightStripeSelection] = useState(
         initialRight || [...rightPanelIds][0] || 'ai'
@@ -388,19 +409,33 @@ function MainWindow({
 
     const getStripeState = (panelType, id, isShown) => {
         if (!isShown) return 'default';
-        const panelKey = panelType === 'left' ? leftStripeSelection :
+        const panelKey = panelType === 'left-top' ? leftTopSelection :
+                         panelType === 'left-split' ? leftSplitSelection :
                          panelType === 'right' ? rightStripeSelection :
                          bottomStripeSelection;
         if (panelKey !== id) return 'default';
-        return focusedPanel === panelType ? 'selected' : 'inactive';
+        const focusType = (panelType === 'left-top' || panelType === 'left-split') ? 'left'
+                        : panelType === 'right' ? 'right'
+                        : 'bottom';
+        return focusedPanel === focusType ? 'selected' : 'inactive';
     };
 
-    const handleLeftStripeClick = (id) => {
-        if (leftStripeSelection === id) {
-            setShowLeftPanel(!showLeftPanel);
+    const handleLeftTopClick = (id) => {
+        if (leftTopSelection === id) {
+            setShowLeftTopPanel(!showLeftTopPanel);
         } else {
-            setLeftStripeSelection(id);
-            setShowLeftPanel(true);
+            setLeftTopSelection(id);
+            setShowLeftTopPanel(true);
+        }
+        setFocusedPanel('left');
+    };
+
+    const handleLeftSplitClick = (id) => {
+        if (leftSplitSelection === id) {
+            setShowLeftSplitPanel(!showLeftSplitPanel);
+        } else {
+            setLeftSplitSelection(id);
+            setShowLeftSplitPanel(true);
         }
         setFocusedPanel('left');
     };
@@ -428,7 +463,8 @@ function MainWindow({
     const panelContext = {
         projectName, projectTreeData,
         focusedPanel, setFocusedPanel,
-        setShowLeftPanel, setShowRightPanel, setShowBottomPanel,
+        setShowLeftPanel,
+        setShowRightPanel, setShowBottomPanel,
         terminalTabs, activeTerminalTab, setActiveTerminalTab,
         handleTerminalTabClose, handleTerminalTabAdd,
     };
@@ -436,9 +472,6 @@ function MainWindow({
     const renderLeftPanel = leftPanelContent || defaultLeftPanelContent;
     const renderRightPanel = rightPanelContent || defaultRightPanelContent;
     const renderBottomPanel = bottomPanelContent || defaultBottomPanelContent;
-
-    const leftTopItems = leftStripeItems.filter(i => i.section === 'top' || (!i.section && !i.panel));
-    const leftBottomItems = leftStripeItems.filter(i => i.section === 'bottom' || i.panel === 'bottom');
 
     const defaultOverlays = (
         <>
@@ -488,13 +521,17 @@ function MainWindow({
                     <StripeContainer className="stripe-section-top">
                         {leftTopItems.map(item => {
                             if (item.separator) return <StripeContainer.Separator key={item.id} />;
+                            const isTopPanel = leftTopPanelIds.has(item.id);
+                            const isSplitPanel = leftSplitPanelIds.has(item.id);
+                            const shown = isTopPanel ? showLeftTopPanel : isSplitPanel ? showLeftSplitPanel : false;
+                            const panelType = isTopPanel ? 'left-top' : 'left-split';
                             return (
                                 <StripeIconButton
                                     key={item.id}
                                     icon={item.icon}
-                                    state={getStripeState(item.panel || 'left', item.id, item.panel === 'bottom' ? showBottomPanel : showLeftPanel)}
+                                    state={getStripeState(panelType, item.id, shown)}
                                     title={item.tooltip}
-                                    onClick={() => item.panel === 'bottom' ? handleBottomStripeClick(item.id) : handleLeftStripeClick(item.id)}
+                                    onClick={() => isTopPanel ? handleLeftTopClick(item.id) : handleLeftSplitClick(item.id)}
                                 />
                             );
                         })}
@@ -506,9 +543,9 @@ function MainWindow({
                                 <StripeIconButton
                                     key={item.id}
                                     icon={item.icon}
-                                    state={getStripeState(item.panel || 'bottom', item.id, item.panel === 'bottom' ? showBottomPanel : showLeftPanel)}
+                                    state={getStripeState('bottom', item.id, showBottomPanel)}
                                     title={item.tooltip}
-                                    onClick={() => item.panel === 'bottom' ? handleBottomStripeClick(item.id) : handleLeftStripeClick(item.id)}
+                                    onClick={() => handleBottomStripeClick(item.id)}
                                 />
                             );
                         })}
@@ -518,7 +555,12 @@ function MainWindow({
                 {/* Center Content Area */}
                 <div className="main-window-center">
                     <div className="main-window-top-row">
-                        {showLeftPanel && renderLeftPanel(leftStripeSelection, panelContext)}
+                        {showLeftPanel && (
+                            <div className="main-window-left-panel-column">
+                                {showLeftTopPanel && renderLeftPanel(leftTopSelection, { ...panelContext, setShowLeftPanel: setShowLeftTopPanel })}
+                                {showLeftSplitPanel && renderLeftPanel(leftSplitSelection, { ...panelContext, setShowLeftPanel: setShowLeftSplitPanel })}
+                            </div>
+                        )}
 
                         <div className="main-window-editor-area" onMouseDown={() => setFocusedPanel('editor')}>
                             <div className="main-window-editor-tabs">
@@ -577,4 +619,7 @@ export {
     DEFAULT_RIGHT_STRIPE_ITEMS,
     DEFAULT_BOTTOM_STRIPE_ITEMS,
     DEFAULT_OPEN_TOOL_WINDOWS,
+    defaultLeftPanelContent,
+    defaultRightPanelContent,
+    defaultBottomPanelContent,
 };
