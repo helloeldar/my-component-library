@@ -361,6 +361,9 @@ function MainWindow({
     const [showBottomPanel, setShowBottomPanel] = useState(!!initialBottom);
 
     const [focusedPanel, setFocusedPanel] = useState('editor');
+    const [focusedLeftSubPanel, setFocusedLeftSubPanel] = useState(
+        initialSplit ? 'left-split' : 'left-top'
+    );
 
     const [showSearchEverywhere, setShowSearchEverywhere] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -414,9 +417,10 @@ function MainWindow({
                          panelType === 'right' ? rightStripeSelection :
                          bottomStripeSelection;
         if (panelKey !== id) return 'default';
-        const focusType = (panelType === 'left-top' || panelType === 'left-split') ? 'left'
-                        : panelType === 'right' ? 'right'
-                        : 'bottom';
+        if (panelType === 'left-top' || panelType === 'left-split') {
+            return focusedPanel === 'left' && focusedLeftSubPanel === panelType ? 'selected' : 'inactive';
+        }
+        const focusType = panelType === 'right' ? 'right' : 'bottom';
         return focusedPanel === focusType ? 'selected' : 'inactive';
     };
 
@@ -428,6 +432,7 @@ function MainWindow({
             setShowLeftTopPanel(true);
         }
         setFocusedPanel('left');
+        setFocusedLeftSubPanel('left-top');
     };
 
     const handleLeftSplitClick = (id) => {
@@ -438,6 +443,7 @@ function MainWindow({
             setShowLeftSplitPanel(true);
         }
         setFocusedPanel('left');
+        setFocusedLeftSubPanel('left-split');
     };
 
     const handleRightStripeClick = (id) => {
@@ -529,6 +535,7 @@ function MainWindow({
                                 <StripeIconButton
                                     key={item.id}
                                     icon={item.icon}
+                                    monochrome={item.monochrome}
                                     state={getStripeState(panelType, item.id, shown)}
                                     title={item.tooltip}
                                     onClick={() => isTopPanel ? handleLeftTopClick(item.id) : handleLeftSplitClick(item.id)}
@@ -543,6 +550,7 @@ function MainWindow({
                                 <StripeIconButton
                                     key={item.id}
                                     icon={item.icon}
+                                    monochrome={item.monochrome}
                                     state={getStripeState('bottom', item.id, showBottomPanel)}
                                     title={item.tooltip}
                                     onClick={() => handleBottomStripeClick(item.id)}
@@ -557,8 +565,18 @@ function MainWindow({
                     <div className="main-window-top-row">
                         {showLeftPanel && (
                             <div className="main-window-left-panel-column">
-                                {showLeftTopPanel && renderLeftPanel(leftTopSelection, { ...panelContext, setShowLeftPanel: setShowLeftTopPanel })}
-                                {showLeftSplitPanel && renderLeftPanel(leftSplitSelection, { ...panelContext, setShowLeftPanel: setShowLeftSplitPanel })}
+                                {showLeftTopPanel && renderLeftPanel(leftTopSelection, {
+                                    ...panelContext,
+                                    focusedPanel: focusedPanel === 'left' && focusedLeftSubPanel === 'left-top' ? 'left' : focusedPanel,
+                                    setFocusedPanel: (panel) => { setFocusedPanel(panel); if (panel === 'left') setFocusedLeftSubPanel('left-top'); },
+                                    setShowLeftPanel: setShowLeftTopPanel,
+                                })}
+                                {showLeftSplitPanel && renderLeftPanel(leftSplitSelection, {
+                                    ...panelContext,
+                                    focusedPanel: focusedPanel === 'left' && focusedLeftSubPanel === 'left-split' ? 'left' : focusedPanel,
+                                    setFocusedPanel: (panel) => { setFocusedPanel(panel); if (panel === 'left') setFocusedLeftSubPanel('left-split'); },
+                                    setShowLeftPanel: setShowLeftSplitPanel,
+                                })}
                             </div>
                         )}
 
@@ -593,6 +611,7 @@ function MainWindow({
                                 <StripeIconButton
                                     key={item.id}
                                     icon={item.icon}
+                                    monochrome={item.monochrome}
                                     state={getStripeState('right', item.id, showRightPanel)}
                                     title={item.tooltip}
                                     onClick={() => handleRightStripeClick(item.id)}

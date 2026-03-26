@@ -52,6 +52,37 @@ const leftStripeItems = [
 
 The Claude icon will get the standard stripe hover/active states (including the blue pill when selected).
 
+### Recommendation: use monochrome icons
+
+Built-in icons from the registry use `currentColor` — they automatically match the stripe's color scheme (grey in default/inactive, white when selected). **Custom colored icons don't do this** and will show their original colors regardless of state, which looks inconsistent.
+
+**Add `monochrome: true`** on any `StripeItemDef` with a colored custom icon:
+
+```jsx
+const leftStripeItems = [
+  { id: 'project',     icon: 'toolwindows/project@20x20', tooltip: 'Project',     section: 'top' },
+  { id: 'agent-tasks', icon: claudeStripeIcon,             tooltip: 'Agent Tasks', section: 'top',
+    monochrome: true }, // ← strips color; makes it greyscale in default/inactive, white when selected
+]
+```
+
+What `monochrome` does per state:
+
+| State | Effect |
+|---|---|
+| `default` / `inactive` | `filter: grayscale(1)` — strips color, matches other icons visually |
+| `selected` | `filter: brightness(0) invert(1)` — pure white, same as built-in icons |
+
+`monochrome` has no effect on string-based icons (they already use `currentColor`).
+
+You can also use it directly on `StripeIconButton`:
+
+```jsx
+import { StripeIconButton } from '@jetbrains/int-ui-kit'
+
+<StripeIconButton icon={claudeStripeIcon} monochrome state="selected" />
+```
+
 ---
 
 ## 3. Split left tool window
@@ -136,7 +167,7 @@ const claudeStripeIcon = <img src={claudeIconUrl} width={20} height={20} />
 const LEFT_STRIPE = [
   { id: 'project',     icon: 'toolwindows/project@20x20', tooltip: 'Project',     section: 'top' },
   { id: '_sep',        separator: true,                                             section: 'top' },
-  { id: 'agent-tasks', icon: claudeStripeIcon,             tooltip: 'Agent Tasks', section: 'top' },
+  { id: 'agent-tasks', icon: claudeStripeIcon,             tooltip: 'Agent Tasks', section: 'top', monochrome: true },
   { id: 'terminal',    icon: 'toolwindows/terminal@20x20', tooltip: 'Terminal',    panel: 'bottom', section: 'bottom' },
 ]
 

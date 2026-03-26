@@ -45,6 +45,35 @@
     height: 100%;
 }
 
+/* Monochrome modifier: converts any colored custom icon to exactly --stripe-icon-color.
+   Two mechanisms depending on icon type:
+
+   1. Inline SVG (ReactNode SVG component, ?react import):
+      fill: currentColor inherits from .stripe-icon { color: var(--stripe-icon-color) }.
+      Works for simple filled-shape icons. Elements with fill="none" (outline paths)
+      will also become colored — use pre-processed SVGs for complex stroke icons.
+
+   2. <img> element:
+      SVG filter (injected by StripeContainer) floods with currentColor then clips
+      to the image's alpha channel.
+
+   In both cases, .stripe-selected changes color to var(--icon-over-accent) automatically. */
+.stripe-icon--monochrome svg {
+    fill: currentColor;
+}
+
+.stripe-icon--monochrome svg * {
+    fill: currentColor;
+}
+
+.stripe-icon--monochrome img {
+    filter: url(#int-ui-stripe-monochrome);
+}
+
+.stripe-selected .stripe-icon--monochrome img {
+    filter: url(#int-ui-stripe-monochrome);
+}
+
 .stripe-badge {
     position: absolute;
     top: 10px;
@@ -84,7 +113,7 @@
 }
 
 .stripe-selected .stripe-icon {
-    color: var(--text-white);
+    color: var(--icon-over-accent);
 }
 
 .stripe-selected .stripe-icon svg {

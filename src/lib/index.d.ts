@@ -648,6 +648,10 @@ export interface EditorTabDef {
 export interface StripeItemDef {
   id: string;
   icon?: string | ReactNode;
+  /** When true, strips color from a custom ReactNode icon so it matches the
+   *  built-in icon appearance (greyscale in default/inactive, white when selected).
+   *  Has no effect on string-based icons from the registry (they already use currentColor). */
+  monochrome?: boolean;
   tooltip?: string;
   section?: 'top' | 'bottom';
   panel?: 'bottom';
@@ -716,7 +720,7 @@ export function defaultBottomPanelContent(stripeId: string, context: PanelContex
 // Navigation Components
 export const Tab: FC<{ label: string; icon?: string | ReactNode; active?: boolean; focused?: boolean; disabled?: boolean; closable?: boolean; onClick?: () => void; onClose?: () => void }>;
 export const TabBar: FC<{ tabs?: Array<{ label: string; icon?: string; closable?: boolean }>; activeTab?: number; onTabChange?: (index: number) => void; onTabClose?: (index: number) => void; focused?: boolean; direction?: 'horizontal' | 'vertical'; wrap?: boolean; actions?: string[]; onActionClick?: (action: string) => void; className?: string }>;
-export const StripeIconButton: FC<{ icon?: string | ReactNode; label?: string; state?: 'default' | 'selected' | 'inactive'; badge?: boolean; disabled?: boolean; title?: string; onClick?: () => void }>;
+export const StripeIconButton: FC<{ icon?: string | ReactNode; monochrome?: boolean; label?: string; state?: 'default' | 'selected' | 'inactive'; badge?: boolean; disabled?: boolean; title?: string; onClick?: () => void }>;
 export const StripeContainer: FC<{ children?: ReactNode; position?: 'left' | 'right' }>;
 
 // Toolbar Components (regular — 26px, for tool-window toolbars)

@@ -59,3 +59,100 @@ The header has an optional bottom separator — a 1px line using `--tool-window-
 - **Terminal** — has separator (`showSeparator={true}`)
 - **Project** — no separator (default)
 - **AI Assistant** — no separator (default)
+
+---
+
+## IDE Tool Window Patterns
+
+Conventions for building tool windows in int-ui-kit prototypes. Follow these to produce IDE-native results without custom CSS.
+
+### Add / New actions belong in the header
+
+**Pattern:** "Create new" actions (New Task, New Chat, New Tab, +) go in the **ToolWindow header**, not at the bottom of the content area.
+
+**Real IDE examples:**
+- Terminal — `+` button in the tab bar header opens a new terminal tab
+- AI Assistant — "New Chat" button in the header toolbar
+- Run — `+` in the header creates a new run configuration
+
+**Why:** The header toolbar is the standard IDE location for tool window actions. A button at the bottom of the panel is a web/mobile pattern — it doesn't feel native.
+
+#### How to implement
+
+**Option 1 — built-in `add` action** (preferred for a plain `+` icon):
+```jsx
+<ToolWindow
+  title="Agent Tasks"
+  actions={['add', 'more', 'minimize']}
+  onActionClick={(action) => {
+    if (action === 'add') handleNewTask()
+    if (action === 'minimize') ctx.setShowLeftPanel(false)
+  }}
+>
+  {/* content */}
+</ToolWindow>
+```
+Renders a standard `+` icon button in the header — identical to Terminal.
+
+**Option 2 — `toolbarExtra`** (for custom buttons, text labels, or multiple actions):
+```jsx
+<ToolWindow
+  title="Agent Tasks"
+  actions={['minimize']}
+  toolbarExtra={
+    <IconButton icon="general/add" title="New Task" onClick={handleNewTask} />
+  }
+>
+  {/* content */}
+</ToolWindow>
+```
+`toolbarExtra` renders between the title and the standard action buttons.
+
+#### What NOT to do
+```jsx
+// ❌ Button at the bottom of content — web pattern, not IDE-native
+<ToolWindow title="Agent Tasks">
+  <div>{/* task list */}</div>
+  <div style={{ borderTop: '...' }}>
+    <Button style={{ width: '100%' }}>+ New Task</Button>
+  </div>
+</ToolWindow>
+```
+
+### ToolWindow actions reference
+
+| Action string | Icon | Use for |
+|---|---|---|
+| `'add'` | `+` | Create new item (tab, task, chat…) |
+| `'more'` | `⋮` | Overflow menu |
+| `'minimize'` | `—` | Hide / collapse the panel |
+| `'close'` | `✕` | Close (floating windows) |
+
+Pass as `actions={['add', 'more', 'minimize']}`. Handle all in a single `onActionClick(action)` callback.
+
+### Standard header layout
+
+```
+[ Title ] [ toolbarExtra? ] [ ...actions ]
+```
+
+- Title — left-aligned, bold
+- toolbarExtra — optional custom content, placed before action buttons
+- Actions — right-aligned icon buttons (add, more, minimize, close)
+
+### Tabs in the header
+
+Use `headerType="tabs"` + `tabs={[...]}` when the tool window has multiple views (e.g., Terminal with multiple sessions, Run with multiple configs). The `+` action in tab mode adds a new tab.
+
+```jsx
+<ToolWindow
+  headerType="tabs"
+  tabs={[{ label: 'bash' }, { label: 'zsh' }]}
+  activeTab={activeTab}
+  onTabChange={setActiveTab}
+  actions={['add', 'dropdown', 'minimize']}
+  onActionClick={(action) => {
+    if (action === 'add') openNewTab()
+  }}
+/>
+```

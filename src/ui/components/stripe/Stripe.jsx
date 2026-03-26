@@ -9,6 +9,7 @@ function StripeIconButton({
     onClick,
     disabled = false,
     title,
+    monochrome = false,
     ...props 
 }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -50,7 +51,7 @@ function StripeIconButton({
             {...props}
         >
             <div className="stripe-hover-bg">
-                <div className="stripe-icon">
+                <div className={`stripe-icon${monochrome ? ' stripe-icon--monochrome' : ''}`}>
                     {renderIcon()}
                 </div>
             </div>
