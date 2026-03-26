@@ -170,7 +170,7 @@ const DEFAULT_LEFT_STRIPE_ITEMS = [
 
 const DEFAULT_RIGHT_STRIPE_ITEMS = [
     { id: 'notifications', icon: 'toolwindows/notifications@20x20', tooltip: 'Notifications' },
-    { id: 'ai', icon: 'toolwindows/aiAssistantToolWindow@20x20', tooltip: 'AI Assistant' },
+    { id: 'ai', icon: 'aiAssistant/toolWindowChat@20x20', tooltip: 'AI Assistant' },
     { id: 'database', icon: 'toolwindows/dbms@20x20.svg', tooltip: 'Database' },
 ];
 
