@@ -3359,6 +3359,136 @@ function MainWindowPage() {
     );
 }
 
+// ─── Template Pages ───────────────────────────────────────────────────────────
+
+const TEMPLATE_ITEMS = [
+    { key: 'template-ide-basic',        name: 'Basic IDE' },
+    { key: 'template-welcome-to-ide',   name: 'Welcome → IDE' },
+    { key: 'template-settings-flow',    name: 'Settings Flow' },
+];
+
+function TemplateIDEBasicPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Template: Basic IDE</h1>
+            <p className="component-description">
+                A single IDE window with editor, project tree, and terminal open by default.
+                Customize the data at the top of the file.
+                Copy <code>templates/ide-basic.jsx</code> to your prototype project to get started.
+            </p>
+            <div className="component-section">
+                <div className="main-window-demo">
+                    <MainWindow
+                        projectName="my-project"
+                        projectColor="cobalt"
+                        branchName="main"
+                        runConfig="Application"
+                        editorTabs={[
+                            { id: '1', label: 'App.tsx', icon: 'fileTypes/typeScript', closable: true },
+                            { id: '2', label: 'styles.css', icon: 'fileTypes/css', closable: true },
+                            { id: '3', label: 'package.json', icon: 'fileTypes/json', closable: true },
+                        ]}
+                        editorCode={`import React from 'react';\n\nfunction App() {\n    return (\n        <div className="app">\n            <h1>Hello World</h1>\n        </div>\n    );\n}\n\nexport default App;`}
+                        editorLanguage="typescript"
+                        projectTreeData={[{
+                            id: 'root', label: 'my-project', icon: 'nodes/folder', isExpanded: true,
+                            children: [
+                                { id: 'src', label: 'src', icon: 'nodes/sourceRoot', isExpanded: true, children: [
+                                    { id: 'app', label: 'App.tsx', icon: 'fileTypes/typeScript' },
+                                    { id: 'styles', label: 'styles.css', icon: 'fileTypes/css' },
+                                ]},
+                                { id: 'pkg', label: 'package.json', icon: 'fileTypes/json' },
+                                { id: 'tsconfig', label: 'tsconfig.json', icon: 'fileTypes/json' },
+                            ],
+                        }]}
+                        defaultOpenToolWindows={['project', 'terminal']}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function TemplateWelcomeToIDEPage() {
+    const [screen, setScreen] = useState('welcome');
+
+    const projects = [
+        { id: 'payment', name: 'payment-service', path: '~/projects/payment-service', initials: 'PS', gradient: ['#3b82f6', '#1d4ed8'] },
+        { id: 'auth',    name: 'auth-module',     path: '~/projects/auth-module',     initials: 'AM', gradient: ['#8b5cf6', '#6d28d9'] },
+        { id: 'fe',      name: 'frontend-app',    path: '~/projects/frontend-app',    initials: 'FA', gradient: ['#10b981', '#059669'] },
+    ];
+
+    return (
+        <div className="component-showcase">
+            <h1>Template: Welcome → IDE</h1>
+            <p className="component-description">
+                Two-screen flow: start at the Welcome screen, click a project to enter the IDE.
+                Copy <code>templates/welcome-to-ide.jsx</code> to get started.
+            </p>
+            <div className="component-section">
+                <div className="main-window-demo">
+                    {screen === 'welcome' ? (
+                        <WelcomeDialog
+                            ideTitle="IntelliJ IDEA"
+                            ideVersion="2025.2"
+                            projects={projects}
+                            onProjectSelect={() => setScreen('ide')}
+                            onNewProject={() => setScreen('ide')}
+                        />
+                    ) : (
+                        <div>
+                            <button
+                                onClick={() => setScreen('welcome')}
+                                style={{ marginBottom: 12, background: 'none', border: '1px solid var(--border-primary)', borderRadius: 4, padding: '4px 10px', color: 'var(--text-primary)', cursor: 'pointer', fontSize: 12 }}
+                            >
+                                ← Back to Welcome
+                            </button>
+                            <MainWindow
+                                projectName="payment-service"
+                                projectColor="cobalt"
+                                branchName="main"
+                                runConfig="PaymentApplication"
+                                editorTabs={[
+                                    { id: '1', label: 'PaymentController.java', icon: 'fileTypes/java', closable: true },
+                                    { id: '2', label: 'application.yml', icon: 'fileTypes/yaml', closable: true },
+                                ]}
+                                editorLanguage="java"
+                                defaultOpenToolWindows={['project', 'terminal']}
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function TemplateSettingsFlowPage() {
+    return (
+        <div className="component-showcase">
+            <h1>Template: Settings Flow</h1>
+            <p className="component-description">
+                IDE window with a Settings dialog that opens as an overlay.
+                Click the <strong>gear icon</strong> in the toolbar (top right) to open Settings.
+                Copy <code>templates/settings-flow.jsx</code> to replace the settings content with your own.
+            </p>
+            <div className="component-section">
+                <div className="main-window-demo">
+                    <MainWindow
+                        projectName="my-project"
+                        projectColor="cobalt"
+                        branchName="main"
+                        runConfig="Application"
+                        defaultOpenToolWindows={['project']}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 function EmptyStatePage() {
     return (
         <div className="component-showcase">
@@ -3461,6 +3591,9 @@ function Sidebar() {
 
     const showHome = !isSearching || matchesSearch('Home');
     const showMainWindow = !isSearching || matchesSearch('Main Window');
+    const filteredTemplates = isSearching
+        ? TEMPLATE_ITEMS.filter(t => matchesSearch(t.name))
+        : TEMPLATE_ITEMS;
 
     return (
         <div className="sidebar">
@@ -3496,6 +3629,30 @@ function Sidebar() {
                     <Link to="/mainwindow" className={`nav-item ${isActive('/mainwindow') ? 'active' : ''}`}>
                         Main Window
                     </Link>
+                </div>
+            )}
+
+            {filteredTemplates.length > 0 && (
+                <div className="nav-category">
+                    <div className="nav-category-title" onClick={() => toggleSection('templates')}>
+                        Templates
+                        <span className={`nav-category-chevron ${isSectionOpen('templates') ? 'open' : ''}`}>
+                            <Icon name="general/chevronRight" size={16} />
+                        </span>
+                    </div>
+                    {isSectionOpen('templates') && (
+                        <div className="nav-category-items">
+                            {filteredTemplates.map((t) => (
+                                <Link
+                                    key={t.key}
+                                    to={`/${t.key}`}
+                                    className={`nav-item ${isActive(`/${t.key}`) ? 'active' : ''}`}
+                                >
+                                    {t.name}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -3662,6 +3819,9 @@ function AppContent() {
                     <Route path="/tooltipeditor" element={<TooltipEditorPage />} />
                     <Route path="/gotittooltip" element={<GotItTooltipPage />} />
                     <Route path="/notification" element={<BalloonPage />} />
+                    <Route path="/template-ide-basic" element={<TemplateIDEBasicPage />} />
+                    <Route path="/template-welcome-to-ide" element={<TemplateWelcomeToIDEPage />} />
+                    <Route path="/template-settings-flow" element={<TemplateSettingsFlowPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>
