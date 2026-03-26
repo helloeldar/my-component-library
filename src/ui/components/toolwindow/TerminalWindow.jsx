@@ -89,7 +89,6 @@ const moreMenuItems = [
     { type: 'separator' },
     { label: 'Close All' },
     { label: 'Show Toolbar', icon: 'general/checkmark' },
-    { label: 'Group Tabs' },
     { label: 'View Mode', submenu: true },
     { label: 'Move to', submenu: true },
     { label: 'Resize', submenu: true },
@@ -111,6 +110,7 @@ const headerContextMenuItems = [
     { label: 'Resize', submenu: true },
     { type: 'separator' },
     { label: 'Remove from Sidebar' },
+    { type: 'separator' },
     { label: 'Hide', shortcut: '⇧⎋' },
 ];
 
@@ -421,11 +421,14 @@ function TerminalWindow({
     }, [onTabChange, isControlled]);
 
     const handleTabClose = useCallback((index) => {
+        if (tabs.length <= 1) {
+            if (onActionClickProp) onActionClickProp('minimize');
+            return;
+        }
         if (onTabClose) {
             onTabClose(index);
         } else if (!isControlled) {
             setInternalTabs(prev => {
-                if (prev.length <= 1) return prev;
                 const next = prev.filter((_, i) => i !== index);
                 setInternalActiveTab(current => {
                     if (current >= next.length) return next.length - 1;
@@ -435,7 +438,7 @@ function TerminalWindow({
                 return next;
             });
         }
-    }, [onTabClose, isControlled]);
+    }, [tabs, onTabClose, isControlled, onActionClickProp]);
 
     const handleTabAdd = useCallback(() => {
         if (onTabAdd) {

@@ -176,7 +176,7 @@ Terminal supports multiple session tabs (e.g., "Local", "Local (1)", "Local (2)"
 | Action | Behavior |
 |---|---|
 | Click "+" button | Adds a new tab named `Local (n)` where n increments (1, 2, 3…). New tab becomes active. |
-| Click tab close (×) | Removes the tab. If active tab was closed, selects the previous tab. Last remaining tab cannot be closed. |
+| Click tab close (×) | Removes the tab. If active tab was closed, selects the previous tab. Closing the last remaining tab minimizes the terminal (fires `minimize` action). |
 | Click a tab | Switches to that tab (selected state). |
 | Focus inside terminal | Tab shows focused/active style (highlighted color). |
 | Blur terminal | Tab goes back to default selected style. |
@@ -228,7 +228,6 @@ Triggered by the ⋮ button in the header actions (`more` action).
 | ─── separator ─── | |
 | Close All | |
 | Show Toolbar | `icon: general/checkmark` (✓) |
-| Group Tabs | |
 | View Mode | `submenu` |
 | Move to | `submenu` |
 | Resize | `submenu` |
@@ -254,6 +253,7 @@ Triggered by right-clicking the header / tab bar area.
 | Resize | `submenu` |
 | ─── separator ─── | |
 | Remove from Sidebar | |
+| ─── separator ─── | |
 | Hide | `shortcut: ⇧⎋` |
 
 ### Popup behavior
