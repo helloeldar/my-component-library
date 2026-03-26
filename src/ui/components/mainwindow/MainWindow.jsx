@@ -308,7 +308,9 @@ function MainWindow({
     toolbar,
     statusBarProps,
     overlays,
+    height = 800,
     className = "",
+    style,
     ...props
 }) {
     const leftPanelIds = new Set(leftStripeItems.filter(i => !i.separator && i.panel !== 'bottom').map(i => i.id));
@@ -457,8 +459,14 @@ function MainWindow({
         </>
     );
 
+    const heightValue = typeof height === 'number' ? `${height}px` : height;
+
     return (
-        <div className={`main-window main-window-island project-color-${projectColor} ${className}`} {...props}>
+        <div
+            className={`main-window main-window-island project-color-${projectColor} ${className}`}
+            style={{ height: heightValue, ...style }}
+            {...props}
+        >
             <div className="main-window-gradient" aria-hidden="true" />
 
             {toolbar !== undefined ? toolbar : (

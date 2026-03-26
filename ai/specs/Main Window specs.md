@@ -63,6 +63,15 @@ The island theme stripes sit on a dark background, so they use transparent white
 
 These are set as CSS variable overrides on `.main-window-island .main-window-stripe` in `MainWindow.css`.
 
+## Height Prop
+
+MainWindow accepts a `height` prop (default `800`) to control its rendered height.
+
+- Default `800` (px) ensures a predictable, fixed size when dropped into a prototype page — prevents it from filling the entire viewport.
+- Pass `height="100%"` when embedding in a full-screen container.
+- Pass any number (pixels) or string (CSS value) to override.
+- CSS no longer sets `height: 100%`; only `min-height: 600px` is enforced via CSS.
+
 ## Features
 
 - Island theme only (no "default" flat theme)
