@@ -1,226 +1,187 @@
 # JetBrains Int UI Kit. Web Version
 
-## Overview
+A React component library for building realistic **JetBrains IDE prototypes** — complete IDE window layouts, tool windows, dialogs, and 1,800+ icons out of the box.
 
-A **React** component library for building prototypes that look like real JetBrains IDEs. Built with Create React App (development/showcase) and Rollup (library build). Components are plain `.jsx` files with co-located `.css` — no TypeScript, no CSS-in-JS, no CSS modules.
+**[Live Demo →](https://int-ui-kit.vercel.app)**
 
-### Tech stack
+---
 
-- **React 18/19** (JSX, functional components)
-- **Plain CSS** with CSS custom properties (variables) for theming
-- **Create React App** (`react-scripts`) — dev server and showcase build
-- **Rollup** — library build (`dist/` with CJS + ESM + CSS)
-- **SVG icons** — sourced from JetBrains IntelliJ Icons, auto-registered via `scripts/generateIconRegistry.js`
+## What's inside
 
-## Project Structure
+- **Full IDE layouts** — `MainWindow`, `WelcomeDialog`, `SettingsDialog` with realistic defaults
+- **Tool windows** — `TerminalWindow`, `ProjectWindow`, `CommitWindow`, `VCSLogWindow`, `AIAssistantWindow`
+- **UI components** — Button, Input, Dropdown, Checkbox, Toggle, Tooltip, Popup, Table, Tree, and more
+- **1,884 icons** from IntelliJ Platform icon set (`fileTypes/`, `nodes/`, `toolwindows/`, `actions/`, ...)
+- **Light & dark themes** out of the box
+- **TypeScript types** for all components
 
-```
-src/
-├── App.js                       # Showcase app entry (routing)
-├── Home.jsx                     # Showcase home page
-├── componentsConfig.js          # Component registry and categorization
-├── ThemeContext.jsx              # Theme provider (light/dark/auto)
-├── ui/
-│   ├── components/              # All component implementations
-│   │   ├── alert/               # Alert, Banner, Button, Checkbox,
-│   │   ├── banner/              # Combobox, Dialog, Dropdown, Icon,
-│   │   ├── button/              # IconButton, Input, Link, Popup,
-│   │   ├── checkbox/            # ProgressBar, ProjectWidget, Radio,
-│   │   ├── combobox/            # Search, SegmentedControl, StatusBar,
-│   │   ├── dialog/              # Stripe, Table, Tabs, Toggle, ToolWindow,
-│   │   ├── dropdown/            # ToolbarDropdown, Tree
-│   │   ├── icon/                #
-│   │   ├── iconbutton/          # Composite windows:
-│   │   ├── idewindow/           #   IDEWindow, MainWindow,
-│   │   ├── input/               #   AIAssistantWindow, ProjectWindow,
-│   │   ├── link/                #   TerminalWindow
-│   │   ├── mainwindow/          #
-│   │   ├── popup/               # Showcase pages:
-│   │   ├── progressbar/         #   CodeExample, Colors, Typography,
-│   │   ├── projectselector/     #   MainToolbar, ToolbarDemo
-│   │   ├── radio/               #
-│   │   ├── search/              #
-│   │   ├── segmentedcontrol/    #
-│   │   ├── showcase/            #
-│   │   ├── statusbar/           #
-│   │   ├── stripe/              #
-│   │   ├── table/               #
-│   │   ├── tabs/                #
-│   │   ├── toggle/              #
-│   │   ├── toolbardropdown/     #
-│   │   ├── toolwindow/          #
-│   │   └── tree/                #
-│   └── styles/
-│       ├── Themes.css           # Light/dark theme tokens + semantic colors
-│       ├── Colors.css           # Base color scales (gray, blue, green, etc.)
-│       └── Typography.css       # Inter (UI) + JetBrains Mono (editor)
-└── icons/                       # SVG icon assets (actions/, nodes/, etc.)
-```
+---
 
-### Component pattern
+## Quick start
 
-Each component folder typically contains:
-- **Component.jsx** — React functional component
-- **Component.css** — Co-located styles using CSS custom properties
-
-## CSS / Styling Approach
-
-**Plain CSS with CSS custom properties.** No preprocessors, no CSS-in-JS, no CSS modules.
-
-- **Global design tokens** live in `src/ui/styles/`:
-  - `Themes.css` — semantic color tokens that switch between light/dark (e.g. `--bg-primary`, `--text-primary`, `--accent-primary`)
-  - `Colors.css` — base color scales (gray 10–140, blue 10–140, green, red, yellow, orange, purple, teal)
-  - `Typography.css` — font definitions for Inter (UI) and JetBrains Mono (editor)
-- **Component styles** are co-located `.css` files that reference the global tokens
-- **Theming** works via a `.theme-light` / `.theme-dark` class on a root element, which remaps semantic variables
-- **Auto theme** detects system preference via `prefers-color-scheme` media query
-
-## Components
-
-### UI Components (27)
-
-Alert, Banner, Button, Checkbox, Combobox, Dialog, Dropdown, Icon, IconButton, Input, Link, Popup, ProgressBar, ProjectWidget, Radio, Search, SegmentedControl, StatusBar, StatusBarBreadcrumb, Stripe, Table, Tabs, Toggle, ToolbarDropdown, ToolWindow, Tree, CodeExample
-
-### Window Layouts (4)
-
-AI Assistant, Main Window, Project Window, Terminal — complete IDE window compositions built from the components above.
-
-## Getting Started
-
-```bash
-npm install   # install dependencies
-npm start     # dev server at http://localhost:3000 (showcase app)
-npm run build:lib   # library build → dist/ (CJS + ESM + CSS)
-npm run build       # showcase production build → build/
-npm test            # test runner (watch mode)
-```
-
-## Using as an npm Dependency
-
-### Install
-
-**From local path (recommended for prototyping):**
-
-```bash
-npm install ../int-ui-kit-library
-```
-
-> Run `npm run build:lib` inside the library repo first so the `dist/` folder exists.
-
-**From npm (after publishing):**
+**1. Install**
 
 ```bash
 npm install @jetbrains/int-ui-kit
 ```
 
-**From Git:**
-
-```bash
-npm install git+https://github.com/user/int-ui-kit-library.git
-```
-
-### Import styles (once, at app root)
+**2. Import styles (once, at app root)**
 
 ```jsx
 import '@jetbrains/int-ui-kit/styles.css';
 ```
 
-### Use components
+**3. Use**
 
 ```jsx
-import { ThemeProvider, Button, Input, Icon } from '@jetbrains/int-ui-kit';
+import { ThemeProvider, MainWindow } from '@jetbrains/int-ui-kit';
 
 function App() {
   return (
     <ThemeProvider>
-      <Button type="primary">Click me</Button>
-      <Input label="Name" placeholder="Enter name..." />
-      <Icon name="settings" size={16} />
+      <MainWindow />
     </ThemeProvider>
   );
 }
 ```
 
-### Theming
+That's it — you get a fully working IDE layout with editor, tool windows, toolbar, and status bar.
 
-Wrap your app in `<ThemeProvider>` to enable light/dark theme support. Use the `useTheme` hook to read or toggle:
+---
+
+## Prototype in 5 minutes
 
 ```jsx
-import { useTheme } from '@jetbrains/int-ui-kit';
+import '@jetbrains/int-ui-kit/styles.css';
+import { ThemeProvider, MainWindow } from '@jetbrains/int-ui-kit';
 
+export default function MyPrototype() {
+  return (
+    <ThemeProvider>
+      <MainWindow
+        projectName="payment-service"
+        projectColor="cobalt"
+        branchName="feature/stripe-integration"
+        editorTabs={[
+          { id: '1', label: 'PaymentController.java', icon: 'fileTypes/java', closable: true },
+          { id: '2', label: 'application.yml', icon: 'fileTypes/yaml', closable: true },
+        ]}
+        editorCode={`@RestController\npublic class PaymentController {\n\n    @PostMapping("/charge")\n    public ResponseEntity<String> charge() {\n        return ResponseEntity.ok("ok");\n    }\n}`}
+        editorLanguage="java"
+      />
+    </ThemeProvider>
+  );
+}
+```
+
+---
+
+## Documentation
+
+| Guide | What it covers |
+|---|---|
+| **[Component Customization Guide](./Component%20Customization%20Guide.md)** | How to customize every component with props, defaults, and slot patterns. The main reference for prototypers. |
+| **[Icons Reference](./ICONS.md)** | Available icon categories and common icon names — use with `icon="fileTypes/java"` etc. |
+| **[Changelog](./CHANGELOG.md)** | What changed in each version |
+
+---
+
+## Installation options
+
+**From npm (published package):**
+
+```bash
+npm install @jetbrains/int-ui-kit
+```
+
+**From Git (latest, unpublished changes):**
+
+```bash
+npm install git+https://github.com/helloeldar/my-component-library.git
+```
+
+**From local path (for development):**
+
+```bash
+# First, build the library inside this repo:
+npm run build:lib
+
+# Then, in your prototype project:
+npm install ../int-ui-kit-library
+```
+
+---
+
+## Prototype starter templates
+
+Copy any of these to get started immediately:
+
+| Template | Description |
+|---|---|
+| [templates/ide-basic.jsx](./templates/ide-basic.jsx) | Simple IDE window — editor + project tree + terminal |
+| [templates/welcome-to-ide.jsx](./templates/welcome-to-ide.jsx) | Welcome screen → open project → IDE (two-screen flow) |
+| [templates/settings-flow.jsx](./templates/settings-flow.jsx) | IDE with a Settings dialog trigger |
+
+---
+
+## Available components
+
+### Full IDE screens
+`MainWindow` · `WelcomeDialog` · `SettingsDialog`
+
+### Tool windows
+`TerminalWindow` · `ProjectWindow` · `CommitWindow` · `VCSLogWindow` · `AIAssistantWindow` · `ToolWindow`
+
+### Main toolbar
+`MainToolbar` · `MainToolbarIconButton` · `MainToolbarDropdown` · `ProjectWidget` · `RunWidget`
+
+### Popups & dialogs
+`Popup` · `PopupCell` · `PositionedPopup` · `PopupBranches` · `PopupProjects` · `PopupRunWidget` · `PopupFindInFiles` · `SearchEverywherePopup` · `Dialog` · `Alert`
+
+### Tooltips
+`Tooltip` · `TooltipEditor` · `TooltipHelp` · `ValidationTooltip` · `GotItTooltip`
+
+### Form controls
+`Button` · `Checkbox` · `Combobox` · `Dropdown` · `Input` · `Radio` · `RadioGroup` · `Search` · `SegmentedControl` · `Toggle`
+
+### Display
+`Badge` · `Banner` · `EmptyState` · `Icon` · `IconButton` · `Loader` · `Notification` · `ProgressBar` · `Table` · `Tree` · `TreeNode`
+
+### Navigation
+`Tab` · `TabBar` · `StatusBar` · `StripeIconButton` · `ToolbarButton`
+
+### Layout
+`Editor` · `Link`
+
+---
+
+## Theming
+
+```jsx
+import { ThemeProvider, useTheme } from '@jetbrains/int-ui-kit';
+
+// Toggle light/dark
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-  return <button onClick={toggleTheme}>Current: {theme}</button>;
+  return <button onClick={toggleTheme}>Theme: {theme}</button>;
 }
+
+// Force a specific theme
+<ThemeProvider defaultTheme="dark">...</ThemeProvider>
 ```
 
-### Icons
+---
 
-```jsx
-import { Icon, getIcon, iconNames } from '@jetbrains/int-ui-kit';
-
-// Render by name
-<Icon name="settings" size={16} />
-
-// List all available icons
-console.log(iconNames);
-
-// Get a raw SVG component
-const SettingsIcon = getIcon('settings');
-```
-
-### Peer dependencies
-
-React 18 or 19 — the library does **not** bundle React. Your consumer project must have `react` and `react-dom` installed.
-
-## Setting Up a Prototype Project
+## Dev setup (contributing)
 
 ```bash
-# 1. Create a new React app (e.g. with Vite)
-npm create vite@latest int-ui-prototypes -- --template react
-
-# 2. Install dependencies
-cd int-ui-prototypes
-npm install
-
-# 3. Link the library (adjust the relative path as needed)
-npm install ../int-ui-kit-library
-
-# 4. Start the dev server
-npm run dev
+npm install          # install dependencies
+npm start            # showcase app at http://localhost:3000
+npm run build:lib    # library build → dist/ (CJS + ESM + CSS)
+npm run build        # showcase production build → build/
 ```
 
-Then in your prototype's `App.jsx`:
-
-```jsx
-import '@jetbrains/int-ui-kit/styles.css';
-import {
-  ThemeProvider,
-  IDEWindow,
-  MainWindow,
-  ToolWindow,
-  StatusBar,
-  Button,
-} from '@jetbrains/int-ui-kit';
-
-function App() {
-  return (
-    <ThemeProvider>
-      <IDEWindow>
-        <MainWindow>
-          <Button type="primary">Hello from Int UI</Button>
-        </MainWindow>
-        <ToolWindow title="Problems" />
-        <StatusBar />
-      </IDEWindow>
-    </ThemeProvider>
-  );
-}
-
-export default App;
-```
-
-> After making changes to the library, rebuild with `npm run build:lib` for the prototype to pick them up.
+---
 
 ## Links
 

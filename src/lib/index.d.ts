@@ -488,35 +488,7 @@ export interface DialogGroupHeaderProps extends HTMLAttributes<HTMLDivElement> {
 
 export const DialogGroupHeader: FC<DialogGroupHeaderProps>;
 
-// WelcomeDialog
-export interface WelcomeDialogProject {
-  id: string;
-  name: string;
-  path: string;
-  initials?: string;
-  gradient?: [string, string];
-}
-
-export interface WelcomeDialogProps {
-  ideTitle?: string;
-  ideVersion?: string;
-  ideIconUrl?: string;
-  projects?: WelcomeDialogProject[];
-  activeNav?: string;
-  onNavChange?: (id: string) => void;
-  selectedProjectId?: string;
-  onProjectSelect?: (id: string) => void;
-  searchValue?: string;
-  onSearchChange?: (value: string) => void;
-  onNewProject?: () => void;
-  onOpen?: () => void;
-  onGetFromVCS?: () => void;
-  onSettings?: () => void;
-  onNotifications?: () => void;
-  className?: string;
-}
-
-export const WelcomeDialog: FC<WelcomeDialogProps>;
+// WelcomeDialog (full props defined further below — see WelcomeProject / WelcomeNavItem)
 
 // SettingsDialog
 export interface SettingsTreeItem {
@@ -639,14 +611,24 @@ export interface NotificationProps extends HTMLAttributes<HTMLDivElement> {
 export const Notification: FC<NotificationProps>;
 
 // Editor
+export interface ReaderModeTooltip {
+  title?: string;
+  body?: string;
+  linkText?: string;
+}
+
 export interface EditorProps extends HTMLAttributes<HTMLDivElement> {
   code?: string;
   language?: string;
   showLineNumbers?: boolean;
   readOnly?: boolean;
+  showReaderMode?: boolean;
+  readerModeLabel?: string;
+  readerModeTooltip?: ReaderModeTooltip;
+  onChange?: (code: string) => void;
+  onExitReaderMode?: () => void;
   breakpoints?: number[];
   onBreakpointToggle?: (line: number) => void;
-  onExitReaderMode?: () => void;
   gutterActions?: any[];
   className?: string;
 }
@@ -675,6 +657,7 @@ export interface StripeItemDef {
 export interface MainWindowProps {
   projectName?: string;
   projectIcon?: string;
+  /** One of the built-in project color names, e.g. 'cobalt' | 'violet' | 'grass' | 'ocean' | 'sky' | 'amber' | 'rust' | 'olive' | 'plum' */
   projectColor?: string;
   branchName?: string;
   runConfig?: string;
@@ -685,18 +668,22 @@ export interface MainWindowProps {
   onEditorTabClose?: (index: number) => void;
   editorCode?: string;
   editorLanguage?: string;
+  onEditorCodeChange?: (code: string) => void;
   projectTreeData?: any[];
   leftStripeItems?: StripeItemDef[];
   rightStripeItems?: StripeItemDef[];
   bottomStripeItems?: StripeItemDef[];
-  leftPanelContent?: (stripeId: string, props: any) => ReactNode;
-  rightPanelContent?: (stripeId: string, props: any) => ReactNode;
-  bottomPanelContent?: (stripeId: string, props: any) => ReactNode;
+  leftPanelContent?: (stripeId: string, context: any) => ReactNode;
+  rightPanelContent?: (stripeId: string, context: any) => ReactNode;
+  bottomPanelContent?: (stripeId: string, context: any) => ReactNode;
   defaultOpenToolWindows?: string[];
   toolbar?: ReactNode;
   statusBarProps?: StatusBarProps;
   overlays?: ReactNode;
+  /** Height of the window. Pass a number for pixels (default: 800) or a CSS string like '100%' or '100vh'. */
+  height?: number | string;
   className?: string;
+  style?: CSSProperties;
 }
 
 export const MainWindow: FC<MainWindowProps>;
