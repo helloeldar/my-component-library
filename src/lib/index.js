@@ -96,7 +96,7 @@ export { default as ToolWindowHeader } from '../ui/components/toolwindow/ToolWin
 export { default as TerminalWindow } from '../ui/components/toolwindow/TerminalWindow';
 export { default as ProjectWindow } from '../ui/components/toolwindow/ProjectWindow';
 export { default as AIAssistantWindow } from '../ui/components/toolwindow/AIAssistantWindow';
-export { default as ProblemsWindow } from '../ui/components/toolwindow/ProblemsWindow';
+export { default as ProblemsWindow, DEFAULT_PROBLEMS_TOOLBAR_BUTTONS } from '../ui/components/toolwindow/ProblemsWindow';
 export { default as CommitWindow, DEFAULT_COMMIT_TOOLBAR_BUTTONS } from '../ui/components/toolwindow/CommitWindow';
 export { default as VCSLogWindow, DEFAULT_BRANCHES, DEFAULT_COMMITS, DEFAULT_DETAILS_FILES, DEFAULT_COMMIT_DETAILS } from '../ui/components/toolwindow/VCSLogWindow';
 

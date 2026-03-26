@@ -5,6 +5,7 @@
     flex-direction: row;
     overflow: hidden;
     height: 100%;
+    padding: 0; /* reset ToolWindow default 0 8px — panels manage their own padding */
 }
 
 /* ─── Panel dividers ─────────────────────────────────────────────────────────── */

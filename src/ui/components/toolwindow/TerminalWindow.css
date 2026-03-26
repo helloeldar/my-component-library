@@ -5,13 +5,35 @@
     flex-direction: column;
 }
 
+/* Flex-row body: terminal content on the left, optional sidebar toolbar on the right.
+   The outer .tool-window-content is flex-column, so this inner row creates the side-by-side layout. */
+.terminal-body {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0;
+}
+
 /* Terminal content wrapper for positioning */
 .terminal-content-wrapper {
     position: relative;
     flex: 1;
+    min-width: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+
+/* Right sidebar toolbar — vertical strip of icon buttons, same pattern as ProblemsWindow */
+.terminal-sidebar-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35px;
+    flex-shrink: 0;
+    padding: 7px 5px 7px 4px;
+    border-left: 1px solid var(--tool-window-border);
+    box-sizing: border-box;
 }
 
 /* Output area (scrollable command blocks) */

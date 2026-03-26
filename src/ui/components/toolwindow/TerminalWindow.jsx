@@ -131,6 +131,10 @@ function TerminalWindow({
     showSearch: showSearchProp = false,
     focused: focusedProp,
     onCommand,
+    /** Buttons rendered in a vertical sidebar on the right side of the terminal area.
+     *  Each entry: { icon: string, tooltip: string, onClick?: () => void }
+     *  Follows the same pattern as ProblemsWindow's left sidebar toolbar. */
+    toolbarButtons,
     className = "",
     ...props
 }) {
@@ -517,86 +521,103 @@ function TerminalWindow({
             className={`terminal-window ${className}`}
             {...props}
         >
-            <div
-                className="terminal-content-wrapper"
-                ref={wrapperRef}
-                onContextMenu={handleContextMenu}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                tabIndex={-1}
-            >
-                {/* Search overlay */}
-                {showSearch && (
-                    <div className="terminal-search-overlay">
-                        <input
-                            ref={searchInputRef}
-                            className="terminal-search-input"
-                            type="text"
-                            placeholder="Find in terminal..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Escape') {
-                                    setShowSearch(false);
-                                    setSearchQuery('');
-                                }
-                            }}
-                        />
-                        <span className="terminal-search-count">0 results</span>
-                        <div className="terminal-search-nav">
-                            <ToolbarIconButton
-                                icon="general/chevronUp"
-                                tooltip="Previous match"
-                                className="terminal-search-btn"
+            {/* Flex-row body: [content] [optional sidebar toolbar] */}
+            <div className="terminal-body">
+                <div
+                    className="terminal-content-wrapper"
+                    ref={wrapperRef}
+                    onContextMenu={handleContextMenu}
+                    onKeyDown={handleKeyDown}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    tabIndex={-1}
+                >
+                    {/* Search overlay */}
+                    {showSearch && (
+                        <div className="terminal-search-overlay">
+                            <input
+                                ref={searchInputRef}
+                                className="terminal-search-input"
+                                type="text"
+                                placeholder="Find in terminal..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Escape') {
+                                        setShowSearch(false);
+                                        setSearchQuery('');
+                                    }
+                                }}
                             />
+                            <span className="terminal-search-count">0 results</span>
+                            <div className="terminal-search-nav">
+                                <ToolbarIconButton
+                                    icon="general/chevronUp"
+                                    tooltip="Previous match"
+                                    className="terminal-search-btn"
+                                />
+                                <ToolbarIconButton
+                                    icon="general/chevronDown"
+                                    tooltip="Next match"
+                                    className="terminal-search-btn"
+                                />
+                            </div>
                             <ToolbarIconButton
-                                icon="general/chevronDown"
-                                tooltip="Next match"
+                                icon="general/closeSmall"
+                                tooltip="Close"
+                                onClick={() => { setShowSearch(false); setSearchQuery(''); }}
                                 className="terminal-search-btn"
                             />
                         </div>
-                        <ToolbarIconButton
-                            icon="general/closeSmall"
-                            tooltip="Close"
-                            onClick={() => { setShowSearch(false); setSearchQuery(''); }}
-                            className="terminal-search-btn"
-                        />
-                    </div>
-                )}
+                    )}
 
-                {/* Single scrollable buffer: output blocks + input prompt */}
-                <div className="terminal-output-area" ref={scrollAreaRef} onClick={focusInput}>
-                    {internalBlocks.map((block, i) => {
-                        // Show separator after every block if there's a next block or an input following
-                        const hasNext = i < internalBlocks.length - 1 || !!input;
-                        return renderCommandBlock(block, i, hasNext);
-                    })}
-                    {renderInputBlock()}
+                    {/* Single scrollable buffer: output blocks + input prompt */}
+                    <div className="terminal-output-area" ref={scrollAreaRef} onClick={focusInput}>
+                        {internalBlocks.map((block, i) => {
+                            // Show separator after every block if there's a next block or an input following
+                            const hasNext = i < internalBlocks.length - 1 || !!input;
+                            return renderCommandBlock(block, i, hasNext);
+                        })}
+                        {renderInputBlock()}
+                    </div>
+
+                    {/* Context menu */}
+                    {contextMenu && (
+                        <div
+                            className="terminal-context-menu"
+                            style={{ left: contextMenu.x, top: contextMenu.y }}
+                        >
+                            <Popup visible>
+                                {contextMenuItems.map((item, i) =>
+                                    item.type === 'separator' ? (
+                                        <PopupCell key={i} type="separator" />
+                                    ) : (
+                                        <PopupCell
+                                            key={i}
+                                            type="line"
+                                            shortcut={item.shortcut}
+                                            onClick={() => handleContextMenuAction(item)}
+                                        >
+                                            {item.label}
+                                        </PopupCell>
+                                    )
+                                )}
+                            </Popup>
+                        </div>
+                    )}
                 </div>
 
-                {/* Context menu */}
-                {contextMenu && (
-                    <div
-                        className="terminal-context-menu"
-                        style={{ left: contextMenu.x, top: contextMenu.y }}
-                    >
-                        <Popup visible>
-                            {contextMenuItems.map((item, i) =>
-                                item.type === 'separator' ? (
-                                    <PopupCell key={i} type="separator" />
-                                ) : (
-                                    <PopupCell
-                                        key={i}
-                                        type="line"
-                                        shortcut={item.shortcut}
-                                        onClick={() => handleContextMenuAction(item)}
-                                    >
-                                        {item.label}
-                                    </PopupCell>
-                                )
-                            )}
-                        </Popup>
+                {/* Vertical sidebar toolbar — right side, same pattern as ProblemsWindow */}
+                {toolbarButtons && toolbarButtons.length > 0 && (
+                    <div className="terminal-sidebar-toolbar">
+                        {toolbarButtons.map((btn, i) => (
+                            <ToolbarIconButton
+                                key={i}
+                                icon={btn.icon}
+                                tooltip={btn.tooltip}
+                                onClick={btn.onClick}
+                            />
+                        ))}
                     </div>
                 )}
             </div>

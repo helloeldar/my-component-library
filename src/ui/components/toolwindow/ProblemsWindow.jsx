@@ -37,7 +37,7 @@ const defaultTreeData = [
     },
 ];
 
-const toolbarButtons = [
+const DEFAULT_TOOLBAR_BUTTONS = [
     { icon: 'general/show', tooltip: 'Preview' },
     { icon: 'codeInsight/intentionBulb', tooltip: 'Show Quick-Fixes' },
     { icon: 'general/settings', tooltip: 'Settings' },
@@ -72,6 +72,9 @@ function ProblemsWindow({
     empty = false,
     emptyText = 'No problems found',
     actions = ['more', 'minimize'],
+    /** Left sidebar toolbar buttons. Default: Preview, Show Quick-Fixes, Settings.
+     *  Pass an empty array to hide the toolbar entirely. */
+    toolbarButtons = DEFAULT_TOOLBAR_BUTTONS,
     focused = true,
     className = '',
     ...props
@@ -93,15 +96,18 @@ function ProblemsWindow({
             {...props}
         >
             <div className="problems-content">
-                <div className="problems-toolbar">
-                    {toolbarButtons.map((btn, i) => (
-                        <ToolbarIconButton
-                            key={i}
-                            icon={btn.icon}
-                            tooltip={btn.tooltip}
-                        />
-                    ))}
-                </div>
+                {toolbarButtons && toolbarButtons.length > 0 && (
+                    <div className="problems-toolbar">
+                        {toolbarButtons.map((btn, i) => (
+                            <ToolbarIconButton
+                                key={i}
+                                icon={btn.icon}
+                                tooltip={btn.tooltip}
+                                onClick={btn.onClick}
+                            />
+                        ))}
+                    </div>
+                )}
                 <div className="problems-tree-area">
                     {empty ? (
                         <EmptyState explanation={emptyText} />
@@ -115,3 +121,4 @@ function ProblemsWindow({
 }
 
 export default ProblemsWindow;
+export { DEFAULT_TOOLBAR_BUTTONS as DEFAULT_PROBLEMS_TOOLBAR_BUTTONS };

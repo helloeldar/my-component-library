@@ -926,7 +926,38 @@ export interface ToolWindowProps extends HTMLAttributes<HTMLDivElement> {
 
 export const ToolWindow: FC<ToolWindowProps>;
 export const ToolWindowHeader: FC<{ title?: string; icon?: string; actions?: ReactNode; showSeparator?: boolean; onClose?: () => void; toolbarExtra?: ReactNode }>;
-export const TerminalWindow: FC<{ title?: string; width?: number | string; height?: number | string; tabs?: any[]; activeTab?: number; onTabChange?: (index: number) => void; actions?: string[]; lines?: any[]; className?: string; toolbarExtra?: ReactNode }>;
+/** A single button in the TerminalWindow or ProblemsWindow sidebar toolbar */
+export interface SidebarToolbarButton {
+  icon: string;
+  tooltip: string;
+  onClick?: () => void;
+}
+
+export const TerminalWindow: FC<{
+  title?: string;
+  width?: number | string;
+  height?: number | string;
+  /** Terminal session tabs. Default: [{ label: 'Local', closable: true }] */
+  tabs?: TerminalTabDef[];
+  activeTab?: number;
+  onTabChange?: (index: number) => void;
+  onTabAdd?: () => void;
+  onTabClose?: (index: number) => void;
+  actions?: string[];
+  onActionClick?: (action: string, payload?: any) => void;
+  /** Command blocks to display. Each: { path, lines: [{type, text}] } */
+  blocks?: Array<{ path: string; lines?: Array<{ type: string; text: string; href?: string }> }>;
+  /** Input prompt config. Pass null to hide the input row. */
+  input?: { path: string; branch?: string; ghost?: string } | null;
+  showSearch?: boolean;
+  focused?: boolean;
+  onCommand?: (command: string) => void;
+  /** Buttons rendered in a vertical sidebar on the RIGHT side of the terminal.
+   *  Follows the same pattern as ProblemsWindow's left sidebar toolbar.
+   *  Renders a 35px column with border-left, identical sizing to Problems. */
+  toolbarButtons?: SidebarToolbarButton[];
+  className?: string;
+}>;
 export const ProjectWindow: FC<{ title?: string; width?: number | string; height?: number | string; treeData?: TreeNodeData[]; defaultSelectedId?: string; actions?: string[]; onNodeSelect?: (id: string, selected: boolean) => void; onNodeToggle?: (id: string, expanded: boolean) => void; className?: string; toolbarExtra?: ReactNode }>;
 export const AIAssistantWindow: FC<{ title?: string; width?: number | string; height?: number | string; messages?: any[]; placeholder?: string; empty?: boolean; actions?: string[]; className?: string; toolbarExtra?: ReactNode }>;
 
@@ -939,17 +970,24 @@ export interface ProblemsWindowProps {
   activeTab?: number;
   onTabChange?: (index: number) => void;
   onActionClick?: (action: string) => void;
-  treeData?: any[];
+  treeData?: TreeNodeData[];
   empty?: boolean;
   emptyText?: string;
   actions?: string[];
+  /** Left sidebar toolbar buttons. Default: Preview, Show Quick-Fixes, Settings.
+   *  Uses the same SidebarToolbarButton shape as TerminalWindow.toolbarButtons. */
+  toolbarButtons?: SidebarToolbarButton[];
   focused?: boolean;
   className?: string;
 }
 
 export const ProblemsWindow: FC<ProblemsWindowProps>;
+/** Default Problems sidebar toolbar: Preview, Show Quick-Fixes, Settings */
+export const DEFAULT_PROBLEMS_TOOLBAR_BUTTONS: SidebarToolbarButton[];
 
 // CommitWindow
+/** Toolbar button for CommitWindow's horizontal toolbar row.
+ *  Identical shape to SidebarToolbarButton — kept separate for naming clarity. */
 export interface CommitToolbarButton {
   icon: string;
   tooltip?: string;
@@ -980,6 +1018,11 @@ export const CommitWindow: FC<CommitWindowProps>;
 export const DEFAULT_COMMIT_TOOLBAR_BUTTONS: CommitToolbarButton[];
 
 // VCSLogWindow
+// NOTE: VCSLogWindow has three internal toolbars (Branches sidebar, Commit Log, Commit Details).
+// These toolbars contain specialized controls (search input, dropdowns, separators) that are
+// not abstracted into a SidebarToolbarButton[] prop — they are hardcoded inside sub-components.
+// To customise these, pass custom branch/commit/details data props to change content, or
+// wrap VCSLogWindow and use toolbarExtra on the outer ToolWindow for header-level actions.
 export interface VCSLogCommit {
   id: number;
   dotColor?: 'blue' | 'orange' | 'gray';

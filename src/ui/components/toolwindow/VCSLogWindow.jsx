@@ -502,6 +502,7 @@ function VCSLogWindow({
             onTabChange={setActiveTab}
             actions={['more', 'minimize']}
             onActionClick={onActionClick}
+            showSeparator={true}
             width={width}
             height={height}
             focused={focused}

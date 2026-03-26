@@ -119,6 +119,94 @@ Renders a standard `+` icon button in the header — identical to Terminal.
 </ToolWindow>
 ```
 
+### Sidebar toolbar inside tool window content
+
+Horizontal tool windows (bottom panel — Terminal, Problems) often carry a **vertical** sidebar toolbar. Vertical tool windows (left/right panel — Project, Commit) carry a **horizontal** toolbar row.
+
+#### Why the naive approach breaks
+
+`ToolWindow`'s `.tool-window-content` defaults to `flex-direction: column`. If you drop a toolbar `<div>` straight into the content, it stacks vertically on top of the content instead of sitting beside it.
+
+The fix: wrap content + toolbar in a **flex-row** intermediate element (`.xxx-body`), then put the toolbar as a sibling.
+
+#### Pattern — horizontal tool window with vertical sidebar toolbar
+
+```
+.tool-window-content  (flex-column — do not change)
+  └── .xxx-body       (flex-row   — your wrapper)
+        ├── .xxx-content-wrapper  (flex: 1 — main content)
+        └── .xxx-sidebar-toolbar  (35px wide column, border-left)
+```
+
+```css
+/* Matches the existing pattern in ProblemsWindow and TerminalWindow */
+.xxx-body {
+    display: flex;
+    flex-direction: row;  /* ← the key change */
+    flex: 1;
+    min-height: 0;
+}
+.xxx-sidebar-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35px;
+    flex-shrink: 0;
+    padding: 7px 5px 7px 4px;
+    border-left: 1px solid var(--tool-window-border);  /* or border-right for left-side */
+    box-sizing: border-box;
+}
+```
+
+#### Real examples in the library
+
+| Component | Toolbar position | CSS class | Border side |
+|---|---|---|---|
+| `ProblemsWindow` | Left | `.problems-toolbar` | `border-right` |
+| `TerminalWindow` | Right | `.terminal-sidebar-toolbar` | `border-left` |
+
+#### Using `toolbarButtons` prop
+
+Both `TerminalWindow` and `ProblemsWindow` accept a `toolbarButtons` prop:
+
+```jsx
+<TerminalWindow
+  toolbarButtons={[
+    { icon: 'general/add', tooltip: 'New Terminal' },
+    { icon: 'actions/suspend', tooltip: 'Stop' },
+    { icon: 'general/settings', tooltip: 'Settings' },
+  ]}
+/>
+```
+
+`SidebarToolbarButton` shape: `{ icon: string; tooltip: string; onClick?: () => void }`.
+
+#### Pattern — vertical tool window with horizontal toolbar row
+
+Vertical tool windows (left/right panel) have horizontal toolbars — a row of icon buttons inside the content area, above the list. This is a simpler layout since the natural `flex-column` already stacks the toolbar on top:
+
+```jsx
+<ToolWindow title="My Panel" className="my-window">
+  <div className="my-toolbar">
+    <IconButton icon="general/add" title="Add" />
+    <IconButton icon="general/refresh" title="Refresh" />
+  </div>
+  <div className="my-content">{/* list, tree, etc. */}</div>
+</ToolWindow>
+```
+
+```css
+.my-window .tool-window-content { padding: 0; }
+.my-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    padding: 0 4px;
+    border-bottom: 1px solid var(--tool-window-border);
+}
+```
+
 ### Buttons inside toolbars and custom bars must use Toolbar components
 
 **Rule:** Any bar that lives inside an IDE window — whether it's the header toolbar, a `toolbarExtra` slot, or a custom `topBar` inside an `Editor` — is a **toolbar**. Every button inside it must use a toolbar component, never a raw `<button>`, bare `<Icon>`, or hand-crafted `<span>` wrapper.
