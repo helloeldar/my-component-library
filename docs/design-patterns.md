@@ -322,3 +322,102 @@ Add `monochrome: true` for colored custom icons — it makes them grayscale in d
 |---|---|
 | default / inactive | `filter: grayscale(1)` — strips color |
 | selected | `filter: brightness(0) invert(1)` — pure white |
+
+---
+
+## 9. Interactive List Rows Inside a Tool Window
+
+When a tool window shows a list of clickable items (tasks, files, sessions, results), use the **`Tree` component** — it handles sizing, hover, and selection automatically.
+
+`Tree` is not just for file hierarchies. In the real IDE it is reused for any interactive list: Run configurations, Bookmarks, AI chat sessions, Agent Tasks, etc.
+
+For flat (non-nested) lists, pass `flat` to hide chevrons and indentation:
+
+```jsx
+<Tree
+  flat
+  data={items}
+  onNodeSelect={(id) => setSelected(id)}
+/>
+```
+
+Where `items` follow the node shape:
+
+```js
+{
+  id: 'task-001',
+  label: 'Fix login bug',
+  icon: 'fileTypes/markdown',       // icon name or React element
+  secondaryText: '2m ago',          // trailing text
+}
+```
+
+### Sizing (when building custom rows without Tree)
+
+```
+height: 24px
+padding: 0 8px        ← horizontal padding on the row itself
+gap: 6px              ← between icon and label
+```
+
+Note: `.tool-window-content` has `padding: 0 8px` already. Do NOT add extra horizontal padding on the wrapper — it doubles the indent.
+
+### Hover and selection (custom rows)
+
+Use CSS classes, not inline styles, so `:hover` works natively:
+
+```css
+.my-list-row {
+  height: 24px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.my-list-row:hover    { background: var(--selection-bg-hovered); }
+.my-list-row.selected { background: var(--selection-bg-active); }
+```
+
+### What NOT to do
+
+```jsx
+// ❌ Custom padding, no hover, inline background — doesn't feel native
+<div style={{ padding: '3px 4px', background: selected ? '#2E436E' : 'transparent' }}>
+```
+
+### Icon names for common list content
+
+- File/document items → `fileTypes/text`, `fileTypes/markdown`, `fileTypes/java`, etc.
+- Status: running → `<Loader size={16} />` (animated component — import from library, NOT `<Icon name="loader">`)
+- Status: waiting → `<Icon name="status/warning" size={16} />`
+- Status: done → `<Icon name="status/success" size={16} />`
+- Timestamps → `font-size: 11px; color: var(--text-muted)` — see pattern 10 below
+
+---
+
+## 10. Font Usage in Tool Windows
+
+**Default font is Inter (sans-serif) — inherited from `body`.** Do not set `font-family` explicitly on normal text inside tool windows.
+
+**Use JetBrains Mono only for content that is code or directly code-related:**
+- Code snippets, file paths, command output
+- Line/column numbers, cursor positions (`5:2`)
+- Encoding labels (`UTF-8`, `LF`) in the status bar
+- Terminal output
+- Durations in a technical context (`2m`, `3h`) — judgment call; prefer Inter if unsure
+
+**Do NOT use JetBrains Mono for:**
+- Task names, labels, descriptions
+- Tool window titles or section headers
+- Any prose or human-readable text
+- Timestamps in non-code contexts (e.g. "2 hours ago" in a chat list)
+
+```jsx
+// ✅ Correct
+<span style={{ fontSize: 11, color: 'var(--text-muted)' }}>2m</span>
+
+// ❌ Wrong — mono font on a plain timestamp label
+<span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11 }}>2m</span>
+```
