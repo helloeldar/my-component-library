@@ -159,15 +159,21 @@ Exported: `defaultLeftPanelContent`, `defaultRightPanelContent`, `defaultBottomP
 The `ctx` argument passed to panel content functions is now typed as `PanelContext`:
 
 ```ts
+export interface TerminalTabDef {
+  label: string;
+  closable?: boolean;
+}
+
 export interface PanelContext {
   projectName: string;
-  projectTreeData: any[];
-  focusedPanel: string;
-  setFocusedPanel: (panel: string) => void;
+  projectTreeData: TreeNodeData[];
+  defaultSelectedNodeId?: string;
+  focusedPanel: 'editor' | 'left' | 'right' | 'bottom';
+  setFocusedPanel: (panel: 'editor' | 'left' | 'right' | 'bottom') => void;
   setShowLeftPanel: (show: boolean) => void;
   setShowRightPanel: (show: boolean) => void;
   setShowBottomPanel: (show: boolean) => void;
-  terminalTabs: any[];
+  terminalTabs: TerminalTabDef[];
   activeTerminalTab: number;
   setActiveTerminalTab: (index: number) => void;
   handleTerminalTabClose: (index: number) => void;
@@ -176,6 +182,33 @@ export interface PanelContext {
 ```
 
 Note: when a split sub-panel calls `setShowLeftPanel(false)`, it closes only its own sub-panel (the context is scoped per-render).
+
+## Per-Tab Editor Content (`editorTabContents`)
+
+`MainWindow` now supports different code, language, and topBar per editor tab. The active tab's `id` is looked up in the `editorTabContents` map.
+
+```tsx
+// Each entry keyed by EditorTabDef.id
+editorTabContents={{
+  readme: { language: 'markdown', code: '# Hello' },
+  main:   { language: 'java',     code: 'public class Main {}' },
+  input:  { language: 'markdown', code: '',  topBar: <MyInputBar /> },
+}}
+```
+
+Rules:
+- Falls back to `editorCode` / `editorLanguage` / `editorTopBar` for tabs not in the map.
+- `DEFAULT_EDITOR_TAB_CONTENTS` provides distinct sample code for `DEFAULT_EDITOR_TABS`.
+- Tab switching is tracked internally even when `activeEditorTab` is uncontrolled.
+
+```jsx
+import { MainWindow, DEFAULT_EDITOR_TABS, DEFAULT_EDITOR_TAB_CONTENTS } from '@jetbrains/int-ui-kit';
+
+<MainWindow
+  editorTabs={DEFAULT_EDITOR_TABS}
+  editorTabContents={DEFAULT_EDITOR_TAB_CONTENTS}
+/>
+```
 
 ## StripeItemDef.icon accepts ReactNode
 

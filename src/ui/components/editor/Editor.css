@@ -4,8 +4,20 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
     background: var(--editor-bg, #191A1C);
+}
+
+.editor-top-bar {
+    flex-shrink: 0;
+}
+
+.editor-body {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    overflow: hidden;
 }
 
 /* ============================================

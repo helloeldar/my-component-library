@@ -55,25 +55,31 @@ const defaultTreeData = [
 ];
 
 /**
- * ProjectWindow - A standalone Project tool window component.
- * 
- * Can be used independently for prototypes or embedded inside Main Window.
- * Renders a file tree using the Tree component.
- * 
- * @param {string} title - Window title (default: "Project")
- * @param {number|string} width - Window width (default: 320)
- * @param {number|string} height - Window height (default: 400)
- * @param {Array} treeData - Tree data for the file hierarchy (default: sample project tree)
- * @param {Array} actions - Header action buttons (default: ['more', 'minimize'])
- * @param {Function} onNodeSelect - Node selection callback
- * @param {Function} onNodeToggle - Node expand/collapse callback
- * @param {string} className - Additional CSS classes
+ * ProjectWindow — standalone Project tool window that renders a file tree.
+ *
+ * Can be used independently in prototypes or embedded inside MainWindow via
+ * the default left panel renderer. Pass `treeData` to show a custom file
+ * hierarchy; omit it to use the built-in sample project tree.
+ *
+ * @param {string}        title            - Window title. Default: "Project".
+ * @param {number|string} width            - CSS width; number → pixels. Default: 320.
+ * @param {number|string} height           - CSS height; number → pixels. Use "auto" to fit. Default: 400.
+ * @param {TreeNodeData[]} treeData        - File hierarchy. Each node: {id?, label, icon?, children?, isExpanded?}.
+ *                                           Omit `id` to have it auto-generated from position.
+ * @param {string}        defaultSelectedId - ID of the node selected on first render.
+ *                                           Only nodes with an explicit `id` field can be targeted.
+ * @param {string[]}      actions          - Header action buttons. Default: ['more', 'minimize'].
+ * @param {Function}      onNodeSelect     - Called with (nodeId, nodeData) when a node is clicked.
+ * @param {Function}      onNodeToggle     - Called with (nodeId, nodeData) when a node is expanded/collapsed.
+ * @param {string}        className        - Additional CSS class names.
+ * @param {...*}          props            - Additional props forwarded to the underlying ToolWindow.
  */
 function ProjectWindow({
     title = "Project",
     width = 320,
     height = 400,
     treeData = defaultTreeData,
+    defaultSelectedId,
     actions = ['more', 'minimize'],
     onNodeSelect,
     onNodeToggle,
@@ -91,6 +97,7 @@ function ProjectWindow({
         >
             <Tree 
                 data={treeData}
+                defaultSelectedId={defaultSelectedId}
                 onNodeSelect={onNodeSelect}
                 onNodeToggle={onNodeToggle}
             />

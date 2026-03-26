@@ -47,6 +47,30 @@ function ReaderModeBadge({ onClose, label = 'Reader Mode', tooltip = DEFAULT_REA
     );
 }
 
+/**
+ * Editor — syntax-highlighted code editor with a line-number gutter and breakpoints.
+ *
+ * Wraps `prism-react-editor` and adds:
+ * - Custom gutter with breakpoint toggles and line highlighting
+ * - Optional `topBar` slot rendered above the code area (e.g. an input bar or banner)
+ * - Reader Mode badge for read-only files
+ *
+ * @param {string}   code               - Source code to display. Default: empty string.
+ * @param {string}   language           - Prism language identifier: 'java', 'javascript',
+ *                                        'typescript', 'markdown', 'css', 'markup', etc.
+ * @param {boolean}  showLineNumbers     - Whether to render the gutter. Default: true.
+ * @param {boolean}  readOnly           - Disables editing and shows Reader Mode badge. Default: false.
+ * @param {number[]} breakpoints        - Line numbers with a breakpoint initially set.
+ * @param {Function} onBreakpointToggle - Called with (lineNumber) when a breakpoint is clicked.
+ * @param {Function} onExitReaderMode   - Called when the user dismisses the Reader Mode badge.
+ * @param {Function} onChange           - Called with (newCode) on every keystroke.
+ * @param {Array}    gutterActions      - Extra gutter actions to render beside each line.
+ * @param {string}   readerModeLabel    - Text in the Reader Mode badge. Default: "Reader Mode".
+ * @param {object}   readerModeTooltip  - Overrides for the Reader Mode tooltip content.
+ * @param {boolean}  showReaderMode     - Explicitly control Reader Mode visibility (omit to derive from readOnly).
+ * @param {ReactNode} topBar            - Content rendered above the code area — input bars, banners, toolbars.
+ * @param {string}   className          - Additional CSS class names.
+ */
 function Editor({
     code = '',
     language = 'javascript',
@@ -60,6 +84,7 @@ function Editor({
     readerModeLabel,
     readerModeTooltip,
     showReaderMode: showReaderModeProp,
+    topBar,
     className = '',
     ...props
 }) {
@@ -157,36 +182,39 @@ function Editor({
         : readOnly && !readerModeDismissed;
 
     return (
-        <div className={`editor ${className} ${showLineNumbers ? 'editor-with-gutter' : ''} ${isFocused ? 'editor-focused' : ''}`} {...props}>
-            {showLineNumbers && (
-                <EditorGutter
-                    ref={gutterRef}
-                    lineCount={lineCount}
-                    activeLine={activeLine}
-                    breakpoints={breakpoints}
-                    onBreakpointToggle={handleBreakpointToggle}
-                    gutterActions={gutterActions}
-                    isFocused={isFocused}
-                />
-            )}
-            <div className="editor-code">
-                {showReaderMode && (
-                    <ReaderModeBadge
-                        onClose={handleExitReaderMode}
-                        label={readerModeLabel}
-                        tooltip={readerModeTooltip}
+        <div className={`editor ${className} ${showLineNumbers ? 'editor-with-gutter' : ''} ${isFocused ? 'editor-focused' : ''} ${topBar ? 'editor-has-top-bar' : ''}`} {...props}>
+            {topBar && <div className="editor-top-bar">{topBar}</div>}
+            <div className="editor-body">
+                {showLineNumbers && (
+                    <EditorGutter
+                        ref={gutterRef}
+                        lineCount={lineCount}
+                        activeLine={activeLine}
+                        breakpoints={breakpoints}
+                        onBreakpointToggle={handleBreakpointToggle}
+                        gutterActions={gutterActions}
+                        isFocused={isFocused}
                     />
                 )}
-                <PrismEditor
-                    ref={editorRef}
-                    language={language}
-                    value={code}
-                    lineNumbers={false}
-                    readOnly={readOnly}
-                    onUpdate={handleUpdate}
-                    onChange={onChange}
-                    onSelectionChange={handleSelectionChange}
-                />
+                <div className="editor-code">
+                    {showReaderMode && (
+                        <ReaderModeBadge
+                            onClose={handleExitReaderMode}
+                            label={readerModeLabel}
+                            tooltip={readerModeTooltip}
+                        />
+                    )}
+                    <PrismEditor
+                        ref={editorRef}
+                        language={language}
+                        value={code}
+                        lineNumbers={false}
+                        readOnly={readOnly}
+                        onUpdate={handleUpdate}
+                        onChange={onChange}
+                        onSelectionChange={handleSelectionChange}
+                    />
+                </div>
             </div>
         </div>
     );

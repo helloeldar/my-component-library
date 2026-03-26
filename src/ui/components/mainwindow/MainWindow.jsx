@@ -106,6 +106,96 @@ const DEFAULT_JAVA_CODE = [
     '}',
 ].join('\n');
 
+/** Per-tab content matching DEFAULT_EDITOR_TABS — each tab has its own code and language.
+ *  Pass as editorTabContents to show different content per tab out of the box. */
+const DEFAULT_EDITOR_TAB_CONTENTS = {
+    '1': {
+        language: 'java',
+        code: DEFAULT_JAVA_CODE,
+    },
+    '2': {
+        language: 'markup',
+        code: [
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">',
+            '  <path',
+            '    d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Z"',
+            '    fill="none"',
+            '    stroke="currentColor"',
+            '    stroke-width="1.5"',
+            '    class="hover-ring"',
+            '  />',
+            '  <circle cx="8" cy="8" r="3" fill="currentColor" />',
+            '</svg>',
+        ].join('\n'),
+    },
+    '3': {
+        language: 'markup',
+        code: [
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">',
+            '  <!-- Plus icon: horizontal and vertical bars -->',
+            '  <rect x="7" y="2" width="2" height="12" rx="1" fill="currentColor" />',
+            '  <rect x="2" y="7" width="12" height="2" rx="1" fill="currentColor" />',
+            '</svg>',
+        ].join('\n'),
+    },
+    '4': {
+        language: 'java',
+        code: [
+            'package org.apache.commons.math4.analysis;',
+            '',
+            '/**',
+            ' * Adapter that applies a scalar multiplier to any UnivariateFunction.',
+            ' *',
+            ' * @since 4.0',
+            ' */',
+            'public class AdapterScript implements UnivariateFunction {',
+            '',
+            '    private final UnivariateFunction delegate;',
+            '    private final double scale;',
+            '',
+            '    public AdapterScript(UnivariateFunction delegate, double scale) {',
+            '        this.delegate = delegate;',
+            '        this.scale = scale;',
+            '    }',
+            '',
+            '    @Override',
+            '    public double value(double x) {',
+            '        return scale * delegate.value(x);',
+            '    }',
+            '}',
+        ].join('\n'),
+    },
+    '5': {
+        language: 'java',
+        code: [
+            'package org.apache.commons.math4.analysis;',
+            '',
+            '/**',
+            ' * Contract for adapter scripts that wrap a UnivariateFunction.',
+            ' * Implementations must declare their scale factor.',
+            ' *',
+            ' * @since 4.0',
+            ' */',
+            'public interface AdapterScriptInterface {',
+            '',
+            '    /**',
+            '     * Returns the underlying function being adapted.',
+            '     *',
+            '     * @return the delegate function',
+            '     */',
+            '    UnivariateFunction getDelegate();',
+            '',
+            '    /**',
+            '     * Returns the scalar multiplier applied to the delegate.',
+            '     *',
+            '     * @return scale factor',
+            '     */',
+            '    double getScale();',
+            '}',
+        ].join('\n'),
+    },
+};
+
 const DEFAULT_PROJECT_TREE_DATA = [
     {
         id: '1',
@@ -180,7 +270,17 @@ const DEFAULT_OPEN_TOOL_WINDOWS = ['project', 'terminal'];
 
 /* ─── Default panel content renderers ────────────────────────────────────────── */
 
-function defaultLeftPanelContent(stripeId, { projectTreeData, focusedPanel, setFocusedPanel, setShowLeftPanel }) {
+/**
+ * Default left-panel renderer. Handles 'project', 'commit', and 'structure' stripe ids.
+ * Import and call this inside a custom leftPanelContent to delegate unknown ids to built-in behaviour:
+ * ```jsx
+ * leftPanelContent={(id, ctx) => id === 'my-panel' ? <MyPanel /> : defaultLeftPanelContent(id, ctx)}
+ * ```
+ * @param {string}      stripeId - The active stripe item id.
+ * @param {PanelContext} ctx     - Context provided by MainWindow.
+ * @returns {ReactNode}
+ */
+function defaultLeftPanelContent(stripeId, { projectTreeData, defaultSelectedNodeId, focusedPanel, setFocusedPanel, setShowLeftPanel }) {
     const commonProps = {
         focused: focusedPanel === 'left',
         onFocus: () => setFocusedPanel('left'),
@@ -189,7 +289,7 @@ function defaultLeftPanelContent(stripeId, { projectTreeData, focusedPanel, setF
     };
 
     if (stripeId === 'project') {
-        return <ProjectWindow width={280} height="auto" treeData={projectTreeData} {...commonProps} />;
+        return <ProjectWindow width={280} height="auto" treeData={projectTreeData} defaultSelectedId={defaultSelectedNodeId} {...commonProps} />;
     }
     if (stripeId === 'commit') {
         return <CommitWindow width={280} height="auto" {...commonProps} />;
@@ -203,6 +303,12 @@ function defaultLeftPanelContent(stripeId, { projectTreeData, focusedPanel, setF
     );
 }
 
+/**
+ * Default right-panel renderer. Handles 'ai', 'database', 'maven', and 'notifications' stripe ids.
+ * @param {string}      stripeId - The active stripe item id.
+ * @param {PanelContext} ctx     - Context provided by MainWindow.
+ * @returns {ReactNode}
+ */
 function defaultRightPanelContent(stripeId, { focusedPanel, setFocusedPanel, setShowRightPanel }) {
     const commonProps = {
         focused: focusedPanel === 'right',
@@ -226,6 +332,12 @@ function defaultRightPanelContent(stripeId, { focusedPanel, setFocusedPanel, set
     );
 }
 
+/**
+ * Default bottom-panel renderer. Handles 'terminal', 'git', and 'problems' stripe ids.
+ * @param {string}      stripeId - The active stripe item id.
+ * @param {PanelContext} ctx     - Context provided by MainWindow.
+ * @returns {ReactNode}
+ */
 function defaultBottomPanelContent(stripeId, {
     projectName, focusedPanel, setFocusedPanel, setShowBottomPanel,
     terminalTabs, activeTerminalTab, setActiveTerminalTab,
@@ -283,6 +395,65 @@ function defaultBottomPanelContent(stripeId, {
  * - Right Stripe (vertical toolbar)
  * - Status Bar (bottom)
  */
+/**
+ * MainWindow — the central IDE shell component.
+ *
+ * Provides a complete IDE-like layout with a toolbar, left/right/bottom panel
+ * stripes, a resizable editor area, and a status bar. Most props are optional —
+ * sensible defaults are provided for every area so you can start with zero config
+ * and override only what you need.
+ *
+ * ## Quick start
+ * ```jsx
+ * <div style={{ height: '100vh' }}>
+ *   <MainWindow height="100%" />
+ * </div>
+ * ```
+ *
+ * ## Per-tab editor content
+ * ```jsx
+ * <MainWindow
+ *   editorTabs={[
+ *     { id: 'readme', label: 'README.md', icon: 'fileTypes/markdown', closable: true },
+ *     { id: 'main',   label: 'Main.java',  icon: 'fileTypes/java',     closable: true },
+ *   ]}
+ *   editorTabContents={{
+ *     readme: { language: 'markdown', code: '# Hello World' },
+ *     main:   { language: 'java',     code: 'public class Main {}' },
+ *   }}
+ * />
+ * ```
+ *
+ * ## Custom left panel with built-in fallback
+ * ```jsx
+ * <MainWindow
+ *   leftPanelContent={(id, ctx) => {
+ *     if (id === 'my-panel') return <MyPanel />;
+ *     return defaultLeftPanelContent(id, ctx); // built-in Project, Commit, etc.
+ *   }}
+ * />
+ * ```
+ *
+ * ## Split left panel (top + bottom sub-panels)
+ * Add a separator item to leftStripeItems. Icons before the separator open in
+ * the top sub-panel; icons after open in the bottom sub-panel.
+ * ```jsx
+ * <MainWindow
+ *   leftStripeItems={[
+ *     { id: 'project', icon: 'toolwindows/project@20x20', tooltip: 'Project', section: 'top' },
+ *     { id: '_sep', separator: true, section: 'top' },
+ *     { id: 'my-panel', icon: <MyIcon />, tooltip: 'My Panel', monochrome: true, section: 'top' },
+ *   ]}
+ * />
+ * ```
+ *
+ * @see defaultLeftPanelContent
+ * @see defaultRightPanelContent
+ * @see defaultBottomPanelContent
+ * @see DEFAULT_EDITOR_TABS
+ * @see DEFAULT_EDITOR_TAB_CONTENTS
+ * @see DEFAULT_PROJECT_TREE_DATA
+ */
 function MainWindow({
     projectName = "intellij",
     projectIcon = "IJ",
@@ -291,13 +462,16 @@ function MainWindow({
     runConfig = "IDEA Community",
     runState = "default",
     editorTabs = DEFAULT_EDITOR_TABS,
-    activeEditorTab,
+    activeEditorTab: activeEditorTabProp,
     onEditorTabChange,
     onEditorTabClose,
     editorCode = DEFAULT_JAVA_CODE,
     editorLanguage = "java",
     onEditorCodeChange,
+    editorTabContents,
+    editorTopBar,
     projectTreeData = DEFAULT_PROJECT_TREE_DATA,
+    defaultSelectedNodeId,
     leftStripeItems = DEFAULT_LEFT_STRIPE_ITEMS,
     rightStripeItems = DEFAULT_RIGHT_STRIPE_ITEMS,
     bottomStripeItems = DEFAULT_BOTTOM_STRIPE_ITEMS,
@@ -364,6 +538,22 @@ function MainWindow({
     const [focusedLeftSubPanel, setFocusedLeftSubPanel] = useState(
         initialSplit ? 'left-split' : 'left-top'
     );
+
+    // Internal active-tab index; mirrors the controlled prop when provided
+    const [internalActiveTab, setInternalActiveTab] = useState(activeEditorTabProp ?? 0);
+    const activeEditorTab = activeEditorTabProp ?? internalActiveTab;
+
+    const handleEditorTabChange = (index) => {
+        setInternalActiveTab(index);
+        onEditorTabChange?.(index);
+    };
+
+    // Resolve code / language / topBar from editorTabContents if provided
+    const activeTabId = editorTabs[activeEditorTab]?.id;
+    const activeTabContent = editorTabContents?.[activeTabId];
+    const resolvedCode = activeTabContent?.code ?? editorCode;
+    const resolvedLanguage = activeTabContent?.language ?? editorLanguage;
+    const resolvedTopBar = activeTabContent?.topBar ?? editorTopBar;
 
     const [showSearchEverywhere, setShowSearchEverywhere] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -467,7 +657,7 @@ function MainWindow({
     };
 
     const panelContext = {
-        projectName, projectTreeData,
+        projectName, projectTreeData, defaultSelectedNodeId,
         focusedPanel, setFocusedPanel,
         setShowLeftPanel,
         setShowRightPanel, setShowBottomPanel,
@@ -585,14 +775,19 @@ function MainWindow({
                                 <TabBar
                                     tabs={editorTabs.map(t => ({ label: t.label, icon: t.icon, closable: t.closable }))}
                                     activeTab={activeEditorTab}
-                                    onTabChange={onEditorTabChange}
+                                    onTabChange={handleEditorTabChange}
                                     onTabClose={onEditorTabClose}
                                     direction="horizontal"
                                     focused={focusedPanel === 'editor'}
                                 />
                             </div>
                             <div className="main-window-editor-content">
-                                <Editor language={editorLanguage} code={editorCode} onChange={onEditorCodeChange} />
+                                <Editor
+                                    language={resolvedLanguage}
+                                    code={resolvedCode}
+                                    onChange={onEditorCodeChange}
+                                    topBar={resolvedTopBar}
+                                />
                             </div>
                         </div>
 
@@ -632,6 +827,7 @@ function MainWindow({
 export default MainWindow;
 export {
     DEFAULT_EDITOR_TABS,
+    DEFAULT_EDITOR_TAB_CONTENTS,
     DEFAULT_JAVA_CODE,
     DEFAULT_PROJECT_TREE_DATA,
     DEFAULT_LEFT_STRIPE_ITEMS,

@@ -12,22 +12,27 @@ It handles sizing (24px rows), hover, selection, and tokens automatically.
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `data` | `array` | `[]` | List of tree node objects |
+| `data` | `TreeNodeData[]` | `[]` | List of tree node objects |
+| `defaultSelectedId` | `string` | — | ID of the node selected on first render |
 | `flat` | `boolean` | `false` | Flat mode — hides chevrons and indentation |
 | `onNodeSelect` | `function` | — | Called with `(nodeId, isSelected)` |
 | `onNodeToggle` | `function` | — | Called with `(nodeId, isExpanded)` |
 
-### Node object shape
-```js
-{
-  id: 'unique-id',       // required for stable selection
-  label: 'Item label',
-  icon: 'fileTypes/markdown',   // icon name string or React element
-  secondaryText: 'path/info',   // trailing secondary text
-  children: [],         // nested nodes — omit for flat lists
-  isExpanded: false,
+### `TreeNodeData` shape
+
+```ts
+interface TreeNodeData {
+  id?: string;              // omit to auto-generate (positional: "1-0", "2-1", …)
+  label: string;
+  icon?: string | ReactNode; // e.g. 'nodes/folder', 'fileTypes/markdown'
+  secondaryText?: string;   // right-aligned muted text (path, timestamp, etc.)
+  isExpanded?: boolean;     // starts expanded — default false
+  children?: TreeNodeData[];
 }
 ```
+
+**`id` is optional.** When omitted, Tree auto-generates a positional ID (`"${level}-${index}"`).
+Provide an explicit `id` only on nodes you need to reference via `defaultSelectedId`, `onNodeSelect`, or `onNodeToggle`.
 
 ## Flat Mode
 
@@ -92,6 +97,38 @@ For non-hierarchical lists (tasks, sessions, bookmarks, results), use `flat`:
   flat
 />
 ```
+
+## MainWindow integration
+
+`MainWindow` accepts `projectTreeData` and `defaultSelectedNodeId` props which flow through to the built-in `ProjectWindow → Tree`:
+
+```jsx
+<MainWindow
+  defaultSelectedNodeId="task-1"
+  projectTreeData={[
+    {
+      label: 'my-project',
+      icon: 'nodes/folder',
+      isExpanded: true,
+      children: [
+        {
+          label: 'src',
+          icon: 'nodes/folder',
+          children: [
+            { id: 'task-1', label: 'Task 1.md', icon: 'fileTypes/markdown' },
+          ],
+        },
+      ],
+    },
+  ]}
+/>
+```
+
+- `id` is only needed on nodes you want to select by `defaultSelectedNodeId`
+- All other nodes can omit `id` — auto-generated IDs are used internally
+- Selection state lives inside `Tree` — no external state needed for simple prototypes
+
+---
 
 ## Tokens Used
 

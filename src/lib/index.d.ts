@@ -630,6 +630,10 @@ export interface EditorProps extends HTMLAttributes<HTMLDivElement> {
   breakpoints?: number[];
   onBreakpointToggle?: (line: number) => void;
   gutterActions?: any[];
+  /** ReactNode rendered above the gutter+code area, spanning the full editor width.
+   *  Use for input bars, banners, or any content that sits above the code.
+   *  Example: a Claude task input bar above an empty markdown editor. */
+  topBar?: ReactNode;
   className?: string;
 }
 
@@ -639,10 +643,40 @@ export const Editor: FC<EditorProps>;
 export const IDEWindow: FC<{ children?: ReactNode; className?: string }>;
 
 export interface EditorTabDef {
+  /** Unique identifier — used as key for editorTabContents lookup */
   id: string;
   label: string;
+  /** Icon name from the registry, e.g. 'fileTypes/java', 'fileTypes/markdown' */
   icon?: string;
   closable?: boolean;
+}
+
+/** Per-tab editor content bound to an EditorTabDef by id.
+ *  Provide in editorTabContents to show different code/language/topBar per tab. */
+export interface EditorTabContent {
+  /** Source code to display in the editor for this tab */
+  code?: string;
+  /** Prism language identifier, e.g. 'java', 'markdown', 'javascript', 'css' */
+  language?: string;
+  /** ReactNode rendered above the code area for this tab only.
+   *  Use for input bars, banners, or contextual toolbars. */
+  topBar?: ReactNode;
+}
+
+export interface TreeNodeData {
+  /** Stable ID used for selection and callbacks. If omitted, an ID is auto-generated
+   *  from position (e.g. "1-0"). Provide an explicit id on any node you want to
+   *  reference via defaultSelectedNodeId or onNodeSelect. */
+  id?: string;
+  label: string;
+  /** Icon name from the registry (e.g. "nodes/folder", "fileTypes/markdown") or a ReactNode */
+  icon?: string | ReactNode;
+  /** Trailing secondary text — shown right-aligned, muted (e.g. a file path or timestamp) */
+  secondaryText?: string;
+  /** Whether this node starts expanded. Default: false */
+  isExpanded?: boolean;
+  /** Child nodes — omit for leaf nodes */
+  children?: TreeNodeData[];
 }
 
 export interface StripeItemDef {
@@ -658,15 +692,26 @@ export interface StripeItemDef {
   separator?: boolean;
 }
 
+/** Shape of a single terminal tab managed by MainWindow */
+export interface TerminalTabDef {
+  label: string;
+  closable?: boolean;
+}
+
+/** Context object passed as the second argument to leftPanelContent,
+ *  rightPanelContent, and bottomPanelContent renderers. */
 export interface PanelContext {
   projectName: string;
-  projectTreeData: any[];
-  focusedPanel: string;
-  setFocusedPanel: (panel: string) => void;
+  projectTreeData: TreeNodeData[];
+  defaultSelectedNodeId?: string;
+  /** Which area currently has keyboard focus */
+  focusedPanel: 'editor' | 'left' | 'right' | 'bottom';
+  setFocusedPanel: (panel: 'editor' | 'left' | 'right' | 'bottom') => void;
+  /** Closes the left sub-panel this renderer is inside (top or split section) */
   setShowLeftPanel: (show: boolean) => void;
   setShowRightPanel: (show: boolean) => void;
   setShowBottomPanel: (show: boolean) => void;
-  terminalTabs: any[];
+  terminalTabs: TerminalTabDef[];
   activeTerminalTab: number;
   setActiveTerminalTab: (index: number) => void;
   handleTerminalTabClose: (index: number) => void;
@@ -674,32 +719,80 @@ export interface PanelContext {
 }
 
 export interface MainWindowProps {
+  /** Project name shown in the toolbar dropdown. Default: "intellij" */
   projectName?: string;
+  /** 1–2 letter initials shown in the project icon badge. Default: "IJ" */
   projectIcon?: string;
-  /** One of the built-in project color names, e.g. 'cobalt' | 'violet' | 'grass' | 'ocean' | 'sky' | 'amber' | 'rust' | 'olive' | 'plum' */
+  /** Built-in project accent color. Default: "cobalt".
+   *  Options: 'cobalt' | 'violet' | 'grass' | 'ocean' | 'sky' | 'amber' | 'rust' | 'olive' | 'plum' */
   projectColor?: string;
+  /** Git branch name shown in the toolbar. Default: "main" */
   branchName?: string;
+  /** Run configuration name shown in the run widget. Default: "IDEA Community" */
   runConfig?: string;
-  runState?: string;
+  /** State of the run widget. Default: "default" */
+  runState?: 'default' | 'running' | 'debugging';
+  /** Editor tab definitions. Default: DEFAULT_EDITOR_TABS (5 Java/SVG tabs) */
   editorTabs?: EditorTabDef[];
+  /** Index of the active editor tab. Uncontrolled if omitted. */
   activeEditorTab?: number;
+  /** Called when the user clicks a tab. */
   onEditorTabChange?: (index: number) => void;
+  /** Called when the user closes a tab. */
   onEditorTabClose?: (index: number) => void;
+  /** Code shown in the editor when editorTabContents is not provided.
+   *  Default: DEFAULT_JAVA_CODE (Apache Commons Math sample) */
   editorCode?: string;
+  /** Prism language for syntax highlighting when editorTabContents is not provided.
+   *  Default: "java". Common values: 'java' | 'javascript' | 'typescript' | 'markdown' | 'css' */
   editorLanguage?: string;
+  /** Called when the user edits code. */
   onEditorCodeChange?: (code: string) => void;
-  projectTreeData?: any[];
+  /** Per-tab editor content keyed by EditorTabDef.id.
+   *  When provided, the active tab's entry determines code, language, and topBar.
+   *  Falls back to editorCode / editorLanguage / editorTopBar for tabs not in the map.
+   *  Export DEFAULT_EDITOR_TAB_CONTENTS for sensible defaults matching DEFAULT_EDITOR_TABS. */
+  editorTabContents?: Record<string, EditorTabContent>;
+  /** ReactNode rendered above the code area in the editor, spanning gutter and content.
+   *  Use for input bars, banners, or contextual toolbars.
+   *  When editorTabContents is used, each tab can have its own topBar instead. */
+  editorTopBar?: ReactNode;
+  /** File tree data for the built-in Project tool window.
+   *  Default: DEFAULT_PROJECT_TREE_DATA (sample intellij project). */
+  projectTreeData?: TreeNodeData[];
+  /** ID of the tree node that should appear selected on first render.
+   *  Only nodes with an explicit id field can be targeted. */
+  defaultSelectedNodeId?: string;
+  /** Stripe button items for the left sidebar. Default: DEFAULT_LEFT_STRIPE_ITEMS.
+   *  Add a separator item to split the left panel into top and bottom sub-panels. */
   leftStripeItems?: StripeItemDef[];
+  /** Stripe button items for the right sidebar. Default: DEFAULT_RIGHT_STRIPE_ITEMS. */
   rightStripeItems?: StripeItemDef[];
+  /** Stripe button items shown at the bottom of the left sidebar.
+   *  Items with panel:"bottom" route to the bottom panel. Default: DEFAULT_BOTTOM_STRIPE_ITEMS. */
   bottomStripeItems?: StripeItemDef[];
+  /** Custom renderer for the left tool window panel.
+   *  Receives the active stripe item id and a PanelContext.
+   *  Call defaultLeftPanelContent(id, ctx) to delegate to built-in renderers for unknown ids. */
   leftPanelContent?: (stripeId: string, context: PanelContext) => ReactNode;
+  /** Custom renderer for the right tool window panel.
+   *  Call defaultRightPanelContent(id, ctx) for built-in fallback. */
   rightPanelContent?: (stripeId: string, context: PanelContext) => ReactNode;
+  /** Custom renderer for the bottom tool window panel.
+   *  Call defaultBottomPanelContent(id, ctx) for built-in fallback. */
   bottomPanelContent?: (stripeId: string, context: PanelContext) => ReactNode;
+  /** IDs of stripe items that should be open on first render.
+   *  Default: ['project', 'terminal'] */
   defaultOpenToolWindows?: string[];
+  /** Replaces the entire main toolbar with a custom ReactNode.
+   *  Omit to use the built-in MainToolbar with project/branch/run widgets. */
   toolbar?: ReactNode;
+  /** Status bar configuration. Omit to use the built-in default breadcrumbs and widgets. */
   statusBarProps?: StatusBarProps;
+  /** Overlay content (modals, popups). Omit to use the built-in Search Everywhere and Settings overlays. */
   overlays?: ReactNode;
-  /** Height of the window. Pass a number for pixels (default: 800) or a CSS string like '100%' or '100vh'. */
+  /** Height of the window. Pass a number for pixels (default: 800) or a CSS string like '100%' or '100vh'.
+   *  The parent element must have a height for percentage values to work. */
   height?: number | string;
   className?: string;
   style?: CSSProperties;
@@ -707,8 +800,11 @@ export interface MainWindowProps {
 
 export const MainWindow: FC<MainWindowProps>;
 export const DEFAULT_EDITOR_TABS: EditorTabDef[];
+/** Per-tab content matching DEFAULT_EDITOR_TABS — different code and language per tab.
+ *  Pass as editorTabContents to get distinct content for each default tab. */
+export const DEFAULT_EDITOR_TAB_CONTENTS: Record<string, EditorTabContent>;
 export const DEFAULT_JAVA_CODE: string;
-export const DEFAULT_PROJECT_TREE_DATA: any[];
+export const DEFAULT_PROJECT_TREE_DATA: TreeNodeData[];
 export const DEFAULT_LEFT_STRIPE_ITEMS: StripeItemDef[];
 export const DEFAULT_RIGHT_STRIPE_ITEMS: StripeItemDef[];
 export const DEFAULT_BOTTOM_STRIPE_ITEMS: StripeItemDef[];
@@ -824,7 +920,7 @@ export interface ToolWindowProps extends HTMLAttributes<HTMLDivElement> {
 export const ToolWindow: FC<ToolWindowProps>;
 export const ToolWindowHeader: FC<{ title?: string; icon?: string; actions?: ReactNode; showSeparator?: boolean; onClose?: () => void; toolbarExtra?: ReactNode }>;
 export const TerminalWindow: FC<{ title?: string; width?: number | string; height?: number | string; tabs?: any[]; activeTab?: number; onTabChange?: (index: number) => void; actions?: string[]; lines?: any[]; className?: string; toolbarExtra?: ReactNode }>;
-export const ProjectWindow: FC<{ title?: string; width?: number | string; height?: number | string; treeData?: any[]; actions?: string[]; onNodeSelect?: (id: string) => void; onNodeToggle?: (id: string) => void; className?: string; toolbarExtra?: ReactNode }>;
+export const ProjectWindow: FC<{ title?: string; width?: number | string; height?: number | string; treeData?: TreeNodeData[]; defaultSelectedId?: string; actions?: string[]; onNodeSelect?: (id: string, selected: boolean) => void; onNodeToggle?: (id: string, expanded: boolean) => void; className?: string; toolbarExtra?: ReactNode }>;
 export const AIAssistantWindow: FC<{ title?: string; width?: number | string; height?: number | string; messages?: any[]; placeholder?: string; empty?: boolean; actions?: string[]; className?: string; toolbarExtra?: ReactNode }>;
 
 // ProblemsWindow
@@ -925,10 +1021,13 @@ export const DEFAULT_COMMIT_DETAILS: VCSLogCommitDetails;
 
 // Tree Components
 export const Tree: FC<{
-  data?: any[];
-  selectedId?: string;
-  onSelect?: (id: string) => void;
-  onExpand?: (id: string, expanded: boolean) => void;
+  data?: TreeNodeData[];
+  /** ID of the node to select on first render. Nodes without an explicit id
+   *  use auto-generated ids (positional, e.g. "1-0") — provide an explicit id
+   *  on nodes you want to target here. */
+  defaultSelectedId?: string;
+  onNodeSelect?: (id: string, selected: boolean) => void;
+  onNodeToggle?: (id: string, expanded: boolean) => void;
   /**
    * Flat mode — hides chevrons and indentation.
    * Use for non-hierarchical lists: tasks, sessions, bookmarks, results, etc.

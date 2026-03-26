@@ -16,8 +16,8 @@ import './Tree.css';
  * In the real IDE, Tree is reused for: Project files, Bookmarks,
  * Run configurations, AI chat sessions, Agent Tasks, and more.
  */
-function Tree({ data = [], onNodeSelect, onNodeToggle, flat = false }) {
-    const [selectedNodeId, setSelectedNodeId] = useState(null);
+function Tree({ data = [], defaultSelectedId, onNodeSelect, onNodeToggle, flat = false }) {
+    const [selectedNodeId, setSelectedNodeId] = useState(defaultSelectedId || null);
 
     const renderTreeNodes = (nodes, level = 1) => {
         return nodes.map((node, index) => {

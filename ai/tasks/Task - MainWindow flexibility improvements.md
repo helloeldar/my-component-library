@@ -64,6 +64,48 @@ Discovered during the Nikita experiment — an attempt to recreate a JetBrains I
 
 ---
 
+## Audit Round 2 — 2026-03-26
+
+### Goal
+Address API opaqueness identified after consumer use of the library:
+1. Add per-tab editor content (`editorTabContents`)
+2. Tighten types (`runState`, `PanelContext.focusedPanel`, `PanelContext.terminalTabs`)
+3. Add comprehensive JSDoc to all components and prop definitions
+
+### Changes
+
+| File | Change |
+|---|---|
+| `src/ui/components/mainwindow/MainWindow.jsx` | Added `editorTabContents` prop, internal active-tab state tracking, per-tab content resolution, `DEFAULT_EDITOR_TAB_CONTENTS` constant, JSDoc on all exported functions |
+| `src/lib/index.js` | Re-exported `DEFAULT_EDITOR_TAB_CONTENTS` |
+| `src/lib/index.d.ts` | Added `EditorTabContent` interface; added `editorTabContents?: Record<string, EditorTabContent>` to `MainWindowProps`; narrowed `runState` to a union; added `TerminalTabDef` interface; narrowed `PanelContext.terminalTabs` to `TerminalTabDef[]`; narrowed `focusedPanel`/`setFocusedPanel` to a union; added JSDoc to all `MainWindowProps` fields; added JSDoc to `EditorTabDef` fields |
+| `src/ui/components/editor/Editor.jsx` | Added full JSDoc block to `Editor` function |
+| `src/ui/components/toolwindow/ToolWindow.jsx` | Added full JSDoc block to `ToolWindow` function |
+| `src/ui/components/toolwindow/ProjectWindow.jsx` | Updated JSDoc to include `defaultSelectedId` and `...props` |
+| `dist/esm/index.js`, `dist/esm/styles.css` | Rebuilt |
+
+### Per-tab editor content — how it works
+
+```jsx
+<MainWindow
+  editorTabs={[
+    { id: 'readme', label: 'README.md', icon: 'fileTypes/markdown', closable: true },
+    { id: 'main',   label: 'Main.java',  icon: 'fileTypes/java',     closable: true },
+  ]}
+  editorTabContents={{
+    readme: { language: 'markdown', code: '# Hello World' },
+    main:   { language: 'java',     code: 'public class Main {}' },
+  }}
+/>
+```
+
+- Active tab's id is looked up in `editorTabContents`
+- Falls back to `editorCode`/`editorLanguage`/`editorTopBar` if no entry for that tab
+- `topBar` can also be per-tab: `editorTabContents.myTab.topBar = <MyInputBar />`
+- Use `DEFAULT_EDITOR_TAB_CONTENTS` with `DEFAULT_EDITOR_TABS` for distinct content per default tab
+
+---
+
 ### Change 1 — Export default panel renderers
 
 `defaultLeftPanelContent`, `defaultRightPanelContent`, `defaultBottomPanelContent` are now importable. Consumers can extend instead of replace:

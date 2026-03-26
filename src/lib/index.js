@@ -62,7 +62,7 @@ export { default as Notification } from '../ui/components/notification/Notificat
 export { default as Editor } from '../ui/components/editor/Editor';
 
 // Layout Components
-export { default as MainWindow, DEFAULT_EDITOR_TABS, DEFAULT_JAVA_CODE, DEFAULT_PROJECT_TREE_DATA, DEFAULT_LEFT_STRIPE_ITEMS, DEFAULT_RIGHT_STRIPE_ITEMS, DEFAULT_BOTTOM_STRIPE_ITEMS, DEFAULT_OPEN_TOOL_WINDOWS, defaultLeftPanelContent, defaultRightPanelContent, defaultBottomPanelContent } from '../ui/components/mainwindow/MainWindow';
+export { default as MainWindow, DEFAULT_EDITOR_TABS, DEFAULT_EDITOR_TAB_CONTENTS, DEFAULT_JAVA_CODE, DEFAULT_PROJECT_TREE_DATA, DEFAULT_LEFT_STRIPE_ITEMS, DEFAULT_RIGHT_STRIPE_ITEMS, DEFAULT_BOTTOM_STRIPE_ITEMS, DEFAULT_OPEN_TOOL_WINDOWS, defaultLeftPanelContent, defaultRightPanelContent, defaultBottomPanelContent } from '../ui/components/mainwindow/MainWindow';
 export { default as IDEWindow } from '../ui/components/idewindow/IDEWindow';
 
 // Navigation Components
