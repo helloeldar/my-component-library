@@ -165,8 +165,6 @@ const DEFAULT_LEFT_STRIPE_ITEMS = [
     { id: 'structure', icon: 'toolwindows/structure@20x20', tooltip: 'Structure', section: 'top' },
     { id: 'git', icon: 'toolwindows/vcs@20x20', tooltip: 'Git', panel: 'bottom', section: 'bottom' },
     { id: 'terminal', icon: 'toolwindows/terminal@20x20', tooltip: 'Terminal', panel: 'bottom', section: 'bottom' },
-    { id: 'run', icon: 'toolwindows/run@20x20', tooltip: 'Run', panel: 'bottom', section: 'bottom' },
-    { id: 'debug', icon: 'toolwindows/debug@20x20', tooltip: 'Debug', panel: 'bottom', section: 'bottom' },
     { id: 'problems', icon: 'toolwindows/problems@20x20', tooltip: 'Problems', panel: 'bottom', section: 'bottom' },
 ];
 
@@ -263,7 +261,7 @@ function defaultBottomPanelContent(stripeId, {
     }
     return (
         <ToolWindow
-            title={stripeId === 'run' ? 'Run' : 'Debug'}
+            title={stripeId}
             width="auto" height={180} actions={['more', 'minimize']} {...commonProps}
         >
             <div style={{ padding: '12px', color: 'var(--text-secondary)', fontSize: '13px' }}>
