@@ -464,7 +464,7 @@ function TerminalWindow({
             setHeaderContextMenu(null);
             setChevronMenu(prev => {
                 if (prev) return null;
-                const btn = toolWindowRef.current?.querySelector('.tab-bar-actions .tool-window-action-button:last-child');
+                const btn = toolWindowRef.current?.querySelector('.tab-bar-actions .toolbar-icon-button:last-child');
                 return btn ? { triggerRect: btn.getBoundingClientRect() } : null;
             });
         } else if (action === 'more') {
@@ -472,7 +472,7 @@ function TerminalWindow({
             setHeaderContextMenu(null);
             setMoreMenu(prev => {
                 if (prev) return null;
-                const btn = toolWindowRef.current?.querySelector('.tool-window-header-actions .tool-window-action-button:first-child');
+                const btn = toolWindowRef.current?.querySelector('.tool-window-header-actions .toolbar-icon-button:first-child');
                 return btn ? { triggerRect: btn.getBoundingClientRect() } : null;
             });
         }
@@ -549,6 +549,7 @@ function TerminalWindow({
             showSeparator={true}
             actions={actions}
             focused={focused}
+            tabBarDropdown={true}
             className={`terminal-window ${className}`}
             {...props}
         >

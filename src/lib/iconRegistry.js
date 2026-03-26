@@ -162,6 +162,8 @@ import icon_actions_viewAsImage_dark from '../icons/actions/viewAsImage_dark.svg
 import icon_aiAssistant_aiAssistant from '../icons/aiAssistant/aiAssistant.svg';
 import icon_aiAssistant_aiAssistantColored from '../icons/aiAssistant/aiAssistantColored.svg';
 import icon_aiAssistant_aiAssistantDisabled from '../icons/aiAssistant/aiAssistantDisabled.svg';
+import icon_aiAssistant_toolWindowChat from '../icons/aiAssistant/toolWindowChat.svg';
+import icon_aiAssistant_toolWindowChat_20x20 from '../icons/aiAssistant/toolWindowChat@20x20.svg';
 import icon_bookmarks_addBookmarksList from '../icons/bookmarks/addBookmarksList.svg';
 import icon_bookmarks_addBookmarksList_dark from '../icons/bookmarks/addBookmarksList_dark.svg';
 import icon_bookmarks_bookmark from '../icons/bookmarks/bookmark.svg';
@@ -2046,6 +2048,8 @@ const iconRegistry = {
   'aiAssistant/aiAssistant': icon_aiAssistant_aiAssistant,
   'aiAssistant/aiAssistantColored': icon_aiAssistant_aiAssistantColored,
   'aiAssistant/aiAssistantDisabled': icon_aiAssistant_aiAssistantDisabled,
+  'aiAssistant/toolWindowChat': icon_aiAssistant_toolWindowChat,
+  'aiAssistant/toolWindowChat@20x20': icon_aiAssistant_toolWindowChat_20x20,
   'bookmarks/addBookmarksList': icon_bookmarks_addBookmarksList,
   'bookmarks/addBookmarksList_dark': icon_bookmarks_addBookmarksList_dark,
   'bookmarks/bookmark': icon_bookmarks_bookmark,

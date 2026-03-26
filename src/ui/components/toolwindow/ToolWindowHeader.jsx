@@ -15,7 +15,8 @@ function ToolWindowHeader({
     actions = ['more', 'minimize'],
     onActionClick,
     focused = false,
-    toolbarExtra
+    toolbarExtra,
+    tabBarDropdown = false,
 }) {
     const getActionIcon = (action) => {
             switch (action) {
@@ -62,7 +63,7 @@ function ToolWindowHeader({
                 onTabChange={onTabChange}
                 onTabClose={(index) => onActionClick && onActionClick('tabClose', index)}
                 focused={focused}
-                actions={['add']}
+                actions={tabBarDropdown ? ['add', 'dropdown'] : ['add']}
                 onActionClick={onActionClick}
             />
         );

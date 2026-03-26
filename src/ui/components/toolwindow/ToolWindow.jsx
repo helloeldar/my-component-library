@@ -17,6 +17,7 @@ function ToolWindow({
     children,
     className = "",
     toolbarExtra,
+    tabBarDropdown = false,
     style,
     ...rest
 }) {
@@ -43,6 +44,7 @@ function ToolWindow({
                 onActionClick={onActionClick}
                 focused={focused}
                 toolbarExtra={toolbarExtra}
+                tabBarDropdown={tabBarDropdown}
             />
             <div className="tool-window-content">
                 {children}

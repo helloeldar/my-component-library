@@ -5,6 +5,7 @@ import './TabBar.css';
 
 const actionIcons = {
     add: 'general/add',
+    dropdown: 'general/chevronDown',
 };
 
 function TabBar({
