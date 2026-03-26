@@ -243,8 +243,12 @@
 }
 
 /* Trigger button "clicked" state while popup is open */
-.terminal-dropdown-active .tab-bar-actions .tool-window-action-button:last-child,
-.terminal-more-active .tool-window-header-actions .tool-window-action-button:first-child {
-    background: var(--tool-window-action-bg-active);
-    color: var(--tool-window-action-icon-hover);
+.terminal-dropdown-active .tab-bar-actions .toolbar-icon-button:last-child::before,
+.terminal-more-active .tool-window-header-actions .toolbar-icon-button:first-child::before {
+    background: var(--icon-button-pressed-bg);
+}
+
+.terminal-dropdown-active .tab-bar-actions .toolbar-icon-button:last-child,
+.terminal-more-active .tool-window-header-actions .toolbar-icon-button:first-child {
+    color: var(--text-default);
 }

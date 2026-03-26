@@ -260,4 +260,8 @@ Triggered by right-clicking the header / tab bar area.
 
 See **Popup specs.md** for common popup positioning, flip logic, trigger active state, and z-index rules.
 
-Terminal-specific trigger active styles use `--tool-window-action-bg-active` background and `--tool-window-action-icon-hover` icon color on the chevron (▾) and more (⋮) buttons.
+Terminal-specific trigger active styles: when a popup is open, the triggering icon button stays in "pressed" state via two CSS classes on the wrapper:
+- `.terminal-dropdown-active` — applied when the chevron (▾) popup is open
+- `.terminal-more-active` — applied when the more (⋮) popup is open
+
+These classes target `.toolbar-icon-button:last-child` (chevron) and `.toolbar-icon-button:first-child` (more) respectively. The pressed visual is applied via `::before` pseudo-element using `var(--icon-button-pressed-bg)` background, and the button gets `color: var(--text-default)` to match the hover state.
