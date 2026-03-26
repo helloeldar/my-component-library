@@ -80,8 +80,10 @@ export default function MyPrototype() {
 
 | Guide | What it covers |
 |---|---|
-| **[Component Customization Guide](./Component%20Customization%20Guide.md)** | How to customize every component with props, defaults, and slot patterns. The main reference for prototypers. |
-| **[Icons Reference](./ICONS.md)** | Available icon categories and common icon names — use with `icon="fileTypes/java"` etc. |
+| **[Customization Guide](./docs/customization-guide.md)** | How to customize every component with props, defaults, and slot patterns. The main reference for prototypers. |
+| **[Design Patterns](./docs/design-patterns.md)** | IDE-native patterns — actions, panels, overlays, and more. |
+| **[Icons Reference](./docs/icons.md)** | Available icon categories and common icon names — use with `icon="fileTypes/java"` etc. |
+| **[MainWindow v0.3 Guide](./docs/mainwindow-v0.3-guide.md)** | Custom panels, split left panel, custom stripe icons, PanelContext. |
 | **[Changelog](./CHANGELOG.md)** | What changed in each version |
 
 ---

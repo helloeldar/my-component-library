@@ -1,5 +1,3 @@
-> **This file has moved to [`docs/customization-guide.md`](./docs/customization-guide.md)**
-
 # Component Customization Guide
 
 How to use and customize `@jetbrains/int-ui-kit` components to build realistic JetBrains IDE prototypes.

@@ -1,5 +1,3 @@
-> **This file has moved to [`docs/icons.md`](./docs/icons.md)**
-
 # Icons Reference
 
 This library includes **1,884 icons** from the IntelliJ Platform icon set.
