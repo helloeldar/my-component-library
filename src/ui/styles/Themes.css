@@ -205,6 +205,14 @@
  * Collection: "Semantic colors" — "Light" mode
  */
 .theme-light {
+    /* Base styles — applied immediately so content never shows browser defaults */
+    background-color: var(--bg-primary);
+    color: var(--text-default);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.25;
+    box-sizing: border-box;
+
     /* ================================================================
      * FIGMA TOKENS — auto-synced from
      * figma-exports/Int UI Kit  Islands. Semantic colors.json
@@ -717,6 +725,14 @@
  * Collection: "Semantic colors" — "Dark" mode
  */
 .theme-dark {
+    /* Base styles — applied immediately so content never shows browser defaults */
+    background-color: var(--bg-primary);
+    color: var(--text-default);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.25;
+    box-sizing: border-box;
+
     /* ================================================================
      * FIGMA TOKENS — auto-synced from
      * figma-exports/Int UI Kit  Islands. Semantic colors.json
